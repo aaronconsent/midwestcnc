@@ -189,16 +189,19 @@ SITE_SHELL_CSS = """
   /* Named-line grid:
      - left edge gutter aligns with rest of page content (1.25rem min, flexes
        so the text column lines up with the .section-inner.wide content edge);
-     - text column capped at 540px;
+     - text column capped at 520px;
      - gap;
      - image extends from there to the right viewport edge. */
   grid-template-columns:
     [edge-left] minmax(1.25rem, 1fr)
-    [text-start] minmax(0, 540px)
+    [text-start] minmax(0, 520px)
     [gap] clamp(2rem, 4vw, 4rem)
     [image-start] minmax(0, 1fr) [edge-right];
-  align-items: center;
-  min-height: min(520px, 78vh);
+  align-items: stretch;       /* image + text columns share band height */
+  /* Band height is BOUNDED so the image can't run away. Image fills the
+     band; text vertically centers inside its column. */
+  min-height: 460px;
+  max-height: 560px;
   margin: 0;
   padding: 0;
 }
@@ -206,94 +209,105 @@ SITE_SHELL_CSS = """
 .home-hero-text {
   grid-column: text-start;
   min-width: 0;
-  padding: clamp(1.5rem, 4vw, 3rem) 0;
+  padding: var(--s-4) 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;     /* center text vertically in the band */
 }
 .home-hero-text > .eyebrow:first-child {
-  font-size: 0.7rem;
-  padding: 0.22rem 0.6rem;
+  font-size: 0.68rem;
+  padding: 0.2rem 0.55rem;
   letter-spacing: 0.1em;
   margin: 0 0 var(--s-3) 0;
 }
 .home-hero-text > h1 {
-  font-size: clamp(1.85rem, 3.6vw, 2.85rem);
-  line-height: 1.08;
-  letter-spacing: -0.025em;
+  font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.022em;
   font-weight: 800;
-  margin: 0 0 var(--s-4) 0;
+  margin: 0 0 var(--s-3) 0;
 }
 .home-hero-text > p {
-  font-size: 1.02rem;
-  line-height: 1.55;
-  margin: var(--s-3) 0;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  margin: var(--s-2) 0;
   color: var(--fg);
   max-width: 52ch;
 }
 .home-hero-text > p + p {
   color: var(--muted);
-  font-size: 0.96rem;
-  margin-top: var(--s-2);
+  font-size: 0.92rem;
+  margin-top: var(--s-1);
 }
 .home-hero-text > .cta-row {
   margin-top: var(--s-4);
   gap: var(--s-3);
 }
 .home-hero-text > .cta-row .cta-button {
-  font-size: 1rem;
-  padding: 0.85rem 1.6rem;
+  font-size: 0.98rem;
+  padding: 0.8rem 1.5rem;
+}
+.home-hero-text > .cta-row .cta-phone {
+  font-size: 0.95rem;
+  padding: 0.75rem 1.1rem;
 }
 
 .home-hero-image {
   grid-column: image-start / edge-right;
   min-width: 0;
-  align-self: stretch;       /* fill full band height */
-  position: relative;
-  display: flex;
-}
-.home-hero-image figure {
-  margin: 0;
-  padding: 0;
-  flex: 1 1 auto;
-  position: relative;
-  display: flex;
-}
-.home-hero-image img {
-  width: 100%;
-  height: 100%;
-  min-height: min(520px, 78vh);
+  /* Image column fills the full band height (between min-height 460 and
+     max-height 560 above). Image stretches inside this column. */
   display: block;
-  object-fit: cover;
-  object-position: center;
+  overflow: hidden;
   /* Only the left edge gets rounded so the right edge bleeds cleanly
      into the viewport — looks integrated with the page, not floating. */
   border-radius: var(--r-4) 0 0 var(--r-4);
   box-shadow: -8px 0 24px rgba(15, 18, 22, 0.06);
 }
+.home-hero-image figure {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+.home-hero-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 40% center;  /* bias toward the van body, not the rear */
+}
 
+@media (max-width: 1100px) {
+  .home-hero { min-height: 420px; max-height: 500px; }
+}
 @media (max-width: 900px) {
   .page-section-hero { overflow: visible; }
   .page-section-hero > .section-inner { padding: 0 var(--s-4); }
   .home-hero {
     display: block;
     min-height: 0;
+    max-height: none;
   }
   .home-hero-text {
     grid-column: auto;
-    padding: var(--s-4) 0 var(--s-2) 0;
+    padding: var(--s-4) 0 var(--s-3) 0;
+    display: block;
   }
   .home-hero-image {
     grid-column: auto;
-    margin: var(--s-4) calc(var(--s-4) * -1) 0;  /* full-bleed on mobile too */
+    margin: var(--s-4) calc(var(--s-4) * -1) 0;
+    border-radius: 0;
+    box-shadow: none;
   }
   .home-hero-image img {
-    min-height: 0;
     height: auto;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     max-height: 320px;
-    border-radius: 0;
   }
 }
 @media (max-width: 600px) {
-  .home-hero-text > h1 { font-size: clamp(1.75rem, 7.5vw, 2.4rem); }
+  .home-hero-text > h1 { font-size: clamp(1.65rem, 7.2vw, 2.2rem); }
   .home-hero-image img { aspect-ratio: 3 / 2; max-height: 260px; }
 }
 
