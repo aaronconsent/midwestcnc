@@ -218,18 +218,11 @@ SITE_SHELL_CSS = """
   object-position: center;
   z-index: 1;
   pointer-events: none;
-  /* Parallel CSS fade — runs alongside the baked-in fade in the
-     video file itself. The keyframes lead the encoded fade slightly
-     (8% / 92%) so we hit pure black at the loop seam even if there's
-     a millisecond of frame mismatch or compression residue. The 10s
-     duration matches the source clip. */
-  animation: heroLoopFade 10s linear infinite;
-}
-@keyframes heroLoopFade {
-  0%   { opacity: 0; }
-  8%   { opacity: 1; }
-  92%  { opacity: 1; }
-  100% { opacity: 0; }
+  /* Start invisible — the JS opacity driver below ramps it up from
+     the video's actual currentTime, so the fade is locked to the
+     video clock instead of drifting against a fixed-length CSS
+     keyframe. No clunky seam. */
+  opacity: 0;
 }
 
 /* Dark vertical gradient overlay — top 40% black to bottom 70% black.
@@ -803,14 +796,41 @@ def homepage_body():
     # all replaced with Ken-authorized language.
     states_inline = ", ".join(STATE_NAMES[:-1]) + ", and " + STATE_NAMES[-1]
 
-    # Single-column hero with background video that has a baked-in
-    # fade in/out at the seam. CSS animation runs in parallel to force
-    # opacity to 0 at the loop point — guarantees a clean black seam
-    # even if encoding artifacts leave any residual frame.
+    # Single-column hero with background video. Opacity is driven by
+    # JS from the video's actual currentTime — the fade is locked to
+    # the video clock, never drifts against a fixed CSS keyframe.
+    hero_video_script = """<script>
+(function () {
+  var video = document.querySelector('.home-hero-video');
+  if (!video) return;
+  var FADE = 0.6;  // seconds at each end of the clip
+  function setOpacity() {
+    var t = video.currentTime;
+    var d = video.duration;
+    if (!d || !isFinite(d)) { video.style.opacity = '1'; return; }
+    var op;
+    if (t < FADE)              op = t / FADE;
+    else if (t > d - FADE)     op = (d - t) / FADE;
+    else                       op = 1;
+    if (op < 0) op = 0; else if (op > 1) op = 1;
+    video.style.opacity = String(op);
+  }
+  function tick() {
+    setOpacity();
+    requestAnimationFrame(tick);
+  }
+  // Kick off — autoplay attribute should start it, but defensively
+  // call play() in case the browser deferred it (Safari sometimes does).
+  var p = video.play();
+  if (p && typeof p.catch === 'function') p.catch(function () { /* autoplay blocked; ignore */ });
+  requestAnimationFrame(tick);
+})();
+</script>"""
+
     hero = f"""<section class="home-hero">
   <video class="home-hero-video"
          autoplay muted loop playsinline
-         preload="metadata"
+         preload="auto"
          poster="/assets/images/general/midwest-cnc-highway-shot.webp"
          aria-hidden="true">
     <source src="/assets/images/general/midwest-cnc-bg-fade.mp4" type="video/mp4">
@@ -824,6 +844,7 @@ def homepage_body():
     <p class="trust-line">Serving shops in {states_inline}. Based in Waterloo, Iowa.</p>
   </div>
 </section>
+{hero_video_script}
 """
 
     # Service tiles

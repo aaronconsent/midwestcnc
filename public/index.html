@@ -1027,18 +1027,11 @@ article > table {
   object-position: center;
   z-index: 1;
   pointer-events: none;
-  /* Parallel CSS fade — runs alongside the baked-in fade in the
-     video file itself. The keyframes lead the encoded fade slightly
-     (8% / 92%) so we hit pure black at the loop seam even if there's
-     a millisecond of frame mismatch or compression residue. The 10s
-     duration matches the source clip. */
-  animation: heroLoopFade 10s linear infinite;
-}
-@keyframes heroLoopFade {
-  0%   { opacity: 0; }
-  8%   { opacity: 1; }
-  92%  { opacity: 1; }
-  100% { opacity: 0; }
+  /* Start invisible — the JS opacity driver below ramps it up from
+     the video's actual currentTime, so the fade is locked to the
+     video clock instead of drifting against a fixed-length CSS
+     keyframe. No clunky seam. */
+  opacity: 0;
 }
 
 /* Dark vertical gradient overlay — top 40% black to bottom 70% black.
@@ -1538,7 +1531,7 @@ body.form-submitted .quote-helpers { display: none; }
 <section class="home-hero">
   <video class="home-hero-video"
          autoplay muted loop playsinline
-         preload="metadata"
+         preload="auto"
          poster="/assets/images/general/midwest-cnc-highway-shot.webp"
          aria-hidden="true">
     <source src="/assets/images/general/midwest-cnc-bg-fade.mp4" type="video/mp4">
@@ -1552,6 +1545,33 @@ body.form-submitted .quote-helpers { display: none; }
     <p class="trust-line">Serving shops in Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas. Based in Waterloo, Iowa.</p>
   </div>
 </section>
+<script>
+(function () {
+  var video = document.querySelector('.home-hero-video');
+  if (!video) return;
+  var FADE = 0.6;  // seconds at each end of the clip
+  function setOpacity() {
+    var t = video.currentTime;
+    var d = video.duration;
+    if (!d || !isFinite(d)) { video.style.opacity = '1'; return; }
+    var op;
+    if (t < FADE)              op = t / FADE;
+    else if (t > d - FADE)     op = (d - t) / FADE;
+    else                       op = 1;
+    if (op < 0) op = 0; else if (op > 1) op = 1;
+    video.style.opacity = String(op);
+  }
+  function tick() {
+    setOpacity();
+    requestAnimationFrame(tick);
+  }
+  // Kick off — autoplay attribute should start it, but defensively
+  // call play() in case the browser deferred it (Safari sometimes does).
+  var p = video.play();
+  if (p && typeof p.catch === 'function') p.catch(function () { /* autoplay blocked; ignore */ });
+  requestAnimationFrame(tick);
+})();
+</script>
   </div>
 </section>
 <section class="page-section page-section-0">

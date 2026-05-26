@@ -1027,18 +1027,11 @@ article > table {
   object-position: center;
   z-index: 1;
   pointer-events: none;
-  /* Parallel CSS fade — runs alongside the baked-in fade in the
-     video file itself. The keyframes lead the encoded fade slightly
-     (8% / 92%) so we hit pure black at the loop seam even if there's
-     a millisecond of frame mismatch or compression residue. The 10s
-     duration matches the source clip. */
-  animation: heroLoopFade 10s linear infinite;
-}
-@keyframes heroLoopFade {
-  0%   { opacity: 0; }
-  8%   { opacity: 1; }
-  92%  { opacity: 1; }
-  100% { opacity: 0; }
+  /* Start invisible — the JS opacity driver below ramps it up from
+     the video's actual currentTime, so the fade is locked to the
+     video clock instead of drifting against a fixed-length CSS
+     keyframe. No clunky seam. */
+  opacity: 0;
 }
 
 /* Dark vertical gradient overlay — top 40% black to bottom 70% black.
