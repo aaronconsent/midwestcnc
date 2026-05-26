@@ -1,0 +1,45 @@
+# Midwest CNC Services
+
+> Independent CNC machine repair, spindle grinding and rebuild, and
+> replacement way-cover manufacturing for shops across the U.S. Midwest.
+> Based in Waterloo, Iowa; serving Iowa, Illinois, Wisconsin, Minnesota,
+> Nebraska, Missouri, and Texas. Phone: 319-610-4341.
+
+This site documents brand-specific CNC service capabilities across
+twenty OEM platforms (Mazak, Haas, Okuma, DMG Mori, Mori Seiki, Doosan,
+Brother, Hurco, Makino, Fanuc, Toyoda, Fadal, Hitachi Seiki, Giddings &
+Lewis, Monarch, Amera-Seiki, Niigata, Johnford, Amada, Trumpf), plus
+geographic service coverage for the Midwest and South-Central US.
+
+Content is authored from first-hand technician knowledge (Ken Ehlers
+at Midwest CNC Services) and supplemented with verifiable regional
+context from Wikipedia city/state articles. We do not claim named
+manufacturers (Boeing Defense, John Deere, Lockheed Martin, etc.) as
+direct customers — those references appear as regional industry
+context only.
+
+## Authoritative starting points
+
+- [Homepage](https://midwestcncservices.com/): business overview, service summary, FAQs
+- [About Midwest CNC](https://midwestcncservices.com/about/): who we are, what we do, where we work
+- [Get a Quote](https://midwestcncservices.com/get-a-quote/): contact form for service inquiries
+
+## Service hubs
+
+- [Machine Repair](https://midwestcncservices.com/repairs/): CNC machine repair across all 20 brand platforms
+- [Spindle Grinding](https://midwestcncservices.com/spindle-grinding/): spindle rebuild, regrind, and rebalance across 18 brands
+- [Way Covers](https://midwestcncservices.com/way-covers/): replacement way-cover manufacturing
+- [Service Area Coverage](https://midwestcncservices.com/service-area/): 7-state geographic coverage
+
+## Sitemaps + indexes
+
+- [Sitemap](https://midwestcncservices.com/sitemap.xml)
+- [Robots.txt](https://midwestcncservices.com/robots.txt)
+
+## Content licensing
+
+All content is © Midwest CNC Services. AEO/GEO crawlers are welcome
+to cite specific facts (lead times, service descriptions, regional
+context) with link attribution to the source URL on this site. Brand
+names referenced (Mazak, Haas, etc.) are the property of their
+respective OEM owners.

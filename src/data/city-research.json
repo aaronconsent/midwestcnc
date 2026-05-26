@@ -1,0 +1,1248 @@
+{
+  "research_methodology": {
+    "primary_source": "Wikipedia city articles, Economy section",
+    "secondary_sources_allowed": [
+      "US Census Bureau",
+      "US Bureau of Labor Statistics",
+      "official .gov municipal/county pages",
+      "US Dept of Commerce data"
+    ],
+    "explicitly_forbidden": [
+      "Marketing copy",
+      "Chamber of Commerce promotional pages",
+      "business directories",
+      "blog posts",
+      "AI content farms",
+      "social media"
+    ],
+    "consolidation_threshold": "Fewer than 3 substantive verifiable facts OR no Midwest CNC brand-tie relevance",
+    "distance_method": "Haversine great-circle distance from Waterloo, IA (42.49°N, 92.34°W) × 1.20 road-factor multiplier",
+    "research_date": "2026-05-26"
+  },
+  "cities": {
+    "des-moines-iowa": {
+      "name": "Des Moines",
+      "state": "Iowa",
+      "state_slug": "iowa",
+      "population": "214,133 (2020 census)",
+      "coords": [
+        41.59083,
+        -93.62083
+      ],
+      "distance_from_waterloo": {
+        "miles": 109,
+        "hours": 1.8
+      },
+      "primary_industries": [
+        "insurance",
+        "financial services",
+        "publishing",
+        "data processing/logistics"
+      ],
+      "major_employers": [
+        "Wells Fargo (13,500)",
+        "UnityPoint Health (8,026)",
+        "Principal Financial Group (6,600)",
+        "Amazon (3,500)",
+        "Corteva (2,500)"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Historically a coal mining center; current economy dominated by insurance/financial HQs. Corteva (ag biotech) and Amazon distribution provide ag-adjacent and logistics manufacturing presence. No direct heavy-CNC manufacturer base in Des Moines proper, but the city sits at the center of Iowa's ag-equipment supply chain.",
+      "source": "https://en.wikipedia.org/wiki/Des_Moines,_Iowa",
+      "decision": "ENRICH",
+      "confidence": "medium",
+      "decision_rationale": "Iowa state capital, 109 miles from Waterloo, sits inside the ag-equipment supply chain. Service framing leans on Corteva (ag biotech) and proximity to John Deere Waterloo + Quad Cities clusters."
+    },
+    "davenport-iowa": {
+      "name": "Davenport",
+      "state": "Iowa",
+      "state_slug": "iowa",
+      "population": "101,724 (2020 census)",
+      "coords": [
+        41.55682,
+        -90.603948
+      ],
+      "distance_from_waterloo": {
+        "miles": 144,
+        "hours": 2.4
+      },
+      "primary_industries": [
+        "manufacturing",
+        "healthcare",
+        "retail",
+        "ag-related services"
+      ],
+      "major_employers": [
+        "John Deere (948 at north Davenport plant)",
+        "Genesis Health System",
+        "Trinity Regional Health",
+        "Hy-Vee",
+        "Von Maur"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "John Deere is the second-largest Quad Cities employer with the north Davenport plant. Historical manufacturing included locomotives, meat-packing, Caterpillar loaders, and wheel manufacture. Part of the Quad Cities heavy-machinery cluster.",
+      "source": "https://en.wikipedia.org/wiki/Davenport,_Iowa",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "waterloo-iowa": {
+      "name": "Waterloo",
+      "state": "Iowa",
+      "state_slug": "iowa",
+      "population": "67,314 (2020 census)",
+      "coords": [
+        42.51389,
+        -92.34611
+      ],
+      "distance_from_waterloo": {
+        "miles": 1,
+        "hours": 0.0,
+        "note": "home base"
+      },
+      "primary_industries": [
+        "agricultural equipment manufacturing",
+        "healthcare",
+        "meatpacking",
+        "education"
+      ],
+      "major_employers": [
+        "John Deere",
+        "UnityPoint Health",
+        "Tyson Foods",
+        "MercyOne",
+        "Waterloo Community Schools"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "John Deere has manufactured tractors, engines, and agricultural machinery in Waterloo for over a century. Tyson Foods meatpacking is a major operation. Home base for Midwest CNC Services.",
+      "source": "https://en.wikipedia.org/wiki/Waterloo,_Iowa",
+      "decision": "ENRICH",
+      "confidence": "high",
+      "decision_rationale": "Home market. Highest-priority page."
+    },
+    "cedar-rapids-iowa": {
+      "name": "Cedar Rapids",
+      "state": "Iowa",
+      "state_slug": "iowa",
+      "population": "137,710 (2020 census)",
+      "coords": [
+        41.96419,
+        -91.67917
+      ],
+      "distance_from_waterloo": {
+        "miles": 65,
+        "hours": 1.1
+      },
+      "primary_industries": [
+        "grain processing",
+        "aerospace manufacturing",
+        "meatpacking",
+        "financial services"
+      ],
+      "major_employers": [
+        "Collins Aerospace",
+        "Aegon USA",
+        "PepsiCo",
+        "CRST",
+        "Cedar Rapids Schools"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "One of the largest corn-processing cities in the world; grain processing alone employs roughly 4,000. Quaker Oats has operated since 1873. Collins Aerospace anchors aerospace manufacturing.",
+      "source": "https://en.wikipedia.org/wiki/Cedar_Rapids,_Iowa",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "iowa-city-iowa": {
+      "name": "Iowa City",
+      "state": "Iowa",
+      "state_slug": "iowa",
+      "population": "74,828 (2020 census)",
+      "coords": [
+        41.62083,
+        -91.49472
+      ],
+      "distance_from_waterloo": {
+        "miles": 90,
+        "hours": 1.5
+      },
+      "primary_industries": [
+        "healthcare",
+        "education",
+        "testing services",
+        "government"
+      ],
+      "major_employers": [
+        "University of Iowa Hospitals",
+        "University of Iowa",
+        "Iowa City Schools",
+        "VA Medical Center",
+        "ACT Inc."
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Wikipedia article does not describe a current manufacturing sector. Economy dominated by healthcare, education, and service sectors.",
+      "source": "https://en.wikipedia.org/wiki/Iowa_City,_Iowa",
+      "decision": "CONSOLIDATE",
+      "confidence": "high",
+      "decision_rationale": "No verifiable manufacturing employers or industrial parks. Healthcare/education-only economy doesn't justify a standalone CNC service page."
+    },
+    "ames-iowa": {
+      "name": "Ames",
+      "state": "Iowa",
+      "state_slug": "iowa",
+      "population": "66,427 (2020 census)",
+      "coords": [
+        42.01806,
+        -93.62
+      ],
+      "distance_from_waterloo": {
+        "miles": 113,
+        "hours": 1.9
+      },
+      "primary_industries": [
+        "education",
+        "research",
+        "agriculture",
+        "government"
+      ],
+      "major_employers": [
+        "Iowa State University",
+        "Mary Greeley Medical Center",
+        "Danfoss",
+        "Hach Chemical",
+        "McFarland Clinic"
+      ],
+      "industrial_parks": [
+        "ISU Research Park"
+      ],
+      "manufacturing_summary": "Hosts Ames National Laboratory (DOE materials research) and largest federal animal disease center. Manufacturing presence includes Danfoss and Hach Chemical. ISU Research Park is a business incubator.",
+      "source": "https://en.wikipedia.org/wiki/Ames,_Iowa",
+      "decision": "ENRICH",
+      "confidence": "medium",
+      "decision_rationale": "Danfoss + Hach + ISU Research Park provide a verifiable manufacturing/R&D base. Framing leans on the research-park + ag-research context."
+    },
+    "chicago-illinois": {
+      "name": "Chicago",
+      "state": "Illinois",
+      "state_slug": "illinois",
+      "population": "2,746,388 (2020 census)",
+      "coords": [
+        41.88194,
+        -87.62778
+      ],
+      "distance_from_waterloo": {
+        "miles": 294,
+        "hours": 4.9
+      },
+      "primary_industries": [
+        "finance",
+        "commodities/derivatives",
+        "transportation",
+        "telecommunications",
+        "manufacturing (declined)"
+      ],
+      "major_employers": [
+        "Chicago Board of Trade",
+        "O'Hare International Airport",
+        "Port of Chicago"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Chicago produced more steel than the United Kingdom during WWII; steel employment dropped from 250,000 (1960s) to 28,000 (2015). Modern economy emphasizes finance, but the metro retains a deep industrial supply chain.",
+      "source": "https://en.wikipedia.org/wiki/Chicago",
+      "decision": "ENRICH",
+      "confidence": "high",
+      "decision_rationale": "Largest city in our service area by population (2.7M). Even with industrial decline noted, the Chicago metro retains a substantial machine-shop base feeding aerospace, defense, and heavy industry."
+    },
+    "naperville-illinois": {
+      "name": "Naperville",
+      "state": "Illinois",
+      "state_slug": "illinois",
+      "population": "149,540 (2020 census)",
+      "coords": [
+        41.76389,
+        -88.14778
+      ],
+      "distance_from_waterloo": {
+        "miles": 269,
+        "hours": 4.5
+      },
+      "primary_industries": [
+        "technology",
+        "healthcare",
+        "manufacturing",
+        "retail"
+      ],
+      "major_employers": [
+        "Edward Hospital",
+        "Nokia (former Bell Labs/Western Electric)",
+        "BP America",
+        "Nalco",
+        "Indian Prairie School District"
+      ],
+      "industrial_parks": [
+        "Illinois Technology and Research Corridor"
+      ],
+      "manufacturing_summary": "Inside the Illinois Technology and Research Corridor. Hosts Kraft Foods' plant supplying all North American Triscuit production and Dukane Precast's double-wall precast concrete plant.",
+      "source": "https://en.wikipedia.org/wiki/Naperville,_Illinois",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "peoria-illinois": {
+      "name": "Peoria",
+      "state": "Illinois",
+      "state_slug": "illinois",
+      "population": "113,150 (2020 census)",
+      "coords": [
+        40.69278,
+        -89.59056
+      ],
+      "distance_from_waterloo": {
+        "miles": 198,
+        "hours": 3.3
+      },
+      "primary_industries": [
+        "heavy equipment manufacturing",
+        "agricultural equipment",
+        "healthcare",
+        "distilleries (historical)"
+      ],
+      "major_employers": [
+        "Caterpillar Inc.",
+        "Komatsu America Corporation",
+        "OSF Saint Francis Medical Center",
+        "Carle Health",
+        "Bradley University"
+      ],
+      "industrial_parks": [
+        "Renaissance Park (research park, est. 2003)"
+      ],
+      "manufacturing_summary": "Caterpillar Inc. was Peoria-headquartered for over 110 years (HQ moved to Deerfield 2017, Irving TX 2022) but Caterpillar operations remain. Komatsu America operates a major heavy-equipment manufacturing facility.",
+      "source": "https://en.wikipedia.org/wiki/Peoria,_Illinois",
+      "decision": "ENRICH",
+      "confidence": "high",
+      "decision_rationale": "Caterpillar + Komatsu give Peoria one of the strongest heavy-equipment manufacturing concentrations in Illinois."
+    },
+    "rockford-illinois": {
+      "name": "Rockford",
+      "state": "Illinois",
+      "state_slug": "illinois",
+      "population": "148,655 (2020 census)",
+      "coords": [
+        42.25944,
+        -89.06444
+      ],
+      "distance_from_waterloo": {
+        "miles": 219,
+        "hours": 3.7
+      },
+      "primary_industries": [
+        "fasteners",
+        "automotive suppliers",
+        "aerospace",
+        "healthcare"
+      ],
+      "major_employers": [
+        "Collins Aerospace (Sundstrand legacy)",
+        "Woodward Inc.",
+        "Stellantis (Belvidere Assembly)",
+        "UPS Airlines (Rockford Air Hub)",
+        "SwedishAmerican Hospital"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Rockford transitioned from agricultural machinery to fastener manufacturing and aerospace. Collins Aerospace (rooted in Sundstrand Corporation) and Woodward Inc. (opened a $200M campus in Loves Park in 2012) anchor the precision machining base.",
+      "source": "https://en.wikipedia.org/wiki/Rockford,_Illinois",
+      "decision": "ENRICH",
+      "confidence": "high",
+      "decision_rationale": "Historic 'machine tool city' with Collins Aerospace, Woodward, Stellantis. One of the highest-value city pages in the network."
+    },
+    "springfield-illinois": {
+      "name": "Springfield",
+      "state": "Illinois",
+      "state_slug": "illinois",
+      "population": "114,394 (2020 census)",
+      "coords": [
+        39.7975,
+        -89.645
+      ],
+      "distance_from_waterloo": {
+        "miles": 250,
+        "hours": 4.2
+      },
+      "primary_industries": [
+        "state government",
+        "healthcare",
+        "trade/transportation/utilities",
+        "education"
+      ],
+      "major_employers": [
+        "State of Illinois",
+        "Memorial Health System",
+        "Hospital Sisters Health System",
+        "Springfield Clinic",
+        "Springfield Public Schools"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Wikipedia article does not describe a current manufacturing sector. Government-dominated economy.",
+      "source": "https://en.wikipedia.org/wiki/Springfield,_Illinois",
+      "decision": "CONSOLIDATE",
+      "confidence": "high",
+      "decision_rationale": "State capital with government-dominated economy and no manufacturing employers verifiable from Wikipedia. 301 to Illinois state page."
+    },
+    "milwaukee-wisconsin": {
+      "name": "Milwaukee",
+      "state": "Wisconsin",
+      "state_slug": "wisconsin",
+      "population": "577,222 (2020 census)",
+      "coords": [
+        43.05,
+        -87.95
+      ],
+      "distance_from_waterloo": {
+        "miles": 271,
+        "hours": 4.5
+      },
+      "primary_industries": [
+        "brewing",
+        "manufacturing",
+        "financial services",
+        "machine tools and automation"
+      ],
+      "major_employers": [
+        "Harley-Davidson",
+        "Rockwell Automation",
+        "Northwestern Mutual",
+        "Fiserv",
+        "WEC Energy Group"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Milwaukee is a recognized manufacturing center anchored by Harley-Davidson and Rockwell Automation, alongside a heritage of brewing (Miller, Pabst, Schlitz).",
+      "source": "https://en.wikipedia.org/wiki/Milwaukee",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "madison-wisconsin": {
+      "name": "Madison",
+      "state": "Wisconsin",
+      "state_slug": "wisconsin",
+      "population": "269,840 (2020 census)",
+      "coords": [
+        43.07472,
+        -89.38417
+      ],
+      "distance_from_waterloo": {
+        "miles": 222,
+        "hours": 3.7
+      },
+      "primary_industries": [
+        "government",
+        "education",
+        "information technology",
+        "biotech/medical devices"
+      ],
+      "major_employers": [
+        "University of Wisconsin–Madison",
+        "UW Health",
+        "Wisconsin state government",
+        "Epic Systems",
+        "American Family Insurance"
+      ],
+      "industrial_parks": [
+        "University Research Park"
+      ],
+      "manufacturing_summary": "Madison hosts a large biotech/health-IT scene (Epic, Exact Sciences, Promega) plus Trek Bicycle, Sub-Zero & Wolf appliances, and Spectrum Brands manufacturing operations.",
+      "source": "https://en.wikipedia.org/wiki/Madison,_Wisconsin",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "green-bay-wisconsin": {
+      "name": "Green Bay",
+      "state": "Wisconsin",
+      "state_slug": "wisconsin",
+      "population": "107,395 (2020 census)",
+      "coords": [
+        44.51333,
+        -88.01583
+      ],
+      "distance_from_waterloo": {
+        "miles": 327,
+        "hours": 5.5
+      },
+      "primary_industries": [
+        "paper manufacturing",
+        "meat packing",
+        "food processing",
+        "healthcare"
+      ],
+      "major_employers": [
+        "Georgia-Pacific",
+        "American Foods Group",
+        "Schneider National",
+        "Bellin Health",
+        "Oneida Nation of Wisconsin"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Known as the 'Toilet Paper Capital of the World' for its concentration of paper companies (Georgia-Pacific, Procter & Gamble). Meatpacking via JBS and American Foods Group.",
+      "source": "https://en.wikipedia.org/wiki/Green_Bay,_Wisconsin",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "kenosha-wisconsin": {
+      "name": "Kenosha",
+      "state": "Wisconsin",
+      "state_slug": "wisconsin",
+      "population": "99,986 (2020 census)",
+      "coords": [
+        42.58222,
+        -87.84556
+      ],
+      "distance_from_waterloo": {
+        "miles": 298,
+        "hours": 5.0
+      },
+      "primary_industries": [
+        "manufacturing",
+        "distribution/warehousing",
+        "professional services",
+        "tourism"
+      ],
+      "major_employers": [
+        "Snap-on Tools",
+        "Jockey International",
+        "Amazon",
+        "Uline",
+        "Rustoleum"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "From 1902–1988 produced millions of automobiles (Nash, Hudson, AMC). Has since transitioned to light industrial and distribution. Snap-on Tools is HQ'd here.",
+      "source": "https://en.wikipedia.org/wiki/Kenosha,_Wisconsin",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "racine-wisconsin": {
+      "name": "Racine",
+      "state": "Wisconsin",
+      "state_slug": "wisconsin",
+      "population": "77,816 (2020 census)",
+      "coords": [
+        42.72611,
+        -87.80583
+      ],
+      "distance_from_waterloo": {
+        "miles": 286,
+        "hours": 4.8
+      },
+      "primary_industries": [
+        "heavy equipment manufacturing",
+        "cleaning/chemical products",
+        "heat exchangers",
+        "disposers"
+      ],
+      "major_employers": [
+        "Case IH",
+        "S.C. Johnson & Son",
+        "Modine Manufacturing",
+        "InSinkErator",
+        "Dremel"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Racine was a 'factory town almost from the beginning' — early center of car/motorcycle manufacturing. Now anchored by Case IH (ag equipment), Modine (heat exchangers), and S.C. Johnson.",
+      "source": "https://en.wikipedia.org/wiki/Racine,_Wisconsin",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "minneapolis-minnesota": {
+      "name": "Minneapolis",
+      "state": "Minnesota",
+      "state_slug": "minnesota",
+      "population": "429,954 (2020 census)",
+      "coords": [
+        44.98194,
+        -93.26917
+      ],
+      "distance_from_waterloo": {
+        "miles": 240,
+        "hours": 4.0
+      },
+      "primary_industries": [
+        "flour milling",
+        "computing",
+        "medical devices",
+        "industrial controls"
+      ],
+      "major_employers": [
+        "General Mills",
+        "Target Corporation",
+        "Thermo King",
+        "Medtronic",
+        "Pillsbury"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Medtronic was founded in a Minneapolis garage in 1949 and remains anchored to the metro. Thermo King invented mobile refrigeration here. Minneapolis-Honeywell developed precision instrumentation for military contracts.",
+      "source": "https://en.wikipedia.org/wiki/Minneapolis",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "st-paul-minnesota": {
+      "name": "St. Paul",
+      "state": "Minnesota",
+      "state_slug": "minnesota",
+      "population": "311,527 (2020 census)",
+      "coords": [
+        44.94778,
+        -93.10389
+      ],
+      "distance_from_waterloo": {
+        "miles": 233,
+        "hours": 3.9
+      },
+      "primary_industries": [
+        "chemical and cleaning products",
+        "financial services",
+        "manufacturing",
+        "transportation/railroads"
+      ],
+      "major_employers": [
+        "3M Company",
+        "Ecolab",
+        "Securian Financial Group",
+        "Ford Motor Company (legacy)"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "3M moved to Saint Paul in 1910; Ford's Twin Cities Assembly Plant operated in Highland Park (1924–2011). Modern economy retains chemical, financial, and industrial-supply manufacturing.",
+      "source": "https://en.wikipedia.org/wiki/Saint_Paul,_Minnesota",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "rochester-minnesota": {
+      "name": "Rochester",
+      "state": "Minnesota",
+      "state_slug": "minnesota",
+      "population": "121,395 (2020 census)",
+      "coords": [
+        44.014299,
+        -92.478592
+      ],
+      "distance_from_waterloo": {
+        "miles": 130,
+        "hours": 2.2
+      },
+      "primary_industries": [
+        "healthcare (Mayo Clinic)",
+        "medical technology",
+        "agriculture",
+        "food ingredients"
+      ],
+      "major_employers": [
+        "Mayo Clinic (51,000)",
+        "Rochester Public Schools",
+        "IBM (2,791)",
+        "Olmsted Medical Center",
+        "McNeilus Truck & Manufacturing"
+      ],
+      "industrial_parks": [
+        "Rochester Technology Campus (2.56M sq. ft.)"
+      ],
+      "manufacturing_summary": "Rochester Technology Campus formerly housed IBM midrange and Blue Gene prototype production. McNeilus Truck manufactures heavy trucks. Kerry Group produces fermented ingredients for food processing.",
+      "source": "https://en.wikipedia.org/wiki/Rochester,_Minnesota",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "duluth-minnesota": {
+      "name": "Duluth",
+      "state": "Minnesota",
+      "state_slug": "minnesota",
+      "population": "86,697 (2020 census)",
+      "coords": [
+        46.7833,
+        -92.1066
+      ],
+      "distance_from_waterloo": {
+        "miles": 350,
+        "hours": 5.8
+      },
+      "primary_industries": [
+        "port shipping",
+        "healthcare",
+        "aviation manufacturing",
+        "tourism"
+      ],
+      "major_employers": [
+        "Essentia Health",
+        "St. Luke's Hospital",
+        "Cirrus Aircraft",
+        "St. Louis County",
+        "Minnesota Power"
+      ],
+      "industrial_parks": [
+        "Morgan Park (former U.S. Steel company town)"
+      ],
+      "manufacturing_summary": "U.S. Steel's Duluth Works opened 1915; modern manufacturing emphasizes Cirrus Aircraft (general aviation manufacturer). Port handles iron ore, coal, grain, limestone, cement, and wind-turbine parts.",
+      "source": "https://en.wikipedia.org/wiki/Duluth,_Minnesota",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "bloomington-minnesota": {
+      "name": "Bloomington",
+      "state": "Minnesota",
+      "state_slug": "minnesota",
+      "population": "89,987 (2020 census)",
+      "coords": [
+        44.8408,
+        -93.2983
+      ],
+      "distance_from_waterloo": {
+        "miles": 234,
+        "hours": 3.9
+      },
+      "primary_industries": [
+        "retail/shopping centers",
+        "healthcare",
+        "manufacturing equipment",
+        "technology services"
+      ],
+      "major_employers": [
+        "Toro",
+        "Donaldson Company",
+        "Seagate Technology",
+        "General Dynamics",
+        "HealthPartners"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Toro relocated to Bloomington in 1952. Manufacturing employers include Donaldson Company (filtration) and Seagate Technology. Bloomington supports 100,000+ regional jobs.",
+      "source": "https://en.wikipedia.org/wiki/Bloomington,_Minnesota",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "omaha-nebraska": {
+      "name": "Omaha",
+      "state": "Nebraska",
+      "state_slug": "nebraska",
+      "population": "486,051 (2020 census)",
+      "coords": [
+        41.25861,
+        -95.9375
+      ],
+      "distance_from_waterloo": {
+        "miles": 318,
+        "hours": 5.3
+      },
+      "primary_industries": [
+        "transportation",
+        "meatpacking",
+        "insurance",
+        "construction"
+      ],
+      "major_employers": [
+        "Berkshire Hathaway",
+        "Union Pacific Corporation",
+        "Kiewit Corporation",
+        "Mutual of Omaha",
+        "First National Bank of Omaha"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "The Glenn L. Martin Company produced 521 B-29 Superfortresses here in WWII. Union Stockyards (est. 1883) anchored meatpacking. Modern industrial base centers on railroads, construction, and food processing.",
+      "source": "https://en.wikipedia.org/wiki/Omaha,_Nebraska",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "lincoln-nebraska": {
+      "name": "Lincoln",
+      "state": "Nebraska",
+      "state_slug": "nebraska",
+      "population": "291,082 (2020 census)",
+      "coords": [
+        40.81028,
+        -96.67472
+      ],
+      "distance_from_waterloo": {
+        "miles": 366,
+        "hours": 6.1
+      },
+      "primary_industries": [
+        "government",
+        "healthcare",
+        "finance/insurance",
+        "high-tech manufacturing",
+        "telecommunications"
+      ],
+      "major_employers": [
+        "State of Nebraska",
+        "Lincoln Public Schools",
+        "University of Nebraska–Lincoln",
+        "Kawasaki Motors Manufacturing Corp. (2,400+)",
+        "Bryan Health"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Kawasaki Motors Manufacturing is one of Lincoln's largest private employers (2,400+) producing ATVs, utility vehicles, personal watercraft, and passenger rail cars.",
+      "source": "https://en.wikipedia.org/wiki/Lincoln,_Nebraska",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "bellevue-nebraska": {
+      "name": "Bellevue",
+      "state": "Nebraska",
+      "state_slug": "nebraska",
+      "population": "64,176 (2020 census)",
+      "coords": [
+        41.15861,
+        -95.93417
+      ],
+      "distance_from_waterloo": {
+        "miles": 318,
+        "hours": 5.3
+      },
+      "primary_industries": [],
+      "major_employers": [
+        "Offutt Air Force Base"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Wikipedia article does not describe current civilian industrial manufacturing. Offutt AFB is the dominant employer.",
+      "source": "https://en.wikipedia.org/wiki/Bellevue,_Nebraska",
+      "decision": "CONSOLIDATE",
+      "confidence": "high",
+      "decision_rationale": "Single military-base employer; no verifiable civilian manufacturing or industrial cluster. 301 to Nebraska state page."
+    },
+    "grand-island-nebraska": {
+      "name": "Grand Island",
+      "state": "Nebraska",
+      "state_slug": "nebraska",
+      "population": "53,131 (2020 census)",
+      "coords": [
+        40.92167,
+        -98.35861
+      ],
+      "distance_from_waterloo": {
+        "miles": 478,
+        "hours": 8.0
+      },
+      "primary_industries": [
+        "sugar beet processing",
+        "railroad freight",
+        "ammunition manufacturing",
+        "state fair operations"
+      ],
+      "major_employers": [
+        "Hornady (ammunition)",
+        "Union Pacific Railroad",
+        "BNSF Railway",
+        "Nebraska Central Railroad"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Home to the first U.S. sugar beet processing factory (c. 1890). Hornady manufactures ammunition. Major freight rail hub.",
+      "source": "https://en.wikipedia.org/wiki/Grand_Island,_Nebraska",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "kearney-nebraska": {
+      "name": "Kearney",
+      "state": "Nebraska",
+      "state_slug": "nebraska",
+      "population": "33,790 (2020 census)",
+      "coords": [
+        40.70167,
+        -99.0825
+      ],
+      "distance_from_waterloo": {
+        "miles": 511,
+        "hours": 8.5
+      },
+      "primary_industries": [
+        "telecommunications",
+        "retail",
+        "healthcare",
+        "education",
+        "manufacturing"
+      ],
+      "major_employers": [
+        "Good Samaritan Hospital (1,000+)",
+        "University of Nebraska at Kearney",
+        "Baldwin Filters (1,000+)",
+        "The Buckle",
+        "Eaton Corporation",
+        "West Pharmaceutical Services"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Baldwin Filters is the top manufacturing employer (1,000+). West Pharmaceutical Services and Eaton Corporation maintain regional operations.",
+      "source": "https://en.wikipedia.org/wiki/Kearney,_Nebraska",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "north-platte-nebraska": {
+      "name": "North Platte",
+      "state": "Nebraska",
+      "state_slug": "nebraska",
+      "population": "23,390 (2020 census)",
+      "coords": [
+        41.13611,
+        -100.76306
+      ],
+      "distance_from_waterloo": {
+        "miles": 644,
+        "hours": 10.7
+      },
+      "primary_industries": [
+        "railroad transportation",
+        "meatpacking",
+        "healthcare",
+        "retail distribution"
+      ],
+      "major_employers": [
+        "Union Pacific Railroad (1,700+ at Bailey Yard)",
+        "Great Plains Health (1,300)",
+        "Sustainable Beef (850 expected late 2025)",
+        "Walmart distribution"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Home to Bailey Yard, the world's largest rail yard. Sustainable Beef meatpacking opened May 2025. Limited heavy-industrial machining base beyond rail.",
+      "source": "https://en.wikipedia.org/wiki/North_Platte,_Nebraska",
+      "decision": "ENRICH",
+      "confidence": "low",
+      "decision_rationale": "Rail-hub anchor is real and verifiable, but CNC-machining tie-back is weak (rail yards run service shops, not precision machining). 644 miles from Waterloo. Aaron review: ENRICH with rail-shop framing, or CONSOLIDATE.",
+      "framing_constraints": {
+        "industry_tie": "western Nebraska freight-in spindle rebuilds + ag-implement and rail-adjacent shop work",
+        "regional_context_only": [
+          "Bailey Yard",
+          "Union Pacific Railroad",
+          "BNSF Railway"
+        ],
+        "never_claim_as_customers": true,
+        "minimum_unique_words": 400,
+        "downgrade_to_consolidate_if_below_minimum": true,
+        "rationale": "Aaron-approved with constraint: rail tie-back is honest but weak; ag-implement framing for the brand pages"
+      }
+    },
+    "st-louis-missouri": {
+      "name": "St. Louis",
+      "state": "Missouri",
+      "state_slug": "missouri",
+      "population": "301,578 (2020 census)",
+      "coords": [
+        38.62722,
+        -90.19778
+      ],
+      "distance_from_waterloo": {
+        "miles": 379,
+        "hours": 6.3
+      },
+      "primary_industries": [
+        "aerospace and defense",
+        "manufacturing",
+        "trade/transportation/aviation",
+        "services"
+      ],
+      "major_employers": [
+        "Boeing Defense, Space & Security (largest STL employer)",
+        "Anheuser-Busch",
+        "Federal Reserve Bank of St. Louis",
+        "USDA",
+        "National Geospatial-Intelligence Agency"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Boeing Defense, Space & Security is the largest St. Louis employer (referenced in Aaron's state-brief, verified by independent reporting); aerospace concentration is the defining industrial cluster. Anheuser-Busch maintains brewing operations.",
+      "source": "https://en.wikipedia.org/wiki/St._Louis",
+      "decision": "ENRICH",
+      "confidence": "high",
+      "decision_rationale": "Boeing Defense is the anchor employer. Wikipedia's St. Louis article didn't expand on Boeing detail in the fetch but the fact is well-established via multiple independent sources and Aaron's state-brief."
+    },
+    "kansas-city-missouri": {
+      "name": "Kansas City",
+      "state": "Missouri",
+      "state_slug": "missouri",
+      "population": "508,090 (2020 census)",
+      "coords": [
+        39.09972,
+        -94.57833
+      ],
+      "distance_from_waterloo": {
+        "miles": 343,
+        "hours": 5.7
+      },
+      "primary_industries": [
+        "federal government services",
+        "pharmaceutical manufacturing",
+        "animal health sciences",
+        "real estate"
+      ],
+      "major_employers": [
+        "IRS (~2,700)",
+        "Honeywell (Kansas City Plant, ~2,700)",
+        "Social Security Administration",
+        "Federal Reserve Bank",
+        "Sanofi-Aventis"
+      ],
+      "industrial_parks": [
+        "Bannister Federal Complex (houses Honeywell Kansas City Plant)"
+      ],
+      "manufacturing_summary": "The Honeywell Kansas City Plant (NNSA facility) produces 85% of the non-nuclear components of the U.S. nuclear bomb arsenal. Sanofi-Aventis operates a major pharmaceutical plant.",
+      "source": "https://en.wikipedia.org/wiki/Kansas_City,_Missouri",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "springfield-missouri": {
+      "name": "Springfield",
+      "state": "Missouri",
+      "state_slug": "missouri",
+      "population": "169,176 (2020 census)",
+      "coords": [
+        37.21528,
+        -93.29833
+      ],
+      "distance_from_waterloo": {
+        "miles": 462,
+        "hours": 7.7
+      },
+      "primary_industries": [
+        "healthcare",
+        "manufacturing",
+        "retail",
+        "education",
+        "tourism"
+      ],
+      "major_employers": [
+        "CoxHealth (12,178)",
+        "Mercy Health System (9,214)",
+        "Bass Pro Shops/Tracker Marine (2,989)",
+        "O'Reilly Auto Parts",
+        "Jack Henry & Associates"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Regional center for distribution, logistics, and manufacturing. Manufacturing employers include Paul Mueller Co., Positronic, Prime Inc., and Springfield ReManufacturing.",
+      "source": "https://en.wikipedia.org/wiki/Springfield,_Missouri",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "columbia-missouri": {
+      "name": "Columbia",
+      "state": "Missouri",
+      "state_slug": "missouri",
+      "population": "126,254 (2020 census)",
+      "coords": [
+        38.9475,
+        -92.32667
+      ],
+      "distance_from_waterloo": {
+        "miles": 343,
+        "hours": 5.7
+      },
+      "primary_industries": [
+        "education",
+        "healthcare",
+        "insurance",
+        "technology"
+      ],
+      "major_employers": [
+        "University of Missouri",
+        "University of Missouri Health Care",
+        "Veterans United Home Loans",
+        "Columbia Public Schools",
+        "Shelter Insurance"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Wikipedia article identifies no significant manufacturing sector; economy historically dominated by education, healthcare, and insurance.",
+      "source": "https://en.wikipedia.org/wiki/Columbia,_Missouri",
+      "decision": "CONSOLIDATE",
+      "confidence": "high",
+      "decision_rationale": "No verifiable manufacturing employers or industrial activity. 301 to Missouri state page."
+    },
+    "houston-texas": {
+      "name": "Houston",
+      "state": "Texas",
+      "state_slug": "texas",
+      "population": "2,304,580 (2020 census)",
+      "coords": [
+        29.75667,
+        -95.36528
+      ],
+      "distance_from_waterloo": {
+        "miles": 1075,
+        "hours": 17.9
+      },
+      "primary_industries": [
+        "energy",
+        "manufacturing",
+        "aeronautics",
+        "transportation",
+        "healthcare"
+      ],
+      "major_employers": [
+        "Phillips 66",
+        "ConocoPhillips",
+        "Occidental Petroleum",
+        "Halliburton",
+        "ExxonMobil"
+      ],
+      "industrial_parks": [
+        "Houston Ship Channel industrial corridor",
+        "Energy Corridor"
+      ],
+      "manufacturing_summary": "Petrochemical hub since WWII when refineries and manufacturing plants were built along the ship channel. Major oil and gas equipment manufacturing center.",
+      "source": "https://en.wikipedia.org/wiki/Houston",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "dallas-texas": {
+      "name": "Dallas",
+      "state": "Texas",
+      "state_slug": "texas",
+      "population": "1,304,379 (2020 census)",
+      "coords": [
+        32.77917,
+        -96.80889
+      ],
+      "distance_from_waterloo": {
+        "miles": 869,
+        "hours": 14.5
+      },
+      "primary_industries": [
+        "defense",
+        "financial services",
+        "information technology",
+        "telecommunications"
+      ],
+      "major_employers": [
+        "Ford (East Dallas plant)",
+        "North American Aviation (legacy)",
+        "DFW International Airport",
+        "Bank of America",
+        "JPMorgan Chase"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "During WWII Dallas was a major military vehicle and aircraft manufacturing center; Ford produced 94,000+ jeeps and 6,000 military trucks; North American Aviation produced 18,000+ aircraft. Modern industrial base retains defense and aerospace presence.",
+      "source": "https://en.wikipedia.org/wiki/Dallas",
+      "decision": "ENRICH",
+      "confidence": "medium",
+      "decision_rationale": "Large metro with verifiable defense and aerospace heritage; Wikipedia article is light on current-manufacturer detail. Best paired with Fort Worth coverage for the DFW manufacturing story."
+    },
+    "fort-worth-texas": {
+      "name": "Fort Worth",
+      "state": "Texas",
+      "state_slug": "texas",
+      "population": "918,915 (2020 census)",
+      "coords": [
+        32.75639,
+        -97.3325
+      ],
+      "distance_from_waterloo": {
+        "miles": 855,
+        "hours": 14.3
+      },
+      "primary_industries": [
+        "aerospace and defense",
+        "aviation",
+        "natural gas/energy",
+        "logistics and transportation"
+      ],
+      "major_employers": [
+        "Lockheed Martin",
+        "Bell Textron",
+        "American Airlines Group",
+        "BNSF Railway",
+        "GM Financial"
+      ],
+      "industrial_parks": [
+        "Barnett Shale natural gas extraction area"
+      ],
+      "manufacturing_summary": "Lockheed Martin Aeronautics has a major presence in Fort Worth (F-16/F-35 production heritage). Bell Textron manufactures rotorcraft. BNSF Railway is HQ'd here.",
+      "source": "https://en.wikipedia.org/wiki/Fort_Worth,_Texas",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "austin-texas": {
+      "name": "Austin",
+      "state": "Texas",
+      "state_slug": "texas",
+      "population": "961,855 (2020 census)",
+      "coords": [
+        30.26722,
+        -97.74306
+      ],
+      "distance_from_waterloo": {
+        "miles": 1054,
+        "hours": 17.6
+      },
+      "primary_industries": [
+        "semiconductors",
+        "software",
+        "high-tech manufacturing",
+        "EV manufacturing"
+      ],
+      "major_employers": [
+        "Dell",
+        "Apple",
+        "Tesla",
+        "IBM",
+        "AMD",
+        "Texas Instruments",
+        "NXP Semiconductors",
+        "Samsung (Austin/Taylor)"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Technology roots trace to Tracor (1962). IBM, Texas Instruments, and Motorola (now NXP) established semiconductor manufacturing 1967–1974. Tesla and Samsung operate major plants in the region.",
+      "source": "https://en.wikipedia.org/wiki/Austin,_Texas",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "san-antonio-texas": {
+      "name": "San Antonio",
+      "state": "Texas",
+      "state_slug": "texas",
+      "population": "1,434,625 (2020 census)",
+      "coords": [
+        29.425,
+        -98.4939
+      ],
+      "distance_from_waterloo": {
+        "miles": 1146,
+        "hours": 19.1
+      },
+      "primary_industries": [
+        "military",
+        "healthcare",
+        "oil and gas",
+        "manufacturing"
+      ],
+      "major_employers": [
+        "Valero Energy",
+        "USAA",
+        "H-E-B",
+        "Toyota Motor Manufacturing Texas",
+        "Fort Sam Houston"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Toyota constructed a manufacturing plant on the South Side, anchoring an automotive manufacturing cluster. City has added a sizable manufacturing sector centered around automobiles.",
+      "source": "https://en.wikipedia.org/wiki/San_Antonio",
+      "decision": "ENRICH",
+      "confidence": "high"
+    },
+    "el-paso-texas": {
+      "name": "El Paso",
+      "state": "Texas",
+      "state_slug": "texas",
+      "population": "678,815 (2020 census)",
+      "coords": [
+        31.75917,
+        -106.48861
+      ],
+      "distance_from_waterloo": {
+        "miles": 1288,
+        "hours": 21.5
+      },
+      "primary_industries": [
+        "copper smelting",
+        "oil refining",
+        "garment manufacturing",
+        "retail/transportation"
+      ],
+      "major_employers": [
+        "University of Texas at El Paso",
+        "Fort Bliss",
+        "William Beaumont Army Medical Center",
+        "El Paso International Airport"
+      ],
+      "industrial_parks": [],
+      "manufacturing_summary": "Economy developed through copper smelting, oil refining, and garment manufacturing; cross-border ties with Ciudad Juárez. Long-haul state from Waterloo.",
+      "source": "https://en.wikipedia.org/wiki/El_Paso,_Texas",
+      "decision": "ENRICH",
+      "confidence": "medium",
+      "decision_rationale": "Verifiable industrial base but the longest-haul city (1,288 miles). Best framed as ship-only service."
+    }
+  }
+}

@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fadal Spindle Repair | Midwest CNC Services</title>
+<meta name="description" content="Expert Fadal spindle repair across the Midwest — keeping legacy machines running. 3–4 weeks on most rebuilds. Experienced field technicians.">
+<link rel="canonical" href="https://midwestcncservices.com/spindle-grinding/fadal-spindle-repair/">
+<meta property="og:title" content="Fadal Spindle Repair | Midwest CNC Services">
+<meta property="og:description" content="Expert Fadal spindle repair across the Midwest — keeping legacy machines running. 3–4 weeks on most rebuilds. Experienced field technicians.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+<style>
+:root {
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --muted: #5a5a5a;
+  --accent: #b8341a;
+  --accent-dark: #8c2510;
+  --line: #e5e5e5;
+  --soft: #f6f4f1;
+  --max: 72ch;
+  --sticky-cta-height: 64px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+a:hover { color: var(--accent-dark); }
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.site-header .brand {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--fg);
+}
+.site-header .brand img {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+.site-header nav a { margin-left: 1.25rem; text-decoration: none; color: var(--fg); }
+.site-header nav a:hover { color: var(--accent); }
+
+nav.breadcrumbs {
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--soft);
+}
+nav.breadcrumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+nav.breadcrumbs li:not(:last-child)::after { content: "›"; margin-left: 0.5rem; color: var(--muted); }
+nav.breadcrumbs a { color: var(--muted); text-decoration: none; }
+nav.breadcrumbs a:hover { color: var(--accent); }
+
+main { padding: 0 1.25rem; }
+
+article { max-width: var(--max); margin: 2rem auto; }
+
+.eyebrow { color: var(--muted); font-size: 0.95rem; font-style: italic; margin: 0 0 0.5rem 0; }
+
+h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.25rem 0;
+}
+
+h2 {
+  font-size: 1.35rem;
+  margin: 2.5rem 0 0.75rem 0;
+  letter-spacing: -0.01em;
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+}
+h2:first-of-type { border-top: 0; padding-top: 0; }
+
+p { margin: 0.85rem 0; }
+
+ul { padding-left: 1.5rem; margin: 0.75rem 0; }
+li { margin: 0.25rem 0; }
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--accent);
+  background: var(--soft);
+  font-style: italic;
+  color: var(--fg);
+}
+blockquote p { margin: 0; }
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+.cta-button {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff !important;
+  padding: 0.75rem 1.4rem;
+  border-radius: 4px;
+  text-decoration: none !important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.cta-button:hover { background: var(--accent-dark); }
+.cta-phone {
+  display: inline-block;
+  padding: 0.75rem 0.5rem;
+  color: var(--fg) !important;
+  text-decoration: none !important;
+  font-weight: 600;
+}
+.cta-phone::before { content: "☎ "; color: var(--muted); }
+
+.quote-form-placeholder {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  border: 1px dashed var(--line);
+  background: var(--soft);
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.hero-figure {
+  margin: 1.5rem 0 0 0;
+  padding: 0;
+}
+.hero-figure img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 6px;
+  display: block;
+}
+
+/* Sticky mobile CTA bar — fix 14. Hidden on desktop, fixed to bottom on
+   narrow viewports so the phone/quote actions stay in reach. */
+.mobile-cta-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  background: #fff;
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
+}
+.mobile-cta-bar a {
+  flex: 1 1 0;
+  text-align: center;
+  padding: 0.85rem 0.5rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  border-radius: 4px;
+}
+.mobile-cta-bar .mcta-phone {
+  color: var(--fg) !important;
+  border: 1px solid var(--line);
+}
+.mobile-cta-bar .mcta-quote {
+  color: #fff !important;
+  background: var(--accent);
+}
+.mobile-cta-bar .mcta-quote:hover { background: var(--accent-dark); }
+
+@media (max-width: 767px) {
+  .mobile-cta-bar { display: flex; }
+  body { padding-bottom: var(--sticky-cta-height); }
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 2rem 1.25rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+@media (max-width: 600px) {
+  .site-header { flex-direction: column; align-items: flex-start; }
+  .site-header nav a { margin-left: 0; margin-right: 1rem; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Fadal CNC Spindle Repair and Grinding (legacy platform)",
+  "provider": {
+    "@id": "#org"
+  },
+  "areaServed": [
+    "Iowa",
+    "Illinois",
+    "Minnesota",
+    "Wisconsin",
+    "Nebraska",
+    "Missouri",
+    "Texas"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "#org",
+  "name": "Midwest CNC Services",
+  "telephone": "+13196104341"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "position": 1,
+      "name": "Home",
+      "item": "https://midwestcncservices.com/"
+    },
+    {
+      "position": 2,
+      "name": "Spindle Grinding",
+      "item": "https://midwestcncservices.com/spindle-grinding/"
+    },
+    {
+      "position": 3,
+      "name": "Fadal Spindle Repair",
+      "item": "https://midwestcncservices.com/spindle-grinding/fadal-spindle-repair/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="/">
+    <img src="/assets/images/logos/midwest-cnc-logo.png" alt="Midwest CNC Services" height="36">
+  </a>
+  <nav>
+    <a href="/repairs/">Repairs</a>
+    <a href="/spindle-grinding/">Spindle Grinding</a>
+    <a href="/way-covers/">Way Covers</a>
+    <a href="/service-area/">Service Area</a>
+    <a href="/get-a-quote/">Get a Quote</a>
+  </nav>
+</header>
+<nav class="breadcrumbs" aria-label="breadcrumb">
+  <ol>
+    <li><a href="https://midwestcncservices.com/">Home</a></li><li><a href="https://midwestcncservices.com/spindle-grinding/">Spindle Grinding</a></li><li><a href="https://midwestcncservices.com/spindle-grinding/fadal-spindle-repair/">Fadal Spindle Repair</a></li>
+  </ol>
+</nav>
+<main>
+<article>
+<p class="eyebrow">Fadal Spindle Repair &amp; Grinding</p>
+<h1>Fadal Spindle Repair &amp; Rebuilds</h1>
+<p>Fadal spindles tend to come in with classic belt-driven spindle failures, drawbar fatigue, and occasional ATC alignment problems. We rebuild, regrind, and rebalance across the Fadal platform — 4020, 6030, and 8030 — with most jobs running 3–4 weeks and field troubleshooting where it can save a teardown.</p>
+<div class="cta-row"><a class="cta-button" href="#quote">Get a Quote</a> · <a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
+<figure class="hero-figure"><img src="/assets/images/services/repairs-fadal-cnc-machine-repair-image.png" alt="Fadal machine service work at Midwest CNC Services" loading="lazy"></figure>
+<h2 id="fadal-models-we-support">Fadal Models We Support</h2>
+<p>Our Fadal work covers the full lineup. Whether the job is a precision bearing pack replacement, a full rebuild, or a regrind to restore tolerance, we handle:</p>
+<ul>
+<li>4020
+</li>
+<li>6030
+</li>
+<li>8030
+</li>
+</ul>
+<div class="cta-row"><a class="cta-button" href="#quote">Get a Quote</a></div>
+<h2 id="how-we-approach-fadal-spindle-work">How We Approach Fadal Spindle Work</h2>
+<p>Still a huge installed base. Plenty of shops keep these alive because repair costs make sense.</p>
+<h2 id="parts-sourcing-for-legacy-fadal-machines">Parts Sourcing for Legacy Fadal Machines</h2>
+<p>Fadal machines are still cutting daily in Midwest shops, but factory support has been gone for years and parts hunts can stretch a rebuild's timeline more than the bench work does. A lot of Fadal parts come through aftermarket suppliers and used inventory. We also salvage usable OEM components whenever possible.</p>
+<h2 id="a-recent-fadal-job">A Recent Fadal Job</h2>
+<p>A recent example of the kind of work that comes through here: had a 4020 come in with enough noise that the customer assumed the spindle was junk. Shaft cleaned up fine after teardown.</p>
+<h2 id="lead-time-process">Lead Time &amp; Process</h2>
+<p>3–4 weeks depending on aftermarket parts. Our three-step workflow keeps it transparent:</p>
+<p><strong>Step 1 — Contact Us.</strong> Call 319-610-4341 or use the quote form below. <a href="#quote">Get a Quote</a></p>
+<p><strong>Step 2 — Grab Model #.</strong> We'll fire back price, lead time, and shipping ETA after reviewing your details. <a href="#quote">Get a Quote</a></p>
+<p><strong>Step 3 — Approve &amp; Rebuild.</strong> We rebuild the spindle, verify balance and runout, and return it ready to run.</p>
+<div class="quote-form-placeholder">Quote form rendered here at build time.</div>
+<h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
+<p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
+<blockquote><p>"Honestly, we thought the machine was done for." It saves shops from replacement lead times and the capital expense of a new spindle.</p></blockquote>
+<p>&lt;h2 id="faq"&gt;Frequently Asked Questions&lt;/h2&gt; &lt;div class="faq-item"&gt; &lt;h3&gt;What&amp;#x27;s the typical lead time on a Fadal spindle rebuild?&lt;/h3&gt; &lt;p&gt;3–4 weeks depending on aftermarket parts. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.&lt;/p&gt; &lt;/div&gt; &lt;div class="faq-item"&gt; &lt;h3&gt;What&amp;#x27;s the most common Fadal spindle failure you see?&lt;/h3&gt; &lt;p&gt;Classic belt-driven spindle failures, drawbar fatigue, and occasional ATC alignment problems.&lt;/p&gt; &lt;/div&gt; &lt;div class="faq-item"&gt; &lt;h3&gt;What should I know about Fadal spindle rebuilds specifically?&lt;/h3&gt; &lt;p&gt;Still a huge installed base. Plenty of shops keep these alive because repair costs make sense.&lt;/p&gt; &lt;/div&gt; &lt;div class="faq-item"&gt; &lt;h3&gt;How do you handle Fadal parts sourcing on a rebuild?&lt;/h3&gt; &lt;p&gt;A lot of Fadal parts come through aftermarket suppliers and used inventory. We also salvage usable OEM components whenever possible.&lt;/p&gt; &lt;/div&gt;</p>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What's the typical lead time on a Fadal spindle rebuild?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "3–4 weeks depending on aftermarket parts. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the most common Fadal spindle failure you see?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Classic belt-driven spindle failures, drawbar fatigue, and occasional ATC alignment problems."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I know about Fadal spindle rebuilds specifically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Still a huge installed base. Plenty of shops keep these alive because repair costs make sense."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you handle Fadal parts sourcing on a rebuild?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A lot of Fadal parts come through aftermarket suppliers and used inventory. We also salvage usable OEM components whenever possible."
+      }
+    }
+  ]
+}
+</script>
+<p>&lt;h2 id="regional-presence"&gt;Where Fadal Work Concentrates&lt;/h2&gt; &lt;p&gt;Fadal platforms have strong regional concentration in our service area:&lt;/p&gt; &lt;ul&gt;&lt;li&gt;&lt;a href="/service-area/iowa/"&gt;Iowa&lt;/a&gt; — particularly &lt;a href="/service-area/cedar-rapids-iowa/"&gt;Cedar Rapids&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="/service-area/illinois/"&gt;Illinois&lt;/a&gt; — particularly &lt;a href="/service-area/rockford-illinois/"&gt;Rockford&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="/service-area/missouri/"&gt;Missouri&lt;/a&gt; — particularly &lt;a href="/service-area/springfield-missouri/"&gt;Springfield&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</p>
+<h2 id="related-fadal-services">Related Fadal Services</h2>
+<ul>
+<li><a href="/repairs/fadal-cnc-machine-repair/">Fadal CNC machine repair</a>
+</li>
+<li><a href="/way-covers/fadal-cnc-way-covers/">Fadal CNC way covers</a>
+</li>
+<li>See also spindle grinding on related platforms:
+<ul>
+<li><a href="/spindle-grinding/haas-spindle-repair/">Haas spindle grinding</a></li>
+<li><a href="/spindle-grinding/hurco-spindle-repair/">Hurco spindle grinding</a></li>
+<li><a href="/spindle-grinding/monarch-spindle-repair/">Monarch spindle grinding</a></li>
+</ul>
+</li>
+</ul>
+<p>We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
+<h2 id="recent-from-the-blog">Recent from the Blog</h2>
+<div class="quote-form-placeholder">Blog teaser block rendered here at build time.</div>
+</article>
+</main>
+<footer class="site-footer">
+  <p>Midwest CNC Services · 319-610-4341 · Waterloo, Iowa</p>
+  <p>Serving shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
+</footer>
+<div class="mobile-cta-bar" role="region" aria-label="Quick contact">
+  <a class="mcta-phone" href="tel:+13196104341">☎ 319-610-4341</a>
+  <a class="mcta-quote" href="#quote">Get a Quote</a>
+</div>
+</body>
+</html>

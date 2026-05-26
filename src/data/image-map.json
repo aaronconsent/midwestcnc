@@ -1,0 +1,2054 @@
+{
+  "https://cdn.durable.co/logos/9V3V3ojp823Ibh1Kwl5mVfYbrxOdo6om26ZgIe1I8Pf13qQV5akwpZr1deZ5DG3X.png": {
+    "local_path": "/assets/images/logos/midwest-cnc-logo.png",
+    "alt": "Midwest CNC Services",
+    "used_on_pages": [
+      "/",
+      "/about",
+      "/get-a-quote",
+      "/repairs/mazak-cnc-machine-repair",
+      "/way-covers/cnc-way-cover-repair",
+      "/spindles-repair/cnc-spindle-repair",
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/blog/precision-cnc-machining--how-it-drives-efficiency-in-manufacturing",
+      "/blog/understanding-the-true-cost--usa-made-way-covers-vs--overseas-options",
+      "/blog/choosing-the-right-way-covers-for-your-cnc-machines--a-comprehensive-buyer-s-guide",
+      "/way-covers/mazak-cnc-way-covers",
+      "/way-covers/toyoda-cnc-way-covers",
+      "/way-covers/okuma-cnc-way-covers",
+      "/way-covers/haas-cnc-way-covers",
+      "/way-covers/giddings-lewis-cnc-way-covers",
+      "/way-covers/monarch-cnc-way-covers",
+      "/way-covers/johnford-cnc-way-covers",
+      "/way-covers/fadal-cnc-way-covers",
+      "/way-covers/amera-seiki-cnc-way-covers",
+      "/way-covers/mori-seiki-cnc-way-covers",
+      "/way-covers/niigata-cnc-way-covers",
+      "/way-covers/makino-cnc-way-covers",
+      "/way-covers/dmg-mori-cnc-way-covers",
+      "/way-covers/amada-cnc-way-covers",
+      "/way-covers/trumpf-cnc-way-covers",
+      "/way-covers/doosan-cnc-way-covers",
+      "/way-covers/fanuc-cnc-way-covers",
+      "/way-covers/hurco-cnc-way-covers",
+      "/way-covers/brother-cnc-way-covers",
+      "/way-covers/hitachi-seiki-cnc-way-covers",
+      "/spindles-repair/mazak-spindle-repair",
+      "/spindles-repair/toyoda-spindle-repair",
+      "/spindles-repair/okuma-spindle-repair",
+      "/spindles-repair/haas-spindle-repair",
+      "/spindles-repair/giddings-lewis-spindle-repair",
+      "/spindles-repair/monarch-spindle-repair",
+      "/spindles-repair/johnford-spindle-repair",
+      "/spindles-repair/fadal-spindle-repair",
+      "/spindles-repair/amera-seiki-spindle-repair",
+      "/spindles-repair/mori-seiki-spindle-repair",
+      "/spindles-repair/niigata-spindle-repair",
+      "/spindles-repair/makino-spindle-repair",
+      "/spindles-repair/dmg-mori-spindle-repair",
+      "/spindles-repair/amada-spindle-repair",
+      "/spindles-repair/trumpf-spindle-repair",
+      "/spindles-repair/doosan-spindle-repair",
+      "/spindles-repair/fanuc-spindle-repair",
+      "/spindles-repair/hurco-spindle-repair",
+      "/spindles-repair/brother-spindle-repair",
+      "/spindles-repair/hitachi-seiki-spindle-repair",
+      "/repairs/haas-cnc-machine-repair",
+      "/repairs/okuma-cnc-machine-repair",
+      "/repairs/fanuc-cnc-machine-repair",
+      "/repairs/dmg-mori-cnc-machine-repair",
+      "/repairs/doosan-cnc-machine-repair",
+      "/repairs/amada-cnc-machine-repair",
+      "/repairs/fadal-cnc-machine-repair",
+      "/repairs/hitachi-seiki-cnc-machine-repair",
+      "/repairs/toyoda-cnc-machine-repair",
+      "/repairs/giddings-lewis-cnc-machine-repair",
+      "/repairs/monarch-cnc-machine-repair",
+      "/repairs/brother-cnc-machine-repair",
+      "/repairs/hurco-cnc-machine-repair",
+      "/repairs/niigata-cnc-machine-repair",
+      "/repairs/makino-cnc-machine-repair",
+      "/repairs/johnford-cnc-machine-repair",
+      "/repairs/mori-seiki-cnc-machine-repair",
+      "/repairs/trumpf-cnc-machine-repair",
+      "/repairs/amera-seiki-cnc-machine-repair",
+      "/spindle-grinding/mazak-spindle-repair",
+      "/spindle-grinding/haas-spindle-repair",
+      "/spindle-grinding/okuma-spindle-repair",
+      "/spindle-grinding/fanuc-spindle-repair",
+      "/spindle-grinding/dmg-mori-spindle-repair",
+      "/spindle-grinding/doosan-spindle-repair",
+      "/spindle-grinding/amada-spindle-repair",
+      "/spindle-grinding/fadal-spindle-repair",
+      "/spindle-grinding/hitachi-seiki-spindle-repair",
+      "/spindle-grinding/toyoda-spindle-repair",
+      "/spindle-grinding/mori-seiki-spindle-repair",
+      "/spindle-grinding/trumpf-spindle-repair",
+      "/spindle-grinding/amera-seiki-spindle-repair",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/repairs/cnc-machine-repair",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas",
+      "/pricing",
+      "/ai-website-builder",
+      "/website-templates",
+      "/ai-brand-builder",
+      "/ai-blog-generator",
+      "/business-name-generator",
+      "/ai-logo-generator",
+      "/invoice-builder",
+      "/discoverability",
+      "/blog",
+      "/guides",
+      "/customer-stories",
+      "/ai-tools",
+      "/blog/durable-vs-squarespace",
+      "/blog/wix-vs-durable",
+      "/blog/wordpress-vs-durable",
+      "/blog/10web-vs-durable",
+      "/affiliate",
+      "/privacy-policy",
+      "/terms-of-service",
+      "/blog/emergency-cnc-repair--quick-steps-to-restore-your-machine"
+    ],
+    "category": "logos"
+  },
+  "https://cdn.durable.co/blocks/2da6xplu6DqS853IwDgWizmTeF7qOLb2FK6MDuAgwcK8wVYCoqCon4B7Zp0TK66T.png": {
+    "local_path": "/assets/images/general/home-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/blocks/32WPeeL8nKcN9HLaB8WIlcJWQK8M8fXCRih4zVxdBXfunJwxe0bnA5ZcRQzGsNDS.png": {
+    "local_path": "/assets/images/general/image-of-cnc-machine.png",
+    "alt": "Image of CNC Machine",
+    "used_on_pages": [
+      "/",
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/repairs/cnc-machine-repair",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/blocks/aPY7yWWuwdklzy48K3DoAPu25bUao9JcLorjanUtujSPy8SBPVzSX9PzehtYnk4P.png": {
+    "local_path": "/assets/images/general/image-of-way-covers.png",
+    "alt": "Image of Way Covers",
+    "used_on_pages": [
+      "/",
+      "/way-covers/cnc-way-cover-repair",
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/blocks/29lFYZaolUIbKEtV2DkfDaYGbxuMfq0axUHKtGAhXEG2MSaRuq7RkAC3TeXp2YVl.png": {
+    "local_path": "/assets/images/general/image-of-spindle-grinding.png",
+    "alt": "Image of Spindle Grinding",
+    "used_on_pages": [
+      "/",
+      "/spindles-repair/cnc-spindle-repair",
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/spindles-repair/mazak-spindle-repair",
+      "/spindles-repair/toyoda-spindle-repair",
+      "/spindles-repair/okuma-spindle-repair",
+      "/spindles-repair/haas-spindle-repair",
+      "/spindles-repair/giddings-lewis-spindle-repair",
+      "/spindles-repair/monarch-spindle-repair",
+      "/spindles-repair/johnford-spindle-repair",
+      "/spindles-repair/fadal-spindle-repair",
+      "/spindles-repair/amera-seiki-spindle-repair",
+      "/spindles-repair/mori-seiki-spindle-repair",
+      "/spindles-repair/niigata-spindle-repair",
+      "/spindles-repair/makino-spindle-repair",
+      "/spindles-repair/dmg-mori-spindle-repair",
+      "/spindles-repair/amada-spindle-repair",
+      "/spindles-repair/trumpf-spindle-repair",
+      "/spindles-repair/doosan-spindle-repair",
+      "/spindles-repair/fanuc-spindle-repair",
+      "/spindles-repair/hurco-spindle-repair",
+      "/spindles-repair/brother-spindle-repair",
+      "/spindles-repair/hitachi-seiki-spindle-repair",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/blocks/dBUzITimvNl0p3Pz3aI5fQoPWPwROq9DYrG05fPPJ4RSwYYLE2koTMcCQIewc3rH.png": {
+    "local_path": "/assets/images/general/view-all-iowa-cnc-service-locations.png",
+    "alt": "View all Iowa CNC service locations",
+    "used_on_pages": [
+      "/"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/blocks/12CMG338nM46hw6uY5z2v5DK3ENAXtkz7V9GFpuSsIxn8gn1HpBZbZ2ki5NBEat4.png": {
+    "local_path": "/assets/images/general/illinois.png",
+    "alt": "Illinois",
+    "used_on_pages": [
+      "/"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/blocks/anLtz4byb6Fi5hrwBuHBnyDG5bpvY3ibZudMN1UR3Msxj29Ws5jqYw14lt5zyFZ3.png": {
+    "local_path": "/assets/images/general/minnesota.png",
+    "alt": "Minnesota",
+    "used_on_pages": [
+      "/"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/blocks/1asLMI2tljBqh9500PjDQuJHrCwcwuakf0WpRlFxwPfHEzzroOEJ7Chr2VQqSnyj.png": {
+    "local_path": "/assets/images/general/wisconsin.png",
+    "alt": "Wisconsin",
+    "used_on_pages": [
+      "/"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/blocks/7l4LGs3CufKMKt2hbiEadGf9YbxrA8fj7P5RO3PAIlAbAGsDLylmgICB3Ip8DVKI.png": {
+    "local_path": "/assets/images/general/nebraska.png",
+    "alt": "Nebraska",
+    "used_on_pages": [
+      "/"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/blocks/1SZ1vseFLJzvBR2lTaLk4XQ3if8IpaIfBlkf2KZnZKTgeZJJUIvE2nm1vs9UP3rC.png": {
+    "local_path": "/assets/images/general/missouri.png",
+    "alt": "Missouri",
+    "used_on_pages": [
+      "/"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/blocks/3aCjmzzly3qIEGe12X7hdkOwZfOgHWjOcRZ8BYEvA2JFLJQTcyvs7WUjeMrYCQuJ.png": {
+    "local_path": "/assets/images/general/texas.png",
+    "alt": "Texas",
+    "used_on_pages": [
+      "/"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/covers/29PTayC3Qjv5uVUqLp5toO6SIqspAZxx6NoxnpL0mJXI9rl4Av2kFad0dYpvzID8.png": {
+    "local_path": "/assets/images/general/about-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/about"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/getty/2oVG32YHsE7p1JizbiedBdZANDfGHlDhVXsvwJy6cbIhgsR18Vy9LSjsvdO80LQb.jpeg": {
+    "local_path": "/assets/images/general/carbide-cutter.jpeg",
+    "alt": "Carbide cutter",
+    "used_on_pages": [
+      "/about"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/getty/5WSypA8ZCRt0UAsaEXaWn3CjpEzlvgBeVj0H8TThUmmHIAKZfHbEzALOMQsn11GP.jpeg": {
+    "local_path": "/assets/images/general/industrial-pressure-gauge-and-pneumatic-cylinder-close-up.jpeg",
+    "alt": "Industrial Pressure Gauge and Pneumatic Cylinder Close-Up",
+    "used_on_pages": [
+      "/about"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/getty/1642p9gQffC01F9610p3LcfSBLM67ucO9S7poOLP2VABYWvE9x69C58WycFofgUc.jpeg": {
+    "local_path": "/assets/images/general/lathe-equipment-in-the-factory-manufacturing-metal-structure.jpeg",
+    "alt": "Lathe equipment in the factory manufacturing metal structures",
+    "used_on_pages": [
+      "/about"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/blocks/2aOpYQZNSpyhyiY2dEFnGEoWE7gNq2xcOvlDp97RawOPZv97lgq5v1tvskgMDJRu.png": {
+    "local_path": "/assets/images/general/about-image-2.png",
+    "alt": "",
+    "used_on_pages": [
+      "/about"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/blocks/3iijSzLKVRfkrj7gQs2aXlg2Z6pTc8sMtYEMlFYETrFGEB1z6ytDd1AbWeoUGn5b.png": {
+    "local_path": "/assets/images/general/about-image-3.png",
+    "alt": "",
+    "used_on_pages": [
+      "/about",
+      "/get-a-quote",
+      "/repairs/mazak-cnc-machine-repair",
+      "/way-covers/cnc-way-cover-repair",
+      "/spindles-repair/cnc-spindle-repair",
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/way-covers/mazak-cnc-way-covers",
+      "/way-covers/toyoda-cnc-way-covers",
+      "/way-covers/okuma-cnc-way-covers",
+      "/way-covers/haas-cnc-way-covers",
+      "/way-covers/giddings-lewis-cnc-way-covers",
+      "/way-covers/monarch-cnc-way-covers",
+      "/way-covers/johnford-cnc-way-covers",
+      "/way-covers/fadal-cnc-way-covers",
+      "/way-covers/amera-seiki-cnc-way-covers",
+      "/way-covers/mori-seiki-cnc-way-covers",
+      "/way-covers/niigata-cnc-way-covers",
+      "/way-covers/makino-cnc-way-covers",
+      "/way-covers/dmg-mori-cnc-way-covers",
+      "/way-covers/amada-cnc-way-covers",
+      "/way-covers/trumpf-cnc-way-covers",
+      "/way-covers/doosan-cnc-way-covers",
+      "/way-covers/fanuc-cnc-way-covers",
+      "/way-covers/hurco-cnc-way-covers",
+      "/way-covers/brother-cnc-way-covers",
+      "/way-covers/hitachi-seiki-cnc-way-covers",
+      "/spindles-repair/mazak-spindle-repair",
+      "/spindles-repair/toyoda-spindle-repair",
+      "/spindles-repair/okuma-spindle-repair",
+      "/spindles-repair/haas-spindle-repair",
+      "/spindles-repair/giddings-lewis-spindle-repair",
+      "/spindles-repair/monarch-spindle-repair",
+      "/spindles-repair/johnford-spindle-repair",
+      "/spindles-repair/fadal-spindle-repair",
+      "/spindles-repair/amera-seiki-spindle-repair",
+      "/spindles-repair/mori-seiki-spindle-repair",
+      "/spindles-repair/niigata-spindle-repair",
+      "/spindles-repair/makino-spindle-repair",
+      "/spindles-repair/dmg-mori-spindle-repair",
+      "/spindles-repair/amada-spindle-repair",
+      "/spindles-repair/trumpf-spindle-repair",
+      "/spindles-repair/doosan-spindle-repair",
+      "/spindles-repair/fanuc-spindle-repair",
+      "/spindles-repair/hurco-spindle-repair",
+      "/spindles-repair/brother-spindle-repair",
+      "/spindles-repair/hitachi-seiki-spindle-repair",
+      "/repairs/haas-cnc-machine-repair",
+      "/repairs/okuma-cnc-machine-repair",
+      "/repairs/fanuc-cnc-machine-repair",
+      "/repairs/dmg-mori-cnc-machine-repair",
+      "/repairs/doosan-cnc-machine-repair",
+      "/repairs/amada-cnc-machine-repair",
+      "/repairs/fadal-cnc-machine-repair",
+      "/repairs/hitachi-seiki-cnc-machine-repair",
+      "/repairs/toyoda-cnc-machine-repair",
+      "/repairs/giddings-lewis-cnc-machine-repair",
+      "/repairs/monarch-cnc-machine-repair",
+      "/repairs/brother-cnc-machine-repair",
+      "/repairs/hurco-cnc-machine-repair",
+      "/repairs/niigata-cnc-machine-repair",
+      "/repairs/makino-cnc-machine-repair",
+      "/repairs/johnford-cnc-machine-repair",
+      "/repairs/mori-seiki-cnc-machine-repair",
+      "/repairs/trumpf-cnc-machine-repair",
+      "/repairs/amera-seiki-cnc-machine-repair",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/repairs/cnc-machine-repair",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "general"
+  },
+  "https://cdn.durable.co/blocks/27FDivMCO5pe7DHp8NgUSNh0lqc0WZ5e90QElGLUHk9IUVycDIdzwEJRBhFlVuvK.png": {
+    "local_path": "/assets/images/services/repairs-mazak-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/mazak-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/getty/38ehXbrPg04n5pDhB06Hvyxe6aY1DBDNI5W3B6dcRTjUTuuYK3Fw1RW740ovRhPg.jpeg": {
+    "local_path": "/assets/images/cities/des-moines-pinned-on-a-map-of-usa.jpeg",
+    "alt": "Des Moines pinned on a map of USA",
+    "used_on_pages": [
+      "/service-area/des-moines-iowa"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/1eP57uaUBhYNR6VnHCxhwJz7RWCYvd7Q6mVYXkTvDriQPjAFeqMxiLrLK8hZYJd8.png": {
+    "local_path": "/assets/images/cities/service-area-des-moines-iowa-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/1cj4PtETME7tIdyZqY6abOcy6xGQQo6d2pbzXL6OQSRjTRb3F4sXvbQCJk0YgYK2.png": {
+    "local_path": "/assets/images/cities/service-area-des-moines-iowa-image-2.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/1bo72bPpa72VcEqwfzoaJMjCum069bhEVebkkSsOe0CScAhpmSL6ZZdKTqRBGyR7.png": {
+    "local_path": "/assets/images/cities/service-area-des-moines-iowa-image-3.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/1asNDpc8rvCAj4lTYGr04mY1JmsEb0uWul1mEMtaoUL260tHUk23wsN2mYtbogdH.png": {
+    "local_path": "/assets/images/cities/service-area-des-moines-iowa-image-4.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/18j4VSVzr9Vcj2NgBBANu28nXswkCY1F3bJ1nXbWkuWof7Jcg28H0UZ3m5Zbqm03.png": {
+    "local_path": "/assets/images/cities/service-area-des-moines-iowa-image-5.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/17UPn3DYq4uF1ptVXWjyfQQWaAoTROUN3oyLjHRcnwpwd9UsOkzhfquhpgBiMhTc.png": {
+    "local_path": "/assets/images/cities/service-area-des-moines-iowa-image-6.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/164g3eAcxxMunWUepGCq6JESNaXq8MzeC3D9WOmFawlppnhIsTEsxoy2pUnScU8R.png": {
+    "local_path": "/assets/images/cities/service-area-des-moines-iowa-image-7.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/16FeaAPTcNCBXCfJgZXx7knIDYufbFIsH4YY7VxQR5eI6j43lGJH3OQPFw2taVGz.png": {
+    "local_path": "/assets/images/cities/service-area-des-moines-iowa-image-8.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/17r2EIBsHPm56x8ncSxg2pKmykyBmA3Aaax2HEUObShCotoo8BkzwpVGKWE2TFyZ.png": {
+    "local_path": "/assets/images/cities/service-area-des-moines-iowa-image-9.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/19pqaHrEqNLjW2YQJytdxEWod1cGSWSaopJBVCBUUPkeaLRuEC8UjvxoDdmO1xHT.png": {
+    "local_path": "/assets/images/cities/service-area-des-moines-iowa-image-10.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/1a572URQhp94HU7YPh50Otd4OaBcKlh0W6cEf08tsR7yMQNSlOjCLurR878FVQsp.png": {
+    "local_path": "/assets/images/cities/service-area-des-moines-iowa-image-11.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/1bt1y1wffEcMv32ZSLRkknMjCrjiPSUUbdsvfJCq0U7mCrZeJ4oa3JyMwlaTyPs3.png": {
+    "local_path": "/assets/images/cities/service-area-des-moines-iowa-image-12.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/iowa",
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/illinois",
+      "/service-area/st-paul-minnesota",
+      "/service-area/minnesota",
+      "/service-area/wisconsin",
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/nebraska",
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri",
+      "/service-area/missouri",
+      "/service-area/texas",
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/21DGpWDBCSHNh1GwePR6yTsREhit3LFgzTyIdAo2NTvsNqPBNOELiqa1ThYXSmzp.png": {
+    "local_path": "/assets/images/cities/service-area-des-moines-iowa-image-13.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/des-moines-iowa",
+      "/service-area/davenport-iowa",
+      "/service-area/waterloo-iowa",
+      "/service-area/cedar-rapids-iowa",
+      "/service-area/iowa-city-iowa",
+      "/service-area/ames-iowa"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/21GwbKE4pHGzWQjqQx9ucIEarRAYst5lzgSOx8YmUuO8QPe0n339gbUbH8D99grr.jpeg": {
+    "local_path": "/assets/images/cities/iowa.jpeg",
+    "alt": "Iowa",
+    "used_on_pages": [
+      "/service-area/davenport-iowa",
+      "/service-area/ames-iowa"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/197Hnk1icXa0HWJEbzhibfFroXlU34Ng2TiKU1HrjcweYRUL7sLemyL6kTGtuVYp.jpeg": {
+    "local_path": "/assets/images/states/iowa-topographic-relief-map-3d-render.jpeg",
+    "alt": "Iowa Topographic Relief Map  - 3D Render",
+    "used_on_pages": [
+      "/service-area/iowa"
+    ],
+    "category": "states"
+  },
+  "https://cdn.durable.co/getty/10zKTbR4UzzpIKcExaOxACeuZf7v14RMpz2TyPxiD24wqfQyDKIxwQTvmljRhSdg.jpeg": {
+    "local_path": "/assets/images/cities/chicago-map.jpeg",
+    "alt": "Chicago map",
+    "used_on_pages": [
+      "/service-area/chicago-illinois"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/2bURC7SJMOl4m54ai8Wbd3Kxhc4kiQhN7n14IGGt4l3CKv3Go118bGE3A6MLc5rJ.png": {
+    "local_path": "/assets/images/cities/service-area-chicago-illinois-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/chicago-illinois",
+      "/service-area/rockford-ilinois",
+      "/service-area/peoria-ilinois",
+      "/service-area/springfield-ilinois",
+      "/service-area/naperville-illinois"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/183jA12HR6CJhR9InKTz6fHZUNhvuW18fYolE3czZMps0PiYwLH604mStKK5CxMX.jpeg": {
+    "local_path": "/assets/images/cities/macro-travel-map-of-springfield-illinois.jpeg",
+    "alt": "Macro Travel Map Of Springfield Illinois",
+    "used_on_pages": [
+      "/service-area/rockford-ilinois"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/3hGpYIVAhnSioxubRvJnsrFzGN2ULd55ZD80FOfPUp054v3OTZca9zuEFnL9Jx1R.jpeg": {
+    "local_path": "/assets/images/cities/us-capital-cities-on-map-series-peoria-il.jpeg",
+    "alt": "US capital cities on map series: Peoria, IL",
+    "used_on_pages": [
+      "/service-area/peoria-ilinois"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/27ipazHhj61PI246RhRm2sUgkmW5rt7DPfVWQRCSm8qDyrZaacIOM1oJkd4vAYla.png": {
+    "local_path": "/assets/images/states/service-area-illinois-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/illinois"
+    ],
+    "category": "states"
+  },
+  "https://cdn.durable.co/getty/6B6UebgBUD4iIpZ2028h63G2cs7giPR0L4j2Pua0gnQ6TnTQf3G14Ai9MqnzVyHz.jpeg": {
+    "local_path": "/assets/images/cities/minneapolis-usa.jpeg",
+    "alt": "Minneapolis, USA",
+    "used_on_pages": [
+      "/service-area/st-paul-minnesota",
+      "/service-area/minneapolis-minnesota"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/3bm8LUhHON4Qes3LLFQn5qxFNNvGEfo15QYYYQblwQ0RwKZy45m9MRW1PAesk2bI.png": {
+    "local_path": "/assets/images/cities/service-area-st-paul-minnesota-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/st-paul-minnesota",
+      "/service-area/minneapolis-minnesota",
+      "/service-area/rochester-minnesota",
+      "/service-area/duluth-minnesota",
+      "/service-area/bloomington-minnesota"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/3OGxJwUdmhf6KNlPjuJv200F219eGm4ib9VE1wolFyE6nIvy7QoS8CqupktiDP8s.jpeg": {
+    "local_path": "/assets/images/states/minnesota-topographic-relief-map-3d-render.jpeg",
+    "alt": "Minnesota Topographic Relief Map  - 3D Render",
+    "used_on_pages": [
+      "/service-area/minnesota"
+    ],
+    "category": "states"
+  },
+  "https://cdn.durable.co/getty/37P5UewduE0QeW1IyGhuuq4j6oYnWSwE0BfF5RYvzoEEnkmAHk5koB1eBE7g536b.jpeg": {
+    "local_path": "/assets/images/states/wisconsin-topographic-relief-map-3d-render.jpeg",
+    "alt": "Wisconsin Topographic Relief Map  - 3D Render",
+    "used_on_pages": [
+      "/service-area/wisconsin"
+    ],
+    "category": "states"
+  },
+  "https://cdn.durable.co/getty/3FZSpQIZUy4HkJpHl7D4oUGoQTmlB44J3maoCUBdHF8F91HDM1jPjcPC8GkLjvwc.jpeg": {
+    "local_path": "/assets/images/cities/milwaukee-wisconsin-on-a-map.jpeg",
+    "alt": "Milwaukee, Wisconsin on a map.",
+    "used_on_pages": [
+      "/service-area/milwaukee-wisconsin"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/14maPGoDuDIbYaxdSpmjkMEbR3zgzrjyOt746ANVdbXi6F0suYXTvXt0NQ0Qudeg.png": {
+    "local_path": "/assets/images/cities/service-area-milwaukee-wisconsin-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/milwaukee-wisconsin",
+      "/service-area/madison-wisconsin",
+      "/service-area/green-bay-wisconsin",
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/37zjmFY12QuKzlEHJbJ1qjWxSiwQsmVOgJTv9wgyPYSANK2ErVqYomvCqr4R9SBs.jpeg": {
+    "local_path": "/assets/images/cities/madison-pinned-on-a-map-of-usa.jpeg",
+    "alt": "Madison pinned on a map of USA",
+    "used_on_pages": [
+      "/service-area/madison-wisconsin"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/1aAiLiETJvoMogPPVKtNl4wPO6noQ1UpktsLQIB5xrstZCXmg4q4m8xTnNLeWRfQ.jpeg": {
+    "local_path": "/assets/images/cities/lincoln-pinned-on-a-map-of-usa.jpeg",
+    "alt": "Lincoln pinned on a map of USA",
+    "used_on_pages": [
+      "/service-area/lincoln-nebraska"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/2be3WVE48U7jHGmQAwK4PwuIsCuKvv026e3Ye7W8yYyRuQdzgYnv8Z7w2X1jfd8R.png": {
+    "local_path": "/assets/images/cities/service-area-lincoln-nebraska-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/lincoln-nebraska",
+      "/service-area/grand-island-nebraska",
+      "/service-area/omaha-nebraska",
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/2bpbCHUMxXybLQ3kqNgQn16dNwVZEvs77qeelGXWlIx8wqd5GyMNs3iVyffYpi3I.jpeg": {
+    "local_path": "/assets/images/cities/nebraska-state.jpeg",
+    "alt": "Nebraska State",
+    "used_on_pages": [
+      "/service-area/grand-island-nebraska"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/10dU2iJRAVYncCP6OW33J43cNxa0BV2b1aMJIgFqcAwbntB0VqLfIVEa5ZgrXKXC.jpeg": {
+    "local_path": "/assets/images/states/nebraska-topographic-relief-map-3d-render.jpeg",
+    "alt": "Nebraska Topographic Relief Map  - 3D Render",
+    "used_on_pages": [
+      "/service-area/nebraska"
+    ],
+    "category": "states"
+  },
+  "https://cdn.durable.co/getty/1dLJfg4VfCJDR3RLd9gxCpcDwdernr1qYvCAP6oDt5D6pQnGekzZQUDti2wzSGgs.jpeg": {
+    "local_path": "/assets/images/cities/saint-louis.jpeg",
+    "alt": "Saint Louis",
+    "used_on_pages": [
+      "/service-area/st-louis-missouri"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/2ejcFfdf4P9hThMBsxDnwDxHRSJYXagf3CyQbNJtW9vWIQrZ1axI53HCxxMQEftu.png": {
+    "local_path": "/assets/images/cities/service-area-st-louis-missouri-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/st-louis-missouri",
+      "/service-area/kansas-city-missouri",
+      "/service-area/springfield-missouri"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/24lwghsEiZZkxFOCZvYOFeHJBG3FUUaHzAWMFI2UTdpH4W250cvzCHZs2OEsjpb3.jpeg": {
+    "local_path": "/assets/images/cities/kansas-city.jpeg",
+    "alt": "Kansas City",
+    "used_on_pages": [
+      "/service-area/kansas-city-missouri"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/38Vm9VdIcgyTveOviLtBR7k84tZ3ixjmD3HLk2FykHCd5jCGmE0NWJnRgoZVVNCU.jpeg": {
+    "local_path": "/assets/images/cities/us-capital-cities-on-map-series-springfield-mo.jpeg",
+    "alt": "US capital cities on map series: Springfield, MO",
+    "used_on_pages": [
+      "/service-area/springfield-missouri"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/34rFtjxKtFTk4ZrSGM8qYM2HXEvL0RKbhRx0PIbf4s4R3NxZxwHUAQjWIICiKXtW.jpeg": {
+    "local_path": "/assets/images/states/missouri-topographic-relief-map-3d-render.jpeg",
+    "alt": "Missouri Topographic Relief Map  - 3D Render",
+    "used_on_pages": [
+      "/service-area/missouri"
+    ],
+    "category": "states"
+  },
+  "https://cdn.durable.co/getty/71MOopiVHAORnYUO8Qm1bEP31QpwgkHKFldVmATQTsITj7JCXskgrkCKNRL3LrN0.jpeg": {
+    "local_path": "/assets/images/states/texas-topographic-relief-map-3d-render.jpeg",
+    "alt": "Texas Topographic Relief Map - 3D Render",
+    "used_on_pages": [
+      "/service-area/texas"
+    ],
+    "category": "states"
+  },
+  "https://cdn.durable.co/getty/0z9WzGtTJPLYXY2lqltDPckCtGTF6XihslpDqwzoC3gQ3uwx43gQnIWiXVjjIsCz.jpeg": {
+    "local_path": "/assets/images/cities/dallas-area-in-a-map.jpeg",
+    "alt": "Dallas area in a map",
+    "used_on_pages": [
+      "/service-area/dallas-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/blocks/5j22uqwXa5nlmjL18nO7KYrpGrwqSyWijMptBE0786SJsX9hrRjChRak7DrMfBhA.png": {
+    "local_path": "/assets/images/cities/service-area-dallas-texas-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/service-area/dallas-texas",
+      "/service-area/houston-texas",
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/28nwkO6kDO5cFOFtv3aaMxZWcaAS7PVNTp7Fp5u67vz4jHrCM5FT8459pmoFgMPP.jpeg": {
+    "local_path": "/assets/images/cities/houston-map.jpeg",
+    "alt": "Houston map",
+    "used_on_pages": [
+      "/service-area/houston-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/23Dc3JHo8JurFymALkwszDszWDz5XhFtCWIyWko2Z57SB7gPvh9Yws8iUegrImXm.jpeg": {
+    "local_path": "/assets/images/blocks/cnc-machine.jpeg",
+    "alt": "cnc machine",
+    "used_on_pages": [
+      "/blog/precision-cnc-machining--how-it-drives-efficiency-in-manufacturing"
+    ],
+    "category": "blocks"
+  },
+  "https://cdn.durable.co/getty/234qkKeArgHBjlwT2SsGt3Bw1NHfZIXZN0ZXPgtYguH3NcK30y6dzDpPFDrfY0SC.jpeg": {
+    "local_path": "/assets/images/blocks/manufacturing-efficiency.jpeg",
+    "alt": "manufacturing efficiency",
+    "used_on_pages": [
+      "/blog/precision-cnc-machining--how-it-drives-efficiency-in-manufacturing"
+    ],
+    "category": "blocks"
+  },
+  "https://cdn.durable.co/getty/23SDxiPcWLgRogouXwhjFlFglVXgFdVshYFnmjpnebk1iIqgRY7DsPkg8hpK0Cbs.jpeg": {
+    "local_path": "/assets/images/blocks/industry-applications.jpeg",
+    "alt": "industry applications",
+    "used_on_pages": [
+      "/blog/precision-cnc-machining--how-it-drives-efficiency-in-manufacturing"
+    ],
+    "category": "blocks"
+  },
+  "https://cdn.durable.co/getty/30V5U2ymFN3Lf37R6wuht9AdvNZeWr2lpFftdHOPhx8j3BLOU5lJ32WQ2qvFZs8R.jpeg": {
+    "local_path": "/assets/images/blocks/machine-components.jpeg",
+    "alt": "machine components",
+    "used_on_pages": [
+      "/blog/understanding-the-true-cost--usa-made-way-covers-vs--overseas-options"
+    ],
+    "category": "blocks"
+  },
+  "https://cdn.durable.co/getty/182kquVd0h8N4sb2xrtBBcv9HoFBJLDjIEPPNGMABKvviXrf53VN8Z0hRNMJrcUb.jpeg": {
+    "local_path": "/assets/images/blocks/industrial-materials.jpeg",
+    "alt": "industrial materials",
+    "used_on_pages": [
+      "/blog/understanding-the-true-cost--usa-made-way-covers-vs--overseas-options"
+    ],
+    "category": "blocks"
+  },
+  "https://cdn.durable.co/getty/1envp7evpIfh90zoSLsRg0C3mI3Xnisa4C8vYDJrC4639XRZvsQi59Un9xkqutd5.jpeg": {
+    "local_path": "/assets/images/blocks/supply-chain.jpeg",
+    "alt": "supply chain",
+    "used_on_pages": [
+      "/blog/understanding-the-true-cost--usa-made-way-covers-vs--overseas-options"
+    ],
+    "category": "blocks"
+  },
+  "https://cdn.durable.co/getty/24JCTj3fJvaoxZGsHF4WQnBccGAIfKUyMYpTM7XqXnljnipqjRTWQRc3dAirpjKl.jpeg": {
+    "local_path": "/assets/images/blocks/manufacturing-plant.jpeg",
+    "alt": "manufacturing plant",
+    "used_on_pages": [
+      "/blog/understanding-the-true-cost--usa-made-way-covers-vs--overseas-options"
+    ],
+    "category": "blocks"
+  },
+  "https://cdn.durable.co/getty/11A2gtNA1H5IxL82DbPhCfizv8OKwCuanaNFPSvbYkrTJ7oweyDYjFDgdMQyjP6h.jpeg": {
+    "local_path": "/assets/images/blocks/cnc-machine-cover.jpeg",
+    "alt": "cnc machine cover",
+    "used_on_pages": [
+      "/blog/choosing-the-right-way-covers-for-your-cnc-machines--a-comprehensive-buyer-s-guide"
+    ],
+    "category": "blocks"
+  },
+  "https://cdn.durable.co/getty/18BPYgHmKq7I5mkPmIBAre3HnAWUN69k1J1cgypLT6c309VkIoCUIs9eL5RfKaaw.jpeg": {
+    "local_path": "/assets/images/blocks/telescopic-cover.jpeg",
+    "alt": "telescopic cover",
+    "used_on_pages": [
+      "/blog/choosing-the-right-way-covers-for-your-cnc-machines--a-comprehensive-buyer-s-guide"
+    ],
+    "category": "blocks"
+  },
+  "https://cdn.durable.co/getty/215j8ntG8vwGlYRrcZQIGjCrsLsqvrhZqX5eQb9zZaYWOUGu9WXPd9vwU2ZiQmBx.jpeg": {
+    "local_path": "/assets/images/blocks/cnc-machine-speed.jpeg",
+    "alt": "cnc machine speed",
+    "used_on_pages": [
+      "/blog/choosing-the-right-way-covers-for-your-cnc-machines--a-comprehensive-buyer-s-guide"
+    ],
+    "category": "blocks"
+  },
+  "https://cdn.durable.co/getty/27j3fqe69IKYpTD9ylizjFKLv6TkPtCJB73wMLHdwt7t1TjY2JxXRr2HuFSe55Cp.jpeg": {
+    "local_path": "/assets/images/blocks/cover-installation.jpeg",
+    "alt": "cover installation",
+    "used_on_pages": [
+      "/blog/choosing-the-right-way-covers-for-your-cnc-machines--a-comprehensive-buyer-s-guide"
+    ],
+    "category": "blocks"
+  },
+  "https://cdn.durable.co/blocks/2agvXBh94d5dkkOAGrUV4hJytESAj3Yua7hipEUavvPt3QrIAEW8jXUwrAS1U2Ah.png": {
+    "local_path": "/assets/images/services/way-covers-mazak-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/mazak-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/25nJnNJS2r10aF5ScUKnpq4zgO6H3lxx7nOrgbGbTERFJqCerg6XQJIS3gzNgaSE.png": {
+    "local_path": "/assets/images/services/drilltap-toolroom.png",
+    "alt": "Drill/Tap & Toolroom",
+    "used_on_pages": [
+      "/way-covers/mazak-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/31rVxCWoRoIja7Yby7fkjHUmIisStUeJ29OByVuRI2mQV76smmhkgG1CzQA1S4ag.png": {
+    "local_path": "/assets/images/services/way-covers-toyoda-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/toyoda-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/6XtrplBQidGg6BTaR70OAOzDHvgIGA4KQ3gs2od1O2qIIGxW3d4Uc6Yv3gBwTuB5.png": {
+    "local_path": "/assets/images/services/multi-axis-smart-series.png",
+    "alt": "Multi-Axis (SMART Series)",
+    "used_on_pages": [
+      "/way-covers/toyoda-cnc-way-covers",
+      "/way-covers/okuma-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/2bwgBt2AEjpvDNtNiVLeQ4rrgkU8K7Xa7Goigfg5k5hB9qyG44wJfn5k3pIISrI4.png": {
+    "local_path": "/assets/images/services/way-covers-okuma-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/okuma-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/aEZP4F6YVCuDWApjptiBllZX1FJVzns55baMxVyHKnHjaFMmeGHuCmgDPBvPao2I.png": {
+    "local_path": "/assets/images/services/horizontal-machining.png",
+    "alt": "Horizontal Machining",
+    "used_on_pages": [
+      "/way-covers/okuma-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/dBi1EBSs2XMoYk7ujljYPYEydUsCZZpLUxJ0VWLpFufivTL6LQFN1KMXQk4Z3Kfl.png": {
+    "local_path": "/assets/images/services/way-covers-haas-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/haas-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/26W8tnRr6ULV88bPwjhGdlwF4ZWTnv99emlXkrDoK0jFY5anNGl2zwj9FczmNYhK.png": {
+    "local_path": "/assets/images/services/vertical-5-axis.png",
+    "alt": "Vertical & 5-Axis",
+    "used_on_pages": [
+      "/way-covers/haas-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/dIP5uOtxwu8p4lhPxGvlRrXMzW4yaVjnxHP3B69jETrAYFK1kqNFfnDsGhulZX9d.png": {
+    "local_path": "/assets/images/services/drilltap-toolroom-2.png",
+    "alt": "Drill/Tap & Toolroom",
+    "used_on_pages": [
+      "/way-covers/haas-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/1aPHj23IPfPkNKL0IuUo3JdUdYwR5ouCawnVNAfCQ0g9rahxmEs4ipIJdBvg8g3S.png": {
+    "local_path": "/assets/images/services/horizontal.png",
+    "alt": "Horizontal",
+    "used_on_pages": [
+      "/way-covers/haas-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/11w0Gmzkzz7gLZfxMBGFf4dpmzhNeuGo23tpDP5BjNx1goK5OebzsF6Zw2RbpgKb.png": {
+    "local_path": "/assets/images/services/lathes-turning.png",
+    "alt": "Lathes & Turning",
+    "used_on_pages": [
+      "/way-covers/haas-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/11s1ZUdg3OxJbkmxjxTetmZKhdbLJxIGw4ClaYL1BnAPiIffiP6zOCBGNo61KUTy.png": {
+    "local_path": "/assets/images/services/way-covers-giddings-lewis-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/giddings-lewis-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/9U2AGDB9WJHaRI3rlKAmlmoQoY9UOnCHdK3cRrsgwtw3MUvpZyoFhL4kfkJwPKv3.png": {
+    "local_path": "/assets/images/services/horizontal-boring-mills.png",
+    "alt": "Horizontal Boring Mills",
+    "used_on_pages": [
+      "/way-covers/giddings-lewis-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/32MwMdyRLMCYNPBw9TJZWb3VJWg5kzy1ayq6WChkaCLqHCZHoNCm4BsKb49CWYEJ.png": {
+    "local_path": "/assets/images/services/way-covers-monarch-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/monarch-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/354hrZmB1mN1wLk2BRLbhXVrBxJujp6z0QZdLNKmfi0SnHCYA6lE0RPBy0eYh3WT.png": {
+    "local_path": "/assets/images/services/horizontal-machining-2.png",
+    "alt": "Horizontal Machining",
+    "used_on_pages": [
+      "/way-covers/monarch-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/4ortZd9DEcLv4G6y4k5Ui43Annr9QhVOo37WU0m2s6TbXDvzFZgLLIjhshNtbml5.png": {
+    "local_path": "/assets/images/services/way-covers-johnford-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/johnford-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/36p4TQDNjfqKzYaMCii0dqLk5A5OXVi9Ms94VINAWwRJM3VxVAe9AeFT2vc58Zua.png": {
+    "local_path": "/assets/images/services/small-vmc-sv-series.png",
+    "alt": "Small VMC / SV Series",
+    "used_on_pages": [
+      "/way-covers/johnford-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/33ssiY6nN2Lyc4WffqBYPalDhv7vItetzDEduSD6cfeiORLnvHPb9KXZjMWRlC5W.png": {
+    "local_path": "/assets/images/services/way-covers-fadal-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/fadal-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/18rNz6ERJ12B0VnLvqRuxhq3TBhg67HrnUPaTxAHfWjgFhIMQp1Ql5xrVanFCmqA.png": {
+    "local_path": "/assets/images/services/high-torque-hd.png",
+    "alt": "High-Torque HD",
+    "used_on_pages": [
+      "/way-covers/fadal-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/ahUsoVVCwlZrlLlBbv2GNOSFqN9BdUoSPSqmExOm6VZpx375xqHtg7x50XOdXyrq.png": {
+    "local_path": "/assets/images/services/way-covers-amera-seiki-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/amera-seiki-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/8VlHN2Y2BK1dHWcswKqJwMVm2kpcsmRP9xrhxyALtdHbEufLBzxXbhalLPMGsYBC.png": {
+    "local_path": "/assets/images/services/traveling-column-mills.png",
+    "alt": "Traveling Column Mills",
+    "used_on_pages": [
+      "/way-covers/amera-seiki-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/3BTj3TlW8O6heESCHs0u3ATUmcqaKmugrITxrWKw5DpPmXM25z0c3C3kLfGYcHNo.png": {
+    "local_path": "/assets/images/services/way-covers-mori-seiki-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/mori-seiki-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/39ywjFuxqfjdiWKQPCJ5EoyKNXKDfOLgg0sdmiJHWS6dHsaoPfJrURS0ybV0idiw.png": {
+    "local_path": "/assets/images/services/multi-task-machines.png",
+    "alt": "Multi-Task Machines",
+    "used_on_pages": [
+      "/way-covers/mori-seiki-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/78tFxPWWENffXYEU1MJ3hvDOH2bXhCRiUXxVSlLPMzTWKkd9yue3qNV164nieFlJ.png": {
+    "local_path": "/assets/images/services/way-covers-niigata-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/niigata-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/1dtIQrz7BacbUYwtx2Jv2XGZZGctibqoqtqQ8loGbtt22jLMofNznyDp33wKPQoc.png": {
+    "local_path": "/assets/images/services/way-covers-makino-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/makino-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/35IDblZL5fpgQY27EpfuN95FfrT6gSk7KfOr9pj7f4Z2NGW847oUSaM6SJHNX8Ju.png": {
+    "local_path": "/assets/images/services/high-performance-vertical.png",
+    "alt": "High-Performance Vertical",
+    "used_on_pages": [
+      "/way-covers/makino-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/28oOMSkslj8U0sdICsOogKJsDWLpOQGyBVBNdbi6D2sdzEFblJZ7vo9jwovpFSIy.png": {
+    "local_path": "/assets/images/services/way-covers-dmg-mori-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/dmg-mori-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/30qNLQPBHoQoknPuK12rWhzfReuD5Y9AXNhNNNFy5JvZY7tgWnb6u3jRu0mTG45v.png": {
+    "local_path": "/assets/images/services/swiss-multi-task.png",
+    "alt": "Swiss & Multi-Task",
+    "used_on_pages": [
+      "/way-covers/dmg-mori-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/24q6CZNubbxfk8lPkv7Yo7e1a8HLsLByjgeYbqLCjo15pYjfY6YenqAcLheZDGeV.png": {
+    "local_path": "/assets/images/services/way-covers-amada-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/amada-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/252Vbpe0RxMcXV21dJCzpjDQnmn9fVYhO2dr6XLgDtvoks1ZLgiSJPZhxN1KftsA.png": {
+    "local_path": "/assets/images/services/horizontal-machining-3.png",
+    "alt": "Horizontal Machining",
+    "used_on_pages": [
+      "/way-covers/amada-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/2fapbiUPgtrUpVUh2bDGTNz1nsoRjQ4m0VL9zE439N5wvdoHY95CXaKNbtxrjeeN.png": {
+    "local_path": "/assets/images/services/way-covers-trumpf-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/trumpf-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/2281gmqvpHQlNsfAbvhlnYl6pJWZojimyqWyVG91OCVqU7OVkNTr63ltBNXKoAd6.png": {
+    "local_path": "/assets/images/services/punch-laser-combos.png",
+    "alt": "Punch-Laser Combos",
+    "used_on_pages": [
+      "/way-covers/trumpf-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/03LfseiQwvt2mnrsWRA8o4KlCtdMa4cYpfhOKvMRtBYWR8TT7bzg8QxD8DHKJIRo.png": {
+    "local_path": "/assets/images/services/way-covers-doosan-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/doosan-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/2ckLW4TTehnrqvU30t1yKlGPjh0fiACPYlKhom0w2nXl1QZpUQ8ZRSp2GOicX18Q.png": {
+    "local_path": "/assets/images/services/horizontal-machining-4.png",
+    "alt": "Horizontal Machining",
+    "used_on_pages": [
+      "/way-covers/doosan-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/1H6hmN9EvAY6JIVJYamHlucOX5lrXcdfBNixPsxfWpIcsxt35xvtaXxayKv6rvSM.png": {
+    "local_path": "/assets/images/services/way-covers-fanuc-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/fanuc-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/3aQ739XR3mpT5pCveJDztmOOSauifZpwhau4HP7DSmlJ6ftOA2QyXKq6y1h6d2ww.png": {
+    "local_path": "/assets/images/services/robodrill-\u03b1-d14-series.png",
+    "alt": "Robodrill \u03b1-D14 Series",
+    "used_on_pages": [
+      "/way-covers/fanuc-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/fkAbgeR3pftwD6NKA4RNfuO5nCspw0KWcUFB5HU3xMjbUHiXPQcvlfpz594sF5NF.png": {
+    "local_path": "/assets/images/services/way-covers-hurco-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/hurco-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/1zr5cGYM6FjO5fEFMMrySkAMoQlKk8wNUV23rQieVvCqJhBBixKKttt9UP0v7SvW.png": {
+    "local_path": "/assets/images/services/high-performance-vmcs.png",
+    "alt": "High-Performance VMCs",
+    "used_on_pages": [
+      "/way-covers/hurco-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/8uyXR3ILGnGUr6o62Ll6ihoTuLH0lZocaIdHfswmB8uQMV7MIyb8VUCcKXAev8Hr.png": {
+    "local_path": "/assets/images/services/way-covers-brother-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/brother-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/29aDIgB48cNw34iIuJwTf70LxFYKMzkWL7UlquhzoJ95ZcYkTzQRI2fOp7ANiKxc.png": {
+    "local_path": "/assets/images/services/speedio-machining-centers.png",
+    "alt": "Speedio Machining Centers",
+    "used_on_pages": [
+      "/way-covers/brother-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/5Xjlq6oTtxtHnqNNKEdolXIWjQ69GH28LTdJmvDgXVL9oKMQVzK9PvbdOJrebWRq.png": {
+    "local_path": "/assets/images/services/way-covers-hitachi-seiki-cnc-way-covers-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/way-covers/hitachi-seiki-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/2darJY00a0ZuKYewZoXoIxddWo0qd1Eghg8Ue0LpkglH69CrQRYyh9a3Uob4vnj2.png": {
+    "local_path": "/assets/images/services/vertical-machining.png",
+    "alt": "Vertical Machining",
+    "used_on_pages": [
+      "/way-covers/hitachi-seiki-cnc-way-covers"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/10JZH5Jdu7Bgwm0H25GWWv3eBGXKu8ZSBPlhFVEAD1K4D7G0yCQ7vYvivV2b4NTX.png": {
+    "local_path": "/assets/images/services/spindles-repair-mazak-spindle-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/spindles-repair/mazak-spindle-repair",
+      "/spindles-repair/toyoda-spindle-repair",
+      "/spindles-repair/okuma-spindle-repair",
+      "/spindles-repair/haas-spindle-repair",
+      "/spindles-repair/giddings-lewis-spindle-repair",
+      "/spindles-repair/monarch-spindle-repair",
+      "/spindles-repair/johnford-spindle-repair",
+      "/spindles-repair/fadal-spindle-repair",
+      "/spindles-repair/amera-seiki-spindle-repair",
+      "/spindles-repair/mori-seiki-spindle-repair",
+      "/spindles-repair/niigata-spindle-repair",
+      "/spindles-repair/makino-spindle-repair",
+      "/spindles-repair/dmg-mori-spindle-repair",
+      "/spindles-repair/amada-spindle-repair",
+      "/spindles-repair/trumpf-spindle-repair",
+      "/spindles-repair/doosan-spindle-repair",
+      "/spindles-repair/fanuc-spindle-repair",
+      "/spindles-repair/hurco-spindle-repair",
+      "/spindles-repair/brother-spindle-repair",
+      "/spindles-repair/hitachi-seiki-spindle-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/3bPwCzwttju4IYyw95CDpZyVSxR9KC0STGdibMZDODKZvMwA8GIUScuCcUaHoIEU.png": {
+    "local_path": "/assets/images/services/repairs-haas-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/haas-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/3CmhAFkBNW8e93eZjQdz47hGaIa32A2wuVToiPprerKNB8aatgn2452pHLUdDMnf.png": {
+    "local_path": "/assets/images/services/repairs-okuma-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/okuma-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/1afp7ZvjQQ0lgsUTRRwWXW0u6kUAlfiHnpS0RDpkIN3g4sMJhD7fE6tOCvgMwLVU.png": {
+    "local_path": "/assets/images/services/repairs-fanuc-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/fanuc-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/21uBI9YhXioaTgs21mSo41Nnqfvo36b3l2aAOqlqyNcqVFGluSyU7phfpzvahBS8.png": {
+    "local_path": "/assets/images/services/repairs-dmg-mori-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/dmg-mori-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/208pIyHG23g70q433h3gQfwa0WJmvmwKIiTEnJLUUw1PpvOUioO6GoDAiuTkYTrT.png": {
+    "local_path": "/assets/images/services/repairs-doosan-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/doosan-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/299C0xH8VgpAuTqyLmOhXDRdvl1QCjJNOiaZ5XQLtkpQcGSBlSO3vduqWF1CqT5z.png": {
+    "local_path": "/assets/images/services/repairs-amada-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/amada-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/1bSpwSZ4rYEX3BToSADKfSgTFmvlh27fUKM6VT5yfqdnDjQIlOnZ8Hl1tfYihnHY.png": {
+    "local_path": "/assets/images/services/repairs-fadal-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/fadal-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/4nmN8G5jY6hlGdZ8iXtXlIizYWMiZwHctPyvGNsb95NFWv7PLl1tscwNuU2MHhfc.png": {
+    "local_path": "/assets/images/services/repairs-hitachi-seiki-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/hitachi-seiki-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/1fsdmvP7DcUXXhJukERZZUGCfxaBte4BOW0FPOAi0hvIJEQth12z3uXllfeEcBT5.png": {
+    "local_path": "/assets/images/services/repairs-toyoda-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/toyoda-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/0O4uwFJJ8BRU3umBOBAL0Kod9ugOSmRWCJbBAcAQYO1hRdm2lWdUBFUg88xFbaJv.png": {
+    "local_path": "/assets/images/services/repairs-giddings-lewis-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/giddings-lewis-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/25LE8yAt1ij5YWCuRnTOdkATh3k9Qdc6eaRvz3O1Nc9p1c5FgmGV1Xd8FIqtZStK.png": {
+    "local_path": "/assets/images/services/repairs-monarch-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/monarch-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/cEC34eEsiK42jNbUCNhcxngQo24UrKzMfFdswLQrIz9JhEmYWk8hjxrVFzasUIyL.png": {
+    "local_path": "/assets/images/services/repairs-brother-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/brother-cnc-machine-repair",
+      "/repairs/hurco-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/2dEtZuSyCPOlyEFdaUYV89x4OLkeRfDwUdsIQwHAy1fvfjkVQQCKlj6Uj8GBbxmn.png": {
+    "local_path": "/assets/images/services/repairs-niigata-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/niigata-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/18iKJ3I0Y8kHuLdYpkjd0HEBzui0oc9ZwirbcZ9u4tSHhCvkZ3b82uyWNBi7rAcC.png": {
+    "local_path": "/assets/images/services/repairs-makino-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/makino-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/104IOSk9s7oLslLeLdE7v1jFjS1lQ799YZzDwraD7iGhxGCnqQKtGInq6fNSBEJI.png": {
+    "local_path": "/assets/images/services/repairs-johnford-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/johnford-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/3aiS2VY5UKepDdX6pkYeb4aa6Mxdok5IB6LBzucB5uLtI14eg0d207bc6aeubxjz.png": {
+    "local_path": "/assets/images/services/repairs-mori-seiki-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/mori-seiki-cnc-machine-repair",
+      "/repairs/amera-seiki-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/blocks/7n1CnaMJcqQXxMjDskOCBB72DHOgOyCIVfUkknnNhGcDEVH9OI2mfHl4YJxDCinb.png": {
+    "local_path": "/assets/images/services/repairs-trumpf-cnc-machine-repair-image.png",
+    "alt": "",
+    "used_on_pages": [
+      "/repairs/trumpf-cnc-machine-repair"
+    ],
+    "category": "services"
+  },
+  "https://cdn.durable.co/getty/dPllPCr7bScExX6fmgHPkTeQxmeZ0MsQsCXq4hXEt5f05DWymeuKViSX8TCbKEOU.jpeg": {
+    "local_path": "/assets/images/cities/waterloo-iowa-on-an-antique-map.jpeg",
+    "alt": "Waterloo, Iowa on an Antique map",
+    "used_on_pages": [
+      "/service-area/waterloo-iowa"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/157Cvh2TGlYCWkJ7WL6AXMGCtMAieNJuwgmVHkaboX9OjKDiWIS8RN7e3WEYUfHN.jpeg": {
+    "local_path": "/assets/images/cities/us-capital-cities-on-map-series-cedar-rapids-iowa.jpeg",
+    "alt": "US capital cities on map series: Cedar Rapids, Iowa",
+    "used_on_pages": [
+      "/service-area/cedar-rapids-iowa"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/2d8mo1UocHvFtUFKnEbcO4mhXzVRvZG9RcGo1SswdVgTcx6mVul0wLa2XKDYTHDH.jpeg": {
+    "local_path": "/assets/images/cities/us-capital-cities-on-map-series-iowa-city-ia.jpeg",
+    "alt": "US capital cities on map series: Iowa City, IA",
+    "used_on_pages": [
+      "/service-area/iowa-city-iowa"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/22oywIdbMEgFoO9O26O3W7aBayHZqjIb0sOak39En4IALpagXdtYE9r88D4puc0G.jpeg": {
+    "local_path": "/assets/images/cities/springfield-pinned-on-a-map-of-usa.jpeg",
+    "alt": "Springfield pinned on a map of USA",
+    "used_on_pages": [
+      "/service-area/springfield-ilinois"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/12VUsQ2HnI3Zf6ZQZGULBPM8mtAD0yKOFqf3odUmiHhUrpj9sFeWxwE8XUmjQ6Hz.jpeg": {
+    "local_path": "/assets/images/cities/illinois-marked-on-map.jpeg",
+    "alt": "Illinois Marked on Map",
+    "used_on_pages": [
+      "/service-area/naperville-illinois"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/11vQLmRe0AzOk5w30Zh6tJYa6kbK6IEmlG1xsU3zJsapKCe1Jdt9l7ocfxWcO6R3.jpeg": {
+    "local_path": "/assets/images/cities/us-capital-cities-on-map-series-rochester-mn.jpeg",
+    "alt": "US capital cities on map series: Rochester, MN",
+    "used_on_pages": [
+      "/service-area/rochester-minnesota"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/28QoQXqCeKhZAsEtDcNBLpOxylGdrSZNcx18Yz2sYkgJw8jpXIhYEX4iYbNaU1y6.jpeg": {
+    "local_path": "/assets/images/cities/map-of-duluth-minnesota-with-pin.jpeg",
+    "alt": "Map of Duluth Minnesota with Pin",
+    "used_on_pages": [
+      "/service-area/duluth-minnesota"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/244ISEbJ3c19EuYP2VDZgyR14IeBmyNrgQuTPblHFArt7YqpbkH7xNsiSNblZ3kw.jpeg": {
+    "local_path": "/assets/images/cities/macro-road-map-of-st-paul-minnesota.jpeg",
+    "alt": "Macro Road Map Of St Paul Minnesota",
+    "used_on_pages": [
+      "/service-area/bloomington-minnesota"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/cF21ZkI5WJY5t27Icu5yAjo5p0Y0baPKzR2UmDjcpsj8bH2JrordDJECPmusjmEl.jpeg": {
+    "local_path": "/assets/images/cities/green-bay-wi-map.jpeg",
+    "alt": "Green Bay, WI map",
+    "used_on_pages": [
+      "/service-area/green-bay-wisconsin"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/244VubXBRbacgmUn75xE6425tvzRkCoZH0Nsreh1NSRjJ2hW1eJkKWFCxoDQ0NpS.jpeg": {
+    "local_path": "/assets/images/cities/map-of-milwaukee-in-wisconsin-state-usa.jpeg",
+    "alt": "Map of Milwaukee in Wisconsin State, USA",
+    "used_on_pages": [
+      "/service-area/kenosha-wisconsin",
+      "/service-area/racine-wisconsin"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/2fTcOaHa1M0mUgL6zUBaq54LznHbIdZRK7Ni00zHMAnQXAFhMVU4OEwJvpLunhDc.jpeg": {
+    "local_path": "/assets/images/cities/omaha-nebraska.jpeg",
+    "alt": "Omaha, Nebraska",
+    "used_on_pages": [
+      "/service-area/omaha-nebraska"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/1c6bThdkfMbJAoV8tcMGgWWA6nM7kGYUZYfIzceeIggZ7X8oeqkaClOYvXYf2k8N.jpeg": {
+    "local_path": "/assets/images/cities/nebraska-state-on-an-antique-map.jpeg",
+    "alt": "Nebraska State on an Antique map",
+    "used_on_pages": [
+      "/service-area/kearney-nebraska",
+      "/service-area/bellevue-nebraska"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/90OVk1x3hIhuSAgN2mxyarJFyofzqfLEWGaIOkc5Mzpl1h7wUSgRGgyj7hNjeDoe.jpeg": {
+    "local_path": "/assets/images/cities/us-capital-cities-on-map-series-san-antonio-tx.jpeg",
+    "alt": "US capital cities on map series: San Antonio, TX",
+    "used_on_pages": [
+      "/service-area/san-antonio-texas"
+    ],
+    "category": "cities"
+  },
+  "https://cdn.durable.co/getty/32TG7mPi6zvu011RgeOYHru0SStQ1e9UjMeRC3fX3pm6HBWJsDG6EYwJJ63CqpZD.jpeg": {
+    "local_path": "/assets/images/blocks/cnc-machine-issue.jpeg",
+    "alt": "cnc machine issue",
+    "used_on_pages": [
+      "/blog/emergency-cnc-repair--quick-steps-to-restore-your-machine"
+    ],
+    "category": "blocks"
+  },
+  "https://cdn.durable.co/getty/0VSqUrdRlbjMZq4pq3lMHygtgMMFtB5rFWCpZiqG6HOtSnViDHsjqodCLrpWYJWw.jpeg": {
+    "local_path": "/assets/images/blocks/machine-maintenance.jpeg",
+    "alt": "machine maintenance",
+    "used_on_pages": [
+      "/blog/emergency-cnc-repair--quick-steps-to-restore-your-machine"
+    ],
+    "category": "blocks"
+  }
+}

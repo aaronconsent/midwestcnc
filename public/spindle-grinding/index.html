@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CNC Spindle Repair, Rebuilds &amp; Grinding | Midwest CNC Services</title>
+<meta name="description" content="CNC spindle repair, rebuild, and grinding across 18 OEM platforms. Most jobs run 2–6 weeks. Experienced field technicians.">
+<link rel="canonical" href="https://midwestcncservices.com/spindle-grinding/">
+<meta property="og:title" content="CNC Spindle Repair, Rebuilds &amp; Grinding | Midwest CNC Services">
+<meta property="og:description" content="CNC spindle repair, rebuild, and grinding across 18 OEM platforms. Most jobs run 2–6 weeks. Experienced field technicians.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+<style>
+:root {
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --muted: #5a5a5a;
+  --accent: #b8341a;
+  --accent-dark: #8c2510;
+  --line: #e5e5e5;
+  --soft: #f6f4f1;
+  --max: 72ch;
+  --sticky-cta-height: 64px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+a:hover { color: var(--accent-dark); }
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.site-header .brand {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--fg);
+}
+.site-header .brand img {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+.site-header nav a { margin-left: 1.25rem; text-decoration: none; color: var(--fg); }
+.site-header nav a:hover { color: var(--accent); }
+
+nav.breadcrumbs {
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--soft);
+}
+nav.breadcrumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+nav.breadcrumbs li:not(:last-child)::after { content: "›"; margin-left: 0.5rem; color: var(--muted); }
+nav.breadcrumbs a { color: var(--muted); text-decoration: none; }
+nav.breadcrumbs a:hover { color: var(--accent); }
+
+main { padding: 0 1.25rem; }
+
+article { max-width: var(--max); margin: 2rem auto; }
+
+.eyebrow { color: var(--muted); font-size: 0.95rem; font-style: italic; margin: 0 0 0.5rem 0; }
+
+h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.25rem 0;
+}
+
+h2 {
+  font-size: 1.35rem;
+  margin: 2.5rem 0 0.75rem 0;
+  letter-spacing: -0.01em;
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+}
+h2:first-of-type { border-top: 0; padding-top: 0; }
+
+p { margin: 0.85rem 0; }
+
+ul { padding-left: 1.5rem; margin: 0.75rem 0; }
+li { margin: 0.25rem 0; }
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--accent);
+  background: var(--soft);
+  font-style: italic;
+  color: var(--fg);
+}
+blockquote p { margin: 0; }
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+.cta-button {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff !important;
+  padding: 0.75rem 1.4rem;
+  border-radius: 4px;
+  text-decoration: none !important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.cta-button:hover { background: var(--accent-dark); }
+.cta-phone {
+  display: inline-block;
+  padding: 0.75rem 0.5rem;
+  color: var(--fg) !important;
+  text-decoration: none !important;
+  font-weight: 600;
+}
+.cta-phone::before { content: "☎ "; color: var(--muted); }
+
+.quote-form-placeholder {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  border: 1px dashed var(--line);
+  background: var(--soft);
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.hero-figure {
+  margin: 1.5rem 0 0 0;
+  padding: 0;
+}
+.hero-figure img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 6px;
+  display: block;
+}
+
+/* Sticky mobile CTA bar — fix 14. Hidden on desktop, fixed to bottom on
+   narrow viewports so the phone/quote actions stay in reach. */
+.mobile-cta-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  background: #fff;
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
+}
+.mobile-cta-bar a {
+  flex: 1 1 0;
+  text-align: center;
+  padding: 0.85rem 0.5rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  border-radius: 4px;
+}
+.mobile-cta-bar .mcta-phone {
+  color: var(--fg) !important;
+  border: 1px solid var(--line);
+}
+.mobile-cta-bar .mcta-quote {
+  color: #fff !important;
+  background: var(--accent);
+}
+.mobile-cta-bar .mcta-quote:hover { background: var(--accent-dark); }
+
+@media (max-width: 767px) {
+  .mobile-cta-bar { display: flex; }
+  body { padding-bottom: var(--sticky-cta-height); }
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 2rem 1.25rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+@media (max-width: 600px) {
+  .site-header { flex-direction: column; align-items: flex-start; }
+  .site-header nav a { margin-left: 0; margin-right: 1rem; }
+}
+
+/* ---- Site-shell additions (tile grids, state grid, form, hero banners) ---- */
+
+/* Early success-state toggle — set on <html> in <head> before paint so the
+   form/helpers never flash visible when ?success=1 is in the URL. */
+.form-submitted-html .quote-form,
+.form-submitted-html .quote-helpers { display: none; }
+.form-submitted-html .success-message { display: block; }
+
+.section-eyebrow { color: var(--muted); font-size: 0.95rem; font-style: italic; margin: 0 0 0.5rem 0; }
+
+.tile-grid, .state-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin: 1.5rem 0 2rem 0;
+}
+.tile-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.state-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
+.tile {
+  display: block;
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  background: var(--soft);
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.tile:hover { transform: translateY(-2px); border-color: var(--line); }
+.tile img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.tile h3 { margin: 0.25rem 0 0.5rem 0; font-size: 1.1rem; }
+.tile p { color: var(--muted); font-size: 0.95rem; margin: 0.4rem 0 0.6rem 0; }
+.tile .learn-more { color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+
+.brand-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.5rem 1rem;
+  margin: 1rem 0 2rem 0;
+  list-style: none;
+  padding: 0;
+}
+.brand-grid li { margin: 0; }
+.brand-grid a {
+  display: block;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  font-weight: 600;
+  background: #fff;
+}
+.brand-grid a:hover { border-color: var(--accent); color: var(--accent) !important; }
+
+.state-section { margin: 2rem 0; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.state-section h2 { border-top: 0; padding-top: 0; margin-top: 0; }
+.state-cities { color: var(--muted); margin: 0.25rem 0 0.75rem 0; }
+
+/* Quote form */
+.quote-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 560px;
+  margin: 2rem 0;
+}
+.quote-form .field { display: flex; flex-direction: column; gap: 0.35rem; }
+.quote-form label { font-weight: 600; font-size: 0.95rem; }
+.quote-form .required::after { content: " *"; color: var(--accent); }
+.quote-form input,
+.quote-form textarea,
+.quote-form select {
+  font: inherit;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fff;
+  width: 100%;
+}
+.quote-form input:focus,
+.quote-form textarea:focus,
+.quote-form select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+.quote-form textarea { min-height: 8rem; resize: vertical; }
+.quote-form .radio-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.5rem; }
+.quote-form .radio-group label { font-weight: 400; display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
+.quote-form button {
+  font: inherit;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.85rem 1.5rem;
+  border: 0;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+}
+.quote-form button:hover { background: var(--accent-dark); }
+.quote-form .honeypot { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
+
+.success-message {
+  display: none;
+  padding: 1.5rem;
+  border-radius: 6px;
+  background: #e8f5e8;
+  border-left: 4px solid #2e7d32;
+  margin: 2rem 0;
+}
+body.form-submitted .success-message { display: block; }
+body.form-submitted .quote-form { display: none; }
+body.form-submitted .quote-helpers { display: none; }
+
+.faq-item { margin: 1.25rem 0; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
+.faq-item:last-child { border-bottom: 0; }
+.faq-item h3 { font-size: 1.05rem; margin: 0 0 0.5rem 0; }
+.faq-item p { margin: 0; color: var(--fg); }
+
+.alt-contact { margin: 2rem 0; padding: 1.25rem; background: var(--soft); border-radius: 6px; }
+.alt-contact h3 { margin: 0 0 0.5rem 0; }
+.alt-contact p { margin: 0.25rem 0; }
+</style>
+<script>
+  // Early success-state detection — runs in <head> before paint so the form
+  // never flashes visible if the URL has ?success=1. Harmless on other pages.
+  if (location.search.indexOf('success=1') !== -1) {
+    document.documentElement.classList.add('form-submitted-html');
+  }
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "position": 1,
+      "name": "Home",
+      "item": "https://midwestcncservices.com/"
+    },
+    {
+      "position": 2,
+      "name": "Spindle Grinding",
+      "item": "https://midwestcncservices.com/spindle-grinding/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Brands We Service for Spindle Work",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Amera-Seiki",
+      "url": "https://midwestcncservices.com/spindle-grinding/amera-seiki-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Brother",
+      "url": "https://midwestcncservices.com/spindle-grinding/brother-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "DMG Mori",
+      "url": "https://midwestcncservices.com/spindle-grinding/dmg-mori-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Doosan",
+      "url": "https://midwestcncservices.com/spindle-grinding/doosan-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "Fadal",
+      "url": "https://midwestcncservices.com/spindle-grinding/fadal-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "name": "Fanuc",
+      "url": "https://midwestcncservices.com/spindle-grinding/fanuc-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "name": "Giddings & Lewis",
+      "url": "https://midwestcncservices.com/spindle-grinding/giddings-lewis-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "name": "Haas",
+      "url": "https://midwestcncservices.com/spindle-grinding/haas-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "name": "Hitachi Seiki",
+      "url": "https://midwestcncservices.com/spindle-grinding/hitachi-seiki-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "name": "Hurco",
+      "url": "https://midwestcncservices.com/spindle-grinding/hurco-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "name": "Johnford",
+      "url": "https://midwestcncservices.com/spindle-grinding/johnford-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "name": "Makino",
+      "url": "https://midwestcncservices.com/spindle-grinding/makino-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 13,
+      "name": "Mazak",
+      "url": "https://midwestcncservices.com/spindle-grinding/mazak-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 14,
+      "name": "Monarch",
+      "url": "https://midwestcncservices.com/spindle-grinding/monarch-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 15,
+      "name": "Mori Seiki",
+      "url": "https://midwestcncservices.com/spindle-grinding/mori-seiki-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 16,
+      "name": "Niigata",
+      "url": "https://midwestcncservices.com/spindle-grinding/niigata-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 17,
+      "name": "Okuma",
+      "url": "https://midwestcncservices.com/spindle-grinding/okuma-spindle-repair/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 18,
+      "name": "Toyoda",
+      "url": "https://midwestcncservices.com/spindle-grinding/toyoda-spindle-repair/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does a typical spindle rebuild take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most spindle rebuilds run 2-6 weeks depending on brand, failure mode, and parts availability. Mazak Integrex and DMG Mori multi-tasking work tends toward the longer end; Haas, Doosan, and Hurco platforms typically come back faster."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you ship spindles back nationally?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We ship rebuilt spindles to any continental US destination. Return shipping is included in most rebuild quotes. Standard freight, with packaging and crating handled at our shop."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you grind taper damage from a crash?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Often yes. Crash recovery is a routine pattern — taper damage, bearing-pack failure, alignment loss from impact. We grind the taper back to spec where the shaft survives the impact; we recommend replacement when the geometry won't recover."
+      }
+    }
+  ]
+}
+</script>
+
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="/">
+    <img src="/assets/images/logos/midwest-cnc-logo.png" alt="Midwest CNC Services" height="36">
+  </a>
+  <nav>
+    <a href="/repairs/">Repairs</a>
+    <a href="/spindle-grinding/">Spindle Grinding</a>
+    <a href="/way-covers/">Way Covers</a>
+    <a href="/service-area/">Service Area</a>
+    <a href="/get-a-quote/">Get a Quote</a>
+  </nav>
+</header>
+<nav class="breadcrumbs" aria-label="breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li><li>Spindle Grinding</li>
+  </ol>
+</nav>
+<main>
+<article>
+<p class="eyebrow">Spindle Grinding & Repair</p>
+<h1>CNC Spindle Repair, Rebuilds, and Grinding</h1>
+<p>Spindle work is our most-requested service. We rebuild, regrind, and rebalance to factory tolerance across the eighteen OEM platforms below. Most jobs run two to six weeks depending on brand and parts availability — each brand page has the specifics from our technicians.</p>
+<div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
+<figure class="hero-figure"><img src="/assets/images/general/image-of-spindle-grinding.png" alt="CNC spindle on the grinding bench" loading="lazy"></figure>
+<h2 id="when-you-need-this">When You Need Spindle Service</h2>
+<p>Spindles come to us in a few patterns: bearing-pack wear from high-RPM production, taper damage from a crash or toolholder failure, preload loss showing up as runout in finish work, encoder contamination, and coolant-intrusion damage that's gone past the warning signs. Sometimes the call is preventive — the shop noticed chatter or surface-finish degradation and wants the spindle pulled before it fails outright. We diagnose the damage on teardown and scope the rebuild from there.</p>
+<h2 id="brands-we-service">Brands We Service</h2>
+<p>Pick your brand for failure modes, models, and lead-time expectations:</p>
+<ul class="brand-grid"><li><a href="/spindle-grinding/amera-seiki-spindle-repair/">Amera-Seiki</a></li><li><a href="/spindle-grinding/brother-spindle-repair/">Brother</a></li><li><a href="/spindle-grinding/dmg-mori-spindle-repair/">DMG Mori</a></li><li><a href="/spindle-grinding/doosan-spindle-repair/">Doosan</a></li><li><a href="/spindle-grinding/fadal-spindle-repair/">Fadal</a></li><li><a href="/spindle-grinding/fanuc-spindle-repair/">Fanuc</a></li><li><a href="/spindle-grinding/giddings-lewis-spindle-repair/">Giddings &amp; Lewis</a></li><li><a href="/spindle-grinding/haas-spindle-repair/">Haas</a></li><li><a href="/spindle-grinding/hitachi-seiki-spindle-repair/">Hitachi Seiki</a></li><li><a href="/spindle-grinding/hurco-spindle-repair/">Hurco</a></li><li><a href="/spindle-grinding/johnford-spindle-repair/">Johnford</a></li><li><a href="/spindle-grinding/makino-spindle-repair/">Makino</a></li><li><a href="/spindle-grinding/mazak-spindle-repair/">Mazak</a></li><li><a href="/spindle-grinding/monarch-spindle-repair/">Monarch</a></li><li><a href="/spindle-grinding/mori-seiki-spindle-repair/">Mori Seiki</a></li><li><a href="/spindle-grinding/niigata-spindle-repair/">Niigata</a></li><li><a href="/spindle-grinding/okuma-spindle-repair/">Okuma</a></li><li><a href="/spindle-grinding/toyoda-spindle-repair/">Toyoda</a></li></ul>
+<h2 id="how-service-works">How Service Works</h2>
+<p>Same three-step process as our other lines: contact us with the machine and symptoms, get back price and lead-time after review, approve the work and we rebuild the spindle, verify balance and runout, and ship it back ready to install. Bearing-pack replacement, shaft repair, taper grinding, and dynamic balancing are routine across the 18 OEM platforms we cover.</p>
+<h2 id="industries-we-serve">Industries We Serve</h2>
+<p>Aerospace and mold/die work (Makino-heavy), medical-device precision (Brother Speedio, Makino), heavy-equipment and ag (Mazak, Toyoda, Doosan), automotive supply chain (broad coverage), and legacy CNC platforms still in production (Fadal, Hitachi Seiki, Monarch) across our seven-state Midwest service area.</p>
+<h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
+<p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
+<blockquote><p>&quot;Honestly, we thought the machine was done for.&quot; Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.</p></blockquote>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+<div class="faq-item">
+  <h3>How long does a typical spindle rebuild take?</h3>
+  <p>Most spindle rebuilds run 2-6 weeks depending on brand, failure mode, and parts availability. Mazak Integrex and DMG Mori multi-tasking work tends toward the longer end; Haas, Doosan, and Hurco platforms typically come back faster.</p>
+</div>
+<div class="faq-item">
+  <h3>Do you ship spindles back nationally?</h3>
+  <p>Yes. We ship rebuilt spindles to any continental US destination. Return shipping is included in most rebuild quotes. Standard freight, with packaging and crating handled at our shop.</p>
+</div>
+<div class="faq-item">
+  <h3>Can you grind taper damage from a crash?</h3>
+  <p>Often yes. Crash recovery is a routine pattern — taper damage, bearing-pack failure, alignment loss from impact. We grind the taper back to spec where the shaft survives the impact; we recommend replacement when the geometry won&#x27;t recover.</p>
+</div>
+
+<div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
+
+</article>
+</main>
+<footer class="site-footer">
+  <p>Midwest CNC Services · 319-610-4341 · Waterloo, Iowa</p>
+  <p>Serving shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
+</footer>
+<div class="mobile-cta-bar" role="region" aria-label="Quick contact">
+  <a class="mcta-phone" href="tel:+13196104341">☎ 319-610-4341</a>
+  <a class="mcta-quote" href="/get-a-quote/">Get a Quote</a>
+</div>
+</body>
+</html>

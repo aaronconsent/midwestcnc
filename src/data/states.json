@@ -1,0 +1,430 @@
+{
+  "states": [
+    {
+      "slug": "iowa",
+      "display_name": "Iowa",
+      "abbreviation": "IA",
+      "is_home_state": true,
+      "major_cities": [
+        "Des Moines",
+        "Davenport",
+        "Waterloo",
+        "Cedar Rapids",
+        "Iowa City",
+        "Ames"
+      ],
+      "industry_clusters": [
+        "agricultural equipment",
+        "heavy machinery",
+        "food processing"
+      ],
+      "notable_manufacturers": [
+        "John Deere (Waterloo — engine and ag products)",
+        "Vermeer Corporation (Pella — ag, industrial, environmental equipment)",
+        "Pella Corporation (windows and doors)",
+        "the Quad Cities heavy-machinery cluster"
+      ],
+      "travel_context": "Anywhere in Iowa is within four hours by truck from Waterloo, our home base. Same-day field response is realistic across the state, and bench rebuilds happen at the Cedar Valley shop.",
+      "cities_with_pages": [
+        {
+          "slug": "ames",
+          "display_name": "Ames",
+          "path": "/service-area/ames-iowa/",
+          "original_path": null
+        },
+        {
+          "slug": "cedar-rapids",
+          "display_name": "Cedar Rapids",
+          "path": "/service-area/cedar-rapids-iowa/",
+          "original_path": null
+        },
+        {
+          "slug": "davenport",
+          "display_name": "Davenport",
+          "path": "/service-area/davenport-iowa/",
+          "original_path": null
+        },
+        {
+          "slug": "des-moines",
+          "display_name": "Des Moines",
+          "path": "/service-area/des-moines-iowa/",
+          "original_path": null
+        },
+        {
+          "slug": "iowa-city",
+          "display_name": "Iowa City",
+          "path": "/service-area/iowa-city-iowa/",
+          "original_path": null
+        },
+        {
+          "slug": "waterloo",
+          "display_name": "Waterloo",
+          "path": "/service-area/waterloo-iowa/",
+          "original_path": null
+        }
+      ]
+    },
+    {
+      "slug": "illinois",
+      "display_name": "Illinois",
+      "abbreviation": "IL",
+      "is_home_state": false,
+      "major_cities": [
+        "Chicago",
+        "Rockford",
+        "Peoria",
+        "Springfield",
+        "Naperville"
+      ],
+      "industry_clusters": [
+        "aerospace",
+        "defense",
+        "machine tools",
+        "heavy equipment",
+        "automotive"
+      ],
+      "notable_manufacturers": [
+        "Caterpillar (Peoria HQ)",
+        "Hamilton-Sundstrand and Woodward Inc. in Rockford",
+        "John Deere (Quad Cities)",
+        "the Belvidere auto-assembly operation"
+      ],
+      "travel_context": "Three to six hours from Waterloo to major Illinois cities — within practical field-service reach for diagnostic visits, with rebuilds and way-cover builds shipped from the Cedar Valley shop. Illinois has deep machine-tool heritage; Rockford in particular runs a dense precision-machining base going back decades.",
+      "cities_with_pages": [
+        {
+          "slug": "chicago",
+          "display_name": "Chicago",
+          "path": "/service-area/chicago-illinois/",
+          "original_path": null
+        },
+        {
+          "slug": "naperville",
+          "display_name": "Naperville",
+          "path": "/service-area/naperville-illinois/",
+          "original_path": null
+        },
+        {
+          "slug": "peoria",
+          "display_name": "Peoria",
+          "path": "/service-area/peoria-illinois/",
+          "original_path": "/service-area/peoria-ilinois"
+        },
+        {
+          "slug": "rockford",
+          "display_name": "Rockford",
+          "path": "/service-area/rockford-illinois/",
+          "original_path": "/service-area/rockford-ilinois"
+        },
+        {
+          "slug": "springfield",
+          "display_name": "Springfield",
+          "path": "/service-area/springfield-illinois/",
+          "original_path": "/service-area/springfield-ilinois"
+        }
+      ]
+    },
+    {
+      "slug": "wisconsin",
+      "display_name": "Wisconsin",
+      "abbreviation": "WI",
+      "is_home_state": false,
+      "major_cities": [
+        "Milwaukee",
+        "Madison",
+        "Green Bay",
+        "Kenosha",
+        "Racine"
+      ],
+      "industry_clusters": [
+        "heavy machinery",
+        "defense vehicles",
+        "paper and printing equipment",
+        "medical devices"
+      ],
+      "notable_manufacturers": [
+        "Rockwell Automation (Milwaukee)",
+        "Harley-Davidson (Milwaukee)",
+        "A.O. Smith (Milwaukee)",
+        "Oshkosh Corporation (defense vehicles, fire trucks)",
+        "the Fox Valley paper-machinery cluster (Appleton, Neenah, Oshkosh)"
+      ],
+      "travel_context": "Two to four hours from Waterloo to major Wisconsin cities — within practical field-service reach. The Fox Valley paper-machinery base and the Milwaukee heavy-industry corridor are routine territory for our diagnostic visits.",
+      "cities_with_pages": [
+        {
+          "slug": "green-bay",
+          "display_name": "Green Bay",
+          "path": "/service-area/green-bay-wisconsin/",
+          "original_path": null
+        },
+        {
+          "slug": "kenosha",
+          "display_name": "Kenosha",
+          "path": "/service-area/kenosha-wisconsin/",
+          "original_path": null
+        },
+        {
+          "slug": "madison",
+          "display_name": "Madison",
+          "path": "/service-area/madison-wisconsin/",
+          "original_path": null
+        },
+        {
+          "slug": "milwaukee",
+          "display_name": "Milwaukee",
+          "path": "/service-area/milwaukee-wisconsin/",
+          "original_path": null
+        },
+        {
+          "slug": "racine",
+          "display_name": "Racine",
+          "path": "/service-area/racine-wisconsin/",
+          "original_path": null
+        }
+      ]
+    },
+    {
+      "slug": "minnesota",
+      "display_name": "Minnesota",
+      "abbreviation": "MN",
+      "is_home_state": false,
+      "major_cities": [
+        "Minneapolis",
+        "St. Paul",
+        "Rochester",
+        "Duluth",
+        "Bloomington"
+      ],
+      "industry_clusters": [
+        "medical devices",
+        "mining equipment",
+        "food processing",
+        "precision machining"
+      ],
+      "notable_manufacturers": [
+        "Medtronic (Twin Cities)",
+        "Boston Scientific (Twin Cities)",
+        "3M (Twin Cities)",
+        "the Mayo Clinic ecosystem in Rochester",
+        "Toro Company (lawn and turf equipment)",
+        "Iron Range mining-equipment manufacturers"
+      ],
+      "travel_context": "Three to five hours from Waterloo to the Twin Cities — within practical field-service reach. The Twin Cities metro is one of the country's densest medical-device manufacturing hubs; Rochester's Mayo ecosystem drives high-precision work for the shops in its supply chain.",
+      "cities_with_pages": [
+        {
+          "slug": "bloomington",
+          "display_name": "Bloomington",
+          "path": "/service-area/bloomington-minnesota/",
+          "original_path": null
+        },
+        {
+          "slug": "duluth",
+          "display_name": "Duluth",
+          "path": "/service-area/duluth-minnesota/",
+          "original_path": null
+        },
+        {
+          "slug": "minneapolis",
+          "display_name": "Minneapolis",
+          "path": "/service-area/minneapolis-minnesota/",
+          "original_path": null
+        },
+        {
+          "slug": "rochester",
+          "display_name": "Rochester",
+          "path": "/service-area/rochester-minnesota/",
+          "original_path": null
+        },
+        {
+          "slug": "st-paul",
+          "display_name": "St. Paul",
+          "path": "/service-area/st-paul-minnesota/",
+          "original_path": null
+        }
+      ]
+    },
+    {
+      "slug": "nebraska",
+      "display_name": "Nebraska",
+      "abbreviation": "NE",
+      "is_home_state": false,
+      "major_cities": [
+        "Omaha",
+        "Lincoln",
+        "Bellevue",
+        "Grand Island",
+        "Kearney",
+        "North Platte"
+      ],
+      "industry_clusters": [
+        "agricultural equipment",
+        "food processing",
+        "railroad equipment",
+        "irrigation systems"
+      ],
+      "notable_manufacturers": [
+        "Kawasaki Motors USA (Lincoln)",
+        "ConAgra (Lincoln)",
+        "Lincoln Industries",
+        "Union Pacific (Omaha)",
+        "Kiewit (Omaha)"
+      ],
+      "travel_context": "Four to six hours from Waterloo to Lincoln and Omaha — drivable for substantial jobs; routine work runs ship-in to our shop. Nebraska's manufacturing footprint is smaller than Illinois or Wisconsin, but the precision-machining demand from ag, rail, and irrigation customers is real.",
+      "cities_with_pages": [
+        {
+          "slug": "bellevue",
+          "display_name": "Bellevue",
+          "path": "/service-area/bellevue-nebraska/",
+          "original_path": null
+        },
+        {
+          "slug": "grand-island",
+          "display_name": "Grand Island",
+          "path": "/service-area/grand-island-nebraska/",
+          "original_path": null
+        },
+        {
+          "slug": "kearney",
+          "display_name": "Kearney",
+          "path": "/service-area/kearney-nebraska/",
+          "original_path": null
+        },
+        {
+          "slug": "lincoln",
+          "display_name": "Lincoln",
+          "path": "/service-area/lincoln-nebraska/",
+          "original_path": null
+        },
+        {
+          "slug": "north-platte",
+          "display_name": "North Platte",
+          "path": "/service-area/north-platte-nebraska/",
+          "original_path": null
+        },
+        {
+          "slug": "omaha",
+          "display_name": "Omaha",
+          "path": "/service-area/omaha-nebraska/",
+          "original_path": null
+        }
+      ]
+    },
+    {
+      "slug": "missouri",
+      "display_name": "Missouri",
+      "abbreviation": "MO",
+      "is_home_state": false,
+      "major_cities": [
+        "St. Louis",
+        "Kansas City",
+        "Springfield",
+        "Columbia"
+      ],
+      "industry_clusters": [
+        "aerospace",
+        "defense",
+        "automotive",
+        "agricultural equipment"
+      ],
+      "notable_manufacturers": [
+        "Boeing Defense, Space & Security (St. Louis — largest STL employer)",
+        "Ford (Kansas City)",
+        "GM (Kansas City)",
+        "Honeywell defense operations (Kansas City)"
+      ],
+      "travel_context": "Five to seven hours from Waterloo to St. Louis and six to eight to Kansas City — most Missouri work runs ship-in to our shop, with field service for major jobs by arrangement. St. Louis aerospace and Kansas City defense and automotive are the dominant precision-machining markets we see.",
+      "cities_with_pages": [
+        {
+          "slug": "columbia",
+          "display_name": "Columbia",
+          "path": "/service-area/columbia-missouri/",
+          "original_path": null
+        },
+        {
+          "slug": "kansas-city",
+          "display_name": "Kansas City",
+          "path": "/service-area/kansas-city-missouri/",
+          "original_path": null
+        },
+        {
+          "slug": "springfield",
+          "display_name": "Springfield",
+          "path": "/service-area/springfield-missouri/",
+          "original_path": null
+        },
+        {
+          "slug": "st-louis",
+          "display_name": "St. Louis",
+          "path": "/service-area/st-louis-missouri/",
+          "original_path": null
+        }
+      ]
+    },
+    {
+      "slug": "texas",
+      "display_name": "Texas",
+      "abbreviation": "TX",
+      "is_home_state": false,
+      "major_cities": [
+        "Dallas",
+        "Houston",
+        "Austin",
+        "San Antonio",
+        "Fort Worth",
+        "El Paso"
+      ],
+      "industry_clusters": [
+        "oil and gas equipment",
+        "aerospace",
+        "defense",
+        "automotive",
+        "semiconductors"
+      ],
+      "notable_manufacturers": [
+        "Lockheed Martin Aeronautics (Fort Worth)",
+        "Tesla (Austin)",
+        "Toyota Motor Manufacturing (San Antonio)",
+        "the Houston oil-and-gas equipment industry",
+        "the Midland-Odessa oil-and-gas equipment base"
+      ],
+      "travel_context": "Eleven hundred miles from Waterloo to the Texas markets — this is the long-haul state. Way covers ship anywhere in the continental US; spindle rebuilds ship in and out of our Waterloo shop. Field service is available for major jobs by arrangement, with travel scoped before scheduling. The economics work for shops where the precision and brand-specific expertise justify the freight.",
+      "cities_with_pages": [
+        {
+          "slug": "austin",
+          "display_name": "Austin",
+          "path": "/service-area/austin-texas/",
+          "original_path": null
+        },
+        {
+          "slug": "dallas",
+          "display_name": "Dallas",
+          "path": "/service-area/dallas-texas/",
+          "original_path": null
+        },
+        {
+          "slug": "el-paso",
+          "display_name": "El Paso",
+          "path": "/service-area/el-paso-texas/",
+          "original_path": null
+        },
+        {
+          "slug": "fort-worth",
+          "display_name": "Fort Worth",
+          "path": "/service-area/fort-worth-texas/",
+          "original_path": null
+        },
+        {
+          "slug": "houston",
+          "display_name": "Houston",
+          "path": "/service-area/houston-texas/",
+          "original_path": null
+        },
+        {
+          "slug": "san-antonio",
+          "display_name": "San Antonio",
+          "path": "/service-area/san-antonio-texas/",
+          "original_path": null
+        }
+      ]
+    }
+  ]
+}
