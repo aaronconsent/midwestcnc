@@ -193,17 +193,20 @@ SITE_SHELL_CSS = """
 .home-hero {
   position: relative;
   width: 100%;
-  min-height: clamp(480px, 70vh, 720px);
+  height: 100vh;
+  min-height: 600px;
+  max-height: 820px;
   display: flex;
   align-items: center;
   overflow: hidden;
   isolation: isolate;
   color: #fff;
   background:
-    /* Image fallback if video fails to load */
+    /* Poster image fallback if video fails to load (and on mobile +
+       prefers-reduced-motion, where the <video> is hidden) */
     url('/assets/images/general/midwest-cnc-highway-shot.webp')
     center / cover no-repeat
-    #1a1a1a;
+    #000;
 }
 
 .home-hero-video {
@@ -213,32 +216,40 @@ SITE_SHELL_CSS = """
   height: 100%;
   object-fit: cover;
   object-position: center;
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
+  /* Parallel CSS fade — runs alongside the baked-in fade in the
+     video file itself. The keyframes lead the encoded fade slightly
+     (8% / 92%) so we hit pure black at the loop seam even if there's
+     a millisecond of frame mismatch or compression residue. The 10s
+     duration matches the source clip. */
+  animation: heroLoopFade 10s linear infinite;
+}
+@keyframes heroLoopFade {
+  0%   { opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { opacity: 0; }
 }
 
-/* Dark gradient overlay — keeps white text legible over any frame.
-   Symmetric vertical gradient since text is centred. */
+/* Dark vertical gradient overlay — top 40% black to bottom 70% black.
+   Keeps white text legible over any frame, slightly heavier at the
+   bottom where the CTAs and trust line sit. */
 .home-hero-overlay {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse at center,
-      rgba(15, 15, 18, 0.65) 0%,
-      rgba(15, 15, 18, 0.55) 50%,
-      rgba(15, 15, 18, 0.45) 100%),
-    linear-gradient(180deg,
-      rgba(15, 15, 18, 0.20) 0%,
-      transparent 25%,
-      transparent 75%,
-      rgba(15, 15, 18, 0.30) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.40) 0%,
+    rgba(0, 0, 0, 0.70) 100%
+  );
 }
 
 .home-hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: var(--max-wide);
   width: 100%;
   margin: 0 auto;
@@ -307,25 +318,25 @@ SITE_SHELL_CSS = """
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
 
-/* Mobile — shorter min-height, tighter padding */
+/* Mobile — skip the video entirely. Cellular users shouldn't get hit
+   with a 1.5 MB autoplay download. The poster image (set as the
+   .home-hero background-image above) takes over. */
 @media (max-width: 768px) {
-  .home-hero { min-height: clamp(420px, 75vh, 560px); }
+  .home-hero {
+    height: auto;
+    min-height: clamp(420px, 75vh, 560px);
+    max-height: none;
+  }
+  .home-hero-video { display: none; }
   .home-hero-content {
     padding: clamp(2rem, 7vw, 3rem) var(--s-4);
   }
   .home-hero-content > .cta-row { width: 100%; }
-  /* Slightly stronger overlay on mobile since text wraps more */
-  .home-hero-overlay {
-    background:
-      linear-gradient(180deg,
-        rgba(15, 15, 18, 0.72) 0%,
-        rgba(15, 15, 18, 0.55) 100%);
-  }
 }
 
-/* Honour user preference — disable video animation and show poster as
-   a static background. The image fallback in .home-hero's background
-   property handles this automatically. */
+/* Respect prefers-reduced-motion — disable the video, let the poster
+   image background take over. Vestibular-disorder accessibility +
+   Core Web Vitals signal. */
 @media (prefers-reduced-motion: reduce) {
   .home-hero-video { display: none; }
 }
@@ -792,18 +803,17 @@ def homepage_body():
     # all replaced with Ken-authorized language.
     states_inline = ", ".join(STATE_NAMES[:-1]) + ", and " + STATE_NAMES[-1]
 
-    # Single-column hero with background video. The webp serves as the
-    # poster (paints instantly before video buffers) AND the fallback
-    # image (used when prefers-reduced-motion is set, or if the video
-    # fails to load at all). Dark gradient overlay keeps text legible
-    # over whatever frame is showing.
+    # Single-column hero with background video that has a baked-in
+    # fade in/out at the seam. CSS animation runs in parallel to force
+    # opacity to 0 at the loop point — guarantees a clean black seam
+    # even if encoding artifacts leave any residual frame.
     hero = f"""<section class="home-hero">
   <video class="home-hero-video"
          autoplay muted loop playsinline
          preload="metadata"
          poster="/assets/images/general/midwest-cnc-highway-shot.webp"
          aria-hidden="true">
-    <source src="/assets/images/general/midwest-cnc-bg-loop.mp4" type="video/mp4">
+    <source src="/assets/images/general/midwest-cnc-bg-fade.mp4" type="video/mp4">
   </video>
   <div class="home-hero-overlay" aria-hidden="true"></div>
   <div class="home-hero-content">
