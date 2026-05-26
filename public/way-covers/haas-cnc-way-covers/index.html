@@ -974,7 +974,8 @@ article > table {
    series-spoke page across all 6 brands.
    ================================================================= */
 .machine-lookup {
-  margin: var(--s-5) 0;
+  max-width: var(--max-wide);
+  margin: var(--s-5) auto;
   padding: var(--s-5);
   background: var(--surface);
   border: 1px solid var(--line);
@@ -1469,19 +1470,139 @@ article > table {
 </nav>
 <main id="main">
 <article>
-<section class="page-section page-section-hero page-section-intro">
+<section class="page-section page-section-hero">
   <div class="section-inner">
-<div class="page-hero">
-  <div class="page-hero-text">
-<p class="eyebrow">Haas CNC Way Covers</p>
-<h1>Haas CNC Way Cover Replacement</h1>
-<p>We manufacture replacement way covers for Haas machines across the VF-2, VF-4, VF-6, UMC-750, and ST lathes. Most jobs ship in 2–4 weeks depending on dimensions and material. Bellows, telescoping steel, and roll-up styles available — we match the original or build to spec.</p>
-<div class="cta-row"><a class="cta-button" href="#quote">Get a Quote</a> · <a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
+<section class="brand-hero">
+<img class="brand-hero-bg" src="/assets/images/services/way-covers-haas-cnc-way-covers-image.png" alt="Replacement Haas CNC way covers manufactured by Midwest CNC Services" loading="eager">
+  <div class="brand-hero-overlay" aria-hidden="true"></div>
+  <div class="brand-hero-content">
+    <p class="eyebrow">Haas CNC Way Covers</p>
+    <h1>Haas CNC Way Cover Replacement</h1>
+    <p>We manufacture replacement way covers for Haas machines across the VF-2, VF-4, VF-6, UMC-750, and ST lathes. Most jobs ship in 2&ndash;4 weeks depending on dimensions and material. Bellows, telescoping steel, and roll-up styles available &mdash; we match the original or build to spec.</p>
+    <div class="cta-row">
+      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
+    </div>
   </div>
-  <div class="page-hero-image">
-<figure class="hero-figure"><img src="/assets/images/services/way-covers-haas-cnc-way-covers-image.png" alt="Replacement Haas CNC way covers manufactured by Midwest CNC Services" loading="lazy"></figure>
-  </div>
+</section>
+<div class="machine-lookup" id="machine-lookup">
+  <label for="machine-lookup-input" class="machine-lookup-label">Find your machine</label>
+  <input
+    type="text"
+    id="machine-lookup-input"
+    class="machine-lookup-input"
+    placeholder="Enter your machine model (e.g. QTN-250, VF-2SS, Puma 2600SY, DMU 50)"
+    autocomplete="off"
+    aria-controls="machine-lookup-results"
+    aria-expanded="false">
+  <div class="machine-lookup-results" id="machine-lookup-results" role="listbox" hidden></div>
 </div>
+<script>
+(function () {
+  var lookup  = document.getElementById('machine-lookup');
+  if (!lookup) return;
+  var input   = document.getElementById('machine-lookup-input');
+  var results = document.getElementById('machine-lookup-results');
+  var machines = null;
+  var loading  = null;
+
+  function normalize(s) {
+    return (s || '').toLowerCase().replace(/[\s\-]/g, '');
+  }
+  function escapeHTML(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+  function loadData() {
+    if (machines) return Promise.resolve(machines);
+    if (loading)  return loading;
+    loading = fetch('/data/machines.json')
+      .then(function (r) { return r.json(); })
+      .then(function (d) { machines = d.machines || []; return machines; })
+      .catch(function ()  { machines = []; return machines; });
+    return loading;
+  }
+  function scoreMachine(m, nq) {
+    var candidates = [m.model].concat(m.aliases || []);
+    var best = 0;
+    for (var i = 0; i < candidates.length; i++) {
+      var nc = normalize(candidates[i]);
+      if (!nc) continue;
+      if (nc === nq)            return 100;
+      if (nc.indexOf(nq) === 0) best = Math.max(best, 80);
+      else if (nc.indexOf(nq) >= 0) best = Math.max(best, 50);
+    }
+    return best;
+  }
+  function search(q) {
+    var nq = normalize(q);
+    if (nq.length < 3 || !machines) return [];
+    var scored = [];
+    for (var i = 0; i < machines.length; i++) {
+      var s = scoreMachine(machines[i], nq);
+      if (s > 0) scored.push({ m: machines[i], score: s });
+    }
+    scored.sort(function (a, b) { return b.score - a.score; });
+    return scored.slice(0, 5).map(function (x) { return x.m; });
+  }
+  function renderResults(matches) {
+    if (!matches.length) {
+      results.innerHTML =
+        '<div class="machine-lookup-empty">' +
+          'We service older and obscure machines too. ' +
+          '<a href="/get-a-quote/">Get a quote</a> or call ' +
+          '<a href="tel:+13196104341">319-610-4341</a>.' +
+        '</div>';
+    } else {
+      results.innerHTML = matches.map(function (m) {
+        return (
+          '<a class="machine-lookup-result" href="' + escapeHTML(m.spoke_url) + '" role="option">' +
+            '<span class="machine-lookup-result-brand">'  + escapeHTML(m.brand)  + '</span>' +
+            '<span class="machine-lookup-result-model">'  + escapeHTML(m.model)  + '</span>' +
+            '<span class="machine-lookup-result-series">' + escapeHTML(m.series) + '</span>' +
+            '<span class="machine-lookup-result-arrow" aria-hidden="true">&rarr;</span>' +
+          '</a>'
+        );
+      }).join('');
+    }
+    results.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+  }
+  function hideResults() {
+    results.hidden = true;
+    input.setAttribute('aria-expanded', 'false');
+  }
+  var debounceId;
+  input.addEventListener('input', function () {
+    clearTimeout(debounceId);
+    debounceId = setTimeout(function () {
+      var q = input.value.trim();
+      if (q.length < 3) { hideResults(); return; }
+      loadData().then(function () { renderResults(search(q)); });
+    }, 100);
+  });
+  input.addEventListener('focus', function () {
+    var q = input.value.trim();
+    if (q.length >= 3 && machines) renderResults(search(q));
+  });
+  document.addEventListener('click', function (e) {
+    if (!lookup.contains(e.target)) hideResults();
+  });
+  // Pre-warm the data file on the first interaction with the page
+  document.addEventListener('mousemove', function init() {
+    document.removeEventListener('mousemove', init);
+    loadData();
+  }, { once: true });
+})();
+</script>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="browse-by-series">Browse by machine series</h2>
+<p>We service Haas way covers across the full lineup. Pick your series for platform-specific repair and service detail.</p>
+<ul class="browse-list"><li><a href="/repairs/haas-cnc-machine-repair/vf-series/"><strong>VF Series</strong> — Vertical mills. VF-1 through VF-12, plus YT extended-Y and SS super-speed variants.</a></li><li><a href="/repairs/haas-cnc-machine-repair/st-series/"><strong>ST Series</strong> — Production lathes. ST-10 through ST-55, SSY Y-axis variants, DS-30 dual-spindle.</a></li><li><a href="/repairs/haas-cnc-machine-repair/umc-series/"><strong>UMC Series</strong> — Universal 5-axis with trunnion table. UMC-350 through UMC-1600, plus SS builds.</a></li><li><a href="/repairs/haas-cnc-machine-repair/ec-series/"><strong>EC Series</strong> — Horizontal machining. EC-300 through EC-3000, pallet-pool and 4-axis variants.</a></li><li><a href="/repairs/haas-cnc-machine-repair/mini-mill-toolroom/"><strong>Mini Mill / Toolroom / DT / DM / VM</strong> — Compact and toolroom — Mini Mill, TM toolroom, DT drill-tap, DM, VM mold machines.</a></li><li><a href="/repairs/haas-cnc-machine-repair/toolroom-lathes/"><strong>Toolroom Lathes (TL / CL)</strong> — TL-1 through TL-4 and CL-1 — toolroom-style turning.</a></li></ul>
   </div>
 </section>
 <section class="page-section page-section-1">
@@ -1611,12 +1732,6 @@ article > table {
 </li>
 </ul>
 <p>We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
-  </div>
-</section>
-<section class="page-section page-section-0">
-  <div class="section-inner">
-<h2 id="recent-from-the-blog">Recent from the Blog</h2>
-<div class="quote-form-placeholder">Blog teaser block rendered here at build time.</div>
   </div>
 </section>
 </article>

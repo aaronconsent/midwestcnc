@@ -977,6 +977,63 @@ def write_redirects(brands, outpath, extras=None):
 
 # ---------- CNC spindle page ----------
 
+def build_brand_hero_html(eyebrow_text, h1_text, lede_text, img_path, img_alt):
+    """Reusable .brand-hero HTML block used by render_cnc_spindle,
+    render_way_covers, render_amada, render_trumpf, and the brand-hub
+    renderers. Full-bleed image background, dark gradient overlay,
+    centered white text. wrap_into_sections() recognises the leading
+    <section class='brand-hero'> tag and wraps it in a hero band."""
+    bg_img = (
+        f'<img class="brand-hero-bg" src="{img_path}" alt="{html.escape(img_alt)}" loading="eager">\n'
+        if img_path else ""
+    )
+    return (
+        f'<section class="brand-hero">\n'
+        f'{bg_img}'
+        f'  <div class="brand-hero-overlay" aria-hidden="true"></div>\n'
+        f'  <div class="brand-hero-content">\n'
+        f'    <p class="eyebrow">{html.escape(eyebrow_text)}</p>\n'
+        f'    <h1>{html.escape(h1_text)}</h1>\n'
+        f'    <p>{lede_text}</p>\n'
+        f'    <div class="cta-row">\n'
+        f'      <a class="cta-button" href="#quote">Get a Quote</a>\n'
+        f'      <a class="cta-phone" href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>\n'
+        f'    </div>\n'
+        f'  </div>\n'
+        f'</section>\n\n'
+    )
+
+
+def browse_series_section_for_service(brand_slug, brand_display_name, service_kind):
+    """Browse-by-Series block for the spindle/way-covers pages. Links
+    route to the corresponding repair-section spokes since that's where
+    series-specific technical content lives. Returns empty string for
+    brands without series structure (Fanuc and the 12 non-hub brands)."""
+    hub_data = BRAND_HUB_DATA.get(brand_slug, {})
+    series_list = hub_data.get("browse_series", [])
+    if not series_list:
+        return ""
+    # Skip Fanuc — its 'browse_series' field is the brand-cross-link
+    # ("Brands that ship Fanuc controls"), not actual machine series.
+    if brand_slug == "fanuc":
+        return ""
+    service_phrase = {
+        "spindle":    "spindle work",
+        "way_covers": "way covers",
+    }.get(service_kind, "service")
+    items = "".join(
+        f'<li><a href="{u}"><strong>{html.escape(name)}</strong> — {html.escape(desc)}</a></li>'
+        for name, u, desc in series_list
+    )
+    return (
+        f'\n<h2 id="browse-by-series">Browse by machine series</h2>\n'
+        f'<p>We service {html.escape(brand_display_name)} {service_phrase} '
+        f'across the full lineup. Pick your series for platform-specific '
+        f'repair and service detail.</p>\n'
+        f'<ul class="browse-list">{items}</ul>\n'
+    )
+
+
 def render_cnc_spindle(brand, g, brands_by_slug, brand_index):
     name = brand["brand_display_name"]
     slug = brand["slug"]
@@ -1012,15 +1069,10 @@ def render_cnc_spindle(brand, g, brands_by_slug, brand_index):
         crumb_leaf=f"{name} Spindle Repair",
     )
 
-    eyebrow_md = f"_{eyebrow_text}_\n\n" if eyebrow_text else ""
-    h1 = f"# {h1_text}"
-
-    # Hero image — handled by markdown_to_html via standard markdown img syntax
+    # Hero image — becomes the .brand-hero background
     img_path, img_alt = hero_image_for(brand, "spindle")
-    hero_img_md = f"\n![{img_alt}]({img_path})\n" if img_path else ""
 
-    # Inline model list for the hero (use Ken's exact names). Apply Oxford
-    # comma only for 3+ items; "A and B" reads more naturally than "A, and B".
+    # Inline model list for the hero (use Ken's exact names).
     if not models:
         model_inline = ""
     elif len(models) == 1:
@@ -1030,23 +1082,18 @@ def render_cnc_spindle(brand, g, brands_by_slug, brand_index):
     else:
         model_inline = ", ".join(models[:-1]) + f", and {models[-1]}"
 
-    # Hero — opens with Ken's failure mode for brand specificity.
-    # Two patterns based on how Ken's quote starts:
-    #   - sentence (verb-led): "What we see most on {Brand} spindles: {quote}"
-    #   - noun phrase: "{Brand} spindles tend to come in with {lowercased quote}"
+    # Hero opener — preserves the failure-mode-specific opening from the
+    # previous renderer (Ken-authored brand specificity). Two patterns:
+    #   - sentence (verb-led): "What we see most on {Brand} spindles: ..."
+    #   - noun phrase: "{Brand} spindles tend to come in with ..."
     first_word = re.match(r"\w+", failure or "")
     is_noun_phrase = (
         first_word is not None
         and first_word.group(0).lower() in NOUN_PHRASE_OPENERS
     )
-
     if is_noun_phrase:
-        # Strip awkward " are common"/" is common" predicates so Ken's noun
-        # phrase reads cleanly after "tend to come in with".
         cleaned_failure = re.sub(
-            r"\s+(?:are|is)\s+common(?=[,.])",
-            "",
-            failure,
+            r"\s+(?:are|is)\s+common(?=[,.])", "", failure,
         )
         hero_opener = (
             f"{name} spindles tend to come in with "
@@ -1057,16 +1104,23 @@ def render_cnc_spindle(brand, g, brands_by_slug, brand_index):
             f"What we see most on {name} spindles: {_lower_first(failure)}"
         )
 
-    hero = (
-        f"{eyebrow_md}{h1}\n\n"
-        f"{hero_opener} "
-        f"We rebuild, regrind, and rebalance across the {name} platform"
-        f"{' — ' + model_inline if model_inline else ''} — "
-        f"with most jobs running {lead_pref} and field troubleshooting "
-        f"where it can save a teardown.\n\n"
-        f"{hero_cta()}\n"
-        f"{hero_img_md}"
+    # Build the lede text (will be inside the .brand-hero white-on-dark)
+    lede_text = (
+        f"{html.escape(hero_opener)} "
+        f"We rebuild, regrind, and rebalance across the {html.escape(name)} platform"
+        f"{' &mdash; ' + html.escape(model_inline) if model_inline else ''} &mdash; "
+        f"with most jobs running {html.escape(lead_pref)} and field troubleshooting "
+        f"where it can save a teardown."
     )
+    hero = build_brand_hero_html(
+        eyebrow_text or f"{name} Spindle Repair",
+        h1_text,
+        lede_text,
+        img_path, img_alt,
+    )
+    # Lookup widget + cross-link Browse-by-Series immediately under the hero
+    hero += machine_lookup_html()
+    hero += browse_series_section_for_service(slug, name, "spindle")
 
     # Models — fix 9: removed "no model left behind"
     model_bullets = "\n".join(f"- {m}" for m in models) if models else ""
@@ -1171,12 +1225,12 @@ def render_cnc_spindle(brand, g, brands_by_slug, brand_index):
     related = related_block_cnc(brand, brands_by_slug)
     cross_links = brand_cross_links_section(brand, brands_by_slug)
     faq_html, faq_schema = brand_faq_section(brand, ki, "spindle")
-    blog = blog_block()
+    # blog_block() removed — was rendering as dashed-border placeholder
 
     return (
         fm + hero + models_section + how + parts_section + war_section
         + lead_section + "\n" + trust + "\n" + faq_html + "\n"
-        + cross_links + "\n" + related + "\n" + blog
+        + cross_links + "\n" + related + "\n"
     )
 
 
@@ -1215,20 +1269,13 @@ def render_amada(brand, g, brands_by_slug, brand_index):
         crumb_leaf="Amada Press Brake & Punch Service",
     )
 
-    eyebrow_md = f"_{eyebrow_text}_\n\n" if eyebrow_text else ""
-    h1 = f"# {h1_text}"
-
     img_path, img_alt = hero_image_for(brand, "machine_repair")
-    hero_img_md = f"\n![{img_alt}]({img_path})\n" if img_path else ""
 
-    # Fix 7: extend noun-phrase detection to Amada. ("Hydraulic" isn't a
-    # trigger, so Amada keeps the verb-led opener.)
     first_word = re.match(r"\w+", failure or "")
     is_noun_phrase = (
         first_word is not None
         and first_word.group(0).lower() in NOUN_PHRASE_OPENERS
     )
-
     if is_noun_phrase:
         cleaned_failure = re.sub(
             r"\s+(?:are|is)\s+common(?=[,.])", "", failure,
@@ -1242,17 +1289,20 @@ def render_amada(brand, g, brands_by_slug, brand_index):
             f"When your Amada brake or punch goes down, the call we hear most "
             f"is the same: {_lower_first(failure)}"
         )
-
-    hero = (
-        f"{eyebrow_md}{h1}\n\n"
-        f"{hero_opener} "
-        f"We service press brakes and turret punches across the Amada lineup — "
+    lede_text = (
+        f"{html.escape(hero_opener)} "
+        f"We service press brakes and turret punches across the Amada lineup &mdash; "
         f"ram alignment, hydraulic troubleshooting, backgauge calibration, "
         f"and turret tooling work. Simple alignments turn around quickly; "
-        f"major hydraulic work is typically {lead_pref}.\n\n"
-        f"{hero_cta()}\n"
-        f"{hero_img_md}"
+        f"major hydraulic work is typically {html.escape(lead_pref)}."
     )
+    hero = build_brand_hero_html(
+        eyebrow_text or "Amada Press Brake & Punch",
+        h1_text,
+        lede_text,
+        img_path, img_alt,
+    )
+    hero += machine_lookup_html()
 
     # No model list for Amada (Ken didn't supply one). Use service scope instead.
     scope = (
@@ -1317,20 +1367,13 @@ def render_trumpf(brand, g, brands_by_slug, brand_index):
         crumb_leaf="Trumpf Laser & Punch Service",
     )
 
-    eyebrow_md = f"_{eyebrow_text}_\n\n" if eyebrow_text else ""
-    h1 = f"# {h1_text}"
-
     img_path, img_alt = hero_image_for(brand, "machine_repair")
-    hero_img_md = f"\n![{img_alt}]({img_path})\n" if img_path else ""
 
-    # Fix 7: noun-phrase detection now applies to Trumpf too. "Optics" is in
-    # the trigger list, so Trumpf's failure mode triggers the new opener.
     first_word = re.match(r"\w+", failure or "")
     is_noun_phrase = (
         first_word is not None
         and first_word.group(0).lower() in NOUN_PHRASE_OPENERS
     )
-
     if is_noun_phrase:
         cleaned_failure = re.sub(
             r"\s+(?:are|is)\s+common(?=[,.])", "", failure,
@@ -1344,15 +1387,19 @@ def render_trumpf(brand, g, brands_by_slug, brand_index):
             f"What we see most on Trumpf systems: {_lower_first(failure)}"
         )
 
-    hero = (
-        f"{eyebrow_md}{h1}\n\n"
-        f"{hero_opener} "
+    lede_text = (
+        f"{html.escape(hero_opener)} "
         f"We service laser source and optics work on TruLaser and older CO2 "
-        f"systems, plus drive and tooling work on TruPunch machines — "
-        f"most jobs run {lead_pref}.\n\n"
-        f"{hero_cta()}\n"
-        f"{hero_img_md}"
+        f"systems, plus drive and tooling work on TruPunch machines &mdash; "
+        f"most jobs run {html.escape(lead_pref)}."
     )
+    hero = build_brand_hero_html(
+        eyebrow_text or "Trumpf Laser & Punch Service",
+        h1_text,
+        lede_text,
+        img_path, img_alt,
+    )
+    hero += machine_lookup_html()
 
     scope = (
         "\n## Trumpf Service We Provide\n\n"
@@ -3422,23 +3469,24 @@ def render_way_covers(brand, g, brand_index):
         verification_pending=verification_msg,
     )
 
-    eyebrow_md = f"_{eyebrow_text}_\n\n"
-    h1 = f"# {h1_text}"
-
     img_path, img_alt = hero_image_for(brand, "way_covers")
-    hero_img_md = f"\n![{img_alt}]({img_path})\n" if img_path else ""
-
     model_inline = _format_models_inline(models)
-    hero = (
-        f"{eyebrow_md}{h1}\n\n"
-        f"We manufacture replacement way covers for {name} machines"
-        f"{ ' across the ' + model_inline if model_inline else '' }. "
-        f"Most jobs ship in 2–4 weeks depending on dimensions and "
-        f"material. Bellows, telescoping steel, and roll-up styles "
-        f"available — we match the original or build to spec.\n\n"
-        f"{hero_cta()}\n"
-        f"{hero_img_md}"
+
+    lede_text = (
+        f"We manufacture replacement way covers for {html.escape(name)} machines"
+        f"{ ' across the ' + html.escape(model_inline) if model_inline else '' }. "
+        f"Most jobs ship in 2&ndash;4 weeks depending on dimensions and "
+        f"material. Bellows, telescoping steel, and roll-up styles available &mdash; "
+        f"we match the original or build to spec."
     )
+    hero = build_brand_hero_html(
+        eyebrow_text or f"{name} CNC Way Covers",
+        h1_text,
+        lede_text,
+        img_path, img_alt,
+    )
+    hero += machine_lookup_html()
+    hero += browse_series_section_for_service(slug, name, "way_covers")
 
     if models:
         model_bullets = "\n".join(f"- {m}" for m in models)
@@ -3481,12 +3529,12 @@ def render_way_covers(brand, g, brand_index):
     related = related_block_way_covers(brand)
     cross_links = brand_cross_links_section(brand, {})
     faq_html, faq_schema = brand_faq_section(brand, ki, "way_covers")
-    blog = blog_block()
+    # blog_block() removed — was rendering as dashed-border placeholder
 
     return (
         fm + hero + models_section + what_we_build
         + lead_section + "\n" + trust + "\n" + faq_html + "\n"
-        + cross_links + "\n" + related + "\n" + blog
+        + cross_links + "\n" + related + "\n"
     )
 
 

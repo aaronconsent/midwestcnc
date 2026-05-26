@@ -31,15 +31,135 @@ schema_data:
       - { position: 2, name: "Way Covers", item: "https://midwestcncservices.com/way-covers/" }
       - { position: 3, name: "Doosan CNC Way Covers", item: "https://midwestcncservices.com/way-covers/doosan-cnc-way-covers/" }
 ---
-_Doosan CNC Way Covers_
+<section class="brand-hero">
+<img class="brand-hero-bg" src="/assets/images/services/way-covers-doosan-cnc-way-covers-image.png" alt="Replacement Doosan CNC way covers manufactured by Midwest CNC Services" loading="eager">
+  <div class="brand-hero-overlay" aria-hidden="true"></div>
+  <div class="brand-hero-content">
+    <p class="eyebrow">Doosan CNC Way Covers</p>
+    <h1>Doosan CNC Way Cover Replacement</h1>
+    <p>We manufacture replacement way covers for Doosan machines across the DNM series, Puma lathes, and Lynx lathes. Most jobs ship in 2&ndash;4 weeks depending on dimensions and material. Bellows, telescoping steel, and roll-up styles available &mdash; we match the original or build to spec.</p>
+    <div class="cta-row">
+      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
+    </div>
+  </div>
+</section>
 
-# Doosan CNC Way Cover Replacement
+<div class="machine-lookup" id="machine-lookup">
+  <label for="machine-lookup-input" class="machine-lookup-label">Find your machine</label>
+  <input
+    type="text"
+    id="machine-lookup-input"
+    class="machine-lookup-input"
+    placeholder="Enter your machine model (e.g. QTN-250, VF-2SS, Puma 2600SY, DMU 50)"
+    autocomplete="off"
+    aria-controls="machine-lookup-results"
+    aria-expanded="false">
+  <div class="machine-lookup-results" id="machine-lookup-results" role="listbox" hidden></div>
+</div>
+<script>
+(function () {
+  var lookup  = document.getElementById('machine-lookup');
+  if (!lookup) return;
+  var input   = document.getElementById('machine-lookup-input');
+  var results = document.getElementById('machine-lookup-results');
+  var machines = null;
+  var loading  = null;
 
-We manufacture replacement way covers for Doosan machines across the DNM series, Puma lathes, and Lynx lathes. Most jobs ship in 2–4 weeks depending on dimensions and material. Bellows, telescoping steel, and roll-up styles available — we match the original or build to spec.
+  function normalize(s) {
+    return (s || '').toLowerCase().replace(/[\s\-]/g, '');
+  }
+  function escapeHTML(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+  function loadData() {
+    if (machines) return Promise.resolve(machines);
+    if (loading)  return loading;
+    loading = fetch('/data/machines.json')
+      .then(function (r) { return r.json(); })
+      .then(function (d) { machines = d.machines || []; return machines; })
+      .catch(function ()  { machines = []; return machines; });
+    return loading;
+  }
+  function scoreMachine(m, nq) {
+    var candidates = [m.model].concat(m.aliases || []);
+    var best = 0;
+    for (var i = 0; i < candidates.length; i++) {
+      var nc = normalize(candidates[i]);
+      if (!nc) continue;
+      if (nc === nq)            return 100;
+      if (nc.indexOf(nq) === 0) best = Math.max(best, 80);
+      else if (nc.indexOf(nq) >= 0) best = Math.max(best, 50);
+    }
+    return best;
+  }
+  function search(q) {
+    var nq = normalize(q);
+    if (nq.length < 3 || !machines) return [];
+    var scored = [];
+    for (var i = 0; i < machines.length; i++) {
+      var s = scoreMachine(machines[i], nq);
+      if (s > 0) scored.push({ m: machines[i], score: s });
+    }
+    scored.sort(function (a, b) { return b.score - a.score; });
+    return scored.slice(0, 5).map(function (x) { return x.m; });
+  }
+  function renderResults(matches) {
+    if (!matches.length) {
+      results.innerHTML =
+        '<div class="machine-lookup-empty">' +
+          'We service older and obscure machines too. ' +
+          '<a href="/get-a-quote/">Get a quote</a> or call ' +
+          '<a href="tel:+13196104341">319-610-4341</a>.' +
+        '</div>';
+    } else {
+      results.innerHTML = matches.map(function (m) {
+        return (
+          '<a class="machine-lookup-result" href="' + escapeHTML(m.spoke_url) + '" role="option">' +
+            '<span class="machine-lookup-result-brand">'  + escapeHTML(m.brand)  + '</span>' +
+            '<span class="machine-lookup-result-model">'  + escapeHTML(m.model)  + '</span>' +
+            '<span class="machine-lookup-result-series">' + escapeHTML(m.series) + '</span>' +
+            '<span class="machine-lookup-result-arrow" aria-hidden="true">&rarr;</span>' +
+          '</a>'
+        );
+      }).join('');
+    }
+    results.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+  }
+  function hideResults() {
+    results.hidden = true;
+    input.setAttribute('aria-expanded', 'false');
+  }
+  var debounceId;
+  input.addEventListener('input', function () {
+    clearTimeout(debounceId);
+    debounceId = setTimeout(function () {
+      var q = input.value.trim();
+      if (q.length < 3) { hideResults(); return; }
+      loadData().then(function () { renderResults(search(q)); });
+    }, 100);
+  });
+  input.addEventListener('focus', function () {
+    var q = input.value.trim();
+    if (q.length >= 3 && machines) renderResults(search(q));
+  });
+  document.addEventListener('click', function (e) {
+    if (!lookup.contains(e.target)) hideResults();
+  });
+  // Pre-warm the data file on the first interaction with the page
+  document.addEventListener('mousemove', function init() {
+    document.removeEventListener('mousemove', init);
+    loadData();
+  }, { once: true });
+})();
+</script>
 
-[Get a Quote](#quote) · [319-610-4341](tel:+13196104341)
-
-![Replacement Doosan CNC way covers manufactured by Midwest CNC Services](/assets/images/services/way-covers-doosan-cnc-way-covers-image.png)
+<h2 id="browse-by-series">Browse by machine series</h2>
+<p>We service Doosan way covers across the full lineup. Pick your series for platform-specific repair and service detail.</p>
+<ul class="browse-list"><li><a href="/repairs/doosan-cnc-machine-repair/puma/"><strong>Puma</strong> — Horizontal turning. Puma 230 through 800, with M/MS/LM/Y/SY variants and TT/GT/TW builds.</a></li><li><a href="/repairs/doosan-cnc-machine-repair/puma-mx-smx/"><strong>Puma MX / SMX</strong> — Mill-turn multitasking. MX 1600 through 3100 and SMX 2100/2600/3100.</a></li><li><a href="/repairs/doosan-cnc-machine-repair/puma-vertical-turning/"><strong>Puma V / VT / VTR</strong> — Vertical turning. Puma V400 through V9300 chuckers and VT/VTR ram-type.</a></li><li><a href="/repairs/doosan-cnc-machine-repair/lynx/"><strong>Lynx</strong> — Compact turning. Lynx 220 through 300, M/MS/LM/LSY and similar variants.</a></li><li><a href="/repairs/doosan-cnc-machine-repair/dnm-verticals/"><strong>DNM</strong> — Vertical machining. DNM 200 through 750, plus the DNM 200/5AX 5-axis variant.</a></li><li><a href="/repairs/doosan-cnc-machine-repair/horizontals/"><strong>Horizontals (NHM / NHP / HC)</strong> — Production horizontals. NHM 4000 through 8000, NHP 4000 through 6300, HC 400/500.</a></li><li><a href="/repairs/doosan-cnc-machine-repair/5-axis-verticals/"><strong>DVF / FM 5-Axis Verticals</strong> — 5-axis trunnion verticals. DVF 5000/6500/8000 and FM 200/5AX Linear.</a></li><li><a href="/repairs/doosan-cnc-machine-repair/swiss-turning/"><strong>Swiss-Type / DST</strong> — Swiss-style precision turning. SwiftTurn 32/38 and the DST series.</a></li></ul>
 
 ## Way Covers We Manufacture for Doosan
 
@@ -143,6 +263,3 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 
 We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.
 
-## Recent from the Blog
-
-*Rendered by the blog teaser component at build time.*

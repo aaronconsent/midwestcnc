@@ -31,15 +31,131 @@ schema_data:
       - { position: 2, name: "Spindle Grinding", item: "https://midwestcncservices.com/spindle-grinding/" }
       - { position: 3, name: "Brother Spindle Repair", item: "https://midwestcncservices.com/spindle-grinding/brother-spindle-repair/" }
 ---
-_Brother Spindle Repair & Grinding_
+<section class="brand-hero">
+<img class="brand-hero-bg" src="/assets/images/services/repairs-brother-cnc-machine-repair-image.png" alt="Brother machine service work at Midwest CNC Services" loading="eager">
+  <div class="brand-hero-overlay" aria-hidden="true"></div>
+  <div class="brand-hero-content">
+    <p class="eyebrow">Brother Spindle Repair &amp; Grinding</p>
+    <h1>Brother Spindle Repair &amp; Rebuilds</h1>
+    <p>Brother spindles tend to come in with high RPM bearing wear. Those machines accelerate and decelerate so fast that heat becomes a big factor. We rebuild, regrind, and rebalance across the Brother platform &mdash; Brother Speedio S500, S700, and R-series &mdash; with most jobs running 3–4 weeks and field troubleshooting where it can save a teardown.</p>
+    <div class="cta-row">
+      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
+    </div>
+  </div>
+</section>
 
-# Brother Spindle Repair & Rebuilds
+<div class="machine-lookup" id="machine-lookup">
+  <label for="machine-lookup-input" class="machine-lookup-label">Find your machine</label>
+  <input
+    type="text"
+    id="machine-lookup-input"
+    class="machine-lookup-input"
+    placeholder="Enter your machine model (e.g. QTN-250, VF-2SS, Puma 2600SY, DMU 50)"
+    autocomplete="off"
+    aria-controls="machine-lookup-results"
+    aria-expanded="false">
+  <div class="machine-lookup-results" id="machine-lookup-results" role="listbox" hidden></div>
+</div>
+<script>
+(function () {
+  var lookup  = document.getElementById('machine-lookup');
+  if (!lookup) return;
+  var input   = document.getElementById('machine-lookup-input');
+  var results = document.getElementById('machine-lookup-results');
+  var machines = null;
+  var loading  = null;
 
-Brother spindles tend to come in with high RPM bearing wear. Those machines accelerate and decelerate so fast that heat becomes a big factor. We rebuild, regrind, and rebalance across the Brother platform — Brother Speedio S500, S700, and R-series — with most jobs running 3–4 weeks and field troubleshooting where it can save a teardown.
-
-[Get a Quote](#quote) · [319-610-4341](tel:+13196104341)
-
-![Brother machine service work at Midwest CNC Services](/assets/images/services/repairs-brother-cnc-machine-repair-image.png)
+  function normalize(s) {
+    return (s || '').toLowerCase().replace(/[\s\-]/g, '');
+  }
+  function escapeHTML(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+  function loadData() {
+    if (machines) return Promise.resolve(machines);
+    if (loading)  return loading;
+    loading = fetch('/data/machines.json')
+      .then(function (r) { return r.json(); })
+      .then(function (d) { machines = d.machines || []; return machines; })
+      .catch(function ()  { machines = []; return machines; });
+    return loading;
+  }
+  function scoreMachine(m, nq) {
+    var candidates = [m.model].concat(m.aliases || []);
+    var best = 0;
+    for (var i = 0; i < candidates.length; i++) {
+      var nc = normalize(candidates[i]);
+      if (!nc) continue;
+      if (nc === nq)            return 100;
+      if (nc.indexOf(nq) === 0) best = Math.max(best, 80);
+      else if (nc.indexOf(nq) >= 0) best = Math.max(best, 50);
+    }
+    return best;
+  }
+  function search(q) {
+    var nq = normalize(q);
+    if (nq.length < 3 || !machines) return [];
+    var scored = [];
+    for (var i = 0; i < machines.length; i++) {
+      var s = scoreMachine(machines[i], nq);
+      if (s > 0) scored.push({ m: machines[i], score: s });
+    }
+    scored.sort(function (a, b) { return b.score - a.score; });
+    return scored.slice(0, 5).map(function (x) { return x.m; });
+  }
+  function renderResults(matches) {
+    if (!matches.length) {
+      results.innerHTML =
+        '<div class="machine-lookup-empty">' +
+          'We service older and obscure machines too. ' +
+          '<a href="/get-a-quote/">Get a quote</a> or call ' +
+          '<a href="tel:+13196104341">319-610-4341</a>.' +
+        '</div>';
+    } else {
+      results.innerHTML = matches.map(function (m) {
+        return (
+          '<a class="machine-lookup-result" href="' + escapeHTML(m.spoke_url) + '" role="option">' +
+            '<span class="machine-lookup-result-brand">'  + escapeHTML(m.brand)  + '</span>' +
+            '<span class="machine-lookup-result-model">'  + escapeHTML(m.model)  + '</span>' +
+            '<span class="machine-lookup-result-series">' + escapeHTML(m.series) + '</span>' +
+            '<span class="machine-lookup-result-arrow" aria-hidden="true">&rarr;</span>' +
+          '</a>'
+        );
+      }).join('');
+    }
+    results.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+  }
+  function hideResults() {
+    results.hidden = true;
+    input.setAttribute('aria-expanded', 'false');
+  }
+  var debounceId;
+  input.addEventListener('input', function () {
+    clearTimeout(debounceId);
+    debounceId = setTimeout(function () {
+      var q = input.value.trim();
+      if (q.length < 3) { hideResults(); return; }
+      loadData().then(function () { renderResults(search(q)); });
+    }, 100);
+  });
+  input.addEventListener('focus', function () {
+    var q = input.value.trim();
+    if (q.length >= 3 && machines) renderResults(search(q));
+  });
+  document.addEventListener('click', function (e) {
+    if (!lookup.contains(e.target)) hideResults();
+  });
+  // Pre-warm the data file on the first interaction with the page
+  document.addEventListener('mousemove', function init() {
+    document.removeEventListener('mousemove', init);
+    loadData();
+  }, { once: true });
+})();
+</script>
 
 ## Brother Models We Support
 
@@ -154,6 +270,3 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 
 We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.
 
-## Recent from the Blog
-
-*Rendered by the blog teaser component at build time.*

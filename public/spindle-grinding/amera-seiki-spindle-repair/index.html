@@ -974,7 +974,8 @@ article > table {
    series-spoke page across all 6 brands.
    ================================================================= */
 .machine-lookup {
-  margin: var(--s-5) 0;
+  max-width: var(--max-wide);
+  margin: var(--s-5) auto;
   padding: var(--s-5);
   background: var(--surface);
   border: 1px solid var(--line);
@@ -1469,22 +1470,135 @@ article > table {
 </nav>
 <main id="main">
 <article>
-<section class="page-section page-section-hero page-section-intro">
+<section class="page-section page-section-hero">
   <div class="section-inner">
-<div class="page-hero">
-  <div class="page-hero-text">
-<p class="eyebrow">Amera-Seiki Spindle Repair &amp; Grinding</p>
-<h1>Amera-Seiki Spindle Repair &amp; Rebuilds</h1>
-<p>Amera-Seiki spindles tend to come in with mostly straightforward bearing failures and occasional lubrication contamination. We rebuild, regrind, and rebalance across the Amera-Seiki platform — TC lathes and VMC series — with most jobs running 3–4 weeks and field troubleshooting where it can save a teardown.</p>
-<div class="cta-row"><a class="cta-button" href="#quote">Get a Quote</a> · <a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
-  </div>
-  <div class="page-hero-image">
-<figure class="hero-figure"><img src="/assets/images/general/image-of-spindle-grinding.png" alt="CNC spindle grinding work at Midwest CNC Services" loading="lazy"></figure>
-  </div>
-</div>
+<section class="brand-hero">
+<img class="brand-hero-bg" src="/assets/images/general/image-of-spindle-grinding.png" alt="CNC spindle grinding work at Midwest CNC Services" loading="eager">
+  <div class="brand-hero-overlay" aria-hidden="true"></div>
+  <div class="brand-hero-content">
+    <p class="eyebrow">Amera-Seiki Spindle Repair &amp; Grinding</p>
+    <h1>Amera-Seiki Spindle Repair &amp; Rebuilds</h1>
+    <p>Amera-Seiki spindles tend to come in with mostly straightforward bearing failures and occasional lubrication contamination. We rebuild, regrind, and rebalance across the Amera-Seiki platform &mdash; TC lathes and VMC series &mdash; with most jobs running 3–4 weeks and field troubleshooting where it can save a teardown.</p>
+    <div class="cta-row">
+      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
+    </div>
   </div>
 </section>
-<section class="page-section page-section-1">
+<div class="machine-lookup" id="machine-lookup">
+  <label for="machine-lookup-input" class="machine-lookup-label">Find your machine</label>
+  <input
+    type="text"
+    id="machine-lookup-input"
+    class="machine-lookup-input"
+    placeholder="Enter your machine model (e.g. QTN-250, VF-2SS, Puma 2600SY, DMU 50)"
+    autocomplete="off"
+    aria-controls="machine-lookup-results"
+    aria-expanded="false">
+  <div class="machine-lookup-results" id="machine-lookup-results" role="listbox" hidden></div>
+</div>
+<script>
+(function () {
+  var lookup  = document.getElementById('machine-lookup');
+  if (!lookup) return;
+  var input   = document.getElementById('machine-lookup-input');
+  var results = document.getElementById('machine-lookup-results');
+  var machines = null;
+  var loading  = null;
+
+  function normalize(s) {
+    return (s || '').toLowerCase().replace(/[\s\-]/g, '');
+  }
+  function escapeHTML(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+  function loadData() {
+    if (machines) return Promise.resolve(machines);
+    if (loading)  return loading;
+    loading = fetch('/data/machines.json')
+      .then(function (r) { return r.json(); })
+      .then(function (d) { machines = d.machines || []; return machines; })
+      .catch(function ()  { machines = []; return machines; });
+    return loading;
+  }
+  function scoreMachine(m, nq) {
+    var candidates = [m.model].concat(m.aliases || []);
+    var best = 0;
+    for (var i = 0; i < candidates.length; i++) {
+      var nc = normalize(candidates[i]);
+      if (!nc) continue;
+      if (nc === nq)            return 100;
+      if (nc.indexOf(nq) === 0) best = Math.max(best, 80);
+      else if (nc.indexOf(nq) >= 0) best = Math.max(best, 50);
+    }
+    return best;
+  }
+  function search(q) {
+    var nq = normalize(q);
+    if (nq.length < 3 || !machines) return [];
+    var scored = [];
+    for (var i = 0; i < machines.length; i++) {
+      var s = scoreMachine(machines[i], nq);
+      if (s > 0) scored.push({ m: machines[i], score: s });
+    }
+    scored.sort(function (a, b) { return b.score - a.score; });
+    return scored.slice(0, 5).map(function (x) { return x.m; });
+  }
+  function renderResults(matches) {
+    if (!matches.length) {
+      results.innerHTML =
+        '<div class="machine-lookup-empty">' +
+          'We service older and obscure machines too. ' +
+          '<a href="/get-a-quote/">Get a quote</a> or call ' +
+          '<a href="tel:+13196104341">319-610-4341</a>.' +
+        '</div>';
+    } else {
+      results.innerHTML = matches.map(function (m) {
+        return (
+          '<a class="machine-lookup-result" href="' + escapeHTML(m.spoke_url) + '" role="option">' +
+            '<span class="machine-lookup-result-brand">'  + escapeHTML(m.brand)  + '</span>' +
+            '<span class="machine-lookup-result-model">'  + escapeHTML(m.model)  + '</span>' +
+            '<span class="machine-lookup-result-series">' + escapeHTML(m.series) + '</span>' +
+            '<span class="machine-lookup-result-arrow" aria-hidden="true">&rarr;</span>' +
+          '</a>'
+        );
+      }).join('');
+    }
+    results.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+  }
+  function hideResults() {
+    results.hidden = true;
+    input.setAttribute('aria-expanded', 'false');
+  }
+  var debounceId;
+  input.addEventListener('input', function () {
+    clearTimeout(debounceId);
+    debounceId = setTimeout(function () {
+      var q = input.value.trim();
+      if (q.length < 3) { hideResults(); return; }
+      loadData().then(function () { renderResults(search(q)); });
+    }, 100);
+  });
+  input.addEventListener('focus', function () {
+    var q = input.value.trim();
+    if (q.length >= 3 && machines) renderResults(search(q));
+  });
+  document.addEventListener('click', function (e) {
+    if (!lookup.contains(e.target)) hideResults();
+  });
+  // Pre-warm the data file on the first interaction with the page
+  document.addEventListener('mousemove', function init() {
+    document.removeEventListener('mousemove', init);
+    loadData();
+  }, { once: true });
+})();
+</script>
+  </div>
+</section>
+<section class="page-section page-section-0">
   <div class="section-inner">
 <h2 id="amera-seiki-models-we-support">Amera-Seiki Models We Support</h2>
 <p>Our Amera-Seiki work covers the full lineup. Whether the job is a precision bearing pack replacement, a full rebuild, or a regrind to restore tolerance, we handle:</p>
@@ -1497,19 +1611,19 @@ article > table {
 <div class="cta-row"><a class="cta-button" href="#quote">Get a Quote</a></div>
   </div>
 </section>
-<section class="page-section page-section-0">
+<section class="page-section page-section-1">
   <div class="section-inner">
 <h2 id="how-we-approach-amera-seiki-spindle-work">How We Approach Amera-Seiki Spindle Work</h2>
 <p>Amera-Seiki work is one of the more straightforward calls in our queue — value-oriented Taiwanese machines. Pretty serviceable overall.</p>
   </div>
 </section>
-<section class="page-section page-section-1">
+<section class="page-section page-section-0">
   <div class="section-inner">
 <h2 id="a-recent-amera-seiki-job">A Recent Amera-Seiki Job</h2>
 <p>A recent example of the kind of work that comes through here: caught contamination in the lubrication system before it damaged the shaft.</p>
   </div>
 </section>
-<section class="page-section page-section-0">
+<section class="page-section page-section-1">
   <div class="section-inner">
 <h2 id="lead-time-process">Lead Time &amp; Process</h2>
 <p>3–4 weeks. Our three-step workflow keeps it transparent:</p>
@@ -1519,14 +1633,14 @@ article > table {
 <div class="quote-form-placeholder">Quote form rendered here at build time.</div>
   </div>
 </section>
-<section class="page-section page-section-1">
+<section class="page-section page-section-0">
   <div class="section-inner">
 <h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
 <p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
 <blockquote><p>"Honestly, we thought the machine was done for." It saves shops from replacement lead times and the capital expense of a new spindle.</p></blockquote>
   </div>
 </section>
-<section class="page-section page-section-0">
+<section class="page-section page-section-1">
   <div class="section-inner">
 <h2 id="faq">Frequently Asked Questions</h2>
 <div class="faq-list">
@@ -1589,14 +1703,14 @@ article > table {
 </script>
   </div>
 </section>
-<section class="page-section page-section-1">
+<section class="page-section page-section-0">
   <div class="section-inner">
 <h2 id="regional-presence">Where Amera-Seiki Work Concentrates</h2>
 <p>Amera-Seiki platforms have strong regional concentration in our service area:</p>
 <ul><li><a href="/service-area/iowa/">Iowa</a> — particularly <a href="/service-area/ames-iowa/">Ames</a></li><li><a href="/service-area/nebraska/">Nebraska</a> — particularly <a href="/service-area/kearney-nebraska/">Kearney</a></li><li><a href="/service-area/missouri/">Missouri</a> — particularly <a href="/service-area/springfield-missouri/">Springfield</a></li></ul>
   </div>
 </section>
-<section class="page-section page-section-0">
+<section class="page-section page-section-1">
   <div class="section-inner">
 <h2 id="related-amera-seiki-services">Related Amera-Seiki Services</h2>
 <ul>
@@ -1613,12 +1727,6 @@ article > table {
 </li>
 </ul>
 <p>We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
-  </div>
-</section>
-<section class="page-section page-section-1">
-  <div class="section-inner">
-<h2 id="recent-from-the-blog">Recent from the Blog</h2>
-<div class="quote-form-placeholder">Blog teaser block rendered here at build time.</div>
   </div>
 </section>
 </article>

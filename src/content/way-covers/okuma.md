@@ -31,15 +31,135 @@ schema_data:
       - { position: 2, name: "Way Covers", item: "https://midwestcncservices.com/way-covers/" }
       - { position: 3, name: "Okuma CNC Way Covers", item: "https://midwestcncservices.com/way-covers/okuma-cnc-way-covers/" }
 ---
-_Okuma CNC Way Covers_
+<section class="brand-hero">
+<img class="brand-hero-bg" src="/assets/images/services/way-covers-okuma-cnc-way-covers-image.png" alt="Replacement Okuma CNC way covers manufactured by Midwest CNC Services" loading="eager">
+  <div class="brand-hero-overlay" aria-hidden="true"></div>
+  <div class="brand-hero-content">
+    <p class="eyebrow">Okuma CNC Way Covers</p>
+    <h1>Okuma CNC Way Cover Replacement</h1>
+    <p>We manufacture replacement way covers for Okuma machines across the Genos, Multus, MB-V series, and MA horizontals. Most jobs ship in 2&ndash;4 weeks depending on dimensions and material. Bellows, telescoping steel, and roll-up styles available &mdash; we match the original or build to spec.</p>
+    <div class="cta-row">
+      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
+    </div>
+  </div>
+</section>
 
-# Okuma CNC Way Cover Replacement
+<div class="machine-lookup" id="machine-lookup">
+  <label for="machine-lookup-input" class="machine-lookup-label">Find your machine</label>
+  <input
+    type="text"
+    id="machine-lookup-input"
+    class="machine-lookup-input"
+    placeholder="Enter your machine model (e.g. QTN-250, VF-2SS, Puma 2600SY, DMU 50)"
+    autocomplete="off"
+    aria-controls="machine-lookup-results"
+    aria-expanded="false">
+  <div class="machine-lookup-results" id="machine-lookup-results" role="listbox" hidden></div>
+</div>
+<script>
+(function () {
+  var lookup  = document.getElementById('machine-lookup');
+  if (!lookup) return;
+  var input   = document.getElementById('machine-lookup-input');
+  var results = document.getElementById('machine-lookup-results');
+  var machines = null;
+  var loading  = null;
 
-We manufacture replacement way covers for Okuma machines across the Genos, Multus, MB-V series, and MA horizontals. Most jobs ship in 2–4 weeks depending on dimensions and material. Bellows, telescoping steel, and roll-up styles available — we match the original or build to spec.
+  function normalize(s) {
+    return (s || '').toLowerCase().replace(/[\s\-]/g, '');
+  }
+  function escapeHTML(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+  function loadData() {
+    if (machines) return Promise.resolve(machines);
+    if (loading)  return loading;
+    loading = fetch('/data/machines.json')
+      .then(function (r) { return r.json(); })
+      .then(function (d) { machines = d.machines || []; return machines; })
+      .catch(function ()  { machines = []; return machines; });
+    return loading;
+  }
+  function scoreMachine(m, nq) {
+    var candidates = [m.model].concat(m.aliases || []);
+    var best = 0;
+    for (var i = 0; i < candidates.length; i++) {
+      var nc = normalize(candidates[i]);
+      if (!nc) continue;
+      if (nc === nq)            return 100;
+      if (nc.indexOf(nq) === 0) best = Math.max(best, 80);
+      else if (nc.indexOf(nq) >= 0) best = Math.max(best, 50);
+    }
+    return best;
+  }
+  function search(q) {
+    var nq = normalize(q);
+    if (nq.length < 3 || !machines) return [];
+    var scored = [];
+    for (var i = 0; i < machines.length; i++) {
+      var s = scoreMachine(machines[i], nq);
+      if (s > 0) scored.push({ m: machines[i], score: s });
+    }
+    scored.sort(function (a, b) { return b.score - a.score; });
+    return scored.slice(0, 5).map(function (x) { return x.m; });
+  }
+  function renderResults(matches) {
+    if (!matches.length) {
+      results.innerHTML =
+        '<div class="machine-lookup-empty">' +
+          'We service older and obscure machines too. ' +
+          '<a href="/get-a-quote/">Get a quote</a> or call ' +
+          '<a href="tel:+13196104341">319-610-4341</a>.' +
+        '</div>';
+    } else {
+      results.innerHTML = matches.map(function (m) {
+        return (
+          '<a class="machine-lookup-result" href="' + escapeHTML(m.spoke_url) + '" role="option">' +
+            '<span class="machine-lookup-result-brand">'  + escapeHTML(m.brand)  + '</span>' +
+            '<span class="machine-lookup-result-model">'  + escapeHTML(m.model)  + '</span>' +
+            '<span class="machine-lookup-result-series">' + escapeHTML(m.series) + '</span>' +
+            '<span class="machine-lookup-result-arrow" aria-hidden="true">&rarr;</span>' +
+          '</a>'
+        );
+      }).join('');
+    }
+    results.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+  }
+  function hideResults() {
+    results.hidden = true;
+    input.setAttribute('aria-expanded', 'false');
+  }
+  var debounceId;
+  input.addEventListener('input', function () {
+    clearTimeout(debounceId);
+    debounceId = setTimeout(function () {
+      var q = input.value.trim();
+      if (q.length < 3) { hideResults(); return; }
+      loadData().then(function () { renderResults(search(q)); });
+    }, 100);
+  });
+  input.addEventListener('focus', function () {
+    var q = input.value.trim();
+    if (q.length >= 3 && machines) renderResults(search(q));
+  });
+  document.addEventListener('click', function (e) {
+    if (!lookup.contains(e.target)) hideResults();
+  });
+  // Pre-warm the data file on the first interaction with the page
+  document.addEventListener('mousemove', function init() {
+    document.removeEventListener('mousemove', init);
+    loadData();
+  }, { once: true });
+})();
+</script>
 
-[Get a Quote](#quote) · [319-610-4341](tel:+13196104341)
-
-![Replacement Okuma CNC way covers manufactured by Midwest CNC Services](/assets/images/services/way-covers-okuma-cnc-way-covers-image.png)
+<h2 id="browse-by-series">Browse by machine series</h2>
+<p>We service Okuma way covers across the full lineup. Pick your series for platform-specific repair and service detail.</p>
+<ul class="browse-list"><li><a href="/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"><strong>LB / LU Lathes</strong> — Horizontal lathes. LB 200 through 5000 EX, LU 300 through 8000, live-tool variants.</a></li><li><a href="/repairs/okuma-cnc-machine-repair/genos/"><strong>Genos</strong> — &#x27;Affordable Excellence&#x27; line — Genos L250 through L4000 lathes, M460/M560/M660 verticals.</a></li><li><a href="/repairs/okuma-cnc-machine-repair/mb-ma-verticals/"><strong>MB / MA Verticals</strong> — Vertical machining workhorses. MB-46V through MB-66V, MA-400 through MA-8000.</a></li><li><a href="/repairs/okuma-cnc-machine-repair/multus/"><strong>MULTUS</strong> — B-axis multitasking. MULTUS B200 through B750, U3000 through U5000.</a></li><li><a href="/repairs/okuma-cnc-machine-repair/twin-spindle-twin-turret/"><strong>Twin-Spindle / Twin-Turret</strong> — 2SP-2500H and 2SP-V40, LT 200-MY through LT 2000 EX, historic LT-15/25.</a></li><li><a href="/repairs/okuma-cnc-machine-repair/vtm/"><strong>VTM Vertical Turning</strong> — Large vertical turning. VTM-65, VTM-100, VTM-120, VTM-180.</a></li><li><a href="/repairs/okuma-cnc-machine-repair/v-bridge-mills/"><strong>MU 5-Axis / MCR Bridge</strong> — 5-axis trunnion (MU-400V through MU-8000V) and bridge mills (MCR-A5C, MCR-BIII).</a></li><li><a href="/repairs/okuma-cnc-machine-repair/heavy-lathes/"><strong>LAW / LFS Heavy Lathes</strong> — Heavy-duty turning. LAW 1000 through 3000 and LFS-590 flat-bed turning.</a></li></ul>
 
 ## Way Covers We Manufacture for Okuma
 
@@ -144,6 +264,3 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 
 We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.
 
-## Recent from the Blog
-
-*Rendered by the blog teaser component at build time.*
