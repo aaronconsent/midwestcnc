@@ -79,21 +79,23 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 > "Honestly, we thought the machine was done for." Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.
 
 <h2 id="faq">Frequently Asked Questions</h2>
-<div class="faq-item">
-  <h3>What can you fix on a Brother CNC machine?</h3>
-  <p>Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper.</p>
-</div>
-<div class="faq-item">
-  <h3>How long is a typical Brother machine repair?</h3>
-  <p>Lead time varies more than spindle work — diagnostic is fast, parts and rebuild time depend on the job. About 3–4 weeks on most rebuilds.</p>
-</div>
-<div class="faq-item">
-  <h3>Anything unusual about Brother machine repair?</h3>
-  <p>The Speedio machines are compact but they run hard. Warmup routines matter more than a lot of shops realize.</p>
-</div>
-<div class="faq-item">
-  <h3>Do you service older Brother machines?</h3>
-  <p>Yes — older Brother platforms are routine work. Bring us the machine model and the symptoms; we&#x27;ll scope what&#x27;s repairable versus what&#x27;s better replaced.</p>
+<div class="faq-list">
+<details class="faq-item">
+  <summary>What can you fix on a Brother CNC machine?</summary>
+  <div class="faq-answer"><p>Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper.</p></div>
+</details>
+<details class="faq-item">
+  <summary>How long is a typical Brother machine repair?</summary>
+  <div class="faq-answer"><p>Lead time varies more than spindle work — diagnostic is fast, parts and rebuild time depend on the job. About 3–4 weeks on most rebuilds.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Anything unusual about Brother machine repair?</summary>
+  <div class="faq-answer"><p>The Speedio machines are compact but they run hard. Warmup routines matter more than a lot of shops realize.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Do you service older Brother machines?</summary>
+  <div class="faq-answer"><p>Yes — older Brother platforms are routine work. Bring us the machine model and the symptoms; we&#x27;ll scope what&#x27;s repairable versus what&#x27;s better replaced.</p></div>
+</details>
 </div>
 
 <script type="application/ld+json">

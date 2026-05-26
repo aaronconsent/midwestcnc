@@ -78,21 +78,23 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 > "Honestly, we thought the machine was done for." Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.
 
 <h2 id="faq">Frequently Asked Questions</h2>
-<div class="faq-item">
-  <h3>What can you fix on a Toyoda CNC machine?</h3>
-  <p>Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper.</p>
-</div>
-<div class="faq-item">
-  <h3>How long is a typical Toyoda machine repair?</h3>
-  <p>Lead time varies more than spindle work — diagnostic is fast, parts and rebuild time depend on the job. 4–5 weeks.</p>
-</div>
-<div class="faq-item">
-  <h3>Anything unusual about Toyoda machine repair?</h3>
-  <p>Very rigid machines. We don&#x27;t see them as often, but when we do they&#x27;re usually worth fixing.</p>
-</div>
-<div class="faq-item">
-  <h3>Do you service older Toyoda machines?</h3>
-  <p>Yes — older Toyoda platforms are routine work. Bring us the machine model and the symptoms; we&#x27;ll scope what&#x27;s repairable versus what&#x27;s better replaced.</p>
+<div class="faq-list">
+<details class="faq-item">
+  <summary>What can you fix on a Toyoda CNC machine?</summary>
+  <div class="faq-answer"><p>Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper.</p></div>
+</details>
+<details class="faq-item">
+  <summary>How long is a typical Toyoda machine repair?</summary>
+  <div class="faq-answer"><p>Lead time varies more than spindle work — diagnostic is fast, parts and rebuild time depend on the job. 4–5 weeks.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Anything unusual about Toyoda machine repair?</summary>
+  <div class="faq-answer"><p>Very rigid machines. We don&#x27;t see them as often, but when we do they&#x27;re usually worth fixing.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Do you service older Toyoda machines?</summary>
+  <div class="faq-answer"><p>Yes — older Toyoda platforms are routine work. Bring us the machine model and the symptoms; we&#x27;ll scope what&#x27;s repairable versus what&#x27;s better replaced.</p></div>
+</details>
 </div>
 
 <script type="application/ld+json">

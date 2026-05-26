@@ -79,21 +79,23 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 > "Honestly, we thought the machine was done for." It saves shops from replacement lead times and the capital expense of a replacement machine.
 
 <h2 id="faq">Frequently Asked Questions</h2>
-<div class="faq-item">
-  <h3>What can you fix on a Johnford CNC machine?</h3>
-  <p>Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper.</p>
-</div>
-<div class="faq-item">
-  <h3>How long is a typical Johnford machine repair?</h3>
-  <p>Lead time varies more than spindle work — diagnostic is fast, parts and rebuild time depend on the job. 3–4 weeks.</p>
-</div>
-<div class="faq-item">
-  <h3>Anything unusual about Johnford machine repair?</h3>
-  <p>Heavy Taiwanese-built machines with decent rigidity for the price.</p>
-</div>
-<div class="faq-item">
-  <h3>Do you service older Johnford machines?</h3>
-  <p>Yes — older Johnford platforms are routine work. Bring us the machine model and the symptoms; we&#x27;ll scope what&#x27;s repairable versus what&#x27;s better replaced.</p>
+<div class="faq-list">
+<details class="faq-item">
+  <summary>What can you fix on a Johnford CNC machine?</summary>
+  <div class="faq-answer"><p>Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper.</p></div>
+</details>
+<details class="faq-item">
+  <summary>How long is a typical Johnford machine repair?</summary>
+  <div class="faq-answer"><p>Lead time varies more than spindle work — diagnostic is fast, parts and rebuild time depend on the job. 3–4 weeks.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Anything unusual about Johnford machine repair?</summary>
+  <div class="faq-answer"><p>Heavy Taiwanese-built machines with decent rigidity for the price.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Do you service older Johnford machines?</summary>
+  <div class="faq-answer"><p>Yes — older Johnford platforms are routine work. Bring us the machine model and the symptoms; we&#x27;ll scope what&#x27;s repairable versus what&#x27;s better replaced.</p></div>
+</details>
 </div>
 
 <script type="application/ld+json">

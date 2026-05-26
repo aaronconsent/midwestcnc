@@ -9,7 +9,7 @@ Audited **108 HTML files** under `public/`. Audit-only — no HTML modified. Thi
 - **Brand spindle pages below 60% unique:** 18 / 18
 - **Brand machine-repair pages below 60% unique:** 18 / 18
 - **Brand way-covers pages below 60% unique:** 20 / 20
-- **Total word gap to competitive targets:** **~6,667 words** across all pages
+- **Total word gap to competitive targets:** **~8,856 words** across all pages
 - `llms.txt` present at site root: **yes**
 - Homepage `LocalBusiness` schema has geo coordinates: **yes**
 - NAP consistency across all pages: name=✓  city/state=✓  phone=✓
@@ -22,159 +22,159 @@ Grouped by page type. Columns: word count, h2/h3, internal-link out-degree, dire
 
 | Path | Words | H2 | H3 | Links out | Answer | Images | Uniq% | Schema |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
-| `index.html` | 761 | 6 | 14 | 13 | 2 | 12 | — | FAQPage+LocalBusiness |
+| `index.html` | 755 | 6 | 10 | 31 | 2 | 12 | — | FAQPage+LocalBusiness |
 
 ### service-hub  (4 pages)
 
 | Path | Words | H2 | H3 | Links out | Answer | Images | Uniq% | Schema |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
-| `repairs/index.html` | 538 | 6 | 3 | 26 | 2 | 2 | — | BreadcrumbList+FAQPage+ItemList |
-| `service-area/index.html` | 307 | 3 | 10 | 13 | 3 | 8 | — | BreadcrumbList+FAQPage |
-| `spindle-grinding/index.html` | 450 | 6 | 3 | 24 | 2 | 2 | — | BreadcrumbList+FAQPage+ItemList |
-| `way-covers/index.html` | 453 | 6 | 3 | 24 | 2 | 2 | — | BreadcrumbList+FAQPage+ItemList |
+| `repairs/index.html` | 566 | 6 | 0 | 45 | 2 | 2 | — | BreadcrumbList+FAQPage+ItemList |
+| `service-area/index.html` | 307 | 3 | 7 | 31 | 3 | 8 | — | BreadcrumbList+FAQPage |
+| `spindle-grinding/index.html` | 464 | 6 | 0 | 43 | 2 | 2 | — | BreadcrumbList+FAQPage+ItemList |
+| `way-covers/index.html` | 468 | 6 | 0 | 43 | 2 | 2 | — | BreadcrumbList+FAQPage+ItemList |
 
 ### site-shell  (4 pages)
 
 | Path | Words | H2 | H3 | Links out | Answer | Images | Uniq% | Schema |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
-| `about/index.html` | 329 | 3 | 3 | 6 | 4 | 1 | — | BreadcrumbList |
-| `get-a-quote/index.html` | 117 | 1 | 2 | 6 | 2 | 1 | — | BreadcrumbList |
-| `privacy-policy/index.html` | 372 | 5 | 0 | 6 | 0 | 1 | — | BreadcrumbList |
-| `terms-of-service/index.html` | 529 | 8 | 0 | 6 | 1 | 1 | — | BreadcrumbList |
+| `about/index.html` | 329 | 3 | 3 | 31 | 4 | 1 | — | BreadcrumbList |
+| `get-a-quote/index.html` | 117 | 1 | 2 | 31 | 2 | 1 | — | BreadcrumbList |
+| `privacy-policy/index.html` | 372 | 5 | 0 | 31 | 0 | 1 | — | BreadcrumbList |
+| `terms-of-service/index.html` | 529 | 8 | 0 | 31 | 1 | 1 | — | BreadcrumbList |
 
 ### state  (7 pages)
 
 | Path | Words | H2 | H3 | Links out | Answer | Images | Uniq% | Schema |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
-| `service-area/illinois/index.html` | 828 | 9 | 8 | 10 | 2 | 2 | 67 | BreadcrumbList+FAQPage+Service |
-| `service-area/iowa/index.html` | 840 | 9 | 8 | 11 | 1 | 2 | 77 | BreadcrumbList+FAQPage+Service |
-| `service-area/minnesota/index.html` | 746 | 8 | 8 | 11 | 3 | 2 | 71 | BreadcrumbList+FAQPage+Service |
-| `service-area/missouri/index.html` | 834 | 9 | 8 | 9 | 3 | 2 | 65 | BreadcrumbList+FAQPage+Service |
-| `service-area/nebraska/index.html` | 817 | 9 | 7 | 11 | 2 | 2 | 68 | BreadcrumbList+FAQPage+Service |
-| `service-area/texas/index.html` | 874 | 8 | 9 | 12 | 2 | 2 | 70 | BreadcrumbList+FAQPage+Service |
-| `service-area/wisconsin/index.html` | 730 | 8 | 8 | 11 | 2 | 2 | 70 | BreadcrumbList+FAQPage+Service |
+| `service-area/illinois/index.html` | 828 | 9 | 3 | 35 | 2 | 2 | 67 | BreadcrumbList+FAQPage+Service |
+| `service-area/iowa/index.html` | 840 | 9 | 3 | 36 | 1 | 2 | 77 | BreadcrumbList+FAQPage+Service |
+| `service-area/minnesota/index.html` | 746 | 8 | 3 | 36 | 3 | 2 | 71 | BreadcrumbList+FAQPage+Service |
+| `service-area/missouri/index.html` | 834 | 9 | 3 | 34 | 3 | 2 | 65 | BreadcrumbList+FAQPage+Service |
+| `service-area/nebraska/index.html` | 817 | 9 | 3 | 36 | 2 | 2 | 68 | BreadcrumbList+FAQPage+Service |
+| `service-area/texas/index.html` | 874 | 8 | 4 | 37 | 2 | 2 | 70 | BreadcrumbList+FAQPage+Service |
+| `service-area/wisconsin/index.html` | 730 | 8 | 3 | 36 | 2 | 2 | 70 | BreadcrumbList+FAQPage+Service |
 
 ### city  (33 pages)
 
 | Path | Words | H2 | H3 | Links out | Answer | Images | Uniq% | Schema |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
-| `service-area/ames-iowa/index.html` | 528 | 4 | 4 | 8 | 1 | 2 | 38 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/austin-texas/index.html` | 494 | 4 | 4 | 8 | 2 | 2 | 31 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/bloomington-minnesota/index.html` | 478 | 4 | 4 | 8 | 1 | 2 | 33 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/cedar-rapids-iowa/index.html` | 546 | 4 | 4 | 8 | 1 | 2 | 37 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/chicago-illinois/index.html` | 503 | 4 | 4 | 8 | 1 | 2 | 35 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/dallas-texas/index.html` | 546 | 4 | 4 | 8 | 2 | 2 | 36 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/davenport-iowa/index.html` | 525 | 4 | 4 | 8 | 1 | 2 | 34 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/des-moines-iowa/index.html` | 519 | 4 | 4 | 7 | 1 | 2 | 42 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/duluth-minnesota/index.html` | 517 | 4 | 4 | 8 | 1 | 2 | 35 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/el-paso-texas/index.html` | 549 | 4 | 4 | 8 | 2 | 2 | 35 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/fort-worth-texas/index.html` | 558 | 4 | 4 | 8 | 2 | 2 | 35 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/grand-island-nebraska/index.html` | 520 | 4 | 4 | 8 | 2 | 2 | 38 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/green-bay-wisconsin/index.html` | 513 | 4 | 4 | 8 | 1 | 2 | 37 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/houston-texas/index.html` | 539 | 4 | 4 | 8 | 2 | 2 | 32 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/kansas-city-missouri/index.html` | 564 | 4 | 4 | 8 | 1 | 2 | 37 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/kearney-nebraska/index.html` | 492 | 4 | 4 | 8 | 2 | 2 | 34 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/kenosha-wisconsin/index.html` | 475 | 4 | 4 | 8 | 1 | 2 | 34 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/lincoln-nebraska/index.html` | 497 | 4 | 4 | 8 | 1 | 2 | 32 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/madison-wisconsin/index.html` | 502 | 4 | 4 | 8 | 1 | 2 | 34 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/milwaukee-wisconsin/index.html` | 474 | 4 | 4 | 8 | 1 | 2 | 31 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/minneapolis-minnesota/index.html` | 497 | 4 | 4 | 8 | 1 | 2 | 32 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/naperville-illinois/index.html` | 497 | 4 | 4 | 8 | 2 | 2 | 34 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/north-platte-nebraska/index.html` | 678 | 4 | 4 | 8 | 1 | 2 | 78 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/omaha-nebraska/index.html` | 491 | 4 | 4 | 7 | 1 | 2 | 36 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/peoria-illinois/index.html` | 526 | 4 | 4 | 8 | 1 | 2 | 36 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/racine-wisconsin/index.html` | 514 | 4 | 4 | 8 | 1 | 2 | 32 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/rochester-minnesota/index.html` | 536 | 4 | 4 | 8 | 1 | 2 | 39 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/rockford-illinois/index.html` | 514 | 4 | 4 | 8 | 1 | 2 | 37 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/san-antonio-texas/index.html` | 531 | 4 | 4 | 8 | 2 | 2 | 35 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/springfield-missouri/index.html` | 496 | 4 | 4 | 8 | 1 | 2 | 33 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/st-louis-missouri/index.html` | 558 | 4 | 4 | 8 | 1 | 2 | 36 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/st-paul-minnesota/index.html` | 512 | 4 | 4 | 8 | 1 | 2 | 36 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `service-area/waterloo-iowa/index.html` | 473 | 4 | 4 | 8 | 2 | 2 | 47 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/ames-iowa/index.html` | 528 | 4 | 0 | 31 | 1 | 2 | 38 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/austin-texas/index.html` | 494 | 4 | 0 | 32 | 2 | 2 | 31 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/bloomington-minnesota/index.html` | 478 | 4 | 0 | 31 | 1 | 2 | 33 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/cedar-rapids-iowa/index.html` | 546 | 4 | 0 | 32 | 1 | 2 | 37 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/chicago-illinois/index.html` | 503 | 4 | 0 | 31 | 1 | 2 | 35 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/dallas-texas/index.html` | 546 | 4 | 0 | 32 | 2 | 2 | 36 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/davenport-iowa/index.html` | 525 | 4 | 0 | 31 | 1 | 2 | 34 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/des-moines-iowa/index.html` | 519 | 4 | 0 | 31 | 1 | 2 | 42 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/duluth-minnesota/index.html` | 517 | 4 | 0 | 32 | 1 | 2 | 35 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/el-paso-texas/index.html` | 549 | 4 | 0 | 31 | 2 | 2 | 35 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/fort-worth-texas/index.html` | 558 | 4 | 0 | 32 | 2 | 2 | 35 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/grand-island-nebraska/index.html` | 520 | 4 | 0 | 31 | 2 | 2 | 38 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/green-bay-wisconsin/index.html` | 513 | 4 | 0 | 31 | 1 | 2 | 37 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/houston-texas/index.html` | 539 | 4 | 0 | 31 | 2 | 2 | 32 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/kansas-city-missouri/index.html` | 564 | 4 | 0 | 32 | 1 | 2 | 37 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/kearney-nebraska/index.html` | 492 | 4 | 0 | 31 | 2 | 2 | 34 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/kenosha-wisconsin/index.html` | 475 | 4 | 0 | 31 | 1 | 2 | 34 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/lincoln-nebraska/index.html` | 497 | 4 | 0 | 32 | 1 | 2 | 32 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/madison-wisconsin/index.html` | 502 | 4 | 0 | 32 | 1 | 2 | 34 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/milwaukee-wisconsin/index.html` | 474 | 4 | 0 | 31 | 1 | 2 | 31 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/minneapolis-minnesota/index.html` | 497 | 4 | 0 | 32 | 1 | 2 | 32 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/naperville-illinois/index.html` | 497 | 4 | 0 | 31 | 2 | 2 | 34 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/north-platte-nebraska/index.html` | 678 | 4 | 0 | 31 | 1 | 2 | 78 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/omaha-nebraska/index.html` | 491 | 4 | 0 | 31 | 1 | 2 | 36 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/peoria-illinois/index.html` | 526 | 4 | 0 | 31 | 1 | 2 | 36 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/racine-wisconsin/index.html` | 514 | 4 | 0 | 31 | 1 | 2 | 32 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/rochester-minnesota/index.html` | 536 | 4 | 0 | 31 | 1 | 2 | 39 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/rockford-illinois/index.html` | 514 | 4 | 0 | 32 | 1 | 2 | 37 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/san-antonio-texas/index.html` | 531 | 4 | 0 | 31 | 2 | 2 | 35 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/springfield-missouri/index.html` | 496 | 4 | 0 | 31 | 1 | 2 | 33 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/st-louis-missouri/index.html` | 558 | 4 | 0 | 32 | 1 | 2 | 36 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/st-paul-minnesota/index.html` | 512 | 4 | 0 | 31 | 1 | 2 | 36 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `service-area/waterloo-iowa/index.html` | 473 | 4 | 0 | 31 | 2 | 2 | 47 | BreadcrumbList+FAQPage+LocalBusiness+Service |
 
 ### brand-spindle  (18 pages)
 
 | Path | Words | H2 | H3 | Links out | Answer | Images | Uniq% | Schema |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
-| `spindle-grinding/amera-seiki-spindle-repair/index.html` | 502 | 7 | 0 | 12 | 4 | 2 | 30 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/brother-spindle-repair/index.html` | 555 | 7 | 0 | 12 | 4 | 2 | 40 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/dmg-mori-spindle-repair/index.html` | 612 | 7 | 0 | 12 | 3 | 2 | 44 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/doosan-spindle-repair/index.html` | 598 | 7 | 0 | 12 | 3 | 2 | 42 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/fadal-spindle-repair/index.html` | 592 | 8 | 0 | 12 | 3 | 2 | 42 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/fanuc-spindle-repair/index.html` | 534 | 7 | 0 | 12 | 4 | 2 | 36 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/giddings-lewis-spindle-repair/index.html` | 533 | 7 | 0 | 12 | 4 | 2 | 39 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/haas-spindle-repair/index.html` | 592 | 7 | 0 | 12 | 3 | 2 | 42 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/hitachi-seiki-spindle-repair/index.html` | 581 | 8 | 0 | 12 | 3 | 2 | 42 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/hurco-spindle-repair/index.html` | 587 | 7 | 0 | 12 | 3 | 2 | 39 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/johnford-spindle-repair/index.html` | 497 | 7 | 0 | 12 | 4 | 2 | 31 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/makino-spindle-repair/index.html` | 548 | 7 | 0 | 12 | 4 | 2 | 36 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/mazak-spindle-repair/index.html` | 586 | 7 | 0 | 12 | 3 | 2 | 41 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/monarch-spindle-repair/index.html` | 582 | 8 | 0 | 12 | 3 | 2 | 40 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/mori-seiki-spindle-repair/index.html` | 590 | 7 | 0 | 12 | 3 | 2 | 40 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/niigata-spindle-repair/index.html` | 510 | 7 | 0 | 12 | 4 | 2 | 33 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/okuma-spindle-repair/index.html` | 551 | 7 | 0 | 12 | 4 | 2 | 37 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `spindle-grinding/toyoda-spindle-repair/index.html` | 518 | 7 | 0 | 12 | 4 | 2 | 32 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/amera-seiki-spindle-repair/index.html` | 462 | 9 | 0 | 36 | 4 | 2 | 32 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/brother-spindle-repair/index.html` | 515 | 9 | 0 | 36 | 4 | 2 | 43 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/dmg-mori-spindle-repair/index.html` | 572 | 9 | 0 | 33 | 3 | 2 | 47 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/doosan-spindle-repair/index.html` | 558 | 9 | 0 | 33 | 3 | 2 | 44 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/fadal-spindle-repair/index.html` | 552 | 10 | 0 | 36 | 3 | 2 | 45 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/fanuc-spindle-repair/index.html` | 494 | 9 | 0 | 34 | 4 | 2 | 38 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/giddings-lewis-spindle-repair/index.html` | 493 | 9 | 0 | 37 | 4 | 2 | 41 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/haas-spindle-repair/index.html` | 552 | 9 | 0 | 33 | 3 | 2 | 44 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/hitachi-seiki-spindle-repair/index.html` | 541 | 10 | 0 | 36 | 3 | 2 | 45 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/hurco-spindle-repair/index.html` | 547 | 9 | 0 | 35 | 3 | 2 | 42 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/johnford-spindle-repair/index.html` | 457 | 9 | 0 | 36 | 4 | 2 | 33 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/makino-spindle-repair/index.html` | 508 | 9 | 0 | 35 | 4 | 2 | 39 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/mazak-spindle-repair/index.html` | 546 | 9 | 0 | 32 | 3 | 2 | 44 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/monarch-spindle-repair/index.html` | 542 | 10 | 0 | 36 | 3 | 2 | 42 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/mori-seiki-spindle-repair/index.html` | 550 | 9 | 0 | 34 | 3 | 2 | 43 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/niigata-spindle-repair/index.html` | 470 | 9 | 0 | 36 | 4 | 2 | 35 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/okuma-spindle-repair/index.html` | 511 | 9 | 0 | 32 | 4 | 2 | 39 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `spindle-grinding/toyoda-spindle-repair/index.html` | 478 | 9 | 0 | 35 | 4 | 2 | 34 | BreadcrumbList+FAQPage+LocalBusiness+Service |
 
 ### brand-repair  (18 pages)
 
 | Path | Words | H2 | H3 | Links out | Answer | Images | Uniq% | Schema |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
-| `repairs/amera-seiki-cnc-machine-repair/index.html` | 531 | 7 | 0 | 9 | 3 | 2 | 20 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/brother-cnc-machine-repair/index.html` | 557 | 7 | 0 | 9 | 3 | 2 | 25 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/dmg-mori-cnc-machine-repair/index.html` | 582 | 7 | 0 | 9 | 2 | 2 | 30 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/doosan-cnc-machine-repair/index.html` | 552 | 7 | 0 | 9 | 3 | 2 | 25 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/fadal-cnc-machine-repair/index.html` | 544 | 7 | 0 | 9 | 3 | 2 | 26 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/fanuc-cnc-machine-repair/index.html` | 536 | 7 | 0 | 9 | 3 | 2 | 23 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/giddings-lewis-cnc-machine-repair/index.html` | 563 | 7 | 0 | 9 | 2 | 2 | 26 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/haas-cnc-machine-repair/index.html` | 565 | 7 | 0 | 9 | 3 | 2 | 27 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/hitachi-seiki-cnc-machine-repair/index.html` | 554 | 7 | 0 | 9 | 2 | 2 | 27 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/hurco-cnc-machine-repair/index.html` | 545 | 7 | 0 | 9 | 3 | 2 | 24 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/johnford-cnc-machine-repair/index.html` | 536 | 7 | 0 | 9 | 3 | 2 | 21 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/makino-cnc-machine-repair/index.html` | 551 | 7 | 0 | 9 | 3 | 2 | 23 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/mazak-cnc-machine-repair/index.html` | 561 | 7 | 0 | 9 | 3 | 2 | 27 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/monarch-cnc-machine-repair/index.html` | 546 | 7 | 0 | 9 | 3 | 2 | 23 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/mori-seiki-cnc-machine-repair/index.html` | 577 | 7 | 0 | 9 | 2 | 2 | 27 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/niigata-cnc-machine-repair/index.html` | 543 | 7 | 0 | 9 | 3 | 2 | 23 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/okuma-cnc-machine-repair/index.html` | 548 | 7 | 0 | 9 | 3 | 2 | 25 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `repairs/toyoda-cnc-machine-repair/index.html` | 544 | 7 | 0 | 9 | 3 | 2 | 22 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/amera-seiki-cnc-machine-repair/index.html` | 491 | 9 | 0 | 34 | 3 | 2 | 21 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/brother-cnc-machine-repair/index.html` | 517 | 9 | 0 | 34 | 3 | 2 | 27 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/dmg-mori-cnc-machine-repair/index.html` | 542 | 9 | 0 | 31 | 2 | 2 | 31 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/doosan-cnc-machine-repair/index.html` | 512 | 9 | 0 | 31 | 3 | 2 | 26 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/fadal-cnc-machine-repair/index.html` | 504 | 9 | 0 | 34 | 3 | 2 | 27 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/fanuc-cnc-machine-repair/index.html` | 496 | 9 | 0 | 31 | 3 | 2 | 25 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/giddings-lewis-cnc-machine-repair/index.html` | 523 | 9 | 0 | 34 | 2 | 2 | 27 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/haas-cnc-machine-repair/index.html` | 525 | 9 | 0 | 31 | 3 | 2 | 29 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/hitachi-seiki-cnc-machine-repair/index.html` | 514 | 9 | 0 | 34 | 2 | 2 | 28 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/hurco-cnc-machine-repair/index.html` | 505 | 9 | 0 | 34 | 3 | 2 | 26 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/johnford-cnc-machine-repair/index.html` | 496 | 9 | 0 | 34 | 3 | 2 | 22 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/makino-cnc-machine-repair/index.html` | 511 | 9 | 0 | 34 | 3 | 2 | 25 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/mazak-cnc-machine-repair/index.html` | 521 | 9 | 0 | 31 | 3 | 2 | 28 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/monarch-cnc-machine-repair/index.html` | 506 | 9 | 0 | 34 | 3 | 2 | 24 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/mori-seiki-cnc-machine-repair/index.html` | 537 | 9 | 0 | 34 | 2 | 2 | 28 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/niigata-cnc-machine-repair/index.html` | 503 | 9 | 0 | 34 | 3 | 2 | 24 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/okuma-cnc-machine-repair/index.html` | 508 | 9 | 0 | 31 | 3 | 2 | 26 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `repairs/toyoda-cnc-machine-repair/index.html` | 504 | 9 | 0 | 34 | 3 | 2 | 23 | BreadcrumbList+FAQPage+LocalBusiness+Service |
 
 ### brand-main-alt  (2 pages)
 
 | Path | Words | H2 | H3 | Links out | Answer | Images | Uniq% | Schema |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
-| `repairs/amada-press-brake-service/index.html` | 329 | 7 | 0 | 8 | 3 | 2 | — | BreadcrumbList+LocalBusiness+Service |
-| `repairs/trumpf-laser-service/index.html` | 308 | 7 | 0 | 8 | 4 | 2 | — | BreadcrumbList+LocalBusiness+Service |
+| `repairs/amada-press-brake-service/index.html` | 329 | 7 | 0 | 33 | 3 | 2 | — | BreadcrumbList+LocalBusiness+Service |
+| `repairs/trumpf-laser-service/index.html` | 308 | 7 | 0 | 33 | 4 | 2 | — | BreadcrumbList+LocalBusiness+Service |
 
 ### brand-way-covers  (20 pages)
 
 | Path | Words | H2 | H3 | Links out | Answer | Images | Uniq% | Schema |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
-| `way-covers/amada-cnc-way-covers/index.html` | 451 | 6 | 0 | 8 | 3 | 2 | 15 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/amera-seiki-cnc-way-covers/index.html` | 470 | 6 | 0 | 9 | 3 | 2 | 16 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/brother-cnc-way-covers/index.html` | 475 | 6 | 0 | 9 | 3 | 2 | 18 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/dmg-mori-cnc-way-covers/index.html` | 497 | 6 | 0 | 9 | 3 | 2 | 21 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/doosan-cnc-way-covers/index.html` | 477 | 6 | 0 | 9 | 3 | 2 | 19 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/fadal-cnc-way-covers/index.html` | 469 | 6 | 0 | 9 | 3 | 2 | 16 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/fanuc-cnc-way-covers/index.html` | 470 | 6 | 0 | 9 | 3 | 2 | 16 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/giddings-lewis-cnc-way-covers/index.html` | 487 | 6 | 0 | 9 | 3 | 2 | 19 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/haas-cnc-way-covers/index.html` | 484 | 6 | 0 | 9 | 3 | 2 | 19 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/hitachi-seiki-cnc-way-covers/index.html` | 490 | 6 | 0 | 9 | 3 | 2 | 19 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/hurco-cnc-way-covers/index.html` | 474 | 6 | 0 | 9 | 3 | 2 | 17 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/johnford-cnc-way-covers/index.html` | 472 | 6 | 0 | 9 | 3 | 2 | 17 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/makino-cnc-way-covers/index.html` | 468 | 6 | 0 | 9 | 3 | 2 | 17 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/mazak-cnc-way-covers/index.html` | 488 | 6 | 0 | 9 | 3 | 2 | 18 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/monarch-cnc-way-covers/index.html` | 471 | 6 | 0 | 9 | 3 | 2 | 17 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/mori-seiki-cnc-way-covers/index.html` | 496 | 6 | 0 | 9 | 3 | 2 | 18 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/niigata-cnc-way-covers/index.html` | 471 | 6 | 0 | 9 | 3 | 2 | 17 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/okuma-cnc-way-covers/index.html` | 481 | 6 | 0 | 9 | 3 | 2 | 18 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/toyoda-cnc-way-covers/index.html` | 468 | 6 | 0 | 9 | 3 | 2 | 16 | BreadcrumbList+FAQPage+LocalBusiness+Service |
-| `way-covers/trumpf-cnc-way-covers/index.html` | 467 | 6 | 0 | 8 | 3 | 2 | 18 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/amada-cnc-way-covers/index.html` | 411 | 8 | 0 | 33 | 3 | 2 | 16 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/amera-seiki-cnc-way-covers/index.html` | 430 | 8 | 0 | 34 | 3 | 2 | 17 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/brother-cnc-way-covers/index.html` | 435 | 8 | 0 | 34 | 3 | 2 | 20 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/dmg-mori-cnc-way-covers/index.html` | 457 | 8 | 0 | 31 | 3 | 2 | 22 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/doosan-cnc-way-covers/index.html` | 437 | 8 | 0 | 31 | 3 | 2 | 21 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/fadal-cnc-way-covers/index.html` | 429 | 8 | 0 | 34 | 3 | 2 | 17 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/fanuc-cnc-way-covers/index.html` | 430 | 8 | 0 | 31 | 3 | 2 | 17 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/giddings-lewis-cnc-way-covers/index.html` | 447 | 8 | 0 | 34 | 3 | 2 | 20 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/haas-cnc-way-covers/index.html` | 444 | 8 | 0 | 31 | 3 | 2 | 20 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/hitachi-seiki-cnc-way-covers/index.html` | 450 | 8 | 0 | 34 | 3 | 2 | 21 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/hurco-cnc-way-covers/index.html` | 434 | 8 | 0 | 34 | 3 | 2 | 18 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/johnford-cnc-way-covers/index.html` | 432 | 8 | 0 | 34 | 3 | 2 | 18 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/makino-cnc-way-covers/index.html` | 428 | 8 | 0 | 34 | 3 | 2 | 18 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/mazak-cnc-way-covers/index.html` | 448 | 8 | 0 | 31 | 3 | 2 | 20 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/monarch-cnc-way-covers/index.html` | 431 | 8 | 0 | 34 | 3 | 2 | 18 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/mori-seiki-cnc-way-covers/index.html` | 456 | 8 | 0 | 34 | 3 | 2 | 20 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/niigata-cnc-way-covers/index.html` | 431 | 8 | 0 | 34 | 3 | 2 | 18 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/okuma-cnc-way-covers/index.html` | 441 | 8 | 0 | 31 | 3 | 2 | 19 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/toyoda-cnc-way-covers/index.html` | 428 | 8 | 0 | 34 | 3 | 2 | 18 | BreadcrumbList+FAQPage+LocalBusiness+Service |
+| `way-covers/trumpf-cnc-way-covers/index.html` | 427 | 8 | 0 | 33 | 3 | 2 | 19 | BreadcrumbList+FAQPage+LocalBusiness+Service |
 
 ### 404  (1 pages)
 
 | Path | Words | H2 | H3 | Links out | Answer | Images | Uniq% | Schema |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
-| `404.html` | 28 | 0 | 0 | 6 | 0 | 1 | — | (none) |
+| `404.html` | 28 | 0 | 0 | 31 | 0 | 1 | — | (none) |
 
 ## Task 2 — Location-page uniqueness (CRITICAL)
 
@@ -234,40 +234,40 @@ Grouped by page type. Columns: word count, h2/h3, internal-link out-degree, dire
 
 | Path | Words | Unique 5-grams |
 |---|---:|---:|
-| `spindle-grinding/amera-seiki-spindle-repair/index.html` | 502 | 30% |
-| `spindle-grinding/johnford-spindle-repair/index.html` | 497 | 31% |
-| `spindle-grinding/toyoda-spindle-repair/index.html` | 518 | 32% |
-| `spindle-grinding/niigata-spindle-repair/index.html` | 510 | 33% |
-| `spindle-grinding/fanuc-spindle-repair/index.html` | 534 | 36% |
-| `spindle-grinding/makino-spindle-repair/index.html` | 548 | 36% |
-| `spindle-grinding/okuma-spindle-repair/index.html` | 551 | 37% |
-| `spindle-grinding/giddings-lewis-spindle-repair/index.html` | 533 | 39% |
+| `spindle-grinding/amera-seiki-spindle-repair/index.html` | 462 | 32% |
+| `spindle-grinding/johnford-spindle-repair/index.html` | 457 | 33% |
+| `spindle-grinding/toyoda-spindle-repair/index.html` | 478 | 34% |
+| `spindle-grinding/niigata-spindle-repair/index.html` | 470 | 35% |
+| `spindle-grinding/fanuc-spindle-repair/index.html` | 494 | 38% |
+| `spindle-grinding/makino-spindle-repair/index.html` | 508 | 39% |
+| `spindle-grinding/okuma-spindle-repair/index.html` | 511 | 39% |
+| `spindle-grinding/giddings-lewis-spindle-repair/index.html` | 493 | 41% |
 
 ### Brand machine-repair pages
 
 | Path | Words | Unique 5-grams |
 |---|---:|---:|
-| `repairs/amera-seiki-cnc-machine-repair/index.html` | 531 | 20% |
-| `repairs/johnford-cnc-machine-repair/index.html` | 536 | 21% |
-| `repairs/toyoda-cnc-machine-repair/index.html` | 544 | 22% |
-| `repairs/niigata-cnc-machine-repair/index.html` | 543 | 23% |
-| `repairs/monarch-cnc-machine-repair/index.html` | 546 | 23% |
-| `repairs/makino-cnc-machine-repair/index.html` | 551 | 23% |
-| `repairs/fanuc-cnc-machine-repair/index.html` | 536 | 23% |
-| `repairs/hurco-cnc-machine-repair/index.html` | 545 | 24% |
+| `repairs/amera-seiki-cnc-machine-repair/index.html` | 491 | 21% |
+| `repairs/johnford-cnc-machine-repair/index.html` | 496 | 22% |
+| `repairs/toyoda-cnc-machine-repair/index.html` | 504 | 23% |
+| `repairs/monarch-cnc-machine-repair/index.html` | 506 | 24% |
+| `repairs/niigata-cnc-machine-repair/index.html` | 503 | 24% |
+| `repairs/fanuc-cnc-machine-repair/index.html` | 496 | 25% |
+| `repairs/makino-cnc-machine-repair/index.html` | 511 | 25% |
+| `repairs/hurco-cnc-machine-repair/index.html` | 505 | 26% |
 
 ### Brand way-covers pages
 
 | Path | Words | Unique 5-grams |
 |---|---:|---:|
-| `way-covers/amada-cnc-way-covers/index.html` | 451 | 15% |
-| `way-covers/fadal-cnc-way-covers/index.html` | 469 | 16% |
-| `way-covers/amera-seiki-cnc-way-covers/index.html` | 470 | 16% |
-| `way-covers/fanuc-cnc-way-covers/index.html` | 470 | 16% |
-| `way-covers/toyoda-cnc-way-covers/index.html` | 468 | 16% |
-| `way-covers/johnford-cnc-way-covers/index.html` | 472 | 17% |
-| `way-covers/monarch-cnc-way-covers/index.html` | 471 | 17% |
-| `way-covers/hurco-cnc-way-covers/index.html` | 474 | 17% |
+| `way-covers/amada-cnc-way-covers/index.html` | 411 | 16% |
+| `way-covers/fadal-cnc-way-covers/index.html` | 429 | 17% |
+| `way-covers/amera-seiki-cnc-way-covers/index.html` | 430 | 17% |
+| `way-covers/fanuc-cnc-way-covers/index.html` | 430 | 17% |
+| `way-covers/toyoda-cnc-way-covers/index.html` | 428 | 18% |
+| `way-covers/johnford-cnc-way-covers/index.html` | 432 | 18% |
+| `way-covers/monarch-cnc-way-covers/index.html` | 431 | 18% |
+| `way-covers/hurco-cnc-way-covers/index.html` | 434 | 18% |
 
 ## Task 3 — Schema audit
 
@@ -289,8 +289,8 @@ Found 1 schema gap(s):
 
 ## Task 4 — Internal link topology
 
-- Total internal `<a>` edges: 1465
-- Distinct outgoing edges per page (avg): 9
+- Total internal `<a>` edges: 4921
+- Distinct outgoing edges per page (avg): 33
 
 ### Orphan pages (in-degree < 5)
 
@@ -338,41 +338,29 @@ Found 1 schema gap(s):
 | `/repairs/amada-press-brake-service/` | 4 | brand-main-alt |
 | `/repairs/amera-seiki-cnc-machine-repair/` | 4 | brand-repair |
 | `/repairs/brother-cnc-machine-repair/` | 4 | brand-repair |
-| `/repairs/dmg-mori-cnc-machine-repair/` | 4 | brand-repair |
-| `/repairs/doosan-cnc-machine-repair/` | 4 | brand-repair |
 | `/repairs/fadal-cnc-machine-repair/` | 4 | brand-repair |
-| `/repairs/fanuc-cnc-machine-repair/` | 4 | brand-repair |
 | `/repairs/giddings-lewis-cnc-machine-repair/` | 4 | brand-repair |
-| `/repairs/haas-cnc-machine-repair/` | 4 | brand-repair |
 | `/repairs/hitachi-seiki-cnc-machine-repair/` | 4 | brand-repair |
 | `/repairs/hurco-cnc-machine-repair/` | 4 | brand-repair |
 | `/repairs/johnford-cnc-machine-repair/` | 4 | brand-repair |
 | `/repairs/makino-cnc-machine-repair/` | 4 | brand-repair |
-| `/repairs/mazak-cnc-machine-repair/` | 4 | brand-repair |
 | `/repairs/monarch-cnc-machine-repair/` | 4 | brand-repair |
 | `/repairs/mori-seiki-cnc-machine-repair/` | 4 | brand-repair |
 | `/repairs/niigata-cnc-machine-repair/` | 4 | brand-repair |
-| `/repairs/okuma-cnc-machine-repair/` | 4 | brand-repair |
 | `/repairs/toyoda-cnc-machine-repair/` | 4 | brand-repair |
 | `/repairs/trumpf-laser-service/` | 4 | brand-main-alt |
 | `/spindle-grinding/giddings-lewis-spindle-repair/` | 4 | brand-spindle |
 | `/way-covers/amera-seiki-cnc-way-covers/` | 4 | brand-way-covers |
 | `/way-covers/brother-cnc-way-covers/` | 4 | brand-way-covers |
-| `/way-covers/dmg-mori-cnc-way-covers/` | 4 | brand-way-covers |
-| `/way-covers/doosan-cnc-way-covers/` | 4 | brand-way-covers |
 | `/way-covers/fadal-cnc-way-covers/` | 4 | brand-way-covers |
-| `/way-covers/fanuc-cnc-way-covers/` | 4 | brand-way-covers |
 | `/way-covers/giddings-lewis-cnc-way-covers/` | 4 | brand-way-covers |
-| `/way-covers/haas-cnc-way-covers/` | 4 | brand-way-covers |
 | `/way-covers/hitachi-seiki-cnc-way-covers/` | 4 | brand-way-covers |
 | `/way-covers/hurco-cnc-way-covers/` | 4 | brand-way-covers |
 | `/way-covers/johnford-cnc-way-covers/` | 4 | brand-way-covers |
 | `/way-covers/makino-cnc-way-covers/` | 4 | brand-way-covers |
-| `/way-covers/mazak-cnc-way-covers/` | 4 | brand-way-covers |
 | `/way-covers/monarch-cnc-way-covers/` | 4 | brand-way-covers |
 | `/way-covers/mori-seiki-cnc-way-covers/` | 4 | brand-way-covers |
 | `/way-covers/niigata-cnc-way-covers/` | 4 | brand-way-covers |
-| `/way-covers/okuma-cnc-way-covers/` | 4 | brand-way-covers |
 | `/way-covers/toyoda-cnc-way-covers/` | 4 | brand-way-covers |
 
 ### Dead-end pages (out-degree < 5)
@@ -387,24 +375,24 @@ Found 1 schema gap(s):
 |---|---:|---|
 | `/get-a-quote/` | 108 | site-shell |
 | `/` | 108 | homepage |
+| `/repairs/dmg-mori-cnc-machine-repair/` | 108 | brand-repair |
+| `/repairs/doosan-cnc-machine-repair/` | 108 | brand-repair |
+| `/repairs/fanuc-cnc-machine-repair/` | 108 | brand-repair |
+| `/repairs/haas-cnc-machine-repair/` | 108 | brand-repair |
 | `/repairs/` | 108 | service-hub |
+| `/repairs/mazak-cnc-machine-repair/` | 108 | brand-repair |
+| `/repairs/okuma-cnc-machine-repair/` | 108 | brand-repair |
+| `/service-area/illinois/` | 108 | state |
 | `/service-area/` | 108 | service-hub |
-| `/spindle-grinding/` | 108 | service-hub |
-| `/way-covers/` | 108 | service-hub |
-| `/spindle-grinding/mazak-spindle-repair/` | 32 | brand-spindle |
-| `/spindle-grinding/makino-spindle-repair/` | 15 | brand-spindle |
-| `/spindle-grinding/brother-spindle-repair/` | 12 | brand-spindle |
-| `/spindle-grinding/hurco-spindle-repair/` | 11 | brand-spindle |
-| `/spindle-grinding/dmg-mori-spindle-repair/` | 9 | brand-spindle |
-| `/service-area/texas/` | 8 | state |
-| `/spindle-grinding/doosan-spindle-repair/` | 8 | brand-spindle |
-| `/spindle-grinding/mori-seiki-spindle-repair/` | 8 | brand-spindle |
-| `/service-area/iowa/` | 7 | state |
-| `/service-area/minnesota/` | 7 | state |
-| `/service-area/nebraska/` | 7 | state |
-| `/service-area/wisconsin/` | 7 | state |
-| `/spindle-grinding/fadal-spindle-repair/` | 7 | brand-spindle |
-| `/spindle-grinding/haas-spindle-repair/` | 7 | brand-spindle |
+| `/service-area/iowa/` | 108 | state |
+| `/service-area/minnesota/` | 108 | state |
+| `/service-area/missouri/` | 108 | state |
+| `/service-area/nebraska/` | 108 | state |
+| `/service-area/texas/` | 108 | state |
+| `/service-area/wisconsin/` | 108 | state |
+| `/spindle-grinding/dmg-mori-spindle-repair/` | 108 | brand-spindle |
+| `/spindle-grinding/doosan-spindle-repair/` | 108 | brand-spindle |
+| `/spindle-grinding/fanuc-spindle-repair/` | 108 | brand-spindle |
 
 ### Topic-cluster cross-linking
 
@@ -501,7 +489,7 @@ Bucket B = requires new Ken input or new facts not in current source data
 
 ### HIGH  (3 item(s))
 
-**Site-wide content gap of ~6,667 words to competitive targets**
+**Site-wide content gap of ~8,856 words to competitive targets**
 
 - *What's wrong:* Pages across every type are under competitive-rank word counts. Concentrated in city pages (~9–10K word total gap), state pages (~3K), and homepage (~250).
 - *Fixed looks like:* See Task 9 below for the budget breakdown.
@@ -513,7 +501,7 @@ Bucket B = requires new Ken input or new facts not in current source data
 - *Fixed looks like:* Add the missing types via the existing schema helpers. ItemList for hubs is the biggest opportunity.
 - *Bucket:* Bucket A — pure structural addition.
 
-**78 orphan pages (in-degree < 5)**
+**66 orphan pages (in-degree < 5)**
 
 - *What's wrong:* Pages that aren't linked from elsewhere get crawled less often and rank worse. Privacy, Terms, 404, About often qualify — that's normal.
 - *Fixed looks like:* Footer links to Privacy/Terms; About in nav; Sitemap doesn't fix this.
@@ -547,22 +535,22 @@ Total word gap from current state to competitive targets, by page type. Competit
 
 | Page type | Pages | Current avg | Target | Gap per page | Total gap |
 |---|---:|---:|---:|---:|---:|
-| homepage | 1 | 761 | 1000 | 239 | 239 |
-| service-hub | 4 | 437 | 700 | 263 | 1,052 |
+| homepage | 1 | 755 | 1000 | 245 | 245 |
+| service-hub | 4 | 451 | 700 | 249 | 995 |
 | site-shell | 4 | 336 | 500 | 164 | 682 |
 | state | 7 | 809 | 800 | 0 | 124 |
 | city | 33 | 520 | 500 | 0 | 136 |
-| brand-spindle | 18 | 559 | 700 | 141 | 2,532 |
-| brand-repair | 18 | 551 | 600 | 49 | 865 |
+| brand-spindle | 18 | 519 | 700 | 181 | 3,252 |
+| brand-repair | 18 | 511 | 600 | 89 | 1,585 |
 | brand-main-alt | 2 | 318 | 600 | 282 | 563 |
-| brand-way-covers | 20 | 476 | 500 | 24 | 474 |
+| brand-way-covers | 20 | 436 | 500 | 64 | 1,274 |
 | 404 | 1 | 28 | 0 | 0 | 0 |
-| **TOTAL** | **108** | — | — | — | **6,667** |
+| **TOTAL** | **108** | — | — | — | **8,856** |
 
 ### Bucket A vs Bucket B split
 
-- **Bucket A** (no new input — structural enrichment, FAQ from existing Ken themes, content reuse, schema additions): ~**3,666 words** (55%)
-- **Bucket B** (requires new input — per-city local context, deeper state briefs, brand-specific case-study material): ~**3,001 words** (45%)
+- **Bucket A** (no new input — structural enrichment, FAQ from existing Ken themes, content reuse, schema additions): ~**4,870 words** (55%)
+- **Bucket B** (requires new input — per-city local context, deeper state briefs, brand-specific case-study material): ~**3,986 words** (45%)
 
 Bucket A breakdown by source:
 - FAQ sections on brand + state + city pages using Ken's authorized themes

@@ -80,21 +80,23 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 > "Honestly, we thought the machine was done for." It saves shops from replacement lead times and the capital expense of a replacement machine.
 
 <h2 id="faq">Frequently Asked Questions</h2>
-<div class="faq-item">
-  <h3>What can you fix on a Mori Seiki CNC machine?</h3>
-  <p>Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper.</p>
-</div>
-<div class="faq-item">
-  <h3>How long is a typical Mori Seiki machine repair?</h3>
-  <p>Lead time varies more than spindle work — diagnostic is fast, parts and rebuild time depend on the job. 3–5 weeks depending on spindle generation.</p>
-</div>
-<div class="faq-item">
-  <h3>Anything unusual about Mori Seiki machine repair?</h3>
-  <p>A lot of the older standalone Mori machines are still extremely solid mechanically and worth rebuilding.</p>
-</div>
-<div class="faq-item">
-  <h3>Do you service older Mori Seiki machines?</h3>
-  <p>Yes — older Mori Seiki platforms are routine work. Bring us the machine model and the symptoms; we&#x27;ll scope what&#x27;s repairable versus what&#x27;s better replaced.</p>
+<div class="faq-list">
+<details class="faq-item">
+  <summary>What can you fix on a Mori Seiki CNC machine?</summary>
+  <div class="faq-answer"><p>Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper.</p></div>
+</details>
+<details class="faq-item">
+  <summary>How long is a typical Mori Seiki machine repair?</summary>
+  <div class="faq-answer"><p>Lead time varies more than spindle work — diagnostic is fast, parts and rebuild time depend on the job. 3–5 weeks depending on spindle generation.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Anything unusual about Mori Seiki machine repair?</summary>
+  <div class="faq-answer"><p>A lot of the older standalone Mori machines are still extremely solid mechanically and worth rebuilding.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Do you service older Mori Seiki machines?</summary>
+  <div class="faq-answer"><p>Yes — older Mori Seiki platforms are routine work. Bring us the machine model and the symptoms; we&#x27;ll scope what&#x27;s repairable versus what&#x27;s better replaced.</p></div>
+</details>
 </div>
 
 <script type="application/ld+json">

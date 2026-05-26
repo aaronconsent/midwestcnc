@@ -757,10 +757,10 @@ def brand_faq_section(brand, ki, service_kind):
     items = []
     for q, a in qa_pairs:
         items.append(
-            f'<div class="faq-item">\n'
-            f'  <h3>{html.escape(q)}</h3>\n'
-            f'  <p>{html.escape(a)}</p>\n'
-            f'</div>'
+            f'<details class="faq-item">\n'
+            f'  <summary>{html.escape(q)}</summary>\n'
+            f'  <div class="faq-answer"><p>{html.escape(a)}</p></div>\n'
+            f'</details>'
         )
 
     schema = {
@@ -779,7 +779,9 @@ def brand_faq_section(brand, ki, service_kind):
     )
     return (
         f'<h2 id="faq">Frequently Asked Questions</h2>\n'
+        f'<div class="faq-list">\n'
         + "\n".join(items) + "\n"
+        + '</div>\n'
         + schema_script,
         schema,
     )

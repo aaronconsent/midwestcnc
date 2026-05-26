@@ -78,21 +78,23 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 > "Honestly, we thought the machine was done for." Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.
 
 <h2 id="faq">Frequently Asked Questions</h2>
-<div class="faq-item">
-  <h3>What&#x27;s the typical lead time on a Hurco spindle rebuild?</h3>
-  <p>Usually 2–3 weeks. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.</p>
-</div>
-<div class="faq-item">
-  <h3>What&#x27;s the most common Hurco spindle failure you see?</h3>
-  <p>Older belt-driven machines come in with pulley and drawbar wear. Newer machines are more typical bearing failures.</p>
-</div>
-<div class="faq-item">
-  <h3>What should I know about Hurco spindle rebuilds specifically?</h3>
-  <p>Very common in smaller job shops where one machine may run ten different kinds of work in a week.</p>
-</div>
-<div class="faq-item">
-  <h3>Do you grind Hurco spindles back to factory tolerance?</h3>
-  <p>Yes — precision spindle balancing and grinding to runout is part of every rebuild we do, with photo verification at sign-off.</p>
+<div class="faq-list">
+<details class="faq-item">
+  <summary>What&#x27;s the typical lead time on a Hurco spindle rebuild?</summary>
+  <div class="faq-answer"><p>Usually 2–3 weeks. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.</p></div>
+</details>
+<details class="faq-item">
+  <summary>What&#x27;s the most common Hurco spindle failure you see?</summary>
+  <div class="faq-answer"><p>Older belt-driven machines come in with pulley and drawbar wear. Newer machines are more typical bearing failures.</p></div>
+</details>
+<details class="faq-item">
+  <summary>What should I know about Hurco spindle rebuilds specifically?</summary>
+  <div class="faq-answer"><p>Very common in smaller job shops where one machine may run ten different kinds of work in a week.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Do you grind Hurco spindles back to factory tolerance?</summary>
+  <div class="faq-answer"><p>Yes — precision spindle balancing and grinding to runout is part of every rebuild we do, with photo verification at sign-off.</p></div>
+</details>
 </div>
 
 <script type="application/ld+json">

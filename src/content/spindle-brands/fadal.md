@@ -83,21 +83,23 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 > "Honestly, we thought the machine was done for." It saves shops from replacement lead times and the capital expense of a new spindle.
 
 <h2 id="faq">Frequently Asked Questions</h2>
-<div class="faq-item">
-  <h3>What&#x27;s the typical lead time on a Fadal spindle rebuild?</h3>
-  <p>3–4 weeks depending on aftermarket parts. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.</p>
-</div>
-<div class="faq-item">
-  <h3>What&#x27;s the most common Fadal spindle failure you see?</h3>
-  <p>Classic belt-driven spindle failures, drawbar fatigue, and occasional ATC alignment problems.</p>
-</div>
-<div class="faq-item">
-  <h3>What should I know about Fadal spindle rebuilds specifically?</h3>
-  <p>Still a huge installed base. Plenty of shops keep these alive because repair costs make sense.</p>
-</div>
-<div class="faq-item">
-  <h3>How do you handle Fadal parts sourcing on a rebuild?</h3>
-  <p>A lot of Fadal parts come through aftermarket suppliers and used inventory. We also salvage usable OEM components whenever possible.</p>
+<div class="faq-list">
+<details class="faq-item">
+  <summary>What&#x27;s the typical lead time on a Fadal spindle rebuild?</summary>
+  <div class="faq-answer"><p>3–4 weeks depending on aftermarket parts. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.</p></div>
+</details>
+<details class="faq-item">
+  <summary>What&#x27;s the most common Fadal spindle failure you see?</summary>
+  <div class="faq-answer"><p>Classic belt-driven spindle failures, drawbar fatigue, and occasional ATC alignment problems.</p></div>
+</details>
+<details class="faq-item">
+  <summary>What should I know about Fadal spindle rebuilds specifically?</summary>
+  <div class="faq-answer"><p>Still a huge installed base. Plenty of shops keep these alive because repair costs make sense.</p></div>
+</details>
+<details class="faq-item">
+  <summary>How do you handle Fadal parts sourcing on a rebuild?</summary>
+  <div class="faq-answer"><p>A lot of Fadal parts come through aftermarket suppliers and used inventory. We also salvage usable OEM components whenever possible.</p></div>
+</details>
 </div>
 
 <script type="application/ld+json">

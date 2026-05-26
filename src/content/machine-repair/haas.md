@@ -81,21 +81,23 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 > "Honestly, we thought the machine was done for." Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.
 
 <h2 id="faq">Frequently Asked Questions</h2>
-<div class="faq-item">
-  <h3>What can you fix on a Haas CNC machine?</h3>
-  <p>Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper.</p>
-</div>
-<div class="faq-item">
-  <h3>How long is a typical Haas machine repair?</h3>
-  <p>Lead time varies more than spindle work — diagnostic is fast, parts and rebuild time depend on the job. 2–3 weeks on most Haas spindle rebuilds due to strong domestic parts availability.</p>
-</div>
-<div class="faq-item">
-  <h3>Anything unusual about Haas machine repair?</h3>
-  <p>Very common in Midwest job shops. Older Haas machines are often repairable at reasonable cost compared to replacement.</p>
-</div>
-<div class="faq-item">
-  <h3>Do you service older Haas machines?</h3>
-  <p>Yes — older Haas platforms are routine work. Bring us the machine model and the symptoms; we&#x27;ll scope what&#x27;s repairable versus what&#x27;s better replaced.</p>
+<div class="faq-list">
+<details class="faq-item">
+  <summary>What can you fix on a Haas CNC machine?</summary>
+  <div class="faq-answer"><p>Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper.</p></div>
+</details>
+<details class="faq-item">
+  <summary>How long is a typical Haas machine repair?</summary>
+  <div class="faq-answer"><p>Lead time varies more than spindle work — diagnostic is fast, parts and rebuild time depend on the job. 2–3 weeks on most Haas spindle rebuilds due to strong domestic parts availability.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Anything unusual about Haas machine repair?</summary>
+  <div class="faq-answer"><p>Very common in Midwest job shops. Older Haas machines are often repairable at reasonable cost compared to replacement.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Do you service older Haas machines?</summary>
+  <div class="faq-answer"><p>Yes — older Haas platforms are routine work. Bring us the machine model and the symptoms; we&#x27;ll scope what&#x27;s repairable versus what&#x27;s better replaced.</p></div>
+</details>
 </div>
 
 <script type="application/ld+json">

@@ -73,21 +73,23 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 > "Honestly, we thought the machine was done for." It saves shops from replacement lead times and the capital expense of replacement way covers and the retrofit time.
 
 <h2 id="faq">Frequently Asked Questions</h2>
-<div class="faq-item">
-  <h3>What way-cover styles do you build for Mori Seiki machines?</h3>
-  <p>Three styles — bellows, telescoping steel, and roll-up — selected based on machine design, debris environment, and clearance constraints. We measure from your original or build to drawing.</p>
-</div>
-<div class="faq-item">
-  <h3>How long does a replacement Mori Seiki way cover take to build?</h3>
-  <p>Most way-cover orders ship in 2–4 weeks depending on dimensions and material. Rush options are available — call to discuss.</p>
-</div>
-<div class="faq-item">
-  <h3>Can you match an existing Mori Seiki way cover I have?</h3>
-  <p>Yes. Send us the original (or measurements) and we&#x27;ll build a replacement to spec. We routinely match older inventory across the full Mori Seiki platform range.</p>
-</div>
-<div class="faq-item">
-  <h3>Do you ship Mori Seiki way covers nationally?</h3>
-  <p>Yes. We ship anywhere in the continental US. The build happens at our Waterloo, IA shop; freight is included in most quotes for major metros.</p>
+<div class="faq-list">
+<details class="faq-item">
+  <summary>What way-cover styles do you build for Mori Seiki machines?</summary>
+  <div class="faq-answer"><p>Three styles — bellows, telescoping steel, and roll-up — selected based on machine design, debris environment, and clearance constraints. We measure from your original or build to drawing.</p></div>
+</details>
+<details class="faq-item">
+  <summary>How long does a replacement Mori Seiki way cover take to build?</summary>
+  <div class="faq-answer"><p>Most way-cover orders ship in 2–4 weeks depending on dimensions and material. Rush options are available — call to discuss.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Can you match an existing Mori Seiki way cover I have?</summary>
+  <div class="faq-answer"><p>Yes. Send us the original (or measurements) and we&#x27;ll build a replacement to spec. We routinely match older inventory across the full Mori Seiki platform range.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Do you ship Mori Seiki way covers nationally?</summary>
+  <div class="faq-answer"><p>Yes. We ship anywhere in the continental US. The build happens at our Waterloo, IA shop; freight is included in most quotes for major metros.</p></div>
+</details>
 </div>
 
 <script type="application/ld+json">

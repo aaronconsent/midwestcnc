@@ -79,21 +79,23 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 > "Honestly, we thought the machine was done for." It saves shops from replacement lead times and the capital expense of a replacement machine.
 
 <h2 id="faq">Frequently Asked Questions</h2>
-<div class="faq-item">
-  <h3>What can you fix on a Hitachi Seiki CNC machine?</h3>
-  <p>Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper.</p>
-</div>
-<div class="faq-item">
-  <h3>How long is a typical Hitachi Seiki machine repair?</h3>
-  <p>Lead time varies more than spindle work — diagnostic is fast, parts and rebuild time depend on the job. 5–7 weeks because sourcing can take time.</p>
-</div>
-<div class="faq-item">
-  <h3>Anything unusual about Hitachi Seiki machine repair?</h3>
-  <p>These machines are old enough now that every rebuild is a little different.</p>
-</div>
-<div class="faq-item">
-  <h3>Can you still get parts for older Hitachi Seiki machines?</h3>
-  <p>Combination of used-market sourcing, remanufacturing, and custom-machined replacement parts.</p>
+<div class="faq-list">
+<details class="faq-item">
+  <summary>What can you fix on a Hitachi Seiki CNC machine?</summary>
+  <div class="faq-answer"><p>Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper.</p></div>
+</details>
+<details class="faq-item">
+  <summary>How long is a typical Hitachi Seiki machine repair?</summary>
+  <div class="faq-answer"><p>Lead time varies more than spindle work — diagnostic is fast, parts and rebuild time depend on the job. 5–7 weeks because sourcing can take time.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Anything unusual about Hitachi Seiki machine repair?</summary>
+  <div class="faq-answer"><p>These machines are old enough now that every rebuild is a little different.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Can you still get parts for older Hitachi Seiki machines?</summary>
+  <div class="faq-answer"><p>Combination of used-market sourcing, remanufacturing, and custom-machined replacement parts.</p></div>
+</details>
 </div>
 
 <script type="application/ld+json">

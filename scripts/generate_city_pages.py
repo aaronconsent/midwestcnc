@@ -618,15 +618,17 @@ def build_faq_section(city, state, distance, slug):
     items_html = []
     for q, a in qa_pairs:
         items_html.append(
-            f'<div class="faq-item">\n'
-            f'  <h3>{html.escape(q)}</h3>\n'
-            f'  <p>{html.escape(a)}</p>\n'
-            f'</div>'
+            f'<details class="faq-item">\n'
+            f'  <summary>{html.escape(q)}</summary>\n'
+            f'  <div class="faq-answer"><p>{html.escape(a)}</p></div>\n'
+            f'</details>'
         )
 
     body = (
         f'<h2 id="faq">Frequently Asked Questions</h2>\n'
+        f'<div class="faq-list">\n'
         + "\n".join(items_html) + "\n"
+        + '</div>\n'
     )
 
     schema = {
@@ -684,13 +686,15 @@ def build_north_platte_override(city, state, distance):
          "Standard freight via your chosen carrier — transit runs 3–5 business days depending on routing. Return shipping is included in most spindle rebuild quotes. For larger machine assemblies, we can advise on freight selection during the quote conversation."),
     ]
     items = "\n".join(
-        f'<div class="faq-item">\n'
-        f'  <h3>{html.escape(q)}</h3>\n  <p>{html.escape(a)}</p>\n'
-        f'</div>'
+        f'<details class="faq-item">\n'
+        f'  <summary>{html.escape(q)}</summary>\n'
+        f'  <div class="faq-answer"><p>{html.escape(a)}</p></div>\n'
+        f'</details>'
         for q, a in qa_pairs
     )
     faq_section = (
-        f'<h2 id="faq">Frequently Asked Questions</h2>\n{items}\n'
+        f'<h2 id="faq">Frequently Asked Questions</h2>\n'
+        f'<div class="faq-list">\n{items}\n</div>\n'
     )
     faq_schema = {
         "@context": "https://schema.org",

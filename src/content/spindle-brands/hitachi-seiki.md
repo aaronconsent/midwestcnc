@@ -83,21 +83,23 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 > "Honestly, we thought the machine was done for." It saves shops from replacement lead times and the capital expense of a new spindle.
 
 <h2 id="faq">Frequently Asked Questions</h2>
-<div class="faq-item">
-  <h3>What&#x27;s the typical lead time on a Hitachi Seiki spindle rebuild?</h3>
-  <p>5–7 weeks because sourcing can take time. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.</p>
-</div>
-<div class="faq-item">
-  <h3>What&#x27;s the most common Hitachi Seiki spindle failure you see?</h3>
-  <p>The biggest issue is usually obsolete components and aging bearings.</p>
-</div>
-<div class="faq-item">
-  <h3>What should I know about Hitachi Seiki spindle rebuilds specifically?</h3>
-  <p>These machines are old enough now that every rebuild is a little different.</p>
-</div>
-<div class="faq-item">
-  <h3>How do you handle Hitachi Seiki parts sourcing on a rebuild?</h3>
-  <p>Combination of used-market sourcing, remanufacturing, and custom-machined replacement parts.</p>
+<div class="faq-list">
+<details class="faq-item">
+  <summary>What&#x27;s the typical lead time on a Hitachi Seiki spindle rebuild?</summary>
+  <div class="faq-answer"><p>5–7 weeks because sourcing can take time. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.</p></div>
+</details>
+<details class="faq-item">
+  <summary>What&#x27;s the most common Hitachi Seiki spindle failure you see?</summary>
+  <div class="faq-answer"><p>The biggest issue is usually obsolete components and aging bearings.</p></div>
+</details>
+<details class="faq-item">
+  <summary>What should I know about Hitachi Seiki spindle rebuilds specifically?</summary>
+  <div class="faq-answer"><p>These machines are old enough now that every rebuild is a little different.</p></div>
+</details>
+<details class="faq-item">
+  <summary>How do you handle Hitachi Seiki parts sourcing on a rebuild?</summary>
+  <div class="faq-answer"><p>Combination of used-market sourcing, remanufacturing, and custom-machined replacement parts.</p></div>
+</details>
 </div>
 
 <script type="application/ld+json">

@@ -141,162 +141,297 @@ HOMEPAGE_FAQ = [
 # ---------- Shared chrome ----------
 
 SITE_SHELL_CSS = """
-/* ---- Site-shell additions (tile grids, state grid, form, hero banners) ---- */
+/* =================================================================
+   Site-shell additions: homepage, hubs, quote form, tiles, brand grid
+   ================================================================= */
 
-/* Early success-state toggle — set on <html> in <head> before paint so the
-   form/helpers never flash visible when ?success=1 is in the URL. */
+/* Early success-state toggle — set on <html> in <head> before paint */
 .form-submitted-html .quote-form,
 .form-submitted-html .quote-helpers { display: none; }
 .form-submitted-html .success-message { display: block; }
 
-.section-eyebrow { color: var(--muted); font-size: 0.95rem; font-style: italic; margin: 0 0 0.5rem 0; }
+.section-eyebrow {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 var(--s-3) 0;
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  background: rgba(184, 52, 26, 0.08);
+  border-radius: var(--r-pill);
+}
 
-/* ---- Homepage two-column hero ---- */
+/* =================================================================
+   Homepage hero — two-column with gradient backdrop
+   ================================================================= */
 .home-hero {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  gap: 2.5rem;
+  gap: var(--s-7);
   align-items: center;
-  margin: 1rem 0 3rem 0;
+  margin: var(--s-5) 0 var(--s-8) 0;
+  padding: var(--s-7) 0;
+  position: relative;
+}
+.home-hero::before {
+  content: "";
+  position: absolute;
+  inset: -1rem -2rem;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(184, 52, 26, 0.06), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(184, 52, 26, 0.04), transparent 55%);
+  border-radius: var(--r-4);
 }
 .home-hero-text { min-width: 0; }
-.home-hero-text > h1 { margin-top: 0; }
+.home-hero-text > h1 { margin-top: 0; font-size: clamp(2.2rem, 5vw, 3.3rem); }
+.home-hero-text > p { font-size: 1.08rem; color: var(--muted); }
+.home-hero-text > p:first-of-type { color: var(--fg); }
 .home-hero-image { min-width: 0; }
 .home-hero-image figure { margin: 0; padding: 0; }
 .home-hero-image img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 8px;
+  border-radius: var(--r-3);
   object-fit: cover;
   aspect-ratio: 4 / 3;
+  box-shadow: var(--sh-4);
 }
 @media (max-width: 900px) {
-  .home-hero { grid-template-columns: 1fr; gap: 1.5rem; }
+  .home-hero {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+    padding: var(--s-5) 0;
+    margin: var(--s-4) 0 var(--s-6) 0;
+  }
   .home-hero-image img { max-height: 360px; aspect-ratio: 16 / 10; }
 }
 
+/* =================================================================
+   Tile grid (homepage services, state grid)
+   ================================================================= */
 .tile-grid, .state-grid {
   display: grid;
-  gap: 1.25rem;
-  margin: 1.5rem 0 2rem 0;
+  gap: var(--s-4);
+  margin: var(--s-5) 0 var(--s-6) 0;
 }
-.tile-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.tile-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 .state-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
 
 .tile {
-  display: block;
+  display: flex;
+  flex-direction: column;
   text-decoration: none !important;
   color: var(--fg) !important;
-  background: var(--soft);
-  padding: 1rem;
-  border-radius: 6px;
-  border: 1px solid transparent;
-  transition: transform 0.15s, border-color 0.15s;
+  background: var(--surface);
+  padding: var(--s-4);
+  border-radius: var(--r-3);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-1);
+  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+  position: relative;
+  overflow: hidden;
 }
-.tile:hover { transform: translateY(-2px); border-color: var(--line); }
+.tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-3);
+  background: linear-gradient(135deg, transparent 60%, rgba(184, 52, 26, 0.04));
+  opacity: 0;
+  transition: opacity var(--t-base);
+  pointer-events: none;
+}
+.tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sh-4);
+  border-color: var(--accent);
+}
+.tile:hover::after { opacity: 1; }
 .tile img {
   width: 100%;
-  height: 140px;
+  height: 160px;
   object-fit: cover;
-  border-radius: 4px;
-  margin-bottom: 0.75rem;
+  border-radius: var(--r-2);
+  margin-bottom: var(--s-3);
   display: block;
 }
-.tile h3 { margin: 0.25rem 0 0.5rem 0; font-size: 1.1rem; }
-.tile p { color: var(--muted); font-size: 0.95rem; margin: 0.4rem 0 0.6rem 0; }
-.tile .learn-more { color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+.tile h3 { margin: var(--s-1) 0 var(--s-2) 0; font-size: 1.15rem; }
+.tile p { color: var(--muted); font-size: 0.95rem; margin: var(--s-2) 0 var(--s-3) 0; flex-grow: 1; }
+.tile .learn-more {
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: gap var(--t-fast);
+}
+.tile:hover .learn-more { gap: 0.55rem; }
 
+/* =================================================================
+   Brand grid — hub pages
+   ================================================================= */
 .brand-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0.5rem 1rem;
-  margin: 1rem 0 2rem 0;
+  gap: var(--s-3);
+  margin: var(--s-4) 0 var(--s-6) 0;
   list-style: none;
   padding: 0;
 }
 .brand-grid li { margin: 0; }
 .brand-grid a {
-  display: block;
-  padding: 0.6rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: var(--r-2);
   text-decoration: none !important;
   color: var(--fg) !important;
   font-weight: 600;
-  background: #fff;
+  background: var(--surface);
+  box-shadow: var(--sh-1);
+  transition: transform var(--t-fast), border-color var(--t-fast), color var(--t-fast), box-shadow var(--t-fast);
+  position: relative;
 }
-.brand-grid a:hover { border-color: var(--accent); color: var(--accent) !important; }
+.brand-grid a::after {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+  transform: rotate(45deg);
+  opacity: 0.4;
+  transition: transform var(--t-fast), opacity var(--t-fast);
+}
+.brand-grid a:hover {
+  border-color: var(--accent);
+  color: var(--accent) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--sh-3);
+}
+.brand-grid a:hover::after { opacity: 1; transform: rotate(45deg) translate(2px, -2px); }
 
-.state-section { margin: 2rem 0; padding-top: 1.5rem; border-top: 1px solid var(--line); }
-.state-section h2 { border-top: 0; padding-top: 0; margin-top: 0; }
-.state-cities { color: var(--muted); margin: 0.25rem 0 0.75rem 0; }
+/* =================================================================
+   State sections (hub) + state grid tiles
+   ================================================================= */
+.state-section {
+  margin: var(--s-6) 0;
+  padding: var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+}
+.state-section h2 { margin-top: 0; }
+.state-section h2::before { display: none; }
+.state-cities { color: var(--muted); margin: var(--s-1) 0 var(--s-3) 0; }
 
-/* Quote form */
+/* =================================================================
+   Quote form
+   ================================================================= */
 .quote-form {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: var(--s-4);
   max-width: 560px;
-  margin: 2rem 0;
+  margin: var(--s-6) 0;
+  padding: var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
 }
-.quote-form .field { display: flex; flex-direction: column; gap: 0.35rem; }
-.quote-form label { font-weight: 600; font-size: 0.95rem; }
+.quote-form .field { display: flex; flex-direction: column; gap: 0.4rem; }
+.quote-form label { font-weight: 600; font-size: 0.92rem; color: var(--fg); }
 .quote-form .required::after { content: " *"; color: var(--accent); }
 .quote-form input,
 .quote-form textarea,
 .quote-form select {
   font: inherit;
-  padding: 0.65rem 0.85rem;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  background: #fff;
+  padding: 0.75rem 0.9rem;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-2);
+  background: var(--surface);
   width: 100%;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
 }
+.quote-form input:hover,
+.quote-form textarea:hover,
+.quote-form select:hover { border-color: var(--muted); }
 .quote-form input:focus,
 .quote-form textarea:focus,
 .quote-form select:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 1px;
+  outline: none;
   border-color: var(--accent);
+  box-shadow: var(--sh-focus);
 }
-.quote-form textarea { min-height: 8rem; resize: vertical; }
-.quote-form .radio-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.5rem; }
-.quote-form .radio-group label { font-weight: 400; display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
+.quote-form textarea { min-height: 9rem; resize: vertical; }
+.quote-form .radio-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--s-2); }
+.quote-form .radio-group label {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.55rem 0.8rem;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-2);
+  background: var(--surface);
+  transition: border-color var(--t-fast), background var(--t-fast);
+}
+.quote-form .radio-group label:hover { border-color: var(--muted); background: var(--surface-2); }
+.quote-form .radio-group input[type="radio"] { accent-color: var(--accent); }
 .quote-form button {
   font: inherit;
   background: var(--accent);
   color: #fff;
-  padding: 0.85rem 1.5rem;
+  padding: 0.95rem 1.6rem;
   border: 0;
-  border-radius: 4px;
-  font-weight: 600;
+  border-radius: var(--r-pill);
+  font-weight: 700;
   cursor: pointer;
   align-self: flex-start;
+  box-shadow: var(--sh-2);
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
 }
-.quote-form button:hover { background: var(--accent-dark); }
+.quote-form button:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--sh-3); }
+.quote-form button:active { transform: translateY(0); box-shadow: var(--sh-1); }
 .quote-form .honeypot { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
 
 .success-message {
   display: none;
-  padding: 1.5rem;
-  border-radius: 6px;
-  background: #e8f5e8;
+  padding: var(--s-5);
+  border-radius: var(--r-3);
+  background: var(--success-bg);
+  border: 1px solid rgba(46, 125, 50, 0.25);
   border-left: 4px solid #2e7d32;
-  margin: 2rem 0;
+  color: var(--success-fg);
+  margin: var(--s-6) 0;
+  box-shadow: var(--sh-1);
 }
+.success-message h2 { margin-top: 0; color: var(--success-fg); }
+.success-message h2::before { background: #2e7d32; }
 body.form-submitted .success-message { display: block; }
 body.form-submitted .quote-form { display: none; }
 body.form-submitted .quote-helpers { display: none; }
 
-.faq-item { margin: 1.25rem 0; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
-.faq-item:last-child { border-bottom: 0; }
-.faq-item h3 { font-size: 1.05rem; margin: 0 0 0.5rem 0; }
-.faq-item p { margin: 0; color: var(--fg); }
-
-.alt-contact { margin: 2rem 0; padding: 1.25rem; background: var(--soft); border-radius: 6px; }
-.alt-contact h3 { margin: 0 0 0.5rem 0; }
-.alt-contact p { margin: 0.25rem 0; }
+.alt-contact {
+  margin: var(--s-6) 0;
+  padding: var(--s-5);
+  background: var(--surface-2);
+  border-radius: var(--r-3);
+  border: 1px solid var(--line);
+}
+.alt-contact h3 { margin: 0 0 var(--s-2) 0; }
+.alt-contact p { margin: var(--s-1) 0; }
 """
 
 
@@ -356,13 +491,18 @@ def breadcrumbs_html(items):
     return f'<nav class="breadcrumbs" aria-label="breadcrumb">\n  <ol>\n    {"".join(lis)}\n  </ol>\n</nav>'
 
 
-def wrap_page(*, title, description, canonical, schema_blocks, crumbs_html_str, body_html):
+def wrap_page(*, title, description, canonical, schema_blocks, crumbs_html_str, body_html, layout="default"):
+    """layout='default' (max-width 72ch), 'wide' (max-width-wide, used by
+    homepage + hubs that have tiles, brand grids, and other landscape content)."""
+    article_class = ' class="wide"' if layout == "wide" else ""
+    body_class = f' class="layout-{layout}"' if layout != "default" else ""
     return f"""{head_html(title, description, canonical, schema_blocks)}
-<body>
+<body{body_class}>
+<a class="skip-link" href="#main">Skip to content</a>
 {SITE_HEADER}
 {crumbs_html_str}
-<main>
-<article>
+<main id="main">
+<article{article_class}>
 {body_html}
 </article>
 </main>
@@ -470,14 +610,16 @@ def hub_faq_html(qa_pairs):
     items = []
     for q, a in qa_pairs:
         items.append(
-            f'<div class="faq-item">\n'
-            f'  <h3>{html.escape(q)}</h3>\n'
-            f'  <p>{html.escape(a)}</p>\n'
-            f'</div>'
+            f'<details class="faq-item">\n'
+            f'  <summary>{html.escape(q)}</summary>\n'
+            f'  <div class="faq-answer"><p>{html.escape(a)}</p></div>\n'
+            f'</details>'
         )
     return (
         '<h2 id="faq">Frequently Asked Questions</h2>\n'
+        '<div class="faq-list">\n'
         + "\n".join(items) + "\n"
+        + '</div>\n'
     )
 
 
@@ -586,12 +728,11 @@ def homepage_body():
     how_we_work = (
         '<h2 id="how-we-work">How We Work</h2>\n'
         '<p>Same three steps every brand page describes:</p>\n'
-        '<p><strong>Step 1 — Contact Us.</strong> Call 319-610-4341 or use '
-        'the quote form. Tell us the machine, the symptoms, and how urgent it is.</p>\n'
-        '<p><strong>Step 2 — Grab Model #.</strong> We\'ll fire back price, '
-        'lead time, and shipping ETA after reviewing your details.</p>\n'
-        '<p><strong>Step 3 — Approve &amp; Rebuild.</strong> We complete the '
-        'work, verify it back to spec, and return the machine ready to run.</p>\n'
+        '<ol class="process-steps">\n'
+        '  <li><strong>Contact Us.</strong> Call 319-610-4341 or use the quote form. Tell us the machine, the symptoms, and how urgent it is.</li>\n'
+        '  <li><strong>Grab Model #.</strong> We\'ll fire back price, lead time, and shipping ETA after reviewing your details.</li>\n'
+        '  <li><strong>Approve &amp; Rebuild.</strong> We complete the work, verify it back to spec, and return the machine ready to run.</li>\n'
+        '</ol>\n'
     )
 
     # Trust block
@@ -601,14 +742,16 @@ def homepage_body():
     faq_items = []
     for i, qa in enumerate(HOMEPAGE_FAQ):
         faq_items.append(
-            f'<div class="faq-item">\n'
-            f'  <h3 id="faq-{i+1}">{html.escape(qa["q"])}</h3>\n'
-            f'  <p>{html.escape(qa["a"])}</p>\n'
-            f'</div>'
+            f'<details class="faq-item" id="faq-{i+1}">\n'
+            f'  <summary>{html.escape(qa["q"])}</summary>\n'
+            f'  <div class="faq-answer"><p>{html.escape(qa["a"])}</p></div>\n'
+            f'</details>'
         )
     faq_section = (
         '<h2 id="faq">Common Questions</h2>\n'
+        '<div class="faq-list">\n'
         + "\n".join(faq_items) + "\n"
+        + '</div>\n'
     )
 
     # Closing CTA (scrubbed — Durable said "24/7" and "transparent" and "fast quotes")
@@ -842,11 +985,11 @@ def repairs_hub_body(brands):
 
     body.append('<h2 id="how-service-works">How Service Works</h2>')
     body.append(
-        "<p>Three steps: contact us with the machine and the symptoms, get "
-        "back a price and lead-time after we review your details, approve "
-        "the work, and we rebuild, verify it back to spec, and return the "
-        "machine ready to run. Most jobs run 3–6 weeks depending on brand, "
-        "failure mode, and parts availability.</p>"
+        '<ol class="process-steps">\n'
+        '  <li><strong>Contact us.</strong> Tell us the machine and the symptoms — call 319-610-4341 or use the quote form. We respond same business day on most inquiries.</li>\n'
+        '  <li><strong>Review &amp; quote.</strong> After looking at the model, the symptoms, and any photos you can send, we send back a price and a realistic lead time.</li>\n'
+        '  <li><strong>Approve &amp; rebuild.</strong> We complete the work, verify it back to spec, and return the machine ready to run. Most jobs run 3–6 weeks depending on brand, failure mode, and parts availability.</li>\n'
+        '</ol>'
     )
 
     body.append('<h2 id="industries-we-serve">Industries We Serve</h2>')
@@ -917,12 +1060,11 @@ def spindle_hub_body(brands):
 
     body.append('<h2 id="how-service-works">How Service Works</h2>')
     body.append(
-        "<p>Same three-step process as our other lines: contact us with the "
-        "machine and symptoms, get back price and lead-time after review, "
-        "approve the work and we rebuild the spindle, verify balance and "
-        "runout, and ship it back ready to install. Bearing-pack replacement, "
-        "shaft repair, taper grinding, and dynamic balancing are routine "
-        "across the 18 OEM platforms we cover.</p>"
+        '<ol class="process-steps">\n'
+        '  <li><strong>Contact us with the spindle details.</strong> Brand, model, symptoms, and any noise/runout/heat data you have. Photos help if the housing is accessible.</li>\n'
+        '  <li><strong>Quote &amp; lead time.</strong> We review and respond with a flat-or-range price plus a realistic lead time for the rebuild.</li>\n'
+        '  <li><strong>Rebuild, verify, ship.</strong> Bearing-pack replacement, shaft repair, taper grinding, and dynamic balancing — routine across all 18 OEM platforms. We verify balance and runout, then ship back ready to install.</li>\n'
+        '</ol>'
     )
 
     body.append('<h2 id="industries-we-serve">Industries We Serve</h2>')
@@ -996,11 +1138,11 @@ def way_covers_hub_body(brands):
 
     body.append('<h2 id="how-service-works">How Service Works</h2>')
     body.append(
-        "<p>Three steps: send us the original cover or the way-system "
-        "measurements, we quote a build with style (bellows, telescoping "
-        "steel, or roll-up), material, and lead time. On approval we "
-        "fabricate, then ship anywhere in the continental US. Most orders "
-        "are out the door in 2-4 weeks; rush options are available.</p>"
+        '<ol class="process-steps">\n'
+        '  <li><strong>Send measurements or the original cover.</strong> We work from either — overall dimensions, way spacing, mounting details, or the failed cover itself.</li>\n'
+        '  <li><strong>Quote the build.</strong> We confirm style (bellows, telescoping steel, or roll-up), material, and lead time.</li>\n'
+        '  <li><strong>Fabricate &amp; ship.</strong> On approval we build to spec and ship anywhere in the continental US. Most orders are out the door in 2–4 weeks; rush options are available.</li>\n'
+        '</ol>'
     )
 
     body.append('<h2 id="industries-we-serve">Industries We Serve</h2>')
@@ -1232,7 +1374,7 @@ def not_found_body():
 
 # ---------- Page-write helpers ----------
 
-def write_page(rel_url_dir, *, title, description, canonical_path, schemas, crumbs, body_html):
+def write_page(rel_url_dir, *, title, description, canonical_path, schemas, crumbs, body_html, layout="default"):
     """rel_url_dir: path like '/about/' or '/' for the URL. Writes to
     public/<rel_url_dir>/index.html (or public/index.html for the homepage)."""
     out_path = os.path.join(PUBLIC, rel_url_dir.strip("/"), "index.html") \
@@ -1249,6 +1391,7 @@ def write_page(rel_url_dir, *, title, description, canonical_path, schemas, crum
         schema_blocks=schema_blocks,
         crumbs_html_str=crumbs_html_str,
         body_html=body_html,
+        layout=layout,
     )
     with open(out_path, "w") as f:
         f.write(page_html)
@@ -1276,6 +1419,7 @@ def gen_homepage(brands):
         schemas=schemas,
         crumbs=None,
         body_html=homepage_body(),
+        layout="wide",
     )
 
 
@@ -1358,6 +1502,7 @@ def gen_repairs_hub(brands):
         schemas=schemas,
         crumbs=[("Home", "/"), ("Repairs", None)],
         body_html=body_html,
+        layout="wide",
     )
 
 
@@ -1388,6 +1533,7 @@ def gen_spindle_hub(brands):
         schemas=schemas,
         crumbs=[("Home", "/"), ("Spindle Grinding", None)],
         body_html=body_html,
+        layout="wide",
     )
 
 
@@ -1420,6 +1566,7 @@ def gen_way_covers_hub(brands):
         schemas=schemas,
         crumbs=[("Home", "/"), ("Way Covers", None)],
         body_html=body_html,
+        layout="wide",
     )
 
 
@@ -1445,6 +1592,7 @@ def gen_service_area_hub():
         schemas=schemas,
         crumbs=[("Home", "/"), ("Service Area", None)],
         body_html=body_html,
+        layout="wide",
     )
 
 

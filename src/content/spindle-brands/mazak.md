@@ -81,21 +81,23 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 > "Honestly, we thought the machine was done for." It saves shops from replacement lead times and the capital expense of a new spindle.
 
 <h2 id="faq">Frequently Asked Questions</h2>
-<div class="faq-item">
-  <h3>What&#x27;s the typical lead time on a Mazak spindle rebuild?</h3>
-  <p>3–5 weeks is realistic depending on cartridge damage and OEM bearing availability. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.</p>
-</div>
-<div class="faq-item">
-  <h3>What&#x27;s the most common Mazak spindle failure you see?</h3>
-  <p>Front bearing wear and coolant intrusion are common, especially on high-coolant-production work. We also see encoder contamination and spindle chiller issues.</p>
-</div>
-<div class="faq-item">
-  <h3>What should I know about Mazak spindle rebuilds specifically?</h3>
-  <p>MAZATROL diagnostics are brand-specific. Integrex machines require careful spindle alignment after rebuild due to multitasking tolerances.</p>
-</div>
-<div class="faq-item">
-  <h3>Do you grind Mazak spindles back to factory tolerance?</h3>
-  <p>Yes — precision spindle balancing and grinding to runout is part of every rebuild we do, with photo verification at sign-off.</p>
+<div class="faq-list">
+<details class="faq-item">
+  <summary>What&#x27;s the typical lead time on a Mazak spindle rebuild?</summary>
+  <div class="faq-answer"><p>3–5 weeks is realistic depending on cartridge damage and OEM bearing availability. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.</p></div>
+</details>
+<details class="faq-item">
+  <summary>What&#x27;s the most common Mazak spindle failure you see?</summary>
+  <div class="faq-answer"><p>Front bearing wear and coolant intrusion are common, especially on high-coolant-production work. We also see encoder contamination and spindle chiller issues.</p></div>
+</details>
+<details class="faq-item">
+  <summary>What should I know about Mazak spindle rebuilds specifically?</summary>
+  <div class="faq-answer"><p>MAZATROL diagnostics are brand-specific. Integrex machines require careful spindle alignment after rebuild due to multitasking tolerances.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Do you grind Mazak spindles back to factory tolerance?</summary>
+  <div class="faq-answer"><p>Yes — precision spindle balancing and grinding to runout is part of every rebuild we do, with photo verification at sign-off.</p></div>
+</details>
 </div>
 
 <script type="application/ld+json">

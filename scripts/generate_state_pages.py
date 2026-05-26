@@ -490,10 +490,12 @@ def state_logistics_section(state, research):
     return (
         f'<h2 id="state-logistics">{html.escape(name)} Logistics from Waterloo</h2>\n'
         f"<p>{framing}</p>\n"
+        f'<div class="table-scroll">\n'
         f'<table class="logistics-table">\n'
         f'<thead><tr><th>City</th><th>Miles from Waterloo</th><th>Drive time</th></tr></thead>\n'
         f'<tbody>{"".join(rows)}</tbody>\n'
         f'</table>\n'
+        f'</div>\n'
     )
 
 
@@ -508,10 +510,10 @@ def state_faq_section(state):
     items = []
     for q, a in qa:
         items.append(
-            f'<div class="faq-item">\n'
-            f'  <h3>{html.escape(q)}</h3>\n'
-            f'  <p>{html.escape(a)}</p>\n'
-            f'</div>'
+            f'<details class="faq-item">\n'
+            f'  <summary>{html.escape(q)}</summary>\n'
+            f'  <div class="faq-answer"><p>{html.escape(a)}</p></div>\n'
+            f'</details>'
         )
 
     schema = {
@@ -529,7 +531,9 @@ def state_faq_section(state):
 
     return (
         f'<h2 id="faq">Frequently Asked Questions — {html.escape(name)}</h2>\n'
-        + "\n".join(items) + "\n",
+        f'<div class="faq-list">\n'
+        + "\n".join(items) + "\n"
+        + '</div>\n',
         schema,
     )
 

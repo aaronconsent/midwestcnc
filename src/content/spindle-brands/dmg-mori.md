@@ -80,21 +80,23 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 > "Honestly, we thought the machine was done for." It saves shops from replacement lead times and the capital expense of a new spindle.
 
 <h2 id="faq">Frequently Asked Questions</h2>
-<div class="faq-item">
-  <h3>What&#x27;s the typical lead time on a DMG Mori spindle rebuild?</h3>
-  <p>Usually 4–6 weeks. Encoder availability and OEM parts can stretch timelines. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.</p>
-</div>
-<div class="faq-item">
-  <h3>What&#x27;s the most common DMG Mori spindle failure you see?</h3>
-  <p>Most of the expensive failures are in the motor spindle assemblies — bearings, encoder issues, cooling jacket contamination, and occasional crash-related taper damage.</p>
-</div>
-<div class="faq-item">
-  <h3>What should I know about DMG Mori spindle rebuilds specifically?</h3>
-  <p>These machines are tightly integrated. After a rebuild, we usually verify spindle cooling performance and monitor thermal growth before signoff.</p>
-</div>
-<div class="faq-item">
-  <h3>Do you grind DMG Mori spindles back to factory tolerance?</h3>
-  <p>Yes — precision spindle balancing and grinding to runout is part of every rebuild we do, with photo verification at sign-off.</p>
+<div class="faq-list">
+<details class="faq-item">
+  <summary>What&#x27;s the typical lead time on a DMG Mori spindle rebuild?</summary>
+  <div class="faq-answer"><p>Usually 4–6 weeks. Encoder availability and OEM parts can stretch timelines. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.</p></div>
+</details>
+<details class="faq-item">
+  <summary>What&#x27;s the most common DMG Mori spindle failure you see?</summary>
+  <div class="faq-answer"><p>Most of the expensive failures are in the motor spindle assemblies — bearings, encoder issues, cooling jacket contamination, and occasional crash-related taper damage.</p></div>
+</details>
+<details class="faq-item">
+  <summary>What should I know about DMG Mori spindle rebuilds specifically?</summary>
+  <div class="faq-answer"><p>These machines are tightly integrated. After a rebuild, we usually verify spindle cooling performance and monitor thermal growth before signoff.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Do you grind DMG Mori spindles back to factory tolerance?</summary>
+  <div class="faq-answer"><p>Yes — precision spindle balancing and grinding to runout is part of every rebuild we do, with photo verification at sign-off.</p></div>
+</details>
 </div>
 
 <script type="application/ld+json">

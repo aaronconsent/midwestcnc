@@ -71,7 +71,7 @@ def html_files():
 
 
 def extract_main(html):
-    m = re.search(r'<main>(.*?)</main>', html, re.S)
+    m = re.search(r'<main\b[^>]*>(.*?)</main>', html, re.S)
     return m.group(1) if m else ""
 
 

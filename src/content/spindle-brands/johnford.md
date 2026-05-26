@@ -79,21 +79,23 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 > "Honestly, we thought the machine was done for." It saves shops from replacement lead times and the capital expense of a new spindle.
 
 <h2 id="faq">Frequently Asked Questions</h2>
-<div class="faq-item">
-  <h3>What&#x27;s the typical lead time on a Johnford spindle rebuild?</h3>
-  <p>3–4 weeks. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.</p>
-</div>
-<div class="faq-item">
-  <h3>What&#x27;s the most common Johnford spindle failure you see?</h3>
-  <p>Bearing-pack wear and taper damage from crash events.</p>
-</div>
-<div class="faq-item">
-  <h3>What should I know about Johnford spindle rebuilds specifically?</h3>
-  <p>Heavy Taiwanese-built machines with decent rigidity for the price.</p>
-</div>
-<div class="faq-item">
-  <h3>Do you grind Johnford spindles back to factory tolerance?</h3>
-  <p>Yes — precision spindle balancing and grinding to runout is part of every rebuild we do, with photo verification at sign-off.</p>
+<div class="faq-list">
+<details class="faq-item">
+  <summary>What&#x27;s the typical lead time on a Johnford spindle rebuild?</summary>
+  <div class="faq-answer"><p>3–4 weeks. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.</p></div>
+</details>
+<details class="faq-item">
+  <summary>What&#x27;s the most common Johnford spindle failure you see?</summary>
+  <div class="faq-answer"><p>Bearing-pack wear and taper damage from crash events.</p></div>
+</details>
+<details class="faq-item">
+  <summary>What should I know about Johnford spindle rebuilds specifically?</summary>
+  <div class="faq-answer"><p>Heavy Taiwanese-built machines with decent rigidity for the price.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Do you grind Johnford spindles back to factory tolerance?</summary>
+  <div class="faq-answer"><p>Yes — precision spindle balancing and grinding to runout is part of every rebuild we do, with photo verification at sign-off.</p></div>
+</details>
 </div>
 
 <script type="application/ld+json">

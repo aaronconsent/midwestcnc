@@ -79,21 +79,23 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 > "Honestly, we thought the machine was done for." It saves shops from replacement lead times and the capital expense of a replacement machine.
 
 <h2 id="faq">Frequently Asked Questions</h2>
-<div class="faq-item">
-  <h3>What can you fix on a Fadal CNC machine?</h3>
-  <p>Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper.</p>
-</div>
-<div class="faq-item">
-  <h3>How long is a typical Fadal machine repair?</h3>
-  <p>Lead time varies more than spindle work — diagnostic is fast, parts and rebuild time depend on the job. 3–4 weeks depending on aftermarket parts.</p>
-</div>
-<div class="faq-item">
-  <h3>Anything unusual about Fadal machine repair?</h3>
-  <p>Still a huge installed base. Plenty of shops keep these alive because repair costs make sense.</p>
-</div>
-<div class="faq-item">
-  <h3>Can you still get parts for older Fadal machines?</h3>
-  <p>A lot of Fadal parts come through aftermarket suppliers and used inventory. We also salvage usable OEM components whenever possible.</p>
+<div class="faq-list">
+<details class="faq-item">
+  <summary>What can you fix on a Fadal CNC machine?</summary>
+  <div class="faq-answer"><p>Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper.</p></div>
+</details>
+<details class="faq-item">
+  <summary>How long is a typical Fadal machine repair?</summary>
+  <div class="faq-answer"><p>Lead time varies more than spindle work — diagnostic is fast, parts and rebuild time depend on the job. 3–4 weeks depending on aftermarket parts.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Anything unusual about Fadal machine repair?</summary>
+  <div class="faq-answer"><p>Still a huge installed base. Plenty of shops keep these alive because repair costs make sense.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Can you still get parts for older Fadal machines?</summary>
+  <div class="faq-answer"><p>A lot of Fadal parts come through aftermarket suppliers and used inventory. We also salvage usable OEM components whenever possible.</p></div>
+</details>
 </div>
 
 <script type="application/ld+json">
