@@ -195,12 +195,12 @@ SITE_SHELL_CSS = """
      out to the right viewport edge. */
   grid-template-columns:
     [edge-left] max(var(--s-5), calc((100vw - var(--max-wide)) / 2))
-    [text-start] minmax(0, 480px)
-    [gap] clamp(2rem, 4vw, 4rem)
+    [text-start] minmax(0, 460px)
+    [gap] clamp(2rem, 3.5vw, 3.5rem)
     [image-start] 1fr [edge-right];
   align-items: stretch;
-  min-height: 440px;
-  max-height: 520px;
+  min-height: 400px;
+  max-height: 480px;
   margin: 0;
   padding: 0;
 }
@@ -214,74 +214,101 @@ SITE_SHELL_CSS = """
   justify-content: center;
 }
 .home-hero-text > .eyebrow:first-child {
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   padding: 0.18rem 0.55rem;
   letter-spacing: 0.1em;
   margin: 0 0 var(--s-3) 0;
 }
 .home-hero-text > h1 {
-  font-size: clamp(1.6rem, 2.6vw, 2.15rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.5rem, 2.4vw, 1.95rem);
+  line-height: 1.15;
+  letter-spacing: -0.018em;
   font-weight: 800;
   margin: 0 0 var(--s-3) 0;
 }
 .home-hero-text > p {
-  font-size: 0.95rem;
+  font-size: 0.94rem;
   line-height: 1.5;
   margin: var(--s-2) 0;
   color: var(--fg);
-  max-width: 48ch;
+  max-width: 46ch;
 }
+/* Second paragraph ("We serve shops in...") rendered as a tight
+   trust line, smaller and muted, below the CTA row. */
 .home-hero-text > p + p {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   margin-top: var(--s-1);
+  order: 5;          /* push below CTA row */
 }
 .home-hero-text > .cta-row {
   margin-top: var(--s-4);
   gap: var(--s-3);
+  order: 4;
 }
 .home-hero-text > .cta-row .cta-button {
   font-size: 0.95rem;
-  padding: 0.75rem 1.4rem;
+  padding: 0.7rem 1.35rem;
 }
 .home-hero-text > .cta-row .cta-phone {
   font-size: 0.92rem;
-  padding: 0.7rem 1rem;
+  padding: 0.65rem 1rem;
 }
 
+/* =================================================================
+   Image column — warm tinted backdrop so the white-on-white floating
+   effect is eliminated. Image fills the full column edge-to-edge with
+   a soft fade on the left seam that blends into the text column.
+   ================================================================= */
 .home-hero-image {
   grid-column: image-start / edge-right;
   min-width: 0;
-  display: block;
+  position: relative;
   overflow: hidden;
-  /* Only the left edge gets rounded — right edge runs into viewport */
-  border-radius: var(--r-4) 0 0 var(--r-4);
+  /* Warm gradient panel — acts as the "right half of the page" so the
+     image's own white background blends into a colored surface rather
+     than the page bg. */
+  background:
+    linear-gradient(135deg, var(--surface-3) 0%, var(--surface-2) 100%);
+}
+/* Soft fade strip on the LEFT edge — blends from page bg into the
+   tinted panel so there's no hard vertical seam. */
+.home-hero-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  background: linear-gradient(90deg, var(--bg) 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
 }
 .home-hero-image figure {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
+  position: relative;
+  z-index: 1;
 }
 .home-hero-image img {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
-  object-position: 30% center;
+  object-position: 35% center;
 }
 
 @media (max-width: 1140px) {
   .home-hero {
     grid-template-columns:
       [edge-left] var(--s-5)
-      [text-start] minmax(0, 460px)
-      [gap] var(--s-6)
+      [text-start] minmax(0, 440px)
+      [gap] var(--s-5)
       [image-start] 1fr [edge-right];
-    min-height: 400px;
-    max-height: 480px;
+    min-height: 360px;
+    max-height: 440px;
   }
 }
 @media (max-width: 900px) {
