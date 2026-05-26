@@ -309,16 +309,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -891,26 +929,21 @@ article > table {
 }
 
 /* =================================================================
-   Homepage hero — two-column with gradient backdrop
+   Homepage hero — two-column with gradient backdrop band
    ================================================================= */
+.page-section-hero {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(184, 52, 26, 0.07), transparent 52%),
+    radial-gradient(circle at 82% 78%, rgba(184, 52, 26, 0.05), transparent 56%),
+    var(--bg);
+}
 .home-hero {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: var(--s-7);
   align-items: center;
-  margin: var(--s-5) 0 var(--s-8) 0;
-  padding: var(--s-7) 0;
-  position: relative;
-}
-.home-hero::before {
-  content: "";
-  position: absolute;
-  inset: -1rem -2rem;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(184, 52, 26, 0.06), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 52, 26, 0.04), transparent 55%);
-  border-radius: var(--r-4);
+  margin: 0;
+  padding: var(--s-5) 0 var(--s-7) 0;
 }
 .home-hero-text { min-width: 0; }
 .home-hero-text > h1 { margin-top: 0; font-size: clamp(2.2rem, 5vw, 3.3rem); }
@@ -931,8 +964,7 @@ article > table {
   .home-hero {
     grid-template-columns: 1fr;
     gap: var(--s-5);
-    padding: var(--s-5) 0;
-    margin: var(--s-4) 0 var(--s-6) 0;
+    padding: var(--s-3) 0 var(--s-5) 0;
   }
   .home-hero-image img { max-height: 360px; aspect-ratio: 16 / 10; }
 }
@@ -1339,16 +1371,25 @@ body.form-submitted .quote-helpers { display: none; }
 </nav>
 <main id="main">
 <article>
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
 <p class="eyebrow">Wisconsin Service Coverage</p>
 
 <h1>Wisconsin CNC Repair &amp; Way Covers</h1>
 <p>We work shops across Wisconsin from our Waterloo, Iowa location. Two to four hours from Waterloo to major Wisconsin cities — within practical field-service reach. The Fox Valley paper-machinery base and the Milwaukee heavy-industry corridor are routine territory for our diagnostic visits.</p>
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
 <figure class="hero-figure"><img src="/assets/images/general/wisconsin.png" alt="Wisconsin manufacturing landscape" loading="lazy"></figure>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="manufacturing">Manufacturing in Wisconsin</h2>
 <p>Wisconsin's manufacturing base spans heavy machinery, defense vehicles, paper and printing equipment, and medical devices — the categories of shops that come through our CNC repair, spindle work, and replacement way-cover lines.</p>
 <p>Notable Wisconsin manufacturers include Rockwell Automation (Milwaukee), Harley-Davidson (Milwaukee), A.O. Smith (Milwaukee), Oshkosh Corporation (defense vehicles, fire trucks), and the Fox Valley paper-machinery cluster (Appleton, Neenah, Oshkosh). We don't claim these names as customers — we service the shops doing CNC work for them, the supply-chain machining and in-house tooling that keeps those operations producing.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="regional-breakdown">Wisconsin by Region</h2>
 <h3>Milwaukee metro + industrial corridor</h3>
 <p>Milwaukee anchors the state&#x27;s heavy-machinery and automation industry — Harley-Davidson, Rockwell Automation, A.O. Smith — plus the Racine cluster south (Case IH, Modine, S.C. Johnson). High concentration of older machine inventory needing rebuild work.</p>
@@ -1356,11 +1397,17 @@ body.form-submitted .quote-helpers { display: none; }
 <p>Madison&#x27;s biotech and medical-device cluster (Epic, Promega, Exact Sciences) sits alongside Sub-Zero/Wolf appliance manufacturing and Trek Bicycle. Higher-precision work skews toward Brother Speedio and Makino platforms.</p>
 <h3>Fox Valley + Green Bay paper machinery</h3>
 <p>Green Bay&#x27;s paper-products concentration (Georgia-Pacific, P&amp;G) and Oshkosh Corporation&#x27;s defense vehicle manufacturing drive the Fox Valley industrial mix. Process-equipment and large-vehicle work.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="cities-we-serve">Cities We Serve in Wisconsin</h2>
 <p>City-specific pages cover the local context for each — industry mix, named major employers as regional context, and logistics expectations from our Waterloo, IA shop:</p>
 <ul class="city-list"><li><a href="/service-area/green-bay-wisconsin/"><strong>Green Bay</strong></a> — paper manufacturing and adjacent work, anchored by Georgia-Pacific (327 mi from Waterloo).</li><li><a href="/service-area/kenosha-wisconsin/"><strong>Kenosha</strong></a> — manufacturing and adjacent work, anchored by Snap-on Tools (298 mi from Waterloo).</li><li><a href="/service-area/madison-wisconsin/"><strong>Madison</strong></a> — government and adjacent work, anchored by University of Wisconsin–Madison (222 mi from Waterloo).</li><li><a href="/service-area/milwaukee-wisconsin/"><strong>Milwaukee</strong></a> — brewing and adjacent work, anchored by Harley-Davidson (271 mi from Waterloo).</li><li><a href="/service-area/racine-wisconsin/"><strong>Racine</strong></a> — heavy equipment manufacturing and adjacent work, anchored by Case IH (286 mi from Waterloo).</li></ul>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="industries">Industries We Support in Wisconsin</h2>
 <ul>
   <li><strong>Heavy machinery</strong> — Large-envelope work — Mazak, Toyoda, and Giddings &amp; Lewis platforms see most of the volume.</li>
@@ -1368,7 +1415,10 @@ body.form-submitted .quote-helpers { display: none; }
   <li><strong>Paper and printing equipment</strong> — Fox Valley paper-machinery base — general CNC service across brands.</li>
   <li><strong>Medical devices</strong> — Precision-machining work where small runout becomes visible in finish — Makino and Brother Speedio platforms see common.</li>
 </ul>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="state-logistics">Wisconsin Logistics from Waterloo</h2>
 <p>Wisconsin sits within practical field-service drive of Waterloo. Most major cities are 3–6 hours one-way — drivable for substantive jobs and bundled diagnostic runs.</p>
 <div class="table-scroll">
@@ -1377,9 +1427,16 @@ body.form-submitted .quote-helpers { display: none; }
 <tbody><tr><td>Madison</td><td>222 mi</td><td>~3.7 hrs</td></tr><tr><td>Milwaukee</td><td>271 mi</td><td>~4.5 hrs</td></tr><tr><td>Racine</td><td>286 mi</td><td>~4.8 hrs</td></tr><tr><td>Kenosha</td><td>298 mi</td><td>~5.0 hrs</td></tr><tr><td>Green Bay</td><td>327 mi</td><td>~5.5 hrs</td></tr></tbody>
 </table>
 </div>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="how-we-work-in-wisconsin">How We Work in Wisconsin</h2>
 <p>Wisconsin sits within practical field-service reach of our Waterloo, Iowa shop. We split Wisconsin work between on-site visits where the diagnostic warrants it and bench rebuilds back at the shop, with way-cover builds shipped directly to the floor.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="faq">Frequently Asked Questions — Wisconsin</h2>
 <div class="faq-list">
 <details class="faq-item">
@@ -1403,12 +1460,17 @@ body.form-submitted .quote-helpers { display: none; }
   <div class="faq-answer"><p>Yes. The Milwaukee-Racine industrial corridor has substantial older CNC inventory in active use — we build replacement bellows, telescoping-steel, and roll-up way covers to spec, shipping anywhere.</p></div>
 </details>
 </div>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
 <p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
 <blockquote><p>&quot;Honestly, we thought the machine was done for.&quot; Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.</p></blockquote>
 
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
+  </div>
+</section>
 </article>
 </main>
 <footer class="site-footer">

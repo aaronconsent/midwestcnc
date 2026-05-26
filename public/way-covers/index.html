@@ -309,16 +309,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -891,26 +929,21 @@ article > table {
 }
 
 /* =================================================================
-   Homepage hero — two-column with gradient backdrop
+   Homepage hero — two-column with gradient backdrop band
    ================================================================= */
+.page-section-hero {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(184, 52, 26, 0.07), transparent 52%),
+    radial-gradient(circle at 82% 78%, rgba(184, 52, 26, 0.05), transparent 56%),
+    var(--bg);
+}
 .home-hero {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: var(--s-7);
   align-items: center;
-  margin: var(--s-5) 0 var(--s-8) 0;
-  padding: var(--s-7) 0;
-  position: relative;
-}
-.home-hero::before {
-  content: "";
-  position: absolute;
-  inset: -1rem -2rem;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(184, 52, 26, 0.06), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 52, 26, 0.04), transparent 55%);
-  border-radius: var(--r-4);
+  margin: 0;
+  padding: var(--s-5) 0 var(--s-7) 0;
 }
 .home-hero-text { min-width: 0; }
 .home-hero-text > h1 { margin-top: 0; font-size: clamp(2.2rem, 5vw, 3.3rem); }
@@ -931,8 +964,7 @@ article > table {
   .home-hero {
     grid-template-columns: 1fr;
     gap: var(--s-5);
-    padding: var(--s-5) 0;
-    margin: var(--s-4) 0 var(--s-6) 0;
+    padding: var(--s-3) 0 var(--s-5) 0;
   }
   .home-hero-image img { max-height: 360px; aspect-ratio: 16 / 10; }
 }
@@ -1419,29 +1451,54 @@ body.form-submitted .quote-helpers { display: none; }
   </ol>
 </nav>
 <main id="main">
-<article class="wide">
+<article>
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner wide">
 <p class="eyebrow">CNC Way Covers</p>
 <h1>Replacement CNC Way Covers — Built to Spec</h1>
 <p>We manufacture replacement way covers in bellows, telescoping steel, and roll-up styles to fit the machine in front of you. Most orders ship in two to four weeks depending on dimensions and material. Send us the original or the machine specs and we'll match or build to drawing.</p>
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
 <figure class="hero-figure"><img src="/assets/images/general/image-of-way-covers.png" alt="Replacement CNC way covers manufactured by Midwest CNC Services" loading="lazy"></figure>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner wide">
 <h2 id="when-you-need-this">When You Need Replacement Way Covers</h2>
 <p>Way covers get replaced for a few reasons: chip and coolant intrusion has worn the existing cover beyond its useful life, the shop is upgrading machine guards for a particular operation, the OEM no longer sells replacement covers for an older machine, or a crash damaged the cover and the machine is down waiting for it. Most jobs start with the original cover or measurements of the way system; we build to that spec.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner wide">
 <h2 id="brands-we-build-for">Brands We Build For</h2>
 <p>Brand-specific way-cover pages include the model coverage and photos of typical builds:</p>
 <ul class="brand-grid"><li><a href="/way-covers/amera-seiki-cnc-way-covers/">Amera-Seiki</a></li><li><a href="/way-covers/brother-cnc-way-covers/">Brother</a></li><li><a href="/way-covers/dmg-mori-cnc-way-covers/">DMG Mori</a></li><li><a href="/way-covers/doosan-cnc-way-covers/">Doosan</a></li><li><a href="/way-covers/fadal-cnc-way-covers/">Fadal</a></li><li><a href="/way-covers/fanuc-cnc-way-covers/">Fanuc</a></li><li><a href="/way-covers/giddings-lewis-cnc-way-covers/">Giddings &amp; Lewis</a></li><li><a href="/way-covers/haas-cnc-way-covers/">Haas</a></li><li><a href="/way-covers/hitachi-seiki-cnc-way-covers/">Hitachi Seiki</a></li><li><a href="/way-covers/hurco-cnc-way-covers/">Hurco</a></li><li><a href="/way-covers/johnford-cnc-way-covers/">Johnford</a></li><li><a href="/way-covers/makino-cnc-way-covers/">Makino</a></li><li><a href="/way-covers/mazak-cnc-way-covers/">Mazak</a></li><li><a href="/way-covers/monarch-cnc-way-covers/">Monarch</a></li><li><a href="/way-covers/mori-seiki-cnc-way-covers/">Mori Seiki</a></li><li><a href="/way-covers/niigata-cnc-way-covers/">Niigata</a></li><li><a href="/way-covers/okuma-cnc-way-covers/">Okuma</a></li><li><a href="/way-covers/toyoda-cnc-way-covers/">Toyoda</a></li></ul>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner wide">
 <h2 id="how-service-works">How Service Works</h2>
 <ol class="process-steps">
   <li><strong>Send measurements or the original cover.</strong> We work from either — overall dimensions, way spacing, mounting details, or the failed cover itself.</li>
   <li><strong>Quote the build.</strong> We confirm style (bellows, telescoping steel, or roll-up), material, and lead time.</li>
   <li><strong>Fabricate &amp; ship.</strong> On approval we build to spec and ship anywhere in the continental US. Most orders are out the door in 2–4 weeks; rush options are available.</li>
 </ol>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner wide">
 <h2 id="industries-we-serve">Industries We Serve</h2>
 <p>Heavy-equipment manufacturing, aerospace, ag-equipment supply chain, mold/die, and the broader job-shop base. Older machine inventory (Fadal, Hitachi Seiki, Monarch) is a strong driver — OEM cover replacement is often discontinued, and we build drop-in replacements that match the original.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner wide">
 <h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
 <p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
 <blockquote><p>&quot;Honestly, we thought the machine was done for.&quot; Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.</p></blockquote>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner wide">
 <h2 id="faq">Frequently Asked Questions</h2>
 <div class="faq-list">
 <details class="faq-item">
@@ -1459,7 +1516,8 @@ body.form-submitted .quote-helpers { display: none; }
 </div>
 
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
-
+  </div>
+</section>
 </article>
 </main>
 <footer class="site-footer">

@@ -309,16 +309,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -891,26 +929,21 @@ article > table {
 }
 
 /* =================================================================
-   Homepage hero — two-column with gradient backdrop
+   Homepage hero — two-column with gradient backdrop band
    ================================================================= */
+.page-section-hero {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(184, 52, 26, 0.07), transparent 52%),
+    radial-gradient(circle at 82% 78%, rgba(184, 52, 26, 0.05), transparent 56%),
+    var(--bg);
+}
 .home-hero {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: var(--s-7);
   align-items: center;
-  margin: var(--s-5) 0 var(--s-8) 0;
-  padding: var(--s-7) 0;
-  position: relative;
-}
-.home-hero::before {
-  content: "";
-  position: absolute;
-  inset: -1rem -2rem;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(184, 52, 26, 0.06), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 52, 26, 0.04), transparent 55%);
-  border-radius: var(--r-4);
+  margin: 0;
+  padding: var(--s-5) 0 var(--s-7) 0;
 }
 .home-hero-text { min-width: 0; }
 .home-hero-text > h1 { margin-top: 0; font-size: clamp(2.2rem, 5vw, 3.3rem); }
@@ -931,8 +964,7 @@ article > table {
   .home-hero {
     grid-template-columns: 1fr;
     gap: var(--s-5);
-    padding: var(--s-5) 0;
-    margin: var(--s-4) 0 var(--s-6) 0;
+    padding: var(--s-3) 0 var(--s-5) 0;
   }
   .home-hero-image img { max-height: 360px; aspect-ratio: 16 / 10; }
 }
@@ -1331,16 +1363,25 @@ body.form-submitted .quote-helpers { display: none; }
 </nav>
 <main id="main">
 <article>
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
 <p class="eyebrow">Nebraska Service Coverage</p>
 
 <h1>CNC Service for Nebraska Manufacturers</h1>
 <p>We work shops across Nebraska from our Waterloo, Iowa location. Four to six hours from Waterloo to Lincoln and Omaha — drivable for substantial jobs; routine work runs ship-in to our shop. Nebraska's manufacturing footprint is smaller than Illinois or Wisconsin, but the precision-machining demand from ag, rail, and irrigation customers is real.</p>
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
 <figure class="hero-figure"><img src="/assets/images/general/nebraska.png" alt="Nebraska manufacturing landscape" loading="lazy"></figure>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="manufacturing">Manufacturing in Nebraska</h2>
 <p>Nebraska's manufacturing base spans agricultural equipment, food processing, railroad equipment, and irrigation systems — the categories of shops that come through our CNC repair, spindle work, and replacement way-cover lines.</p>
 <p>Notable Nebraska manufacturers include Kawasaki Motors USA (Lincoln), ConAgra (Lincoln), Lincoln Industries, Union Pacific (Omaha), and Kiewit (Omaha). We don't claim these names as customers — we service the shops doing CNC work for them, the supply-chain machining and in-house tooling that keeps those operations producing.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="regional-breakdown">Nebraska by Region</h2>
 <h3>Omaha + Lincoln metro</h3>
 <p>Omaha (Berkshire Hathaway, Union Pacific HQ, Kiewit) and Lincoln (Kawasaki Motors Manufacturing — ATVs, UTVs, personal watercraft, rail cars) form the state&#x27;s industrial spine. Kawasaki&#x27;s 2,400+ Lincoln workforce is the densest single CNC-machining concentration.</p>
@@ -1348,15 +1389,24 @@ body.form-submitted .quote-helpers { display: none; }
 <p>Hornady manufactures ammunition in Grand Island; Baldwin Filters, Eaton, and West Pharmaceutical maintain operations in Kearney. Ag-equipment supply chains run heavily through this corridor.</p>
 <h3>Western Nebraska — North Platte</h3>
 <p>North Platte hosts Union Pacific&#x27;s Bailey Yard (the world&#x27;s largest rail yard by area) and the new Sustainable Beef meatpacking plant. CNC service to this region runs ship-in via freight from Waterloo; field service is by-arrangement for major jobs.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="cities-we-serve">Cities We Serve in Nebraska</h2>
 <p>City-specific pages cover the local context for each — industry mix, named major employers as regional context, and logistics expectations from our Waterloo, IA shop:</p>
 <ul class="city-list"><li><a href="/service-area/grand-island-nebraska/"><strong>Grand Island</strong></a> — sugar beet processing and adjacent work, anchored by Hornady (478 mi from Waterloo).</li><li><a href="/service-area/kearney-nebraska/"><strong>Kearney</strong></a> — telecommunications and adjacent work, anchored by Good Samaritan Hospital (511 mi from Waterloo).</li><li><a href="/service-area/lincoln-nebraska/"><strong>Lincoln</strong></a> — government and adjacent work, anchored by State of Nebraska (366 mi from Waterloo).</li><li><a href="/service-area/north-platte-nebraska/"><strong>North Platte</strong></a> — railroad transportation and adjacent work, anchored by Union Pacific Railroad (644 mi from Waterloo).</li><li><a href="/service-area/omaha-nebraska/"><strong>Omaha</strong></a> — transportation and adjacent work, anchored by Berkshire Hathaway (318 mi from Waterloo).</li></ul>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="smaller-markets">Smaller Markets We Serve in Nebraska</h2>
 <p>These cities don't have dedicated pages because their manufacturing footprint doesn't justify standalone CNC service detail — we serve them through ship-in and regional coverage:</p>
 <ul><li><strong>Bellevue</strong> (pop. 64,176) sits adjacent to Offutt Air Force Base and is largely a residential-and-military market without a civilian manufacturing footprint. Spindle and machine work for the broader Omaha metro covers Bellevue customers via ship-in to our Waterloo facility (318 mi).</li></ul>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="industries">Industries We Support in Nebraska</h2>
 <ul>
   <li><strong>Agricultural equipment</strong> — Doosan and Mazak rebuilds and way covers run routine across this cluster.</li>
@@ -1364,7 +1414,10 @@ body.form-submitted .quote-helpers { display: none; }
   <li><strong>Railroad equipment</strong> — Heavy CNC work for rail-equipment shops in the Omaha corridor.</li>
   <li><strong>Irrigation systems</strong> — Ag-adjacent CNC machining work.</li>
 </ul>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="state-logistics">Nebraska Logistics from Waterloo</h2>
 <p>Nebraska is reachable by truck for major jobs but most routine work runs ship-in via standard freight. Distances below are by road; air freight to/from Texas is also available where the economics justify.</p>
 <div class="table-scroll">
@@ -1373,9 +1426,16 @@ body.form-submitted .quote-helpers { display: none; }
 <tbody><tr><td>Omaha</td><td>318 mi</td><td>~5.3 hrs</td></tr><tr><td>Bellevue</td><td>318 mi</td><td>~5.3 hrs</td></tr><tr><td>Lincoln</td><td>366 mi</td><td>~6.1 hrs</td></tr><tr><td>Grand Island</td><td>478 mi</td><td>~8.0 hrs</td></tr><tr><td>Kearney</td><td>511 mi</td><td>~8.5 hrs</td></tr><tr><td>North Platte</td><td>644 mi</td><td>~10.7 hrs</td></tr></tbody>
 </table>
 </div>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="how-we-work-in-nebraska">How We Work in Nebraska</h2>
 <p>Most Nebraska work runs ship-in from our Waterloo, Iowa shop — spindle rebuilds come to the bench, way covers ship anywhere in the continental US. Field service for major jobs is available by arrangement; talk to us about scope and travel before scheduling.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="faq">Frequently Asked Questions — Nebraska</h2>
 <div class="faq-list">
 <details class="faq-item">
@@ -1395,12 +1455,17 @@ body.form-submitted .quote-helpers { display: none; }
   <div class="faq-answer"><p>We don&#x27;t claim Union Pacific or Bailey Yard as customers. UP operates its own internal service shops. We do work with independent ag-implement and fabrication shops in the broader western Nebraska region.</p></div>
 </details>
 </div>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
 <p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
 <blockquote><p>&quot;Honestly, we thought the machine was done for.&quot; Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.</p></blockquote>
 
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
+  </div>
+</section>
 </article>
 </main>
 <footer class="site-footer">

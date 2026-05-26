@@ -309,16 +309,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -891,26 +929,21 @@ article > table {
 }
 
 /* =================================================================
-   Homepage hero — two-column with gradient backdrop
+   Homepage hero — two-column with gradient backdrop band
    ================================================================= */
+.page-section-hero {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(184, 52, 26, 0.07), transparent 52%),
+    radial-gradient(circle at 82% 78%, rgba(184, 52, 26, 0.05), transparent 56%),
+    var(--bg);
+}
 .home-hero {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: var(--s-7);
   align-items: center;
-  margin: var(--s-5) 0 var(--s-8) 0;
-  padding: var(--s-7) 0;
-  position: relative;
-}
-.home-hero::before {
-  content: "";
-  position: absolute;
-  inset: -1rem -2rem;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(184, 52, 26, 0.06), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 52, 26, 0.04), transparent 55%);
-  border-radius: var(--r-4);
+  margin: 0;
+  padding: var(--s-5) 0 var(--s-7) 0;
 }
 .home-hero-text { min-width: 0; }
 .home-hero-text > h1 { margin-top: 0; font-size: clamp(2.2rem, 5vw, 3.3rem); }
@@ -931,8 +964,7 @@ article > table {
   .home-hero {
     grid-template-columns: 1fr;
     gap: var(--s-5);
-    padding: var(--s-5) 0;
-    margin: var(--s-4) 0 var(--s-6) 0;
+    padding: var(--s-3) 0 var(--s-5) 0;
   }
   .home-hero-image img { max-height: 360px; aspect-ratio: 16 / 10; }
 }
@@ -1339,16 +1371,25 @@ body.form-submitted .quote-helpers { display: none; }
 </nav>
 <main id="main">
 <article>
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
 <p class="eyebrow">Minnesota Service Coverage</p>
 
 <h1>CNC Repair Across Minnesota</h1>
 <p>We work shops across Minnesota from our Waterloo, Iowa location. Three to five hours from Waterloo to the Twin Cities — within practical field-service reach. The Twin Cities metro is one of the country's densest medical-device manufacturing hubs; Rochester's Mayo ecosystem drives high-precision work for the shops in its supply chain.</p>
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
 <figure class="hero-figure"><img src="/assets/images/general/minnesota.png" alt="Minnesota manufacturing landscape" loading="lazy"></figure>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="manufacturing">Manufacturing in Minnesota</h2>
 <p>Minnesota's manufacturing base spans medical devices, mining equipment, food processing, and precision machining — the categories of shops that come through our CNC repair, spindle work, and replacement way-cover lines.</p>
 <p>Notable Minnesota manufacturers include Medtronic (Twin Cities), Boston Scientific (Twin Cities), 3M (Twin Cities), the Mayo Clinic ecosystem in Rochester, Toro Company (lawn and turf equipment), and Iron Range mining-equipment manufacturers. We don't claim these names as customers — we service the shops doing CNC work for them, the supply-chain machining and in-house tooling that keeps those operations producing.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="regional-breakdown">Minnesota by Region</h2>
 <h3>Twin Cities medical-device cluster</h3>
 <p>Minneapolis-St. Paul is one of the country&#x27;s densest medical-device manufacturing hubs — Medtronic (Minneapolis-founded), Boston Scientific, 3M, and the broader supply chain. Compact-precision platforms (Brother Speedio, Makino) see most of the volume.</p>
@@ -1356,11 +1397,17 @@ body.form-submitted .quote-helpers { display: none; }
 <p>Rochester&#x27;s Mayo Clinic ecosystem drives precision-machining demand from medical-device suppliers. McNeilus Truck adds heavy-vehicle manufacturing; IBM&#x27;s legacy Rochester Technology Campus retains some manufacturing presence.</p>
 <h3>Duluth + Iron Range</h3>
 <p>Duluth&#x27;s port handles iron ore, coal, grain, and wind-turbine parts. Cirrus Aircraft anchors aviation manufacturing. The Iron Range supports mining-equipment manufacturers needing heavy-platform CNC service.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="cities-we-serve">Cities We Serve in Minnesota</h2>
 <p>City-specific pages cover the local context for each — industry mix, named major employers as regional context, and logistics expectations from our Waterloo, IA shop:</p>
 <ul class="city-list"><li><a href="/service-area/bloomington-minnesota/"><strong>Bloomington</strong></a> — retail/shopping centers and adjacent work, anchored by Toro (234 mi from Waterloo).</li><li><a href="/service-area/duluth-minnesota/"><strong>Duluth</strong></a> — port shipping and adjacent work, anchored by Essentia Health (350 mi from Waterloo).</li><li><a href="/service-area/minneapolis-minnesota/"><strong>Minneapolis</strong></a> — flour milling and adjacent work, anchored by General Mills (240 mi from Waterloo).</li><li><a href="/service-area/rochester-minnesota/"><strong>Rochester</strong></a> — healthcare (Mayo Clinic) and adjacent work, anchored by Mayo Clinic (130 mi from Waterloo).</li><li><a href="/service-area/st-paul-minnesota/"><strong>St. Paul</strong></a> — chemical and cleaning products and adjacent work, anchored by 3M Company (233 mi from Waterloo).</li></ul>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="industries">Industries We Support in Minnesota</h2>
 <ul>
   <li><strong>Medical devices</strong> — Precision-machining work where small runout becomes visible in finish — Makino and Brother Speedio platforms see common.</li>
@@ -1368,7 +1415,10 @@ body.form-submitted .quote-helpers { display: none; }
   <li><strong>Food processing</strong> — Equipment manufacturing for food and packaging lines — general CNC service work.</li>
   <li><strong>Precision machining</strong> — Brand-specific expertise matters most here — failure-mode notes on each brand page reflect that.</li>
 </ul>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="state-logistics">Minnesota Logistics from Waterloo</h2>
 <p>Minnesota sits within practical field-service drive of Waterloo. Most major cities are 3–6 hours one-way — drivable for substantive jobs and bundled diagnostic runs.</p>
 <div class="table-scroll">
@@ -1377,9 +1427,16 @@ body.form-submitted .quote-helpers { display: none; }
 <tbody><tr><td>Rochester</td><td>130 mi</td><td>~2.2 hrs</td></tr><tr><td>St. Paul</td><td>233 mi</td><td>~3.9 hrs</td></tr><tr><td>Bloomington</td><td>234 mi</td><td>~3.9 hrs</td></tr><tr><td>Minneapolis</td><td>240 mi</td><td>~4.0 hrs</td></tr><tr><td>Duluth</td><td>350 mi</td><td>~5.8 hrs</td></tr></tbody>
 </table>
 </div>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="how-we-work-in-minnesota">How We Work in Minnesota</h2>
 <p>Minnesota sits within practical field-service reach of our Waterloo, Iowa shop. We split Minnesota work between on-site visits where the diagnostic warrants it and bench rebuilds back at the shop, with way-cover builds shipped directly to the floor.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="faq">Frequently Asked Questions — Minnesota</h2>
 <div class="faq-list">
 <details class="faq-item">
@@ -1403,12 +1460,17 @@ body.form-submitted .quote-helpers { display: none; }
   <div class="faq-answer"><p>Twin Cities medical-device shops run Brother Speedio and Makino heavily. McNeilus Truck (Rochester) drives heavy-vehicle work via Mazak and Toyoda. The Iron Range supports Mazak heavy-platform demand.</p></div>
 </details>
 </div>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
 <p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
 <blockquote><p>&quot;Honestly, we thought the machine was done for.&quot; Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.</p></blockquote>
 
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
+  </div>
+</section>
 </article>
 </main>
 <footer class="site-footer">

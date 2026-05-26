@@ -165,26 +165,21 @@ SITE_SHELL_CSS = """
 }
 
 /* =================================================================
-   Homepage hero — two-column with gradient backdrop
+   Homepage hero — two-column with gradient backdrop band
    ================================================================= */
+.page-section-hero {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(184, 52, 26, 0.07), transparent 52%),
+    radial-gradient(circle at 82% 78%, rgba(184, 52, 26, 0.05), transparent 56%),
+    var(--bg);
+}
 .home-hero {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: var(--s-7);
   align-items: center;
-  margin: var(--s-5) 0 var(--s-8) 0;
-  padding: var(--s-7) 0;
-  position: relative;
-}
-.home-hero::before {
-  content: "";
-  position: absolute;
-  inset: -1rem -2rem;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(184, 52, 26, 0.06), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 52, 26, 0.04), transparent 55%);
-  border-radius: var(--r-4);
+  margin: 0;
+  padding: var(--s-5) 0 var(--s-7) 0;
 }
 .home-hero-text { min-width: 0; }
 .home-hero-text > h1 { margin-top: 0; font-size: clamp(2.2rem, 5vw, 3.3rem); }
@@ -205,8 +200,7 @@ SITE_SHELL_CSS = """
   .home-hero {
     grid-template-columns: 1fr;
     gap: var(--s-5);
-    padding: var(--s-5) 0;
-    margin: var(--s-4) 0 var(--s-6) 0;
+    padding: var(--s-3) 0 var(--s-5) 0;
   }
   .home-hero-image img { max-height: 360px; aspect-ratio: 16 / 10; }
 }
@@ -492,18 +486,20 @@ def breadcrumbs_html(items):
 
 
 def wrap_page(*, title, description, canonical, schema_blocks, crumbs_html_str, body_html, layout="default"):
-    """layout='default' (max-width 72ch), 'wide' (max-width-wide, used by
-    homepage + hubs that have tiles, brand grids, and other landscape content)."""
-    article_class = ' class="wide"' if layout == "wide" else ""
+    """layout='default' (--max readable column), 'wide' (--max-wide for
+    homepage + hubs with tiles, brand grids, and other landscape content).
+    Body is split into alternating-color full-bleed sections at <h2>
+    boundaries."""
     body_class = f' class="layout-{layout}"' if layout != "default" else ""
+    banded = m2h.wrap_into_sections(body_html, layout=layout)
     return f"""{head_html(title, description, canonical, schema_blocks)}
 <body{body_class}>
 <a class="skip-link" href="#main">Skip to content</a>
 {SITE_HEADER}
 {crumbs_html_str}
 <main id="main">
-<article{article_class}>
-{body_html}
+<article>
+{banded}
 </article>
 </main>
 {SITE_FOOTER}

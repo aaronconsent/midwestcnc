@@ -309,16 +309,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -891,26 +929,21 @@ article > table {
 }
 
 /* =================================================================
-   Homepage hero — two-column with gradient backdrop
+   Homepage hero — two-column with gradient backdrop band
    ================================================================= */
+.page-section-hero {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(184, 52, 26, 0.07), transparent 52%),
+    radial-gradient(circle at 82% 78%, rgba(184, 52, 26, 0.05), transparent 56%),
+    var(--bg);
+}
 .home-hero {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: var(--s-7);
   align-items: center;
-  margin: var(--s-5) 0 var(--s-8) 0;
-  padding: var(--s-7) 0;
-  position: relative;
-}
-.home-hero::before {
-  content: "";
-  position: absolute;
-  inset: -1rem -2rem;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(184, 52, 26, 0.06), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 52, 26, 0.04), transparent 55%);
-  border-radius: var(--r-4);
+  margin: 0;
+  padding: var(--s-5) 0 var(--s-7) 0;
 }
 .home-hero-text { min-width: 0; }
 .home-hero-text > h1 { margin-top: 0; font-size: clamp(2.2rem, 5vw, 3.3rem); }
@@ -931,8 +964,7 @@ article > table {
   .home-hero {
     grid-template-columns: 1fr;
     gap: var(--s-5);
-    padding: var(--s-5) 0;
-    margin: var(--s-4) 0 var(--s-6) 0;
+    padding: var(--s-3) 0 var(--s-5) 0;
   }
   .home-hero-image img { max-height: 360px; aspect-ratio: 16 / 10; }
 }
@@ -1271,6 +1303,8 @@ body.form-submitted .quote-helpers { display: none; }
 </nav>
 <main id="main">
 <article>
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
 <h1>Privacy Policy</h1>
 <p><em>Last updated: May 26, 2026</em></p>
 
@@ -1278,7 +1312,10 @@ body.form-submitted .quote-helpers { display: none; }
 through this site, and uses it only to respond to your inquiry. We don't
 run ads, we don't track you, and we don't share your information with
 anyone beyond what's needed to deliver the service you're asking about.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="what-we-collect">What we collect</h2>
 <p>The Get a Quote form on <a href="/get-a-quote/">/get-a-quote/</a>
 collects the following information when you submit it:</p>
@@ -1301,13 +1338,19 @@ the font; Google does not set a tracking cookie via the font request.
 Our hosting provider (Cloudflare Pages) keeps standard web-server access
 logs (IP, browser, request path, timestamp) as part of infrastructure
 operation; we don't analyze those for marketing.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="how-we-use-it">How we use it</h2>
 <p>Information you submit through the quote form is used for one purpose:
 to respond to your quote request and follow up about the work you're
 inquiring about. We don't add you to a marketing list, send unrequested
 email, or share your contact information with third parties.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="who-we-share-it-with">Who we share it with</h2>
 <p>Quote form submissions are processed through Web3Forms
 (<a href="https://web3forms.com" rel="noopener nofollow">web3forms.com</a>),
@@ -1316,18 +1359,25 @@ to our email. Web3Forms is the only third party that touches your form
 data. Their privacy policy applies to their handling of submissions; you
 can review it on their site.</p>
 <p>We don't sell, rent, or trade your information.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="your-rights">Your rights</h2>
 <p>If you submitted a quote request and want a copy of the data we have
 about you, or want it deleted from our records, call us at
 <a href="tel:+13196104341">319-610-4341</a>. We'll handle the request
 the same business day.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="contact">How to reach us</h2>
 <p>Midwest CNC Services<br>
 Waterloo, Iowa<br>
 <a href="tel:+13196104341">319-610-4341</a></p>
-
+  </div>
+</section>
 </article>
 </main>
 <footer class="site-footer">

@@ -308,16 +308,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -919,6 +957,7 @@ article > table {
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Midwest CNC Services home">
     <img src="/assets/images/logos/midwest-cnc-logo.png" alt="Midwest CNC Services">
@@ -1000,28 +1039,54 @@ article > table {
     <li><a href="https://midwestcncservices.com/">Home</a></li><li><a href="https://midwestcncservices.com/repairs/">Repairs</a></li><li><a href="https://midwestcncservices.com/repairs/trumpf-laser-service/">Trumpf Laser &amp; Punch Service</a></li>
   </ol>
 </nav>
-<main>
+<main id="main">
 <article>
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
 <h1>Trumpf Laser &amp; Punch Service</h1>
 <p>Trumpf systems tend to come in with optics contamination, resonator issues on older CO2 machines, and cooling-related laser faults. We service laser source and optics work on TruLaser and older CO2 systems, plus drive and tooling work on TruPunch machines — most jobs run 2–6 weeks.</p>
 <div class="cta-row"><a class="cta-button" href="#quote">Get a Quote</a> · <a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
 <figure class="hero-figure"><img src="/assets/images/services/repairs-trumpf-cnc-machine-repair-image.png" alt="Trumpf CNC machining center being serviced at Midwest CNC Services" loading="lazy"></figure>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="trumpf-service-we-provide">Trumpf Service We Provide</h2>
 <p>Most of our Trumpf work falls into laser source service, resonator work on older CO2 systems, optics contamination cleanup and alignment, and punch press drive issues on TruPunch machines. We come in on the calls where cut quality has fallen off or the system is faulting on cooling or power.</p>
 <div class="cta-row"><a class="cta-button" href="#quote">Get a Quote</a></div>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="how-we-approach-trumpf-work">How We Approach Trumpf Work</h2>
 <p>Trumpf support and parts are very OEM-centric compared to standard CNC equipment, so planning downtime matters.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="a-recent-trumpf-job">A Recent Trumpf Job</h2>
 <p>A recent example of the kind of work that comes through here: tracked an intermittent cut-quality issue back to contamination in the optics path that only showed up under longer runs.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="lead-time-process">Lead Time &amp; Process</h2>
 <p>2-6 weeks depending on OEM parts. Our three-step workflow keeps it transparent:</p>
 <p><strong>Step 1 — Contact Us.</strong> Call 319-610-4341 or use the quote form below. <a href="#quote">Get a Quote</a></p>
 <p><strong>Step 2 — Grab Model #.</strong> We'll fire back price, lead time, and shipping ETA after reviewing your details. <a href="#quote">Get a Quote</a></p>
 <p><strong>Step 3 — Approve &amp; Rebuild.</strong> We complete the work, verify alignment and cut quality, and return the machine ready to run.</p>
 <div class="quote-form-placeholder">Quote form rendered here at build time.</div>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
 <p>Experienced field technicians, laser alignment capability, and experience navigating Trumpf's OEM parts network on planned-downtime jobs.</p>
 <blockquote><p>"Honestly, we thought the machine was done for." It saves shops from replacement lead times and the capital expense of new laser equipment.</p></blockquote>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="related-trumpf-services">Related Trumpf Services</h2>
 <ul>
 <li><a href="/repairs/amada-press-brake-service/">Amada press brake &amp; punch service</a>
@@ -1032,8 +1097,14 @@ article > table {
 </li>
 </ul>
 <p>We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas from our Waterloo, Iowa shop.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="recent-from-the-blog">Recent from the Blog</h2>
 <div class="quote-form-placeholder">Blog teaser block rendered here at build time.</div>
+  </div>
+</section>
 </article>
 </main>
 <footer class="site-footer">

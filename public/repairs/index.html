@@ -309,16 +309,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -891,26 +929,21 @@ article > table {
 }
 
 /* =================================================================
-   Homepage hero — two-column with gradient backdrop
+   Homepage hero — two-column with gradient backdrop band
    ================================================================= */
+.page-section-hero {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(184, 52, 26, 0.07), transparent 52%),
+    radial-gradient(circle at 82% 78%, rgba(184, 52, 26, 0.05), transparent 56%),
+    var(--bg);
+}
 .home-hero {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: var(--s-7);
   align-items: center;
-  margin: var(--s-5) 0 var(--s-8) 0;
-  padding: var(--s-7) 0;
-  position: relative;
-}
-.home-hero::before {
-  content: "";
-  position: absolute;
-  inset: -1rem -2rem;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(184, 52, 26, 0.06), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 52, 26, 0.04), transparent 55%);
-  border-radius: var(--r-4);
+  margin: 0;
+  padding: var(--s-5) 0 var(--s-7) 0;
 }
 .home-hero-text { min-width: 0; }
 .home-hero-text > h1 { margin-top: 0; font-size: clamp(2.2rem, 5vw, 3.3rem); }
@@ -931,8 +964,7 @@ article > table {
   .home-hero {
     grid-template-columns: 1fr;
     gap: var(--s-5);
-    padding: var(--s-5) 0;
-    margin: var(--s-4) 0 var(--s-6) 0;
+    padding: var(--s-3) 0 var(--s-5) 0;
   }
   .home-hero-image img { max-height: 360px; aspect-ratio: 16 / 10; }
 }
@@ -1431,29 +1463,54 @@ body.form-submitted .quote-helpers { display: none; }
   </ol>
 </nav>
 <main id="main">
-<article class="wide">
+<article>
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner wide">
 <p class="eyebrow">CNC Machine Repair</p>
 <h1>CNC Machine Repair Across the Midwest</h1>
 <p>When a CNC machine goes down, the call we hear most is the same: get production back online. We service spindles, controls, ATC systems, drives, and alignment across every major OEM platform — plus Amada press brakes and Trumpf laser-cutting systems. Field troubleshooting where it can save a teardown; full rebuilds on the bench when that's what the job calls for.</p>
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
 <figure class="hero-figure"><img src="/assets/images/general/image-of-cnc-machine.png" alt="CNC machining center under service" loading="lazy"></figure>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner wide">
 <h2 id="when-you-need-this">When You Need Machine Repair</h2>
 <p>The patterns that bring CNC machines to our shop fall into a few buckets: spindle issues (bearing-pack failure, runout, taper damage), control problems (alarms that don't reset, communication faults, encoder issues), ATC faults (drawbar wear, tool-change timing), drive system wear, and way alignment that's drifted out of spec after a crash or years of production. Most calls come in after the shop has tried the obvious and is now trying to decide whether to rebuild or replace. We diagnose what's actually broken before we quote — sometimes what looks like a spindle problem is something cheaper.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner wide">
 <h2 id="brands-we-service">Brands We Service</h2>
 <p>Every brand we repair has its own page with model coverage, lead-time notes, and what we typically see come in:</p>
 <ul class="brand-grid"><li><a href="/repairs/amada-press-brake-service/">Amada</a></li><li><a href="/repairs/amera-seiki-cnc-machine-repair/">Amera-Seiki</a></li><li><a href="/repairs/brother-cnc-machine-repair/">Brother</a></li><li><a href="/repairs/dmg-mori-cnc-machine-repair/">DMG Mori</a></li><li><a href="/repairs/doosan-cnc-machine-repair/">Doosan</a></li><li><a href="/repairs/fadal-cnc-machine-repair/">Fadal</a></li><li><a href="/repairs/fanuc-cnc-machine-repair/">Fanuc</a></li><li><a href="/repairs/giddings-lewis-cnc-machine-repair/">Giddings &amp; Lewis</a></li><li><a href="/repairs/haas-cnc-machine-repair/">Haas</a></li><li><a href="/repairs/hitachi-seiki-cnc-machine-repair/">Hitachi Seiki</a></li><li><a href="/repairs/hurco-cnc-machine-repair/">Hurco</a></li><li><a href="/repairs/johnford-cnc-machine-repair/">Johnford</a></li><li><a href="/repairs/makino-cnc-machine-repair/">Makino</a></li><li><a href="/repairs/mazak-cnc-machine-repair/">Mazak</a></li><li><a href="/repairs/monarch-cnc-machine-repair/">Monarch</a></li><li><a href="/repairs/mori-seiki-cnc-machine-repair/">Mori Seiki</a></li><li><a href="/repairs/niigata-cnc-machine-repair/">Niigata</a></li><li><a href="/repairs/okuma-cnc-machine-repair/">Okuma</a></li><li><a href="/repairs/toyoda-cnc-machine-repair/">Toyoda</a></li><li><a href="/repairs/trumpf-laser-service/">Trumpf</a></li></ul>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner wide">
 <h2 id="how-service-works">How Service Works</h2>
 <ol class="process-steps">
   <li><strong>Contact us.</strong> Tell us the machine and the symptoms — call 319-610-4341 or use the quote form. We respond same business day on most inquiries.</li>
   <li><strong>Review &amp; quote.</strong> After looking at the model, the symptoms, and any photos you can send, we send back a price and a realistic lead time.</li>
   <li><strong>Approve &amp; rebuild.</strong> We complete the work, verify it back to spec, and return the machine ready to run. Most jobs run 3–6 weeks depending on brand, failure mode, and parts availability.</li>
 </ol>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner wide">
 <h2 id="industries-we-serve">Industries We Serve</h2>
 <p>Aerospace and defense, agricultural equipment, heavy machinery, medical devices, automotive supply chain, oil-and-gas equipment, food processing, and the general job-shop base across our seven-state service area. Brand specialization tends to follow industry — Makino in aerospace and mold/die, Mazak across ag and heavy, Brother Speedio in medical-device precision.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner wide">
 <h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
 <p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
 <blockquote><p>&quot;Honestly, we thought the machine was done for.&quot; Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.</p></blockquote>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner wide">
 <h2 id="faq">Frequently Asked Questions</h2>
 <div class="faq-list">
 <details class="faq-item">
@@ -1471,7 +1528,8 @@ body.form-submitted .quote-helpers { display: none; }
 </div>
 
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
-
+  </div>
+</section>
 </article>
 </main>
 <footer class="site-footer">

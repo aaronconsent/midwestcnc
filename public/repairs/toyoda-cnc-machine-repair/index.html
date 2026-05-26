@@ -308,16 +308,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -919,6 +957,7 @@ article > table {
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Midwest CNC Services home">
     <img src="/assets/images/logos/midwest-cnc-logo.png" alt="Midwest CNC Services">
@@ -1000,13 +1039,19 @@ article > table {
     <li><a href="https://midwestcncservices.com/">Home</a></li><li><a href="https://midwestcncservices.com/repairs/">Repairs</a></li><li><a href="https://midwestcncservices.com/repairs/toyoda-cnc-machine-repair/">Toyoda CNC Machine Repair</a></li>
   </ol>
 </nav>
-<main>
+<main id="main">
 <article>
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
 <p class="eyebrow">Toyoda CNC Machine Repair</p>
 <h1>Toyoda CNC Machine Repair &amp; Service</h1>
 <p>When a Toyoda machine isn't producing the way it used to, we come in. We work across the Toyoda lineup — FH series horizontals and FA series — spindle, control, ATC, drive, and alignment work. Lead time depends on what's wrong: diagnostics move fast, parts and rebuild time vary by the job.</p>
 <div class="cta-row"><a class="cta-button" href="#quote">Get a Quote</a> · <a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
 <figure class="hero-figure"><img src="/assets/images/services/repairs-toyoda-cnc-machine-repair-image.png" alt="Toyoda CNC machining center being serviced at Midwest CNC Services" loading="lazy"></figure>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="toyoda-models-we-service">Toyoda Models We Service</h2>
 <p>Our Toyoda repair work covers the full lineup:</p>
 <ul>
@@ -1016,19 +1061,39 @@ article > table {
 </li>
 </ul>
 <div class="cta-row"><a class="cta-button" href="#quote">Get a Quote</a></div>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="what-brings-toyoda-machines-in-for-repair">What Brings Toyoda Machines In For Repair</h2>
 <p>Most Toyoda repair calls come in for control problems, ATC faults, drive system wear, way alignment, or spindle issues. We diagnose what's actually broken before we quote — sometimes what looks like a spindle problem is something cheaper to fix.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="how-we-approach-toyoda-repair-work">How We Approach Toyoda Repair Work</h2>
 <p>Toyoda control systems vary by model, so we start with diagnostics that match the platform in front of us rather than assuming what we'll find.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="lead-time-process">Lead Time &amp; Process</h2>
 <p>Lead time on machine repair depends on what's wrong — diagnostic is fast, but parts and rebuild time vary by the job. Our three-step workflow keeps it transparent:</p>
 <p><strong>Step 1 — Contact Us.</strong> Call 319-610-4341 or use the quote form below. <a href="#quote">Get a Quote</a></p>
 <p><strong>Step 2 — Grab Model #.</strong> We'll fire back price, lead time, and shipping ETA after reviewing your details. <a href="#quote">Get a Quote</a></p>
 <p><strong>Step 3 — Approve &amp; Rebuild.</strong> We complete the repair, verify it back to spec, and return the machine ready to run.</p>
 <div class="quote-form-placeholder">Quote form rendered here at build time.</div>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
 <p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
 <blockquote><p>"Honestly, we thought the machine was done for." Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.</p></blockquote>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="faq">Frequently Asked Questions</h2>
 <div class="faq-list">
 <details class="faq-item">
@@ -1088,8 +1153,16 @@ article > table {
   ]
 }
 </script>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="regional-presence">Where Toyoda Work Concentrates</h2>
 <p>&lt;p&gt;Toyoda platforms have strong regional concentration in our service area:&lt;/p&gt; &lt;ul&gt;&lt;li&gt;&lt;a href="/service-area/iowa/"&gt;Iowa&lt;/a&gt; — particularly &lt;a href="/service-area/davenport-iowa/"&gt;Davenport&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="/service-area/illinois/"&gt;Illinois&lt;/a&gt; — particularly &lt;a href="/service-area/peoria-illinois/"&gt;Peoria&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="/service-area/texas/"&gt;Texas&lt;/a&gt; — particularly &lt;a href="/service-area/houston-texas/"&gt;Houston&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="related-toyoda-services">Related Toyoda Services</h2>
 <ul>
 <li><a href="/spindle-grinding/toyoda-spindle-repair/">Toyoda spindle repair</a>
@@ -1098,8 +1171,14 @@ article > table {
 </li>
 </ul>
 <p>We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="recent-from-the-blog">Recent from the Blog</h2>
 <div class="quote-form-placeholder">Blog teaser block rendered here at build time.</div>
+  </div>
+</section>
 </article>
 </main>
 <footer class="site-footer">

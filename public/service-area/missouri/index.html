@@ -309,16 +309,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -891,26 +929,21 @@ article > table {
 }
 
 /* =================================================================
-   Homepage hero — two-column with gradient backdrop
+   Homepage hero — two-column with gradient backdrop band
    ================================================================= */
+.page-section-hero {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(184, 52, 26, 0.07), transparent 52%),
+    radial-gradient(circle at 82% 78%, rgba(184, 52, 26, 0.05), transparent 56%),
+    var(--bg);
+}
 .home-hero {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: var(--s-7);
   align-items: center;
-  margin: var(--s-5) 0 var(--s-8) 0;
-  padding: var(--s-7) 0;
-  position: relative;
-}
-.home-hero::before {
-  content: "";
-  position: absolute;
-  inset: -1rem -2rem;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(184, 52, 26, 0.06), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 52, 26, 0.04), transparent 55%);
-  border-radius: var(--r-4);
+  margin: 0;
+  padding: var(--s-5) 0 var(--s-7) 0;
 }
 .home-hero-text { min-width: 0; }
 .home-hero-text > h1 { margin-top: 0; font-size: clamp(2.2rem, 5vw, 3.3rem); }
@@ -931,8 +964,7 @@ article > table {
   .home-hero {
     grid-template-columns: 1fr;
     gap: var(--s-5);
-    padding: var(--s-5) 0;
-    margin: var(--s-4) 0 var(--s-6) 0;
+    padding: var(--s-3) 0 var(--s-5) 0;
   }
   .home-hero-image img { max-height: 360px; aspect-ratio: 16 / 10; }
 }
@@ -1339,16 +1371,25 @@ body.form-submitted .quote-helpers { display: none; }
 </nav>
 <main id="main">
 <article>
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
 <p class="eyebrow">Missouri Service Coverage</p>
 
 <h1>Missouri CNC Repair &amp; Spindle Service</h1>
 <p>We work shops across Missouri from our Waterloo, Iowa location. Five to seven hours from Waterloo to St. Louis and six to eight to Kansas City — most Missouri work runs ship-in to our shop, with field service for major jobs by arrangement. St. Louis aerospace and Kansas City defense and automotive are the dominant precision-machining markets we see.</p>
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
 <figure class="hero-figure"><img src="/assets/images/general/missouri.png" alt="Missouri manufacturing landscape" loading="lazy"></figure>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="manufacturing">Manufacturing in Missouri</h2>
 <p>Missouri's manufacturing base spans aerospace, defense, automotive, and agricultural equipment — the categories of shops that come through our CNC repair, spindle work, and replacement way-cover lines.</p>
 <p>Notable Missouri manufacturers include Boeing Defense, Space &amp; Security (St. Louis — largest STL employer), Ford (Kansas City), GM (Kansas City), and Honeywell defense operations (Kansas City). We don't claim these names as customers — we service the shops doing CNC work for them, the supply-chain machining and in-house tooling that keeps those operations producing.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="regional-breakdown">Missouri by Region</h2>
 <h3>St. Louis aerospace concentration</h3>
 <p>Boeing Defense, Space &amp; Security is the largest St. Louis employer and anchors the state&#x27;s aerospace and defense cluster. Anheuser-Busch adds brewing-equipment manufacturing. Aerospace work skews toward Makino and DMG Mori precision platforms.</p>
@@ -1356,15 +1397,24 @@ body.form-submitted .quote-helpers { display: none; }
 <p>Kansas City&#x27;s Honeywell-operated Federal Manufacturing &amp; Technologies plant produces 85% of the non-nuclear components of the U.S. nuclear arsenal. Ford and GM operate assembly plants in the metro. Sanofi-Aventis adds pharmaceutical manufacturing.</p>
 <h3>Springfield + southern Missouri</h3>
 <p>Springfield supports regional distribution, logistics, and manufacturing — Paul Mueller, Positronic, Prime Inc., Bass Pro/Tracker Marine. Manufacturing is real but lighter than the I-70 corridor.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="cities-we-serve">Cities We Serve in Missouri</h2>
 <p>City-specific pages cover the local context for each — industry mix, named major employers as regional context, and logistics expectations from our Waterloo, IA shop:</p>
 <ul class="city-list"><li><a href="/service-area/kansas-city-missouri/"><strong>Kansas City</strong></a> — federal government services and adjacent work, anchored by IRS (343 mi from Waterloo).</li><li><a href="/service-area/springfield-missouri/"><strong>Springfield</strong></a> — healthcare and adjacent work, anchored by CoxHealth (462 mi from Waterloo).</li><li><a href="/service-area/st-louis-missouri/"><strong>St. Louis</strong></a> — aerospace and defense and adjacent work, anchored by Boeing Defense, Space &amp; Security (379 mi from Waterloo).</li></ul>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="smaller-markets">Smaller Markets We Serve in Missouri</h2>
 <p>These cities don't have dedicated pages because their manufacturing footprint doesn't justify standalone CNC service detail — we serve them through ship-in and regional coverage:</p>
 <ul><li><strong>Columbia</strong> (pop. 126,254) is anchored by the University of Missouri and its health system — education, healthcare, and insurance with limited manufacturing presence. Columbia customers needing CNC service typically work through our Kansas City or St. Louis metro coverage (343 mi).</li></ul>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="industries">Industries We Support in Missouri</h2>
 <ul>
   <li><strong>Aerospace</strong> — Makino and DMG Mori work is common — tight tolerances and runout that shows up in finish work.</li>
@@ -1372,7 +1422,10 @@ body.form-submitted .quote-helpers { display: none; }
   <li><strong>Automotive</strong> — Tier-1 and tier-2 supply-chain machining — broad brand coverage.</li>
   <li><strong>Agricultural equipment</strong> — Doosan and Mazak rebuilds and way covers run routine across this cluster.</li>
 </ul>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="state-logistics">Missouri Logistics from Waterloo</h2>
 <p>Missouri is reachable by truck for major jobs but most routine work runs ship-in via standard freight. Distances below are by road; air freight to/from Texas is also available where the economics justify.</p>
 <div class="table-scroll">
@@ -1381,9 +1434,16 @@ body.form-submitted .quote-helpers { display: none; }
 <tbody><tr><td>Kansas City</td><td>343 mi</td><td>~5.7 hrs</td></tr><tr><td>Columbia</td><td>343 mi</td><td>~5.7 hrs</td></tr><tr><td>St. Louis</td><td>379 mi</td><td>~6.3 hrs</td></tr><tr><td>Springfield</td><td>462 mi</td><td>~7.7 hrs</td></tr></tbody>
 </table>
 </div>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="how-we-work-in-missouri">How We Work in Missouri</h2>
 <p>Most Missouri work runs ship-in from our Waterloo, Iowa shop — spindle rebuilds come to the bench, way covers ship anywhere in the continental US. Field service for major jobs is available by arrangement; talk to us about scope and travel before scheduling.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="faq">Frequently Asked Questions — Missouri</h2>
 <div class="faq-list">
 <details class="faq-item">
@@ -1407,12 +1467,17 @@ body.form-submitted .quote-helpers { display: none; }
   <div class="faq-answer"><p>St. Louis aerospace work skews Makino and DMG Mori. Kansas City defense and automotive runs Mazak, Doosan, and Haas across tier-1/tier-2 supply machining. Southern Missouri distribution and food-processing equipment runs Mazak and Haas.</p></div>
 </details>
 </div>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
 <p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
 <blockquote><p>&quot;Honestly, we thought the machine was done for.&quot; Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.</p></blockquote>
 
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
+  </div>
+</section>
 </article>
 </main>
 <footer class="site-footer">

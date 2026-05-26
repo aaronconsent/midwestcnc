@@ -309,16 +309,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -891,26 +929,21 @@ article > table {
 }
 
 /* =================================================================
-   Homepage hero — two-column with gradient backdrop
+   Homepage hero — two-column with gradient backdrop band
    ================================================================= */
+.page-section-hero {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(184, 52, 26, 0.07), transparent 52%),
+    radial-gradient(circle at 82% 78%, rgba(184, 52, 26, 0.05), transparent 56%),
+    var(--bg);
+}
 .home-hero {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: var(--s-7);
   align-items: center;
-  margin: var(--s-5) 0 var(--s-8) 0;
-  padding: var(--s-7) 0;
-  position: relative;
-}
-.home-hero::before {
-  content: "";
-  position: absolute;
-  inset: -1rem -2rem;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(184, 52, 26, 0.06), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 52, 26, 0.04), transparent 55%);
-  border-radius: var(--r-4);
+  margin: 0;
+  padding: var(--s-5) 0 var(--s-7) 0;
 }
 .home-hero-text { min-width: 0; }
 .home-hero-text > h1 { margin-top: 0; font-size: clamp(2.2rem, 5vw, 3.3rem); }
@@ -931,8 +964,7 @@ article > table {
   .home-hero {
     grid-template-columns: 1fr;
     gap: var(--s-5);
-    padding: var(--s-5) 0;
-    margin: var(--s-4) 0 var(--s-6) 0;
+    padding: var(--s-3) 0 var(--s-5) 0;
   }
   .home-hero-image img { max-height: 360px; aspect-ratio: 16 / 10; }
 }
@@ -1319,7 +1351,9 @@ body.form-submitted .quote-helpers { display: none; }
 </header>
 
 <main id="main">
-<article class="wide">
+<article>
+<section class="page-section page-section-hero">
+  <div class="section-inner wide">
 <section class="home-hero">
   <div class="home-hero-text">
     <p class="eyebrow">Stop Losing Money</p>
@@ -1332,12 +1366,24 @@ body.form-submitted .quote-helpers { display: none; }
     <figure><img src="/assets/images/general/home-image.png" alt="Midwest CNC Services shop floor" loading="eager"></figure>
   </div>
 </section>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner wide">
 <h2 id="our-services">Our Services</h2>
 <p>Three lines of work, one shop. We do machine repair on production CNC equipment, manufacture replacement way covers to spec, and rebuild and grind spindles back to factory tolerance — across every major OEM platform we service.</p>
 <div class="tile-grid"><a class="tile" href="/repairs/"><img src="/assets/images/general/image-of-cnc-machine.png" alt="CNC machining center under service" loading="lazy"><h3>Machine Repair</h3><p>CNC machine repair across spindle, control, ATC, drive, and alignment work. We service Mazak, Haas, Okuma, DMG Mori, Fanuc, Doosan, Brother, Hurco, and 12 other major OEM platforms — plus Amada press brakes and Trumpf lasers. Field troubleshooting where a remote diagnostic can save a teardown.</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/way-covers/"><img src="/assets/images/general/image-of-way-covers.png" alt="Replacement CNC way covers" loading="lazy"><h3>Way Covers</h3><p>Replacement way covers in bellows, telescoping steel, and roll-up styles. Built to spec for every CNC platform we service — from Mazak Integrex multi-taskers and Haas VF machines to legacy Fadal 4020s and Hitachi Seiki HMCs. Most orders ship in 2–4 weeks. We measure from your original or build to drawing.</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/spindle-grinding/"><img src="/assets/images/general/image-of-spindle-grinding.png" alt="CNC spindle on the grinding bench" loading="lazy"><h3>Spindle Grinding</h3><p>Spindle rebuilds, regrinds, and rebalancing across 18 OEM platforms — Mazak, Haas, Okuma, DMG Mori, Mori Seiki, Doosan, and on through Fadal and Hitachi Seiki legacy work. Most jobs run 2–6 weeks depending on bearing-pack damage and parts availability. Each brand page has failure modes and lead times.</p><span class="learn-more">Learn More →</span></a></div>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner wide">
 <h2 id="service-areas">Service Areas</h2>
 <p>We work with shops across seven Midwest and South-Central states. Production environments and job shops across the Midwest, plus specialty work where brand-specific expertise matters — from high-precision Makino aerospace and mold-die customers to legacy Fadal and Hitachi Seiki rebuilds. Field troubleshooting where a remote diagnostic can save a teardown.</p>
 <div class="state-grid"><a class="tile" href="/service-area/iowa/"><img src="/assets/images/general/view-all-iowa-cnc-service-locations.png" alt="Iowa CNC service coverage" loading="lazy"><h3>Iowa</h3><p>Des Moines, Davenport, Waterloo, Cedar Rapids</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/illinois/"><img src="/assets/images/general/illinois.png" alt="Illinois CNC service coverage" loading="lazy"><h3>Illinois</h3><p>Chicago, Rockford, Peoria, Springfield</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/wisconsin/"><img src="/assets/images/general/wisconsin.png" alt="Wisconsin CNC service coverage" loading="lazy"><h3>Wisconsin</h3><p>Milwaukee, Madison, Green Bay</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/minnesota/"><img src="/assets/images/general/minnesota.png" alt="Minnesota CNC service coverage" loading="lazy"><h3>Minnesota</h3><p>St. Paul, Minneapolis, Rochester</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/nebraska/"><img src="/assets/images/general/nebraska.png" alt="Nebraska CNC service coverage" loading="lazy"><h3>Nebraska</h3><p>Lincoln, Omaha, Grand Island</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/missouri/"><img src="/assets/images/general/missouri.png" alt="Missouri CNC service coverage" loading="lazy"><h3>Missouri</h3><p>St. Louis, Kansas City, Springfield</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/texas/"><img src="/assets/images/general/texas.png" alt="Texas CNC service coverage" loading="lazy"><h3>Texas</h3><p>Dallas, Houston, Austin</p><span class="learn-more">Learn More →</span></a></div>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner wide">
 <h2 id="how-we-work">How We Work</h2>
 <p>Same three steps every brand page describes:</p>
 <ol class="process-steps">
@@ -1345,9 +1391,17 @@ body.form-submitted .quote-helpers { display: none; }
   <li><strong>Grab Model #.</strong> We'll fire back price, lead time, and shipping ETA after reviewing your details.</li>
   <li><strong>Approve &amp; Rebuild.</strong> We complete the work, verify it back to spec, and return the machine ready to run.</li>
 </ol>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner wide">
 <h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
 <p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
 <blockquote><p>&quot;Honestly, we thought the machine was done for.&quot; Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.</p></blockquote>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner wide">
 <h2 id="faq">Common Questions</h2>
 <div class="faq-list">
 <details class="faq-item" id="faq-1">
@@ -1367,10 +1421,15 @@ body.form-submitted .quote-helpers { display: none; }
   <div class="faq-answer"><p>Often, yes. Crash recovery is one of the threads of work that comes through here — taper damage, bearing-pack failure, alignment loss from impact. Customers are usually relieved to avoid the replacement lead times and the six-figure capital expense of a new spindle. Bring it in for a teardown.</p></div>
 </details>
 </div>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner wide">
 <h2 id="downtime">Don't Let Downtime Drain Your Profits</h2>
 <p>Every minute your CNC sits idle is money out the door. Call us with the machine and the issue — most quotes go out within one business day, and we'll get you back to cutting.</p>
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
-
+  </div>
+</section>
 </article>
 </main>
 <footer class="site-footer">

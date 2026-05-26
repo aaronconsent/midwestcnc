@@ -308,16 +308,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -919,6 +957,7 @@ article > table {
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Midwest CNC Services home">
     <img src="/assets/images/logos/midwest-cnc-logo.png" alt="Midwest CNC Services">
@@ -1000,28 +1039,54 @@ article > table {
     <li><a href="https://midwestcncservices.com/">Home</a></li><li><a href="https://midwestcncservices.com/repairs/">Repairs</a></li><li><a href="https://midwestcncservices.com/repairs/amada-press-brake-service/">Amada Press Brake &amp; Punch Service</a></li>
   </ol>
 </nav>
-<main>
+<main id="main">
 <article>
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
 <h1>Amada Press Brake &amp; Punch Service</h1>
 <p>When your Amada brake or punch goes down, the call we hear most is the same: hydraulic service and ram alignment issues are probably the most common calls. We service press brakes and turret punches across the Amada lineup — ram alignment, hydraulic troubleshooting, backgauge calibration, and turret tooling work. Simple alignments turn around quickly; major hydraulic work is typically 2–4 weeks.</p>
 <div class="cta-row"><a class="cta-button" href="#quote">Get a Quote</a> · <a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
 <figure class="hero-figure"><img src="/assets/images/services/repairs-amada-cnc-machine-repair-image.png" alt="Amada CNC machining center being serviced at Midwest CNC Services" loading="lazy"></figure>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="amada-service-we-provide">Amada Service We Provide</h2>
 <p>Most of our Amada work falls into a few buckets — ram alignment and hydraulic service on press brakes, backgauge calibration, and turret punch tooling and maintenance. We come in on the calls where a brake or punch isn't producing the part the way it used to.</p>
 <div class="cta-row"><a class="cta-button" href="#quote">Get a Quote</a></div>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="how-we-approach-amada-work">How We Approach Amada Work</h2>
 <p>Tooling condition matters more than a lot of operators think. We see machines blamed for problems that are really worn tooling or setup issues.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="a-recent-amada-job">A Recent Amada Job</h2>
 <p>A recent example of the kind of work that comes through here: had a brake that operators swore was mechanically bad. Ended up being inconsistent tooling setup between shifts.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="lead-time-process">Lead Time &amp; Process</h2>
 <p>Simple alignments can be turned around quickly. Major hydraulic work is usually 2-4 weeks. Our three-step workflow keeps it transparent:</p>
 <p><strong>Step 1 — Contact Us.</strong> Call 319-610-4341 or use the quote form below. <a href="#quote">Get a Quote</a></p>
 <p><strong>Step 2 — Grab Model #.</strong> We'll fire back price, lead time, and shipping ETA after reviewing your details. <a href="#quote">Get a Quote</a></p>
 <p><strong>Step 3 — Approve &amp; Rebuild.</strong> We complete the service, verify the machine is back to spec, and return it ready to run.</p>
 <div class="quote-form-placeholder">Quote form rendered here at build time.</div>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
 <p>Experienced field technicians and established relationships with aftermarket parts suppliers.</p>
 <blockquote><p>"Honestly, we thought the machine was done for." Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.</p></blockquote>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="related-amada-services">Related Amada Services</h2>
 <ul>
 <li><a href="/repairs/trumpf-laser-service/">Trumpf laser &amp; punch service</a>
@@ -1032,8 +1097,14 @@ article > table {
 </li>
 </ul>
 <p>We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas from our Waterloo, Iowa shop.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="recent-from-the-blog">Recent from the Blog</h2>
 <div class="quote-form-placeholder">Blog teaser block rendered here at build time.</div>
+  </div>
+</section>
 </article>
 </main>
 <footer class="site-footer">

@@ -309,16 +309,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -891,26 +929,21 @@ article > table {
 }
 
 /* =================================================================
-   Homepage hero — two-column with gradient backdrop
+   Homepage hero — two-column with gradient backdrop band
    ================================================================= */
+.page-section-hero {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(184, 52, 26, 0.07), transparent 52%),
+    radial-gradient(circle at 82% 78%, rgba(184, 52, 26, 0.05), transparent 56%),
+    var(--bg);
+}
 .home-hero {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: var(--s-7);
   align-items: center;
-  margin: var(--s-5) 0 var(--s-8) 0;
-  padding: var(--s-7) 0;
-  position: relative;
-}
-.home-hero::before {
-  content: "";
-  position: absolute;
-  inset: -1rem -2rem;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(184, 52, 26, 0.06), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 52, 26, 0.04), transparent 55%);
-  border-radius: var(--r-4);
+  margin: 0;
+  padding: var(--s-5) 0 var(--s-7) 0;
 }
 .home-hero-text { min-width: 0; }
 .home-hero-text > h1 { margin-top: 0; font-size: clamp(2.2rem, 5vw, 3.3rem); }
@@ -931,8 +964,7 @@ article > table {
   .home-hero {
     grid-template-columns: 1fr;
     gap: var(--s-5);
-    padding: var(--s-5) 0;
-    margin: var(--s-4) 0 var(--s-6) 0;
+    padding: var(--s-3) 0 var(--s-5) 0;
   }
   .home-hero-image img { max-height: 360px; aspect-ratio: 16 / 10; }
 }
@@ -1339,16 +1371,25 @@ body.form-submitted .quote-helpers { display: none; }
 </nav>
 <main id="main">
 <article>
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
 <p class="eyebrow">Illinois Service Coverage</p>
 
 <h1>CNC Service for Illinois Manufacturing</h1>
 <p>We work shops across Illinois from our Waterloo, Iowa location. Three to six hours from Waterloo to major Illinois cities — within practical field-service reach for diagnostic visits, with rebuilds and way-cover builds shipped from the Cedar Valley shop. Illinois has deep machine-tool heritage; Rockford in particular runs a dense precision-machining base going back decades.</p>
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
 <figure class="hero-figure"><img src="/assets/images/general/illinois.png" alt="Illinois manufacturing landscape" loading="lazy"></figure>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="manufacturing">Manufacturing in Illinois</h2>
 <p>Illinois's manufacturing base spans aerospace, defense, machine tools, heavy equipment, and automotive — the categories of shops that come through our CNC repair, spindle work, and replacement way-cover lines.</p>
 <p>Notable Illinois manufacturers include Caterpillar (Peoria HQ), Hamilton-Sundstrand and Woodward Inc. in Rockford, John Deere (Quad Cities), and the Belvidere auto-assembly operation. We don't claim these names as customers — we service the shops doing CNC work for them, the supply-chain machining and in-house tooling that keeps those operations producing.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="regional-breakdown">Illinois by Region</h2>
 <h3>Chicago metro</h3>
 <p>The Chicago metro retains a substantial industrial supply chain across aerospace, defense, and machine tools — even as the city&#x27;s modern economy emphasizes finance. Naperville sits inside the Illinois Technology and Research Corridor with Nokia (former Bell Labs) and Kraft Foods Triscuit production.</p>
@@ -1356,15 +1397,24 @@ body.form-submitted .quote-helpers { display: none; }
 <p>Rockford built one of the densest precision-machining bases in the Midwest, transitioning from agricultural machinery into fasteners and aerospace. Collins Aerospace (Sundstrand lineage) and Woodward Inc.&#x27;s $200M Loves Park campus anchor the modern cluster; Stellantis runs the Belvidere assembly plant just east.</p>
 <h3>Peoria + downstate heavy equipment</h3>
 <p>Peoria&#x27;s Caterpillar legacy and Komatsu America heavy-equipment plant define downstate Illinois manufacturing. The work runs to larger-envelope CNC platforms — Mazak HCN horizontals, Toyoda mills, Giddings &amp; Lewis boring.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="cities-we-serve">Cities We Serve in Illinois</h2>
 <p>City-specific pages cover the local context for each — industry mix, named major employers as regional context, and logistics expectations from our Waterloo, IA shop:</p>
 <ul class="city-list"><li><a href="/service-area/chicago-illinois/"><strong>Chicago</strong></a> — finance and adjacent work, anchored by Chicago Board of Trade (294 mi from Waterloo).</li><li><a href="/service-area/naperville-illinois/"><strong>Naperville</strong></a> — technology and adjacent work, anchored by Edward Hospital (269 mi from Waterloo).</li><li><a href="/service-area/peoria-illinois/"><strong>Peoria</strong></a> — heavy equipment manufacturing and adjacent work, anchored by Caterpillar Inc. (198 mi from Waterloo).</li><li><a href="/service-area/rockford-illinois/"><strong>Rockford</strong></a> — fasteners and adjacent work, anchored by Collins Aerospace (219 mi from Waterloo).</li></ul>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="smaller-markets">Smaller Markets We Serve in Illinois</h2>
 <p>These cities don't have dedicated pages because their manufacturing footprint doesn't justify standalone CNC service detail — we serve them through ship-in and regional coverage:</p>
 <ul><li><strong>Springfield</strong> (pop. 114,394) is Illinois's state capital with a government- and healthcare-dominated economy. Manufacturing demand from the Springfield area is light; CNC service typically routes through our Peoria or Chicago metro coverage (250 mi from Waterloo).</li></ul>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="industries">Industries We Support in Illinois</h2>
 <ul>
   <li><strong>Aerospace</strong> — Makino and DMG Mori work is common — tight tolerances and runout that shows up in finish work.</li>
@@ -1373,7 +1423,10 @@ body.form-submitted .quote-helpers { display: none; }
   <li><strong>Heavy equipment</strong> — Large-envelope work — Mazak, Toyoda, and Giddings &amp; Lewis platforms see most of the volume.</li>
   <li><strong>Automotive</strong> — Tier-1 and tier-2 supply-chain machining — broad brand coverage.</li>
 </ul>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="state-logistics">Illinois Logistics from Waterloo</h2>
 <p>Illinois sits within practical field-service drive of Waterloo. Most major cities are 3–6 hours one-way — drivable for substantive jobs and bundled diagnostic runs.</p>
 <div class="table-scroll">
@@ -1382,9 +1435,16 @@ body.form-submitted .quote-helpers { display: none; }
 <tbody><tr><td>Peoria</td><td>198 mi</td><td>~3.3 hrs</td></tr><tr><td>Rockford</td><td>219 mi</td><td>~3.7 hrs</td></tr><tr><td>Springfield</td><td>250 mi</td><td>~4.2 hrs</td></tr><tr><td>Naperville</td><td>269 mi</td><td>~4.5 hrs</td></tr><tr><td>Chicago</td><td>294 mi</td><td>~4.9 hrs</td></tr></tbody>
 </table>
 </div>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="how-we-work-in-illinois">How We Work in Illinois</h2>
 <p>Illinois sits within practical field-service reach of our Waterloo, Iowa shop. We split Illinois work between on-site visits where the diagnostic warrants it and bench rebuilds back at the shop, with way-cover builds shipped directly to the floor.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="faq">Frequently Asked Questions — Illinois</h2>
 <div class="faq-list">
 <details class="faq-item">
@@ -1408,12 +1468,17 @@ body.form-submitted .quote-helpers { display: none; }
   <div class="faq-answer"><p>Standard freight — UPS, FedEx Freight, or LTL — runs overnight to two-day from any Illinois city. We include return shipping in most spindle rebuild quotes.</p></div>
 </details>
 </div>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
 <p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
 <blockquote><p>&quot;Honestly, we thought the machine was done for.&quot; Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.</p></blockquote>
 
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
+  </div>
+</section>
 </article>
 </main>
 <footer class="site-footer">

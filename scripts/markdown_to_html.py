@@ -661,16 +661,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -1221,6 +1259,57 @@ article > table {
 """
 
 
+# ---------- Section banding (alternating full-bleed sections) ----------
+
+def wrap_into_sections(body_html, layout="default"):
+    """Wrap a body fragment into alternating-color full-bleed sections.
+
+    Split positions: each <h2> opening tag begins a new section. Content
+    before the first <h2> becomes the intro section.
+
+    layout='wide' makes the inner content container use --max-wide (for
+    homepage + hub pages with tiles / brand grids); 'default' uses --max
+    (72ch readable column).
+
+    If the leading chunk is already a <section class="home-hero">, it is
+    passed through inside its own page-section-hero band (transparent bg,
+    its own radial gradient backdrop preserved).
+    """
+    inner_klass = "section-inner"
+    if layout == "wide":
+        inner_klass += " wide"
+
+    parts = re.split(r'(?=<h2\b)', body_html)
+    out = []
+    band_idx = 0
+
+    for i, part in enumerate(parts):
+        s = part.strip()
+        if not s:
+            continue
+
+        # Home-hero: full-bleed band but no alternating colour (has own bg)
+        if i == 0 and s.startswith('<section class="home-hero'):
+            out.append(
+                f'<section class="page-section page-section-hero">\n'
+                f'  <div class="{inner_klass}">\n{s}\n  </div>\n'
+                f'</section>'
+            )
+            continue
+
+        klass = f"page-section page-section-{band_idx % 2}"
+        if i == 0:
+            klass += " page-section-intro"
+        out.append(
+            f'<section class="{klass}">\n'
+            f'  <div class="{inner_klass}">\n{s}\n  </div>\n'
+            f'</section>'
+        )
+        band_idx += 1
+
+    return "\n".join(out) if out else body_html
+
+
 # ---------- Site header (single source of truth, used by both generators) ----------
 
 # Top brands surfaced in dropdowns. Picked for industry weight + presence
@@ -1370,11 +1459,12 @@ def render_html(fm, body_html):
 {schema_blocks}
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 {build_site_header()}
 {crumbs_html}
-<main>
+<main id="main">
 <article>
-{body_html}
+{wrap_into_sections(body_html, layout="default")}
 </article>
 </main>
 <footer class="site-footer">

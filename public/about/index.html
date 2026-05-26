@@ -309,16 +309,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -891,26 +929,21 @@ article > table {
 }
 
 /* =================================================================
-   Homepage hero — two-column with gradient backdrop
+   Homepage hero — two-column with gradient backdrop band
    ================================================================= */
+.page-section-hero {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(184, 52, 26, 0.07), transparent 52%),
+    radial-gradient(circle at 82% 78%, rgba(184, 52, 26, 0.05), transparent 56%),
+    var(--bg);
+}
 .home-hero {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: var(--s-7);
   align-items: center;
-  margin: var(--s-5) 0 var(--s-8) 0;
-  padding: var(--s-7) 0;
-  position: relative;
-}
-.home-hero::before {
-  content: "";
-  position: absolute;
-  inset: -1rem -2rem;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(184, 52, 26, 0.06), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 52, 26, 0.04), transparent 55%);
-  border-radius: var(--r-4);
+  margin: 0;
+  padding: var(--s-5) 0 var(--s-7) 0;
 }
 .home-hero-text { min-width: 0; }
 .home-hero-text > h1 { margin-top: 0; font-size: clamp(2.2rem, 5vw, 3.3rem); }
@@ -931,8 +964,7 @@ article > table {
   .home-hero {
     grid-template-columns: 1fr;
     gap: var(--s-5);
-    padding: var(--s-5) 0;
-    margin: var(--s-4) 0 var(--s-6) 0;
+    padding: var(--s-3) 0 var(--s-5) 0;
   }
   .home-hero-image img { max-height: 360px; aspect-ratio: 16 / 10; }
 }
@@ -1271,19 +1303,34 @@ body.form-submitted .quote-helpers { display: none; }
 </nav>
 <main id="main">
 <article>
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
 <h1>About Midwest CNC Services</h1>
 <p>Midwest CNC Services is based in Waterloo, Iowa. We provide CNC machine repair, spindle rebuild and grinding, and replacement way covers to shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="what-we-do">What We Do</h2>
 <p>Three lines of service, organized so you can find the work you need:</p>
 <div class="tile-grid"><a class="tile" href="/repairs/"><h3>Machine Repair</h3><p>CNC machine repair across spindle, control, ATC, drive, and alignment work. We service Mazak, Haas, Okuma, DMG Mori, Fanuc, Doosan, Brother, Hurco, and 12 other major OEM platforms — plus Amada press brakes and Trumpf lasers. Field troubleshooting where a remote diagnostic can save a teardown.</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/way-covers/"><h3>Way Covers</h3><p>Replacement way covers in bellows, telescoping steel, and roll-up styles. Built to spec for every CNC platform we service — from Mazak Integrex multi-taskers and Haas VF machines to legacy Fadal 4020s and Hitachi Seiki HMCs. Most orders ship in 2–4 weeks. We measure from your original or build to drawing.</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/spindle-grinding/"><h3>Spindle Grinding</h3><p>Spindle rebuilds, regrinds, and rebalancing across 18 OEM platforms — Mazak, Haas, Okuma, DMG Mori, Mori Seiki, Doosan, and on through Fadal and Hitachi Seiki legacy work. Most jobs run 2–6 weeks depending on bearing-pack damage and parts availability. Each brand page has failure modes and lead times.</p><span class="learn-more">Learn More →</span></a></div>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="where-we-work">Where We Work</h2>
 <p>Our service area covers seven states across the Midwest and South-Central US. See the <a href="/service-area/">service-area hub</a> for the city-level coverage. States we work in:</p>
 <ul><li><strong>Iowa</strong> — Des Moines, Davenport, Waterloo, Cedar Rapids</li><li><strong>Illinois</strong> — Chicago, Rockford, Peoria, Springfield</li><li><strong>Wisconsin</strong> — Milwaukee, Madison, Green Bay</li><li><strong>Minnesota</strong> — St. Paul, Minneapolis, Rochester</li><li><strong>Nebraska</strong> — Lincoln, Omaha, Grand Island</li><li><strong>Missouri</strong> — St. Louis, Kansas City, Springfield</li><li><strong>Texas</strong> — Dallas, Houston, Austin</li></ul>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="why-shops-choose-us">Why Shops Choose Us</h2>
 <p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
 <blockquote><p>&quot;Honestly, we thought the machine was done for.&quot; Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.</p></blockquote>
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
-
+  </div>
+</section>
 </article>
 </main>
 <footer class="site-footer">

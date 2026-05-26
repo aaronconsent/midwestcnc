@@ -309,16 +309,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -891,26 +929,21 @@ article > table {
 }
 
 /* =================================================================
-   Homepage hero — two-column with gradient backdrop
+   Homepage hero — two-column with gradient backdrop band
    ================================================================= */
+.page-section-hero {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(184, 52, 26, 0.07), transparent 52%),
+    radial-gradient(circle at 82% 78%, rgba(184, 52, 26, 0.05), transparent 56%),
+    var(--bg);
+}
 .home-hero {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: var(--s-7);
   align-items: center;
-  margin: var(--s-5) 0 var(--s-8) 0;
-  padding: var(--s-7) 0;
-  position: relative;
-}
-.home-hero::before {
-  content: "";
-  position: absolute;
-  inset: -1rem -2rem;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(184, 52, 26, 0.06), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 52, 26, 0.04), transparent 55%);
-  border-radius: var(--r-4);
+  margin: 0;
+  padding: var(--s-5) 0 var(--s-7) 0;
 }
 .home-hero-text { min-width: 0; }
 .home-hero-text > h1 { margin-top: 0; font-size: clamp(2.2rem, 5vw, 3.3rem); }
@@ -931,8 +964,7 @@ article > table {
   .home-hero {
     grid-template-columns: 1fr;
     gap: var(--s-5);
-    padding: var(--s-5) 0;
-    margin: var(--s-4) 0 var(--s-6) 0;
+    padding: var(--s-3) 0 var(--s-5) 0;
   }
   .home-hero-image img { max-height: 360px; aspect-ratio: 16 / 10; }
 }
@@ -1271,6 +1303,8 @@ body.form-submitted .quote-helpers { display: none; }
 </nav>
 <main id="main">
 <article>
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
 <h1>Terms of Service</h1>
 <p><em>Last updated: May 26, 2026</em></p>
 
@@ -1278,7 +1312,10 @@ body.form-submitted .quote-helpers { display: none; }
 The Site is an informational marketing site for Midwest CNC Services, a
 CNC machine repair, spindle work, and replacement way cover business
 based in Waterloo, Iowa.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="what-this-site-is">What this site is</h2>
 <p>The Site exists to describe the services Midwest CNC Services provides,
 list our service area, and let you submit a quote request. It is not a
@@ -1286,14 +1323,20 @@ portal for placing orders, signing service contracts, or transferring
 payment. Any actual service relationship between Midwest CNC and your
 shop is governed by the service agreement we sign with you for a specific
 job — not by anything published here.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="quote-requests">Quote requests</h2>
 <p>A quote request submitted through this Site is an inquiry, not a
 binding contract. Submitting a request does not obligate either party.
 We respond to quote requests with pricing, lead times, and scope. A
 binding service agreement begins only when we and your authorized
 representative both sign the agreement covering the specific job.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="limitation-of-liability">Limitation of liability</h2>
 <p>Information published on this Site is provided as-is for general
 informational purposes. Lead times, service descriptions, and equipment
@@ -1307,13 +1350,19 @@ incidental, consequential, or punitive damages arising from your use of
 the Site or your reliance on information published here. Direct damages,
 if any, are limited to the value of the service agreement signed for
 the specific job in question.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="warranties">Warranties</h2>
 <p>Equipment and service warranties are governed by the service agreement
 signed for each job, not by anything stated on this Site. If you have a
 question about the warranty terms for a specific service we provided,
 call <a href="tel:+13196104341">319-610-4341</a>.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="intellectual-property">Intellectual property</h2>
 <p>Content on this Site — text, images, schema markup, and code — is the
 property of Midwest CNC Services or used with permission. The brand names
@@ -1322,26 +1371,36 @@ Fanuc, and others) are the property of their respective owners. We use
 those names to describe the platforms we service; we are not affiliated
 with, endorsed by, or operating under license from those OEMs unless
 explicitly noted on a specific service page.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="changes">Changes to these terms</h2>
 <p>We may update these terms from time to time. Changes take effect when
 posted to this page. The "Last updated" date above reflects the most
 recent change. If you submitted a quote request before a change, the
 version of these terms in effect at the time of your submission applies
 to that submission.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="jurisdiction">Jurisdiction</h2>
 <p>These terms are governed by the laws of the State of Iowa, without
 regard to conflict-of-law principles. Any dispute arising from your use
 of this Site or from a service relationship with Midwest CNC Services
 will be resolved in the state or federal courts located in Black Hawk
 County, Iowa.</p>
-
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="contact">Contact</h2>
 <p>Questions about these terms: call
 <a href="tel:+13196104341">319-610-4341</a> or write to Midwest CNC
 Services, Waterloo, Iowa.</p>
-
+  </div>
+</section>
 </article>
 </main>
 <footer class="site-footer">
