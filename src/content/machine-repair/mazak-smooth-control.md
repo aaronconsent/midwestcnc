@@ -1,6 +1,6 @@
 ---
 title: "Mazatrol Smooth Control Repair (SmoothX / SmoothG / SmoothAi) | Midwest CNC Services"
-meta_description: "Mazatrol Mazatrol SmoothX, SmoothG, SmoothAi control repair across the Midwest. 2013 through present. Common faults, parts availability, and battery/memory/parameter recovery."
+meta_description: "Mazatrol SmoothX, SmoothG, SmoothAi control repair across the Midwest. 2013 through present. Common faults, parts availability, and battery/memory/parameter recovery."
 h1: "Mazatrol Smooth Control Repair (SmoothX / SmoothG / SmoothAi)"
 slug: "mazak-smooth-control"
 page_type: "cnc_spindle"

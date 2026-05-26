@@ -1,6 +1,6 @@
 ---
 title: "Mazak Integrex Repair & Service | Midwest CNC Services"
-meta_description: "Mazak Mill-turn multitasking repair across the Midwest. Models, common failure patterns, and the Mazatrol control generations they ship on."
+meta_description: "Mazak Mill-turn multitasking repair across the Midwest. Models, common failure patterns, and the control generations they ship on."
 h1: "Mazak Integrex Repair & Service"
 slug: "mazak-integrex"
 page_type: "cnc_spindle"

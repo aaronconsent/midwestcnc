@@ -1,6 +1,6 @@
 ---
 title: "Mazak HCN Horizontal Machining Center Repair | Midwest CNC Services"
-meta_description: "Mazak Pallet-changer horizontals repair across the Midwest. Models, common failure patterns, and the Mazatrol control generations they ship on."
+meta_description: "Mazak Pallet-changer horizontals repair across the Midwest. Models, common failure patterns, and the control generations they ship on."
 h1: "Mazak HCN Horizontal Machining Center Repair"
 slug: "mazak-hcn-horizontal"
 page_type: "cnc_spindle"

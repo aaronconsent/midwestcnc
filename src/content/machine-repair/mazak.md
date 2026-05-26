@@ -164,14 +164,10 @@ schema_data:
 <p>Mazak machines span three Mazatrol generations. Pick yours for common faults and parts notes.</p>
 <ul class="browse-list"><li><a href="/repairs/mazak-cnc-machine-repair/mazatrol-legacy/"><strong>Mazatrol Legacy</strong> — M-2, M-32, M-Plus, Fusion 640 — roughly 1981-2005. Battery loss, CRT failures, MDI board, floppy and PCMCIA obsolescence.</a></li><li><a href="/repairs/mazak-cnc-machine-repair/mazatrol-matrix/"><strong>Mazatrol Matrix</strong> — Matrix and Matrix 2 — roughly 2005-2013. HDD failure (SSD upgrades routine), CF card corruption, MMC board, touchscreen drift.</a></li><li><a href="/repairs/mazak-cnc-machine-repair/smooth-control/"><strong>Mazatrol Smooth</strong> — SmoothX, SmoothG, SmoothAi — 2013-present. Networking, MTConnect setup, parameter backup, USB media handling.</a></li></ul>
 <h2 id="browse-by-service">Browse by Service</h2>
-<ul class="browse-list">
-  <li><a href="/spindle-grinding/mazak-spindle-repair/"><strong>Mazak spindle repair</strong> — bearing-pack rebuilds, taper grinding, balancing, runout verification.</a></li>
-  <li><a href="/way-covers/mazak-cnc-way-covers/"><strong>Mazak way covers</strong> — replacement bellows, telescoping steel, and roll-up covers, built to spec.</a></li>
-  <li><a href="#faq"><strong>ATC, drive, and alignment work</strong> — covered in the FAQ below.</a></li>
-</ul>
-<h2 id="what-brings-mazak-machines-in-for-repair">What brings Mazak machines in for repair</h2>
+<ul class="browse-list"><li><a href="/spindle-grinding/mazak-spindle-repair/"><strong>Mazak spindle repair</strong> — bearing-pack rebuilds, taper grinding, balancing, runout verification.</a></li><li><a href="/way-covers/mazak-cnc-way-covers/"><strong>Mazak way covers</strong> — replacement bellows, telescoping steel, and roll-up covers, built to spec.</a></li><li><a href="#faq"><strong>ATC, drive, and alignment work</strong> — covered in the FAQ below.</a></li></ul>
+<h2 id="what-brings-machines-in-for-repair">What brings Mazak machines in for repair</h2>
 <p>Most Mazak repair calls fall into a few patterns: ATC faults on production verticals, drive system wear and ballscrew issues on long-bed VTCs, way alignment after a crash, spindle bearing failure on high-RPM VCN work, and pallet-changer issues on HCN horizontals. Control-side, the Matrix generation sees HDD failure as the single most common service item; legacy Mazatrol machines see memory battery and board obsolescence; current Smooth-generation machines come in for integration and configuration work rather than reactive repair. We diagnose what's actually broken before we quote.</p>
-<h2 id="how-we-approach-mazak-repair-work">How we approach Mazak repair work</h2>
+<h2 id="how-we-approach-repair-work">How we approach Mazak repair work</h2>
 <p>Mazak machines run Mazatrol, so diagnostics are platform-specific. Our approach starts with the control generation — legacy Mazatrol, Matrix, or Smooth — because the failure modes and the recovery paths are different across the three. From there we move to mechanical: spindle, ATC, drive, alignment. The control spokes below cover the platform-specific recovery procedures for each generation.</p>
 <h2 id="lead-time-process">Lead Time &amp; Process</h2>
 <p>Lead time on machine repair depends on what's wrong — diagnostic is fast, but parts and rebuild time vary by the job. Our three-step workflow keeps it transparent:</p>

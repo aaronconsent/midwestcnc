@@ -1395,7 +1395,7 @@ def render_trumpf(brand, g, brands_by_slug, brand_index):
 # linking to spoke pages. Pilot on Mazak; propagate to other 5 brands
 # after Aaron validates.
 
-MAZAK_HUB_BROWSE_SERIES = [
+_MAZAK_HUB_BROWSE_SERIES = [
     ("Quick Turn / QTN",                    "/repairs/mazak-cnc-machine-repair/quick-turn/",
      "Horizontal turning. QT-8 through QTN-450, MS/MSY twin-spindle variants, current Compact/Smart/Primos/Ez/Ultra."),
     ("Integrex",                            "/repairs/mazak-cnc-machine-repair/integrex/",
@@ -1410,7 +1410,7 @@ MAZAK_HUB_BROWSE_SERIES = [
      "Slant Turn, Multiplex, Megaturn, HQR. Older platforms still in service — M-Plus and Fusion 640 controls."),
 ]
 
-MAZAK_HUB_BROWSE_CONTROL = [
+_MAZAK_HUB_BROWSE_CONTROL = [
     ("Mazatrol Legacy",   "/repairs/mazak-cnc-machine-repair/mazatrol-legacy/",
      "M-2, M-32, M-Plus, Fusion 640 — roughly 1981-2005. Battery loss, CRT failures, MDI board, floppy and PCMCIA obsolescence."),
     ("Mazatrol Matrix",   "/repairs/mazak-cnc-machine-repair/mazatrol-matrix/",
@@ -1421,7 +1421,7 @@ MAZAK_HUB_BROWSE_CONTROL = [
 
 # Expanded FAQ for the Mazak hub (≥5 Qs including the prompt-specified
 # legacy-control / which-series / SSD-upgrade questions).
-MAZAK_HUB_FAQ = [
+_MAZAK_HUB_FAQ = [
     ("What can you fix on a Mazak CNC machine?",
      "Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper."),
     ("Which Mazak series do you see most often?",
@@ -1439,7 +1439,7 @@ MAZAK_HUB_FAQ = [
 # Per-spoke content. Each spoke renders an independent page nested
 # under the Mazak hub. Models lists come from machines.json; here we
 # carry the prose (intro, failures, controls used, lead-time framing).
-MAZAK_SERIES_SPOKES = {
+_MAZAK_SERIES_SPOKES = {
     "quick-turn": {
         "title":   "Mazak Quick Turn Repair & Service",
         "slug":    "mazak-quick-turn",
@@ -1556,7 +1556,7 @@ MAZAK_SERIES_SPOKES = {
     },
 }
 
-MAZAK_CONTROL_SPOKES = {
+_MAZAK_CONTROL_SPOKES = {
     "mazatrol-legacy": {
         "title":   "Mazatrol Legacy Control Repair (M-2 / M-32 / M-Plus / Fusion 640)",
         "slug":    "mazak-mazatrol-legacy",
@@ -1626,6 +1626,1215 @@ MAZAK_CONTROL_SPOKES = {
 }
 
 
+_HAAS_SERIES_SPOKES = {
+    "vf-series": {
+        "title":   "Haas VF Series Repair & Service",
+        "slug":    "haas-vf-series",
+        "subtitle":"VF Series Vertical Mills",
+        "url":     "/repairs/haas-cnc-machine-repair/vf-series/",
+        "intro":   "The VF series is the workhorse on most Haas shop floors — VF-1 through VF-12, plus the YT extended-Y variants, the SS super-speed builds, and the VFEXT extended-Z platforms. The series has been continuously refined since the early 1990s, so we see everything from Haas Classic Control machines still in production to the latest NGC builds.",
+        "failures": [
+            "ATC carousel faults — solenoid wear, indexer pawl, position-sensor issues.",
+            "Spindle bearing failure on SS (Super-Speed) variants from high-RPM production.",
+            "Way cover damage from chip intrusion or crash.",
+            "Z-axis ballscrew wear on heavy-use VF-4 and larger.",
+            "MOCON board failures on Classic-control vintage machines.",
+        ],
+        "controls_paragraph": "Older VF machines run [Haas Classic Control](/repairs/haas-cnc-machine-repair/haas-classic-control/) (pre-2014) — keypad, monitor, MOCON board, and drive faults are the routine work. 2014-and-later VF builds ship on [Haas Next Generation Control (NGC)](/repairs/haas-cnc-machine-repair/haas-ngc/) — service work is mostly SSD upgrades, USB media, and networking.",
+        "siblings": [
+            ("ST Series",   "/repairs/haas-cnc-machine-repair/st-series/"),
+            ("UMC Series",  "/repairs/haas-cnc-machine-repair/umc-series/"),
+        ],
+    },
+    "st-series": {
+        "title":   "Haas ST Series Lathe Repair & Service",
+        "slug":    "haas-st-series",
+        "subtitle":"ST Series Lathes",
+        "url":     "/repairs/haas-cnc-machine-repair/st-series/",
+        "intro":   "The ST series is Haas's production lathe lineup — ST-10 through ST-55, plus the SSY Y-axis variants and the DS-30 dual-spindle. The platform spans roughly fifteen years of Haas turning evolution, so we see Classic-control vintage machines alongside current NGC builds.",
+        "failures": [
+            "Turret indexing faults — solenoid, indexer pawl, or position-encoder.",
+            "Tailstock issues — quill wear and hydraulic pressure loss.",
+            "Chuck cylinder leaks on high-cycle bar work.",
+            "Spindle bearing wear on high-use ST-10 and ST-20 chuckers.",
+            "Sub-spindle alignment drift on DS-30 dual-spindle builds.",
+        ],
+        "controls_paragraph": "Older ST machines run [Haas Classic Control](/repairs/haas-cnc-machine-repair/haas-classic-control/); current ST-10 through ST-55 ship on [NGC](/repairs/haas-cnc-machine-repair/haas-ngc/). DS-30 builds are typically on NGC by now; older ones on Classic.",
+        "siblings": [
+            ("VF Series",       "/repairs/haas-cnc-machine-repair/vf-series/"),
+            ("Toolroom Lathes", "/repairs/haas-cnc-machine-repair/toolroom-lathes/"),
+        ],
+    },
+    "umc-series": {
+        "title":   "Haas UMC Series Repair & Service",
+        "slug":    "haas-umc-series",
+        "subtitle":"UMC Series Universal 5-Axis",
+        "url":     "/repairs/haas-cnc-machine-repair/umc-series/",
+        "intro":   "UMC is Haas's universal 5-axis platform — trunnion-table machines from UMC-350 compact through UMC-1600 large-envelope, plus the SS super-speed builds. Most UMC work centers on the 5-axis side: trunnion calibration, A/C-axis encoders, and RTCP setup are where calls come from.",
+        "failures": [
+            "Trunnion calibration drift after a crash — A and C axis zero-point recovery.",
+            "A/C-axis encoder faults — contamination, signal loss, or backlash drift.",
+            "RTCP setup drift — kinematic re-calibration after spindle or trunnion work.",
+            "Swarf and coolant intrusion at the trunnion on heavy-coolant production.",
+            "Spindle bearing failure on SS variants from high-RPM work.",
+        ],
+        "controls_paragraph": "All UMC machines ship on [Haas NGC](/repairs/haas-cnc-machine-repair/haas-ngc/) — Classic Control never made it to the UMC line. NGC service work on UMCs is mostly kinematic calibration and the occasional SSD or networking job.",
+        "siblings": [
+            ("VF Series",  "/repairs/haas-cnc-machine-repair/vf-series/"),
+            ("EC Series",  "/repairs/haas-cnc-machine-repair/ec-series/"),
+        ],
+    },
+    "ec-series": {
+        "title":   "Haas EC Series Horizontal Repair & Service",
+        "slug":    "haas-ec-series",
+        "subtitle":"EC Series Horizontals",
+        "url":     "/repairs/haas-cnc-machine-repair/ec-series/",
+        "intro":   "EC is Haas's horizontal machining lineup — EC-300 through EC-3000 production horizontals, plus the PP (pallet-pool) builds and the 4-axis variants. The series is built around pallet-changer reliability and B-axis indexing; that's where most service calls come from.",
+        "failures": [
+            "Pallet changer faults on PP units — clamp pressure, pallet seat alignment, position sensors.",
+            "B-axis indexer wear from heavy-cut production.",
+            "Coolant intrusion at the pallet seal on high-coolant work.",
+            "Chip auger jams and chip evacuation problems.",
+            "Hydraulic clamp pressure loss on the workpiece clamping system.",
+        ],
+        "controls_paragraph": "Older EC machines run [Haas Classic Control](/repairs/haas-cnc-machine-repair/haas-classic-control/); current EC-500 and EC-550 plus the EC-1600/2000/3000 large builds ship on [NGC](/repairs/haas-cnc-machine-repair/haas-ngc/).",
+        "siblings": [
+            ("VF Series",   "/repairs/haas-cnc-machine-repair/vf-series/"),
+            ("UMC Series",  "/repairs/haas-cnc-machine-repair/umc-series/"),
+        ],
+    },
+    "mini-mill-toolroom": {
+        "title":   "Haas Mini Mill, Toolroom, DT, DM, and VM Repair",
+        "slug":    "haas-mini-mill-toolroom",
+        "subtitle":"Mini Mill / Toolroom / DT / DM / VM",
+        "url":     "/repairs/haas-cnc-machine-repair/mini-mill-toolroom/",
+        "intro":   "The compact and toolroom families — Mini Mill, Super Mini Mill, the TM Toolroom Mill series, the DT and DM drill-tap centers, and the VM mold-machine line — share many components but see different wear patterns based on use. DTs see high-cycle ATC wear; Mini Mills see ATC reliability issues; older Toolroom machines see control-panel work.",
+        "failures": [
+            "ATC reliability on Mini Mills — solenoid, pawl, and carousel-position wear.",
+            "Spindle bearing failure on DT (drill/tap) machines from high-cycle production.",
+            "Way cover failure on older TM toolroom mills.",
+            "Control panel issues on older Toolroom builds.",
+            "Ballscrew and bearing wear on DM mold-machine work.",
+        ],
+        "controls_paragraph": "Most of this family ran [Haas Classic Control](/repairs/haas-cnc-machine-repair/haas-classic-control/) through 2014; newer DT, DM, and Super Mini Mill 2 builds ship on [NGC](/repairs/haas-cnc-machine-repair/haas-ngc/). TM toolroom mills with Classic-vintage panels are common candidates for control-side service.",
+        "siblings": [
+            ("VF Series",       "/repairs/haas-cnc-machine-repair/vf-series/"),
+            ("Toolroom Lathes", "/repairs/haas-cnc-machine-repair/toolroom-lathes/"),
+        ],
+    },
+    "toolroom-lathes": {
+        "title":   "Haas Toolroom Lathe Repair & Service",
+        "slug":    "haas-toolroom-lathes",
+        "subtitle":"TL and CL Toolroom Lathes",
+        "url":     "/repairs/haas-cnc-machine-repair/toolroom-lathes/",
+        "intro":   "Toolroom lathes — TL-1 through TL-4 and the CL-1 — bridge manual lathe operation and CNC. They're production-capable but used differently than the ST series, and the wear patterns reflect that: tailstock alignment, manual-mode reliability, and ballscrew wear are the routine work.",
+        "failures": [
+            "Tailstock alignment drift on heavily used machines.",
+            "Manual-mode reliability issues — handwheel encoders, mode-select switch wear.",
+            "Ballscrew wear from production-style cycles on a toolroom platform.",
+            "Spindle bearing wear on long-running shop-floor TL-2 and TL-3 units.",
+        ],
+        "controls_paragraph": "TL machines ran [Haas Classic Control](/repairs/haas-cnc-machine-repair/haas-classic-control/) through 2014; current TL and CL-1 ship on [NGC](/repairs/haas-cnc-machine-repair/haas-ngc/).",
+        "siblings": [
+            ("ST Series",  "/repairs/haas-cnc-machine-repair/st-series/"),
+            ("VF Series",  "/repairs/haas-cnc-machine-repair/vf-series/"),
+        ],
+    },
+}
+_HAAS_CONTROL_SPOKES = {
+    "haas-classic-control": {
+        "title":   "Haas Classic Control Repair (pre-NGC)",
+        "slug":    "haas-haas-classic-control",
+        "subtitle":"Haas Classic Control",
+        "url":     "/repairs/haas-cnc-machine-repair/haas-classic-control/",
+        "era":     "Through roughly 2014",
+        "intro":   "Haas Classic Control is the family of pre-NGC controls that shipped on Haas machines through roughly 2014. Most of the early-2000s through early-2010s Haas fleet on Midwest shop floors is on Classic. The most common service work is keypad, monitor (CRT and early LCD), MOCON board, drive system, and memory battery.",
+        "machines_paragraph": "Classic Control shipped on most of the Haas fleet through 2014 — the original [VF Series](/repairs/haas-cnc-machine-repair/vf-series/) (VF-1 through VF-12), [ST Series](/repairs/haas-cnc-machine-repair/st-series/) lathes, [EC Series](/repairs/haas-cnc-machine-repair/ec-series/) horizontals, original [Mini Mill, TM Toolroom, and DT/DM](/repairs/haas-cnc-machine-repair/mini-mill-toolroom/) machines, and the [TL Toolroom Lathes](/repairs/haas-cnc-machine-repair/toolroom-lathes/). UMC machines never shipped on Classic.",
+        "failures": [
+            "Keypad failure — high-cycle keys go intermittent or stop responding.",
+            "Monitor failure — original CRTs are mostly out of service. Early LCDs are now hitting end-of-life too.",
+            "MOCON board faults — the motion-control board sees enough thermal cycling to fail over a decade of production.",
+            "Drive amplifier faults on heavier production work.",
+            "Memory battery loss — parameters and offsets vanish if the battery dies on a powered-down control.",
+        ],
+        "parts_paragraph": "Haas Classic parts are still available through Haas channels for most board-level items, but the supply chain is thinning as NGC matures. Aftermarket replacement keypads and LCD retrofits are widely available. We check parts availability before quoting.",
+        "recovery_paragraph": "Battery and parameter recovery on Classic Control is the standard process: capture parameters and offsets before any battery work, replace the battery on a powered control where possible, restore parameters if memory was lost. For machines being upgraded to NGC, we coordinate parameter migration as part of the conversation.",
+        "siblings": [
+            ("Haas Next Generation Control (NGC)", "/repairs/haas-cnc-machine-repair/haas-ngc/"),
+        ],
+    },
+    "haas-ngc": {
+        "title":   "Haas Next Generation Control (NGC) Repair",
+        "slug":    "haas-haas-ngc",
+        "subtitle":"Haas NGC",
+        "url":     "/repairs/haas-cnc-machine-repair/haas-ngc/",
+        "era":     "2014 to present",
+        "intro":   "NGC is Haas's current control generation, introduced in 2014. It's mature enough now that we see real service work — SSD upgrades on the early units, USB media issues, networking and MyHaas integration, parameter backup discipline. Hardware failures are less common than on Classic, but the integration and configuration work is steady.",
+        "machines_paragraph": "NGC ships on every current Haas machine — [VF Series](/repairs/haas-cnc-machine-repair/vf-series/), [ST Series](/repairs/haas-cnc-machine-repair/st-series/), all [UMC](/repairs/haas-cnc-machine-repair/umc-series/) 5-axis machines, [EC Series](/repairs/haas-cnc-machine-repair/ec-series/) horizontals, current [Mini Mill, DT, DM](/repairs/haas-cnc-machine-repair/mini-mill-toolroom/) and the [TL/CL Toolroom Lathes](/repairs/haas-cnc-machine-repair/toolroom-lathes/).",
+        "failures": [
+            "SSD upgrade work on early NGC builds — replacing the original drives recovers boot and program-load times.",
+            "USB media reliability — boot-media path cleaning and verification.",
+            "Networking configuration drift after a shop network change.",
+            "MyHaas integration setup for shop-floor monitoring.",
+            "Parameter backup discipline — clean backup before any service work.",
+        ],
+        "parts_paragraph": "NGC parts are fully supported through Haas channels. The work is more configuration and integration than reactive parts swapping.",
+        "recovery_paragraph": "NGC supports a clean parameter backup workflow over network and USB. The discipline is doing the backup before any service work, not after. We document the parameter set at the start of every service visit and verify the restore at sign-off.",
+        "siblings": [
+            ("Haas Classic Control", "/repairs/haas-cnc-machine-repair/haas-classic-control/"),
+        ],
+    },
+}
+
+_DMG_MORI_SERIES_SPOKES = {
+    "nlx-turning": {
+        "title":   "DMG Mori NLX / ALX Turning Repair",
+        "slug":    "dmg-mori-nlx-turning",
+        "subtitle":"NLX / ALX Universal Turning",
+        "url":     "/repairs/dmg-mori-cnc-machine-repair/nlx-turning/",
+        "intro":   "NLX and ALX are DMG Mori's universal-turning workhorses — NLX-1500 through NLX-6000, ALX 1500 through 2500, with bed-length suffixes (/500, /700, /1500) and MC/SMC/Y/SY/MY configuration options. The line covers everything from compact 2-axis bar work to large mill-turn jobs. Most calls are turret, sub-spindle, or Y-axis work.",
+        "failures": [
+            "Turret indexing faults — solenoid, indexer pawl, or position-encoder issues.",
+            "Sub-spindle alignment drift on SY and SMC twin-spindle configurations.",
+            "Y-axis wear and backlash drift from heavy cuts.",
+            "Tailstock quill issues on long-bed NLX-6000 builds.",
+        ],
+        "controls_paragraph": "NLX and ALX ship on [Siemens 840D](/repairs/dmg-mori-cnc-machine-repair/siemens-840d/) (typically 840D solutionline on newer builds), wrapped in the DMG Mori [CELOS](/repairs/dmg-mori-cnc-machine-repair/celos/) HMI layer. Service work spans both the control hardware and the CELOS-side integration.",
+        "siblings": [
+            ("CTX / CLX",  "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/"),
+            ("NTX",        "/repairs/dmg-mori-cnc-machine-repair/ntx/"),
+        ],
+    },
+    "ctx-clx-turning": {
+        "title":   "DMG Mori CTX / CLX Turning Repair (including TC variants)",
+        "slug":    "dmg-mori-ctx-clx-turning",
+        "subtitle":"CTX / CLX Turning + TC",
+        "url":     "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/",
+        "intro":   "CTX and CLX cover DMG Mori's broader turning lineup — CLX 350/450/550 entry production, CTX 310 through 850 with alpha/beta/gamma variants, and the TC turn-mill builds (CTX Beta 800 TC, Beta 1250 TC, Gamma 2000 TC, Gamma 3000 TC). The TC machines add a milling B-axis that becomes the focal point for most service calls.",
+        "failures": [
+            "B-axis milling spindle wear on TC variants — bearing pack and alignment work.",
+            "Lower turret faults on twin-turret configurations.",
+            "Hydraulic chuck issues on heavy-cut production.",
+            "Tailstock alignment on long-bed CTX 650 and CTX 850.",
+        ],
+        "controls_paragraph": "CTX and CLX ship on [Siemens 840D](/repairs/dmg-mori-cnc-machine-repair/siemens-840d/) under the [CELOS](/repairs/dmg-mori-cnc-machine-repair/celos/) HMI. TC variants with the added B-axis put more configuration work on the control side.",
+        "siblings": [
+            ("NLX / ALX",  "/repairs/dmg-mori-cnc-machine-repair/nlx-turning/"),
+            ("NTX",        "/repairs/dmg-mori-cnc-machine-repair/ntx/"),
+        ],
+    },
+    "ntx": {
+        "title":   "DMG Mori NTX Integrated Mill-Turn Repair",
+        "slug":    "dmg-mori-ntx",
+        "subtitle":"NTX Integrated Mill-Turn",
+        "url":     "/repairs/dmg-mori-cnc-machine-repair/ntx/",
+        "intro":   "NTX is the integrated mill-turn flagship — NTX 1000 (1st and 2nd Gen), 1000/SZM, 2000, 2500, 3000, and 4000 with SZ, SZM, S, and S2 configuration suffixes. These are high-capability multitasking platforms with full B-axis milling spindles. Most service calls center on the B-axis or the sub-spindle synchronization.",
+        "failures": [
+            "B-axis milling spindle bearing wear — the highest-stress component on these platforms.",
+            "Sub-spindle synchronization drift on multi-tasking part transfer.",
+            "Tool changer reliability — heavy ATC use on long-cycle parts.",
+            "Spindle drive faults from sustained heavy cuts.",
+        ],
+        "controls_paragraph": "NTX ships on [Siemens 840D](/repairs/dmg-mori-cnc-machine-repair/siemens-840d/) under [CELOS](/repairs/dmg-mori-cnc-machine-repair/celos/). The B-axis kinematics need re-calibration after any milling-spindle work.",
+        "siblings": [
+            ("CTX / CLX",  "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/"),
+            ("DMU / DMC",  "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"),
+        ],
+    },
+    "dmu-dmc": {
+        "title":   "DMG Mori DMU / DMC 5-Axis Repair",
+        "slug":    "dmg-mori-dmu-dmc",
+        "subtitle":"DMU / DMC 5-Axis Universal and Cube",
+        "url":     "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/",
+        "intro":   "DMU and DMC are DMG Mori's 5-axis workhorses — DMU 50 through DMU 340, plus monoBLOCK and duoBLOCK builds, the DMU eVo, and DMC variants from 1035V through 160 U. The DMU Portal and DMU Gantry handle very large parts. Most failure work centers on the trunnion (DMU) or the swivel head (monoBLOCK).",
+        "failures": [
+            "Trunnion calibration drift after a crash — A and C axis zero-point recovery.",
+            "Swivel head bearing wear on monoBLOCK builds.",
+            "RTCP and kinematic drift after any 5-axis component work.",
+            "Swarf intrusion at trunnion bearings on heavy-coolant production.",
+        ],
+        "controls_paragraph": "DMU machines mostly ship on [Heidenhain TNC](/repairs/dmg-mori-cnc-machine-repair/heidenhain-tnc/) (iTNC 530 on legacy builds, TNC 640 on current). DMC builds typically ship on [Siemens 840D](/repairs/dmg-mori-cnc-machine-repair/siemens-840d/). All run under [CELOS](/repairs/dmg-mori-cnc-machine-repair/celos/).",
+        "siblings": [
+            ("NHX / NH",   "/repairs/dmg-mori-cnc-machine-repair/nhx-horizontals/"),
+            ("NVX / NV",   "/repairs/dmg-mori-cnc-machine-repair/nvx-verticals/"),
+        ],
+    },
+    "nhx-horizontals": {
+        "title":   "DMG Mori NHX / NH Horizontal Repair",
+        "slug":    "dmg-mori-nhx-horizontals",
+        "subtitle":"NHX / NH Horizontals",
+        "url":     "/repairs/dmg-mori-cnc-machine-repair/nhx-horizontals/",
+        "intro":   "NHX and the older NH are DMG Mori's horizontal lineup — NHX 4000 through 10000 plus the legacy NH 4000/5000/6300. These are production horizontals built around pallet-changer reliability and B-axis indexing.",
+        "failures": [
+            "Pallet changer faults — clamp pressure, pallet seat alignment, position sensors.",
+            "B-axis indexer wear from heavy-cut production.",
+            "Coolant intrusion at the pallet seal on high-coolant work.",
+            "Chip evacuation — auger jams and conveyor reliability.",
+        ],
+        "controls_paragraph": "NHX and NH ship on [Siemens 840D](/repairs/dmg-mori-cnc-machine-repair/siemens-840d/) under [CELOS](/repairs/dmg-mori-cnc-machine-repair/celos/).",
+        "siblings": [
+            ("DMU / DMC",  "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"),
+            ("NVX / NV",   "/repairs/dmg-mori-cnc-machine-repair/nvx-verticals/"),
+        ],
+    },
+    "nvx-verticals": {
+        "title":   "DMG Mori NVX / NV / NVD Vertical Repair",
+        "slug":    "dmg-mori-nvx-verticals",
+        "subtitle":"NVX / NV / NVD Verticals",
+        "url":     "/repairs/dmg-mori-cnc-machine-repair/nvx-verticals/",
+        "intro":   "NVX is DMG Mori's high-end vertical lineup — NVX 4000 through 7000. The older NV 4000 and NV 5000 still see service work on mid-life machines. NVD with DCG (Driven at the Center of Gravity) construction targets high-acceleration production.",
+        "failures": [
+            "ATC reliability — solenoid, indexer pawl, carousel-position drift.",
+            "Ballscrew wear from heavy production cycles.",
+            "Spindle bearing failure on high-RPM NVX 5060 and similar.",
+            "Way cover damage from chip intrusion or crash.",
+        ],
+        "controls_paragraph": "NVX, NV, and NVD ship on [Siemens 840D](/repairs/dmg-mori-cnc-machine-repair/siemens-840d/) under [CELOS](/repairs/dmg-mori-cnc-machine-repair/celos/).",
+        "siblings": [
+            ("DMU / DMC",     "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"),
+            ("NHX / NH",      "/repairs/dmg-mori-cnc-machine-repair/nhx-horizontals/"),
+        ],
+    },
+    "cmx": {
+        "title":   "DMG Mori CMX / CMX U Repair",
+        "slug":    "dmg-mori-cmx",
+        "subtitle":"CMX Entry and 5-Sided",
+        "url":     "/repairs/dmg-mori-cnc-machine-repair/cmx/",
+        "intro":   "CMX is DMG Mori's entry-level production line — CMX 600V through CMX 1300V verticals, CMX 50U and 70U 5-axis universals, and the CMX 320 V compact. The platform is built for accessibility and cost; service patterns reflect more wear in heavy-use environments than the high-end DMU and NVX lines.",
+        "failures": [
+            "ATC reliability — solenoid wear and pawl alignment on heavy-cycle work.",
+            "Spindle bearing wear on machines pushed to upper RPM limits.",
+            "Way cover damage in busy production environments.",
+            "Coolant intrusion at the spindle nose on high-coolant work.",
+        ],
+        "controls_paragraph": "CMX machines ship on [Siemens 840D](/repairs/dmg-mori-cnc-machine-repair/siemens-840d/) under [CELOS](/repairs/dmg-mori-cnc-machine-repair/celos/).",
+        "siblings": [
+            ("DMU / DMC",     "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"),
+            ("DMP / Milltap", "/repairs/dmg-mori-cnc-machine-repair/dmp-milltap/"),
+        ],
+    },
+    "dmp-milltap": {
+        "title":   "DMG Mori DMP / Milltap Compact Production Repair",
+        "slug":    "dmg-mori-dmp-milltap",
+        "subtitle":"DMP / Milltap Compact Production",
+        "url":     "/repairs/dmg-mori-cnc-machine-repair/dmp-milltap/",
+        "intro":   "DMP and Milltap cover the compact, high-cycle production end of the DMG Mori range — DMP 35 through 70, the dual-spindle DMP 500, and the Milltap 700. These are high-throughput drill-tap and small-part machines; wear patterns track the cycle count.",
+        "failures": [
+            "High-cycle ATC wear from short-cycle production.",
+            "Ballscrew wear on heavy-throughput drill-tap work.",
+            "Spindle bearing failure on high-RPM, short-cycle use.",
+            "Way wear in dirty production environments.",
+        ],
+        "controls_paragraph": "DMP and Milltap ship on [Siemens 840D](/repairs/dmg-mori-cnc-machine-repair/siemens-840d/) under [CELOS](/repairs/dmg-mori-cnc-machine-repair/celos/).",
+        "siblings": [
+            ("CMX",            "/repairs/dmg-mori-cnc-machine-repair/cmx/"),
+            ("NVX / NV",       "/repairs/dmg-mori-cnc-machine-repair/nvx-verticals/"),
+        ],
+    },
+    "sprint-multisprint": {
+        "title":   "DMG Mori SPRINT and MULTISPRINT Swiss/Production Turning Repair",
+        "slug":    "dmg-mori-sprint-multisprint",
+        "subtitle":"SPRINT / MULTISPRINT Swiss-Production",
+        "url":     "/repairs/dmg-mori-cnc-machine-repair/sprint-multisprint/",
+        "intro":   "SPRINT and MULTISPRINT are DMG Mori's Swiss-style and production-turning platforms — SPRINT 20/32/50/65, MULTISPRINT 25 and 36. Swiss-type platforms have their own service patterns: guide bushing wear, sub-spindle sync, and bar-feed integration are the routine work.",
+        "failures": [
+            "Guide bushing wear from sustained Swiss-style production.",
+            "Sub-spindle synchronization drift on part-transfer work.",
+            "Bar feeder integration — sync and bar-end detection issues.",
+            "Live-tool indexing on the multi-tool variants.",
+        ],
+        "controls_paragraph": "SPRINT and MULTISPRINT ship on [Siemens 840D](/repairs/dmg-mori-cnc-machine-repair/siemens-840d/) under [CELOS](/repairs/dmg-mori-cnc-machine-repair/celos/).",
+        "siblings": [
+            ("NLX / ALX",      "/repairs/dmg-mori-cnc-machine-repair/nlx-turning/"),
+            ("CTX / CLX",      "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/"),
+        ],
+    },
+}
+_DMG_MORI_CONTROL_SPOKES = {
+    "siemens-840d": {
+        "title":   "Siemens 840D Repair on DMG Mori",
+        "slug":    "dmg-mori-siemens-840d",
+        "subtitle":"Siemens 840D / 840D solutionline",
+        "url":     "/repairs/dmg-mori-cnc-machine-repair/siemens-840d/",
+        "era":     "Late 1990s through present (solutionline current)",
+        "intro":   "Siemens 840D is the most common DMG Mori control. The original 840D shipped through the mid-2000s; 840D solutionline (sl) is the current generation. Service work splits between hardware repair on older builds (NCU and PCU boards, drive faults) and configuration work on solutionline.",
+        "machines_paragraph": "840D ships on the [NLX/ALX](/repairs/dmg-mori-cnc-machine-repair/nlx-turning/), [CTX/CLX](/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/), [NTX](/repairs/dmg-mori-cnc-machine-repair/ntx/), [NHX/NH](/repairs/dmg-mori-cnc-machine-repair/nhx-horizontals/), [NVX/NV/NVD](/repairs/dmg-mori-cnc-machine-repair/nvx-verticals/), [CMX](/repairs/dmg-mori-cnc-machine-repair/cmx/), [DMP/Milltap](/repairs/dmg-mori-cnc-machine-repair/dmp-milltap/), [SPRINT/MULTISPRINT](/repairs/dmg-mori-cnc-machine-repair/sprint-multisprint/), and the [DMC](/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/) builds in the DMU/DMC family.",
+        "failures": [
+            "PCU (Panel Control Unit) board faults — battery, fan, or HDD failure.",
+            "NCU (Numerical Control Unit) board issues — generally board-level repair.",
+            "Drive amplifier faults on heavy production work.",
+            "Memory battery loss leading to parameter and program memory loss.",
+            "MMC (Man-Machine Communication) failures on older 840D.",
+        ],
+        "parts_paragraph": "Siemens 840D parts are still well supported through Siemens and authorized service partners. Original 840D (non-solutionline) boards are heading toward aftermarket and remanufactured-only over the next several years. Solutionline parts are fully current.",
+        "recovery_paragraph": "Parameter backup on 840D is a documented Siemens process — back up via the operator panel before any battery or board work. We capture the parameter set at the start of every service visit and verify the restore at sign-off. CF card and HDD migration on older 840D PCUs is part of the same conversation.",
+        "siblings": [
+            ("Heidenhain TNC",  "/repairs/dmg-mori-cnc-machine-repair/heidenhain-tnc/"),
+            ("CELOS",           "/repairs/dmg-mori-cnc-machine-repair/celos/"),
+        ],
+    },
+    "heidenhain-tnc": {
+        "title":   "Heidenhain TNC Repair on DMG Mori (iTNC 530, TNC 640)",
+        "slug":    "dmg-mori-heidenhain-tnc",
+        "subtitle":"Heidenhain TNC",
+        "url":     "/repairs/dmg-mori-cnc-machine-repair/heidenhain-tnc/",
+        "era":     "iTNC 530 from roughly 2001, TNC 640 from 2012",
+        "intro":   "Heidenhain TNC is the common control on DMG Mori's DMU and DMC 5-axis lines — iTNC 530 on legacy builds and TNC 640 on current. The TNC family is heavily used in mold and die work where its conversational programming and geometric capability shine. Service work mostly centers on keypad, encoder, and drive system.",
+        "machines_paragraph": "Heidenhain TNC ships on the [DMU/DMC](/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/) 5-axis family — DMU 50 through DMU 340, monoBLOCK and duoBLOCK builds, DMU eVo, and the DMC universals. Most of the high-end DMG Mori 5-axis work runs on this control.",
+        "failures": [
+            "Keypad failure — heavy daily use makes this the most common single failure mode.",
+            "Encoder drift — particularly on rotary-axis encoders for trunnion machines.",
+            "Drive system faults on heavy 5-axis cuts.",
+            "MC (Main Computer) board faults on older iTNC 530 builds.",
+            "Memory battery loss.",
+        ],
+        "parts_paragraph": "Heidenhain TNC parts are well supported through Heidenhain and authorized service partners. iTNC 530 is heading toward late-life status; TNC 640 is fully current.",
+        "recovery_paragraph": "Heidenhain TNC backup is well documented — back up parameters and tool tables to the network or USB before any work. We verify the restore at sign-off.",
+        "siblings": [
+            ("Siemens 840D",  "/repairs/dmg-mori-cnc-machine-repair/siemens-840d/"),
+            ("CELOS",         "/repairs/dmg-mori-cnc-machine-repair/celos/"),
+        ],
+    },
+    "celos": {
+        "title":   "CELOS / CELOS X / Operate Service on DMG Mori",
+        "slug":    "dmg-mori-celos",
+        "subtitle":"CELOS HMI Layer",
+        "url":     "/repairs/dmg-mori-cnc-machine-repair/celos/",
+        "era":     "CELOS from 2014, CELOS X current",
+        "intro":   "CELOS is the DMG Mori HMI layer that sits on top of the underlying Siemens or Heidenhain control. It's the operator-facing interface and the integration point for shop-floor monitoring, job preparation, and digital twin work. Service is more about configuration and integration than hardware repair.",
+        "machines_paragraph": "CELOS runs on every current DMG Mori machine — every [NLX/ALX](/repairs/dmg-mori-cnc-machine-repair/nlx-turning/), [CTX/CLX](/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/), [NTX](/repairs/dmg-mori-cnc-machine-repair/ntx/), [DMU/DMC](/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/), [NHX/NH](/repairs/dmg-mori-cnc-machine-repair/nhx-horizontals/), [NVX/NV/NVD](/repairs/dmg-mori-cnc-machine-repair/nvx-verticals/), [CMX](/repairs/dmg-mori-cnc-machine-repair/cmx/), [DMP/Milltap](/repairs/dmg-mori-cnc-machine-repair/dmp-milltap/), and [SPRINT](/repairs/dmg-mori-cnc-machine-repair/sprint-multisprint/) machines.",
+        "failures": [
+            "IPC (Industrial PC) reliability — boot drive and fan issues on older CELOS hardware.",
+            "Network configuration drift after shop-floor IT changes.",
+            "App integration issues — CELOS apps interacting with shop-floor monitoring systems.",
+            "Touchscreen calibration drift.",
+        ],
+        "parts_paragraph": "CELOS hardware (the IPC) is fully supported through DMG Mori. The control underneath (Siemens or Heidenhain) follows its own parts lifecycle — see the respective control spokes.",
+        "recovery_paragraph": "CELOS configuration backup is part of the standard DMG Mori service workflow. Networking, MTConnect/OPC UA, and CELOS app configuration get documented before any service work and verified at sign-off.",
+        "siblings": [
+            ("Siemens 840D",  "/repairs/dmg-mori-cnc-machine-repair/siemens-840d/"),
+            ("Heidenhain TNC","/repairs/dmg-mori-cnc-machine-repair/heidenhain-tnc/"),
+        ],
+    },
+}
+
+_DOOSAN_SERIES_SPOKES = {
+    "puma": {
+        "title":   "Doosan Puma Horizontal Turning Repair",
+        "slug":    "doosan-puma",
+        "subtitle":"Puma Horizontal Turning",
+        "url":     "/repairs/doosan-cnc-machine-repair/puma/",
+        "intro":   "The Puma series is the Doosan turning workhorse — Puma 230 through Puma 800, with M/MS/LM/LY/Y/SY/SY II configuration variants, the heavier 4100 and 5100 builds, the GT compact lineup, the TT twin-turret builds, and the TW gantry-loaded variants. Most Midwest shop floors running Doosan have at least one Puma.",
+        "failures": [
+            "Turret indexing — solenoid, indexer pawl, position-encoder issues.",
+            "Sub-spindle alignment drift on SY twin-spindle configurations.",
+            "Y-axis backlash and ballscrew wear from heavy cuts.",
+            "Tailstock quill wear and pressure loss on long-bed builds.",
+            "Lower turret faults on the TT twin-turret builds.",
+        ],
+        "controls_paragraph": "Puma ships primarily on Fanuc — entry and mid-range Puma builds run [Fanuc 0i](/repairs/fanuc-cnc-machine-repair/series-0i/) (typically 0i-D or 0i-F), and higher-end Puma 2600SY, 3100, 4100, 5100, 700, and 800 builds run [Fanuc 30i](/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/).",
+        "siblings": [
+            ("Puma MX / SMX",  "/repairs/doosan-cnc-machine-repair/puma-mx-smx/"),
+            ("Lynx",           "/repairs/doosan-cnc-machine-repair/lynx/"),
+        ],
+    },
+    "puma-mx-smx": {
+        "title":   "Doosan Puma MX / SMX Multitasking Repair",
+        "slug":    "doosan-puma-mx-smx",
+        "subtitle":"Puma MX / SMX Multitasking",
+        "url":     "/repairs/doosan-cnc-machine-repair/puma-mx-smx/",
+        "intro":   "Puma MX and SMX are Doosan's mill-turn multitasking lineup — MX 1600 through 3100 with T/ST/SY configuration variants, and the newer SMX 2100, 2600, and 3100 with ST and S variants. These are high-capability platforms with B-axis milling spindles; most service calls center on the B-axis.",
+        "failures": [
+            "B-axis milling spindle wear — highest-stress component on these platforms.",
+            "Lower turret faults on twin-turret configurations.",
+            "ATC reliability on the multitasking ATC.",
+            "Sub-spindle synchronization on multi-axis transfer work.",
+        ],
+        "controls_paragraph": "Puma MX and SMX ship on [Fanuc 30i](/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/) — typically 30i-B on current builds. The multi-axis kinematics make Fanuc 30i the right fit for these platforms.",
+        "siblings": [
+            ("Puma",  "/repairs/doosan-cnc-machine-repair/puma/"),
+            ("DVF",   "/repairs/doosan-cnc-machine-repair/5-axis-verticals/"),
+        ],
+    },
+    "puma-vertical-turning": {
+        "title":   "Doosan Puma V / VT / VTR Vertical Turning Repair",
+        "slug":    "doosan-puma-vertical-turning",
+        "subtitle":"Puma V / VT / VTR Vertical Turning",
+        "url":     "/repairs/doosan-cnc-machine-repair/puma-vertical-turning/",
+        "intro":   "Puma V, VT, and VTR are Doosan's vertical turning lineup — Puma V400 through V9300 chuckers, the VT 750/900/1100 vertical turning centers, and the VTR ram-type machines. These platforms handle large, heavy parts where vertical orientation makes the load and chip evacuation easier.",
+        "failures": [
+            "Large-table bearing wear from sustained heavy-cut production.",
+            "ATC reliability on the V-series with integrated milling.",
+            "Hydraulic clamp pressure loss on the workpiece clamping system.",
+            "Way wear on the long ram travel of VTR machines.",
+        ],
+        "controls_paragraph": "Puma V, VT, and VTR ship on [Fanuc 30i](/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/) on most current builds. Older V400 may still run [Fanuc 0i](/repairs/fanuc-cnc-machine-repair/series-0i/).",
+        "siblings": [
+            ("Puma",        "/repairs/doosan-cnc-machine-repair/puma/"),
+            ("DNM",         "/repairs/doosan-cnc-machine-repair/dnm-verticals/"),
+        ],
+    },
+    "lynx": {
+        "title":   "Doosan Lynx Compact Turning Repair",
+        "slug":    "doosan-lynx",
+        "subtitle":"Lynx Compact Turning",
+        "url":     "/repairs/doosan-cnc-machine-repair/lynx/",
+        "intro":   "Lynx is Doosan's compact turning lineup — Lynx 220, 2100, 2600, and 300 with a wide range of M, MS, LM, LSY, LY, LMA, MA, II and similar configuration variants. The compact platform is heavily used in small-shop bar work and bar-fed production; service patterns track high-cycle wear.",
+        "failures": [
+            "Turret indexing — the most common single failure on Lynx compact platforms.",
+            "Bar feeder integration issues — sync and bar-end detection.",
+            "Sub-spindle alignment on LSY configurations.",
+            "Chuck cylinder leaks from sustained bar-work cycles.",
+        ],
+        "controls_paragraph": "Lynx ships on [Fanuc 0i](/repairs/fanuc-cnc-machine-repair/series-0i/) — typically 0i-D or 0i-F. The compact platform doesn't need the higher-end 30i family.",
+        "siblings": [
+            ("Puma",  "/repairs/doosan-cnc-machine-repair/puma/"),
+            ("Swiss / DST",  "/repairs/doosan-cnc-machine-repair/swiss-turning/"),
+        ],
+    },
+    "dnm-verticals": {
+        "title":   "Doosan DNM Vertical Machining Repair",
+        "slug":    "doosan-dnm-verticals",
+        "subtitle":"DNM Vertical Machining",
+        "url":     "/repairs/doosan-cnc-machine-repair/dnm-verticals/",
+        "intro":   "DNM is Doosan's vertical machining lineup — DNM 200 through DNM 750, with the higher-end DNM 4000/5700/6700 production builds, plus the DNM 200/5AX 5-axis variant. The platform is broad and the most common Doosan vertical on Midwest shop floors.",
+        "failures": [
+            "ATC carousel faults — solenoid, indexer pawl, carousel-position drift.",
+            "Ballscrew wear from sustained production.",
+            "Spindle bearing failure on high-RPM production work.",
+            "Way cover damage from chip intrusion or crash.",
+        ],
+        "controls_paragraph": "DNM ships on [Fanuc 0i](/repairs/fanuc-cnc-machine-repair/series-0i/) on entry and mid-range builds, and [Fanuc 30i](/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/) on the higher-end DNM 4000/5700/6700/750 production verticals.",
+        "siblings": [
+            ("Horizontals (NHM/NHP/HC)",  "/repairs/doosan-cnc-machine-repair/horizontals/"),
+            ("5-Axis Verticals (DVF)",     "/repairs/doosan-cnc-machine-repair/5-axis-verticals/"),
+        ],
+    },
+    "horizontals": {
+        "title":   "Doosan Horizontal Repair (NHM / NHP / HC)",
+        "slug":    "doosan-horizontals",
+        "subtitle":"NHM / NHP / HC Horizontals",
+        "url":     "/repairs/doosan-cnc-machine-repair/horizontals/",
+        "intro":   "Doosan's horizontals — NHM 4000 through 8000, NHP 4000 through 6300, HC 400 and 500 — are production-focused platforms with pallet changers and B-axis indexing. Most calls come from the pallet changer or the B-axis.",
+        "failures": [
+            "Pallet changer faults — clamp pressure, pallet seat, position sensors.",
+            "B-axis indexer wear from heavy-cut production.",
+            "Coolant intrusion at the pallet seal on high-coolant work.",
+            "Chip evacuation reliability — auger and conveyor work.",
+        ],
+        "controls_paragraph": "NHM, NHP, and HC ship on [Fanuc 30i](/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/). The multi-axis pallet handling fits the 30i family.",
+        "siblings": [
+            ("DNM Verticals",  "/repairs/doosan-cnc-machine-repair/dnm-verticals/"),
+            ("Puma",           "/repairs/doosan-cnc-machine-repair/puma/"),
+        ],
+    },
+    "5-axis-verticals": {
+        "title":   "Doosan DVF / FM 5-Axis Vertical Repair",
+        "slug":    "doosan-5-axis-verticals",
+        "subtitle":"DVF / FM 5-Axis Verticals",
+        "url":     "/repairs/doosan-cnc-machine-repair/5-axis-verticals/",
+        "intro":   "DVF and FM are Doosan's 5-axis vertical line — DVF 5000, 6500, 8000 trunnion-table 5-axis, and the FM 200/5AX Linear-motor build. Most calls center on the trunnion, the rotary-axis encoders, or RTCP drift after crash work.",
+        "failures": [
+            "Trunnion calibration drift after a crash.",
+            "A and C-axis encoder faults — contamination or signal loss.",
+            "RTCP drift after spindle or trunnion work.",
+            "Linear-motor drive issues on the FM 200/5AX.",
+        ],
+        "controls_paragraph": "DVF and FM ship on [Fanuc 30i](/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/) — typically 30i-B on current builds. The 5-axis kinematics need 30i's higher feature set.",
+        "siblings": [
+            ("DNM Verticals",   "/repairs/doosan-cnc-machine-repair/dnm-verticals/"),
+            ("Puma MX / SMX",   "/repairs/doosan-cnc-machine-repair/puma-mx-smx/"),
+        ],
+    },
+    "swiss-turning": {
+        "title":   "Doosan Swiss-Type / DST Repair",
+        "slug":    "doosan-swiss-turning",
+        "subtitle":"Swiss-Type / DST",
+        "url":     "/repairs/doosan-cnc-machine-repair/swiss-turning/",
+        "intro":   "Doosan's Swiss-style platforms — SwiftTurn 32 and 38, plus the DST series — handle high-precision small-diameter bar work. Swiss-type service patterns are specific: guide bushing wear, sub-spindle sync, and bar feed integration are the routine work.",
+        "failures": [
+            "Guide bushing wear from sustained Swiss-style production.",
+            "Sub-spindle synchronization on part-transfer.",
+            "Bar feed integration — bar-end detection and sync.",
+            "Live tool indexing on multi-tool variants.",
+        ],
+        "controls_paragraph": "Doosan Swiss platforms ship on [Fanuc 30i](/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/).",
+        "siblings": [
+            ("Lynx",  "/repairs/doosan-cnc-machine-repair/lynx/"),
+            ("Puma",  "/repairs/doosan-cnc-machine-repair/puma/"),
+        ],
+    },
+}
+
+_OKUMA_SERIES_SPOKES = {
+    "lb-lu-lathes": {
+        "title":   "Okuma LB / LU Lathe Repair",
+        "slug":    "okuma-lb-lu-lathes",
+        "subtitle":"LB / LU Horizontal Lathes",
+        "url":     "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/",
+        "intro":   "LB and LU are Okuma's horizontal lathe workhorses — LB 200 through LB 5000 EX, LU 300 through LU 8000. The line spans entry production to large-bore turning. Live-tool variants add live-tool drive complexity; long-bed builds see spindle wear from extended cuts.",
+        "failures": [
+            "Turret indexing faults — solenoid, indexer pawl, position-encoder.",
+            "Tailstock quill wear on long-bed LB 4000 and LB 5000.",
+            "Spindle bearing wear on heavily used LB and LU long-bed.",
+            "Live-tool indexing issues on the live-tool variants.",
+        ],
+        "controls_paragraph": "Older LB and LU run [OSP-P200](/repairs/okuma-cnc-machine-repair/osp-p200/); mid-life builds run [OSP-P300](/repairs/okuma-cnc-machine-repair/osp-p300/); the latest LB 3000 EX II and LB 4000/5000 EX run [OSP-P500](/repairs/okuma-cnc-machine-repair/osp-p500/) on current production. Legacy ES-L and ESV builds may still be on [OSP Legacy](/repairs/okuma-cnc-machine-repair/osp-legacy/).",
+        "siblings": [
+            ("Genos",   "/repairs/okuma-cnc-machine-repair/genos/"),
+            ("MULTUS",  "/repairs/okuma-cnc-machine-repair/multus/"),
+        ],
+    },
+    "genos": {
+        "title":   "Okuma Genos L / Genos M Repair",
+        "slug":    "okuma-genos",
+        "subtitle":"Genos L / Genos M",
+        "url":     "/repairs/okuma-cnc-machine-repair/genos/",
+        "intro":   "Genos is Okuma's 'Affordable Excellence' line — Genos L lathes (L250, L300, L3000-e, L400, L4000) and Genos M verticals (M460-VE, M560-V, M660-V). The platform is built for accessibility; service patterns include more ATC wear and thermal issues than the higher-end MULTUS or MB/MA lines.",
+        "failures": [
+            "ATC wear from production cycles — solenoid and pawl alignment.",
+            "Spindle thermal issues — heat-related drift on heavy cuts.",
+            "Control panel reliability — keypad and touchscreen on older Genos.",
+            "Way wear in dirty production environments.",
+        ],
+        "controls_paragraph": "Genos ships on [OSP-P300](/repairs/okuma-cnc-machine-repair/osp-p300/) — the standard control for the line through current builds.",
+        "siblings": [
+            ("LB / LU Lathes",       "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"),
+            ("MB / MA Verticals",    "/repairs/okuma-cnc-machine-repair/mb-ma-verticals/"),
+        ],
+    },
+    "mb-ma-verticals": {
+        "title":   "Okuma MB / MA Vertical Machining Repair",
+        "slug":    "okuma-mb-ma-verticals",
+        "subtitle":"MB / MA Vertical Machining",
+        "url":     "/repairs/okuma-cnc-machine-repair/mb-ma-verticals/",
+        "intro":   "MB and MA are Okuma's vertical machining workhorses — MB-46V through MB-66V production verticals, the MB-4000H and MB-5000H horizontal-spindle builds, and the MA-400 through MA-8000 larger-envelope platforms. The line covers entry production to large-bed work.",
+        "failures": [
+            "ATC drum indexing — common on production-cycle machines.",
+            "Ballscrew wear from sustained heavy cuts.",
+            "Spindle bearing failure on high-RPM MB work.",
+            "Way wear on MA-400 and MA-500 machines from extended production.",
+        ],
+        "controls_paragraph": "Older MB and MA run [OSP-P200](/repairs/okuma-cnc-machine-repair/osp-p200/); current MB and MA builds run [OSP-P300](/repairs/okuma-cnc-machine-repair/osp-p300/). Legacy MV and MX-45 are usually [OSP Legacy](/repairs/okuma-cnc-machine-repair/osp-legacy/).",
+        "siblings": [
+            ("Genos",    "/repairs/okuma-cnc-machine-repair/genos/"),
+            ("MULTUS",   "/repairs/okuma-cnc-machine-repair/multus/"),
+        ],
+    },
+    "multus": {
+        "title":   "Okuma MULTUS B-Axis Multitasking Repair",
+        "slug":    "okuma-multus",
+        "subtitle":"MULTUS B-Axis Multitasking",
+        "url":     "/repairs/okuma-cnc-machine-repair/multus/",
+        "intro":   "MULTUS is Okuma's B-axis multitasking line — MULTUS B200 through B750 (with II variants), MULTUS U3000 through U5000 large-envelope builds, and the historic MacTurn predecessors. These platforms add a B-axis milling spindle to a turning chassis; service work centers on the B-axis and the lower turret.",
+        "failures": [
+            "B-axis milling spindle bearing wear — highest-stress component.",
+            "Lower turret faults on twin-turret configurations.",
+            "ATC chain reliability on the multitasking ATC.",
+            "Sub-spindle alignment on dual-spindle MULTUS builds.",
+        ],
+        "controls_paragraph": "MULTUS runs on [OSP-P200](/repairs/okuma-cnc-machine-repair/osp-p200/) on older builds and [OSP-P300](/repairs/okuma-cnc-machine-repair/osp-p300/) on current. The flagship MULTUS U5000 and current B-II builds ship on [OSP-P500](/repairs/okuma-cnc-machine-repair/osp-p500/).",
+        "siblings": [
+            ("Twin-Spindle / Twin-Turret",  "/repairs/okuma-cnc-machine-repair/twin-spindle-twin-turret/"),
+            ("LB / LU Lathes",              "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"),
+        ],
+    },
+    "twin-spindle-twin-turret": {
+        "title":   "Okuma Twin-Spindle / Twin-Turret Repair (MacTurn / 2SP / LT)",
+        "slug":    "okuma-twin-spindle-twin-turret",
+        "subtitle":"Twin-Spindle / Twin-Turret",
+        "url":     "/repairs/okuma-cnc-machine-repair/twin-spindle-twin-turret/",
+        "intro":   "Okuma's twin-spindle and twin-turret turning — 2SP-2500H, 2SP-V40, LT 200-MY through LT 300-MY, and the LT 2000 EX. The historic LT-25 and LT-15 still see service work. Twin-spindle platforms add sub-spindle sync complexity; twin-turret platforms add lower-turret reliability.",
+        "failures": [
+            "Sub-spindle synchronization on twin-spindle work.",
+            "Lower turret indexing and reliability.",
+            "Hydraulic system pressure loss on twin-spindle.",
+            "Part-transfer reliability on parts catcher systems.",
+        ],
+        "controls_paragraph": "Twin-spindle and twin-turret platforms ship on [OSP-P200](/repairs/okuma-cnc-machine-repair/osp-p200/) on older builds, [OSP-P300](/repairs/okuma-cnc-machine-repair/osp-p300/) on the LT 300-MY and LT 2000 EX. Legacy LT-15 and LT-25 are typically [OSP Legacy](/repairs/okuma-cnc-machine-repair/osp-legacy/).",
+        "siblings": [
+            ("MULTUS",        "/repairs/okuma-cnc-machine-repair/multus/"),
+            ("LB / LU Lathes","/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"),
+        ],
+    },
+    "vtm": {
+        "title":   "Okuma VTM Vertical Turning Repair",
+        "slug":    "okuma-vtm",
+        "subtitle":"VTM Vertical Turning",
+        "url":     "/repairs/okuma-cnc-machine-repair/vtm/",
+        "intro":   "VTM is Okuma's vertical turning lineup — VTM-65, VTM-100, VTM-120, VTM-180. These handle large, heavy parts where vertical orientation simplifies chip evacuation and chucking large workpieces.",
+        "failures": [
+            "Table bearing wear on sustained heavy-cut production.",
+            "ATC reliability on milling-capable VTM builds.",
+            "Swarf evacuation around the table on heavy roughing.",
+            "Hydraulic clamp pressure loss.",
+        ],
+        "controls_paragraph": "VTM runs on [OSP-P200](/repairs/okuma-cnc-machine-repair/osp-p200/) on older builds and [OSP-P300](/repairs/okuma-cnc-machine-repair/osp-p300/) on current.",
+        "siblings": [
+            ("MU / MCR (5-Axis & Bridge)",  "/repairs/okuma-cnc-machine-repair/v-bridge-mills/"),
+            ("LAW / LFS Heavy Lathes",      "/repairs/okuma-cnc-machine-repair/heavy-lathes/"),
+        ],
+    },
+    "v-bridge-mills": {
+        "title":   "Okuma MU 5-Axis and MCR Bridge Mill Repair",
+        "slug":    "okuma-v-bridge-mills",
+        "subtitle":"MU 5-Axis / MCR Bridge",
+        "url":     "/repairs/okuma-cnc-machine-repair/v-bridge-mills/",
+        "intro":   "MU is Okuma's 5-axis vertical lineup — MU-400V through MU-8000V trunnion-table 5-axis machines. MCR-A5C and MCR-BIII are Okuma's bridge mills for very large parts. The two share Okuma's OSP control but the service patterns differ — MU is trunnion-driven; MCR is bridge geometry.",
+        "failures": [
+            "Trunnion calibration drift on MU builds — A and C-axis zero-point work.",
+            "Bridge geometry calibration on MCR — large-span alignment.",
+            "Spindle bearing wear on MU 5-axis builds from high-stress cuts.",
+            "Linear scale issues on bridge machines.",
+        ],
+        "controls_paragraph": "MU and MCR ship on [OSP-P300](/repairs/okuma-cnc-machine-repair/osp-p300/) — the standard control for these platforms across the current generation.",
+        "siblings": [
+            ("MB / MA Verticals",  "/repairs/okuma-cnc-machine-repair/mb-ma-verticals/"),
+            ("VTM",                "/repairs/okuma-cnc-machine-repair/vtm/"),
+        ],
+    },
+    "heavy-lathes": {
+        "title":   "Okuma Heavy Lathe Repair (LAW / LFS)",
+        "slug":    "okuma-heavy-lathes",
+        "subtitle":"LAW / LFS Heavy Lathes",
+        "url":     "/repairs/okuma-cnc-machine-repair/heavy-lathes/",
+        "intro":   "LAW and LFS are Okuma's heavy-duty turning — LAW 1000 through 3000 heavy lathes and LFS-590 flat-bed turning. These handle very large workpieces and very heavy cuts; failure patterns track the loads.",
+        "failures": [
+            "Large-bore spindle wear on sustained heavy roughing.",
+            "Way wear from extended heavy-cut production.",
+            "Hydraulic chuck pressure loss on large workpieces.",
+            "Drive amplifier faults from heavy-cut loads.",
+        ],
+        "controls_paragraph": "LAW and LFS run on [OSP-P200](/repairs/okuma-cnc-machine-repair/osp-p200/) on older builds and [OSP-P300](/repairs/okuma-cnc-machine-repair/osp-p300/) on current.",
+        "siblings": [
+            ("LB / LU Lathes",  "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"),
+            ("VTM",             "/repairs/okuma-cnc-machine-repair/vtm/"),
+        ],
+    },
+}
+_OKUMA_CONTROL_SPOKES = {
+    "osp-p200": {
+        "title":   "Okuma OSP-P200 Repair",
+        "slug":    "okuma-osp-p200",
+        "subtitle":"OSP-P200",
+        "url":     "/repairs/okuma-cnc-machine-repair/osp-p200/",
+        "era":     "Roughly 2003 through 2012",
+        "intro":   "OSP-P200 is the Okuma control generation that shipped on most early-2000s through early-2010s Okuma machines. In 2026 it's at the late-life stage — HDD failures, MMC board issues, and keypad wear are the routine service work. Most P200 boards are still serviceable but heading toward aftermarket-only on some.",
+        "machines_paragraph": "OSP-P200 shipped across the Okuma lineup — older [LB and LU lathes](/repairs/okuma-cnc-machine-repair/lb-lu-lathes/), [MB and MA verticals](/repairs/okuma-cnc-machine-repair/mb-ma-verticals/), older [MULTUS](/repairs/okuma-cnc-machine-repair/multus/) builds, [VTM](/repairs/okuma-cnc-machine-repair/vtm/) verticals, [twin-spindle and twin-turret](/repairs/okuma-cnc-machine-repair/twin-spindle-twin-turret/) builds, and [LAW heavy lathes](/repairs/okuma-cnc-machine-repair/heavy-lathes/).",
+        "failures": [
+            "HDD failure — the most common single issue. SSD upgrades aren't standard on P200 but board-level replacement is.",
+            "MMC board faults — control board sees enough thermal cycling to fail over a decade.",
+            "Keypad failure — high-cycle keys go intermittent.",
+            "Monitor failure — original displays approaching end of life.",
+            "Fan failure and resulting thermal damage if not caught.",
+        ],
+        "parts_paragraph": "P200 parts are still supported through Okuma channels for most board items, but some components are heading toward aftermarket-only. We check parts availability before quoting board-level work.",
+        "recovery_paragraph": "Parameter backup on P200 is straightforward through the control's built-in path. Battery work and any board-level repair starts with capturing parameters. We verify the restore at sign-off.",
+        "siblings": [
+            ("OSP-P300",   "/repairs/okuma-cnc-machine-repair/osp-p300/"),
+            ("OSP Legacy", "/repairs/okuma-cnc-machine-repair/osp-legacy/"),
+        ],
+    },
+    "osp-p300": {
+        "title":   "Okuma OSP-P300 Repair",
+        "slug":    "okuma-osp-p300",
+        "subtitle":"OSP-P300",
+        "url":     "/repairs/okuma-cnc-machine-repair/osp-p300/",
+        "era":     "Roughly 2012 through 2020",
+        "intro":   "OSP-P300 is the Okuma control generation that succeeded P200. It's mid-life now — current enough that parts are fully supported, but old enough that real service work shows up. SSD upgrades on early builds are increasingly common, and the touchscreen on heavy-use machines starts showing drift.",
+        "machines_paragraph": "OSP-P300 ships across the modern Okuma lineup — current [LB and LU lathes](/repairs/okuma-cnc-machine-repair/lb-lu-lathes/), [Genos](/repairs/okuma-cnc-machine-repair/genos/), current [MB and MA verticals](/repairs/okuma-cnc-machine-repair/mb-ma-verticals/), [MULTUS](/repairs/okuma-cnc-machine-repair/multus/) (except current U5000), [VTM](/repairs/okuma-cnc-machine-repair/vtm/), [MU and MCR](/repairs/okuma-cnc-machine-repair/v-bridge-mills/), [twin-spindle / twin-turret](/repairs/okuma-cnc-machine-repair/twin-spindle-twin-turret/), and [LAW](/repairs/okuma-cnc-machine-repair/heavy-lathes/) builds.",
+        "failures": [
+            "SSD upgrade availability — common preventive service on early-generation P300 builds.",
+            "Touchscreen drift on heavily used machines.",
+            "Ethernet and USB issues — networking and media path reliability.",
+            "Parameter backup discipline on a control with more parameters than P200.",
+        ],
+        "parts_paragraph": "OSP-P300 parts are fully supported through Okuma channels.",
+        "recovery_paragraph": "P300 supports a clean parameter backup workflow via network or USB. We capture the parameter set at the start of every visit and verify the restore at sign-off.",
+        "siblings": [
+            ("OSP-P200",  "/repairs/okuma-cnc-machine-repair/osp-p200/"),
+            ("OSP-P500",  "/repairs/okuma-cnc-machine-repair/osp-p500/"),
+        ],
+    },
+    "osp-p500": {
+        "title":   "Okuma OSP-P500 Repair",
+        "slug":    "okuma-osp-p500",
+        "subtitle":"OSP-P500",
+        "url":     "/repairs/okuma-cnc-machine-repair/osp-p500/",
+        "era":     "2020 to present",
+        "intro":   "OSP-P500 is Okuma's current control generation. It's recent enough that hardware failures are uncommon — most service work is integration, MTConnect setup, app deployment, and networking. The conversation is more about configuration than reactive repair.",
+        "machines_paragraph": "OSP-P500 ships on Okuma's current flagship platforms — the latest [LB 3000 EX II and LB 4000/5000 EX](/repairs/okuma-cnc-machine-repair/lb-lu-lathes/), current [MULTUS U5000 and B-II](/repairs/okuma-cnc-machine-repair/multus/), and other current-generation builds.",
+        "failures": [
+            "Network and Ethernet configuration drift after shop-floor IT changes.",
+            "MTConnect setup and parameter mapping for shop-floor monitoring.",
+            "App integration on the OSP-P500 platform.",
+            "USB media reliability — periodic cleaning on the boot path.",
+        ],
+        "parts_paragraph": "P500 parts are fully current through Okuma channels.",
+        "recovery_paragraph": "P500 has the most modern backup workflow in the Okuma family — network-based parameter and program backup. We document the parameter set at the start of every visit.",
+        "siblings": [
+            ("OSP-P300",  "/repairs/okuma-cnc-machine-repair/osp-p300/"),
+            ("OSP-P200",  "/repairs/okuma-cnc-machine-repair/osp-p200/"),
+        ],
+    },
+    "osp-legacy": {
+        "title":   "Okuma OSP Legacy Control Repair (OSP 5000 / 7000 / U10 / U100)",
+        "slug":    "okuma-osp-legacy",
+        "subtitle":"OSP Legacy",
+        "url":     "/repairs/okuma-cnc-machine-repair/osp-legacy/",
+        "era":     "Pre-2003",
+        "intro":   "OSP Legacy covers Okuma's pre-2003 controls — OSP 5000, OSP 7000, U10, U100. These machines are at the heavy-obsolescence stage; most boards are aftermarket-only, and the conversation often becomes a retrofit consultation rather than a reactive repair.",
+        "machines_paragraph": "OSP Legacy controls shipped on older Okuma platforms — legacy MV-series verticals, MX-45, ES-L and ESV [LB/LU](/repairs/okuma-cnc-machine-repair/lb-lu-lathes/) builds, older [LT-15 and LT-25 twin-turret](/repairs/okuma-cnc-machine-repair/twin-spindle-twin-turret/), and legacy MacTurn predecessors to current MULTUS.",
+        "failures": [
+            "Bubble memory loss on the oldest OSP 5000 builds.",
+            "CRT failure — original tubes mostly out of service. LCD retrofits available.",
+            "Keypad and MDI board failures.",
+            "Drive amplifier obsolescence — heading toward aftermarket-only.",
+            "Floppy and PCMCIA media reliability.",
+        ],
+        "parts_paragraph": "OSP Legacy is heavily obsolescent. Most board-level repair runs through remanufacturing specialists. For some machines, the conversation moves to retrofit — replacing the OSP Legacy control with a current OSP-P300 or P500, or a third-party retrofit. We scope what's repairable in place versus retrofit-territory before quoting.",
+        "recovery_paragraph": "Parameter backup on OSP Legacy is generation-specific. The process starts with documenting the existing parameter set on whatever media the control supports, then planning the work. Floppy and PCMCIA migration to modern media is often part of the same conversation.",
+        "siblings": [
+            ("OSP-P200",  "/repairs/okuma-cnc-machine-repair/osp-p200/"),
+            ("OSP-P300",  "/repairs/okuma-cnc-machine-repair/osp-p300/"),
+        ],
+    },
+}
+
+# Fanuc — controls-only, no series spokes. The hub flips Browse-by-Series
+# to "Brands that ship Fanuc controls".
+_FANUC_CONTROL_SPOKES = {
+    "series-0-legacy": {
+        "title":   "Fanuc Series 0 / 0M / 0T Repair (Pre-i Legacy)",
+        "slug":    "fanuc-series-0-legacy",
+        "subtitle":"Fanuc Series 0 / 0M / 0T",
+        "url":     "/repairs/fanuc-cnc-machine-repair/series-0-legacy/",
+        "era":     "1980s through 1990s",
+        "intro":   "Fanuc Series 0 (and the 0M mill and 0T lathe variants) was the workhorse Fanuc control through the 1980s and 1990s. In 2026 these are deep-legacy machines — bubble memory loss, CRT failure, and drive obsolescence are the routine work, and most boards run through remanufacturing specialists rather than OEM supply.",
+        "machines_paragraph": "Series 0 shipped on a huge range of late-1980s through 1990s machines across multiple OEMs. Anything from that era with 'Fanuc' on the control panel is likely Series 0 or a close relative. Many older [Doosan Puma](/repairs/doosan-cnc-machine-repair/puma/) and other Korean and Taiwanese-built lathes from this era used Series 0.",
+        "failures": [
+            "Bubble memory loss — the single most common failure on Series 0.",
+            "CRT failure — original tubes mostly out of service. LCD retrofits available.",
+            "Keyboard and MDI board failures.",
+            "Drive system obsolescence — older servo amps going scarce.",
+            "Power supply faults from decades of thermal cycling.",
+        ],
+        "parts_paragraph": "Series 0 parts are heavily aftermarket-only at this point. Remanufactured boards through specialists are the standard path on board-level work. For some machines the conversation moves to retrofit — replacing the Series 0 with a Fanuc 0i or a third-party control.",
+        "recovery_paragraph": "Bubble memory and parameter recovery on Series 0 is the most fragile recovery procedure in the Fanuc family. Capture the parameter set before any battery or board work; battery replacement on a powered-up control where possible; restore parameters if memory was lost. We scope each job individually because Series 0 specifics vary by OEM and vintage.",
+        "siblings": [
+            ("Series 6 / 10 / 11 / 12 / 15", "/repairs/fanuc-cnc-machine-repair/series-6-15-legacy/"),
+            ("Series 16i / 18i / 21i",       "/repairs/fanuc-cnc-machine-repair/series-16i-18i-21i/"),
+        ],
+    },
+    "series-6-15-legacy": {
+        "title":   "Fanuc Series 6 / 10 / 11 / 12 / 15 Repair",
+        "slug":    "fanuc-series-6-15-legacy",
+        "subtitle":"Series 6 through 15",
+        "url":     "/repairs/fanuc-cnc-machine-repair/series-6-15-legacy/",
+        "era":     "1980s through 2000s",
+        "intro":   "Fanuc Series 6, 10, 11, 12, and 15 are the higher-end siblings of Series 0 — typically on larger or more complex machines from the 1980s through the 2000s. Series 15 in particular still sees active service on larger machines from the late 1990s and early 2000s. Failure modes overlap with Series 0 but parts availability is sometimes better.",
+        "machines_paragraph": "Series 6 through 12 shipped on higher-end machines from various OEMs through the 1990s. Series 15 was common on larger and more sophisticated machines into the 2000s — including some larger [Doosan](/repairs/doosan-cnc-machine-repair/puma/) and other Asian-OEM platforms.",
+        "failures": [
+            "Memory battery loss leading to parameter and program loss.",
+            "CRT failure — LCD retrofits available.",
+            "Drive amplifier obsolescence.",
+            "Keyboard and MDI board failures.",
+            "PCB-level faults requiring remanufacturing.",
+        ],
+        "parts_paragraph": "Series 6 through 12 are deep-legacy with most parts aftermarket-only. Series 15 still has better parts availability through Fanuc and remanufacturing specialists.",
+        "recovery_paragraph": "Battery and parameter recovery follows the standard Fanuc workflow — capture parameters before any battery work, replace the battery on a powered control, restore parameters as needed. Series 15 has somewhat better recovery tooling than the earlier siblings.",
+        "siblings": [
+            ("Series 0 / 0M / 0T",        "/repairs/fanuc-cnc-machine-repair/series-0-legacy/"),
+            ("Series 16i / 18i / 21i",    "/repairs/fanuc-cnc-machine-repair/series-16i-18i-21i/"),
+        ],
+    },
+    "series-16i-18i-21i": {
+        "title":   "Fanuc Series 16i / 18i / 21i Repair (Model A & B)",
+        "slug":    "fanuc-series-16i-18i-21i",
+        "subtitle":"Series 16i / 18i / 21i",
+        "url":     "/repairs/fanuc-cnc-machine-repair/series-16i-18i-21i/",
+        "era":     "Roughly 1995 through 2010",
+        "intro":   "Fanuc Series 16i, 18i, and 21i (with Model A and Model B revisions) are the most common Fanuc controls on mid-life machines in 2026. The family shipped on a huge fleet of late-1990s through late-2000s machines across many OEMs. PCMCIA media obsolescence, FROM/SRAM battery loss, drive amplifier faults, and monitor failure are the routine service work.",
+        "machines_paragraph": "Series 16i, 18i, and 21i shipped on a wide cross-section of late-1990s through 2000s machines — many [Doosan Puma](/repairs/doosan-cnc-machine-repair/puma/) builds from this era, plus countless other Asian-OEM platforms running Fanuc controls.",
+        "failures": [
+            "PCMCIA media obsolescence — physical drives mostly still work but media sourcing and reader reliability are the issue.",
+            "FROM and SRAM battery loss — leading to parameter and program memory loss.",
+            "Drive amplifier faults from heavy production work.",
+            "Monitor failure — original CRTs mostly out of service.",
+            "Operator-panel button failure on high-cycle keys.",
+        ],
+        "parts_paragraph": "Series 16i / 18i / 21i parts are still available through Fanuc channels for most board items, but the supply chain is thinning. Remanufactured boards through specialists are increasingly common. PCMCIA-to-CF or PCMCIA-to-USB media migration is a frequent companion job.",
+        "recovery_paragraph": "Battery and parameter recovery on the 16i/18i/21i family is the standard Fanuc process — capture parameters before any battery work, replace the battery on a powered control where possible, restore parameters as needed. PCMCIA media migration is part of the same conversation we scope upfront.",
+        "siblings": [
+            ("Series 0i",                  "/repairs/fanuc-cnc-machine-repair/series-0i/"),
+            ("Series 30i / 31i / 32i",     "/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/"),
+        ],
+    },
+    "series-0i": {
+        "title":   "Fanuc Series 0i Repair (Model A through F)",
+        "slug":    "fanuc-series-0i",
+        "subtitle":"Series 0i (A/B/C/D/F)",
+        "url":     "/repairs/fanuc-cnc-machine-repair/series-0i/",
+        "era":     "2003 through present (0i-F current)",
+        "intro":   "Fanuc Series 0i is ubiquitous — Model A through current Model F. It shipped on a huge fleet of mid-2000s through present-day machines, including most entry and mid-range [Doosan Puma](/repairs/doosan-cnc-machine-repair/puma/), [Doosan Lynx](/repairs/doosan-cnc-machine-repair/lynx/), older [Haas](/repairs/haas-cnc-machine-repair/vf-series/) imports, and countless other platforms. Routine service is HDD/CF card work, battery replacement, drive amplifier faults, and panel button failures.",
+        "machines_paragraph": "Series 0i ships on the broadest cross-section of any Fanuc control — most entry and mid-range [Doosan Puma](/repairs/doosan-cnc-machine-repair/puma/) and all [Doosan Lynx](/repairs/doosan-cnc-machine-repair/lynx/), older [Haas](/repairs/haas-cnc-machine-repair/vf-series/) builds, and a huge fleet of imported Asian-OEM machines. 0i-F is the current generation; 0i-D dominates the 2010-2018 fleet.",
+        "failures": [
+            "HDD or CF card failure — most common single issue. CF card replacement and SSD-style migration are routine.",
+            "Battery loss — leading to parameter and program memory loss.",
+            "Drive amplifier faults from heavy production cycles.",
+            "Operator-panel button failure on high-cycle keys.",
+            "Touchscreen drift on the newer 0i builds with touchscreen panels.",
+        ],
+        "parts_paragraph": "Series 0i parts are fully current and supported through Fanuc. 0i-A and B are heading toward late-life status; 0i-D and 0i-F are fully current.",
+        "recovery_paragraph": "Battery and parameter recovery on 0i is well documented. Capture parameters and PMC ladder logic before any battery work, replace the battery on a powered control, restore parameters as needed. CF card migration to current media is part of the same workflow.",
+        "siblings": [
+            ("Series 16i / 18i / 21i",    "/repairs/fanuc-cnc-machine-repair/series-16i-18i-21i/"),
+            ("Series 30i / 31i / 32i",    "/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/"),
+        ],
+    },
+    "series-30i-31i-32i": {
+        "title":   "Fanuc Series 30i / 31i / 32i / 35i Repair",
+        "slug":    "fanuc-series-30i-31i-32i",
+        "subtitle":"Series 30i / 31i / 32i / 35i",
+        "url":     "/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/",
+        "era":     "2008 through present",
+        "intro":   "Fanuc Series 30i, 31i, 32i, and 35i are the current high-end Fanuc family — Model A through current Model B. They ship on higher-end machines that need more axes, more features, or faster processing than 0i provides. In 2026 they're recent enough that hardware failure is uncommon; most service work is integration, networking, MTConnect, and FOCAS-based shop-floor monitoring.",
+        "machines_paragraph": "30i and family ship on higher-end machines — most current [Doosan Puma](/repairs/doosan-cnc-machine-repair/puma/) (Puma 2600SY, 3100, 4100, 5100, 700, 800), all [Puma MX and SMX](/repairs/doosan-cnc-machine-repair/puma-mx-smx/) multitasking, [DVF 5-axis](/repairs/doosan-cnc-machine-repair/5-axis-verticals/), [NHM/NHP/HC horizontals](/repairs/doosan-cnc-machine-repair/horizontals/), and the higher-end [DNM verticals](/repairs/doosan-cnc-machine-repair/dnm-verticals/).",
+        "failures": [
+            "Less hardware failure than earlier generations given relative age.",
+            "Networking configuration drift after shop-floor IT changes.",
+            "MTConnect and FOCAS setup for shop-floor monitoring.",
+            "SSD upgrades on early 30i-A builds with the original HDD.",
+            "Touchscreen calibration drift on heavily used panels.",
+        ],
+        "parts_paragraph": "30i family parts are fully current and supported through Fanuc.",
+        "recovery_paragraph": "Backup workflow on 30i is modern — network and USB-based parameter and PMC backup. We document the parameter set at the start of every visit and verify the restore at sign-off.",
+        "siblings": [
+            ("Series 0i",                "/repairs/fanuc-cnc-machine-repair/series-0i/"),
+            ("Series 16i / 18i / 21i",   "/repairs/fanuc-cnc-machine-repair/series-16i-18i-21i/"),
+        ],
+    },
+    "power-mate-i": {
+        "title":   "Fanuc Power Mate i Repair",
+        "slug":    "fanuc-power-mate-i",
+        "subtitle":"Power Mate i",
+        "url":     "/repairs/fanuc-cnc-machine-repair/power-mate-i/",
+        "era":     "2000 through present",
+        "intro":   "Fanuc Power Mate i is the dedicated-axis or servo-positioner control — it handles single-axis positioning applications and dedicated rotary indexers. Service work is mostly drive amplifier, encoder, and parameter recovery rather than full-control issues.",
+        "machines_paragraph": "Power Mate i shows up as a dedicated-axis control on rotary tables, indexers, bar feeders, and other auxiliary equipment integrated alongside primary CNC platforms. It often runs as a subordinate control under a primary Fanuc 0i, 30i, or similar host.",
+        "failures": [
+            "Drive amplifier faults — the most common single issue.",
+            "Encoder issues — contamination or signal loss.",
+            "Parameter loss from battery failure.",
+            "Communication faults with the host CNC.",
+        ],
+        "parts_paragraph": "Power Mate i parts are supported through Fanuc on current generations. Older Power Mate i builds may have parts heading toward aftermarket.",
+        "recovery_paragraph": "Parameter backup on Power Mate i follows the standard Fanuc workflow. The single-axis nature makes the parameter set smaller, but the discipline is the same — backup before any battery or board work, verify the restore.",
+        "siblings": [
+            ("Series 0i",              "/repairs/fanuc-cnc-machine-repair/series-0i/"),
+            ("Series 30i / 31i / 32i", "/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/"),
+        ],
+    },
+}
+
+# Unified lookup. The dispatcher in render_machine_repair checks this
+# dict to decide whether a brand uses the hub-and-spoke template
+# (BRAND_HUB_DATA[slug] populated) or the legacy template (no entry).
+BRAND_HUB_DATA = {
+    "mazak": {
+        "browse_series":  _MAZAK_HUB_BROWSE_SERIES,
+        "browse_control": _MAZAK_HUB_BROWSE_CONTROL,
+        "browse_service": [
+            ("Mazak spindle repair",            "/spindle-grinding/mazak-spindle-repair/",
+             "bearing-pack rebuilds, taper grinding, balancing, runout verification."),
+            ("Mazak way covers",                "/way-covers/mazak-cnc-way-covers/",
+             "replacement bellows, telescoping steel, and roll-up covers, built to spec."),
+            ("ATC, drive, and alignment work",  "#faq",
+             "covered in the FAQ below."),
+        ],
+        "faq": _MAZAK_HUB_FAQ,
+        "series_spokes":  _MAZAK_SERIES_SPOKES,
+        "control_spokes": _MAZAK_CONTROL_SPOKES,
+        "hero_lede": "We service the Mazak platforms running on Midwest shop floors — Quick Turn lathes, Integrex multitasking, Variaxis 5-axis, VTC and VCN verticals, HCN horizontals, and legacy turning. Find your model below, or browse by series, control generation, or service type.",
+        "what_brings": "Most Mazak repair calls fall into a few patterns: ATC faults on production verticals, drive system wear and ballscrew issues on long-bed VTCs, way alignment after a crash, spindle bearing failure on high-RPM VCN work, and pallet-changer issues on HCN horizontals. Control-side, the Matrix generation sees HDD failure as the single most common service item; legacy Mazatrol machines see memory battery and board obsolescence; current Smooth-generation machines come in for integration and configuration work rather than reactive repair. We diagnose what's actually broken before we quote.",
+        "how_we_approach": "Mazak machines run Mazatrol, so diagnostics are platform-specific. Our approach starts with the control generation — legacy Mazatrol, Matrix, or Smooth — because the failure modes and the recovery paths are different across the three. From there we move to mechanical: spindle, ATC, drive, alignment. The control spokes below cover the platform-specific recovery procedures for each generation.",
+        "browse_control_intro": "Mazak machines span three Mazatrol generations. Pick yours for common faults and parts notes.",
+    },
+    "haas": {
+        "browse_series": [
+            ("VF Series",                          "/repairs/haas-cnc-machine-repair/vf-series/",
+             "Vertical mills. VF-1 through VF-12, plus YT extended-Y and SS super-speed variants."),
+            ("ST Series",                          "/repairs/haas-cnc-machine-repair/st-series/",
+             "Production lathes. ST-10 through ST-55, SSY Y-axis variants, DS-30 dual-spindle."),
+            ("UMC Series",                         "/repairs/haas-cnc-machine-repair/umc-series/",
+             "Universal 5-axis with trunnion table. UMC-350 through UMC-1600, plus SS builds."),
+            ("EC Series",                          "/repairs/haas-cnc-machine-repair/ec-series/",
+             "Horizontal machining. EC-300 through EC-3000, pallet-pool and 4-axis variants."),
+            ("Mini Mill / Toolroom / DT / DM / VM","/repairs/haas-cnc-machine-repair/mini-mill-toolroom/",
+             "Compact and toolroom — Mini Mill, TM toolroom, DT drill-tap, DM, VM mold machines."),
+            ("Toolroom Lathes (TL / CL)",          "/repairs/haas-cnc-machine-repair/toolroom-lathes/",
+             "TL-1 through TL-4 and CL-1 — toolroom-style turning."),
+        ],
+        "browse_control": [
+            ("Haas Classic Control",  "/repairs/haas-cnc-machine-repair/haas-classic-control/",
+             "Pre-NGC, through 2014. Keypad, monitor, MOCON board, drive faults, memory battery."),
+            ("Haas Next Generation Control (NGC)", "/repairs/haas-cnc-machine-repair/haas-ngc/",
+             "2014 to present. SSD upgrades, USB media, networking, MyHaas integration."),
+        ],
+        "browse_service": [
+            ("Haas spindle repair",            "/spindle-grinding/haas-spindle-repair/",
+             "bearing-pack rebuilds, taper grinding, balancing, runout verification."),
+            ("Haas way covers",                "/way-covers/haas-cnc-way-covers/",
+             "replacement bellows, telescoping steel, and roll-up covers, built to spec."),
+            ("ATC, drive, and alignment work", "#faq",
+             "covered in the FAQ below."),
+        ],
+        "faq": [
+            ("What can you fix on a Haas CNC machine?",
+             "Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper."),
+            ("Which Haas series do you see most often?",
+             "The VF series is by far the most common — VF-1 through VF-5 dominate the Midwest fleet. ST lathes are next, then Mini Mills and TM Toolroom mills. UMC 5-axis and EC horizontals are growing but still less common than VF."),
+            ("Do you service older Haas machines with Classic Control?",
+             "Yes. Classic Control machines from the early 2000s through 2014 are routine work. The common issues are keypad failures, monitor (CRT or early LCD) failure, MOCON board faults, drive system issues, and memory battery loss. Aftermarket replacement keypads and LCD retrofits are widely available."),
+            ("Can you upgrade a Haas Classic Control to NGC?",
+             "Haas-authorized Classic-to-NGC upgrades exist for some machine generations through Haas. They're not universally available across the entire Classic fleet. For machines where the upgrade isn't supported, replacement keypads, LCD retrofits, and SSD-style media migration cover most of the same goals."),
+            ("How long does a typical Haas machine repair take?",
+             "Lead time depends on what's wrong. Diagnostic is fast; parts and rebuild time vary by the job. Classic Control board work depends heavily on parts availability — Haas channels are still good but thinning. NGC service is usually faster because parts are fully current."),
+            ("Do you service Haas machines outside Iowa?",
+             "Yes. We service shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas. Field service is most economical in Iowa and adjacent states; longer-haul jobs typically run ship-in."),
+        ],
+        "series_spokes":  _HAAS_SERIES_SPOKES,
+        "control_spokes": _HAAS_CONTROL_SPOKES,
+        "hero_lede": "We service the Haas platforms running on Midwest shop floors — VF and ST production machines, UMC 5-axis, EC horizontals, Mini Mill and Toolroom families. Find your model below, or browse by series, control generation, or service type.",
+        "what_brings": "Most Haas repair calls fall into a few patterns: ATC reliability on Mini Mills, spindle bearing wear on SS variants and high-RPM production work, way cover damage from chips or crash, MOCON board failures on Classic-vintage machines, and trunnion calibration on UMC 5-axis. NGC service is mostly SSD upgrades, USB media, and networking; Classic Control service is the harder side — keypad, monitor, MOCON, and battery work all add up.",
+        "how_we_approach": "Haas service starts with control generation — Classic Control through 2014, NGC 2014-present — because the failure modes and parts availability differ between the two. From there we move to mechanical: spindle, ATC, drive, alignment. The control spokes below cover the recovery procedures for each generation.",
+        "browse_control_intro": "Haas machines span two control generations. Pick yours for common faults and parts notes.",
+    },
+    "dmg-mori": {
+        "browse_series": [
+            ("NLX / ALX",                "/repairs/dmg-mori-cnc-machine-repair/nlx-turning/",
+             "Universal turning. NLX 1500 through 6000, ALX 1500 through 2500, MC/SMC/Y/SY/MY variants."),
+            ("CTX / CLX",                "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/",
+             "Turning + TC turn-mill. CLX 350/450/550, CTX 310 through 850, plus TC variants."),
+            ("NTX",                      "/repairs/dmg-mori-cnc-machine-repair/ntx/",
+             "Integrated mill-turn. NTX 1000 through 4000 with SZ/SZM/S/S2 configurations."),
+            ("DMU / DMC",                "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/",
+             "5-axis universal and cube. DMU 50 through 340, monoBLOCK/duoBLOCK, DMC variants."),
+            ("NHX / NH",                 "/repairs/dmg-mori-cnc-machine-repair/nhx-horizontals/",
+             "Horizontals with pallet changers. NHX 4000 through 10000 plus legacy NH."),
+            ("NVX / NV / NVD",           "/repairs/dmg-mori-cnc-machine-repair/nvx-verticals/",
+             "Production verticals. NVX 4000 through 7000, NV 4000/5000, NVD DCG-construction."),
+            ("CMX / CMX U",              "/repairs/dmg-mori-cnc-machine-repair/cmx/",
+             "Entry production verticals. CMX 600V through 1300V, CMX 50U and 70U 5-axis."),
+            ("DMP / Milltap",            "/repairs/dmg-mori-cnc-machine-repair/dmp-milltap/",
+             "Compact production. DMP 35 through 70, dual-spindle DMP 500, Milltap 700."),
+            ("SPRINT / MULTISPRINT",     "/repairs/dmg-mori-cnc-machine-repair/sprint-multisprint/",
+             "Swiss-style and production turning. SPRINT 20/32/50/65, MULTISPRINT 25/36."),
+        ],
+        "browse_control": [
+            ("Siemens 840D",   "/repairs/dmg-mori-cnc-machine-repair/siemens-840d/",
+             "The most common DMG Mori control. PCU/NCU, drives, battery, MMC on older builds."),
+            ("Heidenhain TNC", "/repairs/dmg-mori-cnc-machine-repair/heidenhain-tnc/",
+             "Common on DMU/DMC 5-axis. iTNC 530 and TNC 640. Keypad, encoder, drive work."),
+            ("CELOS",          "/repairs/dmg-mori-cnc-machine-repair/celos/",
+             "The DMG Mori HMI on top of Siemens or Heidenhain. Networking, app integration, IPC."),
+        ],
+        "browse_service": [
+            ("DMG Mori spindle repair",        "/spindle-grinding/dmg-mori-spindle-repair/",
+             "bearing-pack rebuilds, taper grinding, balancing, runout verification."),
+            ("DMG Mori way covers",            "/way-covers/dmg-mori-cnc-way-covers/",
+             "replacement bellows, telescoping steel, and roll-up covers, built to spec."),
+            ("ATC, drive, and alignment work", "#faq",
+             "covered in the FAQ below."),
+        ],
+        "faq": [
+            ("What can you fix on a DMG Mori CNC machine?",
+             "Spindle, control, ATC, drive systems, and way alignment are the routine work across the lineup. DMU and DMC 5-axis trunnion work is brand-specific — we run the kinematic calibration as part of any trunnion-related service. We diagnose before we quote."),
+            ("Which DMG Mori series do you see most often?",
+             "NLX universal turning and DMU 5-axis are the most common platforms we see. CTX and CLX are growing. NTX integrated mill-turn is higher-value but lower volume. Entry CMX and DMP production come in for ATC and spindle work as they age."),
+            ("Do you service DMG Mori machines on older Siemens 840D?",
+             "Yes. Original 840D (non-solutionline) is at the late-life stage — board parts heading toward aftermarket — but boards are still serviceable through Siemens and remanufacturing specialists. 840D solutionline parts are fully current."),
+            ("Can you service DMU machines with Heidenhain TNC?",
+             "Yes. iTNC 530 and TNC 640 are both routine — keypad failure is the most common single service item, plus encoder drift on rotary axes, and the occasional MC board fault on older iTNC 530."),
+            ("How long does a typical DMG Mori repair take?",
+             "Lead time depends on what's wrong. Diagnostic is fast; parts and rebuild time vary. DMU trunnion work runs longer than a straight VMC repair because of the calibration time. 3 to 5 weeks on most jobs is realistic."),
+            ("Do you service DMG Mori machines outside Iowa?",
+             "Yes. We service shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas."),
+        ],
+        "series_spokes":  _DMG_MORI_SERIES_SPOKES,
+        "control_spokes": _DMG_MORI_CONTROL_SPOKES,
+        "hero_lede": "We service the DMG Mori platforms running on Midwest shop floors — NLX and CTX turning, NTX mill-turn, DMU and DMC 5-axis, NHX horizontals, NVX verticals, and the CMX, DMP, and SPRINT production lines. Find your model below, or browse by series, control generation, or service type.",
+        "what_brings": "Most DMG Mori repair calls fall into a few patterns: turret indexing and sub-spindle alignment on NLX and CTX turning, B-axis milling spindle wear on NTX multitasking, trunnion calibration on DMU 5-axis, pallet changer issues on NHX, and ATC reliability on the production lines. Control-side, original Siemens 840D builds are seeing more board work as the platform ages; 840D solutionline and CELOS service is mostly integration and configuration.",
+        "how_we_approach": "DMG Mori service starts with the control — Siemens 840D, Heidenhain TNC, or CELOS — because the diagnostic and recovery paths differ. From there we move to mechanical, and on 5-axis work we run the kinematic calibration as part of the rebuild rather than handing it back. The control spokes below cover the platform-specific recovery procedures.",
+        "browse_control_intro": "DMG Mori machines run on Siemens 840D, Heidenhain TNC, or both, all wrapped in CELOS. Pick the control for common faults and parts notes.",
+    },
+    "doosan": {
+        "browse_series": [
+            ("Puma",                       "/repairs/doosan-cnc-machine-repair/puma/",
+             "Horizontal turning. Puma 230 through 800, with M/MS/LM/Y/SY variants and TT/GT/TW builds."),
+            ("Puma MX / SMX",              "/repairs/doosan-cnc-machine-repair/puma-mx-smx/",
+             "Mill-turn multitasking. MX 1600 through 3100 and SMX 2100/2600/3100."),
+            ("Puma V / VT / VTR",          "/repairs/doosan-cnc-machine-repair/puma-vertical-turning/",
+             "Vertical turning. Puma V400 through V9300 chuckers and VT/VTR ram-type."),
+            ("Lynx",                       "/repairs/doosan-cnc-machine-repair/lynx/",
+             "Compact turning. Lynx 220 through 300, M/MS/LM/LSY and similar variants."),
+            ("DNM",                        "/repairs/doosan-cnc-machine-repair/dnm-verticals/",
+             "Vertical machining. DNM 200 through 750, plus the DNM 200/5AX 5-axis variant."),
+            ("Horizontals (NHM / NHP / HC)","/repairs/doosan-cnc-machine-repair/horizontals/",
+             "Production horizontals. NHM 4000 through 8000, NHP 4000 through 6300, HC 400/500."),
+            ("DVF / FM 5-Axis Verticals",  "/repairs/doosan-cnc-machine-repair/5-axis-verticals/",
+             "5-axis trunnion verticals. DVF 5000/6500/8000 and FM 200/5AX Linear."),
+            ("Swiss-Type / DST",           "/repairs/doosan-cnc-machine-repair/swiss-turning/",
+             "Swiss-style precision turning. SwiftTurn 32/38 and the DST series."),
+        ],
+        "browse_control": [
+            ("Fanuc 0i (Doosan)",  "/repairs/fanuc-cnc-machine-repair/series-0i/",
+             "Most entry and mid-range Doosan lathes and verticals. 0i-D and 0i-F are dominant."),
+            ("Fanuc 30i (Doosan)", "/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/",
+             "Higher-end Puma, Puma MX/SMX, DVF 5-axis, NHM horizontals, larger DNM verticals."),
+        ],
+        "browse_service": [
+            ("Doosan spindle repair",         "/spindle-grinding/doosan-spindle-repair/",
+             "bearing-pack rebuilds, taper grinding, balancing, runout verification."),
+            ("Doosan way covers",             "/way-covers/doosan-cnc-way-covers/",
+             "replacement bellows, telescoping steel, and roll-up covers, built to spec."),
+            ("ATC, drive, and alignment work","#faq",
+             "covered in the FAQ below."),
+        ],
+        "faq": [
+            ("What can you fix on a Doosan CNC machine?",
+             "Turret and sub-spindle work on Puma and Lynx lathes, B-axis spindle and ATC on Puma MX/SMX multitasking, ATC and ballscrew on DNM verticals, pallet changer on NHM horizontals, trunnion calibration on DVF 5-axis. We diagnose before we quote."),
+            ("Which Doosan series do you see most often?",
+             "The Puma horizontal turning workhorse is the most common Doosan platform on Midwest shop floors — particularly the 2100, 2500, and 2600 sizes. Lynx compact lathes are next, then DNM verticals. Puma MX/SMX multitasking and DVF 5-axis are higher-value but lower frequency."),
+            ("Do you service older Doosan machines with Fanuc 0i-C or earlier?",
+             "Yes. Doosan ships almost exclusively on Fanuc, so older Doosan machines with Fanuc 16i, 18i, 21i, or 0i-A/B/C controls are routine work. The common issues are PCMCIA media obsolescence, FROM/SRAM battery loss, drive amplifier faults, and monitor failure."),
+            ("What's the difference between a Doosan branded machine and a DN Solutions branded one?",
+             "DN Solutions is the current corporate name for the same lineup. Pre-rebrand machines say 'Doosan'; post-rebrand machines say 'DN Solutions.' The hardware is the same and the service work is the same."),
+            ("How long does a typical Doosan machine repair take?",
+             "Lead time depends on what's wrong. Diagnostic is fast; parts and rebuild time vary by the job. Fanuc-side work on older controls depends on Fanuc parts availability and PCMCIA media migration; mechanical work runs 3 to 5 weeks on most jobs."),
+            ("Do you service Doosan machines outside Iowa?",
+             "Yes. We service shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas."),
+        ],
+        "series_spokes":  _DOOSAN_SERIES_SPOKES,
+        "control_spokes": {},  # Doosan controls cross-link to Fanuc canonical spokes
+        "hero_lede": "We service the Doosan and DN Solutions platforms running on Midwest shop floors — Puma horizontal turning, Lynx compact lathes, DNM verticals, NHM horizontals, DVF 5-axis, and the multitasking Puma MX and SMX lines. Find your model below, or browse by series, control generation, or service type.",
+        "what_brings": "Most Doosan repair calls fall into a few patterns: turret indexing on Puma and Lynx lathes, sub-spindle alignment on SY/SMC twin-spindle variants, B-axis milling spindle wear on Puma MX/SMX multitasking, pallet-changer faults on NHM horizontals, and trunnion calibration on DVF 5-axis. Control-side, Doosan ships almost exclusively on Fanuc — most of the work centers on Fanuc 0i for entry and mid-range builds and Fanuc 30i for higher-end multitasking and 5-axis.",
+        "how_we_approach": "Doosan service starts with confirming the model and the Fanuc control generation. Fanuc 0i (Series 0i-A through 0i-F) covers entry and mid-range Puma, Lynx, and DNM. Fanuc 30i (30i-A and 30i-B) covers higher-end Puma, Puma MX/SMX, DVF, NHM, and the larger DNM 4000/5700/6700 builds. Once the control is identified, the mechanical work follows the series patterns.",
+        "browse_control_intro": "Doosan ships almost exclusively on Fanuc. Pick the Fanuc generation your Doosan machine runs.",
+    },
+    "okuma": {
+        "browse_series": [
+            ("LB / LU Lathes",                "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/",
+             "Horizontal lathes. LB 200 through 5000 EX, LU 300 through 8000, live-tool variants."),
+            ("Genos",                         "/repairs/okuma-cnc-machine-repair/genos/",
+             "'Affordable Excellence' line — Genos L250 through L4000 lathes, M460/M560/M660 verticals."),
+            ("MB / MA Verticals",             "/repairs/okuma-cnc-machine-repair/mb-ma-verticals/",
+             "Vertical machining workhorses. MB-46V through MB-66V, MA-400 through MA-8000."),
+            ("MULTUS",                        "/repairs/okuma-cnc-machine-repair/multus/",
+             "B-axis multitasking. MULTUS B200 through B750, U3000 through U5000."),
+            ("Twin-Spindle / Twin-Turret",    "/repairs/okuma-cnc-machine-repair/twin-spindle-twin-turret/",
+             "2SP-2500H and 2SP-V40, LT 200-MY through LT 2000 EX, historic LT-15/25."),
+            ("VTM Vertical Turning",          "/repairs/okuma-cnc-machine-repair/vtm/",
+             "Large vertical turning. VTM-65, VTM-100, VTM-120, VTM-180."),
+            ("MU 5-Axis / MCR Bridge",        "/repairs/okuma-cnc-machine-repair/v-bridge-mills/",
+             "5-axis trunnion (MU-400V through MU-8000V) and bridge mills (MCR-A5C, MCR-BIII)."),
+            ("LAW / LFS Heavy Lathes",        "/repairs/okuma-cnc-machine-repair/heavy-lathes/",
+             "Heavy-duty turning. LAW 1000 through 3000 and LFS-590 flat-bed turning."),
+        ],
+        "browse_control": [
+            ("OSP-P200",   "/repairs/okuma-cnc-machine-repair/osp-p200/",
+             "Roughly 2003 through 2012. HDD, MMC board, keypad, monitor, fan/thermal."),
+            ("OSP-P300",   "/repairs/okuma-cnc-machine-repair/osp-p300/",
+             "Roughly 2012 through 2020. SSD upgrades, touchscreen drift, Ethernet/USB."),
+            ("OSP-P500",   "/repairs/okuma-cnc-machine-repair/osp-p500/",
+             "2020 to present. Integration, MTConnect, networking, app deployment."),
+            ("OSP Legacy", "/repairs/okuma-cnc-machine-repair/osp-legacy/",
+             "Pre-2003 (OSP 5000/7000, U10/U100). Heavy obsolescence — board-level + retrofit work."),
+        ],
+        "browse_service": [
+            ("Okuma spindle repair",          "/spindle-grinding/okuma-spindle-repair/",
+             "bearing-pack rebuilds, taper grinding, balancing, runout verification."),
+            ("Okuma way covers",              "/way-covers/okuma-cnc-way-covers/",
+             "replacement bellows, telescoping steel, and roll-up covers, built to spec."),
+            ("ATC, drive, and alignment work","#faq",
+             "covered in the FAQ below."),
+        ],
+        "faq": [
+            ("What can you fix on an Okuma CNC machine?",
+             "Turret and live-tool indexing on LB/LU lathes, ATC and ballscrew wear on MB/MA verticals, B-axis spindle on MULTUS multitasking, trunnion calibration on MU 5-axis, bridge geometry on MCR. We diagnose before we quote."),
+            ("Which Okuma series do you see most often?",
+             "LB and LU horizontal lathes are the most common Okuma platforms we see — particularly the LB 3000 EX II and LB 4000/5000 EX builds. MB and MA verticals are next, then MULTUS multitasking. The high-end MU 5-axis and MCR bridge mills are higher-value but lower frequency."),
+            ("Do you service older Okuma machines with OSP Legacy or OSP-P200 controls?",
+             "Yes. OSP Legacy machines (OSP 5000/7000, U10/U100, pre-2003) are at heavy-obsolescence — most board work runs through remanufacturing specialists, and for some machines the conversation moves to retrofit territory. OSP-P200 is late-life but still well serviced; HDD and MMC board work is the routine."),
+            ("Can you upgrade an OSP-P200 to current OSP-P500?",
+             "An OSP-P200 to OSP-P500 upgrade isn't a drop-in path. For machines where the control is the bottleneck and the mechanics are sound, a retrofit conversation is appropriate — either an OSP control swap through Okuma where available, or a third-party retrofit. We can scope that conversation as part of a quote."),
+            ("How long does a typical Okuma machine repair take?",
+             "Lead time depends on what's wrong. Diagnostic is fast; parts and rebuild time vary. OSP Legacy work is the wild-card because of parts situation; OSP-P200 and P300 are predictable; P500 is mostly configuration work."),
+            ("Do you service Okuma machines outside Iowa?",
+             "Yes. We service shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas."),
+        ],
+        "series_spokes":  _OKUMA_SERIES_SPOKES,
+        "control_spokes": _OKUMA_CONTROL_SPOKES,
+        "hero_lede": "We service the Okuma platforms running on Midwest shop floors — LB and LU horizontal lathes, MB and MA verticals, MULTUS multitasking, MU 5-axis, MCR bridge mills, and the heavy LAW lathe line. Find your model below, or browse by series, control generation, or service type.",
+        "what_brings": "Most Okuma repair calls fall into a few patterns: turret indexing and live-tool faults on LB/LU lathes, ATC drum and spindle work on MB/MA verticals, B-axis milling spindle wear on MULTUS multitasking, trunnion calibration on MU 5-axis, and large-bore spindle work on LAW heavy lathes. Control-side, OSP-P200 sees the most reactive work right now; OSP-P300 is mid-life with SSD upgrades and touchscreen drift; OSP-P500 is mostly integration; OSP Legacy is retrofit territory.",
+        "how_we_approach": "Okuma service starts with the OSP generation. OSP Legacy is its own conversation — repair vs. retrofit depending on the machine. P200 is late-life but predictable. P300 and P500 are mostly configuration and integration work. Once the control is identified, the mechanical work follows the series patterns. The control spokes below cover the recovery procedures for each generation.",
+        "browse_control_intro": "Okuma machines span four OSP control generations. Pick yours for common faults and parts notes.",
+    },
+    "fanuc": {
+        "browse_series": [
+            ("Doosan / DN Solutions", "/repairs/doosan-cnc-machine-repair/",
+             "Most Doosan lathes and verticals ship on Fanuc 0i or 30i."),
+            ("Haas (older)",          "/repairs/haas-cnc-machine-repair/",
+             "Some older Haas imports shipped with Fanuc controls before NGC."),
+        ],
+        "browse_series_header": "Brands that ship Fanuc controls",
+        "browse_series_intro": "Fanuc is primarily a controls vendor — your machine is built by one of these OEMs and runs a Fanuc control. Pick the brand for series-specific notes, or pick a Fanuc generation below.",
+        "browse_control": [
+            ("Series 0 / 0M / 0T (Pre-i Legacy)", "/repairs/fanuc-cnc-machine-repair/series-0-legacy/",
+             "1980s-1990s. Bubble memory, CRT failure, keyboard, MDI board, drive obsolescence."),
+            ("Series 6 / 10 / 11 / 12 / 15",      "/repairs/fanuc-cnc-machine-repair/series-6-15-legacy/",
+             "1980s-2000s. Similar pattern to Series 0; Series 15 still in active service on larger machines."),
+            ("Series 16i / 18i / 21i",            "/repairs/fanuc-cnc-machine-repair/series-16i-18i-21i/",
+             "1995-2010. PCMCIA media obsolescence, FROM/SRAM battery, drive amp, monitor."),
+            ("Series 0i (A/B/C/D/F)",             "/repairs/fanuc-cnc-machine-repair/series-0i/",
+             "2003-present. The ubiquitous Fanuc — HDD/CF card, battery, drive faults, panel buttons."),
+            ("Series 30i / 31i / 32i / 35i",      "/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/",
+             "2008-present. Less hardware failure; mostly networking, MTConnect, FOCAS integration."),
+            ("Power Mate i",                      "/repairs/fanuc-cnc-machine-repair/power-mate-i/",
+             "Dedicated-axis / servo positioner. Drive amp, encoder, parameter loss."),
+        ],
+        "browse_service": [
+            ("Board-level repair",            "#faq",
+             "Fanuc service is often board-level, not machine-level. Common on legacy generations."),
+            ("PCMCIA media migration",        "#faq",
+             "Migrating older 16i/18i/21i media to current paths — covered in the FAQ."),
+            ("Parameter and PMC backup",      "#faq",
+             "Recovery procedures and backup discipline — covered in the FAQ."),
+        ],
+        "faq": [
+            ("Why is the Fanuc page structured differently?",
+             "Fanuc is primarily a controls vendor — the machine your control sits in is built by Doosan, Haas, or another OEM. Our Fanuc hub is organized by control generation rather than machine series because that's the right diagnostic lens for Fanuc service work."),
+            ("Which Fanuc generation do you see most often?",
+             "Series 0i (specifically 0i-D and 0i-F) is by far the most common Fanuc generation we see on Midwest shop floors. Series 16i/18i/21i is the second-most-common — many late-1990s through 2000s machines still in production. Series 30i is growing as those builds age into routine service. Series 0 and Series 6-15 are deep legacy."),
+            ("Do you do board-level Fanuc repair?",
+             "Yes. Fanuc service is often board-level — drive amplifiers, MDI boards, MOCON-style motion-control boards. We work through remanufacturing specialists on boards that have gone out of OEM supply, and through Fanuc channels for current-generation parts."),
+            ("Can you migrate a 16i/18i/21i from PCMCIA media?",
+             "Yes. PCMCIA-to-CF or PCMCIA-to-USB media migration is a routine job on 16i/18i/21i machines where the physical reader is unreliable or the media is no longer sourcing reliably. We do the migration alongside any other service work on the control."),
+            ("How long does Fanuc service take?",
+             "Lead time depends on the generation. Current 0i-F and 30i parts are fully supported, so service is fast. 16i/18i/21i depends on Fanuc parts availability — most are still serviceable but the supply chain is thinning. Series 0 and Series 6-15 work runs through remanufacturing specialists and the timeline tracks their inventory."),
+            ("Do you service Fanuc-controlled machines outside Iowa?",
+             "Yes. We service shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas. For board-level Fanuc work, ship-in to our Waterloo facility is usually the right path."),
+        ],
+        "series_spokes":  {},  # Fanuc has no series; the hub flips this section
+        "control_spokes": _FANUC_CONTROL_SPOKES,
+        "hero_lede": "Fanuc is primarily a controls vendor — your machine is built by Doosan, Haas, or another OEM and runs a Fanuc control. We service the full Fanuc family from deep-legacy Series 0 through current 0i-F and 30i-B. Find your control below, or browse by service type.",
+        "what_brings": "Most Fanuc service splits between three patterns. Deep-legacy Series 0, 6, 10, 11, 12, and 15 — board-level work through remanufacturing specialists, bubble memory recovery on the oldest builds. Mid-life Series 16i/18i/21i — PCMCIA media migration, FROM/SRAM battery, drive amplifier, and monitor work. Current Series 0i and 30i — HDD/CF card, battery, networking, MTConnect, and FOCAS integration. The diagnostic lens is the generation, not the machine.",
+        "how_we_approach": "Fanuc service starts with confirming the generation. From there it's a fork: legacy generations (Series 0 through Series 15) go through board-level repair or remanufacturing specialists; mid-life 16i/18i/21i is parts availability and media migration; current 0i and 30i is mostly software, networking, and configuration. The control spokes below cover each generation in detail.",
+        "browse_control_intro": "Fanuc spans six control generations from the early 1980s through current production. Pick yours for common faults and parts notes.",
+    },
+}
+
+
 def _models_for_spoke(spoke_url):
     """Pull every model entry from machines.json whose spoke_url matches."""
     p = os.path.join(REPO, "src", "data", "machines.json")
@@ -1634,11 +2843,12 @@ def _models_for_spoke(spoke_url):
     return [m for m in data.get("machines", []) if m.get("spoke_url") == spoke_url]
 
 
-def render_mazak_series_spoke(spoke_key, brand, brand_index):
-    """Render one Mazak series spoke as markdown. Output lives at the
-    nested URL /repairs/mazak-cnc-machine-repair/{spoke_key}/ via the
-    breadcrumb-driven path mapping in m2h.output_path_for()."""
-    s = MAZAK_SERIES_SPOKES[spoke_key]
+def render_series_spoke(spoke_data, brand_display_name, brand_hub_url, brand_slug, brand_so):
+    """Generic series-spoke renderer used by every brand's hub-and-spoke
+    architecture. spoke_data is one entry from BRAND_HUB_DATA[brand_slug]
+    ['series_spokes']. brand_so is the brand's services_offered dict so we
+    only emit cross-links to spindle and way-covers when those exist."""
+    s = spoke_data
     models = _models_for_spoke(s["url"])
     model_lis = "".join(f'<li>{html.escape(m["model"])}</li>' for m in models)
     failure_bullets = "\n".join(f"- {html.escape(f)}" for f in s["failures"])
@@ -1646,11 +2856,23 @@ def render_mazak_series_spoke(spoke_key, brand, brand_index):
         f'<li><a href="{u}"><span>{html.escape(n)}</span></a></li>'
         for n, u in s["siblings"]
     )
+    # Add spindle / way-covers cross-links when the brand offers them
+    extra_links = ""
+    if brand_so.get("spindle"):
+        extra_links += (
+            f'<li><a href="/spindle-grinding/{brand_slug}-spindle-repair/">'
+            f'<span>{html.escape(brand_display_name)} spindle repair</span></a></li>'
+        )
+    if brand_so.get("way_covers") and not spoke_data.get("skip_way_covers"):
+        extra_links += (
+            f'<li><a href="/way-covers/{brand_slug}-cnc-way-covers/">'
+            f'<span>{html.escape(brand_display_name)} way covers</span></a></li>'
+        )
 
     fm_lines = [
         '---',
         f'title: "{s["title"]} | Midwest CNC Services"',
-        f'meta_description: "Mazak {s["subtitle"]} repair across the Midwest. Models, common failure patterns, and the Mazatrol control generations they ship on."',
+        f'meta_description: "{html.escape(brand_display_name)} {s["subtitle"]} repair across the Midwest. Models, common failure patterns, and the control generations they ship on."',
         f'h1: "{s["title"]}"',
         f'slug: "{s["slug"]}"',
         'page_type: "cnc_spindle"',
@@ -1673,7 +2895,7 @@ def render_mazak_series_spoke(spoke_key, brand, brand_index):
         '    itemListElement:',
         '      - { position: 1, name: Home, item: "https://midwestcncservices.com/" }',
         '      - { position: 2, name: "Repairs", item: "https://midwestcncservices.com/repairs/" }',
-        '      - { position: 3, name: "Mazak CNC Machine Repair", item: "https://midwestcncservices.com/repairs/mazak-cnc-machine-repair/" }',
+        f'      - {{ position: 3, name: "{brand_display_name} CNC Machine Repair", item: "https://midwestcncservices.com{brand_hub_url}" }}',
         f'      - {{ position: 4, name: "{s["subtitle"]}", item: "https://midwestcncservices.com{s["url"]}" }}',
         '---',
         '',
@@ -1683,7 +2905,7 @@ def render_mazak_series_spoke(spoke_key, brand, brand_index):
         f'<section class="brand-hero">\n'
         f'  <div class="brand-hero-overlay" aria-hidden="true"></div>\n'
         f'  <div class="brand-hero-content">\n'
-        f'    <p class="eyebrow">Mazak Series Repair</p>\n'
+        f'    <p class="eyebrow">{html.escape(brand_display_name)} Series Repair</p>\n'
         f'    <h1>{html.escape(s["title"])}</h1>\n'
         f'    <p>{html.escape(s["intro"])}</p>\n'
         f'    <div class="cta-row">\n'
@@ -1709,18 +2931,17 @@ def render_mazak_series_spoke(spoke_key, brand, brand_index):
 
         f'## Related\n\n'
         f'<ul class="related-grid">'
-        f'<li><a href="/repairs/mazak-cnc-machine-repair/"><span>All Mazak repair</span></a></li>'
+        f'<li><a href="{brand_hub_url}"><span>All {html.escape(brand_display_name)} repair</span></a></li>'
         f'{sibling_cards}'
-        f'<li><a href="/spindle-grinding/mazak-spindle-repair/"><span>Mazak spindle repair</span></a></li>'
-        f'<li><a href="/way-covers/mazak-cnc-way-covers/"><span>Mazak way covers</span></a></li>'
+        f'{extra_links}'
         f'</ul>\n'
     )
     return "\n".join(fm_lines) + body
 
 
-def render_mazak_control_spoke(spoke_key, brand, brand_index):
-    """Render one Mazak control-generation spoke as markdown."""
-    s = MAZAK_CONTROL_SPOKES[spoke_key]
+def render_control_spoke(spoke_data, brand_display_name, brand_hub_url):
+    """Generic control-generation spoke renderer."""
+    s = spoke_data
     failure_bullets = "\n".join(f"- {html.escape(f)}" for f in s["failures"])
     sibling_cards = "".join(
         f'<li><a href="{u}"><span>{html.escape(n)}</span></a></li>'
@@ -1730,7 +2951,7 @@ def render_mazak_control_spoke(spoke_key, brand, brand_index):
     fm_lines = [
         '---',
         f'title: "{s["title"]} | Midwest CNC Services"',
-        f'meta_description: "Mazatrol {s["subtitle"]} control repair across the Midwest. {s["era"]}. Common faults, parts availability, and battery/memory/parameter recovery."',
+        f'meta_description: "{s["subtitle"]} control repair across the Midwest. {s["era"]}. Common faults, parts availability, and battery/memory/parameter recovery."',
         f'h1: "{s["title"]}"',
         f'slug: "{s["slug"]}"',
         'page_type: "cnc_spindle"',
@@ -1753,7 +2974,7 @@ def render_mazak_control_spoke(spoke_key, brand, brand_index):
         '    itemListElement:',
         '      - { position: 1, name: Home, item: "https://midwestcncservices.com/" }',
         '      - { position: 2, name: "Repairs", item: "https://midwestcncservices.com/repairs/" }',
-        '      - { position: 3, name: "Mazak CNC Machine Repair", item: "https://midwestcncservices.com/repairs/mazak-cnc-machine-repair/" }',
+        f'      - {{ position: 3, name: "{brand_display_name} CNC Machine Repair", item: "https://midwestcncservices.com{brand_hub_url}" }}',
         f'      - {{ position: 4, name: "{s["subtitle"]}", item: "https://midwestcncservices.com{s["url"]}" }}',
         '---',
         '',
@@ -1763,7 +2984,7 @@ def render_mazak_control_spoke(spoke_key, brand, brand_index):
         f'<section class="brand-hero">\n'
         f'  <div class="brand-hero-overlay" aria-hidden="true"></div>\n'
         f'  <div class="brand-hero-content">\n'
-        f'    <p class="eyebrow">Mazak Control Generation</p>\n'
+        f'    <p class="eyebrow">{html.escape(brand_display_name)} Control Generation</p>\n'
         f'    <h1>{html.escape(s["title"])}</h1>\n'
         f'    <p>{html.escape(s["intro"])}</p>\n'
         f'    <div class="cta-row">\n'
@@ -1789,44 +3010,49 @@ def render_mazak_control_spoke(spoke_key, brand, brand_index):
 
         f'## Related\n\n'
         f'<ul class="related-grid">'
-        f'<li><a href="/repairs/mazak-cnc-machine-repair/"><span>All Mazak repair</span></a></li>'
+        f'<li><a href="{brand_hub_url}"><span>All {html.escape(brand_display_name)} repair</span></a></li>'
         f'{sibling_cards}'
         f'</ul>\n'
     )
     return "\n".join(fm_lines) + body
 
 
-def _emit_mazak_spokes(brand, brand_index):
-    """Write all 9 Mazak spoke markdown files (6 series + 3 controls)
-    into src/content/machine-repair/ so m2h picks them up on the next
-    markdown_to_html.py pass."""
+def _emit_brand_spokes(brand, brand_index):
+    """Write all spoke markdown files for the given brand (series + control)
+    into src/content/machine-repair/. Returns the count written."""
+    hub_data = BRAND_HUB_DATA.get(brand["slug"])
+    if not hub_data:
+        return 0
     out_dir = os.path.join(REPO, "src", "content", "machine-repair")
+    name = brand["brand_display_name"]
+    hub_url = f"/repairs/{brand['slug']}-cnc-machine-repair/"
+    so = brand.get("services_offered", {})
     n = 0
-    for key in MAZAK_SERIES_SPOKES:
-        md = render_mazak_series_spoke(key, brand, brand_index)
-        path = os.path.join(out_dir, f"{MAZAK_SERIES_SPOKES[key]['slug']}.md")
+    for key, spoke in hub_data.get("series_spokes", {}).items():
+        md = render_series_spoke(spoke, name, hub_url, brand["slug"], so)
+        path = os.path.join(out_dir, f"{spoke['slug']}.md")
         with open(path, "w") as f:
             f.write(md)
         n += 1
-    for key in MAZAK_CONTROL_SPOKES:
-        md = render_mazak_control_spoke(key, brand, brand_index)
-        path = os.path.join(out_dir, f"{MAZAK_CONTROL_SPOKES[key]['slug']}.md")
+    for key, spoke in hub_data.get("control_spokes", {}).items():
+        md = render_control_spoke(spoke, name, hub_url)
+        path = os.path.join(out_dir, f"{spoke['slug']}.md")
         with open(path, "w") as f:
             f.write(md)
         n += 1
     return n
 
 
-def render_mazak_hub(brand, g, brand_index):
-    """The new Mazak hub — keeps the brand-hero from the previous
-    iteration, adds the MachineLookup widget, the three Browse-by
-    lenses, and an expanded FAQ. Replaces the standard machine-repair
-    render output for Mazak only (other brands keep the existing
-    template until they get their own spokes built)."""
+def render_brand_hub(brand, g, brand_index):
+    """Generic brand-hub renderer. Looks up the brand's content in
+    BRAND_HUB_DATA. Keeps the brand-hero from the previous iteration,
+    adds the MachineLookup widget, three Browse-by lenses (Series /
+    Control / Service), expanded FAQ. Fanuc uses a flipped Browse-by-
+    Series ('Brands that ship Fanuc controls') because Fanuc is a
+    controls vendor."""
     name = brand["brand_display_name"]
     slug = brand["slug"]
-    ki = brand["ken_input"]
-    models = ki["models"]
+    hub_data = BRAND_HUB_DATA.get(slug, {})
 
     h1_text = f"{name} CNC Machine Repair & Service"
     eyebrow_text = "CNC Machine Repair"
@@ -1854,27 +3080,29 @@ def render_mazak_hub(brand, g, brand_index):
         f'<img class="brand-hero-bg" src="{img_path}" alt="{html.escape(img_alt)}" loading="eager">\n'
         if img_path else ""
     )
-    hero_lede = (
-        f"We service the {name} platforms running on Midwest shop floors — "
-        f"Quick Turn lathes, Integrex multitasking, Variaxis 5-axis, VTC and VCN "
-        f"verticals, HCN horizontals, and legacy turning. Find your model below, "
-        f"or browse by series, control generation, or service type."
+    hero_lede = hub_data.get("hero_lede",
+        f"We service {name} CNC platforms across the Midwest. Find your "
+        f"model with the lookup below, or browse by series, control "
+        f"generation, or service type."
     )
 
-    # Browse-by-series list
+    # Browse-by-series list (Fanuc flips this to "Brands that ship Fanuc controls")
     series_lis = "".join(
-        f'<li><a href="{u}"><strong>{html.escape(name)}</strong> — {html.escape(desc)}</a></li>'
-        for name, u, desc in MAZAK_HUB_BROWSE_SERIES
+        f'<li><a href="{u}"><strong>{html.escape(label)}</strong> — {html.escape(desc)}</a></li>'
+        for label, u, desc in hub_data.get("browse_series", [])
     )
-    # Browse-by-control list
     control_lis = "".join(
-        f'<li><a href="{u}"><strong>{html.escape(name)}</strong> — {html.escape(desc)}</a></li>'
-        for name, u, desc in MAZAK_HUB_BROWSE_CONTROL
+        f'<li><a href="{u}"><strong>{html.escape(label)}</strong> — {html.escape(desc)}</a></li>'
+        for label, u, desc in hub_data.get("browse_control", [])
+    )
+    service_lis = "".join(
+        f'<li><a href="{u}"><strong>{html.escape(label)}</strong> — {html.escape(desc)}</a></li>'
+        for label, u, desc in hub_data.get("browse_service", [])
     )
 
     # FAQ accordions
     faq_items = []
-    for q, a in MAZAK_HUB_FAQ:
+    for q, a in hub_data.get("faq", []):
         faq_items.append(
             f'<details class="faq-item">\n'
             f'  <summary>{html.escape(q)}</summary>\n'
@@ -1887,7 +3115,7 @@ def render_mazak_hub(brand, g, brand_index):
         "mainEntity": [
             {"@type": "Question", "name": q,
              "acceptedAnswer": {"@type": "Answer", "text": a}}
-            for q, a in MAZAK_HUB_FAQ
+            for q, a in hub_data.get("faq", [])
         ],
     }
     faq_schema_script = (
@@ -1917,33 +3145,45 @@ def render_mazak_hub(brand, g, brand_index):
         f'{machine_lookup_html()}\n'
     )
 
-    browse_series = (
-        f'<h2 id="browse-by-series">Browse by Series</h2>\n'
-        f'<p>Pick the {name} platform you run for failure patterns specific to that series.</p>\n'
-        f'<ul class="browse-list">{series_lis}</ul>\n'
-    )
-    browse_control = (
-        f'<h2 id="browse-by-control">Browse by Control Generation</h2>\n'
-        f'<p>{name} machines span three Mazatrol generations. Pick yours for common faults and parts notes.</p>\n'
-        f'<ul class="browse-list">{control_lis}</ul>\n'
-    )
-    browse_service = (
-        f'<h2 id="browse-by-service">Browse by Service</h2>\n'
-        f'<ul class="browse-list">\n'
-        f'  <li><a href="/spindle-grinding/mazak-spindle-repair/"><strong>Mazak spindle repair</strong> — bearing-pack rebuilds, taper grinding, balancing, runout verification.</a></li>\n'
-        f'  <li><a href="/way-covers/mazak-cnc-way-covers/"><strong>Mazak way covers</strong> — replacement bellows, telescoping steel, and roll-up covers, built to spec.</a></li>\n'
-        f'  <li><a href="#faq"><strong>ATC, drive, and alignment work</strong> — covered in the FAQ below.</a></li>\n'
-        f'</ul>\n'
-    )
+    # Series section — Fanuc flips this header (no series; it's controls-only)
+    series_header = hub_data.get("browse_series_header", "Browse by Series")
+    series_intro  = hub_data.get("browse_series_intro",
+        f"Pick the {name} platform you run for failure patterns specific to that series.")
+    browse_series_section = ""
+    if hub_data.get("browse_series"):
+        browse_series_section = (
+            f'<h2 id="browse-by-series">{html.escape(series_header)}</h2>\n'
+            f'<p>{html.escape(series_intro)}</p>\n'
+            f'<ul class="browse-list">{series_lis}</ul>\n'
+        )
+    control_intro = hub_data.get("browse_control_intro",
+        f"{name} machines span multiple control generations. Pick yours for common faults and parts notes.")
+    browse_control_section = ""
+    if hub_data.get("browse_control"):
+        browse_control_section = (
+            f'<h2 id="browse-by-control">Browse by Control Generation</h2>\n'
+            f'<p>{html.escape(control_intro)}</p>\n'
+            f'<ul class="browse-list">{control_lis}</ul>\n'
+        )
+    browse_service_section = ""
+    if hub_data.get("browse_service"):
+        browse_service_section = (
+            f'<h2 id="browse-by-service">Browse by Service</h2>\n'
+            f'<ul class="browse-list">{service_lis}</ul>\n'
+        )
 
+    what_brings_para = hub_data.get("what_brings",
+        f"Most {name} repair calls fall into a few platform-specific patterns. We diagnose what's actually broken before we quote — sometimes what looks like a spindle problem is something cheaper to fix.")
     what_brings = (
-        f'<h2 id="what-brings-mazak-machines-in-for-repair">What brings {name} machines in for repair</h2>\n'
-        f'<p>Most {name} repair calls fall into a few patterns: ATC faults on production verticals, drive system wear and ballscrew issues on long-bed VTCs, way alignment after a crash, spindle bearing failure on high-RPM VCN work, and pallet-changer issues on HCN horizontals. Control-side, the Matrix generation sees HDD failure as the single most common service item; legacy Mazatrol machines see memory battery and board obsolescence; current Smooth-generation machines come in for integration and configuration work rather than reactive repair. We diagnose what\'s actually broken before we quote.</p>\n'
+        f'<h2 id="what-brings-machines-in-for-repair">What brings {name} machines in for repair</h2>\n'
+        f'<p>{what_brings_para}</p>\n'
     )
 
+    how_para = hub_data.get("how_we_approach",
+        f"Our approach starts with confirming the model and control generation, then scoping the mechanical work. The control spokes below cover the platform-specific recovery procedures for each generation.")
     how_we_approach = (
-        f'<h2 id="how-we-approach-mazak-repair-work">How we approach {name} repair work</h2>\n'
-        f'<p>Mazak machines run Mazatrol, so diagnostics are platform-specific. Our approach starts with the control generation — legacy Mazatrol, Matrix, or Smooth — because the failure modes and the recovery paths are different across the three. From there we move to mechanical: spindle, ATC, drive, alignment. The control spokes below cover the platform-specific recovery procedures for each generation.</p>\n'
+        f'<h2 id="how-we-approach-repair-work">How we approach {name} repair work</h2>\n'
+        f'<p>{how_para}</p>\n'
     )
 
     lead_time = (
@@ -1966,7 +3206,7 @@ def render_mazak_hub(brand, g, brand_index):
 
     return (
         fm + hero
-        + browse_series + browse_control + browse_service
+        + browse_series_section + browse_control_section + browse_service_section
         + what_brings + how_we_approach
         + lead_time + "\n" + trust + "\n" + faq_section + "\n"
         + cross_links + "\n" + related + "\n"
@@ -1990,11 +3230,12 @@ def render_machine_repair(brand, g, brand_index):
     Process-focused — no fabricated brand specifics beyond Ken's existing
     data. Target 250–350 visible body words.
 
-    PILOT GATING: if the brand is Mazak, dispatch to the new hub-and-spoke
-    template (render_mazak_hub). The other 17 brands still use the
-    standard template below until they get their own spokes built."""
-    if brand["slug"] == "mazak":
-        return render_mazak_hub(brand, g, brand_index)
+    HUB-AND-SPOKE DISPATCH: any brand with an entry in BRAND_HUB_DATA
+    (Mazak, Haas, DMG Mori, Doosan, Okuma, Fanuc per the prompt spec)
+    gets the new hub-and-spoke template. The remaining 12 brands still
+    use the standard template below."""
+    if brand["slug"] in BRAND_HUB_DATA:
+        return render_brand_hub(brand, g, brand_index)
     name = brand["brand_display_name"]
     slug = brand["slug"]
     ki = brand["ken_input"]
@@ -2307,12 +3548,11 @@ def main():
                 f.write(md)
             written.append(("machine_repair", b["slug"], path, _word_count(md), False))
 
-            # --- Mazak pilot: emit 9 spoke markdowns (6 series + 3 controls)
-            # alongside the hub. Other 5 brands will get their spokes once
-            # Aaron approves Mazak.
-            if b["slug"] == "mazak":
-                n_spokes = _emit_mazak_spokes(b, bi)
-                written.append(("mazak_spokes", b["slug"], OUTDIR_REPAIR,
+            # --- Hub-and-spoke spokes: emit for any brand with hub data.
+            # Includes Mazak (pilot), Haas, DMG Mori, Doosan, Okuma, Fanuc.
+            if b["slug"] in BRAND_HUB_DATA:
+                n_spokes = _emit_brand_spokes(b, bi)
+                written.append((f"{b['slug']}_spokes", b["slug"], OUTDIR_REPAIR,
                                 n_spokes * 500, False))
 
         # --- Way-covers page (all 20 brands; Amada/Trumpf flagged draft) ---

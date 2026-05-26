@@ -1,6 +1,6 @@
 ---
 title: "Mazak Turning Legacy Repair (Slant Turn / Multiplex / Megaturn) | Midwest CNC Services"
-meta_description: "Mazak Slant Turn, Multiplex, Megaturn, HQR, Powermaster repair across the Midwest. Models, common failure patterns, and the Mazatrol control generations they ship on."
+meta_description: "Mazak Slant Turn, Multiplex, Megaturn, HQR, Powermaster repair across the Midwest. Models, common failure patterns, and the control generations they ship on."
 h1: "Mazak Turning Legacy Repair (Slant Turn / Multiplex / Megaturn)"
 slug: "mazak-turning-legacy"
 page_type: "cnc_spindle"

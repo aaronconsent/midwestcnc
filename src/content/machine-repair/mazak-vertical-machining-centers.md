@@ -1,6 +1,6 @@
 ---
 title: "Mazak Vertical Machining Center Repair (VTC + VCN) | Midwest CNC Services"
-meta_description: "Mazak Production verticals repair across the Midwest. Models, common failure patterns, and the Mazatrol control generations they ship on."
+meta_description: "Mazak Production verticals repair across the Midwest. Models, common failure patterns, and the control generations they ship on."
 h1: "Mazak Vertical Machining Center Repair (VTC + VCN)"
 slug: "mazak-vertical-machining-centers"
 page_type: "cnc_spindle"

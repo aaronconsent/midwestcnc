@@ -1,0 +1,1537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fanuc Series 6 / 10 / 11 / 12 / 15 Repair | Midwest CNC Services</title>
+<meta name="description" content="Series 6 through 15 control repair across the Midwest. 1980s through 2000s. Common faults, parts availability, and battery/memory/parameter recovery.">
+<link rel="canonical" href="https://midwestcncservices.com/repairs/fanuc-cnc-machine-repair/series-6-15-legacy/">
+<meta property="og:title" content="Fanuc Series 6 / 10 / 11 / 12 / 15 Repair | Midwest CNC Services">
+<meta property="og:description" content="Series 6 through 15 control repair across the Midwest. 1980s through 2000s. Common faults, parts availability, and battery/memory/parameter recovery.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+<style>
+/* =================================================================
+   Midwest CNC Services — modern design system
+   Tokens: color (preserved), spacing, type, radius, shadow, motion.
+   Accessibility: WCAG AA contrast, focus-visible rings, reduced motion.
+   ================================================================= */
+
+:root {
+  /* Color (unchanged) */
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --muted: #5a5a5a;
+  --accent: #b8341a;
+  --accent-dark: #8c2510;
+  --line: #e5e5e5;
+  --soft: #f6f4f1;
+
+  /* Surfaces */
+  --surface: #ffffff;
+  --surface-2: #faf8f5;
+  --surface-3: #f1ede7;
+  --ring: rgba(184, 52, 26, 0.35);
+  --ring-strong: rgba(184, 52, 26, 0.55);
+  --success-bg: #e8f5e8;
+  --success-fg: #1e5e22;
+  --warning-bg: #fff4e3;
+  --warning-fg: #8a5400;
+
+  /* Spacing scale (rem) */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+
+  /* Radius scale */
+  --r-1: 4px;
+  --r-2: 8px;
+  --r-3: 12px;
+  --r-4: 16px;
+  --r-pill: 999px;
+
+  /* Shadow scale */
+  --sh-1: 0 1px 2px rgba(15, 18, 22, 0.05);
+  --sh-2: 0 1px 3px rgba(15, 18, 22, 0.06), 0 2px 8px rgba(15, 18, 22, 0.04);
+  --sh-3: 0 4px 12px rgba(15, 18, 22, 0.08), 0 2px 4px rgba(15, 18, 22, 0.04);
+  --sh-4: 0 12px 32px rgba(15, 18, 22, 0.10), 0 4px 12px rgba(15, 18, 22, 0.06);
+  --sh-focus: 0 0 0 3px var(--ring);
+
+  /* Motion */
+  --t-fast: 120ms cubic-bezier(0.2, 0.6, 0.3, 1);
+  --t-base: 200ms cubic-bezier(0.2, 0.6, 0.3, 1);
+  --t-slow: 320ms cubic-bezier(0.2, 0.6, 0.3, 1);
+
+  /* Layout */
+  --max: 72ch;
+  --max-wide: 1140px;
+  --sticky-cta-height: 64px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+html, body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Skip link for keyboard users */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 9999;
+  background: var(--accent);
+  color: #fff !important;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 var(--r-2) 0;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+.skip-link:focus { left: 0; }
+
+/* Global focus ring — only on keyboard, not mouse click */
+*:focus { outline: none; }
+*:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-focus);
+  border-radius: var(--r-1);
+}
+
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; transition: color var(--t-fast); }
+a:hover { color: var(--accent-dark); text-decoration-thickness: 2px; }
+a:focus-visible { box-shadow: var(--sh-focus); border-radius: var(--r-1); outline: none; }
+
+::selection { background: var(--accent); color: #fff; }
+
+/* =================================================================
+   Header + primary navigation
+   ================================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--line);
+  padding: var(--s-2) var(--s-5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-4);
+}
+.site-header .brand {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--fg);
+  transition: transform var(--t-fast);
+}
+.site-header .brand:hover { transform: translateY(-1px); }
+.site-header .brand img {
+  height: 72px;
+  width: auto;
+  display: block;
+}
+.site-header nav { display: flex; align-items: center; gap: var(--s-2); }
+.site-header nav > ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--s-1);
+}
+.site-header nav > ul > li { position: relative; }
+.site-header nav > ul > li > a,
+.site-header nav > ul > li > .menu-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.55rem 0.85rem;
+  text-decoration: none;
+  color: var(--fg);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--r-2);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--t-fast), background var(--t-fast);
+}
+.site-header nav > ul > li > a:hover,
+.site-header nav > ul > li > .menu-label:hover,
+.site-header nav > ul > li:hover > a,
+.site-header nav > ul > li:hover > .menu-label,
+.site-header nav > ul > li:focus-within > a,
+.site-header nav > ul > li:focus-within > .menu-label {
+  color: var(--accent);
+  background: var(--surface-2);
+}
+.site-header nav > ul > li.has-dropdown > .menu-label::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-1px);
+  margin-left: 2px;
+  opacity: 0.6;
+  transition: transform var(--t-fast), opacity var(--t-fast);
+}
+.site-header nav > ul > li.has-dropdown:hover > .menu-label::after,
+.site-header nav > ul > li.has-dropdown:focus-within > .menu-label::after {
+  transform: rotate(-135deg) translateY(2px);
+  opacity: 1;
+}
+.site-header nav .dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 240px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-4);
+  padding: var(--s-2) 0;
+  margin: 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity var(--t-fast), transform var(--t-fast), visibility var(--t-fast);
+  z-index: 100;
+}
+.site-header nav > ul > li:hover > .dropdown,
+.site-header nav > ul > li:focus-within > .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.site-header nav .dropdown li { margin: 0; }
+.site-header nav .dropdown a {
+  display: block;
+  padding: 0.5rem 1.1rem;
+  text-decoration: none;
+  color: var(--fg);
+  font-size: 0.92rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background var(--t-fast), color var(--t-fast), padding-left var(--t-fast);
+}
+.site-header nav .dropdown a:hover,
+.site-header nav .dropdown a:focus { background: var(--surface-2); color: var(--accent); padding-left: 1.35rem; }
+.site-header nav .dropdown .dropdown-section {
+  padding: 0.55rem 1.1rem 0.3rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 700;
+}
+.site-header nav .dropdown .dropdown-divider {
+  height: 1px;
+  background: var(--line);
+  margin: var(--s-2) 0;
+  list-style: none;
+}
+.site-header nav .dropdown a.dropdown-all {
+  color: var(--accent);
+  font-weight: 600;
+}
+.site-header nav a.cta-nav {
+  background: var(--accent);
+  color: #fff !important;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--r-pill);
+  margin-left: var(--s-2);
+  box-shadow: var(--sh-2);
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+.site-header nav a.cta-nav:hover { background: var(--accent-dark); color: #fff !important; transform: translateY(-1px); box-shadow: var(--sh-3); }
+.site-header nav a.cta-nav:active { transform: translateY(0); box-shadow: var(--sh-1); }
+
+/* =================================================================
+   Breadcrumbs — subtle pill row
+   ================================================================= */
+nav.breadcrumbs {
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding: var(--s-3) var(--s-5);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+nav.breadcrumbs ol { list-style: none; margin: 0 auto; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: center; max-width: var(--max-wide); }
+nav.breadcrumbs li { display: inline-flex; align-items: center; }
+nav.breadcrumbs li:not(:last-child)::after {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-right: 1.5px solid var(--muted);
+  border-top: 1.5px solid var(--muted);
+  transform: rotate(45deg);
+  margin-left: var(--s-2);
+  opacity: 0.6;
+}
+nav.breadcrumbs a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--r-pill);
+  transition: background var(--t-fast), color var(--t-fast);
+}
+nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
+nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
+
+/* =================================================================
+   Article + alternating section bands
+   ================================================================= */
+main { padding: 0; }
+
+article {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 var(--s-3) 0;
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  background: rgba(184, 52, 26, 0.08);
+  border-radius: var(--r-pill);
+}
+
+h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  margin: 0 0 var(--s-5) 0;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.4rem, 2.5vw, 1.7rem);
+  line-height: 1.25;
+  margin: var(--s-7) 0 var(--s-4) 0;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  position: relative;
+  padding-top: 0;
+  border-top: 0;
+}
+h2::before {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 3px;
+  margin-bottom: var(--s-3);
+}
+h2:first-of-type { margin-top: var(--s-5); }
+
+h3 {
+  font-size: 1.15rem;
+  line-height: 1.3;
+  margin: var(--s-5) 0 var(--s-3) 0;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: var(--s-4) 0 var(--s-2) 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+p { margin: var(--s-3) 0; }
+p strong { color: var(--fg); font-weight: 700; }
+
+ul, ol { padding-left: 1.5rem; margin: var(--s-3) 0; }
+li { margin: var(--s-2) 0; }
+li::marker { color: var(--accent); }
+
+article ul li {
+  position: relative;
+  padding-left: var(--s-1);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: var(--s-7) 0;
+}
+
+blockquote {
+  margin: var(--s-5) 0;
+  padding: var(--s-4) var(--s-5);
+  background: var(--surface-2);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--r-3) var(--r-3) 0;
+  color: var(--fg);
+  font-style: normal;
+  position: relative;
+  box-shadow: var(--sh-1);
+}
+blockquote::before {
+  content: "“";
+  position: absolute;
+  top: -0.5rem;
+  left: var(--s-4);
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.25;
+  font-family: Georgia, serif;
+}
+blockquote p { margin: 0; padding-left: 1.5rem; font-size: 1.02rem; line-height: 1.55; }
+blockquote p + p { margin-top: var(--s-3); }
+blockquote em { font-style: normal; color: var(--muted); }
+
+/* =================================================================
+   Buttons + CTA row
+   ================================================================= */
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin: var(--s-5) 0;
+  align-items: center;
+}
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: #fff !important;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--r-pill);
+  text-decoration: none !important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 0;
+  cursor: pointer;
+  font-size: 0.98rem;
+  box-shadow: var(--sh-2);
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+  position: relative;
+}
+.cta-button::after {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+  transform: rotate(45deg);
+  margin-left: 0.25rem;
+  transition: transform var(--t-fast);
+}
+.cta-button:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--sh-3); }
+.cta-button:hover::after { transform: rotate(45deg) translate(2px, -2px); }
+.cta-button:active { transform: translateY(0); box-shadow: var(--sh-1); }
+
+.cta-button.secondary {
+  background: var(--surface);
+  color: var(--fg) !important;
+  border: 1.5px solid var(--line);
+  box-shadow: none;
+}
+.cta-button.secondary:hover {
+  background: var(--surface-2);
+  border-color: var(--accent);
+  color: var(--accent) !important;
+}
+.cta-button.secondary::after { border-color: currentColor; }
+
+.cta-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.2rem;
+  color: var(--fg) !important;
+  text-decoration: none !important;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  transition: border-color var(--t-fast), color var(--t-fast), transform var(--t-fast);
+}
+.cta-phone::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58.1.36.03.74-.24 1.01l-2.21 2.2z'/></svg>") center/contain no-repeat;
+          mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58.1.36.03.74-.24 1.01l-2.21 2.2z'/></svg>") center/contain no-repeat;
+  color: var(--accent);
+}
+.cta-phone:hover { border-color: var(--accent); color: var(--accent) !important; transform: translateY(-1px); }
+
+/* =================================================================
+   Form placeholder + hero figure
+   ================================================================= */
+.quote-form-placeholder {
+  margin: var(--s-5) 0;
+  padding: var(--s-5);
+  border: 2px dashed var(--line);
+  border-radius: var(--r-3);
+  background: var(--surface-2);
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.hero-figure {
+  margin: var(--s-5) 0 0 0;
+  padding: 0;
+}
+.hero-figure img {
+  width: 100%;
+  height: auto;
+  max-height: 440px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--r-3);
+  display: block;
+  box-shadow: var(--sh-3);
+}
+
+/* =================================================================
+   Brand page hero — image background, centered text, dark overlay.
+   Same visual language as the homepage video hero. Used by brand-
+   repair / brand-spindle / brand-way-covers pages. Emitted by the
+   generators as <section class="brand-hero"> and wrapped in a
+   page-section-hero band by wrap_into_sections.
+   ================================================================= */
+/* Hero band overrides — the band itself is full-bleed and the inner
+   container drops its readable-column max-width so the hero image
+   actually fills the viewport instead of being boxed into 72ch. */
+.page-section-hero {
+  padding: 0;
+  background: var(--bg);
+}
+.page-section-hero > .section-inner {
+  max-width: none;
+  width: 100%;
+  padding: 0;
+}
+
+.brand-hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(380px, 55vh, 540px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  margin: 0;
+  background: #000;
+}
+.brand-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+  pointer-events: none;
+}
+.brand-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+}
+.brand-hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: var(--max-wide);
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 4.5rem) var(--s-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.brand-hero-content > .eyebrow {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.7rem;
+  margin: 0 0 var(--s-4) 0;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.brand-hero-content > h1 {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  margin: 0 0 var(--s-4) 0;
+  max-width: 24ch;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+.brand-hero-content > p {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 var(--s-5) 0;
+  max-width: 58ch;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+.brand-hero-content > .cta-row {
+  margin: 0;
+  justify-content: center;
+}
+/* Frosted-glass phone CTA against the dark hero (same treatment the
+   homepage hero uses) */
+.brand-hero-content .cta-phone {
+  background: rgba(255, 255, 255, 0.10);
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.brand-hero-content .cta-phone:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff !important;
+}
+.brand-hero-content .cta-phone::before { color: #fff; }
+
+@media (max-width: 768px) {
+  .brand-hero { min-height: clamp(340px, 60vh, 480px); }
+  .brand-hero-content { padding: clamp(2rem, 7vw, 3rem) var(--s-4); }
+  .brand-hero-content > .cta-row { width: 100%; flex-direction: column; }
+  .brand-hero-content > .cta-row > * { width: 100%; justify-content: center; }
+}
+
+/* =================================================================
+   Two-column page hero — used by every page that has a hero image.
+   Applied automatically by wrap_into_sections when the intro section
+   contains a <figure class="hero-figure">.
+   ================================================================= */
+.page-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--s-7);
+  align-items: center;
+  margin: 0;
+  padding: var(--s-4) 0 var(--s-5) 0;
+}
+.page-hero-text { min-width: 0; }
+.page-hero-text > :first-child { margin-top: 0; }
+.page-hero-text > h1 { margin-top: 0; }
+.page-hero-text > p { font-size: 1.05rem; }
+.page-hero-text > p:first-of-type { color: var(--fg); }
+.page-hero-image { min-width: 0; }
+.page-hero-image figure {
+  margin: 0;
+  padding: 0;
+}
+.page-hero-image figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--r-3);
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  max-height: none;
+  box-shadow: var(--sh-4);
+}
+@media (max-width: 900px) {
+  .page-hero {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+    padding: var(--s-3) 0 var(--s-4) 0;
+  }
+  .page-hero-image figure img {
+    max-height: 320px;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* =================================================================
+   Tables — modern card-wrapped responsive
+   ================================================================= */
+.table-scroll {
+  margin: var(--s-5) 0;
+  border-radius: var(--r-3);
+  background: var(--surface);
+  box-shadow: var(--sh-2);
+  border: 1px solid var(--line);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* Scroll shadow indicators */
+  background:
+    linear-gradient(to right, var(--surface) 30%, rgba(255,255,255,0)),
+    linear-gradient(to right, rgba(0,0,0,0.08), rgba(255,255,255,0) 30%) 0 100%,
+    radial-gradient(farthest-side at 0 50%, rgba(0,0,0,0.08), rgba(0,0,0,0)),
+    radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,0.08), rgba(0,0,0,0)) 100% 0;
+  background-repeat: no-repeat;
+  background-color: var(--surface);
+  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+  background-position: 0 0, 100% 0, 0 0, 100% 0;
+  background-attachment: local, local, scroll, scroll;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.table-scroll table { min-width: 480px; }
+thead { background: var(--surface-2); }
+th {
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+td {
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+tbody tr { transition: background var(--t-fast); }
+tbody tr:hover { background: var(--surface-2); }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:nth-child(even) { background: rgba(241, 237, 231, 0.35); }
+tbody tr:nth-child(even):hover { background: var(--surface-2); }
+
+/* For standalone tables without .table-scroll wrapper, still look good */
+article > table {
+  border-radius: var(--r-3);
+  background: var(--surface);
+  box-shadow: var(--sh-2);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  margin: var(--s-5) 0;
+}
+
+/* =================================================================
+   FAQ accordion (<details>/<summary>)
+   ================================================================= */
+.faq-list { display: flex; flex-direction: column; gap: var(--s-3); margin: var(--s-5) 0; }
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+  transition: box-shadow var(--t-base), border-color var(--t-base);
+  overflow: hidden;
+}
+.faq-item[open] {
+  border-color: var(--accent);
+  box-shadow: var(--sh-3);
+}
+.faq-item > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: var(--s-4) var(--s-5);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--fg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-4);
+  transition: background var(--t-fast);
+}
+.faq-item > summary::-webkit-details-marker { display: none; }
+.faq-item > summary:hover { background: var(--surface-2); }
+.faq-item > summary::after {
+  content: "";
+  flex-shrink: 0;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(45deg);
+  margin-top: -4px;
+  transition: transform var(--t-base);
+}
+.faq-item[open] > summary::after {
+  transform: rotate(-135deg);
+  margin-top: 4px;
+}
+.faq-item .faq-answer {
+  padding: 0 var(--s-5) var(--s-5) var(--s-5);
+  color: var(--fg);
+  font-size: 0.97rem;
+  line-height: 1.65;
+  border-top: 1px solid var(--line);
+  padding-top: var(--s-4);
+  animation: faq-open var(--t-base) ease;
+}
+.faq-item .faq-answer p { margin: var(--s-3) 0 0 0; }
+.faq-item .faq-answer p:first-child { margin-top: 0; }
+@keyframes faq-open {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =================================================================
+   Process / How-To steps
+   ================================================================= */
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  margin: var(--s-5) 0;
+  counter-reset: process;
+  list-style: none;
+  padding-left: 0;
+}
+.process-steps > li {
+  position: relative;
+  padding: var(--s-4) var(--s-5) var(--s-4) calc(var(--s-7) + var(--s-3));
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+  transition: transform var(--t-fast), box-shadow var(--t-fast);
+  margin: 0;
+  counter-increment: process;
+}
+.process-steps > li:hover { transform: translateY(-2px); box-shadow: var(--sh-3); border-color: var(--accent); }
+.process-steps > li::before {
+  content: counter(process);
+  position: absolute;
+  top: var(--s-4);
+  left: var(--s-4);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(184, 52, 26, 0.35);
+}
+.process-steps > li::marker { content: none; }
+.process-steps > li strong:first-child {
+  display: block;
+  margin-bottom: var(--s-1);
+  font-size: 1.05rem;
+  color: var(--fg);
+  line-height: 1.3;
+}
+
+/* =================================================================
+   Related-services grid — card-style links used at the bottom of
+   brand-repair / brand-spindle / brand-way-covers pages.
+   ================================================================= */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--s-3);
+  margin: var(--s-4) 0 0 0;
+  list-style: none;
+  padding: 0;
+}
+.related-grid li { margin: 0; }
+.related-grid a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  font-weight: 600;
+  transition: transform var(--t-fast), box-shadow var(--t-fast),
+              border-color var(--t-fast), color var(--t-fast);
+}
+.related-grid a::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+  transform: rotate(45deg);
+  opacity: 0.45;
+  transition: transform var(--t-fast), opacity var(--t-fast);
+  flex-shrink: 0;
+}
+.related-grid a:hover {
+  border-color: var(--accent);
+  color: var(--accent) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--sh-3);
+}
+.related-grid a:hover::after { opacity: 1; transform: rotate(45deg) translate(2px, -2px); }
+.related-coverage {
+  margin: var(--s-4) 0 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* =================================================================
+   MachineLookup — site-wide model number lookup.
+   Powered by /data/machines.json. Renders a search input that
+   fuzzy-matches the user's typed model and routes to the matching
+   series-spoke page across all 6 brands.
+   ================================================================= */
+.machine-lookup {
+  margin: var(--s-5) 0;
+  padding: var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  position: relative;
+}
+.machine-lookup-label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: var(--s-2);
+}
+.machine-lookup-input {
+  font: inherit;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1.02rem;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-2);
+  background: var(--surface);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+.machine-lookup-input:hover { border-color: var(--muted); }
+.machine-lookup-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: var(--sh-focus);
+}
+.machine-lookup-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 0.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-4);
+  z-index: 40;
+  overflow: hidden;
+  max-height: 360px;
+  overflow-y: auto;
+}
+.machine-lookup-results[hidden] { display: none; }
+.machine-lookup-result {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  border-bottom: 1px solid var(--line);
+  transition: background var(--t-fast), padding-left var(--t-fast);
+}
+.machine-lookup-result:last-child { border-bottom: 0; }
+.machine-lookup-result:hover,
+.machine-lookup-result:focus {
+  background: var(--surface-2);
+  color: var(--accent) !important;
+  padding-left: 1.2rem;
+  outline: none;
+}
+.machine-lookup-result-brand {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--r-1);
+  background: var(--surface-2);
+}
+.machine-lookup-result-model {
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+.machine-lookup-result-series {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.machine-lookup-result-arrow {
+  font-size: 1.1rem;
+  color: var(--accent);
+  opacity: 0.6;
+  transition: opacity var(--t-fast), transform var(--t-fast);
+}
+.machine-lookup-result:hover .machine-lookup-result-arrow,
+.machine-lookup-result:focus .machine-lookup-result-arrow {
+  opacity: 1;
+  transform: translateX(2px);
+}
+.machine-lookup-empty {
+  padding: 1rem 1.25rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.machine-lookup-empty a { color: var(--accent); font-weight: 600; }
+
+@media (max-width: 600px) {
+  .machine-lookup { padding: var(--s-4); }
+  .machine-lookup-result {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand arrow"
+      "model arrow"
+      "series series";
+    gap: 0.25rem 0.6rem;
+  }
+  .machine-lookup-result-brand { grid-area: brand; justify-self: start; }
+  .machine-lookup-result-model { grid-area: model; }
+  .machine-lookup-result-series { grid-area: series; }
+  .machine-lookup-result-arrow { grid-area: arrow; align-self: center; }
+}
+
+/* Browse-by-X lists on hub pages (Browse by Series / Control / Service).
+   Each <li> is a card-style link with bolded label + supporting copy. */
+.browse-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--s-4) 0 var(--s-5) 0;
+  display: grid;
+  gap: var(--s-3);
+}
+.browse-list > li { margin: 0; }
+.browse-list > li > a {
+  display: block;
+  padding: var(--s-4) var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  font-weight: 500;
+  line-height: 1.5;
+  transition: transform var(--t-fast), box-shadow var(--t-fast),
+              border-color var(--t-fast);
+  position: relative;
+  padding-right: calc(var(--s-5) + 18px);
+}
+.browse-list > li > a::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: var(--s-4);
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--muted);
+  border-top: 2px solid var(--muted);
+  transform: translateY(-50%) rotate(45deg);
+  opacity: 0.5;
+  transition: opacity var(--t-fast), transform var(--t-fast),
+              border-color var(--t-fast);
+}
+.browse-list > li > a:hover,
+.browse-list > li > a:focus {
+  transform: translateY(-2px);
+  box-shadow: var(--sh-3);
+  border-color: var(--accent);
+  outline: none;
+}
+.browse-list > li > a:hover::after,
+.browse-list > li > a:focus::after {
+  opacity: 1;
+  border-color: var(--accent);
+  transform: translateY(-50%) rotate(45deg) translate(2px, -2px);
+}
+.browse-list > li > a strong {
+  color: var(--fg);
+  font-weight: 700;
+  display: inline;
+  margin-right: 0.4rem;
+}
+.browse-list > li > a:hover strong { color: var(--accent); }
+
+/* "Models We Service" — pill chips instead of dense vertical list */
+.model-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  list-style: none;
+  padding: 0;
+  margin: var(--s-3) 0 var(--s-4) 0;
+}
+.model-chips li {
+  margin: 0;
+  padding: 0.4rem 0.95rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+/* =================================================================
+   Pull-card / info-box / trust footer aside
+   ================================================================= */
+.trust-footer, aside.trust-footer {
+  margin: var(--s-6) 0;
+  padding: var(--s-5);
+  background: linear-gradient(135deg, var(--surface-2), var(--surface-3));
+  border-radius: var(--r-3);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-1);
+}
+.trust-footer > p { margin: var(--s-3) 0; }
+.trust-footer > p:first-child { margin-top: 0; }
+.trust-footer > p:last-child { margin-bottom: 0; }
+.trust-footer .customer-quote {
+  font-style: italic;
+  color: var(--fg);
+  border-left: 3px solid var(--accent);
+  padding-left: var(--s-4);
+  margin-top: var(--s-4);
+}
+
+/* =================================================================
+   Sticky mobile CTA bar
+   ================================================================= */
+.mobile-cta-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: var(--s-2) var(--s-3);
+  padding-bottom: calc(var(--s-2) + env(safe-area-inset-bottom));
+  gap: var(--s-2);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+}
+.mobile-cta-bar a {
+  flex: 1 1 0;
+  text-align: center;
+  padding: 0.9rem 0.5rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  border-radius: var(--r-pill);
+  transition: background var(--t-fast), color var(--t-fast);
+}
+.mobile-cta-bar .mcta-phone {
+  color: var(--fg) !important;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+}
+.mobile-cta-bar .mcta-phone:active { background: var(--surface-2); }
+.mobile-cta-bar .mcta-quote {
+  color: #fff !important;
+  background: var(--accent);
+  box-shadow: var(--sh-2);
+}
+.mobile-cta-bar .mcta-quote:active { background: var(--accent-dark); }
+
+@media (max-width: 767px) {
+  .mobile-cta-bar { display: flex; }
+  body { padding-bottom: calc(var(--sticky-cta-height) + env(safe-area-inset-bottom)); }
+}
+
+/* =================================================================
+   Footer
+   ================================================================= */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: var(--s-7) var(--s-5) var(--s-6);
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-align: center;
+  margin-top: var(--s-8);
+  background: var(--surface-2);
+}
+.site-footer p { margin: var(--s-2) 0; }
+.site-footer p:first-child { color: var(--fg); font-weight: 600; font-size: 1rem; }
+
+/* =================================================================
+   Responsive overrides
+   ================================================================= */
+@media (max-width: 900px) {
+  main { padding: 0 var(--s-4); }
+  article { margin: var(--s-5) auto var(--s-7) auto; }
+  h2 { margin: var(--s-6) 0 var(--s-3) 0; }
+  .faq-item > summary { padding: var(--s-4); }
+  .faq-item .faq-answer { padding-left: var(--s-4); padding-right: var(--s-4); padding-bottom: var(--s-4); }
+  .process-steps > li { padding-left: calc(var(--s-7) + var(--s-2)); padding-right: var(--s-4); }
+}
+
+@media (max-width: 800px) {
+  .site-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--s-2);
+    padding: var(--s-3) var(--s-4);
+    position: static;
+  }
+  .site-header .brand { justify-content: center; }
+  .site-header .brand img { height: 56px; }
+  .site-header nav { width: 100%; }
+  .site-header nav > ul { flex-direction: column; gap: 0; width: 100%; }
+  .site-header nav > ul > li { width: 100%; }
+  .site-header nav > ul > li > a,
+  .site-header nav > ul > li > .menu-label {
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+    border-radius: var(--r-1);
+    border-bottom: 1px solid var(--line);
+    justify-content: space-between;
+  }
+  .site-header nav .dropdown {
+    position: static;
+    box-shadow: none;
+    border: none;
+    padding: var(--s-1) 0 var(--s-2) 0;
+    margin: 0;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+    min-width: 0;
+    background: var(--surface-2);
+    border-radius: 0;
+  }
+  .site-header nav .dropdown a { padding: 0.45rem 1.25rem; }
+  .site-header nav a.cta-nav {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    margin-left: 0;
+    margin-top: var(--s-2);
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  h1 { font-size: clamp(1.7rem, 7vw, 2.3rem); }
+  h2 { font-size: 1.3rem; }
+  article { margin: var(--s-4) auto var(--s-6) auto; }
+  .cta-row { flex-direction: column; align-items: stretch; }
+  .cta-row .cta-button,
+  .cta-row .cta-phone { width: 100%; justify-content: center; }
+  .hero-figure img { max-height: 280px; }
+  blockquote { padding: var(--s-3) var(--s-4); }
+  blockquote p { padding-left: 1.25rem; }
+  th, td { padding: var(--s-2) var(--s-3); font-size: 0.9rem; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Fanuc Series 6 / 10 / 11 / 12 / 15 Repair",
+  "provider": {
+    "@id": "#org"
+  },
+  "areaServed": [
+    "Iowa",
+    "Illinois",
+    "Minnesota",
+    "Wisconsin",
+    "Nebraska",
+    "Missouri",
+    "Texas"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "position": 1,
+      "name": "Home",
+      "item": "https://midwestcncservices.com/"
+    },
+    {
+      "position": 2,
+      "name": "Repairs",
+      "item": "https://midwestcncservices.com/repairs/"
+    },
+    {
+      "position": 3,
+      "name": "Fanuc CNC Machine Repair",
+      "item": "https://midwestcncservices.com/repairs/fanuc-cnc-machine-repair/"
+    },
+    {
+      "position": 4,
+      "name": "Series 6 through 15",
+      "item": "https://midwestcncservices.com/repairs/fanuc-cnc-machine-repair/series-6-15-legacy/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="brand" href="/" aria-label="Midwest CNC Services home">
+    <img src="/assets/images/logos/midwest-cnc-logo.png" alt="Midwest CNC Services">
+  </a>
+  <nav aria-label="Primary">
+    <ul>
+    <li class="has-dropdown">
+      <a href="/repairs/" class="menu-label">Repairs</a>
+      <ul class="dropdown" role="menu">
+        <li class="dropdown-section">By Service</li>
+        <li><a href="/repairs/" class="dropdown-all">All Repairs →</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li class="dropdown-section">Popular Brands</li>
+        <li><a href="/repairs/mazak-cnc-machine-repair/">Mazak</a></li>
+        <li><a href="/repairs/haas-cnc-machine-repair/">Haas</a></li>
+        <li><a href="/repairs/dmg-mori-cnc-machine-repair/">DMG Mori</a></li>
+        <li><a href="/repairs/doosan-cnc-machine-repair/">Doosan</a></li>
+        <li><a href="/repairs/okuma-cnc-machine-repair/">Okuma</a></li>
+        <li><a href="/repairs/fanuc-cnc-machine-repair/">Fanuc</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li><a href="/repairs/" class="dropdown-all">View All Brands →</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="/spindle-grinding/" class="menu-label">Spindle Grinding</a>
+      <ul class="dropdown" role="menu">
+        <li class="dropdown-section">By Service</li>
+        <li><a href="/spindle-grinding/" class="dropdown-all">All Spindle Work →</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li class="dropdown-section">Popular Brands</li>
+        <li><a href="/spindle-grinding/mazak-spindle-repair/">Mazak</a></li>
+        <li><a href="/spindle-grinding/haas-spindle-repair/">Haas</a></li>
+        <li><a href="/spindle-grinding/dmg-mori-spindle-repair/">DMG Mori</a></li>
+        <li><a href="/spindle-grinding/doosan-spindle-repair/">Doosan</a></li>
+        <li><a href="/spindle-grinding/okuma-spindle-repair/">Okuma</a></li>
+        <li><a href="/spindle-grinding/fanuc-spindle-repair/">Fanuc</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li><a href="/spindle-grinding/" class="dropdown-all">View All Brands →</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="/way-covers/" class="menu-label">Way Covers</a>
+      <ul class="dropdown" role="menu">
+        <li class="dropdown-section">By Service</li>
+        <li><a href="/way-covers/" class="dropdown-all">All Way Covers →</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li class="dropdown-section">Popular Brands</li>
+        <li><a href="/way-covers/mazak-cnc-way-covers/">Mazak</a></li>
+        <li><a href="/way-covers/haas-cnc-way-covers/">Haas</a></li>
+        <li><a href="/way-covers/dmg-mori-cnc-way-covers/">DMG Mori</a></li>
+        <li><a href="/way-covers/doosan-cnc-way-covers/">Doosan</a></li>
+        <li><a href="/way-covers/okuma-cnc-way-covers/">Okuma</a></li>
+        <li><a href="/way-covers/fanuc-cnc-way-covers/">Fanuc</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li><a href="/way-covers/" class="dropdown-all">View All Brands →</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="/service-area/" class="menu-label">Service Area</a>
+      <ul class="dropdown" role="menu">
+        <li class="dropdown-section">By State</li>
+        <li><a href="/service-area/iowa/">Iowa</a></li>
+        <li><a href="/service-area/illinois/">Illinois</a></li>
+        <li><a href="/service-area/wisconsin/">Wisconsin</a></li>
+        <li><a href="/service-area/minnesota/">Minnesota</a></li>
+        <li><a href="/service-area/nebraska/">Nebraska</a></li>
+        <li><a href="/service-area/missouri/">Missouri</a></li>
+        <li><a href="/service-area/texas/">Texas</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li><a href="/service-area/" class="dropdown-all">All Locations →</a></li>
+      </ul>
+    </li>
+      <li><a href="/get-a-quote/" class="cta-nav">Get a Quote</a></li>
+    </ul>
+  </nav>
+</header>
+<nav class="breadcrumbs" aria-label="breadcrumb">
+  <ol>
+    <li><a href="https://midwestcncservices.com/">Home</a></li><li><a href="https://midwestcncservices.com/repairs/">Repairs</a></li><li><a href="https://midwestcncservices.com/repairs/fanuc-cnc-machine-repair/">Fanuc CNC Machine Repair</a></li><li><a href="https://midwestcncservices.com/repairs/fanuc-cnc-machine-repair/series-6-15-legacy/">Series 6 through 15</a></li>
+  </ol>
+</nav>
+<main id="main">
+<article>
+<section class="page-section page-section-hero">
+  <div class="section-inner">
+<section class="brand-hero">
+  <div class="brand-hero-overlay" aria-hidden="true"></div>
+  <div class="brand-hero-content">
+    <p class="eyebrow">Fanuc Control Generation</p>
+    <h1>Fanuc Series 6 / 10 / 11 / 12 / 15 Repair</h1>
+    <p>Fanuc Series 6, 10, 11, 12, and 15 are the higher-end siblings of Series 0 — typically on larger or more complex machines from the 1980s through the 2000s. Series 15 in particular still sees active service on larger machines from the late 1990s and early 2000s. Failure modes overlap with Series 0 but parts availability is sometimes better.</p>
+    <div class="cta-row">
+      <a class="cta-button" href="/get-a-quote/">Get a Quote</a>
+      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
+    </div>
+  </div>
+</section>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="machines-this-control-shipped-on">Machines this control shipped on</h2>
+<p>Series 6 through 12 shipped on higher-end machines from various OEMs through the 1990s. Series 15 was common on larger and more sophisticated machines into the 2000s — including some larger <a href="/repairs/doosan-cnc-machine-repair/puma/">Doosan</a> and other Asian-OEM platforms.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="common-failures-and-fixes">Common failures and fixes</h2>
+<ul>
+<li>Memory battery loss leading to parameter and program loss.
+</li>
+<li>CRT failure — LCD retrofits available.
+</li>
+<li>Drive amplifier obsolescence.
+</li>
+<li>Keyboard and MDI board failures.
+</li>
+<li>PCB-level faults requiring remanufacturing.
+</li>
+</ul>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="parts-availability">Parts availability</h2>
+<p>Series 6 through 12 are deep-legacy with most parts aftermarket-only. Series 15 still has better parts availability through Fanuc and remanufacturing specialists.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="battery-memory-and-parameter-recovery">Battery, memory, and parameter recovery</h2>
+<p>Battery and parameter recovery follows the standard Fanuc workflow — capture parameters before any battery work, replace the battery on a powered control, restore parameters as needed. Series 15 has somewhat better recovery tooling than the earlier siblings.</p>
+<div class="cta-row"><a href="/get-a-quote/">Get a Quote</a> · <a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="related">Related</h2>
+<ul class="related-grid"><li><a href="/repairs/fanuc-cnc-machine-repair/"><span>All Fanuc repair</span></a></li><li><a href="/repairs/fanuc-cnc-machine-repair/series-0-legacy/"><span>Series 0 / 0M / 0T</span></a></li><li><a href="/repairs/fanuc-cnc-machine-repair/series-16i-18i-21i/"><span>Series 16i / 18i / 21i</span></a></li></ul>
+  </div>
+</section>
+</article>
+</main>
+<footer class="site-footer">
+  <p>Midwest CNC Services · 319-610-4341 · Waterloo, Iowa</p>
+  <p>Serving shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
+</footer>
+<div class="mobile-cta-bar" role="region" aria-label="Quick contact">
+  <a class="mcta-phone" href="tel:+13196104341">☎ 319-610-4341</a>
+  <a class="mcta-quote" href="#quote">Get a Quote</a>
+</div>
+</body>
+</html>
