@@ -228,6 +228,52 @@ SITE_SHELL_CSS = """
 }
 
 /* =================================================================
+   Homepage banner — full-bleed photo between hero and services.
+   Sits inside the page-section-hero band as a sibling of .home-hero
+   (because the hero band's section-inner has max-width: none). Solid
+   background so the band's radial-gradient backdrop doesn't bleed
+   through and the banner reads as its own visual section.
+   ================================================================= */
+.home-banner {
+  margin: var(--s-5) 0 0 0;
+  padding: 0;
+  width: 100%;
+  background: var(--bg);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+.home-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 540px;
+  object-fit: cover;
+  object-position: center;
+}
+.home-banner-caption {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: var(--s-4) var(--s-5);
+  font-size: 0.95rem;
+  color: var(--muted);
+  text-align: center;
+  font-style: italic;
+  line-height: 1.5;
+}
+@media (max-width: 900px) {
+  .home-banner img { max-height: 380px; }
+}
+@media (max-width: 600px) {
+  .home-banner img { max-height: 280px; }
+  .home-banner-caption {
+    padding: var(--s-3) var(--s-4);
+    font-size: 0.88rem;
+  }
+}
+
+/* =================================================================
    Tile grid (homepage services, state grid)
    ================================================================= */
 .tile-grid, .state-grid {
@@ -689,10 +735,7 @@ def homepage_body():
     # all replaced with Ken-authorized language.
     states_inline = ", ".join(STATE_NAMES[:-1]) + ", and " + STATE_NAMES[-1]
 
-    # Text-only typographic hero. The previous side-by-side photo
-    # layout fought the van product shot's white background. The photo
-    # can be reintroduced in a contextual section later where it has a
-    # job to do (e.g., "Field Service" or "On the Road").
+    # Text-only typographic hero. Photo moved to the banner below.
     hero = f"""<section class="home-hero">
   <p class="eyebrow">Stop Losing Money</p>
   <h1>When Your Machine Stops, We&nbsp;Start</h1>
@@ -700,6 +743,12 @@ def homepage_body():
   {hero_cta_html()}
   <p class="trust-line">Serving shops in {states_inline}. Based in Waterloo, Iowa.</p>
 </section>
+<figure class="home-banner">
+  <img src="/assets/images/general/midwest-cnc-highway-shot.webp"
+       alt="Midwest CNC Services semi-truck and flatbed trailer transporting a Hitachi Seiki vertical machining center to our Waterloo, Iowa service facility."
+       loading="lazy" width="1536" height="1024">
+  <figcaption class="home-banner-caption">We come to you — or we transport your machine to Waterloo. Either way, we keep your shop producing.</figcaption>
+</figure>
 """
 
     # Service tiles
