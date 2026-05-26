@@ -165,110 +165,136 @@ SITE_SHELL_CSS = """
 }
 
 /* =================================================================
-   Homepage hero — modern two-column. Iteration target before
-   propagating the pattern to other page types (.page-hero).
+   Homepage hero — edge-bleed image, text left.
+   The image flows out to the right viewport edge so it reads as
+   "the right side of the page" rather than a floating card. Iteration
+   target before propagating to .page-hero on other page types.
    ================================================================= */
 .page-section-hero {
-  background:
-    radial-gradient(circle at 18% 22%, rgba(184, 52, 26, 0.06), transparent 55%),
-    radial-gradient(circle at 82% 78%, rgba(184, 52, 26, 0.04), transparent 60%),
-    var(--bg);
+  padding-top: 0;
+  padding-bottom: 0;
+  background: var(--bg);
+  overflow: hidden;  /* contain the edge-bleed image */
 }
-.home-hero {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: clamp(2rem, 4vw, 4.5rem);
-  align-items: center;
-  margin: 0;
-  padding: clamp(2rem, 5vw, 4.5rem) 0 clamp(2.5rem, 5vw, 5rem) 0;
-  min-height: min(540px, 70vh);
+/* Drop the section-inner max-width constraint so .home-hero can manage
+   its own viewport-edge layout. */
+.page-section-hero > .section-inner {
+  max-width: none;
+  width: 100%;
+  padding: 0;
 }
 
-.home-hero-text { min-width: 0; max-width: 620px; }
+.home-hero {
+  display: grid;
+  /* Named-line grid:
+     - left edge gutter aligns with rest of page content (1.25rem min, flexes
+       so the text column lines up with the .section-inner.wide content edge);
+     - text column capped at 540px;
+     - gap;
+     - image extends from there to the right viewport edge. */
+  grid-template-columns:
+    [edge-left] minmax(1.25rem, 1fr)
+    [text-start] minmax(0, 540px)
+    [gap] clamp(2rem, 4vw, 4rem)
+    [image-start] minmax(0, 1fr) [edge-right];
+  align-items: center;
+  min-height: min(520px, 78vh);
+  margin: 0;
+  padding: 0;
+}
+
+.home-hero-text {
+  grid-column: text-start;
+  min-width: 0;
+  padding: clamp(1.5rem, 4vw, 3rem) 0;
+}
 .home-hero-text > .eyebrow:first-child {
-  margin: 0 0 var(--s-4) 0;
+  font-size: 0.7rem;
+  padding: 0.22rem 0.6rem;
+  letter-spacing: 0.1em;
+  margin: 0 0 var(--s-3) 0;
 }
 .home-hero-text > h1 {
-  font-size: clamp(2.4rem, 5.4vw, 4.1rem);
-  line-height: 1.04;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.85rem, 3.6vw, 2.85rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
   font-weight: 800;
-  margin: 0 0 var(--s-5) 0;
+  margin: 0 0 var(--s-4) 0;
 }
 .home-hero-text > p {
-  font-size: clamp(1.05rem, 1.25vw, 1.18rem);
+  font-size: 1.02rem;
   line-height: 1.55;
   margin: var(--s-3) 0;
   color: var(--fg);
-  max-width: 56ch;
+  max-width: 52ch;
 }
 .home-hero-text > p + p {
   color: var(--muted);
-  font-size: 1rem;
+  font-size: 0.96rem;
+  margin-top: var(--s-2);
 }
 .home-hero-text > .cta-row {
-  margin-top: var(--s-6);
+  margin-top: var(--s-4);
   gap: var(--s-3);
 }
 .home-hero-text > .cta-row .cta-button {
-  font-size: 1.02rem;
-  padding: 0.95rem 1.75rem;
+  font-size: 1rem;
+  padding: 0.85rem 1.6rem;
 }
 
 .home-hero-image {
+  grid-column: image-start / edge-right;
   min-width: 0;
+  align-self: stretch;       /* fill full band height */
   position: relative;
-}
-/* Decorative offset accent panel behind the image */
-.home-hero-image::before {
-  content: "";
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  right: -18px;
-  bottom: -18px;
-  background: linear-gradient(135deg, rgba(184, 52, 26, 0.18), rgba(184, 52, 26, 0.04));
-  border-radius: var(--r-4);
-  z-index: -1;
+  display: flex;
 }
 .home-hero-image figure {
   margin: 0;
   padding: 0;
+  flex: 1 1 auto;
   position: relative;
+  display: flex;
 }
 .home-hero-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  min-height: min(520px, 78vh);
   display: block;
-  border-radius: var(--r-4);
   object-fit: cover;
-  aspect-ratio: 3 / 2;
-  max-height: none;
-  box-shadow:
-    0 24px 48px rgba(15, 18, 22, 0.12),
-    0 12px 20px rgba(15, 18, 22, 0.08),
-    0 2px 6px rgba(15, 18, 22, 0.04);
+  object-position: center;
+  /* Only the left edge gets rounded so the right edge bleeds cleanly
+     into the viewport — looks integrated with the page, not floating. */
+  border-radius: var(--r-4) 0 0 var(--r-4);
+  box-shadow: -8px 0 24px rgba(15, 18, 22, 0.06);
 }
 
-@media (max-width: 1100px) {
-  .home-hero { gap: 2.5rem; }
-}
 @media (max-width: 900px) {
+  .page-section-hero { overflow: visible; }
+  .page-section-hero > .section-inner { padding: 0 var(--s-4); }
   .home-hero {
-    grid-template-columns: 1fr;
-    gap: clamp(1.5rem, 5vw, 2.5rem);
-    padding: var(--s-4) 0 var(--s-6) 0;
+    display: block;
     min-height: 0;
   }
-  .home-hero-text { max-width: none; }
-  .home-hero-image::before { display: none; }
+  .home-hero-text {
+    grid-column: auto;
+    padding: var(--s-4) 0 var(--s-2) 0;
+  }
+  .home-hero-image {
+    grid-column: auto;
+    margin: var(--s-4) calc(var(--s-4) * -1) 0;  /* full-bleed on mobile too */
+  }
   .home-hero-image img {
+    min-height: 0;
+    height: auto;
     aspect-ratio: 16 / 10;
-    max-height: 360px;
+    max-height: 320px;
+    border-radius: 0;
   }
 }
 @media (max-width: 600px) {
-  .home-hero-text > h1 { font-size: clamp(2rem, 8.5vw, 2.7rem); }
+  .home-hero-text > h1 { font-size: clamp(1.75rem, 7.5vw, 2.4rem); }
+  .home-hero-image img { aspect-ratio: 3 / 2; max-height: 260px; }
 }
 
 /* =================================================================
