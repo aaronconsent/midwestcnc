@@ -376,7 +376,7 @@ a:hover { color: var(--accent-dark); }
 
 .site-header {
   border-bottom: 1px solid var(--line);
-  padding: 1rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -391,12 +391,106 @@ a:hover { color: var(--accent-dark); }
   color: var(--fg);
 }
 .site-header .brand img {
-  height: 36px;
+  height: 72px;
   width: auto;
   display: block;
 }
-.site-header nav a { margin-left: 1.25rem; text-decoration: none; color: var(--fg); }
-.site-header nav a:hover { color: var(--accent); }
+.site-header nav { display: flex; align-items: center; gap: 0.4rem; }
+.site-header nav > ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.15rem;
+}
+.site-header nav > ul > li { position: relative; }
+.site-header nav > ul > li > a,
+.site-header nav > ul > li > .menu-label {
+  display: inline-block;
+  padding: 0.5rem 0.7rem;
+  text-decoration: none;
+  color: var(--fg);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.site-header nav > ul > li > a:hover,
+.site-header nav > ul > li > .menu-label:hover,
+.site-header nav > ul > li:hover > a,
+.site-header nav > ul > li:hover > .menu-label,
+.site-header nav > ul > li:focus-within > a,
+.site-header nav > ul > li:focus-within > .menu-label {
+  color: var(--accent);
+  background: var(--soft);
+}
+.site-header nav > ul > li.has-dropdown > .menu-label::after {
+  content: " ▾";
+  font-size: 0.75em;
+  color: var(--muted);
+}
+.site-header nav .dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  padding: 0.4rem 0;
+  margin: 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.12s ease, transform 0.12s ease, visibility 0.12s;
+  z-index: 100;
+}
+.site-header nav > ul > li:hover > .dropdown,
+.site-header nav > ul > li:focus-within > .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.site-header nav .dropdown li { margin: 0; }
+.site-header nav .dropdown a {
+  display: block;
+  padding: 0.45rem 1rem;
+  text-decoration: none;
+  color: var(--fg);
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+.site-header nav .dropdown a:hover,
+.site-header nav .dropdown a:focus { background: var(--soft); color: var(--accent); }
+.site-header nav .dropdown .dropdown-section {
+  padding: 0.45rem 1rem 0.25rem 1rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-weight: 700;
+}
+.site-header nav .dropdown .dropdown-divider {
+  height: 1px;
+  background: var(--line);
+  margin: 0.35rem 0;
+}
+.site-header nav .dropdown a.dropdown-all {
+  color: var(--accent);
+  font-weight: 600;
+}
+.site-header nav a.cta-nav {
+  background: var(--accent);
+  color: #fff !important;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin-left: 0.4rem;
+}
+.site-header nav a.cta-nav:hover { background: var(--accent-dark); color: #fff !important; }
 
 nav.breadcrumbs {
   font-size: 0.85rem;
@@ -544,11 +638,127 @@ blockquote p { margin: 0; }
   margin-top: 4rem;
 }
 
-@media (max-width: 600px) {
-  .site-header { flex-direction: column; align-items: flex-start; }
-  .site-header nav a { margin-left: 0; margin-right: 1rem; }
+@media (max-width: 800px) {
+  .site-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .site-header .brand img { height: 56px; }
+  .site-header nav { width: 100%; flex-wrap: wrap; }
+  .site-header nav > ul { flex-wrap: wrap; gap: 0; width: 100%; }
+  .site-header nav > ul > li { width: 100%; }
+  .site-header nav > ul > li > a,
+  .site-header nav > ul > li > .menu-label {
+    width: 100%;
+    padding: 0.5rem 0.5rem;
+    border-radius: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .site-header nav .dropdown {
+    position: static;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+    min-width: 0;
+    background: var(--soft);
+    border-radius: 0;
+  }
+  .site-header nav .dropdown a { padding: 0.45rem 1.25rem; }
+  .site-header nav a.cta-nav {
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+    margin-top: 0.4rem;
+  }
 }
 """
+
+
+# ---------- Site header (single source of truth, used by both generators) ----------
+
+# Top brands surfaced in dropdowns. Picked for industry weight + presence
+# across all three service lines (spindle / repair / way-covers).
+TOP_BRANDS = [
+    ("Mazak",    "mazak"),
+    ("Haas",     "haas"),
+    ("DMG Mori", "dmg-mori"),
+    ("Doosan",   "doosan"),
+    ("Okuma",    "okuma"),
+    ("Fanuc",    "fanuc"),
+]
+
+STATE_NAV = [
+    ("Iowa",      "iowa"),
+    ("Illinois",  "illinois"),
+    ("Wisconsin", "wisconsin"),
+    ("Minnesota", "minnesota"),
+    ("Nebraska",  "nebraska"),
+    ("Missouri",  "missouri"),
+    ("Texas",     "texas"),
+]
+
+
+def _service_dropdown(label, hub_path, url_suffix, hub_link_text):
+    """Build a service-line dropdown <li>. url_suffix appends to /<service>/<brand-slug>."""
+    items = [
+        f'<li class="dropdown-section">By Service</li>',
+        f'<li><a href="{hub_path}" class="dropdown-all">{hub_link_text} →</a></li>',
+        f'<li class="dropdown-divider" aria-hidden="true"></li>',
+        f'<li class="dropdown-section">Popular Brands</li>',
+    ]
+    for name, slug in TOP_BRANDS:
+        items.append(f'<li><a href="{hub_path}{slug}{url_suffix}/">{name}</a></li>')
+    items.append('<li class="dropdown-divider" aria-hidden="true"></li>')
+    items.append(f'<li><a href="{hub_path}" class="dropdown-all">View All Brands →</a></li>')
+    inner = "\n        ".join(items)
+    return f"""    <li class="has-dropdown">
+      <a href="{hub_path}" class="menu-label">{label}</a>
+      <ul class="dropdown" role="menu">
+        {inner}
+      </ul>
+    </li>"""
+
+
+def _service_area_dropdown():
+    items = [
+        '<li class="dropdown-section">By State</li>',
+    ]
+    for name, slug in STATE_NAV:
+        items.append(f'<li><a href="/service-area/{slug}/">{name}</a></li>')
+    items.append('<li class="dropdown-divider" aria-hidden="true"></li>')
+    items.append('<li><a href="/service-area/" class="dropdown-all">All Locations →</a></li>')
+    inner = "\n        ".join(items)
+    return f"""    <li class="has-dropdown">
+      <a href="/service-area/" class="menu-label">Service Area</a>
+      <ul class="dropdown" role="menu">
+        {inner}
+      </ul>
+    </li>"""
+
+
+def build_site_header():
+    """Return the global <header> markup. Identical across both generators."""
+    repairs   = _service_dropdown("Repairs",          "/repairs/",          "-cnc-machine-repair", "All Repairs")
+    spindle   = _service_dropdown("Spindle Grinding", "/spindle-grinding/", "-spindle-repair",     "All Spindle Work")
+    waycovers = _service_dropdown("Way Covers",       "/way-covers/",       "-cnc-way-covers",     "All Way Covers")
+    service_area = _service_area_dropdown()
+
+    return f"""<header class="site-header">
+  <a class="brand" href="/" aria-label="Midwest CNC Services home">
+    <img src="/assets/images/logos/midwest-cnc-logo.png" alt="Midwest CNC Services">
+  </a>
+  <nav aria-label="Primary">
+    <ul>
+{repairs}
+{spindle}
+{waycovers}
+{service_area}
+      <li><a href="/get-a-quote/" class="cta-nav">Get a Quote</a></li>
+    </ul>
+  </nav>
+</header>"""
 
 
 def render_html(fm, body_html):
@@ -615,18 +825,7 @@ def render_html(fm, body_html):
 {schema_blocks}
 </head>
 <body>
-<header class="site-header">
-  <a class="brand" href="/">
-    <img src="/assets/images/logos/midwest-cnc-logo.png" alt="Midwest CNC Services" height="36">
-  </a>
-  <nav>
-    <a href="/repairs/">Repairs</a>
-    <a href="/spindle-grinding/">Spindle Grinding</a>
-    <a href="/way-covers/">Way Covers</a>
-    <a href="/service-area/">Service Area</a>
-    <a href="/get-a-quote/">Get a Quote</a>
-  </nav>
-</header>
+{build_site_header()}
 {crumbs_html}
 <main>
 <article>

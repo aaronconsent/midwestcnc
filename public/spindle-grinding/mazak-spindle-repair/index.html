@@ -41,7 +41,7 @@ a:hover { color: var(--accent-dark); }
 
 .site-header {
   border-bottom: 1px solid var(--line);
-  padding: 1rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -56,12 +56,106 @@ a:hover { color: var(--accent-dark); }
   color: var(--fg);
 }
 .site-header .brand img {
-  height: 36px;
+  height: 72px;
   width: auto;
   display: block;
 }
-.site-header nav a { margin-left: 1.25rem; text-decoration: none; color: var(--fg); }
-.site-header nav a:hover { color: var(--accent); }
+.site-header nav { display: flex; align-items: center; gap: 0.4rem; }
+.site-header nav > ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.15rem;
+}
+.site-header nav > ul > li { position: relative; }
+.site-header nav > ul > li > a,
+.site-header nav > ul > li > .menu-label {
+  display: inline-block;
+  padding: 0.5rem 0.7rem;
+  text-decoration: none;
+  color: var(--fg);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.site-header nav > ul > li > a:hover,
+.site-header nav > ul > li > .menu-label:hover,
+.site-header nav > ul > li:hover > a,
+.site-header nav > ul > li:hover > .menu-label,
+.site-header nav > ul > li:focus-within > a,
+.site-header nav > ul > li:focus-within > .menu-label {
+  color: var(--accent);
+  background: var(--soft);
+}
+.site-header nav > ul > li.has-dropdown > .menu-label::after {
+  content: " ▾";
+  font-size: 0.75em;
+  color: var(--muted);
+}
+.site-header nav .dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  padding: 0.4rem 0;
+  margin: 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.12s ease, transform 0.12s ease, visibility 0.12s;
+  z-index: 100;
+}
+.site-header nav > ul > li:hover > .dropdown,
+.site-header nav > ul > li:focus-within > .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.site-header nav .dropdown li { margin: 0; }
+.site-header nav .dropdown a {
+  display: block;
+  padding: 0.45rem 1rem;
+  text-decoration: none;
+  color: var(--fg);
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+.site-header nav .dropdown a:hover,
+.site-header nav .dropdown a:focus { background: var(--soft); color: var(--accent); }
+.site-header nav .dropdown .dropdown-section {
+  padding: 0.45rem 1rem 0.25rem 1rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-weight: 700;
+}
+.site-header nav .dropdown .dropdown-divider {
+  height: 1px;
+  background: var(--line);
+  margin: 0.35rem 0;
+}
+.site-header nav .dropdown a.dropdown-all {
+  color: var(--accent);
+  font-weight: 600;
+}
+.site-header nav a.cta-nav {
+  background: var(--accent);
+  color: #fff !important;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin-left: 0.4rem;
+}
+.site-header nav a.cta-nav:hover { background: var(--accent-dark); color: #fff !important; }
 
 nav.breadcrumbs {
   font-size: 0.85rem;
@@ -209,9 +303,40 @@ blockquote p { margin: 0; }
   margin-top: 4rem;
 }
 
-@media (max-width: 600px) {
-  .site-header { flex-direction: column; align-items: flex-start; }
-  .site-header nav a { margin-left: 0; margin-right: 1rem; }
+@media (max-width: 800px) {
+  .site-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .site-header .brand img { height: 56px; }
+  .site-header nav { width: 100%; flex-wrap: wrap; }
+  .site-header nav > ul { flex-wrap: wrap; gap: 0; width: 100%; }
+  .site-header nav > ul > li { width: 100%; }
+  .site-header nav > ul > li > a,
+  .site-header nav > ul > li > .menu-label {
+    width: 100%;
+    padding: 0.5rem 0.5rem;
+    border-radius: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .site-header nav .dropdown {
+    position: static;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+    min-width: 0;
+    background: var(--soft);
+    border-radius: 0;
+  }
+  .site-header nav .dropdown a { padding: 0.45rem 1.25rem; }
+  .site-header nav a.cta-nav {
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+    margin-top: 0.4rem;
+  }
 }
 </style>
 <script type="application/ld+json">
@@ -268,15 +393,79 @@ blockquote p { margin: 0; }
 </head>
 <body>
 <header class="site-header">
-  <a class="brand" href="/">
-    <img src="/assets/images/logos/midwest-cnc-logo.png" alt="Midwest CNC Services" height="36">
+  <a class="brand" href="/" aria-label="Midwest CNC Services home">
+    <img src="/assets/images/logos/midwest-cnc-logo.png" alt="Midwest CNC Services">
   </a>
-  <nav>
-    <a href="/repairs/">Repairs</a>
-    <a href="/spindle-grinding/">Spindle Grinding</a>
-    <a href="/way-covers/">Way Covers</a>
-    <a href="/service-area/">Service Area</a>
-    <a href="/get-a-quote/">Get a Quote</a>
+  <nav aria-label="Primary">
+    <ul>
+    <li class="has-dropdown">
+      <a href="/repairs/" class="menu-label">Repairs</a>
+      <ul class="dropdown" role="menu">
+        <li class="dropdown-section">By Service</li>
+        <li><a href="/repairs/" class="dropdown-all">All Repairs →</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li class="dropdown-section">Popular Brands</li>
+        <li><a href="/repairs/mazak-cnc-machine-repair/">Mazak</a></li>
+        <li><a href="/repairs/haas-cnc-machine-repair/">Haas</a></li>
+        <li><a href="/repairs/dmg-mori-cnc-machine-repair/">DMG Mori</a></li>
+        <li><a href="/repairs/doosan-cnc-machine-repair/">Doosan</a></li>
+        <li><a href="/repairs/okuma-cnc-machine-repair/">Okuma</a></li>
+        <li><a href="/repairs/fanuc-cnc-machine-repair/">Fanuc</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li><a href="/repairs/" class="dropdown-all">View All Brands →</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="/spindle-grinding/" class="menu-label">Spindle Grinding</a>
+      <ul class="dropdown" role="menu">
+        <li class="dropdown-section">By Service</li>
+        <li><a href="/spindle-grinding/" class="dropdown-all">All Spindle Work →</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li class="dropdown-section">Popular Brands</li>
+        <li><a href="/spindle-grinding/mazak-spindle-repair/">Mazak</a></li>
+        <li><a href="/spindle-grinding/haas-spindle-repair/">Haas</a></li>
+        <li><a href="/spindle-grinding/dmg-mori-spindle-repair/">DMG Mori</a></li>
+        <li><a href="/spindle-grinding/doosan-spindle-repair/">Doosan</a></li>
+        <li><a href="/spindle-grinding/okuma-spindle-repair/">Okuma</a></li>
+        <li><a href="/spindle-grinding/fanuc-spindle-repair/">Fanuc</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li><a href="/spindle-grinding/" class="dropdown-all">View All Brands →</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="/way-covers/" class="menu-label">Way Covers</a>
+      <ul class="dropdown" role="menu">
+        <li class="dropdown-section">By Service</li>
+        <li><a href="/way-covers/" class="dropdown-all">All Way Covers →</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li class="dropdown-section">Popular Brands</li>
+        <li><a href="/way-covers/mazak-cnc-way-covers/">Mazak</a></li>
+        <li><a href="/way-covers/haas-cnc-way-covers/">Haas</a></li>
+        <li><a href="/way-covers/dmg-mori-cnc-way-covers/">DMG Mori</a></li>
+        <li><a href="/way-covers/doosan-cnc-way-covers/">Doosan</a></li>
+        <li><a href="/way-covers/okuma-cnc-way-covers/">Okuma</a></li>
+        <li><a href="/way-covers/fanuc-cnc-way-covers/">Fanuc</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li><a href="/way-covers/" class="dropdown-all">View All Brands →</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="/service-area/" class="menu-label">Service Area</a>
+      <ul class="dropdown" role="menu">
+        <li class="dropdown-section">By State</li>
+        <li><a href="/service-area/iowa/">Iowa</a></li>
+        <li><a href="/service-area/illinois/">Illinois</a></li>
+        <li><a href="/service-area/wisconsin/">Wisconsin</a></li>
+        <li><a href="/service-area/minnesota/">Minnesota</a></li>
+        <li><a href="/service-area/nebraska/">Nebraska</a></li>
+        <li><a href="/service-area/missouri/">Missouri</a></li>
+        <li><a href="/service-area/texas/">Texas</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li><a href="/service-area/" class="dropdown-all">All Locations →</a></li>
+      </ul>
+    </li>
+      <li><a href="/get-a-quote/" class="cta-nav">Get a Quote</a></li>
+    </ul>
   </nav>
 </header>
 <nav class="breadcrumbs" aria-label="breadcrumb">

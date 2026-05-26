@@ -151,6 +151,31 @@ SITE_SHELL_CSS = """
 
 .section-eyebrow { color: var(--muted); font-size: 0.95rem; font-style: italic; margin: 0 0 0.5rem 0; }
 
+/* ---- Homepage two-column hero ---- */
+.home-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  margin: 1rem 0 3rem 0;
+}
+.home-hero-text { min-width: 0; }
+.home-hero-text > h1 { margin-top: 0; }
+.home-hero-image { min-width: 0; }
+.home-hero-image figure { margin: 0; padding: 0; }
+.home-hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+@media (max-width: 900px) {
+  .home-hero { grid-template-columns: 1fr; gap: 1.5rem; }
+  .home-hero-image img { max-height: 360px; aspect-ratio: 16 / 10; }
+}
+
 .tile-grid, .state-grid {
   display: grid;
   gap: 1.25rem;
@@ -305,18 +330,7 @@ def head_html(title, description, canonical, schema_blocks, extra_head=""):
 </head>"""
 
 
-SITE_HEADER = """<header class="site-header">
-  <a class="brand" href="/">
-    <img src="/assets/images/logos/midwest-cnc-logo.png" alt="Midwest CNC Services" height="36">
-  </a>
-  <nav>
-    <a href="/repairs/">Repairs</a>
-    <a href="/spindle-grinding/">Spindle Grinding</a>
-    <a href="/way-covers/">Way Covers</a>
-    <a href="/service-area/">Service Area</a>
-    <a href="/get-a-quote/">Get a Quote</a>
-  </nav>
-</header>"""
+SITE_HEADER = m2h.build_site_header()
 
 SITE_FOOTER = """<footer class="site-footer">
   <p>Midwest CNC Services · 319-610-4341 · Waterloo, Iowa</p>
@@ -515,12 +529,18 @@ def homepage_body():
     # all replaced with Ken-authorized language.
     states_inline = ", ".join(STATE_NAMES[:-1]) + ", and " + STATE_NAMES[-1]
 
-    hero = f"""<p class="eyebrow">Stop Losing Money</p>
-<h1>When Your Machine Stops, We Start</h1>
-<p>At Midwest CNC Services we provide CNC repair, spindle work, and replacement way covers across the U.S. Midwest. When a machine goes down, our experienced field technicians come out to diagnose and get you back to cutting. From spindle rebuilds and machine repair to custom way covers we ship anywhere, the goal is the same — keep your shop producing.</p>
-<p>We serve shops in {states_inline}.</p>
-{hero_cta_html()}
-<figure class="hero-figure"><img src="/assets/images/general/home-image.png" alt="Midwest CNC Services shop floor" loading="lazy"></figure>
+    hero = f"""<section class="home-hero">
+  <div class="home-hero-text">
+    <p class="eyebrow">Stop Losing Money</p>
+    <h1>When Your Machine Stops, We Start</h1>
+    <p>At Midwest CNC Services we provide CNC repair, spindle work, and replacement way covers across the U.S. Midwest. When a machine goes down, our experienced field technicians come out to diagnose and get you back to cutting. From spindle rebuilds and machine repair to custom way covers we ship anywhere, the goal is the same — keep your shop producing.</p>
+    <p>We serve shops in {states_inline}.</p>
+    {hero_cta_html()}
+  </div>
+  <div class="home-hero-image">
+    <figure><img src="/assets/images/general/home-image.png" alt="Midwest CNC Services shop floor" loading="eager"></figure>
+  </div>
+</section>
 """
 
     # Service tiles
