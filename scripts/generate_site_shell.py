@@ -2216,6 +2216,19 @@ def main():
     llms_path = gen_llms_txt()
     print(f"  ✓ llms.txt")
 
+    # Copy machines.json into public/ so the MachineLookup component
+    # can fetch it from /data/machines.json on the live site.
+    import shutil
+    src_machines = os.path.join(REPO, "src", "data", "machines.json")
+    dst_machines = os.path.join(PUBLIC, "data", "machines.json")
+    os.makedirs(os.path.dirname(dst_machines), exist_ok=True)
+    if os.path.exists(src_machines):
+        shutil.copyfile(src_machines, dst_machines)
+        import json as _json
+        with open(src_machines) as _f:
+            _n = len(_json.load(_f).get("machines", []))
+        print(f"  ✓ data/machines.json  ({_n} machines)")
+
     # Link audit
     print("\n== Cross-link audit ==")
     audit = link_audit()

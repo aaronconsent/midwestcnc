@@ -581,6 +581,19 @@ blockquote em { font-style: normal; color: var(--muted); }
    generators as <section class="brand-hero"> and wrapped in a
    page-section-hero band by wrap_into_sections.
    ================================================================= */
+/* Hero band overrides — the band itself is full-bleed and the inner
+   container drops its readable-column max-width so the hero image
+   actually fills the viewport instead of being boxed into 72ch. */
+.page-section-hero {
+  padding: 0;
+  background: var(--bg);
+}
+.page-section-hero > .section-inner {
+  max-width: none;
+  width: 100%;
+  padding: 0;
+}
+
 .brand-hero {
   position: relative;
   width: 100%;
@@ -954,6 +967,195 @@ article > table {
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+/* =================================================================
+   MachineLookup — site-wide model number lookup.
+   Powered by /data/machines.json. Renders a search input that
+   fuzzy-matches the user's typed model and routes to the matching
+   series-spoke page across all 6 brands.
+   ================================================================= */
+.machine-lookup {
+  margin: var(--s-5) 0;
+  padding: var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  position: relative;
+}
+.machine-lookup-label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: var(--s-2);
+}
+.machine-lookup-input {
+  font: inherit;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1.02rem;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-2);
+  background: var(--surface);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+.machine-lookup-input:hover { border-color: var(--muted); }
+.machine-lookup-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: var(--sh-focus);
+}
+.machine-lookup-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 0.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-4);
+  z-index: 40;
+  overflow: hidden;
+  max-height: 360px;
+  overflow-y: auto;
+}
+.machine-lookup-results[hidden] { display: none; }
+.machine-lookup-result {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  border-bottom: 1px solid var(--line);
+  transition: background var(--t-fast), padding-left var(--t-fast);
+}
+.machine-lookup-result:last-child { border-bottom: 0; }
+.machine-lookup-result:hover,
+.machine-lookup-result:focus {
+  background: var(--surface-2);
+  color: var(--accent) !important;
+  padding-left: 1.2rem;
+  outline: none;
+}
+.machine-lookup-result-brand {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--r-1);
+  background: var(--surface-2);
+}
+.machine-lookup-result-model {
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+.machine-lookup-result-series {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.machine-lookup-result-arrow {
+  font-size: 1.1rem;
+  color: var(--accent);
+  opacity: 0.6;
+  transition: opacity var(--t-fast), transform var(--t-fast);
+}
+.machine-lookup-result:hover .machine-lookup-result-arrow,
+.machine-lookup-result:focus .machine-lookup-result-arrow {
+  opacity: 1;
+  transform: translateX(2px);
+}
+.machine-lookup-empty {
+  padding: 1rem 1.25rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.machine-lookup-empty a { color: var(--accent); font-weight: 600; }
+
+@media (max-width: 600px) {
+  .machine-lookup { padding: var(--s-4); }
+  .machine-lookup-result {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand arrow"
+      "model arrow"
+      "series series";
+    gap: 0.25rem 0.6rem;
+  }
+  .machine-lookup-result-brand { grid-area: brand; justify-self: start; }
+  .machine-lookup-result-model { grid-area: model; }
+  .machine-lookup-result-series { grid-area: series; }
+  .machine-lookup-result-arrow { grid-area: arrow; align-self: center; }
+}
+
+/* Browse-by-X lists on hub pages (Browse by Series / Control / Service).
+   Each <li> is a card-style link with bolded label + supporting copy. */
+.browse-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--s-4) 0 var(--s-5) 0;
+  display: grid;
+  gap: var(--s-3);
+}
+.browse-list > li { margin: 0; }
+.browse-list > li > a {
+  display: block;
+  padding: var(--s-4) var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  font-weight: 500;
+  line-height: 1.5;
+  transition: transform var(--t-fast), box-shadow var(--t-fast),
+              border-color var(--t-fast);
+  position: relative;
+  padding-right: calc(var(--s-5) + 18px);
+}
+.browse-list > li > a::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: var(--s-4);
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--muted);
+  border-top: 2px solid var(--muted);
+  transform: translateY(-50%) rotate(45deg);
+  opacity: 0.5;
+  transition: opacity var(--t-fast), transform var(--t-fast),
+              border-color var(--t-fast);
+}
+.browse-list > li > a:hover,
+.browse-list > li > a:focus {
+  transform: translateY(-2px);
+  box-shadow: var(--sh-3);
+  border-color: var(--accent);
+  outline: none;
+}
+.browse-list > li > a:hover::after,
+.browse-list > li > a:focus::after {
+  opacity: 1;
+  border-color: var(--accent);
+  transform: translateY(-50%) rotate(45deg) translate(2px, -2px);
+}
+.browse-list > li > a strong {
+  color: var(--fg);
+  font-weight: 700;
+  display: inline;
+  margin-right: 0.4rem;
+}
+.browse-list > li > a:hover strong { color: var(--accent); }
 
 /* "Models We Service" — pill chips instead of dense vertical list */
 .model-chips {

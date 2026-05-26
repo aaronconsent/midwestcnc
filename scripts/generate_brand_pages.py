@@ -298,6 +298,128 @@ def hero_cta():
     return f"[Get a Quote](#quote) · [{PHONE_DISPLAY}](tel:{PHONE_TEL})"
 
 
+def machine_lookup_html():
+    """Site-wide MachineLookup widget. Emits markup + inline JS that fetches
+    /data/machines.json on demand, fuzzy-matches user input against
+    model + alias strings (case + dash insensitive, partial match after
+    3 chars), and routes to the matching series-spoke page.
+
+    The script is inlined per page so the widget works without a build
+    pipeline. CSS lives in m2h.CSS under .machine-lookup."""
+    return """<div class="machine-lookup" id="machine-lookup">
+  <label for="machine-lookup-input" class="machine-lookup-label">Find your machine</label>
+  <input
+    type="text"
+    id="machine-lookup-input"
+    class="machine-lookup-input"
+    placeholder="Enter your machine model (e.g. QTN-250, VF-2SS, Puma 2600SY, DMU 50)"
+    autocomplete="off"
+    aria-controls="machine-lookup-results"
+    aria-expanded="false">
+  <div class="machine-lookup-results" id="machine-lookup-results" role="listbox" hidden></div>
+</div>
+<script>
+(function () {
+  var lookup  = document.getElementById('machine-lookup');
+  if (!lookup) return;
+  var input   = document.getElementById('machine-lookup-input');
+  var results = document.getElementById('machine-lookup-results');
+  var machines = null;
+  var loading  = null;
+
+  function normalize(s) {
+    return (s || '').toLowerCase().replace(/[\\s\\-]/g, '');
+  }
+  function escapeHTML(s) {
+    return String(s).replace(/[&<>\"']/g, function (c) {
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'})[c];
+    });
+  }
+  function loadData() {
+    if (machines) return Promise.resolve(machines);
+    if (loading)  return loading;
+    loading = fetch('/data/machines.json')
+      .then(function (r) { return r.json(); })
+      .then(function (d) { machines = d.machines || []; return machines; })
+      .catch(function ()  { machines = []; return machines; });
+    return loading;
+  }
+  function scoreMachine(m, nq) {
+    var candidates = [m.model].concat(m.aliases || []);
+    var best = 0;
+    for (var i = 0; i < candidates.length; i++) {
+      var nc = normalize(candidates[i]);
+      if (!nc) continue;
+      if (nc === nq)            return 100;
+      if (nc.indexOf(nq) === 0) best = Math.max(best, 80);
+      else if (nc.indexOf(nq) >= 0) best = Math.max(best, 50);
+    }
+    return best;
+  }
+  function search(q) {
+    var nq = normalize(q);
+    if (nq.length < 3 || !machines) return [];
+    var scored = [];
+    for (var i = 0; i < machines.length; i++) {
+      var s = scoreMachine(machines[i], nq);
+      if (s > 0) scored.push({ m: machines[i], score: s });
+    }
+    scored.sort(function (a, b) { return b.score - a.score; });
+    return scored.slice(0, 5).map(function (x) { return x.m; });
+  }
+  function renderResults(matches) {
+    if (!matches.length) {
+      results.innerHTML =
+        '<div class=\"machine-lookup-empty\">' +
+          'We service older and obscure machines too. ' +
+          '<a href=\"/get-a-quote/\">Get a quote</a> or call ' +
+          '<a href=\"tel:+13196104341\">319-610-4341</a>.' +
+        '</div>';
+    } else {
+      results.innerHTML = matches.map(function (m) {
+        return (
+          '<a class=\"machine-lookup-result\" href=\"' + escapeHTML(m.spoke_url) + '\" role=\"option\">' +
+            '<span class=\"machine-lookup-result-brand\">'  + escapeHTML(m.brand)  + '</span>' +
+            '<span class=\"machine-lookup-result-model\">'  + escapeHTML(m.model)  + '</span>' +
+            '<span class=\"machine-lookup-result-series\">' + escapeHTML(m.series) + '</span>' +
+            '<span class=\"machine-lookup-result-arrow\" aria-hidden=\"true\">&rarr;</span>' +
+          '</a>'
+        );
+      }).join('');
+    }
+    results.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+  }
+  function hideResults() {
+    results.hidden = true;
+    input.setAttribute('aria-expanded', 'false');
+  }
+  var debounceId;
+  input.addEventListener('input', function () {
+    clearTimeout(debounceId);
+    debounceId = setTimeout(function () {
+      var q = input.value.trim();
+      if (q.length < 3) { hideResults(); return; }
+      loadData().then(function () { renderResults(search(q)); });
+    }, 100);
+  });
+  input.addEventListener('focus', function () {
+    var q = input.value.trim();
+    if (q.length >= 3 && machines) renderResults(search(q));
+  });
+  document.addEventListener('click', function (e) {
+    if (!lookup.contains(e.target)) hideResults();
+  });
+  // Pre-warm the data file on the first interaction with the page
+  document.addEventListener('mousemove', function init() {
+    document.removeEventListener('mousemove', init);
+    loadData();
+  }, { once: true });
+})();
+</script>
+"""
+
+
 def workflow_block(noun, step3_body):
     """noun: 'spindle rebuild', 'service', 'job' — what gets quoted."""
     return f"""**Step 1 — Contact Us.** Call 319-610-4341 or use the quote form below. [Get a Quote](#quote)
@@ -1267,6 +1389,590 @@ def render_trumpf(brand, g, brands_by_slug, brand_index):
     return fm + hero + scope + how + war_section + lead_section + "\n" + trust + "\n" + related + "\n" + blog
 
 
+# ---------- Hub-and-spoke architecture (Mazak pilot) ----------
+# Per docs/cnc-repair-hub-spoke-prompt: each brand repair hub becomes
+# a true hub with three browse lenses (series / control / service)
+# linking to spoke pages. Pilot on Mazak; propagate to other 5 brands
+# after Aaron validates.
+
+MAZAK_HUB_BROWSE_SERIES = [
+    ("Quick Turn / QTN",                    "/repairs/mazak-cnc-machine-repair/quick-turn/",
+     "Horizontal turning. QT-8 through QTN-450, MS/MSY twin-spindle variants, current Compact/Smart/Primos/Ez/Ultra."),
+    ("Integrex",                            "/repairs/mazak-cnc-machine-repair/integrex/",
+     "Mill-turn multitasking. 100/200/300/400 i-series, e-500H through e-1850V, j and i-V and i-H."),
+    ("Variaxis",                            "/repairs/mazak-cnc-machine-repair/variaxis/",
+     "5-axis trunnion verticals. i-300 through i-800, J-500/J-600, C-600, and legacy 500/630/730."),
+    ("Vertical Machining Centers (VTC + VCN)", "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/",
+     "Production verticals, mid-size to long-bed. VTC-16 through VTC-800, VCN-410 through VCN-700, FJV and AJV."),
+    ("HCN Horizontals",                     "/repairs/mazak-cnc-machine-repair/hcn-horizontal/",
+     "Pallet-changer horizontals for production. HCN-4000 through HCN-10800, plus legacy PFH and H-series."),
+    ("Turning Legacy",                      "/repairs/mazak-cnc-machine-repair/turning-legacy/",
+     "Slant Turn, Multiplex, Megaturn, HQR. Older platforms still in service — M-Plus and Fusion 640 controls."),
+]
+
+MAZAK_HUB_BROWSE_CONTROL = [
+    ("Mazatrol Legacy",   "/repairs/mazak-cnc-machine-repair/mazatrol-legacy/",
+     "M-2, M-32, M-Plus, Fusion 640 — roughly 1981-2005. Battery loss, CRT failures, MDI board, floppy and PCMCIA obsolescence."),
+    ("Mazatrol Matrix",   "/repairs/mazak-cnc-machine-repair/mazatrol-matrix/",
+     "Matrix and Matrix 2 — roughly 2005-2013. HDD failure (SSD upgrades routine), CF card corruption, MMC board, touchscreen drift."),
+    ("Mazatrol Smooth",   "/repairs/mazak-cnc-machine-repair/smooth-control/",
+     "SmoothX, SmoothG, SmoothAi — 2013-present. Networking, MTConnect setup, parameter backup, USB media handling."),
+]
+
+# Expanded FAQ for the Mazak hub (≥5 Qs including the prompt-specified
+# legacy-control / which-series / SSD-upgrade questions).
+MAZAK_HUB_FAQ = [
+    ("What can you fix on a Mazak CNC machine?",
+     "Spindle, control, ATC, drive systems, and way alignment are the routine work. We diagnose before we quote — sometimes what looks like a spindle problem is something cheaper."),
+    ("Which Mazak series do you see most often?",
+     "Quick Turn and Quick Turn Nexus lathes plus VTC and VCN verticals are the most common. Integrex multitasking work tends to be higher-value but lower frequency. HCN horizontals come in for pallet-changer faults and B-axis indexer wear."),
+    ("Do you service older Mazak machines with Mazatrol M-Plus or Fusion 640 controls?",
+     "Yes. Legacy Mazatrol controls — M-2, M-32, M-Plus, and Fusion 640 — are routine work. The common issues are dead memory batteries, CRT failures (LCD retrofits are available), keyboard membrane failures, and floppy or PCMCIA media obsolescence. Board-level repair runs through remanufacturing specialists where OEM parts have gone out of stock."),
+    ("Can you upgrade a Mazatrol Matrix to an SSD?",
+     "Yes — SSD upgrades on Matrix and Matrix 2 controls are one of the highest-ROI service items on older Mazak machines. Replacing the original spinning HDD eliminates the single most common control failure point on that generation and recovers boot and program-load times."),
+    ("How long does a typical Mazak machine repair take?",
+     "Lead time on machine repair depends on what's wrong. Diagnostic is fast; parts and rebuild time vary by the job. 3 to 5 weeks is realistic on most jobs depending on cartridge damage and OEM bearing or board availability."),
+    ("Do you service Mazak machines outside Iowa?",
+     "Yes. We service shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas. Field service is most economical in Iowa and adjacent states; longer-haul jobs typically run ship-in to our Waterloo facility."),
+]
+
+# Per-spoke content. Each spoke renders an independent page nested
+# under the Mazak hub. Models lists come from machines.json; here we
+# carry the prose (intro, failures, controls used, lead-time framing).
+MAZAK_SERIES_SPOKES = {
+    "quick-turn": {
+        "title":   "Mazak Quick Turn Repair & Service",
+        "slug":    "mazak-quick-turn",
+        "subtitle":"Quick Turn and Quick Turn Nexus",
+        "url":     "/repairs/mazak-cnc-machine-repair/quick-turn/",
+        "intro":   "Quick Turn and Quick Turn Nexus lathes are the highest-volume Mazak platform we see. The line spans entry QT-8 chuckers through QTN-450 large-bore turning, plus the MS and MSY twin-spindle variants and the current Compact, Smart, Primos, Ez, and Ultra families. We work on all of them — turret indexing, sub-spindle alignment, Y-axis backlash, tailstock quill wear, and chuck cylinder leaks are routine.",
+        "failures": [
+            "Turret indexing faults — solenoid, indexer pawl, or position-encoder issues.",
+            "Sub-spindle alignment drift on MS and MSY twin-spindle machines.",
+            "Y-axis backlash from ballscrew wear or backlash-comp drift after a crash.",
+            "Tailstock quill wear and hydraulic pressure loss.",
+            "Chuck cylinder leaks and draw-tube issues on high-cycle bar work.",
+        ],
+        "controls_paragraph": "Older Quick Turn machines ran the Mazatrol Fusion 640T control (see our [Mazatrol Legacy spoke](/repairs/mazak-cnc-machine-repair/mazatrol-legacy/) for memory, CRT, and PCMCIA obsolescence). Mid-2000s through early-2010s Quick Turn Nexus shipped on [Matrix and Matrix 2](/repairs/mazak-cnc-machine-repair/mazatrol-matrix/) — HDD failures and SSD upgrades are the most common service item on that generation. Current Compact, Smart, and Ultra ship on [SmoothG and SmoothAi](/repairs/mazak-cnc-machine-repair/smooth-control/).",
+        "siblings": [
+            ("Integrex",   "/repairs/mazak-cnc-machine-repair/integrex/"),
+            ("Turning Legacy", "/repairs/mazak-cnc-machine-repair/turning-legacy/"),
+        ],
+    },
+    "integrex": {
+        "title":   "Mazak Integrex Repair & Service",
+        "slug":    "mazak-integrex",
+        "subtitle":"Mill-turn multitasking",
+        "url":     "/repairs/mazak-cnc-machine-repair/integrex/",
+        "intro":   "The Integrex line is Mazak's mill-turn multitasking platform — Integrex 100 through 400 (with S, ST, SY, IV, V, e, i, j, and i-H variants), the e-500H through e-1850V/10 family, plus the compact Integrex j and the vertical i-V. Multitasking tolerances mean spindle and B-axis work needs more careful alignment than on a straight VMC or lathe. We do the work and verify it back to spec.",
+        "failures": [
+            "B-axis milling spindle bearing wear, particularly on i-series and i-H models.",
+            "Lower turret faults on e-series machines.",
+            "ATC chain or ATC arm faults on i-H horizontals.",
+            "Sub-spindle synchronization drift on multi-tasking jobs.",
+            "Hydraulic counterbalance system leaks on larger e-series.",
+        ],
+        "controls_paragraph": "Original Integrex i-series machines shipped with [Mazatrol Matrix](/repairs/mazak-cnc-machine-repair/mazatrol-matrix/); current i-H, e-V, and i-V ship on [SmoothX](/repairs/mazak-cnc-machine-repair/smooth-control/). Older Integrex 100/200 may still be running [Mazatrol legacy controls](/repairs/mazak-cnc-machine-repair/mazatrol-legacy/) — those are still serviceable but the parts situation is increasingly aftermarket-only.",
+        "siblings": [
+            ("Variaxis",   "/repairs/mazak-cnc-machine-repair/variaxis/"),
+            ("Quick Turn", "/repairs/mazak-cnc-machine-repair/quick-turn/"),
+        ],
+    },
+    "variaxis": {
+        "title":   "Mazak Variaxis Repair & Service",
+        "slug":    "mazak-variaxis",
+        "subtitle":"5-axis trunnion verticals",
+        "url":     "/repairs/mazak-cnc-machine-repair/variaxis/",
+        "intro":   "Variaxis covers Mazak's 5-axis trunnion-table verticals — i-300 through i-800 plus the J-series and C-series, and the older 500/630/730 platforms. The work is precision 5-axis: aerospace, mold and die, complex part work. RTCP drift after a crash, trunnion bearings, and C-axis brake faults are the common entry points.",
+        "failures": [
+            "Trunnion A-axis backlash and zero-point drift after a crash.",
+            "C-axis brake faults — hydraulic pressure, brake disc wear, or clamp solenoid.",
+            "Swarf and coolant intrusion at trunnion bearings on heavy-coolant production work.",
+            "RTCP and kinematic drift after spindle or trunnion work — requires re-calibration.",
+            "5-axis spindle bearing failure on higher-RPM i-series.",
+        ],
+        "controls_paragraph": "Variaxis i-series ships on [SmoothX](/repairs/mazak-cnc-machine-repair/smooth-control/); legacy 500/630/730 was [Mazatrol Matrix](/repairs/mazak-cnc-machine-repair/mazatrol-matrix/) or earlier. Variaxis kinematic alignment after any trunnion work is brand-specific — we run the calibration as part of the rebuild rather than handing it back for the shop to fix.",
+        "siblings": [
+            ("Integrex",   "/repairs/mazak-cnc-machine-repair/integrex/"),
+            ("Vertical Machining Centers", "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"),
+        ],
+    },
+    "vertical-machining-centers": {
+        "title":   "Mazak Vertical Machining Center Repair (VTC + VCN)",
+        "slug":    "mazak-vertical-machining-centers",
+        "subtitle":"Production verticals",
+        "url":     "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/",
+        "intro":   "VTC and VCN are Mazak's production verticals — VTC-16 through VTC-800 (the long-bed VTCs see the most wear), VCN-410A through VCN-700 (high-RPM spindle work), plus the FJV and AJV gantry platforms. These are the workhorse machines on most Mazak shop floors and the most common reason a shop calls.",
+        "failures": [
+            "ATC drum indexing faults — solenoid wear, indexer pawl, position sensor.",
+            "Ballscrew wear on long-bed VTC-800s with heavy axial production.",
+            "High-speed spindle bearing failure on VCN-510C and VCN-530C with high-coolant work.",
+            "Way cover damage from chip intrusion or crash.",
+            "Z-axis ballnut and bearing wear from heavy production.",
+        ],
+        "controls_paragraph": "Older VTC machines run [Mazatrol legacy controls](/repairs/mazak-cnc-machine-repair/mazatrol-legacy/); mid-2000s VCN and VTC ran [Matrix](/repairs/mazak-cnc-machine-repair/mazatrol-matrix/); current VCN-510C, VCN-530C, VCN-700 and VCN-Compact ship on [SmoothG](/repairs/mazak-cnc-machine-repair/smooth-control/). VTC-800 with SmoothX is the long-bed current platform.",
+        "siblings": [
+            ("HCN Horizontals", "/repairs/mazak-cnc-machine-repair/hcn-horizontal/"),
+            ("Variaxis",        "/repairs/mazak-cnc-machine-repair/variaxis/"),
+        ],
+    },
+    "hcn-horizontal": {
+        "title":   "Mazak HCN Horizontal Machining Center Repair",
+        "slug":    "mazak-hcn-horizontal",
+        "subtitle":"Pallet-changer horizontals",
+        "url":     "/repairs/mazak-cnc-machine-repair/hcn-horizontal/",
+        "intro":   "HCN horizontals — HCN-4000 through HCN-10800, plus the legacy PFH and H-series — are production horizontals built around pallet changers and B-axis indexing. The pallet changer and B-axis are where most service calls originate; the rest is conventional horizontal machine work.",
+        "failures": [
+            "Pallet changer faults — clamp pressure loss, pallet seat alignment, position-sensor issues.",
+            "B-axis indexer wear and backlash, especially on heavy-cut production.",
+            "Coolant intrusion at the pallet seal — common on high-coolant work.",
+            "Chip auger jams and chip evacuation problems.",
+            "Hydraulic clamp pressure loss on the workpiece clamping system.",
+        ],
+        "controls_paragraph": "Mid-2000s HCN runs [Matrix](/repairs/mazak-cnc-machine-repair/mazatrol-matrix/); current HCN-8800 and HCN-10800 ship on [SmoothX](/repairs/mazak-cnc-machine-repair/smooth-control/). Legacy PFH and H-series typically run [Mazatrol Legacy](/repairs/mazak-cnc-machine-repair/mazatrol-legacy/) controls and the parts situation is increasingly aftermarket.",
+        "siblings": [
+            ("Vertical Machining Centers", "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"),
+            ("Integrex",                   "/repairs/mazak-cnc-machine-repair/integrex/"),
+        ],
+    },
+    "turning-legacy": {
+        "title":   "Mazak Turning Legacy Repair (Slant Turn / Multiplex / Megaturn)",
+        "slug":    "mazak-turning-legacy",
+        "subtitle":"Slant Turn, Multiplex, Megaturn, HQR, Powermaster",
+        "url":     "/repairs/mazak-cnc-machine-repair/turning-legacy/",
+        "intro":   "Mazak's turning legacy platforms — Slant Turn 15/18/20 and Slant Turn Nexus, Multiplex 6000 through 6300, Megaturn vertical turning, HQR-150/200/250, and the Powermaster series — are still running on shop floors across the Midwest. The platforms are mechanically sound; what brings them in is control obsolescence and drive-side issues more often than spindle work.",
+        "failures": [
+            "M-Plus and Fusion 640 control board faults — board-level repair or remanufacturing where parts allow.",
+            "Drive obsolescence — older servo amplifiers going scarce.",
+            "Slant-bed way wear from years of production.",
+            "Tailstock and turret indexing issues on Multiplex twin-turret platforms.",
+            "Hydraulic system pressure loss on the older Megaturn vertical platforms.",
+        ],
+        "controls_paragraph": "These platforms ran [Mazatrol legacy controls](/repairs/mazak-cnc-machine-repair/mazatrol-legacy/) — M-Plus and Fusion 640 are the most common. Multiplex 6100 and later ran [Matrix](/repairs/mazak-cnc-machine-repair/mazatrol-matrix/). For the legacy generation, expect aftermarket-only parts on most boards and OEM-discontinued status on some servo amplifiers.",
+        "siblings": [
+            ("Quick Turn",                 "/repairs/mazak-cnc-machine-repair/quick-turn/"),
+            ("Vertical Machining Centers", "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"),
+        ],
+    },
+}
+
+MAZAK_CONTROL_SPOKES = {
+    "mazatrol-legacy": {
+        "title":   "Mazatrol Legacy Control Repair (M-2 / M-32 / M-Plus / Fusion 640)",
+        "slug":    "mazak-mazatrol-legacy",
+        "subtitle":"Mazatrol M-2, M-32, M-Plus, Fusion 640",
+        "url":     "/repairs/mazak-cnc-machine-repair/mazatrol-legacy/",
+        "era":     "Roughly 1981 through 2005",
+        "intro":   "Mazatrol legacy is the family of pre-Matrix controls — M-2, M-32, M-Plus, and Fusion 640 — that shipped on Mazak lathes and verticals from the early 1980s through roughly 2005. In 2026 these controls are at the obsolescence stage: most boards have gone out of OEM stock, parts come through remanufacturing specialists, and the most common service work is preventive (battery replacement, media migration) rather than reactive repair.",
+        "machines_paragraph": "Mazatrol legacy controls shipped on older [Quick Turn](/repairs/mazak-cnc-machine-repair/quick-turn/) lathes (pre-Nexus), [Turning Legacy](/repairs/mazak-cnc-machine-repair/turning-legacy/) platforms (Slant Turn, Multiplex, Megaturn, HQR), [Vertical Machining Centers](/repairs/mazak-cnc-machine-repair/vertical-machining-centers/) (VTC and FJV legacy), and the [HCN horizontals'](/repairs/mazak-cnc-machine-repair/hcn-horizontal/) PFH and H-series predecessors. If your machine predates 2005 and runs Mazatrol, it's almost certainly on this generation.",
+        "failures": [
+            "Dead memory battery — the most common single failure mode. Memory loss takes parameters and offsets with it; battery replacement on a powered-up control is the prevention.",
+            "CRT failure — original tubes are mostly out of service. LCD retrofit kits are available and routine.",
+            "Keyboard membrane failure — high-cycle keys go intermittent or stop responding.",
+            "MDI board faults — generally aftermarket replacement at this point.",
+            "Floppy and PCMCIA media obsolescence — physical drives still work but media sourcing and reader reliability are the issue. USB or CF migration is the typical fix.",
+        ],
+        "parts_paragraph": "Parts on legacy Mazatrol are increasingly aftermarket-only. Remanufactured boards through specialists are the path on most board-level work. We can scope what's repairable in-place versus what needs board exchange — the worst answer is sending out a board nobody is remanufacturing anymore, so we check parts availability before we quote.",
+        "recovery_paragraph": "Battery, memory, and parameter recovery on legacy Mazatrol comes up regularly. The process is: capture parameters and offsets via the existing media path before any battery work; replace the battery on a powered control where possible; restore parameters if memory was lost. Floppy and PCMCIA migration to USB or CF media is part of the same conversation — we'll scope it together so we're not opening the control twice.",
+        "siblings": [
+            ("Mazatrol Matrix",  "/repairs/mazak-cnc-machine-repair/mazatrol-matrix/"),
+            ("Mazatrol Smooth",  "/repairs/mazak-cnc-machine-repair/smooth-control/"),
+        ],
+    },
+    "mazatrol-matrix": {
+        "title":   "Mazatrol Matrix Control Repair (Matrix / Matrix 2)",
+        "slug":    "mazak-mazatrol-matrix",
+        "subtitle":"Mazatrol Matrix and Matrix 2",
+        "url":     "/repairs/mazak-cnc-machine-repair/mazatrol-matrix/",
+        "era":     "Roughly 2005 through 2013",
+        "intro":   "Matrix and Matrix 2 are the Mazatrol generation that bridged Fusion 640 and SmoothX. They shipped on Mazak's mid-2000s through early-2010s production — Quick Turn Nexus, Integrex i-series, Variaxis 500/630/730, mid-life VCN and VTC, and HCN-4000 through HCN-6000. Matrix 2 is still well supported; Matrix-1 boards are starting to go scarce. The HDD-to-SSD upgrade is one of the highest-ROI service items on this generation.",
+        "machines_paragraph": "Matrix controls shipped on [Quick Turn Nexus](/repairs/mazak-cnc-machine-repair/quick-turn/) (QTN-100 through QTN-450), [Integrex](/repairs/mazak-cnc-machine-repair/integrex/) i-series originals, [Vertical Machining Centers](/repairs/mazak-cnc-machine-repair/vertical-machining-centers/) (VTC-200 through VTC-800, VCN-410 through VCN-530), [HCN horizontals](/repairs/mazak-cnc-machine-repair/hcn-horizontal/) (HCN-4000 through HCN-6000), and the [Multiplex](/repairs/mazak-cnc-machine-repair/turning-legacy/) 6100 generation.",
+        "failures": [
+            "Hard drive failure — the most common single issue on this generation. SSD upgrades are routine and prevent recurrence.",
+            "CF card corruption on Matrix-1 (memory card slot is the primary boot media on some configurations).",
+            "MMC board faults — control board sees enough thermal cycling to fail over a decade of production.",
+            "Touchscreen drift and calibration loss.",
+            "Fan failure and resulting thermal damage to boards if not caught.",
+        ],
+        "parts_paragraph": "Matrix-2 boards are still actively supported through OEM and authorized channels. Matrix-1 boards are heading the same direction as Fusion 640 — moving toward aftermarket and remanufactured-only over the next few years. We check availability before quoting board-level work.",
+        "recovery_paragraph": "SSD upgrades on Matrix and Matrix 2 are the highest-value preventive service item on this generation. Replacing the original spinning HDD eliminates the single most common control failure point, recovers boot and program-load time, and reduces the thermal load that contributes to fan and MMC board failures. Backup parameters and programs before swapping; we run the swap and verify the restore as a single visit.",
+        "siblings": [
+            ("Mazatrol Legacy",  "/repairs/mazak-cnc-machine-repair/mazatrol-legacy/"),
+            ("Mazatrol Smooth",  "/repairs/mazak-cnc-machine-repair/smooth-control/"),
+        ],
+    },
+    "smooth-control": {
+        "title":   "Mazatrol Smooth Control Repair (SmoothX / SmoothG / SmoothAi)",
+        "slug":    "mazak-smooth-control",
+        "subtitle":"Mazatrol SmoothX, SmoothG, SmoothAi",
+        "url":     "/repairs/mazak-cnc-machine-repair/smooth-control/",
+        "era":     "2013 through present",
+        "intro":   "Smooth is Mazatrol's current generation — SmoothX on high-end multitasking and 5-axis platforms, SmoothG on production lathes and VMCs, SmoothAi on the latest Ultra and current-flagship machines. The Smooth generation is recent enough that hardware failure is uncommon; most service work is integration, networking, MTConnect setup, parameter backup, and USB media handling rather than reactive repair.",
+        "machines_paragraph": "Smooth ships on current [Integrex](/repairs/mazak-cnc-machine-repair/integrex/) (i-H, i-V, e-V/10), current [Variaxis](/repairs/mazak-cnc-machine-repair/variaxis/) i-series, [Vertical Machining Centers](/repairs/mazak-cnc-machine-repair/vertical-machining-centers/) (VTC-800 and VCN current), current [HCN horizontals](/repairs/mazak-cnc-machine-repair/hcn-horizontal/) (HCN-8800, HCN-10800), and current [Quick Turn](/repairs/mazak-cnc-machine-repair/quick-turn/) Compact, Smart, Primos, Ez, and Ultra.",
+        "failures": [
+            "Networking and Ethernet configuration drift after a shop network change.",
+            "MTConnect setup and parameter mapping when integrating with shop-floor monitoring.",
+            "USB media reliability — periodic clean and verify on the boot media path.",
+            "Touchscreen calibration drift on heavily-used panels.",
+            "Parameter backup discipline — Smooth controls store more parameters than legacy generations, and a clean backup process matters.",
+        ],
+        "parts_paragraph": "Smooth-generation parts are fully supported through OEM channels. The work here is integration and configuration more than parts.",
+        "recovery_paragraph": "Smooth controls support a clean parameter backup workflow over network or USB. The discipline is doing the backup before any service work, not after. We document the parameter set at the start of every service visit and verify the restore at sign-off.",
+        "siblings": [
+            ("Mazatrol Matrix",  "/repairs/mazak-cnc-machine-repair/mazatrol-matrix/"),
+            ("Mazatrol Legacy",  "/repairs/mazak-cnc-machine-repair/mazatrol-legacy/"),
+        ],
+    },
+}
+
+
+def _models_for_spoke(spoke_url):
+    """Pull every model entry from machines.json whose spoke_url matches."""
+    p = os.path.join(REPO, "src", "data", "machines.json")
+    with open(p) as f:
+        data = json.load(f)
+    return [m for m in data.get("machines", []) if m.get("spoke_url") == spoke_url]
+
+
+def render_mazak_series_spoke(spoke_key, brand, brand_index):
+    """Render one Mazak series spoke as markdown. Output lives at the
+    nested URL /repairs/mazak-cnc-machine-repair/{spoke_key}/ via the
+    breadcrumb-driven path mapping in m2h.output_path_for()."""
+    s = MAZAK_SERIES_SPOKES[spoke_key]
+    models = _models_for_spoke(s["url"])
+    model_lis = "".join(f'<li>{html.escape(m["model"])}</li>' for m in models)
+    failure_bullets = "\n".join(f"- {html.escape(f)}" for f in s["failures"])
+    sibling_cards = "".join(
+        f'<li><a href="{u}"><span>{html.escape(n)}</span></a></li>'
+        for n, u in s["siblings"]
+    )
+
+    fm_lines = [
+        '---',
+        f'title: "{s["title"]} | Midwest CNC Services"',
+        f'meta_description: "Mazak {s["subtitle"]} repair across the Midwest. Models, common failure patterns, and the Mazatrol control generations they ship on."',
+        f'h1: "{s["title"]}"',
+        f'slug: "{s["slug"]}"',
+        'page_type: "cnc_spindle"',
+        'schema_data:',
+        '  service:',
+        '    "@type": Service',
+        f'    serviceType: "{s["title"]}"',
+        '    provider:',
+        '      "@id": "#org"',
+        '    areaServed:',
+        '      - Iowa',
+        '      - Illinois',
+        '      - Minnesota',
+        '      - Wisconsin',
+        '      - Nebraska',
+        '      - Missouri',
+        '      - Texas',
+        '  breadcrumb:',
+        '    "@type": BreadcrumbList',
+        '    itemListElement:',
+        '      - { position: 1, name: Home, item: "https://midwestcncservices.com/" }',
+        '      - { position: 2, name: "Repairs", item: "https://midwestcncservices.com/repairs/" }',
+        '      - { position: 3, name: "Mazak CNC Machine Repair", item: "https://midwestcncservices.com/repairs/mazak-cnc-machine-repair/" }',
+        f'      - {{ position: 4, name: "{s["subtitle"]}", item: "https://midwestcncservices.com{s["url"]}" }}',
+        '---',
+        '',
+    ]
+
+    body = (
+        f'<section class="brand-hero">\n'
+        f'  <div class="brand-hero-overlay" aria-hidden="true"></div>\n'
+        f'  <div class="brand-hero-content">\n'
+        f'    <p class="eyebrow">Mazak Series Repair</p>\n'
+        f'    <h1>{html.escape(s["title"])}</h1>\n'
+        f'    <p>{html.escape(s["intro"])}</p>\n'
+        f'    <div class="cta-row">\n'
+        f'      <a class="cta-button" href="/get-a-quote/">Get a Quote</a>\n'
+        f'      <a class="cta-phone" href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>\n'
+        f'    </div>\n'
+        f'  </div>\n'
+        f'</section>\n\n'
+
+        f'## Models in this series we service\n\n'
+        f'<ul class="model-chips">{model_lis}</ul>\n\n'
+
+        f'## Common failure patterns\n\n'
+        f'{failure_bullets}\n\n'
+
+        f'## Controls used on this series\n\n'
+        f'{s["controls_paragraph"]}\n\n'
+
+        f'## Lead time\n\n'
+        f'Lead time depends on the model, the failure mode, and parts availability. Diagnostic is fast; full rebuilds run 3 to 5 weeks on most jobs. We scope each job individually rather than quoting a generic window.\n\n'
+
+        f'[Get a Quote](/get-a-quote/) · [{PHONE_DISPLAY}](tel:{PHONE_TEL})\n\n'
+
+        f'## Related\n\n'
+        f'<ul class="related-grid">'
+        f'<li><a href="/repairs/mazak-cnc-machine-repair/"><span>All Mazak repair</span></a></li>'
+        f'{sibling_cards}'
+        f'<li><a href="/spindle-grinding/mazak-spindle-repair/"><span>Mazak spindle repair</span></a></li>'
+        f'<li><a href="/way-covers/mazak-cnc-way-covers/"><span>Mazak way covers</span></a></li>'
+        f'</ul>\n'
+    )
+    return "\n".join(fm_lines) + body
+
+
+def render_mazak_control_spoke(spoke_key, brand, brand_index):
+    """Render one Mazak control-generation spoke as markdown."""
+    s = MAZAK_CONTROL_SPOKES[spoke_key]
+    failure_bullets = "\n".join(f"- {html.escape(f)}" for f in s["failures"])
+    sibling_cards = "".join(
+        f'<li><a href="{u}"><span>{html.escape(n)}</span></a></li>'
+        for n, u in s["siblings"]
+    )
+
+    fm_lines = [
+        '---',
+        f'title: "{s["title"]} | Midwest CNC Services"',
+        f'meta_description: "Mazatrol {s["subtitle"]} control repair across the Midwest. {s["era"]}. Common faults, parts availability, and battery/memory/parameter recovery."',
+        f'h1: "{s["title"]}"',
+        f'slug: "{s["slug"]}"',
+        'page_type: "cnc_spindle"',
+        'schema_data:',
+        '  service:',
+        '    "@type": Service',
+        f'    serviceType: "{s["title"]}"',
+        '    provider:',
+        '      "@id": "#org"',
+        '    areaServed:',
+        '      - Iowa',
+        '      - Illinois',
+        '      - Minnesota',
+        '      - Wisconsin',
+        '      - Nebraska',
+        '      - Missouri',
+        '      - Texas',
+        '  breadcrumb:',
+        '    "@type": BreadcrumbList',
+        '    itemListElement:',
+        '      - { position: 1, name: Home, item: "https://midwestcncservices.com/" }',
+        '      - { position: 2, name: "Repairs", item: "https://midwestcncservices.com/repairs/" }',
+        '      - { position: 3, name: "Mazak CNC Machine Repair", item: "https://midwestcncservices.com/repairs/mazak-cnc-machine-repair/" }',
+        f'      - {{ position: 4, name: "{s["subtitle"]}", item: "https://midwestcncservices.com{s["url"]}" }}',
+        '---',
+        '',
+    ]
+
+    body = (
+        f'<section class="brand-hero">\n'
+        f'  <div class="brand-hero-overlay" aria-hidden="true"></div>\n'
+        f'  <div class="brand-hero-content">\n'
+        f'    <p class="eyebrow">Mazak Control Generation</p>\n'
+        f'    <h1>{html.escape(s["title"])}</h1>\n'
+        f'    <p>{html.escape(s["intro"])}</p>\n'
+        f'    <div class="cta-row">\n'
+        f'      <a class="cta-button" href="/get-a-quote/">Get a Quote</a>\n'
+        f'      <a class="cta-phone" href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>\n'
+        f'    </div>\n'
+        f'  </div>\n'
+        f'</section>\n\n'
+
+        f'## Machines this control shipped on\n\n'
+        f'{s["machines_paragraph"]}\n\n'
+
+        f'## Common failures and fixes\n\n'
+        f'{failure_bullets}\n\n'
+
+        f'## Parts availability\n\n'
+        f'{s["parts_paragraph"]}\n\n'
+
+        f'## Battery, memory, and parameter recovery\n\n'
+        f'{s["recovery_paragraph"]}\n\n'
+
+        f'[Get a Quote](/get-a-quote/) · [{PHONE_DISPLAY}](tel:{PHONE_TEL})\n\n'
+
+        f'## Related\n\n'
+        f'<ul class="related-grid">'
+        f'<li><a href="/repairs/mazak-cnc-machine-repair/"><span>All Mazak repair</span></a></li>'
+        f'{sibling_cards}'
+        f'</ul>\n'
+    )
+    return "\n".join(fm_lines) + body
+
+
+def _emit_mazak_spokes(brand, brand_index):
+    """Write all 9 Mazak spoke markdown files (6 series + 3 controls)
+    into src/content/machine-repair/ so m2h picks them up on the next
+    markdown_to_html.py pass."""
+    out_dir = os.path.join(REPO, "src", "content", "machine-repair")
+    n = 0
+    for key in MAZAK_SERIES_SPOKES:
+        md = render_mazak_series_spoke(key, brand, brand_index)
+        path = os.path.join(out_dir, f"{MAZAK_SERIES_SPOKES[key]['slug']}.md")
+        with open(path, "w") as f:
+            f.write(md)
+        n += 1
+    for key in MAZAK_CONTROL_SPOKES:
+        md = render_mazak_control_spoke(key, brand, brand_index)
+        path = os.path.join(out_dir, f"{MAZAK_CONTROL_SPOKES[key]['slug']}.md")
+        with open(path, "w") as f:
+            f.write(md)
+        n += 1
+    return n
+
+
+def render_mazak_hub(brand, g, brand_index):
+    """The new Mazak hub — keeps the brand-hero from the previous
+    iteration, adds the MachineLookup widget, the three Browse-by
+    lenses, and an expanded FAQ. Replaces the standard machine-repair
+    render output for Mazak only (other brands keep the existing
+    template until they get their own spokes built)."""
+    name = brand["brand_display_name"]
+    slug = brand["slug"]
+    ki = brand["ken_input"]
+    models = ki["models"]
+
+    h1_text = f"{name} CNC Machine Repair & Service"
+    eyebrow_text = "CNC Machine Repair"
+    canonical_path = f"/repairs/{slug}-cnc-machine-repair/"
+
+    meta_desc = (
+        f"Expert {name} CNC machine repair across the Midwest. "
+        f"Browse by series, by control generation, or by service. "
+        f"Find your model with our machine lookup."
+    )
+
+    fm = front_matter(
+        brand,
+        title=f"{name} CNC Machine Repair | Midwest CNC Services",
+        h1=h1_text,
+        meta_description=meta_desc,
+        service_type=f"{name} CNC Machine Repair and Service",
+        canonical_path=canonical_path,
+        crumb_middle=("Repairs", "/repairs/"),
+        crumb_leaf=f"{name} CNC Machine Repair",
+    )
+
+    img_path, img_alt = hero_image_for(brand, "machine_repair")
+    bg_img_html = (
+        f'<img class="brand-hero-bg" src="{img_path}" alt="{html.escape(img_alt)}" loading="eager">\n'
+        if img_path else ""
+    )
+    hero_lede = (
+        f"We service the {name} platforms running on Midwest shop floors — "
+        f"Quick Turn lathes, Integrex multitasking, Variaxis 5-axis, VTC and VCN "
+        f"verticals, HCN horizontals, and legacy turning. Find your model below, "
+        f"or browse by series, control generation, or service type."
+    )
+
+    # Browse-by-series list
+    series_lis = "".join(
+        f'<li><a href="{u}"><strong>{html.escape(name)}</strong> — {html.escape(desc)}</a></li>'
+        for name, u, desc in MAZAK_HUB_BROWSE_SERIES
+    )
+    # Browse-by-control list
+    control_lis = "".join(
+        f'<li><a href="{u}"><strong>{html.escape(name)}</strong> — {html.escape(desc)}</a></li>'
+        for name, u, desc in MAZAK_HUB_BROWSE_CONTROL
+    )
+
+    # FAQ accordions
+    faq_items = []
+    for q, a in MAZAK_HUB_FAQ:
+        faq_items.append(
+            f'<details class="faq-item">\n'
+            f'  <summary>{html.escape(q)}</summary>\n'
+            f'  <div class="faq-answer"><p>{html.escape(a)}</p></div>\n'
+            f'</details>'
+        )
+    faq_schema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": q,
+             "acceptedAnswer": {"@type": "Answer", "text": a}}
+            for q, a in MAZAK_HUB_FAQ
+        ],
+    }
+    faq_schema_script = (
+        '\n<script type="application/ld+json">\n'
+        + json.dumps(faq_schema, indent=2, ensure_ascii=False)
+        + '\n</script>\n'
+    )
+
+    trust = trust_block(g, brand["page_type"], brand_index, "a replacement machine")
+    cross_links = brand_cross_links_section(brand, {})
+    related = related_block_machine_repair(brand)
+
+    hero = (
+        f'<section class="brand-hero">\n'
+        f'{bg_img_html}'
+        f'  <div class="brand-hero-overlay" aria-hidden="true"></div>\n'
+        f'  <div class="brand-hero-content">\n'
+        f'    <p class="eyebrow">{eyebrow_text}</p>\n'
+        f'    <h1>{html.escape(h1_text)}</h1>\n'
+        f'    <p>{html.escape(hero_lede)}</p>\n'
+        f'    <div class="cta-row">\n'
+        f'      <a class="cta-button" href="/get-a-quote/">Get a Quote</a>\n'
+        f'      <a class="cta-phone" href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>\n'
+        f'    </div>\n'
+        f'  </div>\n'
+        f'</section>\n\n'
+        f'{machine_lookup_html()}\n'
+    )
+
+    browse_series = (
+        f'<h2 id="browse-by-series">Browse by Series</h2>\n'
+        f'<p>Pick the {name} platform you run for failure patterns specific to that series.</p>\n'
+        f'<ul class="browse-list">{series_lis}</ul>\n'
+    )
+    browse_control = (
+        f'<h2 id="browse-by-control">Browse by Control Generation</h2>\n'
+        f'<p>{name} machines span three Mazatrol generations. Pick yours for common faults and parts notes.</p>\n'
+        f'<ul class="browse-list">{control_lis}</ul>\n'
+    )
+    browse_service = (
+        f'<h2 id="browse-by-service">Browse by Service</h2>\n'
+        f'<ul class="browse-list">\n'
+        f'  <li><a href="/spindle-grinding/mazak-spindle-repair/"><strong>Mazak spindle repair</strong> — bearing-pack rebuilds, taper grinding, balancing, runout verification.</a></li>\n'
+        f'  <li><a href="/way-covers/mazak-cnc-way-covers/"><strong>Mazak way covers</strong> — replacement bellows, telescoping steel, and roll-up covers, built to spec.</a></li>\n'
+        f'  <li><a href="#faq"><strong>ATC, drive, and alignment work</strong> — covered in the FAQ below.</a></li>\n'
+        f'</ul>\n'
+    )
+
+    what_brings = (
+        f'<h2 id="what-brings-mazak-machines-in-for-repair">What brings {name} machines in for repair</h2>\n'
+        f'<p>Most {name} repair calls fall into a few patterns: ATC faults on production verticals, drive system wear and ballscrew issues on long-bed VTCs, way alignment after a crash, spindle bearing failure on high-RPM VCN work, and pallet-changer issues on HCN horizontals. Control-side, the Matrix generation sees HDD failure as the single most common service item; legacy Mazatrol machines see memory battery and board obsolescence; current Smooth-generation machines come in for integration and configuration work rather than reactive repair. We diagnose what\'s actually broken before we quote.</p>\n'
+    )
+
+    how_we_approach = (
+        f'<h2 id="how-we-approach-mazak-repair-work">How we approach {name} repair work</h2>\n'
+        f'<p>Mazak machines run Mazatrol, so diagnostics are platform-specific. Our approach starts with the control generation — legacy Mazatrol, Matrix, or Smooth — because the failure modes and the recovery paths are different across the three. From there we move to mechanical: spindle, ATC, drive, alignment. The control spokes below cover the platform-specific recovery procedures for each generation.</p>\n'
+    )
+
+    lead_time = (
+        f'<h2 id="lead-time-process">Lead Time &amp; Process</h2>\n'
+        f"<p>Lead time on machine repair depends on what's wrong — diagnostic is fast, but parts and rebuild time vary by the job. Our three-step workflow keeps it transparent:</p>\n"
+        f'<ol class="process-steps">\n'
+        f'  <li><strong>Contact us.</strong> Call <a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a> or use the quote form. Tell us the machine, the symptoms, and how urgent it is.</li>\n'
+        f'  <li><strong>Review &amp; quote.</strong> We confirm the model and control generation, scope the work, and send back a price and realistic lead time within one business day on most inquiries.</li>\n'
+        f'  <li><strong>Approve &amp; rebuild.</strong> We complete the repair, verify it back to spec, and return the machine ready to run.</li>\n'
+        f'</ol>\n'
+    )
+
+    faq_section = (
+        f'<h2 id="faq">Frequently Asked Questions</h2>\n'
+        f'<div class="faq-list">\n'
+        + "\n".join(faq_items) + "\n"
+        + '</div>\n'
+        + faq_schema_script
+    )
+
+    return (
+        fm + hero
+        + browse_series + browse_control + browse_service
+        + what_brings + how_we_approach
+        + lead_time + "\n" + trust + "\n" + faq_section + "\n"
+        + cross_links + "\n" + related + "\n"
+    )
+
+
 # ---------- Machine repair page (TASK 2) ----------
 
 def _format_models_inline(models):
@@ -1282,7 +1988,13 @@ def _format_models_inline(models):
 def render_machine_repair(brand, g, brand_index):
     """Brand × machine-repair page. Lives at /repairs/{slug}-cnc-machine-repair/.
     Process-focused — no fabricated brand specifics beyond Ken's existing
-    data. Target 250–350 visible body words."""
+    data. Target 250–350 visible body words.
+
+    PILOT GATING: if the brand is Mazak, dispatch to the new hub-and-spoke
+    template (render_mazak_hub). The other 17 brands still use the
+    standard template below until they get their own spokes built."""
+    if brand["slug"] == "mazak":
+        return render_mazak_hub(brand, g, brand_index)
     name = brand["brand_display_name"]
     slug = brand["slug"]
     ki = brand["ken_input"]
@@ -1594,6 +2306,14 @@ def main():
             with open(path, "w") as f:
                 f.write(md)
             written.append(("machine_repair", b["slug"], path, _word_count(md), False))
+
+            # --- Mazak pilot: emit 9 spoke markdowns (6 series + 3 controls)
+            # alongside the hub. Other 5 brands will get their spokes once
+            # Aaron approves Mazak.
+            if b["slug"] == "mazak":
+                n_spokes = _emit_mazak_spokes(b, bi)
+                written.append(("mazak_spokes", b["slug"], OUTDIR_REPAIR,
+                                n_spokes * 500, False))
 
         # --- Way-covers page (all 20 brands; Amada/Trumpf flagged draft) ---
         if so.get("way_covers"):

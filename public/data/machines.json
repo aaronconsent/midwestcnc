@@ -1,0 +1,4860 @@
+{
+  "_comment": "Source of truth for the site-wide CNC machine lookup. When a new model needs adding, edit this file and rebuild — the MachineLookup component picks it up automatically. Schema: brand / series / model / aliases[] / controls[] / era / spoke_url.",
+  "machines": [
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-8",
+      "aliases": [
+        "QT8",
+        "Quick Turn 8"
+      ],
+      "controls": [
+        "Mazatrol Legacy"
+      ],
+      "era": "1990s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-10",
+      "aliases": [
+        "QT10",
+        "Quick Turn 10"
+      ],
+      "controls": [
+        "Mazatrol Legacy"
+      ],
+      "era": "1990s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-15",
+      "aliases": [
+        "QT15",
+        "Quick Turn 15"
+      ],
+      "controls": [
+        "Mazatrol Legacy"
+      ],
+      "era": "1990s-2000s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-20",
+      "aliases": [
+        "QT20",
+        "Quick Turn 20"
+      ],
+      "controls": [
+        "Mazatrol Legacy",
+        "Matrix"
+      ],
+      "era": "1990s-2000s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-25",
+      "aliases": [
+        "QT25",
+        "Quick Turn 25"
+      ],
+      "controls": [
+        "Mazatrol Legacy",
+        "Matrix"
+      ],
+      "era": "1990s-2000s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-28",
+      "aliases": [
+        "QT28",
+        "Quick Turn 28"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-30",
+      "aliases": [
+        "QT30",
+        "Quick Turn 30"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-35",
+      "aliases": [
+        "QT35",
+        "Quick Turn 35"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-40",
+      "aliases": [
+        "QT40",
+        "Quick Turn 40"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-45",
+      "aliases": [
+        "QT45",
+        "Quick Turn 45"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-50",
+      "aliases": [
+        "QT50",
+        "Quick Turn 50"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QTN-100",
+      "aliases": [
+        "QTN100",
+        "Quick Turn Nexus 100",
+        "QT Nexus 100"
+      ],
+      "controls": [
+        "Fusion 640T",
+        "Matrix"
+      ],
+      "era": "2000-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QTN-200",
+      "aliases": [
+        "QTN200",
+        "Quick Turn Nexus 200",
+        "QT Nexus 200"
+      ],
+      "controls": [
+        "Fusion 640T",
+        "Matrix"
+      ],
+      "era": "2000-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QTN-250",
+      "aliases": [
+        "QTN250",
+        "Quick Turn Nexus 250",
+        "QT Nexus 250"
+      ],
+      "controls": [
+        "Fusion 640T",
+        "Matrix"
+      ],
+      "era": "2000-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QTN-300",
+      "aliases": [
+        "QTN300",
+        "Quick Turn Nexus 300",
+        "QT Nexus 300"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2005-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QTN-350",
+      "aliases": [
+        "QTN350",
+        "Quick Turn Nexus 350",
+        "QT Nexus 350"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2005-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QTN-450",
+      "aliases": [
+        "QTN450",
+        "Quick Turn Nexus 450",
+        "QT Nexus 450"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2005-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QTN-250MS",
+      "aliases": [
+        "QTN250MS",
+        "QT Nexus 250 MS",
+        "QT-250MS"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2005-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QTN-250MSY",
+      "aliases": [
+        "QTN250MSY",
+        "QT Nexus 250 MSY",
+        "QT-250MSY"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2005-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-Compact",
+      "aliases": [
+        "Quick Turn Compact"
+      ],
+      "controls": [
+        "SmoothG"
+      ],
+      "era": "2013-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-Smart",
+      "aliases": [
+        "Quick Turn Smart"
+      ],
+      "controls": [
+        "SmoothG"
+      ],
+      "era": "2013-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-Primos",
+      "aliases": [
+        "Quick Turn Primos"
+      ],
+      "controls": [
+        "SmoothG"
+      ],
+      "era": "2013-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-Ez",
+      "aliases": [
+        "Quick Turn Ez"
+      ],
+      "controls": [
+        "SmoothG"
+      ],
+      "era": "2013-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Quick Turn",
+      "model": "QT-Ultra",
+      "aliases": [
+        "Quick Turn Ultra"
+      ],
+      "controls": [
+        "SmoothAi"
+      ],
+      "era": "2018-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/quick-turn/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Integrex",
+      "model": "Integrex 100",
+      "aliases": [
+        "i-100",
+        "i100",
+        "100S",
+        "100SY"
+      ],
+      "controls": [
+        "Mazatrol Legacy",
+        "Matrix"
+      ],
+      "era": "1995-2010",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/integrex/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Integrex",
+      "model": "Integrex 200",
+      "aliases": [
+        "i-200",
+        "i200",
+        "200S",
+        "200ST",
+        "200SY",
+        "200IV"
+      ],
+      "controls": [
+        "Mazatrol Legacy",
+        "Matrix"
+      ],
+      "era": "1995-2010",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/integrex/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Integrex",
+      "model": "Integrex 300",
+      "aliases": [
+        "i-300",
+        "i300",
+        "300S",
+        "300ST",
+        "300SY"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/integrex/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Integrex",
+      "model": "Integrex 400",
+      "aliases": [
+        "i-400",
+        "i400",
+        "400S",
+        "400ST",
+        "400SY",
+        "400V"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/integrex/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Integrex",
+      "model": "Integrex e-500H",
+      "aliases": [
+        "e500H",
+        "e-500",
+        "Integrex e500H"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2005-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/integrex/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Integrex",
+      "model": "Integrex e-650H",
+      "aliases": [
+        "e650H",
+        "e-650"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2005-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/integrex/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Integrex",
+      "model": "Integrex e-1060V/10",
+      "aliases": [
+        "e1060V",
+        "e-1060"
+      ],
+      "controls": [
+        "Matrix",
+        "SmoothX"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/integrex/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Integrex",
+      "model": "Integrex e-1250V/10",
+      "aliases": [
+        "e1250V",
+        "e-1250"
+      ],
+      "controls": [
+        "Matrix",
+        "SmoothX"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/integrex/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Integrex",
+      "model": "Integrex e-1550V/10",
+      "aliases": [
+        "e1550V",
+        "e-1550"
+      ],
+      "controls": [
+        "SmoothX"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/integrex/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Integrex",
+      "model": "Integrex e-1850V/10",
+      "aliases": [
+        "e1850V",
+        "e-1850"
+      ],
+      "controls": [
+        "SmoothX"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/integrex/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Integrex",
+      "model": "Integrex j",
+      "aliases": [
+        "i-j",
+        "j-200",
+        "Integrex j-200"
+      ],
+      "controls": [
+        "SmoothG"
+      ],
+      "era": "2013-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/integrex/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Integrex",
+      "model": "Integrex i-V",
+      "aliases": [
+        "iV",
+        "i-V vertical",
+        "Integrex iV"
+      ],
+      "controls": [
+        "SmoothX"
+      ],
+      "era": "2014-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/integrex/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Integrex",
+      "model": "Integrex i-H",
+      "aliases": [
+        "iH",
+        "i-H horizontal",
+        "Integrex iH"
+      ],
+      "controls": [
+        "SmoothX"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/integrex/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Variaxis",
+      "model": "Variaxis i-300",
+      "aliases": [
+        "i300",
+        "Variaxis 300i"
+      ],
+      "controls": [
+        "SmoothX"
+      ],
+      "era": "2014-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/variaxis/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Variaxis",
+      "model": "Variaxis i-500",
+      "aliases": [
+        "i500",
+        "Variaxis 500i"
+      ],
+      "controls": [
+        "SmoothX"
+      ],
+      "era": "2014-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/variaxis/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Variaxis",
+      "model": "Variaxis i-600",
+      "aliases": [
+        "i600",
+        "Variaxis 600i"
+      ],
+      "controls": [
+        "SmoothX"
+      ],
+      "era": "2014-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/variaxis/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Variaxis",
+      "model": "Variaxis i-700",
+      "aliases": [
+        "i700",
+        "Variaxis 700i"
+      ],
+      "controls": [
+        "SmoothX"
+      ],
+      "era": "2014-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/variaxis/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Variaxis",
+      "model": "Variaxis i-800",
+      "aliases": [
+        "i800",
+        "Variaxis 800i"
+      ],
+      "controls": [
+        "SmoothX"
+      ],
+      "era": "2014-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/variaxis/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Variaxis",
+      "model": "Variaxis J-500",
+      "aliases": [
+        "J500",
+        "Variaxis J 500"
+      ],
+      "controls": [
+        "SmoothG"
+      ],
+      "era": "2014-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/variaxis/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Variaxis",
+      "model": "Variaxis J-600",
+      "aliases": [
+        "J600",
+        "Variaxis J 600"
+      ],
+      "controls": [
+        "SmoothG"
+      ],
+      "era": "2014-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/variaxis/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Variaxis",
+      "model": "Variaxis C-600",
+      "aliases": [
+        "C600",
+        "Variaxis C 600"
+      ],
+      "controls": [
+        "SmoothX"
+      ],
+      "era": "2014-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/variaxis/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Variaxis",
+      "model": "Variaxis 500",
+      "aliases": [
+        "Variaxis 500"
+      ],
+      "controls": [
+        "Mazatrol Legacy",
+        "Matrix"
+      ],
+      "era": "1998-2010",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/variaxis/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Variaxis",
+      "model": "Variaxis 630",
+      "aliases": [
+        "Variaxis 630"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2002-2012",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/variaxis/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Variaxis",
+      "model": "Variaxis 730",
+      "aliases": [
+        "Variaxis 730"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2002-2012",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/variaxis/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "VTC / VCN",
+      "model": "VTC-16",
+      "aliases": [
+        "VTC16"
+      ],
+      "controls": [
+        "Mazatrol Legacy",
+        "Matrix"
+      ],
+      "era": "1995-2010",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "VTC / VCN",
+      "model": "VTC-20",
+      "aliases": [
+        "VTC20"
+      ],
+      "controls": [
+        "Mazatrol Legacy",
+        "Matrix"
+      ],
+      "era": "1995-2010",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "VTC / VCN",
+      "model": "VTC-200",
+      "aliases": [
+        "VTC200"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "VTC / VCN",
+      "model": "VTC-300",
+      "aliases": [
+        "VTC300"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "VTC / VCN",
+      "model": "VTC-530",
+      "aliases": [
+        "VTC530"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "VTC / VCN",
+      "model": "VTC-760",
+      "aliases": [
+        "VTC760"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "VTC / VCN",
+      "model": "VTC-800",
+      "aliases": [
+        "VTC800"
+      ],
+      "controls": [
+        "Matrix",
+        "SmoothX"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "VTC / VCN",
+      "model": "VCN-410A",
+      "aliases": [
+        "VCN410A",
+        "VCN 410"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2005-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "VTC / VCN",
+      "model": "VCN-510C",
+      "aliases": [
+        "VCN510C",
+        "VCN 510"
+      ],
+      "controls": [
+        "Matrix",
+        "SmoothG"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "VTC / VCN",
+      "model": "VCN-530C",
+      "aliases": [
+        "VCN530C",
+        "VCN 530"
+      ],
+      "controls": [
+        "Matrix",
+        "SmoothG"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "VTC / VCN",
+      "model": "VCN-700",
+      "aliases": [
+        "VCN700"
+      ],
+      "controls": [
+        "SmoothG"
+      ],
+      "era": "2013-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "VTC / VCN",
+      "model": "VCN-Compact",
+      "aliases": [
+        "VCN Compact"
+      ],
+      "controls": [
+        "SmoothG"
+      ],
+      "era": "2013-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "VTC / VCN",
+      "model": "FJV-Series",
+      "aliases": [
+        "FJV-200",
+        "FJV-250",
+        "Mazak FJV"
+      ],
+      "controls": [
+        "Mazatrol Legacy",
+        "Matrix"
+      ],
+      "era": "1995-2010",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "VTC / VCN",
+      "model": "AJV Gantry",
+      "aliases": [
+        "AJV",
+        "AJV-25",
+        "AJV-35"
+      ],
+      "controls": [
+        "Mazatrol Legacy",
+        "Matrix"
+      ],
+      "era": "1995-2010",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "HCN Horizontal",
+      "model": "HCN-4000",
+      "aliases": [
+        "HCN4000"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2005-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/hcn-horizontal/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "HCN Horizontal",
+      "model": "HCN-5000",
+      "aliases": [
+        "HCN5000"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2005-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/hcn-horizontal/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "HCN Horizontal",
+      "model": "HCN-6000",
+      "aliases": [
+        "HCN6000"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2005-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/hcn-horizontal/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "HCN Horizontal",
+      "model": "HCN-8800",
+      "aliases": [
+        "HCN8800"
+      ],
+      "controls": [
+        "SmoothX"
+      ],
+      "era": "2013-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/hcn-horizontal/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "HCN Horizontal",
+      "model": "HCN-10800",
+      "aliases": [
+        "HCN10800"
+      ],
+      "controls": [
+        "SmoothX"
+      ],
+      "era": "2013-present",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/hcn-horizontal/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "HCN Horizontal",
+      "model": "PFH",
+      "aliases": [
+        "PFH-4000",
+        "PFH-5000",
+        "PFH-6000"
+      ],
+      "controls": [
+        "Mazatrol Legacy"
+      ],
+      "era": "1990s-2000s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/hcn-horizontal/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "HCN Horizontal",
+      "model": "H-Series",
+      "aliases": [
+        "H-400",
+        "H-500",
+        "H-630",
+        "H-800"
+      ],
+      "controls": [
+        "Mazatrol Legacy"
+      ],
+      "era": "1990s-2000s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/hcn-horizontal/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Turning Legacy",
+      "model": "Slant Turn 15",
+      "aliases": [
+        "ST-15"
+      ],
+      "controls": [
+        "Mazatrol Legacy"
+      ],
+      "era": "1980s-1990s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/turning-legacy/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Turning Legacy",
+      "model": "Slant Turn 18",
+      "aliases": [
+        "ST-18"
+      ],
+      "controls": [
+        "Mazatrol Legacy"
+      ],
+      "era": "1980s-1990s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/turning-legacy/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Turning Legacy",
+      "model": "Slant Turn 20",
+      "aliases": [
+        "ST-20"
+      ],
+      "controls": [
+        "Mazatrol Legacy"
+      ],
+      "era": "1980s-1990s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/turning-legacy/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Turning Legacy",
+      "model": "Slant Turn Nexus",
+      "aliases": [
+        "STN",
+        "Slant Turn N"
+      ],
+      "controls": [
+        "Fusion 640T"
+      ],
+      "era": "2000-2010",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/turning-legacy/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Turning Legacy",
+      "model": "Multiplex 6000",
+      "aliases": [
+        "MX-6000"
+      ],
+      "controls": [
+        "Mazatrol Legacy"
+      ],
+      "era": "1990s-2000s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/turning-legacy/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Turning Legacy",
+      "model": "Multiplex 6100",
+      "aliases": [
+        "MX-6100"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/turning-legacy/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Turning Legacy",
+      "model": "Multiplex 6200",
+      "aliases": [
+        "MX-6200"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2005-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/turning-legacy/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Turning Legacy",
+      "model": "Multiplex 6300",
+      "aliases": [
+        "MX-6300"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2005-2013",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/turning-legacy/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Turning Legacy",
+      "model": "Megaturn",
+      "aliases": [
+        "Megaturn 900",
+        "Megaturn 1200"
+      ],
+      "controls": [
+        "Mazatrol Legacy"
+      ],
+      "era": "1990s-2000s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/turning-legacy/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Turning Legacy",
+      "model": "HQR-150",
+      "aliases": [
+        "HQR150"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000-2010",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/turning-legacy/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Turning Legacy",
+      "model": "HQR-200",
+      "aliases": [
+        "HQR200"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000-2010",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/turning-legacy/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Turning Legacy",
+      "model": "HQR-250",
+      "aliases": [
+        "HQR250"
+      ],
+      "controls": [
+        "Matrix"
+      ],
+      "era": "2000-2010",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/turning-legacy/"
+    },
+    {
+      "brand": "Mazak",
+      "series": "Turning Legacy",
+      "model": "Powermaster",
+      "aliases": [
+        "Mazak Powermaster"
+      ],
+      "controls": [
+        "Mazatrol Legacy"
+      ],
+      "era": "1990s",
+      "spoke_url": "/repairs/mazak-cnc-machine-repair/turning-legacy/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-1",
+      "aliases": [
+        "VF1"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "1990s-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-2",
+      "aliases": [
+        "VF2"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "1990s-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-2SS",
+      "aliases": [
+        "VF2SS"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-2YT",
+      "aliases": [
+        "VF2YT"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-3",
+      "aliases": [
+        "VF3"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "1990s-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-3SS",
+      "aliases": [
+        "VF3SS"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-4",
+      "aliases": [
+        "VF4"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "1990s-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-4SS",
+      "aliases": [
+        "VF4SS"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-5",
+      "aliases": [
+        "VF5"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "1990s-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-5SS",
+      "aliases": [
+        "VF5SS"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-6",
+      "aliases": [
+        "VF6"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "1990s-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-7",
+      "aliases": [
+        "VF7"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "1990s-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-8",
+      "aliases": [
+        "VF8"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "1990s-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-9",
+      "aliases": [
+        "VF9"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "1990s-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-10",
+      "aliases": [
+        "VF10"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2000s-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-11",
+      "aliases": [
+        "VF11"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2000s-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "VF Series",
+      "model": "VF-12",
+      "aliases": [
+        "VF12"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2000s-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/vf-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "ST Series",
+      "model": "ST-10",
+      "aliases": [
+        "ST10"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/st-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "ST Series",
+      "model": "ST-15",
+      "aliases": [
+        "ST15"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/st-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "ST Series",
+      "model": "ST-20",
+      "aliases": [
+        "ST20"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/st-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "ST Series",
+      "model": "ST-25",
+      "aliases": [
+        "ST25"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/st-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "ST Series",
+      "model": "ST-28",
+      "aliases": [
+        "ST28"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/st-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "ST Series",
+      "model": "ST-30",
+      "aliases": [
+        "ST30"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/st-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "ST Series",
+      "model": "ST-35",
+      "aliases": [
+        "ST35"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/st-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "ST Series",
+      "model": "ST-40",
+      "aliases": [
+        "ST40"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/st-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "ST Series",
+      "model": "ST-45",
+      "aliases": [
+        "ST45"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/st-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "ST Series",
+      "model": "ST-50",
+      "aliases": [
+        "ST50"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/st-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "ST Series",
+      "model": "ST-55",
+      "aliases": [
+        "ST55"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/st-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "ST Series",
+      "model": "DS-30",
+      "aliases": [
+        "DS30",
+        "Haas DS-30 dual-spindle"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/st-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "UMC Series",
+      "model": "UMC-350",
+      "aliases": [
+        "UMC350"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2017-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/umc-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "UMC Series",
+      "model": "UMC-500",
+      "aliases": [
+        "UMC500"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/umc-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "UMC Series",
+      "model": "UMC-500SS",
+      "aliases": [
+        "UMC500SS"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2017-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/umc-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "UMC Series",
+      "model": "UMC-750",
+      "aliases": [
+        "UMC750"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/umc-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "UMC Series",
+      "model": "UMC-750SS",
+      "aliases": [
+        "UMC750SS"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/umc-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "UMC Series",
+      "model": "UMC-1000",
+      "aliases": [
+        "UMC1000"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2017-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/umc-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "UMC Series",
+      "model": "UMC-1000SS",
+      "aliases": [
+        "UMC1000SS"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2017-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/umc-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "UMC Series",
+      "model": "UMC-1500",
+      "aliases": [
+        "UMC1500"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2020-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/umc-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "UMC Series",
+      "model": "UMC-1600",
+      "aliases": [
+        "UMC1600"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2020-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/umc-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "EC Series",
+      "model": "EC-300",
+      "aliases": [
+        "EC300"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/ec-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "EC Series",
+      "model": "EC-400",
+      "aliases": [
+        "EC400"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/ec-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "EC Series",
+      "model": "EC-400PP",
+      "aliases": [
+        "EC400PP"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/ec-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "EC Series",
+      "model": "EC-500",
+      "aliases": [
+        "EC500"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/ec-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "EC Series",
+      "model": "EC-550",
+      "aliases": [
+        "EC550"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/ec-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "EC Series",
+      "model": "EC-630",
+      "aliases": [
+        "EC630"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/ec-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "EC Series",
+      "model": "EC-1600",
+      "aliases": [
+        "EC1600"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/ec-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "EC Series",
+      "model": "EC-2000",
+      "aliases": [
+        "EC2000"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/ec-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "EC Series",
+      "model": "EC-3000",
+      "aliases": [
+        "EC3000"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2018-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/ec-series/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Mini Mill / Toolroom / DT / DM / VM",
+      "model": "Mini Mill",
+      "aliases": [
+        "MiniMill",
+        "MM"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "1998-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/mini-mill-toolroom/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Mini Mill / Toolroom / DT / DM / VM",
+      "model": "Mini Mill 2",
+      "aliases": [
+        "MiniMill 2",
+        "MM2"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/mini-mill-toolroom/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Mini Mill / Toolroom / DT / DM / VM",
+      "model": "Super Mini Mill",
+      "aliases": [
+        "SMM"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/mini-mill-toolroom/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Mini Mill / Toolroom / DT / DM / VM",
+      "model": "TM-1",
+      "aliases": [
+        "TM1"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/mini-mill-toolroom/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Mini Mill / Toolroom / DT / DM / VM",
+      "model": "TM-2",
+      "aliases": [
+        "TM2"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/mini-mill-toolroom/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Mini Mill / Toolroom / DT / DM / VM",
+      "model": "DT-1",
+      "aliases": [
+        "DT1"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/mini-mill-toolroom/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Mini Mill / Toolroom / DT / DM / VM",
+      "model": "DT-2",
+      "aliases": [
+        "DT2"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2018-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/mini-mill-toolroom/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Mini Mill / Toolroom / DT / DM / VM",
+      "model": "DM-1",
+      "aliases": [
+        "DM1"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2018-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/mini-mill-toolroom/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Mini Mill / Toolroom / DT / DM / VM",
+      "model": "DM-2",
+      "aliases": [
+        "DM2"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2018-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/mini-mill-toolroom/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Mini Mill / Toolroom / DT / DM / VM",
+      "model": "VM-2",
+      "aliases": [
+        "VM2"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/mini-mill-toolroom/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Mini Mill / Toolroom / DT / DM / VM",
+      "model": "VM-3",
+      "aliases": [
+        "VM3"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/mini-mill-toolroom/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Mini Mill / Toolroom / DT / DM / VM",
+      "model": "VM-6",
+      "aliases": [
+        "VM6"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/mini-mill-toolroom/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Toolroom Lathes",
+      "model": "TL-1",
+      "aliases": [
+        "TL1"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/toolroom-lathes/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Toolroom Lathes",
+      "model": "TL-2",
+      "aliases": [
+        "TL2"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/toolroom-lathes/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Toolroom Lathes",
+      "model": "TL-3",
+      "aliases": [
+        "TL3"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/toolroom-lathes/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Toolroom Lathes",
+      "model": "TL-4",
+      "aliases": [
+        "TL4"
+      ],
+      "controls": [
+        "Haas Classic",
+        "NGC"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/toolroom-lathes/"
+    },
+    {
+      "brand": "Haas",
+      "series": "Toolroom Lathes",
+      "model": "CL-1",
+      "aliases": [
+        "CL1"
+      ],
+      "controls": [
+        "NGC"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/haas-cnc-machine-repair/toolroom-lathes/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NLX / ALX",
+      "model": "NLX 1500",
+      "aliases": [
+        "NLX1500"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nlx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NLX / ALX",
+      "model": "NLX 2000",
+      "aliases": [
+        "NLX2000"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nlx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NLX / ALX",
+      "model": "NLX 2500",
+      "aliases": [
+        "NLX2500"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nlx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NLX / ALX",
+      "model": "NLX 3000",
+      "aliases": [
+        "NLX3000"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nlx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NLX / ALX",
+      "model": "NLX 4000",
+      "aliases": [
+        "NLX4000"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nlx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NLX / ALX",
+      "model": "NLX 6000",
+      "aliases": [
+        "NLX6000"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nlx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NLX / ALX",
+      "model": "ALX 1500",
+      "aliases": [
+        "ALX1500"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nlx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NLX / ALX",
+      "model": "ALX 2000",
+      "aliases": [
+        "ALX2000"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nlx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NLX / ALX",
+      "model": "ALX 2500",
+      "aliases": [
+        "ALX2500"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nlx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CTX / CLX",
+      "model": "CLX 350",
+      "aliases": [
+        "CLX350"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CTX / CLX",
+      "model": "CLX 450",
+      "aliases": [
+        "CLX450"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CTX / CLX",
+      "model": "CLX 550",
+      "aliases": [
+        "CLX550"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CTX / CLX",
+      "model": "CTX 310",
+      "aliases": [
+        "CTX310"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CTX / CLX",
+      "model": "CTX 450",
+      "aliases": [
+        "CTX450"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CTX / CLX",
+      "model": "CTX 510",
+      "aliases": [
+        "CTX510"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CTX / CLX",
+      "model": "CTX 650",
+      "aliases": [
+        "CTX650"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CTX / CLX",
+      "model": "CTX 850",
+      "aliases": [
+        "CTX850"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CTX / CLX",
+      "model": "CTX Beta 800 TC",
+      "aliases": [
+        "CTX Beta 800TC"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CTX / CLX",
+      "model": "CTX Beta 1250 TC",
+      "aliases": [
+        "CTX Beta 1250TC"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CTX / CLX",
+      "model": "CTX Gamma 2000 TC",
+      "aliases": [
+        "CTX Gamma 2000TC"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CTX / CLX",
+      "model": "CTX Gamma 3000 TC",
+      "aliases": [
+        "CTX Gamma 3000TC"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ctx-clx-turning/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NTX",
+      "model": "NTX 1000",
+      "aliases": [
+        "NTX1000"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ntx/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NTX",
+      "model": "NTX 2000",
+      "aliases": [
+        "NTX2000"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ntx/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NTX",
+      "model": "NTX 2500",
+      "aliases": [
+        "NTX2500"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ntx/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NTX",
+      "model": "NTX 3000",
+      "aliases": [
+        "NTX3000"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ntx/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NTX",
+      "model": "NTX 4000",
+      "aliases": [
+        "NTX4000"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/ntx/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU 50",
+      "aliases": [
+        "DMU50"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU 65",
+      "aliases": [
+        "DMU65"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU 70",
+      "aliases": [
+        "DMU70"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU 75",
+      "aliases": [
+        "DMU75"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU 80",
+      "aliases": [
+        "DMU80"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU 100",
+      "aliases": [
+        "DMU100"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU 125",
+      "aliases": [
+        "DMU125"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU 160",
+      "aliases": [
+        "DMU160"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU 210",
+      "aliases": [
+        "DMU210"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU 270",
+      "aliases": [
+        "DMU270"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU 340",
+      "aliases": [
+        "DMU340"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU monoBLOCK 50",
+      "aliases": [
+        "DMU monoBLOCK 50"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU monoBLOCK 65",
+      "aliases": [
+        "DMU monoBLOCK 65"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU monoBLOCK 75",
+      "aliases": [
+        "DMU monoBLOCK 75"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU duoBLOCK 60",
+      "aliases": [
+        "DMU duoBLOCK 60"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMU duoBLOCK 80",
+      "aliases": [
+        "DMU duoBLOCK 80"
+      ],
+      "controls": [
+        "Heidenhain TNC"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMC 1035V",
+      "aliases": [
+        "DMC1035V"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMC 1450V",
+      "aliases": [
+        "DMC1450V"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMC 60H",
+      "aliases": [
+        "DMC60H"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMC 80H",
+      "aliases": [
+        "DMC80H"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMU / DMC",
+      "model": "DMC 100H",
+      "aliases": [
+        "DMC100H"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmu-dmc/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NHX / NH",
+      "model": "NHX 4000",
+      "aliases": [
+        "NHX4000"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nhx-horizontals/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NHX / NH",
+      "model": "NHX 5000",
+      "aliases": [
+        "NHX5000"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nhx-horizontals/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NHX / NH",
+      "model": "NHX 5500",
+      "aliases": [
+        "NHX5500"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nhx-horizontals/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NHX / NH",
+      "model": "NHX 6300",
+      "aliases": [
+        "NHX6300"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nhx-horizontals/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NHX / NH",
+      "model": "NHX 8000",
+      "aliases": [
+        "NHX8000"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nhx-horizontals/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NHX / NH",
+      "model": "NHX 10000",
+      "aliases": [
+        "NHX10000"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nhx-horizontals/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NVX / NV / NVD",
+      "model": "NVX 4000",
+      "aliases": [
+        "NVX4000"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nvx-verticals/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NVX / NV / NVD",
+      "model": "NVX 5060",
+      "aliases": [
+        "NVX5060"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nvx-verticals/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NVX / NV / NVD",
+      "model": "NVX 5080",
+      "aliases": [
+        "NVX5080"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nvx-verticals/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NVX / NV / NVD",
+      "model": "NVX 5100",
+      "aliases": [
+        "NVX5100"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nvx-verticals/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NVX / NV / NVD",
+      "model": "NVX 7000",
+      "aliases": [
+        "NVX7000"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nvx-verticals/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NVX / NV / NVD",
+      "model": "NVD 4000 DCG",
+      "aliases": [
+        "NVD4000 DCG"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nvx-verticals/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "NVX / NV / NVD",
+      "model": "NVD 5000 DCG",
+      "aliases": [
+        "NVD5000 DCG"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/nvx-verticals/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CMX",
+      "model": "CMX 600V",
+      "aliases": [
+        "CMX600V"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/cmx/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CMX",
+      "model": "CMX 800V",
+      "aliases": [
+        "CMX800V"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/cmx/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CMX",
+      "model": "CMX 1100V",
+      "aliases": [
+        "CMX1100V"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2017-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/cmx/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CMX",
+      "model": "CMX 1300V",
+      "aliases": [
+        "CMX1300V"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2017-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/cmx/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CMX",
+      "model": "CMX 50U",
+      "aliases": [
+        "CMX50U"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/cmx/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "CMX",
+      "model": "CMX 70U",
+      "aliases": [
+        "CMX70U"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/cmx/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMP / Milltap",
+      "model": "DMP 35",
+      "aliases": [
+        "DMP35"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmp-milltap/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMP / Milltap",
+      "model": "DMP 50",
+      "aliases": [
+        "DMP50"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmp-milltap/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMP / Milltap",
+      "model": "DMP 70",
+      "aliases": [
+        "DMP70"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmp-milltap/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "DMP / Milltap",
+      "model": "Milltap 700",
+      "aliases": [
+        "Milltap700"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/dmp-milltap/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "SPRINT",
+      "model": "SPRINT 20",
+      "aliases": [
+        "SPRINT20"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/sprint-multisprint/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "SPRINT",
+      "model": "SPRINT 32",
+      "aliases": [
+        "SPRINT32"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/sprint-multisprint/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "SPRINT",
+      "model": "SPRINT 50",
+      "aliases": [
+        "SPRINT50"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/sprint-multisprint/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "SPRINT",
+      "model": "SPRINT 65",
+      "aliases": [
+        "SPRINT65"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2017-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/sprint-multisprint/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "SPRINT",
+      "model": "MULTISPRINT 25",
+      "aliases": [
+        "MULTISPRINT25"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2017-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/sprint-multisprint/"
+    },
+    {
+      "brand": "DMG Mori",
+      "series": "SPRINT",
+      "model": "MULTISPRINT 36",
+      "aliases": [
+        "MULTISPRINT36"
+      ],
+      "controls": [
+        "Siemens 840D"
+      ],
+      "era": "2017-present",
+      "spoke_url": "/repairs/dmg-mori-cnc-machine-repair/sprint-multisprint/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma 230",
+      "aliases": [
+        "Puma230"
+      ],
+      "controls": [
+        "Fanuc 0i",
+        "Fanuc 30i"
+      ],
+      "era": "1995-2010",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma 240",
+      "aliases": [
+        "Puma240"
+      ],
+      "controls": [
+        "Fanuc 0i"
+      ],
+      "era": "1995-2010",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma 280",
+      "aliases": [
+        "Puma280"
+      ],
+      "controls": [
+        "Fanuc 0i",
+        "Fanuc 30i"
+      ],
+      "era": "1995-2010",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma 300",
+      "aliases": [
+        "Puma300"
+      ],
+      "controls": [
+        "Fanuc 0i"
+      ],
+      "era": "2000s",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma 1500",
+      "aliases": [
+        "Puma1500"
+      ],
+      "controls": [
+        "Fanuc 0i"
+      ],
+      "era": "2000s",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma 2000",
+      "aliases": [
+        "Puma2000"
+      ],
+      "controls": [
+        "Fanuc 0i",
+        "Fanuc 30i"
+      ],
+      "era": "2000-2015",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma 2100",
+      "aliases": [
+        "Puma2100"
+      ],
+      "controls": [
+        "Fanuc 0i",
+        "Fanuc 30i"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma 2500",
+      "aliases": [
+        "Puma2500"
+      ],
+      "controls": [
+        "Fanuc 0i",
+        "Fanuc 30i"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma 2600",
+      "aliases": [
+        "Puma2600"
+      ],
+      "controls": [
+        "Fanuc 0i",
+        "Fanuc 30i"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma 2600SY",
+      "aliases": [
+        "Puma2600SY"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma 3100",
+      "aliases": [
+        "Puma3100"
+      ],
+      "controls": [
+        "Fanuc 0i",
+        "Fanuc 30i"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma 4100",
+      "aliases": [
+        "Puma4100"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma 5100",
+      "aliases": [
+        "Puma5100"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma 700",
+      "aliases": [
+        "Puma700"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma 800",
+      "aliases": [
+        "Puma800"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma GT 2100",
+      "aliases": [
+        "PumaGT2100"
+      ],
+      "controls": [
+        "Fanuc 0i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma GT 2600",
+      "aliases": [
+        "PumaGT2600"
+      ],
+      "controls": [
+        "Fanuc 0i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma",
+      "model": "Puma TT 1800",
+      "aliases": [
+        "PumaTT1800"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma MX / SMX",
+      "model": "Puma MX 2000",
+      "aliases": [
+        "MX2000"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma-mx-smx/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma MX / SMX",
+      "model": "Puma MX 2100",
+      "aliases": [
+        "MX2100"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma-mx-smx/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma MX / SMX",
+      "model": "Puma MX 2500",
+      "aliases": [
+        "MX2500"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma-mx-smx/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma MX / SMX",
+      "model": "Puma MX 2600",
+      "aliases": [
+        "MX2600"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma-mx-smx/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma MX / SMX",
+      "model": "Puma SMX 2100",
+      "aliases": [
+        "SMX2100"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma-mx-smx/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma MX / SMX",
+      "model": "Puma SMX 2600",
+      "aliases": [
+        "SMX2600"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma-mx-smx/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma MX / SMX",
+      "model": "Puma SMX 3100",
+      "aliases": [
+        "SMX3100"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma-mx-smx/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Lynx",
+      "model": "Lynx 220",
+      "aliases": [
+        "Lynx220"
+      ],
+      "controls": [
+        "Fanuc 0i"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/lynx/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Lynx",
+      "model": "Lynx 2100",
+      "aliases": [
+        "Lynx2100"
+      ],
+      "controls": [
+        "Fanuc 0i"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/lynx/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Lynx",
+      "model": "Lynx 2600",
+      "aliases": [
+        "Lynx2600"
+      ],
+      "controls": [
+        "Fanuc 0i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/lynx/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Lynx",
+      "model": "Lynx 300",
+      "aliases": [
+        "Lynx300"
+      ],
+      "controls": [
+        "Fanuc 0i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/lynx/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "DNM",
+      "model": "DNM 200",
+      "aliases": [
+        "DNM200"
+      ],
+      "controls": [
+        "Fanuc 0i"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/dnm-verticals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "DNM",
+      "model": "DNM 350",
+      "aliases": [
+        "DNM350"
+      ],
+      "controls": [
+        "Fanuc 0i"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/dnm-verticals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "DNM",
+      "model": "DNM 400",
+      "aliases": [
+        "DNM400"
+      ],
+      "controls": [
+        "Fanuc 0i"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/dnm-verticals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "DNM",
+      "model": "DNM 415",
+      "aliases": [
+        "DNM415"
+      ],
+      "controls": [
+        "Fanuc 0i"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/dnm-verticals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "DNM",
+      "model": "DNM 4000",
+      "aliases": [
+        "DNM4000"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/dnm-verticals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "DNM",
+      "model": "DNM 500",
+      "aliases": [
+        "DNM500"
+      ],
+      "controls": [
+        "Fanuc 0i",
+        "Fanuc 30i"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/dnm-verticals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "DNM",
+      "model": "DNM 5700",
+      "aliases": [
+        "DNM5700"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/dnm-verticals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "DNM",
+      "model": "DNM 6700",
+      "aliases": [
+        "DNM6700"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/dnm-verticals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "DNM",
+      "model": "DNM 750",
+      "aliases": [
+        "DNM750"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/dnm-verticals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "NHM / NHP / HC",
+      "model": "NHM 4000",
+      "aliases": [
+        "NHM4000"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/horizontals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "NHM / NHP / HC",
+      "model": "NHM 5000",
+      "aliases": [
+        "NHM5000"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/horizontals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "NHM / NHP / HC",
+      "model": "NHM 6300",
+      "aliases": [
+        "NHM6300"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/horizontals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "NHM / NHP / HC",
+      "model": "NHM 8000",
+      "aliases": [
+        "NHM8000"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/horizontals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "NHM / NHP / HC",
+      "model": "NHP 4000",
+      "aliases": [
+        "NHP4000"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/horizontals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "NHM / NHP / HC",
+      "model": "NHP 5000",
+      "aliases": [
+        "NHP5000"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/horizontals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "NHM / NHP / HC",
+      "model": "NHP 6300",
+      "aliases": [
+        "NHP6300"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/horizontals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "NHM / NHP / HC",
+      "model": "HC 400",
+      "aliases": [
+        "HC400"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/horizontals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "NHM / NHP / HC",
+      "model": "HC 500",
+      "aliases": [
+        "HC500"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/horizontals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "DVF",
+      "model": "DVF 5000",
+      "aliases": [
+        "DVF5000"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/5-axis-verticals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "DVF",
+      "model": "DVF 6500",
+      "aliases": [
+        "DVF6500"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/5-axis-verticals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "DVF",
+      "model": "DVF 8000",
+      "aliases": [
+        "DVF8000"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/5-axis-verticals/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma V / VT / VTR",
+      "model": "Puma V400",
+      "aliases": [
+        "PumaV400"
+      ],
+      "controls": [
+        "Fanuc 0i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma-vertical-turning/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma V / VT / VTR",
+      "model": "Puma V550",
+      "aliases": [
+        "PumaV550"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma-vertical-turning/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma V / VT / VTR",
+      "model": "Puma V700",
+      "aliases": [
+        "PumaV700"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma-vertical-turning/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Puma V / VT / VTR",
+      "model": "Puma VT 1100",
+      "aliases": [
+        "PumaVT1100"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/puma-vertical-turning/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Swiss / DST",
+      "model": "SwiftTurn 32",
+      "aliases": [
+        "SwiftTurn32"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2017-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/swiss-turning/"
+    },
+    {
+      "brand": "Doosan",
+      "series": "Swiss / DST",
+      "model": "SwiftTurn 38",
+      "aliases": [
+        "SwiftTurn38"
+      ],
+      "controls": [
+        "Fanuc 30i"
+      ],
+      "era": "2017-present",
+      "spoke_url": "/repairs/doosan-cnc-machine-repair/swiss-turning/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LB / LU Lathes",
+      "model": "LB 200",
+      "aliases": [
+        "LB200"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2000-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LB / LU Lathes",
+      "model": "LB 250",
+      "aliases": [
+        "LB250"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2000-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LB / LU Lathes",
+      "model": "LB 300",
+      "aliases": [
+        "LB300"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2000-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LB / LU Lathes",
+      "model": "LB 3000 EX II",
+      "aliases": [
+        "LB3000EXII"
+      ],
+      "controls": [
+        "OSP-P300",
+        "OSP-P500"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LB / LU Lathes",
+      "model": "LB 35",
+      "aliases": [
+        "LB35"
+      ],
+      "controls": [
+        "OSP-P200"
+      ],
+      "era": "2000-2010",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LB / LU Lathes",
+      "model": "LB 45",
+      "aliases": [
+        "LB45"
+      ],
+      "controls": [
+        "OSP-P200"
+      ],
+      "era": "2000-2010",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LB / LU Lathes",
+      "model": "LB 4000 EX",
+      "aliases": [
+        "LB4000EX"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LB / LU Lathes",
+      "model": "LB 5000 EX",
+      "aliases": [
+        "LB5000EX"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LB / LU Lathes",
+      "model": "LU 300",
+      "aliases": [
+        "LU300"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2000-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LB / LU Lathes",
+      "model": "LU 35",
+      "aliases": [
+        "LU35"
+      ],
+      "controls": [
+        "OSP-P200"
+      ],
+      "era": "2000-2010",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LB / LU Lathes",
+      "model": "LU 45",
+      "aliases": [
+        "LU45"
+      ],
+      "controls": [
+        "OSP-P200"
+      ],
+      "era": "2000-2010",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LB / LU Lathes",
+      "model": "LU 7000",
+      "aliases": [
+        "LU7000"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LB / LU Lathes",
+      "model": "LU 8000",
+      "aliases": [
+        "LU8000"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "Genos",
+      "model": "Genos L250",
+      "aliases": [
+        "GenosL250"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/genos/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "Genos",
+      "model": "Genos L300",
+      "aliases": [
+        "GenosL300"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/genos/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "Genos",
+      "model": "Genos L3000-e",
+      "aliases": [
+        "GenosL3000e"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/genos/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "Genos",
+      "model": "Genos L400",
+      "aliases": [
+        "GenosL400"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/genos/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "Genos",
+      "model": "Genos L4000",
+      "aliases": [
+        "GenosL4000"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/genos/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "Genos",
+      "model": "Genos M460-VE",
+      "aliases": [
+        "GenosM460VE"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/genos/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "Genos",
+      "model": "Genos M560-V",
+      "aliases": [
+        "GenosM560V"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/genos/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "Genos",
+      "model": "Genos M660-V",
+      "aliases": [
+        "GenosM660V"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/genos/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MB / MA Verticals",
+      "model": "MB-46V",
+      "aliases": [
+        "MB46V"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2003-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/mb-ma-verticals/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MB / MA Verticals",
+      "model": "MB-56V",
+      "aliases": [
+        "MB56V"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2003-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/mb-ma-verticals/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MB / MA Verticals",
+      "model": "MB-66V",
+      "aliases": [
+        "MB66V"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/mb-ma-verticals/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MB / MA Verticals",
+      "model": "MB-4000H",
+      "aliases": [
+        "MB4000H"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/mb-ma-verticals/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MB / MA Verticals",
+      "model": "MB-5000H",
+      "aliases": [
+        "MB5000H"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/mb-ma-verticals/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MB / MA Verticals",
+      "model": "MA-400",
+      "aliases": [
+        "MA400"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2003-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/mb-ma-verticals/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MB / MA Verticals",
+      "model": "MA-500",
+      "aliases": [
+        "MA500"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2003-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/mb-ma-verticals/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MB / MA Verticals",
+      "model": "MA-600",
+      "aliases": [
+        "MA600"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/mb-ma-verticals/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MB / MA Verticals",
+      "model": "MA-650",
+      "aliases": [
+        "MA650"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/mb-ma-verticals/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MB / MA Verticals",
+      "model": "MA-8000",
+      "aliases": [
+        "MA8000"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/mb-ma-verticals/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MULTUS",
+      "model": "MULTUS B200",
+      "aliases": [
+        "MULTUSB200"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/multus/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MULTUS",
+      "model": "MULTUS B250",
+      "aliases": [
+        "MULTUSB250"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/multus/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MULTUS",
+      "model": "MULTUS B300",
+      "aliases": [
+        "MULTUSB300"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/multus/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MULTUS",
+      "model": "MULTUS B400",
+      "aliases": [
+        "MULTUSB400"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/multus/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MULTUS",
+      "model": "MULTUS B550",
+      "aliases": [
+        "MULTUSB550"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/multus/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MULTUS",
+      "model": "MULTUS B750",
+      "aliases": [
+        "MULTUSB750"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/multus/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MULTUS",
+      "model": "MULTUS U3000",
+      "aliases": [
+        "MULTUSU3000"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/multus/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MULTUS",
+      "model": "MULTUS U4000",
+      "aliases": [
+        "MULTUSU4000"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2015-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/multus/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MULTUS",
+      "model": "MULTUS U5000",
+      "aliases": [
+        "MULTUSU5000"
+      ],
+      "controls": [
+        "OSP-P500"
+      ],
+      "era": "2020-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/multus/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "Twin-Spindle Twin-Turret",
+      "model": "2SP-2500H",
+      "aliases": [
+        "2SP2500H"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/twin-spindle-twin-turret/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "Twin-Spindle Twin-Turret",
+      "model": "2SP-V40",
+      "aliases": [
+        "2SPV40"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/twin-spindle-twin-turret/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "Twin-Spindle Twin-Turret",
+      "model": "LT 200-MY",
+      "aliases": [
+        "LT200MY"
+      ],
+      "controls": [
+        "OSP-P200"
+      ],
+      "era": "2003-2013",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/twin-spindle-twin-turret/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "Twin-Spindle Twin-Turret",
+      "model": "LT 300-MY",
+      "aliases": [
+        "LT300MY"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2003-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/twin-spindle-twin-turret/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "Twin-Spindle Twin-Turret",
+      "model": "LT 2000 EX",
+      "aliases": [
+        "LT2000EX"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/twin-spindle-twin-turret/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "VTM Vertical Turning",
+      "model": "VTM-65",
+      "aliases": [
+        "VTM65"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2005-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/vtm/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "VTM Vertical Turning",
+      "model": "VTM-100",
+      "aliases": [
+        "VTM100"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/vtm/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "VTM Vertical Turning",
+      "model": "VTM-120",
+      "aliases": [
+        "VTM120"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/vtm/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "VTM Vertical Turning",
+      "model": "VTM-180",
+      "aliases": [
+        "VTM180"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/vtm/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MU 5-Axis / MCR Bridge",
+      "model": "MU-400V",
+      "aliases": [
+        "MU400V"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/v-bridge-mills/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MU 5-Axis / MCR Bridge",
+      "model": "MU-500V",
+      "aliases": [
+        "MU500V"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2008-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/v-bridge-mills/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MU 5-Axis / MCR Bridge",
+      "model": "MU-6300V",
+      "aliases": [
+        "MU6300V"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/v-bridge-mills/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MU 5-Axis / MCR Bridge",
+      "model": "MU-8000V",
+      "aliases": [
+        "MU8000V"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/v-bridge-mills/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MU 5-Axis / MCR Bridge",
+      "model": "MCR-A5C",
+      "aliases": [
+        "MCRA5C"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/v-bridge-mills/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "MU 5-Axis / MCR Bridge",
+      "model": "MCR-BIII",
+      "aliases": [
+        "MCRBIII"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2012-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/v-bridge-mills/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LAW / LFS Heavy Lathes",
+      "model": "LAW 1000",
+      "aliases": [
+        "LAW1000"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2003-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/heavy-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LAW / LFS Heavy Lathes",
+      "model": "LAW 2000",
+      "aliases": [
+        "LAW2000"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2003-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/heavy-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LAW / LFS Heavy Lathes",
+      "model": "LAW 3000",
+      "aliases": [
+        "LAW3000"
+      ],
+      "controls": [
+        "OSP-P300"
+      ],
+      "era": "2010-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/heavy-lathes/"
+    },
+    {
+      "brand": "Okuma",
+      "series": "LAW / LFS Heavy Lathes",
+      "model": "LFS-590",
+      "aliases": [
+        "LFS590"
+      ],
+      "controls": [
+        "OSP-P200",
+        "OSP-P300"
+      ],
+      "era": "2003-present",
+      "spoke_url": "/repairs/okuma-cnc-machine-repair/heavy-lathes/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 0 / 0M / 0T",
+      "model": "Fanuc Series 0",
+      "aliases": [
+        "Series 0",
+        "Fanuc 0",
+        "0M",
+        "0T"
+      ],
+      "controls": [],
+      "era": "1980s-1990s",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-0-legacy/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 0 / 0M / 0T",
+      "model": "Fanuc Series 0M",
+      "aliases": [
+        "0M",
+        "Series 0M"
+      ],
+      "controls": [],
+      "era": "1980s-1990s",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-0-legacy/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 0 / 0M / 0T",
+      "model": "Fanuc Series 0T",
+      "aliases": [
+        "0T",
+        "Series 0T"
+      ],
+      "controls": [],
+      "era": "1980s-1990s",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-0-legacy/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 6 / 10 / 11 / 12 / 15",
+      "model": "Fanuc Series 6",
+      "aliases": [
+        "Series 6",
+        "Fanuc 6"
+      ],
+      "controls": [],
+      "era": "1980s-1990s",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-6-15-legacy/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 6 / 10 / 11 / 12 / 15",
+      "model": "Fanuc Series 10",
+      "aliases": [
+        "Series 10",
+        "Fanuc 10"
+      ],
+      "controls": [],
+      "era": "1980s-1990s",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-6-15-legacy/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 6 / 10 / 11 / 12 / 15",
+      "model": "Fanuc Series 11",
+      "aliases": [
+        "Series 11",
+        "Fanuc 11"
+      ],
+      "controls": [],
+      "era": "1980s-1990s",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-6-15-legacy/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 6 / 10 / 11 / 12 / 15",
+      "model": "Fanuc Series 12",
+      "aliases": [
+        "Series 12",
+        "Fanuc 12"
+      ],
+      "controls": [],
+      "era": "1980s-1990s",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-6-15-legacy/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 6 / 10 / 11 / 12 / 15",
+      "model": "Fanuc Series 15",
+      "aliases": [
+        "Series 15",
+        "Fanuc 15",
+        "15M",
+        "15T"
+      ],
+      "controls": [],
+      "era": "1990s-2000s",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-6-15-legacy/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 16i / 18i / 21i",
+      "model": "Fanuc 16i",
+      "aliases": [
+        "16i",
+        "16i-A",
+        "16i-B",
+        "Fanuc 16"
+      ],
+      "controls": [],
+      "era": "1995-2010",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-16i-18i-21i/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 16i / 18i / 21i",
+      "model": "Fanuc 18i",
+      "aliases": [
+        "18i",
+        "18i-A",
+        "18i-B",
+        "Fanuc 18"
+      ],
+      "controls": [],
+      "era": "1995-2010",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-16i-18i-21i/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 16i / 18i / 21i",
+      "model": "Fanuc 21i",
+      "aliases": [
+        "21i",
+        "21i-A",
+        "21i-B",
+        "Fanuc 21"
+      ],
+      "controls": [],
+      "era": "1995-2010",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-16i-18i-21i/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 0i",
+      "model": "Fanuc 0i-A",
+      "aliases": [
+        "0i-A",
+        "0iA"
+      ],
+      "controls": [],
+      "era": "2003-2008",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-0i/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 0i",
+      "model": "Fanuc 0i-B",
+      "aliases": [
+        "0i-B",
+        "0iB"
+      ],
+      "controls": [],
+      "era": "2005-2010",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-0i/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 0i",
+      "model": "Fanuc 0i-C",
+      "aliases": [
+        "0i-C",
+        "0iC"
+      ],
+      "controls": [],
+      "era": "2008-2012",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-0i/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 0i",
+      "model": "Fanuc 0i-D",
+      "aliases": [
+        "0i-D",
+        "0iD"
+      ],
+      "controls": [],
+      "era": "2010-2018",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-0i/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 0i",
+      "model": "Fanuc 0i-F",
+      "aliases": [
+        "0i-F",
+        "0iF",
+        "Fanuc 0i Mate-MD",
+        "Fanuc 0i Mate-TD"
+      ],
+      "controls": [],
+      "era": "2015-present",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-0i/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 30i / 31i / 32i",
+      "model": "Fanuc 30i-A",
+      "aliases": [
+        "30i-A",
+        "30iA"
+      ],
+      "controls": [],
+      "era": "2008-2015",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 30i / 31i / 32i",
+      "model": "Fanuc 30i-B",
+      "aliases": [
+        "30i-B",
+        "30iB"
+      ],
+      "controls": [],
+      "era": "2012-present",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 30i / 31i / 32i",
+      "model": "Fanuc 31i-A",
+      "aliases": [
+        "31i-A",
+        "31iA"
+      ],
+      "controls": [],
+      "era": "2008-2015",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 30i / 31i / 32i",
+      "model": "Fanuc 31i-B",
+      "aliases": [
+        "31i-B",
+        "31iB"
+      ],
+      "controls": [],
+      "era": "2012-present",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 30i / 31i / 32i",
+      "model": "Fanuc 32i-A",
+      "aliases": [
+        "32i-A",
+        "32iA"
+      ],
+      "controls": [],
+      "era": "2008-2015",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 30i / 31i / 32i",
+      "model": "Fanuc 32i-B",
+      "aliases": [
+        "32i-B",
+        "32iB"
+      ],
+      "controls": [],
+      "era": "2012-present",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Series 30i / 31i / 32i",
+      "model": "Fanuc 35i",
+      "aliases": [
+        "35i",
+        "35i-B"
+      ],
+      "controls": [],
+      "era": "2012-present",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/series-30i-31i-32i/"
+    },
+    {
+      "brand": "Fanuc",
+      "series": "Power Mate i",
+      "model": "Fanuc Power Mate i",
+      "aliases": [
+        "Power Mate",
+        "PowerMate i",
+        "Power Mate i-D",
+        "Power Mate i-H"
+      ],
+      "controls": [],
+      "era": "2000-present",
+      "spoke_url": "/repairs/fanuc-cnc-machine-repair/power-mate-i/"
+    }
+  ]
+}
