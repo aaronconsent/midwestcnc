@@ -927,6 +927,51 @@ blockquote em { font-style: normal; color: var(--muted); }
 }
 
 /* =================================================================
+   Two-column page hero — used by every page that has a hero image.
+   Applied automatically by wrap_into_sections when the intro section
+   contains a <figure class="hero-figure">.
+   ================================================================= */
+.page-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--s-7);
+  align-items: center;
+  margin: 0;
+  padding: var(--s-4) 0 var(--s-5) 0;
+}
+.page-hero-text { min-width: 0; }
+.page-hero-text > :first-child { margin-top: 0; }
+.page-hero-text > h1 { margin-top: 0; }
+.page-hero-text > p { font-size: 1.05rem; }
+.page-hero-text > p:first-of-type { color: var(--fg); }
+.page-hero-image { min-width: 0; }
+.page-hero-image figure {
+  margin: 0;
+  padding: 0;
+}
+.page-hero-image figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--r-3);
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  max-height: none;
+  box-shadow: var(--sh-4);
+}
+@media (max-width: 900px) {
+  .page-hero {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+    padding: var(--s-3) 0 var(--s-4) 0;
+  }
+  .page-hero-image figure img {
+    max-height: 320px;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* =================================================================
    Tables — modern card-wrapped responsive
    ================================================================= */
 .table-scroll {
@@ -1261,6 +1306,34 @@ article > table {
 
 # ---------- Section banding (alternating full-bleed sections) ----------
 
+_HERO_FIGURE_RE = re.compile(
+    r'<figure\s+class="hero-figure"[^>]*>.*?</figure>',
+    re.DOTALL | re.IGNORECASE,
+)
+
+
+def _maybe_two_column_hero(intro_html):
+    """If the intro fragment contains a <figure class="hero-figure"> element,
+    split it out into a two-column hero: text content on the left,
+    figure on the right. Otherwise return the fragment unchanged.
+
+    Used to give every page type (hub, brand, state with hero image) the
+    same two-column hero treatment the homepage has."""
+    m = _HERO_FIGURE_RE.search(intro_html)
+    if not m:
+        return intro_html
+    figure_html = m.group(0)
+    text_html = (intro_html[:m.start()] + intro_html[m.end():]).strip()
+    if not text_html:
+        return intro_html  # only a figure; no point in two-column
+    return (
+        '<div class="page-hero">\n'
+        f'  <div class="page-hero-text">\n{text_html}\n  </div>\n'
+        f'  <div class="page-hero-image">\n{figure_html}\n  </div>\n'
+        '</div>'
+    )
+
+
 def wrap_into_sections(body_html, layout="default"):
     """Wrap a body fragment into alternating-color full-bleed sections.
 
@@ -1288,7 +1361,9 @@ def wrap_into_sections(body_html, layout="default"):
         if not s:
             continue
 
-        # Home-hero: full-bleed band but no alternating colour (has own bg)
+        # Home-hero: already wrapped as <section class="home-hero"> by the
+        # homepage generator with its own two-column structure. Wrap in the
+        # hero band but don't transform.
         if i == 0 and s.startswith('<section class="home-hero'):
             out.append(
                 f'<section class="page-section page-section-hero">\n'
@@ -1297,9 +1372,28 @@ def wrap_into_sections(body_html, layout="default"):
             )
             continue
 
-        klass = f"page-section page-section-{band_idx % 2}"
+        # Intro section (pre-first-h2). If it contains a hero-figure, split
+        # it into a two-column hero (text left, image right). Use the hero
+        # band styling (no alternating colour).
         if i == 0:
-            klass += " page-section-intro"
+            transformed = _maybe_two_column_hero(s)
+            is_two_col = transformed != s
+            klass = "page-section page-section-hero page-section-intro" if is_two_col \
+                    else "page-section page-section-0 page-section-intro"
+            out.append(
+                f'<section class="{klass}">\n'
+                f'  <div class="{inner_klass}">\n{transformed}\n  </div>\n'
+                f'</section>'
+            )
+            # If we landed on hero band (no colour increment), start the
+            # next section as band 1 for visible alternation.
+            if is_two_col:
+                band_idx = 1
+            else:
+                band_idx = 1
+            continue
+
+        klass = f"page-section page-section-{band_idx % 2}"
         out.append(
             f'<section class="{klass}">\n'
             f'  <div class="{inner_klass}">\n{s}\n  </div>\n'
