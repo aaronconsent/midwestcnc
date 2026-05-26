@@ -218,21 +218,21 @@ SITE_SHELL_CSS = """
 }
 
 /* Dark gradient overlay — keeps white text legible over any frame.
-   Slightly heavier on the left side (where text sits) for safety. */
+   Symmetric vertical gradient since text is centred. */
 .home-hero-overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(90deg,
-      rgba(15, 15, 18, 0.78) 0%,
-      rgba(15, 15, 18, 0.62) 45%,
-      rgba(15, 15, 18, 0.42) 100%),
+    radial-gradient(ellipse at center,
+      rgba(15, 15, 18, 0.65) 0%,
+      rgba(15, 15, 18, 0.55) 50%,
+      rgba(15, 15, 18, 0.45) 100%),
     linear-gradient(180deg,
-      rgba(15, 15, 18, 0.15) 0%,
-      transparent 30%,
-      transparent 70%,
+      rgba(15, 15, 18, 0.20) 0%,
+      transparent 25%,
+      transparent 75%,
       rgba(15, 15, 18, 0.30) 100%);
 }
 
@@ -245,7 +245,8 @@ SITE_SHELL_CSS = """
   padding: clamp(3rem, 7vw, 5rem) var(--s-5);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
 }
 
 .home-hero-content > .eyebrow {
@@ -265,7 +266,7 @@ SITE_SHELL_CSS = """
   letter-spacing: -0.025em;
   font-weight: 800;
   margin: 0 0 var(--s-5) 0;
-  max-width: 18ch;
+  max-width: 22ch;
   color: #fff;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
@@ -275,12 +276,13 @@ SITE_SHELL_CSS = """
   line-height: 1.55;
   color: rgba(255, 255, 255, 0.92);
   margin: 0 0 var(--s-6) 0;
-  max-width: 58ch;
+  max-width: 60ch;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
 
 .home-hero-content > .cta-row {
   margin: 0 0 var(--s-5) 0;
+  justify-content: center;
 }
 /* Strengthen the secondary phone CTA against the dark video — give it
    a semi-transparent surface so it reads cleanly. */
