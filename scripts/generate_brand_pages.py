@@ -395,28 +395,42 @@ def related_block_cnc(brand, brands_by_slug):
 
 
 def related_block_machine_repair(brand):
-    """Related Services on a brand's machine-repair page. Self = the
-    machine-repair canonical, NOT the brand's main current_url (the spindle
-    page is a valid cross-link from here)."""
+    """Related Services on a brand's machine-repair page. Card grid
+    instead of plain bullets — uses .related-grid class for the polished
+    card treatment. Self = the machine-repair canonical, NOT the brand's
+    main current_url (the spindle page is a valid cross-link from here)."""
     name = brand["brand_display_name"]
     slug = brand["slug"]
     self_url = f"/repairs/{slug}-cnc-machine-repair/"
     so = brand.get("services_offered", {})
 
-    lines = [f"## Related {name} Services\n"]
+    cards = []
     if so.get("spindle"):
         url = f"/spindle-grinding/{slug}-spindle-repair/"
         if url != self_url:
-            lines.append(f"- [{name} spindle repair]({url})")
+            cards.append(
+                f'<li><a href="{url}">'
+                f'<span>{html.escape(name)} spindle repair</span>'
+                f'</a></li>'
+            )
     if _can_link_way_covers(brand):
         url = f"/way-covers/{slug}-cnc-way-covers/"
         if url != self_url:
-            lines.append(f"- [{name} CNC way covers]({url})")
-    lines.append("")
-    lines.append(
-        "We serve shops across " + ", ".join(STATES[:-1]) + ", and " + STATES[-1] + "."
+            cards.append(
+                f'<li><a href="{url}">'
+                f'<span>{html.escape(name)} CNC way covers</span>'
+                f'</a></li>'
+            )
+
+    if not cards:
+        return ""
+
+    states_inline = ", ".join(STATES[:-1]) + ", and " + STATES[-1]
+    return (
+        f'\n<h2 id="related-services">Related {html.escape(name)} Services</h2>\n'
+        f'<ul class="related-grid">{"".join(cards)}</ul>\n'
+        f'<p class="related-coverage">We serve shops across {states_inline}.</p>\n'
     )
-    return "\n".join(lines) + "\n"
 
 
 def related_block_way_covers(brand):
@@ -1280,7 +1294,7 @@ def render_machine_repair(brand, g, brand_index):
         h1_text = f"{name} CNC Repair"
     else:
         h1_text = f"{name} CNC Machine Repair & Service"
-    eyebrow_text = f"{name} CNC Machine Repair"
+    eyebrow_text = f"CNC Machine Repair"
     canonical_path = f"/repairs/{slug}-cnc-machine-repair/"
 
     meta_desc = (
@@ -1300,33 +1314,50 @@ def render_machine_repair(brand, g, brand_index):
         crumb_leaf=f"{name} CNC Machine Repair",
     )
 
-    eyebrow_md = f"_{eyebrow_text}_\n\n"
-    h1 = f"# {h1_text}"
-
     img_path, img_alt = hero_image_for(brand, "machine_repair")
-    hero_img_md = f"\n![{img_alt}]({img_path})\n" if img_path else ""
-
     model_inline = _format_models_inline(models)
-    hero = (
-        f"{eyebrow_md}{h1}\n\n"
+
+    # New image-background hero — same visual language as the homepage
+    # video hero. The image becomes a full-bleed background; text sits
+    # centred over a dark gradient overlay.
+    hero_lede = (
         f"When a {name} machine isn't producing the way it used to, we come in. "
         f"We work across the {name} lineup"
         f"{ ' — ' + model_inline if model_inline else '' } — "
         f"spindle, control, ATC, drive, and alignment work. "
         f"Lead time depends on what's wrong: diagnostics move fast, "
-        f"parts and rebuild time vary by the job.\n\n"
-        f"{hero_cta()}\n"
-        f"{hero_img_md}"
+        f"parts and rebuild time vary by the job."
+    )
+    bg_img_html = (
+        f'<img class="brand-hero-bg" src="{img_path}" alt="{html.escape(img_alt)}" loading="eager">\n'
+        if img_path else ""
+    )
+    hero = (
+        f'<section class="brand-hero">\n'
+        f'{bg_img_html}'
+        f'  <div class="brand-hero-overlay" aria-hidden="true"></div>\n'
+        f'  <div class="brand-hero-content">\n'
+        f'    <p class="eyebrow">{html.escape(eyebrow_text)}</p>\n'
+        f'    <h1>{html.escape(h1_text)}</h1>\n'
+        f'    <p>{html.escape(hero_lede)}</p>\n'
+        f'    <div class="cta-row">\n'
+        f'      <a class="cta-button" href="#quote">Get a Quote</a>\n'
+        f'      <a class="cta-phone" href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>\n'
+        f'    </div>\n'
+        f'  </div>\n'
+        f'</section>\n\n'
     )
 
-    # Models — same list Ken gave for the spindle page
-    model_bullets = "\n".join(f"- {m}" for m in models) if models else ""
-    models_section = (
-        f"\n## {name} Models We Service\n\n"
-        f"Our {name} repair work covers the full lineup:\n\n"
-        f"{model_bullets}\n\n"
-        f"[Get a Quote](#quote)\n"
-    )
+    # Models — pill chips instead of a bullet list. Easier to scan.
+    if models:
+        model_lis = "".join(f'<li>{html.escape(m)}</li>' for m in models)
+        models_section = (
+            f'<h2 id="models-we-service">{html.escape(name)} Models We Service</h2>\n'
+            f'<p>Our {html.escape(name)} repair work covers the full lineup:</p>\n'
+            f'<ul class="model-chips">{model_lis}</ul>\n'
+        )
+    else:
+        models_section = ""
 
     # What Brings Machines In For Repair — process-uniform list, rotated
     # per brand so different pages don't open with the same item.
@@ -1365,25 +1396,31 @@ def render_machine_repair(brand, g, brand_index):
         f"{approach}\n"
     )
 
-    step3 = "We complete the repair, verify it back to spec, and return the machine ready to run."
+    # Lead Time & Process — numbered process steps (HTML ol) so the
+    # workflow gets the accented numbered-circle treatment from the
+    # global .process-steps style.
     lead_section = (
-        f"\n## Lead Time & Process\n\n"
-        f"Lead time on machine repair depends on what's wrong — diagnostic "
-        f"is fast, but parts and rebuild time vary by the job. Our "
-        f"three-step workflow keeps it transparent:\n\n"
-        f"{workflow_block('repair', step3)}\n"
+        f'\n<h2 id="lead-time-process">Lead Time &amp; Process</h2>\n'
+        f"<p>Lead time on machine repair depends on what's wrong — diagnostic "
+        f"is fast, but parts and rebuild time vary by the job. Our three-step "
+        f"workflow keeps it transparent:</p>\n"
+        f'<ol class="process-steps">\n'
+        f'  <li><strong>Contact us.</strong> Call <a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a> or use the quote form. Tell us the machine, the symptoms, and how urgent it is.</li>\n'
+        f'  <li><strong>Review &amp; quote.</strong> We confirm the model, scope the work, and send back a price and realistic lead time within one business day on most inquiries.</li>\n'
+        f'  <li><strong>Approve &amp; rebuild.</strong> We complete the repair, verify it back to spec, and return the machine ready to run.</li>\n'
+        f'</ol>\n'
     )
 
     trust = trust_block(g, brand["page_type"], brand_index, "a replacement machine")
     related = related_block_machine_repair(brand)
     cross_links = brand_cross_links_section(brand, {})
     faq_html, faq_schema = brand_faq_section(brand, ki, "machine_repair")
-    blog = blog_block()
+    # Blog teaser placeholder removed — was rendering as ghost text.
 
     return (
         fm + hero + models_section + issues_section + how
         + lead_section + "\n" + trust + "\n" + faq_html + "\n"
-        + cross_links + "\n" + related + "\n" + blog
+        + cross_links + "\n" + related + "\n"
     )
 
 

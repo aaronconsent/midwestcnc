@@ -31,26 +31,23 @@ schema_data:
       - { position: 2, name: "Repairs", item: "https://midwestcncservices.com/repairs/" }
       - { position: 3, name: "DMG Mori CNC Machine Repair", item: "https://midwestcncservices.com/repairs/dmg-mori-cnc-machine-repair/" }
 ---
-_DMG Mori CNC Machine Repair_
+<section class="brand-hero">
+<img class="brand-hero-bg" src="/assets/images/services/repairs-dmg-mori-cnc-machine-repair-image.png" alt="DMG Mori CNC machining center being serviced at Midwest CNC Services" loading="eager">
+  <div class="brand-hero-overlay" aria-hidden="true"></div>
+  <div class="brand-hero-content">
+    <p class="eyebrow">CNC Machine Repair</p>
+    <h1>DMG Mori CNC Machine Repair &amp; Service</h1>
+    <p>When a DMG Mori machine isn&#x27;t producing the way it used to, we come in. We work across the DMG Mori lineup — DMU 50, DMU 80, NHX series, and NLX/NTX mill-turns — spindle, control, ATC, drive, and alignment work. Lead time depends on what&#x27;s wrong: diagnostics move fast, parts and rebuild time vary by the job.</p>
+    <div class="cta-row">
+      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
+    </div>
+  </div>
+</section>
 
-# DMG Mori CNC Machine Repair & Service
-
-When a DMG Mori machine isn't producing the way it used to, we come in. We work across the DMG Mori lineup — DMU 50, DMU 80, NHX series, and NLX/NTX mill-turns — spindle, control, ATC, drive, and alignment work. Lead time depends on what's wrong: diagnostics move fast, parts and rebuild time vary by the job.
-
-[Get a Quote](#quote) · [319-610-4341](tel:+13196104341)
-
-![DMG Mori CNC machining center being serviced at Midwest CNC Services](/assets/images/services/repairs-dmg-mori-cnc-machine-repair-image.png)
-
-## DMG Mori Models We Service
-
-Our DMG Mori repair work covers the full lineup:
-
-- DMU 50
-- DMU 80
-- NHX series
-- NLX/NTX mill-turns
-
-[Get a Quote](#quote)
+<h2 id="models-we-service">DMG Mori Models We Service</h2>
+<p>Our DMG Mori repair work covers the full lineup:</p>
+<ul class="model-chips"><li>DMU 50</li><li>DMU 80</li><li>NHX series</li><li>NLX/NTX mill-turns</li></ul>
 
 ## What Brings DMG Mori Machines In For Repair
 
@@ -60,18 +57,13 @@ Most DMG Mori repair calls come in for control problems, ATC faults, drive syste
 
 DMG Mori machines run Siemens / Heidenhain (varies by line), so diagnostics need to come from someone who knows the platform — that's us.
 
-## Lead Time & Process
-
-Lead time on machine repair depends on what's wrong — diagnostic is fast, but parts and rebuild time vary by the job. Our three-step workflow keeps it transparent:
-
-**Step 1 — Contact Us.** Call 319-610-4341 or use the quote form below. [Get a Quote](#quote)
-
-**Step 2 — Grab Model #.** We'll fire back price, lead time, and shipping ETA after reviewing your details. [Get a Quote](#quote)
-
-**Step 3 — Approve & Rebuild.** We complete the repair, verify it back to spec, and return the machine ready to run.
-
-*Quote form rendered here at build time.*
-
+<h2 id="lead-time-process">Lead Time &amp; Process</h2>
+<p>Lead time on machine repair depends on what's wrong — diagnostic is fast, but parts and rebuild time vary by the job. Our three-step workflow keeps it transparent:</p>
+<ol class="process-steps">
+  <li><strong>Contact us.</strong> Call <a href="tel:+13196104341">319-610-4341</a> or use the quote form. Tell us the machine, the symptoms, and how urgent it is.</li>
+  <li><strong>Review &amp; quote.</strong> We confirm the model, scope the work, and send back a price and realistic lead time within one business day on most inquiries.</li>
+  <li><strong>Approve &amp; rebuild.</strong> We complete the repair, verify it back to spec, and return the machine ready to run.</li>
+</ol>
 
 ## Why Shops Trust Us
 
@@ -144,13 +136,8 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 <p>DMG Mori platforms have strong regional concentration in our service area:</p>
 <ul><li><a href="/service-area/missouri/">Missouri</a> — particularly <a href="/service-area/st-louis-missouri/">St. Louis</a></li><li><a href="/service-area/texas/">Texas</a> — particularly <a href="/service-area/fort-worth-texas/">Fort Worth</a></li><li><a href="/service-area/illinois/">Illinois</a> — particularly <a href="/service-area/rockford-illinois/">Rockford</a></li></ul>
 
-## Related DMG Mori Services
 
-- [DMG Mori spindle repair](/spindle-grinding/dmg-mori-spindle-repair/)
-- [DMG Mori CNC way covers](/way-covers/dmg-mori-cnc-way-covers/)
+<h2 id="related-services">Related DMG Mori Services</h2>
+<ul class="related-grid"><li><a href="/spindle-grinding/dmg-mori-spindle-repair/"><span>DMG Mori spindle repair</span></a></li><li><a href="/way-covers/dmg-mori-cnc-way-covers/"><span>DMG Mori CNC way covers</span></a></li></ul>
+<p class="related-coverage">We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
 
-We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.
-
-## Recent from the Blog
-
-*Rendered by the blog teaser component at build time.*

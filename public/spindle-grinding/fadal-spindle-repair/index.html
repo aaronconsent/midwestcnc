@@ -574,6 +574,113 @@ blockquote em { font-style: normal; color: var(--muted); }
 }
 
 /* =================================================================
+   Brand page hero — image background, centered text, dark overlay.
+   Same visual language as the homepage video hero. Used by brand-
+   repair / brand-spindle / brand-way-covers pages. Emitted by the
+   generators as <section class="brand-hero"> and wrapped in a
+   page-section-hero band by wrap_into_sections.
+   ================================================================= */
+.brand-hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(380px, 55vh, 540px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  margin: 0;
+  background: #000;
+}
+.brand-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+  pointer-events: none;
+}
+.brand-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+}
+.brand-hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: var(--max-wide);
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 4.5rem) var(--s-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.brand-hero-content > .eyebrow {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.7rem;
+  margin: 0 0 var(--s-4) 0;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.brand-hero-content > h1 {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  margin: 0 0 var(--s-4) 0;
+  max-width: 24ch;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+.brand-hero-content > p {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 var(--s-5) 0;
+  max-width: 58ch;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+.brand-hero-content > .cta-row {
+  margin: 0;
+  justify-content: center;
+}
+/* Frosted-glass phone CTA against the dark hero (same treatment the
+   homepage hero uses) */
+.brand-hero-content .cta-phone {
+  background: rgba(255, 255, 255, 0.10);
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.brand-hero-content .cta-phone:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff !important;
+}
+.brand-hero-content .cta-phone::before { color: #fff; }
+
+@media (max-width: 768px) {
+  .brand-hero { min-height: clamp(340px, 60vh, 480px); }
+  .brand-hero-content { padding: clamp(2rem, 7vw, 3rem) var(--s-4); }
+  .brand-hero-content > .cta-row { width: 100%; flex-direction: column; }
+  .brand-hero-content > .cta-row > * { width: 100%; justify-content: center; }
+}
+
+/* =================================================================
    Two-column page hero — used by every page that has a hero image.
    Applied automatically by wrap_into_sections when the intro section
    contains a <figure class="hero-figure">.
@@ -791,6 +898,80 @@ article > table {
   font-size: 1.05rem;
   color: var(--fg);
   line-height: 1.3;
+}
+
+/* =================================================================
+   Related-services grid — card-style links used at the bottom of
+   brand-repair / brand-spindle / brand-way-covers pages.
+   ================================================================= */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--s-3);
+  margin: var(--s-4) 0 0 0;
+  list-style: none;
+  padding: 0;
+}
+.related-grid li { margin: 0; }
+.related-grid a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  font-weight: 600;
+  transition: transform var(--t-fast), box-shadow var(--t-fast),
+              border-color var(--t-fast), color var(--t-fast);
+}
+.related-grid a::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+  transform: rotate(45deg);
+  opacity: 0.45;
+  transition: transform var(--t-fast), opacity var(--t-fast);
+  flex-shrink: 0;
+}
+.related-grid a:hover {
+  border-color: var(--accent);
+  color: var(--accent) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--sh-3);
+}
+.related-grid a:hover::after { opacity: 1; transform: rotate(45deg) translate(2px, -2px); }
+.related-coverage {
+  margin: var(--s-4) 0 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* "Models We Service" — pill chips instead of dense vertical list */
+.model-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  list-style: none;
+  padding: 0;
+  margin: var(--s-3) 0 var(--s-4) 0;
+}
+.model-chips li {
+  margin: 0;
+  padding: 0.4rem 0.95rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--fg);
 }
 
 /* =================================================================
@@ -1217,7 +1398,8 @@ article > table {
 <section class="page-section page-section-0">
   <div class="section-inner">
 <h2 id="regional-presence">Where Fadal Work Concentrates</h2>
-<p>&lt;p&gt;Fadal platforms have strong regional concentration in our service area:&lt;/p&gt; &lt;ul&gt;&lt;li&gt;&lt;a href="/service-area/iowa/"&gt;Iowa&lt;/a&gt; — particularly &lt;a href="/service-area/cedar-rapids-iowa/"&gt;Cedar Rapids&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="/service-area/illinois/"&gt;Illinois&lt;/a&gt; — particularly &lt;a href="/service-area/rockford-illinois/"&gt;Rockford&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="/service-area/missouri/"&gt;Missouri&lt;/a&gt; — particularly &lt;a href="/service-area/springfield-missouri/"&gt;Springfield&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</p>
+<p>Fadal platforms have strong regional concentration in our service area:</p>
+<ul><li><a href="/service-area/iowa/">Iowa</a> — particularly <a href="/service-area/cedar-rapids-iowa/">Cedar Rapids</a></li><li><a href="/service-area/illinois/">Illinois</a> — particularly <a href="/service-area/rockford-illinois/">Rockford</a></li><li><a href="/service-area/missouri/">Missouri</a> — particularly <a href="/service-area/springfield-missouri/">Springfield</a></li></ul>
   </div>
 </section>
 <section class="page-section page-section-1">

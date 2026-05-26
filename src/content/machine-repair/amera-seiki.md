@@ -31,24 +31,23 @@ schema_data:
       - { position: 2, name: "Repairs", item: "https://midwestcncservices.com/repairs/" }
       - { position: 3, name: "Amera-Seiki CNC Machine Repair", item: "https://midwestcncservices.com/repairs/amera-seiki-cnc-machine-repair/" }
 ---
-_Amera-Seiki CNC Machine Repair_
+<section class="brand-hero">
+<img class="brand-hero-bg" src="/assets/images/general/image-of-cnc-machine.png" alt="CNC machine service work at Midwest CNC Services" loading="eager">
+  <div class="brand-hero-overlay" aria-hidden="true"></div>
+  <div class="brand-hero-content">
+    <p class="eyebrow">CNC Machine Repair</p>
+    <h1>Amera-Seiki CNC Machine Repair &amp; Service</h1>
+    <p>When a Amera-Seiki machine isn&#x27;t producing the way it used to, we come in. We work across the Amera-Seiki lineup — TC lathes and VMC series — spindle, control, ATC, drive, and alignment work. Lead time depends on what&#x27;s wrong: diagnostics move fast, parts and rebuild time vary by the job.</p>
+    <div class="cta-row">
+      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
+    </div>
+  </div>
+</section>
 
-# Amera-Seiki CNC Machine Repair & Service
-
-When a Amera-Seiki machine isn't producing the way it used to, we come in. We work across the Amera-Seiki lineup — TC lathes and VMC series — spindle, control, ATC, drive, and alignment work. Lead time depends on what's wrong: diagnostics move fast, parts and rebuild time vary by the job.
-
-[Get a Quote](#quote) · [319-610-4341](tel:+13196104341)
-
-![CNC machine service work at Midwest CNC Services](/assets/images/general/image-of-cnc-machine.png)
-
-## Amera-Seiki Models We Service
-
-Our Amera-Seiki repair work covers the full lineup:
-
-- TC lathes
-- VMC series
-
-[Get a Quote](#quote)
+<h2 id="models-we-service">Amera-Seiki Models We Service</h2>
+<p>Our Amera-Seiki repair work covers the full lineup:</p>
+<ul class="model-chips"><li>TC lathes</li><li>VMC series</li></ul>
 
 ## What Brings Amera-Seiki Machines In For Repair
 
@@ -58,18 +57,13 @@ Most Amera-Seiki repair calls come in for control problems, ATC faults, drive sy
 
 Amera-Seiki control systems vary by model, so we start with diagnostics that match the platform in front of us rather than assuming what we'll find.
 
-## Lead Time & Process
-
-Lead time on machine repair depends on what's wrong — diagnostic is fast, but parts and rebuild time vary by the job. Our three-step workflow keeps it transparent:
-
-**Step 1 — Contact Us.** Call 319-610-4341 or use the quote form below. [Get a Quote](#quote)
-
-**Step 2 — Grab Model #.** We'll fire back price, lead time, and shipping ETA after reviewing your details. [Get a Quote](#quote)
-
-**Step 3 — Approve & Rebuild.** We complete the repair, verify it back to spec, and return the machine ready to run.
-
-*Quote form rendered here at build time.*
-
+<h2 id="lead-time-process">Lead Time &amp; Process</h2>
+<p>Lead time on machine repair depends on what's wrong — diagnostic is fast, but parts and rebuild time vary by the job. Our three-step workflow keeps it transparent:</p>
+<ol class="process-steps">
+  <li><strong>Contact us.</strong> Call <a href="tel:+13196104341">319-610-4341</a> or use the quote form. Tell us the machine, the symptoms, and how urgent it is.</li>
+  <li><strong>Review &amp; quote.</strong> We confirm the model, scope the work, and send back a price and realistic lead time within one business day on most inquiries.</li>
+  <li><strong>Approve &amp; rebuild.</strong> We complete the repair, verify it back to spec, and return the machine ready to run.</li>
+</ol>
 
 ## Why Shops Trust Us
 
@@ -142,13 +136,8 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 <p>Amera-Seiki platforms have strong regional concentration in our service area:</p>
 <ul><li><a href="/service-area/iowa/">Iowa</a> — particularly <a href="/service-area/ames-iowa/">Ames</a></li><li><a href="/service-area/nebraska/">Nebraska</a> — particularly <a href="/service-area/kearney-nebraska/">Kearney</a></li><li><a href="/service-area/missouri/">Missouri</a> — particularly <a href="/service-area/springfield-missouri/">Springfield</a></li></ul>
 
-## Related Amera-Seiki Services
 
-- [Amera-Seiki spindle repair](/spindle-grinding/amera-seiki-spindle-repair/)
-- [Amera-Seiki CNC way covers](/way-covers/amera-seiki-cnc-way-covers/)
+<h2 id="related-services">Related Amera-Seiki Services</h2>
+<ul class="related-grid"><li><a href="/spindle-grinding/amera-seiki-spindle-repair/"><span>Amera-Seiki spindle repair</span></a></li><li><a href="/way-covers/amera-seiki-cnc-way-covers/"><span>Amera-Seiki CNC way covers</span></a></li></ul>
+<p class="related-coverage">We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
 
-We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.
-
-## Recent from the Blog
-
-*Rendered by the blog teaser component at build time.*

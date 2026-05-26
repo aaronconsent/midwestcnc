@@ -31,26 +31,23 @@ schema_data:
       - { position: 2, name: "Repairs", item: "https://midwestcncservices.com/repairs/" }
       - { position: 3, name: "Mori Seiki CNC Machine Repair", item: "https://midwestcncservices.com/repairs/mori-seiki-cnc-machine-repair/" }
 ---
-_Mori Seiki CNC Machine Repair_
+<section class="brand-hero">
+<img class="brand-hero-bg" src="/assets/images/services/repairs-mori-seiki-cnc-machine-repair-image.png" alt="Mori Seiki CNC machining center being serviced at Midwest CNC Services" loading="eager">
+  <div class="brand-hero-overlay" aria-hidden="true"></div>
+  <div class="brand-hero-content">
+    <p class="eyebrow">CNC Machine Repair</p>
+    <h1>Mori Seiki CNC Machine Repair &amp; Service</h1>
+    <p>When a Mori Seiki machine isn&#x27;t producing the way it used to, we come in. We work across the Mori Seiki lineup — SL series, NL series, older MV mills, and NH horizontals — spindle, control, ATC, drive, and alignment work. Lead time depends on what&#x27;s wrong: diagnostics move fast, parts and rebuild time vary by the job.</p>
+    <div class="cta-row">
+      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
+    </div>
+  </div>
+</section>
 
-# Mori Seiki CNC Machine Repair & Service
-
-When a Mori Seiki machine isn't producing the way it used to, we come in. We work across the Mori Seiki lineup — SL series, NL series, older MV mills, and NH horizontals — spindle, control, ATC, drive, and alignment work. Lead time depends on what's wrong: diagnostics move fast, parts and rebuild time vary by the job.
-
-[Get a Quote](#quote) · [319-610-4341](tel:+13196104341)
-
-![Mori Seiki CNC machining center being serviced at Midwest CNC Services](/assets/images/services/repairs-mori-seiki-cnc-machine-repair-image.png)
-
-## Mori Seiki Models We Service
-
-Our Mori Seiki repair work covers the full lineup:
-
-- SL series
-- NL series
-- older MV mills
-- NH horizontals
-
-[Get a Quote](#quote)
+<h2 id="models-we-service">Mori Seiki Models We Service</h2>
+<p>Our Mori Seiki repair work covers the full lineup:</p>
+<ul class="model-chips"><li>SL series</li><li>NL series</li><li>older MV mills</li><li>NH horizontals</li></ul>
 
 ## What Brings Mori Seiki Machines In For Repair
 
@@ -60,18 +57,13 @@ Most Mori Seiki repair calls come in for ATC faults, drive system wear, way alig
 
 Mori Seiki machines run MSX-501 or MSG-501 on older machines; Siemens / Heidenhain on newer, so diagnostics need to come from someone who knows the platform — that's us.
 
-## Lead Time & Process
-
-Lead time on machine repair depends on what's wrong — diagnostic is fast, but parts and rebuild time vary by the job. Our three-step workflow keeps it transparent:
-
-**Step 1 — Contact Us.** Call 319-610-4341 or use the quote form below. [Get a Quote](#quote)
-
-**Step 2 — Grab Model #.** We'll fire back price, lead time, and shipping ETA after reviewing your details. [Get a Quote](#quote)
-
-**Step 3 — Approve & Rebuild.** We complete the repair, verify it back to spec, and return the machine ready to run.
-
-*Quote form rendered here at build time.*
-
+<h2 id="lead-time-process">Lead Time &amp; Process</h2>
+<p>Lead time on machine repair depends on what's wrong — diagnostic is fast, but parts and rebuild time vary by the job. Our three-step workflow keeps it transparent:</p>
+<ol class="process-steps">
+  <li><strong>Contact us.</strong> Call <a href="tel:+13196104341">319-610-4341</a> or use the quote form. Tell us the machine, the symptoms, and how urgent it is.</li>
+  <li><strong>Review &amp; quote.</strong> We confirm the model, scope the work, and send back a price and realistic lead time within one business day on most inquiries.</li>
+  <li><strong>Approve &amp; rebuild.</strong> We complete the repair, verify it back to spec, and return the machine ready to run.</li>
+</ol>
 
 ## Why Shops Trust Us
 
@@ -144,13 +136,8 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 <p>Mori Seiki platforms have strong regional concentration in our service area:</p>
 <ul><li><a href="/service-area/iowa/">Iowa</a> — particularly <a href="/service-area/cedar-rapids-iowa/">Cedar Rapids</a></li><li><a href="/service-area/illinois/">Illinois</a> — particularly <a href="/service-area/rockford-illinois/">Rockford</a></li><li><a href="/service-area/minnesota/">Minnesota</a> — particularly <a href="/service-area/minneapolis-minnesota/">Minneapolis</a></li></ul>
 
-## Related Mori Seiki Services
 
-- [Mori Seiki spindle repair](/spindle-grinding/mori-seiki-spindle-repair/)
-- [Mori Seiki CNC way covers](/way-covers/mori-seiki-cnc-way-covers/)
+<h2 id="related-services">Related Mori Seiki Services</h2>
+<ul class="related-grid"><li><a href="/spindle-grinding/mori-seiki-spindle-repair/"><span>Mori Seiki spindle repair</span></a></li><li><a href="/way-covers/mori-seiki-cnc-way-covers/"><span>Mori Seiki CNC way covers</span></a></li></ul>
+<p class="related-coverage">We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
 
-We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.
-
-## Recent from the Blog
-
-*Rendered by the blog teaser component at build time.*

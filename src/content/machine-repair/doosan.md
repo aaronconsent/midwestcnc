@@ -31,25 +31,23 @@ schema_data:
       - { position: 2, name: "Repairs", item: "https://midwestcncservices.com/repairs/" }
       - { position: 3, name: "Doosan CNC Machine Repair", item: "https://midwestcncservices.com/repairs/doosan-cnc-machine-repair/" }
 ---
-_Doosan CNC Machine Repair_
+<section class="brand-hero">
+<img class="brand-hero-bg" src="/assets/images/services/repairs-doosan-cnc-machine-repair-image.png" alt="Doosan CNC machining center being serviced at Midwest CNC Services" loading="eager">
+  <div class="brand-hero-overlay" aria-hidden="true"></div>
+  <div class="brand-hero-content">
+    <p class="eyebrow">CNC Machine Repair</p>
+    <h1>Doosan CNC Machine Repair &amp; Service</h1>
+    <p>When a Doosan machine isn&#x27;t producing the way it used to, we come in. We work across the Doosan lineup — DNM series, Puma lathes, and Lynx lathes — spindle, control, ATC, drive, and alignment work. Lead time depends on what&#x27;s wrong: diagnostics move fast, parts and rebuild time vary by the job.</p>
+    <div class="cta-row">
+      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
+    </div>
+  </div>
+</section>
 
-# Doosan CNC Machine Repair & Service
-
-When a Doosan machine isn't producing the way it used to, we come in. We work across the Doosan lineup — DNM series, Puma lathes, and Lynx lathes — spindle, control, ATC, drive, and alignment work. Lead time depends on what's wrong: diagnostics move fast, parts and rebuild time vary by the job.
-
-[Get a Quote](#quote) · [319-610-4341](tel:+13196104341)
-
-![Doosan CNC machining center being serviced at Midwest CNC Services](/assets/images/services/repairs-doosan-cnc-machine-repair-image.png)
-
-## Doosan Models We Service
-
-Our Doosan repair work covers the full lineup:
-
-- DNM series
-- Puma lathes
-- Lynx lathes
-
-[Get a Quote](#quote)
+<h2 id="models-we-service">Doosan Models We Service</h2>
+<p>Our Doosan repair work covers the full lineup:</p>
+<ul class="model-chips"><li>DNM series</li><li>Puma lathes</li><li>Lynx lathes</li></ul>
 
 ## What Brings Doosan Machines In For Repair
 
@@ -59,18 +57,13 @@ Most Doosan repair calls come in for way alignment, spindle issues, control prob
 
 Doosan control systems vary by model, so we start with diagnostics that match the platform in front of us rather than assuming what we'll find.
 
-## Lead Time & Process
-
-Lead time on machine repair depends on what's wrong — diagnostic is fast, but parts and rebuild time vary by the job. Our three-step workflow keeps it transparent:
-
-**Step 1 — Contact Us.** Call 319-610-4341 or use the quote form below. [Get a Quote](#quote)
-
-**Step 2 — Grab Model #.** We'll fire back price, lead time, and shipping ETA after reviewing your details. [Get a Quote](#quote)
-
-**Step 3 — Approve & Rebuild.** We complete the repair, verify it back to spec, and return the machine ready to run.
-
-*Quote form rendered here at build time.*
-
+<h2 id="lead-time-process">Lead Time &amp; Process</h2>
+<p>Lead time on machine repair depends on what's wrong — diagnostic is fast, but parts and rebuild time vary by the job. Our three-step workflow keeps it transparent:</p>
+<ol class="process-steps">
+  <li><strong>Contact us.</strong> Call <a href="tel:+13196104341">319-610-4341</a> or use the quote form. Tell us the machine, the symptoms, and how urgent it is.</li>
+  <li><strong>Review &amp; quote.</strong> We confirm the model, scope the work, and send back a price and realistic lead time within one business day on most inquiries.</li>
+  <li><strong>Approve &amp; rebuild.</strong> We complete the repair, verify it back to spec, and return the machine ready to run.</li>
+</ol>
 
 ## Why Shops Trust Us
 
@@ -143,13 +136,8 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 <p>Doosan platforms have strong regional concentration in our service area:</p>
 <ul><li><a href="/service-area/iowa/">Iowa</a> — particularly <a href="/service-area/davenport-iowa/">Davenport</a> and <a href="/service-area/waterloo-iowa/">Waterloo</a></li><li><a href="/service-area/illinois/">Illinois</a> — particularly <a href="/service-area/peoria-illinois/">Peoria</a></li><li><a href="/service-area/nebraska/">Nebraska</a> — particularly <a href="/service-area/lincoln-nebraska/">Lincoln</a></li></ul>
 
-## Related Doosan Services
 
-- [Doosan spindle repair](/spindle-grinding/doosan-spindle-repair/)
-- [Doosan CNC way covers](/way-covers/doosan-cnc-way-covers/)
+<h2 id="related-services">Related Doosan Services</h2>
+<ul class="related-grid"><li><a href="/spindle-grinding/doosan-spindle-repair/"><span>Doosan spindle repair</span></a></li><li><a href="/way-covers/doosan-cnc-way-covers/"><span>Doosan CNC way covers</span></a></li></ul>
+<p class="related-coverage">We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
 
-We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.
-
-## Recent from the Blog
-
-*Rendered by the blog teaser component at build time.*

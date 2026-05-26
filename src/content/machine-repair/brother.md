@@ -31,25 +31,23 @@ schema_data:
       - { position: 2, name: "Repairs", item: "https://midwestcncservices.com/repairs/" }
       - { position: 3, name: "Brother CNC Machine Repair", item: "https://midwestcncservices.com/repairs/brother-cnc-machine-repair/" }
 ---
-_Brother CNC Machine Repair_
+<section class="brand-hero">
+<img class="brand-hero-bg" src="/assets/images/services/repairs-brother-cnc-machine-repair-image.png" alt="Brother CNC machining center being serviced at Midwest CNC Services" loading="eager">
+  <div class="brand-hero-overlay" aria-hidden="true"></div>
+  <div class="brand-hero-content">
+    <p class="eyebrow">CNC Machine Repair</p>
+    <h1>Brother CNC Machine Repair &amp; Service</h1>
+    <p>When a Brother machine isn&#x27;t producing the way it used to, we come in. We work across the Brother lineup — Brother Speedio S500, S700, and R-series — spindle, control, ATC, drive, and alignment work. Lead time depends on what&#x27;s wrong: diagnostics move fast, parts and rebuild time vary by the job.</p>
+    <div class="cta-row">
+      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
+    </div>
+  </div>
+</section>
 
-# Brother CNC Machine Repair & Service
-
-When a Brother machine isn't producing the way it used to, we come in. We work across the Brother lineup — Brother Speedio S500, S700, and R-series — spindle, control, ATC, drive, and alignment work. Lead time depends on what's wrong: diagnostics move fast, parts and rebuild time vary by the job.
-
-[Get a Quote](#quote) · [319-610-4341](tel:+13196104341)
-
-![Brother CNC machining center being serviced at Midwest CNC Services](/assets/images/services/repairs-brother-cnc-machine-repair-image.png)
-
-## Brother Models We Service
-
-Our Brother repair work covers the full lineup:
-
-- Brother Speedio S500
-- S700
-- R-series
-
-[Get a Quote](#quote)
+<h2 id="models-we-service">Brother Models We Service</h2>
+<p>Our Brother repair work covers the full lineup:</p>
+<ul class="model-chips"><li>Brother Speedio S500</li><li>S700</li><li>R-series</li></ul>
 
 ## What Brings Brother Machines In For Repair
 
@@ -59,18 +57,13 @@ Most Brother repair calls come in for drive system wear, way alignment, spindle 
 
 Brother control systems vary by model, so we start with diagnostics that match the platform in front of us rather than assuming what we'll find.
 
-## Lead Time & Process
-
-Lead time on machine repair depends on what's wrong — diagnostic is fast, but parts and rebuild time vary by the job. Our three-step workflow keeps it transparent:
-
-**Step 1 — Contact Us.** Call 319-610-4341 or use the quote form below. [Get a Quote](#quote)
-
-**Step 2 — Grab Model #.** We'll fire back price, lead time, and shipping ETA after reviewing your details. [Get a Quote](#quote)
-
-**Step 3 — Approve & Rebuild.** We complete the repair, verify it back to spec, and return the machine ready to run.
-
-*Quote form rendered here at build time.*
-
+<h2 id="lead-time-process">Lead Time &amp; Process</h2>
+<p>Lead time on machine repair depends on what's wrong — diagnostic is fast, but parts and rebuild time vary by the job. Our three-step workflow keeps it transparent:</p>
+<ol class="process-steps">
+  <li><strong>Contact us.</strong> Call <a href="tel:+13196104341">319-610-4341</a> or use the quote form. Tell us the machine, the symptoms, and how urgent it is.</li>
+  <li><strong>Review &amp; quote.</strong> We confirm the model, scope the work, and send back a price and realistic lead time within one business day on most inquiries.</li>
+  <li><strong>Approve &amp; rebuild.</strong> We complete the repair, verify it back to spec, and return the machine ready to run.</li>
+</ol>
 
 ## Why Shops Trust Us
 
@@ -143,13 +136,8 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 <p>Brother platforms have strong regional concentration in our service area:</p>
 <ul><li><a href="/service-area/minnesota/">Minnesota</a> — particularly <a href="/service-area/rochester-minnesota/">Rochester</a> and <a href="/service-area/minneapolis-minnesota/">Minneapolis</a></li><li><a href="/service-area/wisconsin/">Wisconsin</a> — particularly <a href="/service-area/madison-wisconsin/">Madison</a></li><li><a href="/service-area/texas/">Texas</a> — particularly <a href="/service-area/austin-texas/">Austin</a></li></ul>
 
-## Related Brother Services
 
-- [Brother spindle repair](/spindle-grinding/brother-spindle-repair/)
-- [Brother CNC way covers](/way-covers/brother-cnc-way-covers/)
+<h2 id="related-services">Related Brother Services</h2>
+<ul class="related-grid"><li><a href="/spindle-grinding/brother-spindle-repair/"><span>Brother spindle repair</span></a></li><li><a href="/way-covers/brother-cnc-way-covers/"><span>Brother CNC way covers</span></a></li></ul>
+<p class="related-coverage">We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
 
-We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.
-
-## Recent from the Blog
-
-*Rendered by the blog teaser component at build time.*

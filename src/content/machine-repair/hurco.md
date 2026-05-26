@@ -31,24 +31,23 @@ schema_data:
       - { position: 2, name: "Repairs", item: "https://midwestcncservices.com/repairs/" }
       - { position: 3, name: "Hurco CNC Machine Repair", item: "https://midwestcncservices.com/repairs/hurco-cnc-machine-repair/" }
 ---
-_Hurco CNC Machine Repair_
+<section class="brand-hero">
+<img class="brand-hero-bg" src="/assets/images/general/image-of-cnc-machine.png" alt="CNC machine service work at Midwest CNC Services" loading="eager">
+  <div class="brand-hero-overlay" aria-hidden="true"></div>
+  <div class="brand-hero-content">
+    <p class="eyebrow">CNC Machine Repair</p>
+    <h1>Hurco CNC Machine Repair &amp; Service</h1>
+    <p>When a Hurco machine isn&#x27;t producing the way it used to, we come in. We work across the Hurco lineup — VMX series and VM series — spindle, control, ATC, drive, and alignment work. Lead time depends on what&#x27;s wrong: diagnostics move fast, parts and rebuild time vary by the job.</p>
+    <div class="cta-row">
+      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
+    </div>
+  </div>
+</section>
 
-# Hurco CNC Machine Repair & Service
-
-When a Hurco machine isn't producing the way it used to, we come in. We work across the Hurco lineup — VMX series and VM series — spindle, control, ATC, drive, and alignment work. Lead time depends on what's wrong: diagnostics move fast, parts and rebuild time vary by the job.
-
-[Get a Quote](#quote) · [319-610-4341](tel:+13196104341)
-
-![CNC machine service work at Midwest CNC Services](/assets/images/general/image-of-cnc-machine.png)
-
-## Hurco Models We Service
-
-Our Hurco repair work covers the full lineup:
-
-- VMX series
-- VM series
-
-[Get a Quote](#quote)
+<h2 id="models-we-service">Hurco Models We Service</h2>
+<p>Our Hurco repair work covers the full lineup:</p>
+<ul class="model-chips"><li>VMX series</li><li>VM series</li></ul>
 
 ## What Brings Hurco Machines In For Repair
 
@@ -58,18 +57,13 @@ Most Hurco repair calls come in for spindle issues, control problems, ATC faults
 
 Hurco machines run WinMax, so diagnostics need to come from someone who knows the platform — that's us.
 
-## Lead Time & Process
-
-Lead time on machine repair depends on what's wrong — diagnostic is fast, but parts and rebuild time vary by the job. Our three-step workflow keeps it transparent:
-
-**Step 1 — Contact Us.** Call 319-610-4341 or use the quote form below. [Get a Quote](#quote)
-
-**Step 2 — Grab Model #.** We'll fire back price, lead time, and shipping ETA after reviewing your details. [Get a Quote](#quote)
-
-**Step 3 — Approve & Rebuild.** We complete the repair, verify it back to spec, and return the machine ready to run.
-
-*Quote form rendered here at build time.*
-
+<h2 id="lead-time-process">Lead Time &amp; Process</h2>
+<p>Lead time on machine repair depends on what's wrong — diagnostic is fast, but parts and rebuild time vary by the job. Our three-step workflow keeps it transparent:</p>
+<ol class="process-steps">
+  <li><strong>Contact us.</strong> Call <a href="tel:+13196104341">319-610-4341</a> or use the quote form. Tell us the machine, the symptoms, and how urgent it is.</li>
+  <li><strong>Review &amp; quote.</strong> We confirm the model, scope the work, and send back a price and realistic lead time within one business day on most inquiries.</li>
+  <li><strong>Approve &amp; rebuild.</strong> We complete the repair, verify it back to spec, and return the machine ready to run.</li>
+</ol>
 
 ## Why Shops Trust Us
 
@@ -142,13 +136,8 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 <p>Hurco platforms have strong regional concentration in our service area:</p>
 <ul><li><a href="/service-area/iowa/">Iowa</a> — particularly <a href="/service-area/cedar-rapids-iowa/">Cedar Rapids</a> and <a href="/service-area/ames-iowa/">Ames</a></li><li><a href="/service-area/illinois/">Illinois</a> — particularly <a href="/service-area/naperville-illinois/">Naperville</a></li><li><a href="/service-area/wisconsin/">Wisconsin</a> — particularly <a href="/service-area/madison-wisconsin/">Madison</a></li></ul>
 
-## Related Hurco Services
 
-- [Hurco spindle repair](/spindle-grinding/hurco-spindle-repair/)
-- [Hurco CNC way covers](/way-covers/hurco-cnc-way-covers/)
+<h2 id="related-services">Related Hurco Services</h2>
+<ul class="related-grid"><li><a href="/spindle-grinding/hurco-spindle-repair/"><span>Hurco spindle repair</span></a></li><li><a href="/way-covers/hurco-cnc-way-covers/"><span>Hurco CNC way covers</span></a></li></ul>
+<p class="related-coverage">We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
 
-We serve shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.
-
-## Recent from the Blog
-
-*Rendered by the blog teaser component at build time.*
