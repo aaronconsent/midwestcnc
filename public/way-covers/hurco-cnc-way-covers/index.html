@@ -580,6 +580,19 @@ blockquote em { font-style: normal; color: var(--muted); }
    generators as <section class="brand-hero"> and wrapped in a
    page-section-hero band by wrap_into_sections.
    ================================================================= */
+/* Hero band overrides — the band itself is full-bleed and the inner
+   container drops its readable-column max-width so the hero image
+   actually fills the viewport instead of being boxed into 72ch. */
+.page-section-hero {
+  padding: 0;
+  background: var(--bg);
+}
+.page-section-hero > .section-inner {
+  max-width: none;
+  width: 100%;
+  padding: 0;
+}
+
 .brand-hero {
   position: relative;
   width: 100%;
