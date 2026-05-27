@@ -2900,9 +2900,10 @@ BRAND_HUB_DATA = {
 }
 
 
-# Spindle hub-and-spoke content for the 6 priority brands. Mirrors
-# BRAND_HUB_DATA structure but with spindle-specific content per spoke.
+# Spindle and way-covers hub-and-spoke content for the 6 priority brands.
+# Mirrors BRAND_HUB_DATA structure but service-specific.
 from _brand_spindle_data import SPINDLE_HUB_DATA
+from _brand_way_covers_data import WAY_COVERS_HUB_DATA
 
 
 def _models_for_spoke(spoke_url):
@@ -3154,6 +3155,197 @@ def _emit_brand_spindle_spokes(brand, brand_index):
             f.write(md)
         n += 1
     return n
+
+
+def _emit_brand_way_covers_spokes(brand, brand_index):
+    """Write all WAY-COVERS spoke markdown files for the given brand
+    (series + control) into src/content/way-covers/. Returns the count
+    written. Way-covers content lives in WAY_COVERS_HUB_DATA in
+    scripts/_brand_way_covers_data.py."""
+    hub_data = WAY_COVERS_HUB_DATA.get(brand["slug"])
+    if not hub_data:
+        return 0
+    out_dir = os.path.join(REPO, "src", "content", "way-covers")
+    name = brand["brand_display_name"]
+    hub_url = f"/way-covers/{brand['slug']}-cnc-way-covers/"
+    so = brand.get("services_offered", {})
+    n = 0
+    for key, spoke in hub_data.get("series_spokes", {}).items():
+        md = render_series_spoke(spoke, name, hub_url, brand["slug"], so)
+        path = os.path.join(out_dir, f"{spoke['slug']}.md")
+        with open(path, "w") as f:
+            f.write(md)
+        n += 1
+    for key, spoke in hub_data.get("control_spokes", {}).items():
+        md = render_control_spoke(spoke, name, hub_url)
+        path = os.path.join(out_dir, f"{spoke['slug']}.md")
+        with open(path, "w") as f:
+            f.write(md)
+        n += 1
+    return n
+
+
+def render_brand_way_covers_hub(brand, g, brand_index):
+    """Way-covers equivalent of render_brand_spindle_hub. Looks up
+    way-covers content in WAY_COVERS_HUB_DATA. Same template as the
+    spindle hub but with the way-covers hub URL, way-covers eyebrow / H1,
+    and way-covers-specific content. Fanuc uses the flipped Browse-by-
+    Series header ('Brands that ship Fanuc controls')."""
+    name = brand["brand_display_name"]
+    slug = brand["slug"]
+    hub_data = WAY_COVERS_HUB_DATA.get(slug, {})
+
+    h1_text = f"{name} CNC Way Cover Replacement"
+    eyebrow_text = f"{name} Way Covers"
+    canonical_path = f"/way-covers/{slug}-cnc-way-covers/"
+
+    is_draft = bool(brand.get("way_covers_verification_pending"))
+    verification_msg = None
+    if is_draft:
+        verification_msg = (
+            "Awaiting Ken confirmation that Midwest CNC makes way covers / "
+            "shielding for press brakes (Amada) and laser cutters (Trumpf) — "
+            "these aren't conventional CNC mill way covers."
+        )
+
+    meta_desc = (
+        f"Expert {name} way cover replacement across the Midwest. "
+        f"Browse by series, by control generation, or by service. "
+        f"Find your model with our machine lookup."
+    )
+
+    fm = front_matter(
+        brand,
+        title=f"{name} CNC Way Covers | Midwest CNC Services",
+        h1=h1_text,
+        meta_description=meta_desc,
+        service_type=f"{name} CNC Way Cover Manufacturing",
+        canonical_path=canonical_path,
+        crumb_middle=("Way Covers", "/way-covers/"),
+        crumb_leaf=f"{name} CNC Way Covers",
+        draft=is_draft,
+        verification_pending=verification_msg,
+    )
+
+    img_path, img_alt = hero_image_for(brand, "way_covers")
+    hero_lede = hub_data.get("hero_lede",
+        f"{name} way covers manufactured to spec across the Midwest. "
+        f"Find your model with the lookup below, or browse by series, "
+        f"control generation, or service type."
+    )
+    hero = build_brand_hero_html(
+        eyebrow_text, h1_text, html.escape(hero_lede), img_path, img_alt,
+    )
+    hero += machine_lookup_html()
+
+    series_lis = "".join(
+        f'<li><a href="{u}"><strong>{html.escape(label)}</strong> &mdash; {html.escape(desc)}</a></li>'
+        for label, u, desc in hub_data.get("browse_series", [])
+    )
+    control_lis = "".join(
+        f'<li><a href="{u}"><strong>{html.escape(label)}</strong> &mdash; {html.escape(desc)}</a></li>'
+        for label, u, desc in hub_data.get("browse_control", [])
+    )
+    service_lis = "".join(
+        f'<li><a href="{u}"><strong>{html.escape(label)}</strong> &mdash; {html.escape(desc)}</a></li>'
+        for label, u, desc in hub_data.get("browse_service", [])
+    )
+
+    faq_items = []
+    for q, a in hub_data.get("faq", []):
+        faq_items.append(
+            f'<details class="faq-item">\n'
+            f'  <summary>{html.escape(q)}</summary>\n'
+            f'  <div class="faq-answer"><p>{html.escape(a)}</p></div>\n'
+            f'</details>'
+        )
+    faq_schema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": q,
+             "acceptedAnswer": {"@type": "Answer", "text": a}}
+            for q, a in hub_data.get("faq", [])
+        ],
+    }
+    faq_schema_script = (
+        '\n<script type="application/ld+json">\n'
+        + json.dumps(faq_schema, indent=2, ensure_ascii=False)
+        + '\n</script>\n'
+    )
+
+    trust = trust_block(
+        g, brand["page_type"], brand_index,
+        "replacement way covers and the retrofit time",
+    )
+    cross_links = brand_cross_links_section(brand, {})
+    related = related_block_way_covers(brand)
+
+    series_header = hub_data.get("browse_series_header", "Browse by Series")
+    series_intro  = hub_data.get("browse_series_intro",
+        f"Pick the {name} platform you run for cover-style and dimensional notes specific to that series.")
+    browse_series_section = ""
+    if hub_data.get("browse_series"):
+        browse_series_section = (
+            f'<h2 id="browse-by-series">{html.escape(series_header)}</h2>\n'
+            f'<p>{html.escape(series_intro)}</p>\n'
+            f'<ul class="browse-list">{series_lis}</ul>\n'
+        )
+    control_intro = hub_data.get("browse_control_intro",
+        f"{name} way cover sourcing patterns differ by machine era. Pick yours for parts-availability and fabrication notes.")
+    browse_control_section = ""
+    if hub_data.get("browse_control"):
+        browse_control_section = (
+            f'<h2 id="browse-by-control">Browse by Era</h2>\n'
+            f'<p>{html.escape(control_intro)}</p>\n'
+            f'<ul class="browse-list">{control_lis}</ul>\n'
+        )
+    browse_service_section = ""
+    if hub_data.get("browse_service"):
+        browse_service_section = (
+            f'<h2 id="browse-by-service">Browse by Service</h2>\n'
+            f'<ul class="browse-list">{service_lis}</ul>\n'
+        )
+
+    what_brings_para = hub_data.get("what_brings",
+        f"Most {name} way cover orders fall into platform-specific patterns. We match the original cover or build to spec for the operating conditions.")
+    what_brings = (
+        f'<h2 id="what-brings-orders-in">What brings {name} way cover orders in</h2>\n'
+        f'<p>{what_brings_para}</p>\n'
+    )
+
+    how_para = hub_data.get("how_we_approach",
+        f"Our approach starts with confirming the platform, the cover style, and the dimensions. From there we route to OEM-spec or custom fabrication depending on parts availability and timing.")
+    how_we_approach = (
+        f'<h2 id="how-we-approach">How we approach {name} way cover orders</h2>\n'
+        f'<p>{how_para}</p>\n'
+    )
+
+    lead_time = (
+        f'<h2 id="lead-time-process">Lead Time &amp; Process</h2>\n'
+        f"<p>2 to 4 weeks on most way cover orders, depending on dimensions, material, and the configuration coordination needed. Complex multi-axis cover sets can run slightly longer. Our three-step workflow keeps it transparent:</p>\n"
+        f'<ol class="process-steps">\n'
+        f'  <li><strong>Send measurements or the original cover.</strong> Call <a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a> or use the quote form. Bring us dimensions, the original part, or way-system measurements.</li>\n'
+        f'  <li><strong>Quote the build.</strong> We confirm style (bellows, telescoping steel, roll-up), material, and lead time. Routing between OEM-spec and custom fabrication happens here.</li>\n'
+        f'  <li><strong>Fabricate &amp; ship.</strong> On approval we build to spec and ship anywhere in the continental US. Rush options are available.</li>\n'
+        f'</ol>\n'
+    )
+
+    faq_section = (
+        f'<h2 id="faq">Frequently Asked Questions</h2>\n'
+        f'<div class="faq-list">\n'
+        + "\n".join(faq_items) + "\n"
+        + '</div>\n'
+        + faq_schema_script
+    )
+
+    return (
+        fm + hero
+        + browse_series_section + browse_control_section + browse_service_section
+        + what_brings + how_we_approach
+        + lead_time + "\n" + trust + "\n" + faq_section + "\n"
+        + cross_links + "\n" + related + "\n"
+    )
 
 
 def render_brand_spindle_hub(brand, g, brands_by_slug, brand_index):
@@ -3645,10 +3837,17 @@ def render_machine_repair(brand, g, brand_index):
 
 def render_way_covers(brand, g, brand_index):
     """Brand × way-covers page. Lives at /way-covers/{slug}-cnc-way-covers/.
+
+    HUB-AND-SPOKE DISPATCH: brands with WAY_COVERS_HUB_DATA entries
+    (Mazak, Haas, DMG Mori, Doosan, Okuma, Fanuc) get the new hub-and-
+    spoke template; other 14 brands keep the existing template.
+
     Manufacturing service — process-uniform across brands, with Ken's model
     list as the brand-specific anchor. For Amada/Trumpf this renders as a
     draft pending Ken's verification (SAFEGUARD).
     Target 200–280 visible body words."""
+    if brand["slug"] in WAY_COVERS_HUB_DATA:
+        return render_brand_way_covers_hub(brand, g, brand_index)
     name = brand["brand_display_name"]
     slug = brand["slug"]
     ki = brand["ken_input"]
@@ -3836,6 +4035,13 @@ def main():
             written.append(("way_covers", b["slug"], path,
                              _word_count(md),
                              bool(b.get("way_covers_verification_pending"))))
+
+            # --- Way-covers hub-and-spoke spokes: emit for any brand
+            # with WAY_COVERS_HUB_DATA entry.
+            if b["slug"] in WAY_COVERS_HUB_DATA:
+                n_wc_spokes = _emit_brand_way_covers_spokes(b, bi)
+                written.append((f"{b['slug']}_way_covers_spokes", b["slug"], OUTDIR_COVERS,
+                                n_wc_spokes * 500, False))
 
     n_redirects = write_redirects(brands, os.path.join(REPO, "public", "_redirects"))
 
