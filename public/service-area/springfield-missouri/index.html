@@ -2038,20 +2038,52 @@ body.form-submitted .quote-helpers { display: none; }
 <article>
 <section class="page-section page-section-hero">
   <div class="section-inner">
-<section class="brand-hero">
-<img class="brand-hero-bg" src="/assets/images/general/missouri.png" alt="Springfield, Missouri CNC service coverage" loading="eager">
-  <div class="brand-hero-overlay" aria-hidden="true"></div>
-  <div class="brand-hero-content">
+<section class="home-hero">
+  <video class="home-hero-video"
+         autoplay muted loop playsinline
+         preload="auto"
+         poster="/assets/images/general/midwest-cnc-highway-shot.webp"
+         aria-hidden="true">
+    <source src="/assets/images/general/midwest-cnc-bg-fade.mp4" type="video/mp4">
+  </video>
+  <div class="home-hero-overlay" aria-hidden="true"></div>
+  <div class="home-hero-content">
     <p class="eyebrow">Springfield, Missouri</p>
     <h1>CNC Service for Springfield Manufacturers</h1>
-    <p>Our Waterloo, IA facility sits 462 miles north of Springfield — about 8 hours by truck on the road, drivable for major jobs by arrangement; routine spindle and way-cover work ships in via standard freight. We work with Springfield shops doing supply-chain machining for healthcare and manufacturing, plus in-house tooling work for CoxHealth and Mercy Health System. Three lines of work for these shops: CNC machine repair, spindle rebuilds and grinding, and replacement way-cover manufacturing. We diagnose on-site where the work warrants it; the rebuild bench is in Waterloo.</p>
+    <p class="lede">Our Waterloo, IA facility sits 462 miles north of Springfield — about 8 hours by truck on the road, drivable for major jobs by arrangement; routine spindle and way-cover work ships in via standard freight. We work with Springfield shops doing supply-chain machining for healthcare and manufacturing, plus in-house tooling work for CoxHealth and Mercy Health System. Three lines of work for these shops: CNC machine repair, spindle rebuilds and grinding, and replacement way-cover manufacturing. We diagnose on-site where the work warrants it; the rebuild bench is in Waterloo.</p>
     <div class="cta-row">
-      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-button" href="/get-a-quote/">Get a Quote</a>
       <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
     </div>
   </div>
 </section>
-
+<script>
+(function () {
+  var video = document.querySelector('.home-hero-video');
+  if (!video) return;
+  var FADE = 0.6;  // seconds at each end of the clip
+  function setOpacity() {
+    var t = video.currentTime;
+    var d = video.duration;
+    if (!d || !isFinite(d)) { video.style.opacity = '1'; return; }
+    var op;
+    if (t < FADE)              op = t / FADE;
+    else if (t > d - FADE)     op = (d - t) / FADE;
+    else                       op = 1;
+    if (op < 0) op = 0; else if (op > 1) op = 1;
+    video.style.opacity = String(op);
+  }
+  function tick() {
+    setOpacity();
+    requestAnimationFrame(tick);
+  }
+  // Kick off — autoplay attribute should start it, but defensively
+  // call play() in case the browser deferred it (Safari sometimes does).
+  var p = video.play();
+  if (p && typeof p.catch === 'function') p.catch(function () { /* autoplay blocked; ignore */ });
+  requestAnimationFrame(tick);
+})();
+</script>
 <div class="coverage-map coverage-map--city"
      data-coords='[37.21528, -93.29833]'
      data-city="Springfield, Missouri"

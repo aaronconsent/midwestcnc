@@ -2009,20 +2009,52 @@ body.form-submitted .quote-helpers { display: none; }
 <article>
 <section class="page-section page-section-hero">
   <div class="section-inner">
-<section class="brand-hero">
-<img class="brand-hero-bg" src="/assets/images/general/texas.png" alt="Texas manufacturing landscape" loading="eager">
-  <div class="brand-hero-overlay" aria-hidden="true"></div>
-  <div class="brand-hero-content">
+<section class="home-hero">
+  <video class="home-hero-video"
+         autoplay muted loop playsinline
+         preload="auto"
+         poster="/assets/images/general/midwest-cnc-highway-shot.webp"
+         aria-hidden="true">
+    <source src="/assets/images/general/midwest-cnc-bg-fade.mp4" type="video/mp4">
+  </video>
+  <div class="home-hero-overlay" aria-hidden="true"></div>
+  <div class="home-hero-content">
     <p class="eyebrow">Texas Service Coverage</p>
     <h1>Texas CNC Service &amp; Way Cover Shipping</h1>
-    <p>We work shops across Texas from our Waterloo, Iowa location. Eleven hundred miles from Waterloo to the Texas markets — this is the long-haul state. Way covers ship anywhere in the continental US; spindle rebuilds ship in and out of our Waterloo shop. Field service is available for major jobs by arrangement, with travel scoped before scheduling. The economics work for shops where the precision and brand-specific expertise justify the freight.</p>
+    <p class="lede">We work shops across Texas from our Waterloo, Iowa location. Eleven hundred miles from Waterloo to the Texas markets — this is the long-haul state. Way covers ship anywhere in the continental US; spindle rebuilds ship in and out of our Waterloo shop. Field service is available for major jobs by arrangement, with travel scoped before scheduling. The economics work for shops where the precision and brand-specific expertise justify the freight.</p>
     <div class="cta-row">
-      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-button" href="/get-a-quote/">Get a Quote</a>
       <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
     </div>
   </div>
 </section>
-
+<script>
+(function () {
+  var video = document.querySelector('.home-hero-video');
+  if (!video) return;
+  var FADE = 0.6;  // seconds at each end of the clip
+  function setOpacity() {
+    var t = video.currentTime;
+    var d = video.duration;
+    if (!d || !isFinite(d)) { video.style.opacity = '1'; return; }
+    var op;
+    if (t < FADE)              op = t / FADE;
+    else if (t > d - FADE)     op = (d - t) / FADE;
+    else                       op = 1;
+    if (op < 0) op = 0; else if (op > 1) op = 1;
+    video.style.opacity = String(op);
+  }
+  function tick() {
+    setOpacity();
+    requestAnimationFrame(tick);
+  }
+  // Kick off — autoplay attribute should start it, but defensively
+  // call play() in case the browser deferred it (Safari sometimes does).
+  var p = video.play();
+  if (p && typeof p.catch === 'function') p.catch(function () { /* autoplay blocked; ignore */ });
+  requestAnimationFrame(tick);
+})();
+</script>
 
 <div class="machine-lookup" id="machine-lookup">
   <label for="machine-lookup-input" class="machine-lookup-label">Find your machine</label>

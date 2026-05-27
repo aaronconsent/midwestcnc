@@ -2038,20 +2038,52 @@ body.form-submitted .quote-helpers { display: none; }
 <article>
 <section class="page-section page-section-hero">
   <div class="section-inner">
-<section class="brand-hero">
-<img class="brand-hero-bg" src="/assets/images/general/minnesota.png" alt="Duluth, Minnesota CNC service coverage" loading="eager">
-  <div class="brand-hero-overlay" aria-hidden="true"></div>
-  <div class="brand-hero-content">
+<section class="home-hero">
+  <video class="home-hero-video"
+         autoplay muted loop playsinline
+         preload="auto"
+         poster="/assets/images/general/midwest-cnc-highway-shot.webp"
+         aria-hidden="true">
+    <source src="/assets/images/general/midwest-cnc-bg-fade.mp4" type="video/mp4">
+  </video>
+  <div class="home-hero-overlay" aria-hidden="true"></div>
+  <div class="home-hero-content">
     <p class="eyebrow">Duluth, Minnesota</p>
     <h1>Duluth CNC Repair, Spindle Service &amp; Way Covers</h1>
-    <p>From our Waterloo location, Duluth is 350 miles north — roughly about 6 hours by truck, within practical field-service reach of our shop — drivable for substantial jobs. In Duluth, we serve shops doing supply-chain machining for port shipping and healthcare, plus in-house tooling work for Essentia Health and St. Luke's Hospital. Our service mix covers CNC machine repair, spindle rebuild and regrind work, and replacement way covers built to spec. Diagnostics on-site, bench rebuilds in Waterloo.</p>
+    <p class="lede">From our Waterloo location, Duluth is 350 miles north — roughly about 6 hours by truck, within practical field-service reach of our shop — drivable for substantial jobs. In Duluth, we serve shops doing supply-chain machining for port shipping and healthcare, plus in-house tooling work for Essentia Health and St. Luke&#x27;s Hospital. Our service mix covers CNC machine repair, spindle rebuild and regrind work, and replacement way covers built to spec. Diagnostics on-site, bench rebuilds in Waterloo.</p>
     <div class="cta-row">
-      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-button" href="/get-a-quote/">Get a Quote</a>
       <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
     </div>
   </div>
 </section>
-
+<script>
+(function () {
+  var video = document.querySelector('.home-hero-video');
+  if (!video) return;
+  var FADE = 0.6;  // seconds at each end of the clip
+  function setOpacity() {
+    var t = video.currentTime;
+    var d = video.duration;
+    if (!d || !isFinite(d)) { video.style.opacity = '1'; return; }
+    var op;
+    if (t < FADE)              op = t / FADE;
+    else if (t > d - FADE)     op = (d - t) / FADE;
+    else                       op = 1;
+    if (op < 0) op = 0; else if (op > 1) op = 1;
+    video.style.opacity = String(op);
+  }
+  function tick() {
+    setOpacity();
+    requestAnimationFrame(tick);
+  }
+  // Kick off — autoplay attribute should start it, but defensively
+  // call play() in case the browser deferred it (Safari sometimes does).
+  var p = video.play();
+  if (p && typeof p.catch === 'function') p.catch(function () { /* autoplay blocked; ignore */ });
+  requestAnimationFrame(tick);
+})();
+</script>
 <div class="coverage-map coverage-map--city"
      data-coords='[46.7833, -92.1066]'
      data-city="Duluth, Minnesota"

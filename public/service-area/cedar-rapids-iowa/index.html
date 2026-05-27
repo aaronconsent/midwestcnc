@@ -2038,20 +2038,52 @@ body.form-submitted .quote-helpers { display: none; }
 <article>
 <section class="page-section page-section-hero">
   <div class="section-inner">
-<section class="brand-hero">
-<img class="brand-hero-bg" src="/assets/images/general/image-of-cnc-machine.png" alt="Cedar Rapids, Iowa CNC service coverage" loading="eager">
-  <div class="brand-hero-overlay" aria-hidden="true"></div>
-  <div class="brand-hero-content">
+<section class="home-hero">
+  <video class="home-hero-video"
+         autoplay muted loop playsinline
+         preload="auto"
+         poster="/assets/images/general/midwest-cnc-highway-shot.webp"
+         aria-hidden="true">
+    <source src="/assets/images/general/midwest-cnc-bg-fade.mp4" type="video/mp4">
+  </video>
+  <div class="home-hero-overlay" aria-hidden="true"></div>
+  <div class="home-hero-content">
     <p class="eyebrow">Cedar Rapids, Iowa</p>
     <h1>CNC Repair &amp; Service in Cedar Rapids, Iowa</h1>
-    <p>Cedar Rapids sits 65 miles southeast of our Waterloo, IA shop, about 1 hour by truck — within Iowa's home-market field-service area — drivable for diagnostics, with bench rebuilds back at the Cedar Valley shop. Our Cedar Rapids customer base runs shops doing supply-chain machining for grain processing and aerospace manufacturing, plus in-house tooling work for Collins Aerospace and Aegon USA. The work splits across machine repair, spindle rebuilds and grinding, and custom way-cover manufacturing. Diagnostic visits go on-site; the rebuild and fabrication work happens back at our Iowa shop.</p>
+    <p class="lede">Cedar Rapids sits 65 miles southeast of our Waterloo, IA shop, about 1 hour by truck — within Iowa&#x27;s home-market field-service area — drivable for diagnostics, with bench rebuilds back at the Cedar Valley shop. Our Cedar Rapids customer base runs shops doing supply-chain machining for grain processing and aerospace manufacturing, plus in-house tooling work for Collins Aerospace and Aegon USA. The work splits across machine repair, spindle rebuilds and grinding, and custom way-cover manufacturing. Diagnostic visits go on-site; the rebuild and fabrication work happens back at our Iowa shop.</p>
     <div class="cta-row">
-      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-button" href="/get-a-quote/">Get a Quote</a>
       <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
     </div>
   </div>
 </section>
-
+<script>
+(function () {
+  var video = document.querySelector('.home-hero-video');
+  if (!video) return;
+  var FADE = 0.6;  // seconds at each end of the clip
+  function setOpacity() {
+    var t = video.currentTime;
+    var d = video.duration;
+    if (!d || !isFinite(d)) { video.style.opacity = '1'; return; }
+    var op;
+    if (t < FADE)              op = t / FADE;
+    else if (t > d - FADE)     op = (d - t) / FADE;
+    else                       op = 1;
+    if (op < 0) op = 0; else if (op > 1) op = 1;
+    video.style.opacity = String(op);
+  }
+  function tick() {
+    setOpacity();
+    requestAnimationFrame(tick);
+  }
+  // Kick off — autoplay attribute should start it, but defensively
+  // call play() in case the browser deferred it (Safari sometimes does).
+  var p = video.play();
+  if (p && typeof p.catch === 'function') p.catch(function () { /* autoplay blocked; ignore */ });
+  requestAnimationFrame(tick);
+})();
+</script>
 <div class="coverage-map coverage-map--city"
      data-coords='[41.96419, -91.67917]'
      data-city="Cedar Rapids, Iowa"

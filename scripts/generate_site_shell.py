@@ -596,12 +596,69 @@ SITE_FOOTER = """<footer class="site-footer">
 </footer>"""
 
 from _coverage_map_loader import COVERAGE_MAP_LOADER as _COVERAGE_MAP_LOADER
+from _hero_video_script import HERO_VIDEO_SCRIPT as _HERO_VIDEO_SCRIPT
 
 MOBILE_CTA = """<div class="mobile-cta-bar" role="region" aria-label="Quick contact">
   <a class="mcta-phone" href="tel:+13196104341">☎ 319-610-4341</a>
   <a class="mcta-quote" href="/get-a-quote/">Get a Quote</a>
 </div>
 """ + _COVERAGE_MAP_LOADER
+
+
+# ---------- Video hero helper (reused by homepage + service-area pages) ----------
+
+def build_video_hero_html(eyebrow_text, h1_html, lede_html,
+                          trust_line_html=None, cta_href="/get-a-quote/",
+                          cta_label="Get a Quote"):
+    """Reusable .home-hero video-background hero used by the homepage
+    and the service-area pages (hub, state, city). Same visual treatment
+    everywhere: midwest-cnc-bg-fade.mp4 background, dark gradient overlay,
+    centered white text, frosted-glass CTAs.
+
+    Args:
+        eyebrow_text:  plain string — will be HTML-escaped.
+        h1_html:       HTML fragment for the H1 (caller is responsible for
+                       escaping; may include entities like &nbsp;).
+        lede_html:     HTML fragment for the lede paragraph (caller-escaped).
+        trust_line_html: optional HTML fragment placed below the CTAs in
+                       a .trust-line paragraph. Used on the homepage.
+        cta_href:      primary CTA href. Defaults to /get-a-quote/ since
+                       service-area pages have no inline #quote form; brand
+                       pages (which DO have one) keep using build_brand_hero_html
+                       with its own #quote anchor.
+        cta_label:     primary CTA label.
+
+    Returns the <section> + the inline fade <script> as a single string.
+    The script is idempotent — safe to include on any page; it bails if
+    no .home-hero-video element is found.
+    """
+    trust_html = (
+        f'    <p class="trust-line">{trust_line_html}</p>\n'
+        if trust_line_html else ""
+    )
+    return (
+        f'<section class="home-hero">\n'
+        f'  <video class="home-hero-video"\n'
+        f'         autoplay muted loop playsinline\n'
+        f'         preload="auto"\n'
+        f'         poster="/assets/images/general/midwest-cnc-highway-shot.webp"\n'
+        f'         aria-hidden="true">\n'
+        f'    <source src="/assets/images/general/midwest-cnc-bg-fade.mp4" type="video/mp4">\n'
+        f'  </video>\n'
+        f'  <div class="home-hero-overlay" aria-hidden="true"></div>\n'
+        f'  <div class="home-hero-content">\n'
+        f'    <p class="eyebrow">{html.escape(eyebrow_text)}</p>\n'
+        f'    <h1>{h1_html}</h1>\n'
+        f'    <p class="lede">{lede_html}</p>\n'
+        f'    <div class="cta-row">\n'
+        f'      <a class="cta-button" href="{html.escape(cta_href)}">{html.escape(cta_label)}</a>\n'
+        f'      <a class="cta-phone" href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>\n'
+        f'    </div>\n'
+        f'{trust_html}'
+        f'  </div>\n'
+        f'</section>\n'
+        f'{_HERO_VIDEO_SCRIPT}\n'
+    )
 
 
 def breadcrumbs_html(items):
@@ -801,54 +858,21 @@ def homepage_body():
 
     # Single-column hero with background video. Opacity is driven by
     # JS from the video's actual currentTime — the fade is locked to
-    # the video clock, never drifts against a fixed CSS keyframe.
-    hero_video_script = """<script>
-(function () {
-  var video = document.querySelector('.home-hero-video');
-  if (!video) return;
-  var FADE = 0.6;  // seconds at each end of the clip
-  function setOpacity() {
-    var t = video.currentTime;
-    var d = video.duration;
-    if (!d || !isFinite(d)) { video.style.opacity = '1'; return; }
-    var op;
-    if (t < FADE)              op = t / FADE;
-    else if (t > d - FADE)     op = (d - t) / FADE;
-    else                       op = 1;
-    if (op < 0) op = 0; else if (op > 1) op = 1;
-    video.style.opacity = String(op);
-  }
-  function tick() {
-    setOpacity();
-    requestAnimationFrame(tick);
-  }
-  // Kick off — autoplay attribute should start it, but defensively
-  // call play() in case the browser deferred it (Safari sometimes does).
-  var p = video.play();
-  if (p && typeof p.catch === 'function') p.catch(function () { /* autoplay blocked; ignore */ });
-  requestAnimationFrame(tick);
-})();
-</script>"""
-
-    hero = f"""<section class="home-hero">
-  <video class="home-hero-video"
-         autoplay muted loop playsinline
-         preload="auto"
-         poster="/assets/images/general/midwest-cnc-highway-shot.webp"
-         aria-hidden="true">
-    <source src="/assets/images/general/midwest-cnc-bg-fade.mp4" type="video/mp4">
-  </video>
-  <div class="home-hero-overlay" aria-hidden="true"></div>
-  <div class="home-hero-content">
-    <p class="eyebrow">Stop Losing Money</p>
-    <h1>When Your Machine Stops, We&nbsp;Start</h1>
-    <p class="lede">CNC repair, spindle work, and replacement way covers across the U.S. Midwest. When a machine goes down, our experienced field technicians come out to diagnose and get you back to cutting. From spindle rebuilds and machine repair to custom way covers we ship anywhere, the goal is the same: keep your shop producing.</p>
-    {hero_cta_html()}
-    <p class="trust-line">Serving shops in {states_inline}. Based in Waterloo, Iowa.</p>
-  </div>
-</section>
-{hero_video_script}
-"""
+    # the video clock, never drifts against a fixed CSS keyframe. The
+    # markup + script are emitted by build_video_hero_html() so the
+    # same hero treatment can be reused on every service-area page.
+    hero = build_video_hero_html(
+        eyebrow_text="Stop Losing Money",
+        h1_html="When Your Machine Stops, We&nbsp;Start",
+        lede_html=(
+            "CNC repair, spindle work, and replacement way covers across the U.S. "
+            "Midwest. When a machine goes down, our experienced field technicians "
+            "come out to diagnose and get you back to cutting. From spindle "
+            "rebuilds and machine repair to custom way covers we ship anywhere, "
+            "the goal is the same: keep your shop producing."
+        ),
+        trust_line_html=f"Serving shops in {html.escape(states_inline)}. Based in Waterloo, Iowa.",
+    )
 
     # Service tiles
     tiles_html = []
@@ -1345,21 +1369,18 @@ def service_area_hub_body():
 
     body = []
 
-    # Brand-hero (image background, dark overlay, centered text) — same
-    # treatment as the brand pages.
-    hero_img = "/assets/images/general/home-image.png"
-    hero_alt = "Midwest CNC Services field service van and CNC machine on flatbed trailer"
+    # Video hero — same midwest-cnc-bg-fade.mp4 background used on the
+    # homepage. Same visual language carries across the entire service-area
+    # section (hub, state pages, city pages).
     hero_lede = (
         "We work with production shops, job shops, and OEM customers across seven "
         "states from our Waterloo, Iowa location. Field service where it can save a "
         "teardown; bench work and shipped builds when that's what the repair calls for."
     )
-    body.append(gbp.build_brand_hero_html(
-        "Service Areas",
-        "Midwest CNC Service Coverage",
-        hero_lede,
-        hero_img,
-        hero_alt,
+    body.append(build_video_hero_html(
+        eyebrow_text="Service Areas",
+        h1_html="Midwest CNC Service Coverage",
+        lede_html=html.escape(hero_lede),
     ))
     body.append(gbp.machine_lookup_html())
 
