@@ -47,7 +47,7 @@ WEB3FORMS_KEY = "14ef8440-a42b-4dd3-b416-30d9d6b3e906"  # legacy — no longer u
 # For local-build testing without a real key, leave the test key
 # below. Cloudflare's documented test key always passes verification
 # in development and always fails in production.
-TURNSTILE_SITE_KEY = "1x00000000000000000000AA"
+TURNSTILE_SITE_KEY = "0x4AAAAAADXY93Hw7DfP3PQJ"
 
 # Service-area state list (the 7 states Ken confirmed)
 STATE_TILES = [
@@ -563,6 +563,401 @@ SITE_SHELL_CSS = """
 .form-error-banner p { margin: 0; }
 .form-error-banner[hidden] { display: none; }
 
+/* =================================================================
+   Get-a-Quote page — modern conversion-focused redesign.
+   See quote_body() in this file for the matching HTML.
+   ================================================================= */
+
+/* Quote hero — distinct from brand-hero / video-hero. Calmer
+   editorial band with a heavy phone CTA. */
+.quote-hero {
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(184, 52, 26, 0.06), transparent 60%),
+    var(--surface-3);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(2.5rem, 6vw, 4rem) var(--s-5) clamp(2rem, 5vw, 3rem);
+  margin: 0 0 var(--s-5) 0;
+}
+.quote-hero-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.quote-hero-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  background: rgba(184, 52, 26, 0.10);
+  border: 1px solid rgba(184, 52, 26, 0.20);
+  border-radius: var(--r-pill);
+  padding: 0.32rem 0.78rem;
+  margin: 0 0 var(--s-4) 0;
+}
+.quote-hero h1 {
+  font-size: clamp(1.85rem, 4vw, 2.8rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  margin: 0 0 var(--s-3) 0;
+  max-width: 22ch;
+  color: var(--fg);
+}
+.quote-hero h1::before { display: none; }
+.quote-hero-lede {
+  font-size: clamp(1.02rem, 1.2vw, 1.15rem);
+  line-height: 1.55;
+  color: var(--fg);
+  margin: 0 0 var(--s-5) 0;
+  max-width: 60ch;
+}
+
+/* CTA row in the hero — phone is the primary visual element; the
+   "or" + form-jump is secondary. */
+.quote-hero-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.quote-hero-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  background: var(--accent);
+  color: #fff !important;
+  text-decoration: none !important;
+  padding: 0.95rem 1.4rem;
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+.quote-hero-phone:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--sh-3);
+}
+.quote-hero-phone:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
+.quote-hero-phone-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.quote-hero-phone-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
+.quote-hero-phone-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.88;
+}
+.quote-hero-phone-number {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.quote-hero-or {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.quote-hero-jumplink {
+  color: var(--accent-dark);
+  text-decoration: underline;
+  text-decoration-color: rgba(140, 37, 16, 0.45);
+  text-underline-offset: 3px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: text-decoration-color var(--t-fast);
+}
+.quote-hero-jumplink:hover { text-decoration-color: var(--accent-dark); }
+.quote-hero-jumplink:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Two-column layout — form on the left, supporting cards on the right. */
+.quote-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: var(--s-6);
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: 0 var(--s-5) var(--s-6);
+  align-items: start;
+}
+
+/* Form column — the form itself sits on a card background to ground it. */
+.quote-form-modern {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  padding: clamp(var(--s-4), 3vw, var(--s-6));
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+
+/* Field-section grouping — uses <fieldset> for semantics; no
+   visible fieldset border. The <legend> becomes a section title. */
+.form-section {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.form-section-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-dark);
+  padding: 0;
+  margin: 0 0 var(--s-1) 0;
+}
+
+/* Two-column field rows on desktop, stacked on mobile. */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-3);
+}
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* Reuse the existing .quote-form input/textarea/select styles but
+   tighten label rhythm slightly for the modern layout. */
+.quote-form-modern .field { display: flex; flex-direction: column; gap: 0.35rem; }
+.quote-form-modern .field-label { font-weight: 600; font-size: 0.92rem; color: var(--fg); }
+.quote-form-modern .field-hint {
+  margin: 0.3rem 0 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* Service-options — radio buttons styled as selectable cards. */
+.service-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--s-2);
+}
+.service-option {
+  display: flex !important;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 0.9rem;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-2);
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast), box-shadow var(--t-fast);
+  background: var(--surface);
+  font-weight: 500;
+}
+.service-option:hover {
+  border-color: var(--muted);
+  background: var(--surface-2);
+}
+.service-option:has(input[type="radio"]:checked) {
+  border-color: var(--accent);
+  background: rgba(184, 52, 26, 0.06);
+  box-shadow: 0 0 0 1px var(--accent) inset;
+}
+.service-option:has(input[type="radio"]:checked) .service-option-label {
+  color: var(--accent-dark);
+  font-weight: 700;
+}
+.service-option input[type="radio"]:focus-visible + .service-option-label {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Submit tail — Turnstile + button + note grouped tightly. */
+.quote-form-tail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  align-items: stretch;
+  border-top: 1px solid var(--line);
+  padding-top: var(--s-4);
+  margin-top: var(--s-2);
+}
+.quote-turnstile {
+  display: flex;
+  justify-content: center;
+}
+.quote-submit {
+  width: 100%;
+  font: inherit;
+  background: var(--accent);
+  color: #fff;
+  padding: 1.05rem 1.6rem;
+  border: 0;
+  border-radius: var(--r-2);
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  align-self: stretch;
+  box-shadow: var(--sh-2);
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+.quote-submit:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--sh-3); }
+.quote-submit:active { transform: translateY(0); box-shadow: var(--sh-1); }
+.quote-submit:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
+.quote-submit-note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Sidebar — stack of supporting cards. */
+.quote-layout-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.quote-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  padding: var(--s-5);
+  box-shadow: var(--sh-1);
+}
+.quote-card h3 {
+  margin: 0 0 var(--s-3) 0;
+  font-size: 1.02rem;
+  color: var(--fg);
+}
+.quote-card h3::before { display: none; }
+.quote-card p { margin: 0 0 var(--s-2) 0; color: var(--fg); font-size: 0.95rem; line-height: 1.55; }
+.quote-card p:last-child { margin-bottom: 0; }
+.quote-card-list {
+  margin: 0;
+  padding: 0 0 0 1.1rem;
+  font-size: 0.95rem;
+  color: var(--fg);
+  line-height: 1.55;
+}
+.quote-card-list li { margin: 0.4rem 0; }
+
+/* Timeline inside "What happens next" card. */
+.quote-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.quote-timeline li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--line);
+}
+.quote-timeline li:last-child { border-bottom: 0; padding-bottom: 0; }
+.quote-timeline li:first-child { padding-top: 0; }
+.quote-timeline-step {
+  width: 30px;
+  height: 30px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.quote-timeline strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--fg);
+  margin-bottom: 0.15rem;
+}
+.quote-timeline p { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+
+/* "Or just call" card — visually emphasized so it pulls the
+   high-intent visitor's eye. */
+.quote-card-call {
+  background: var(--surface-3);
+  border-color: rgba(184, 52, 26, 0.22);
+  border-left: 4px solid var(--accent);
+}
+.quote-card-phone {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent-dark);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  margin: var(--s-2) 0 var(--s-3) 0;
+  padding: 0.55rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--t-fast), color var(--t-fast);
+}
+.quote-card-phone:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.quote-card-phone:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.quote-card-meta {
+  font-size: 0.85rem !important;
+  color: var(--muted) !important;
+  margin: 0 !important;
+}
+
+/* Below 960px — collapse to single column. Sidebar moves below form.
+   The phone CTA stays in the hero so it is always reachable. */
+@media (max-width: 960px) {
+  .quote-layout {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+  }
+}
+
+@media (max-width: 600px) {
+  .quote-hero { padding: var(--s-5) var(--s-4) var(--s-4); }
+  .quote-hero-inner { text-align: left; align-items: flex-start; }
+  .quote-hero-cta { width: 100%; flex-direction: column; align-items: stretch; gap: var(--s-3); }
+  .quote-hero-or { display: none; }
+  .quote-hero-phone { justify-content: center; }
+  .quote-hero-jumplink { text-align: center; }
+  .quote-form-modern { padding: var(--s-4); }
+  .service-options { grid-template-columns: 1fr 1fr; }
+}
+
+/* Reduced-motion: drop the lift effect on buttons/links. */
+@media (prefers-reduced-motion: reduce) {
+  .quote-hero-phone,
+  .quote-submit,
+  .quote-card-phone { transition: none !important; }
+  .quote-hero-phone:hover,
+  .quote-submit:hover { transform: none !important; }
+}
+
 .success-message {
   display: none;
   padding: var(--s-5);
@@ -1052,7 +1447,9 @@ def quote_body(brands):
       - sends a notification email via Resend
       - redirects to /get-a-quote/thank-you/ on success
 
-    See docs/forms-setup.md for the secret-config steps."""
+    Layout: prominent hero with split phone CTA, two-column form +
+    sidebar on desktop, single column on mobile/tablet. See
+    docs/forms-setup.md for the secret-config steps."""
     # Brand dropdown options, alphabetical
     options = sorted(b["brand_display_name"] for b in brands)
     option_tags = ['<option value="">Select a brand…</option>']
@@ -1061,91 +1458,171 @@ def quote_body(brands):
     option_tags.append('<option value="Other">Other</option>')
     options_html = "\n              ".join(option_tags)
 
-    body = f'''<h1>Get a Quote</h1>
-<p>Tell us about your machine and we'll get back to you with pricing and lead time. Most quotes go out within one business day.</p>
+    body = f'''<section class="quote-hero">
+  <div class="quote-hero-inner">
+    <p class="quote-hero-eyebrow">Quote Request</p>
+    <h1>Tell us about the machine.<br>We'll get back to you fast.</h1>
+    <p class="quote-hero-lede">Most quote requests go out within one business day. If your machine is down right now, the phone is faster than email.</p>
+    <div class="quote-hero-cta">
+      <a class="quote-hero-phone" href="tel:{PHONE_TEL}">
+        <span class="quote-hero-phone-icon" aria-hidden="true">&#9742;</span>
+        <span class="quote-hero-phone-text">
+          <span class="quote-hero-phone-label">Call now</span>
+          <span class="quote-hero-phone-number">{PHONE_DISPLAY}</span>
+        </span>
+      </a>
+      <span class="quote-hero-or" aria-hidden="true">or</span>
+      <a class="quote-hero-jumplink" href="#quote">Fill the form below &darr;</a>
+    </div>
+  </div>
+</section>
 
 <div class="form-error-banner" id="error" hidden>
   <p>We could not submit your request. <span id="error-message"></span></p>
 </div>
 
-<div class="quote-helpers">
-  <h2 id="what-well-need">What we'll need from you</h2>
-  <p>The faster we can give you a real number, the faster you're back to cutting. Helpful to have ready:</p>
-  <ul>
-    <li>Machine make, model, and approximate age</li>
-    <li>Symptoms or error codes you're seeing</li>
-    <li>How long the machine has been down (if it's down)</li>
-    <li>Photos of the spindle, control screen, or affected area if relevant</li>
-  </ul>
-</div>
+<section class="quote-layout">
 
-<form class="quote-form" id="quote" action="/api/quote" method="POST">
-  <div class="field">
-    <label class="required" for="name">Your name</label>
-    <input id="name" name="name" type="text" required autocomplete="name">
-  </div>
+  <div class="quote-layout-form">
+    <form class="quote-form quote-form-modern" id="quote" action="/api/quote" method="POST">
 
-  <div class="field">
-    <label class="required" for="company">Company</label>
-    <input id="company" name="company" type="text" required autocomplete="organization">
-  </div>
+      <fieldset class="form-section">
+        <legend class="form-section-title">About you</legend>
+        <div class="form-row">
+          <div class="field">
+            <label class="required" for="name">Your name</label>
+            <input id="name" name="name" type="text" required autocomplete="name" placeholder="Jane Doe">
+          </div>
+          <div class="field">
+            <label class="required" for="company">Company</label>
+            <input id="company" name="company" type="text" required autocomplete="organization" placeholder="Acme Manufacturing">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label class="required" for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="319-555-1234">
+          </div>
+          <div class="field">
+            <label class="required" for="email">Email</label>
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="jane@acme.com">
+          </div>
+        </div>
+      </fieldset>
 
-  <div class="field">
-    <label class="required" for="phone">Phone</label>
-    <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="319-555-1234">
-  </div>
-
-  <div class="field">
-    <label class="required" for="email">Email</label>
-    <input id="email" name="email" type="email" required autocomplete="email">
-  </div>
-
-  <div class="field">
-    <label for="machine_brand">Machine brand</label>
-    <select id="machine_brand" name="machine_brand">
+      <fieldset class="form-section">
+        <legend class="form-section-title">About your machine</legend>
+        <div class="form-row">
+          <div class="field">
+            <label for="machine_brand">Brand</label>
+            <select id="machine_brand" name="machine_brand">
               {options_html}
-    </select>
+            </select>
+          </div>
+          <div class="field">
+            <label for="machine_model">Model</label>
+            <input id="machine_model" name="machine_model" type="text" placeholder="VF-3, Integrex i-200, Genos M460…">
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="field-label required">Service needed</span>
+          <div class="service-options">
+            <label class="service-option">
+              <input type="radio" name="service" value="Spindle" required>
+              <span class="service-option-label">Spindle work</span>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="service" value="Machine Repair">
+              <span class="service-option-label">Machine repair</span>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="service" value="Way Covers">
+              <span class="service-option-label">Way covers</span>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="service" value="Other">
+              <span class="service-option-label">Something else</span>
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend class="form-section-title">What's happening</legend>
+        <div class="field">
+          <label class="required" for="message">Describe the issue</label>
+          <textarea id="message" name="message" required rows="6" placeholder="What you are seeing or hearing, error codes, how long it has been happening, how urgent…"></textarea>
+          <p class="field-hint">The more detail, the faster we can quote it.</p>
+        </div>
+      </fieldset>
+
+      <!-- Honeypot — bots fill this; humans never see it. Server-side check. -->
+      <div class="honeypot" aria-hidden="true">
+        <label for="botcheck">Leave this field empty</label>
+        <input id="botcheck" type="checkbox" name="botcheck" value="" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="quote-form-tail">
+        <div class="quote-turnstile">
+          <div class="cf-turnstile" data-sitekey="{TURNSTILE_SITE_KEY}"></div>
+        </div>
+        <button type="submit" class="quote-submit">Send Quote Request</button>
+        <p class="quote-submit-note">We typically reply within one business day. No automated sales follow-ups.</p>
+      </div>
+
+    </form>
   </div>
 
-  <div class="field">
-    <label for="machine_model">Machine model</label>
-    <input id="machine_model" name="machine_model" type="text" placeholder="e.g. Integrex i-200, VF-3, Genos M460">
-  </div>
+  <aside class="quote-layout-sidebar" aria-label="What to expect">
 
-  <div class="field">
-    <span class="label required" style="font-weight:600;">Service needed</span>
-    <div class="radio-group">
-      <label><input type="radio" name="service" value="Spindle" required> Spindle work</label>
-      <label><input type="radio" name="service" value="Machine Repair"> Machine repair</label>
-      <label><input type="radio" name="service" value="Way Covers"> Way covers</label>
-      <label><input type="radio" name="service" value="Other"> Other</label>
+    <div class="quote-card">
+      <h3>What we'll need from you</h3>
+      <ul class="quote-card-list">
+        <li>Machine make, model, and approximate age</li>
+        <li>Symptoms or error codes you are seeing</li>
+        <li>How long the machine has been down (if it is down)</li>
+        <li>Photos of the spindle, control screen, or affected area if relevant</li>
+      </ul>
     </div>
-  </div>
 
-  <div class="field">
-    <label class="required" for="message">Describe the issue</label>
-    <textarea id="message" name="message" required placeholder="Symptoms, error codes, what changed, how urgent…"></textarea>
-  </div>
+    <div class="quote-card">
+      <h3>What happens next</h3>
+      <ol class="quote-timeline">
+        <li>
+          <span class="quote-timeline-step" aria-hidden="true">1</span>
+          <div>
+            <strong>Within one business day</strong>
+            <p>We read your message and reply. If we need more info, we ask.</p>
+          </div>
+        </li>
+        <li>
+          <span class="quote-timeline-step" aria-hidden="true">2</span>
+          <div>
+            <strong>Quote in hand</strong>
+            <p>Price, lead time, and the scope of work in plain English.</p>
+          </div>
+        </li>
+        <li>
+          <span class="quote-timeline-step" aria-hidden="true">3</span>
+          <div>
+            <strong>Schedule the work</strong>
+            <p>Bench rebuild in Waterloo or field service across our seven-state coverage area.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
 
-  <!-- Honeypot — leave blank, bots fill it in. Caught server-side. -->
-  <div class="honeypot" aria-hidden="true">
-    <label for="botcheck">Leave this field empty</label>
-    <input id="botcheck" type="checkbox" name="botcheck" value="" tabindex="-1" autocomplete="off">
-  </div>
+    <div class="quote-card quote-card-call">
+      <h3>Rather just call?</h3>
+      <p>If your machine is down right now, this is the faster path.</p>
+      <a class="quote-card-phone" href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>
+      <p class="quote-card-meta">Midwest CNC Services &middot; Waterloo, Iowa<br>
+      Serving Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas.</p>
+    </div>
 
-  <!-- Cloudflare Turnstile — invisible to most users, blocks bots. -->
-  <div class="field">
-    <div class="cf-turnstile" data-sitekey="{TURNSTILE_SITE_KEY}"></div>
-  </div>
-
-  <button type="submit">Send Quote Request</button>
-</form>
-
-<div class="alt-contact">
-  <h3>Rather call?</h3>
-  <p><a href="tel:{PHONE_TEL}"><strong>{PHONE_DISPLAY}</strong></a> — we'll talk through the machine and the symptoms.</p>
-  <p>Midwest CNC Services · Waterloo, IA</p>
-</div>
+  </aside>
+</section>
 
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
@@ -1156,7 +1633,7 @@ def quote_body(brands):
     if (!match) return;
     var code = decodeURIComponent(match[1]);
     var msg;
-    if (code === 'captcha-missing')      msg = 'Please complete the captcha check below the message field and try again.';
+    if (code === 'captcha-missing')      msg = 'Please complete the captcha check above the submit button and try again.';
     else if (code === 'captcha-failed')  msg = 'Captcha verification failed. Please refresh and try again.';
     else if (code === 'email-failed')    msg = 'We could not send your message right now. Please try again in a minute, or call us at {PHONE_DISPLAY}.';
     else if (code === 'bad-request')     msg = 'There was a problem with the submission. Please refresh and try again.';

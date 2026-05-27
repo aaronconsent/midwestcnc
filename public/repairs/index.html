@@ -2199,6 +2199,401 @@ section.insight-sources {
 .form-error-banner p { margin: 0; }
 .form-error-banner[hidden] { display: none; }
 
+/* =================================================================
+   Get-a-Quote page — modern conversion-focused redesign.
+   See quote_body() in this file for the matching HTML.
+   ================================================================= */
+
+/* Quote hero — distinct from brand-hero / video-hero. Calmer
+   editorial band with a heavy phone CTA. */
+.quote-hero {
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(184, 52, 26, 0.06), transparent 60%),
+    var(--surface-3);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(2.5rem, 6vw, 4rem) var(--s-5) clamp(2rem, 5vw, 3rem);
+  margin: 0 0 var(--s-5) 0;
+}
+.quote-hero-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.quote-hero-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  background: rgba(184, 52, 26, 0.10);
+  border: 1px solid rgba(184, 52, 26, 0.20);
+  border-radius: var(--r-pill);
+  padding: 0.32rem 0.78rem;
+  margin: 0 0 var(--s-4) 0;
+}
+.quote-hero h1 {
+  font-size: clamp(1.85rem, 4vw, 2.8rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  margin: 0 0 var(--s-3) 0;
+  max-width: 22ch;
+  color: var(--fg);
+}
+.quote-hero h1::before { display: none; }
+.quote-hero-lede {
+  font-size: clamp(1.02rem, 1.2vw, 1.15rem);
+  line-height: 1.55;
+  color: var(--fg);
+  margin: 0 0 var(--s-5) 0;
+  max-width: 60ch;
+}
+
+/* CTA row in the hero — phone is the primary visual element; the
+   "or" + form-jump is secondary. */
+.quote-hero-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.quote-hero-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  background: var(--accent);
+  color: #fff !important;
+  text-decoration: none !important;
+  padding: 0.95rem 1.4rem;
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+.quote-hero-phone:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--sh-3);
+}
+.quote-hero-phone:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
+.quote-hero-phone-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.quote-hero-phone-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
+.quote-hero-phone-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.88;
+}
+.quote-hero-phone-number {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.quote-hero-or {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.quote-hero-jumplink {
+  color: var(--accent-dark);
+  text-decoration: underline;
+  text-decoration-color: rgba(140, 37, 16, 0.45);
+  text-underline-offset: 3px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: text-decoration-color var(--t-fast);
+}
+.quote-hero-jumplink:hover { text-decoration-color: var(--accent-dark); }
+.quote-hero-jumplink:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Two-column layout — form on the left, supporting cards on the right. */
+.quote-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: var(--s-6);
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: 0 var(--s-5) var(--s-6);
+  align-items: start;
+}
+
+/* Form column — the form itself sits on a card background to ground it. */
+.quote-form-modern {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  padding: clamp(var(--s-4), 3vw, var(--s-6));
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+
+/* Field-section grouping — uses <fieldset> for semantics; no
+   visible fieldset border. The <legend> becomes a section title. */
+.form-section {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.form-section-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-dark);
+  padding: 0;
+  margin: 0 0 var(--s-1) 0;
+}
+
+/* Two-column field rows on desktop, stacked on mobile. */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-3);
+}
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* Reuse the existing .quote-form input/textarea/select styles but
+   tighten label rhythm slightly for the modern layout. */
+.quote-form-modern .field { display: flex; flex-direction: column; gap: 0.35rem; }
+.quote-form-modern .field-label { font-weight: 600; font-size: 0.92rem; color: var(--fg); }
+.quote-form-modern .field-hint {
+  margin: 0.3rem 0 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* Service-options — radio buttons styled as selectable cards. */
+.service-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--s-2);
+}
+.service-option {
+  display: flex !important;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 0.9rem;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-2);
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast), box-shadow var(--t-fast);
+  background: var(--surface);
+  font-weight: 500;
+}
+.service-option:hover {
+  border-color: var(--muted);
+  background: var(--surface-2);
+}
+.service-option:has(input[type="radio"]:checked) {
+  border-color: var(--accent);
+  background: rgba(184, 52, 26, 0.06);
+  box-shadow: 0 0 0 1px var(--accent) inset;
+}
+.service-option:has(input[type="radio"]:checked) .service-option-label {
+  color: var(--accent-dark);
+  font-weight: 700;
+}
+.service-option input[type="radio"]:focus-visible + .service-option-label {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Submit tail — Turnstile + button + note grouped tightly. */
+.quote-form-tail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  align-items: stretch;
+  border-top: 1px solid var(--line);
+  padding-top: var(--s-4);
+  margin-top: var(--s-2);
+}
+.quote-turnstile {
+  display: flex;
+  justify-content: center;
+}
+.quote-submit {
+  width: 100%;
+  font: inherit;
+  background: var(--accent);
+  color: #fff;
+  padding: 1.05rem 1.6rem;
+  border: 0;
+  border-radius: var(--r-2);
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  align-self: stretch;
+  box-shadow: var(--sh-2);
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+.quote-submit:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--sh-3); }
+.quote-submit:active { transform: translateY(0); box-shadow: var(--sh-1); }
+.quote-submit:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
+.quote-submit-note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Sidebar — stack of supporting cards. */
+.quote-layout-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.quote-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  padding: var(--s-5);
+  box-shadow: var(--sh-1);
+}
+.quote-card h3 {
+  margin: 0 0 var(--s-3) 0;
+  font-size: 1.02rem;
+  color: var(--fg);
+}
+.quote-card h3::before { display: none; }
+.quote-card p { margin: 0 0 var(--s-2) 0; color: var(--fg); font-size: 0.95rem; line-height: 1.55; }
+.quote-card p:last-child { margin-bottom: 0; }
+.quote-card-list {
+  margin: 0;
+  padding: 0 0 0 1.1rem;
+  font-size: 0.95rem;
+  color: var(--fg);
+  line-height: 1.55;
+}
+.quote-card-list li { margin: 0.4rem 0; }
+
+/* Timeline inside "What happens next" card. */
+.quote-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.quote-timeline li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--line);
+}
+.quote-timeline li:last-child { border-bottom: 0; padding-bottom: 0; }
+.quote-timeline li:first-child { padding-top: 0; }
+.quote-timeline-step {
+  width: 30px;
+  height: 30px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.quote-timeline strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--fg);
+  margin-bottom: 0.15rem;
+}
+.quote-timeline p { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+
+/* "Or just call" card — visually emphasized so it pulls the
+   high-intent visitor's eye. */
+.quote-card-call {
+  background: var(--surface-3);
+  border-color: rgba(184, 52, 26, 0.22);
+  border-left: 4px solid var(--accent);
+}
+.quote-card-phone {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent-dark);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  margin: var(--s-2) 0 var(--s-3) 0;
+  padding: 0.55rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--t-fast), color var(--t-fast);
+}
+.quote-card-phone:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.quote-card-phone:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.quote-card-meta {
+  font-size: 0.85rem !important;
+  color: var(--muted) !important;
+  margin: 0 !important;
+}
+
+/* Below 960px — collapse to single column. Sidebar moves below form.
+   The phone CTA stays in the hero so it is always reachable. */
+@media (max-width: 960px) {
+  .quote-layout {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+  }
+}
+
+@media (max-width: 600px) {
+  .quote-hero { padding: var(--s-5) var(--s-4) var(--s-4); }
+  .quote-hero-inner { text-align: left; align-items: flex-start; }
+  .quote-hero-cta { width: 100%; flex-direction: column; align-items: stretch; gap: var(--s-3); }
+  .quote-hero-or { display: none; }
+  .quote-hero-phone { justify-content: center; }
+  .quote-hero-jumplink { text-align: center; }
+  .quote-form-modern { padding: var(--s-4); }
+  .service-options { grid-template-columns: 1fr 1fr; }
+}
+
+/* Reduced-motion: drop the lift effect on buttons/links. */
+@media (prefers-reduced-motion: reduce) {
+  .quote-hero-phone,
+  .quote-submit,
+  .quote-card-phone { transition: none !important; }
+  .quote-hero-phone:hover,
+  .quote-submit:hover { transform: none !important; }
+}
+
 .success-message {
   display: none;
   padding: var(--s-5);

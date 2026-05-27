@@ -7,7 +7,7 @@ Audited **297 HTML files** under `public/` plus the `assets/` tree. Run this any
 - Total HTML files in `public/`: **297**
 - Sitemap URLs:                  **293**
   (3 expected exclusions: 404 page + draft way-cover pages)
-- Internal links scanned:         **19673**
+- Internal links scanned:         **19675**
 - Broken internal links:          **0**
 - Ban-list findings:              **1** unauthorized, **2** Aaron-authorized exceptions
 - Schema issues:                  **165**
@@ -27,11 +27,11 @@ Audited **297 HTML files** under `public/` plus the `assets/` tree. Run this any
 
 ## a) Link audit
 
-- Total `<a href>` scanned: 19673
+- Total `<a href>` scanned: 19675
 - Resolved to file:        17152
 - Resolved via redirect:   0
 - External (skipped):      298
-- Non-http skipped:        2223
+- Non-http skipped:        2225
 - **Broken:**              **0**
 
 ## d) Claim-audit ban-list scan

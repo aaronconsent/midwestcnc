@@ -2220,6 +2220,8 @@ def wrap_into_sections(body_html, layout="default"):
         if i == 0 and (
             s.startswith('<section class="home-hero')
             or s.startswith('<section class="brand-hero')
+            or s.startswith('<section class="insight-hero')
+            or s.startswith('<section class="quote-hero')
         ):
             out.append(
                 f'<section class="page-section page-section-hero">\n'
