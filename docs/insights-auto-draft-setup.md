@@ -121,14 +121,30 @@ ANTHROPIC_API_KEY=sk-ant-... AUTO_DRAFT_SLUG=spindle-bearing-failure-modes \
 
 ---
 
+## How you'll be notified each week
+
+The workflow opens the PR automatically. That triggers GitHub's standard
+PR notifications, which means you'll see it through whichever channels
+you have subscribed (default = email + mobile push if you have the
+GitHub mobile app installed).
+
+You should see:
+- **GitHub email** to your account address (default for repo owners)
+- **Push notification** if you have the GitHub iOS/Android app
+- **Notification in the GitHub web UI** (the inbox bell at top-right)
+- **Email about workflow failure** if validation fails 3 times in a row
+
+If you want a louder ping (Slack, Discord, SMS), add a GitHub
+integration on the repo — `Settings → Integrations` — or set up a
+GitHub Action notification step.
+
 ## What you do each week
 
-After the workflow runs (Monday morning), you'll have a new `auto-draft/{slug}`
-branch on GitHub. Your loop:
+After the workflow runs (Monday morning) and the PR notification arrives:
 
-1. **Open the PR.** Click the link from the Actions run summary.
-2. **60-second human-gate review.** Walk the checklist at
-   `prompts/insights/06-human-gate.md`:
+1. **Open the PR** from the notification email or mobile push.
+2. **60-second human-gate review.** The PR description includes the
+   checklist:
    - Voice sounds like Ken? No exclamation points? No hype?
    - All specific claims defensible? Pricing ranges in Ken's actual range?
    - Any banned phrases?
