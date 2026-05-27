@@ -968,6 +968,84 @@ article > table {
 }
 
 /* =================================================================
+   Coverage map — Leaflet-based service area visualization.
+   Hub variant: all 7 states with served cities pinned + Waterloo origin.
+   State variant: one state outline with served cities pinned + Waterloo.
+   City variant: city location + driving route to Waterloo.
+   Leaflet CSS+JS is loaded conditionally only on pages that emit a
+   .coverage-map element (see the loader script in markdown_to_html
+   below).
+   ================================================================= */
+.coverage-map {
+  max-width: var(--max-wide);
+  margin: var(--s-5) auto;
+  height: 460px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  overflow: hidden;
+  position: relative;
+}
+.coverage-map--city { height: 360px; }
+.coverage-map--hub  { height: 520px; }
+.coverage-map-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: var(--s-4);
+  color: var(--muted);
+  font-size: 0.92rem;
+  pointer-events: none;
+  z-index: 1;
+}
+.coverage-map-empty::before {
+  content: "🗺";
+  font-size: 2rem;
+  margin-bottom: var(--s-2);
+  opacity: 0.5;
+}
+.coverage-map.is-loaded .coverage-map-empty { display: none; }
+.coverage-map .leaflet-container {
+  background: var(--surface-2);
+  font-family: inherit;
+}
+/* Style the popups to match the site */
+.coverage-map .leaflet-popup-content-wrapper {
+  border-radius: var(--r-2);
+  box-shadow: var(--sh-3);
+}
+.coverage-map .leaflet-popup-content {
+  margin: 0.75rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.coverage-map .leaflet-popup-content a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.coverage-map .leaflet-popup-content a:hover { text-decoration: underline; }
+.coverage-map-caption {
+  max-width: var(--max-wide);
+  margin: calc(var(--s-3) * -1) auto var(--s-5);
+  padding: 0 var(--s-3);
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+  font-style: italic;
+}
+@media (max-width: 600px) {
+  .coverage-map { height: 380px; }
+  .coverage-map--city { height: 280px; }
+  .coverage-map--hub  { height: 420px; }
+}
+
+/* =================================================================
    MachineLookup — site-wide model number lookup.
    Powered by /data/machines.json. Renders a search input that
    fuzzy-matches the user's typed model and routes to the matching
@@ -1759,5 +1837,126 @@ article > table {
   <a class="mcta-phone" href="tel:+13196104341">☎ 319-610-4341</a>
   <a class="mcta-quote" href="#quote">Get a Quote</a>
 </div>
+<script>
+/* Coverage-map loader. Only injects Leaflet (CSS + JS) when a
+   .coverage-map element exists on the page. Reads data-* attributes
+   off each map element and renders the appropriate variant. */
+(function () {
+  var maps = document.querySelectorAll('.coverage-map');
+  if (!maps.length) return;
+
+  var WATERLOO = [42.51389, -92.34611];
+
+  function inject(tag, attrs) {
+    var el = document.createElement(tag);
+    for (var k in attrs) el.setAttribute(k, attrs[k]);
+    return el;
+  }
+  function loadLeaflet(cb) {
+    if (window.L) { cb(); return; }
+    document.head.appendChild(inject('link', {
+      rel: 'stylesheet',
+      href: 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
+      integrity: 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=',
+      crossorigin: ''
+    }));
+    var s = inject('script', {
+      src: 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
+      integrity: 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=',
+      crossorigin: ''
+    });
+    s.onload = cb;
+    document.body.appendChild(s);
+  }
+
+  function tileLayer() {
+    return L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+  }
+  function originIcon() {
+    return L.divIcon({
+      className: 'coverage-map-origin',
+      html: '<div style="background:#b8341a;color:#fff;border:2px solid #fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;box-shadow:0 2px 6px rgba(0,0,0,0.35);">&#9733;</div>',
+      iconSize: [24, 24],
+      iconAnchor: [12, 12]
+    });
+  }
+  function cityIcon() {
+    return L.divIcon({
+      className: 'coverage-map-city',
+      html: '<div style="background:#fff;border:2px solid #b8341a;border-radius:50%;width:14px;height:14px;box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>',
+      iconSize: [14, 14],
+      iconAnchor: [7, 7]
+    });
+  }
+
+  function renderCity(el) {
+    var coords = JSON.parse(el.getAttribute('data-coords') || 'null');
+    if (!coords) return;
+    var cityName = el.getAttribute('data-city') || '';
+    var distance = el.getAttribute('data-distance') || '';
+    var map = L.map(el, { zoomControl: true, scrollWheelZoom: false }).setView(coords, 7);
+    tileLayer().addTo(map);
+    L.marker(WATERLOO, { icon: originIcon() }).addTo(map)
+      .bindPopup('<strong>Waterloo, IA</strong><br>Midwest CNC Services');
+    L.marker(coords, { icon: cityIcon() }).addTo(map)
+      .bindPopup('<strong>' + cityName + '</strong>' + (distance ? '<br>' + distance + ' from Waterloo' : ''));
+    L.polyline([WATERLOO, coords], { color: '#b8341a', weight: 2, dashArray: '6,6', opacity: 0.6 }).addTo(map);
+    map.fitBounds([WATERLOO, coords], { padding: [50, 50] });
+    el.classList.add('is-loaded');
+  }
+  function renderState(el) {
+    var bounds = JSON.parse(el.getAttribute('data-bounds') || 'null');
+    var cities = JSON.parse(el.getAttribute('data-cities') || '[]');
+    var map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
+    tileLayer().addTo(map);
+    L.marker(WATERLOO, { icon: originIcon() }).addTo(map)
+      .bindPopup('<strong>Waterloo, IA</strong><br>Midwest CNC Services');
+    var allPts = [WATERLOO];
+    cities.forEach(function (c) {
+      if (!c.coords) return;
+      L.marker(c.coords, { icon: cityIcon() }).addTo(map)
+        .bindPopup('<strong>' + c.name + '</strong>' +
+                   (c.distance_miles ? '<br>' + c.distance_miles + ' miles from Waterloo' : '') +
+                   (c.url ? '<br><a href="' + c.url + '">View ' + c.name + ' page &rarr;</a>' : ''));
+      allPts.push(c.coords);
+    });
+    if (bounds && bounds.length === 2) {
+      map.fitBounds(bounds, { padding: [30, 30] });
+    } else if (allPts.length > 1) {
+      map.fitBounds(allPts, { padding: [40, 40] });
+    }
+    el.classList.add('is-loaded');
+  }
+  function renderHub(el) {
+    var cities = JSON.parse(el.getAttribute('data-cities') || '[]');
+    var map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
+    tileLayer().addTo(map);
+    L.marker(WATERLOO, { icon: originIcon() }).addTo(map)
+      .bindPopup('<strong>Waterloo, IA</strong><br>Midwest CNC Services<br>Service across 7 states');
+    var allPts = [WATERLOO];
+    cities.forEach(function (c) {
+      if (!c.coords) return;
+      L.marker(c.coords, { icon: cityIcon() }).addTo(map)
+        .bindPopup('<strong>' + c.name + ', ' + (c.state || '') + '</strong>' +
+                   (c.distance_miles ? '<br>' + c.distance_miles + ' miles from Waterloo' : '') +
+                   (c.url ? '<br><a href="' + c.url + '">View ' + c.name + ' page &rarr;</a>' : ''));
+      allPts.push(c.coords);
+    });
+    if (allPts.length > 1) map.fitBounds(allPts, { padding: [30, 30] });
+    el.classList.add('is-loaded');
+  }
+
+  loadLeaflet(function () {
+    maps.forEach(function (el) {
+      if (el.classList.contains('coverage-map--city'))      renderCity(el);
+      else if (el.classList.contains('coverage-map--hub'))  renderHub(el);
+      else                                                  renderState(el);
+    });
+  });
+})();
+</script>
 </body>
 </html>

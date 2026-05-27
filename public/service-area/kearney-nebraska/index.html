@@ -309,16 +309,54 @@ nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
 nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
 
 /* =================================================================
-   Article body + section rhythm + type scale
+   Article + alternating section bands
    ================================================================= */
-main { padding: 0 var(--s-5); }
+main { padding: 0; }
 
 article {
-  max-width: var(--max);
-  margin: var(--s-6) auto var(--s-8) auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
-article.wide { max-width: var(--max-wide); }
-article > h2 { scroll-margin-top: 100px; }
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
 
 .eyebrow {
   color: var(--accent);
@@ -537,6 +575,171 @@ blockquote em { font-style: normal; color: var(--muted); }
 }
 
 /* =================================================================
+   Brand page hero — image background, centered text, dark overlay.
+   Same visual language as the homepage video hero. Used by brand-
+   repair / brand-spindle / brand-way-covers pages. Emitted by the
+   generators as <section class="brand-hero"> and wrapped in a
+   page-section-hero band by wrap_into_sections.
+   ================================================================= */
+/* Hero band overrides — the band itself is full-bleed and the inner
+   container drops its readable-column max-width so the hero image
+   actually fills the viewport instead of being boxed into 72ch. */
+.page-section-hero {
+  padding: 0;
+  background: var(--bg);
+}
+.page-section-hero > .section-inner {
+  max-width: none;
+  width: 100%;
+  padding: 0;
+}
+
+.brand-hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(380px, 55vh, 540px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  margin: 0;
+  background: #000;
+}
+.brand-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+  pointer-events: none;
+}
+.brand-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+}
+.brand-hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: var(--max-wide);
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 4.5rem) var(--s-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.brand-hero-content > .eyebrow {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.7rem;
+  margin: 0 0 var(--s-4) 0;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.brand-hero-content > h1 {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  margin: 0 0 var(--s-4) 0;
+  max-width: 24ch;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+.brand-hero-content > p {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 var(--s-5) 0;
+  max-width: 58ch;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+.brand-hero-content > .cta-row {
+  margin: 0;
+  justify-content: center;
+}
+/* Frosted-glass phone CTA against the dark hero (same treatment the
+   homepage hero uses) */
+.brand-hero-content .cta-phone {
+  background: rgba(255, 255, 255, 0.10);
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.brand-hero-content .cta-phone:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff !important;
+}
+.brand-hero-content .cta-phone::before { color: #fff; }
+
+@media (max-width: 768px) {
+  .brand-hero { min-height: clamp(340px, 60vh, 480px); }
+  .brand-hero-content { padding: clamp(2rem, 7vw, 3rem) var(--s-4); }
+  .brand-hero-content > .cta-row { width: 100%; flex-direction: column; }
+  .brand-hero-content > .cta-row > * { width: 100%; justify-content: center; }
+}
+
+/* =================================================================
+   Two-column page hero — used by every page that has a hero image.
+   Applied automatically by wrap_into_sections when the intro section
+   contains a <figure class="hero-figure">.
+   ================================================================= */
+.page-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--s-7);
+  align-items: center;
+  margin: 0;
+  padding: var(--s-4) 0 var(--s-5) 0;
+}
+.page-hero-text { min-width: 0; }
+.page-hero-text > :first-child { margin-top: 0; }
+.page-hero-text > h1 { margin-top: 0; }
+.page-hero-text > p { font-size: 1.05rem; }
+.page-hero-text > p:first-of-type { color: var(--fg); }
+.page-hero-image { min-width: 0; }
+.page-hero-image figure {
+  margin: 0;
+  padding: 0;
+}
+.page-hero-image figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--r-3);
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  max-height: none;
+  box-shadow: var(--sh-4);
+}
+@media (max-width: 900px) {
+  .page-hero {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+    padding: var(--s-3) 0 var(--s-4) 0;
+  }
+  .page-hero-image figure img {
+    max-height: 320px;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* =================================================================
    Tables — modern card-wrapped responsive
    ================================================================= */
 .table-scroll {
@@ -709,6 +912,348 @@ article > table {
   font-size: 1.05rem;
   color: var(--fg);
   line-height: 1.3;
+}
+
+/* =================================================================
+   Related-services grid — card-style links used at the bottom of
+   brand-repair / brand-spindle / brand-way-covers pages.
+   ================================================================= */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--s-3);
+  margin: var(--s-4) 0 0 0;
+  list-style: none;
+  padding: 0;
+}
+.related-grid li { margin: 0; }
+.related-grid a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  font-weight: 600;
+  transition: transform var(--t-fast), box-shadow var(--t-fast),
+              border-color var(--t-fast), color var(--t-fast);
+}
+.related-grid a::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+  transform: rotate(45deg);
+  opacity: 0.45;
+  transition: transform var(--t-fast), opacity var(--t-fast);
+  flex-shrink: 0;
+}
+.related-grid a:hover {
+  border-color: var(--accent);
+  color: var(--accent) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--sh-3);
+}
+.related-grid a:hover::after { opacity: 1; transform: rotate(45deg) translate(2px, -2px); }
+.related-coverage {
+  margin: var(--s-4) 0 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* =================================================================
+   Coverage map — Leaflet-based service area visualization.
+   Hub variant: all 7 states with served cities pinned + Waterloo origin.
+   State variant: one state outline with served cities pinned + Waterloo.
+   City variant: city location + driving route to Waterloo.
+   Leaflet CSS+JS is loaded conditionally only on pages that emit a
+   .coverage-map element (see the loader script in markdown_to_html
+   below).
+   ================================================================= */
+.coverage-map {
+  max-width: var(--max-wide);
+  margin: var(--s-5) auto;
+  height: 460px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  overflow: hidden;
+  position: relative;
+}
+.coverage-map--city { height: 360px; }
+.coverage-map--hub  { height: 520px; }
+.coverage-map-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: var(--s-4);
+  color: var(--muted);
+  font-size: 0.92rem;
+  pointer-events: none;
+  z-index: 1;
+}
+.coverage-map-empty::before {
+  content: "🗺";
+  font-size: 2rem;
+  margin-bottom: var(--s-2);
+  opacity: 0.5;
+}
+.coverage-map.is-loaded .coverage-map-empty { display: none; }
+.coverage-map .leaflet-container {
+  background: var(--surface-2);
+  font-family: inherit;
+}
+/* Style the popups to match the site */
+.coverage-map .leaflet-popup-content-wrapper {
+  border-radius: var(--r-2);
+  box-shadow: var(--sh-3);
+}
+.coverage-map .leaflet-popup-content {
+  margin: 0.75rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.coverage-map .leaflet-popup-content a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.coverage-map .leaflet-popup-content a:hover { text-decoration: underline; }
+.coverage-map-caption {
+  max-width: var(--max-wide);
+  margin: calc(var(--s-3) * -1) auto var(--s-5);
+  padding: 0 var(--s-3);
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+  font-style: italic;
+}
+@media (max-width: 600px) {
+  .coverage-map { height: 380px; }
+  .coverage-map--city { height: 280px; }
+  .coverage-map--hub  { height: 420px; }
+}
+
+/* =================================================================
+   MachineLookup — site-wide model number lookup.
+   Powered by /data/machines.json. Renders a search input that
+   fuzzy-matches the user's typed model and routes to the matching
+   series-spoke page across all 6 brands.
+   ================================================================= */
+.machine-lookup {
+  max-width: var(--max-wide);
+  margin: var(--s-5) auto;
+  padding: var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  position: relative;
+}
+.machine-lookup-label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: var(--s-2);
+}
+.machine-lookup-input {
+  font: inherit;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1.02rem;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-2);
+  background: var(--surface);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+.machine-lookup-input:hover { border-color: var(--muted); }
+.machine-lookup-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: var(--sh-focus);
+}
+.machine-lookup-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 0.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-4);
+  z-index: 40;
+  overflow: hidden;
+  max-height: 360px;
+  overflow-y: auto;
+}
+.machine-lookup-results[hidden] { display: none; }
+.machine-lookup-result {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  border-bottom: 1px solid var(--line);
+  transition: background var(--t-fast), padding-left var(--t-fast);
+}
+.machine-lookup-result:last-child { border-bottom: 0; }
+.machine-lookup-result:hover,
+.machine-lookup-result:focus {
+  background: var(--surface-2);
+  color: var(--accent) !important;
+  padding-left: 1.2rem;
+  outline: none;
+}
+.machine-lookup-result-brand {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--r-1);
+  background: var(--surface-2);
+}
+.machine-lookup-result-model {
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+.machine-lookup-result-series {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.machine-lookup-result-arrow {
+  font-size: 1.1rem;
+  color: var(--accent);
+  opacity: 0.6;
+  transition: opacity var(--t-fast), transform var(--t-fast);
+}
+.machine-lookup-result:hover .machine-lookup-result-arrow,
+.machine-lookup-result:focus .machine-lookup-result-arrow {
+  opacity: 1;
+  transform: translateX(2px);
+}
+.machine-lookup-empty {
+  padding: 1rem 1.25rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.machine-lookup-empty a { color: var(--accent); font-weight: 600; }
+
+@media (max-width: 600px) {
+  .machine-lookup { padding: var(--s-4); }
+  .machine-lookup-result {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand arrow"
+      "model arrow"
+      "series series";
+    gap: 0.25rem 0.6rem;
+  }
+  .machine-lookup-result-brand { grid-area: brand; justify-self: start; }
+  .machine-lookup-result-model { grid-area: model; }
+  .machine-lookup-result-series { grid-area: series; }
+  .machine-lookup-result-arrow { grid-area: arrow; align-self: center; }
+}
+
+/* Browse-by-X lists on hub pages (Browse by Series / Control / Service).
+   Each <li> is a card-style link with bolded label + supporting copy. */
+.browse-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--s-4) 0 var(--s-5) 0;
+  display: grid;
+  gap: var(--s-3);
+}
+.browse-list > li { margin: 0; }
+.browse-list > li > a {
+  display: block;
+  padding: var(--s-4) var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  font-weight: 500;
+  line-height: 1.5;
+  transition: transform var(--t-fast), box-shadow var(--t-fast),
+              border-color var(--t-fast);
+  position: relative;
+  padding-right: calc(var(--s-5) + 18px);
+}
+.browse-list > li > a::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: var(--s-4);
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--muted);
+  border-top: 2px solid var(--muted);
+  transform: translateY(-50%) rotate(45deg);
+  opacity: 0.5;
+  transition: opacity var(--t-fast), transform var(--t-fast),
+              border-color var(--t-fast);
+}
+.browse-list > li > a:hover,
+.browse-list > li > a:focus {
+  transform: translateY(-2px);
+  box-shadow: var(--sh-3);
+  border-color: var(--accent);
+  outline: none;
+}
+.browse-list > li > a:hover::after,
+.browse-list > li > a:focus::after {
+  opacity: 1;
+  border-color: var(--accent);
+  transform: translateY(-50%) rotate(45deg) translate(2px, -2px);
+}
+.browse-list > li > a strong {
+  color: var(--fg);
+  font-weight: 700;
+  display: inline;
+  margin-right: 0.4rem;
+}
+.browse-list > li > a:hover strong { color: var(--accent); }
+
+/* "Models We Service" — pill chips instead of dense vertical list */
+.model-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  list-style: none;
+  padding: 0;
+  margin: var(--s-3) 0 var(--s-4) 0;
+}
+.model-chips li {
+  margin: 0;
+  padding: 0.4rem 0.95rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--fg);
 }
 
 /* =================================================================
@@ -891,50 +1436,173 @@ article > table {
 }
 
 /* =================================================================
-   Homepage hero — two-column with gradient backdrop
+   Homepage hero — single-column, video background, image fallback.
+
+   Structure:
+     <section class="home-hero">
+       <video class="home-hero-video" .../>      <- bg media layer
+       <div class="home-hero-overlay"/>          <- dark gradient
+       <div class="home-hero-content">           <- text + CTAs
+     </section>
+
+   Layers (z-index):
+     0  video (decorative, aria-hidden)
+     1  overlay (legibility gradient)
+     2  content (text, white on dark)
+
+   prefers-reduced-motion respects the user's OS setting — video is
+   removed and the poster image is shown as a static background instead.
    ================================================================= */
+
+/* Reset the band wrapper: hero is full-bleed, manages own backdrop. */
+.page-section-hero {
+  padding: 0;
+  background: var(--bg);
+}
+.page-section-hero > .section-inner { padding: 0; max-width: none; }
+
 .home-hero {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: var(--s-7);
-  align-items: center;
-  margin: var(--s-5) 0 var(--s-8) 0;
-  padding: var(--s-7) 0;
   position: relative;
-}
-.home-hero::before {
-  content: "";
-  position: absolute;
-  inset: -1rem -2rem;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(184, 52, 26, 0.06), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 52, 26, 0.04), transparent 55%);
-  border-radius: var(--r-4);
-}
-.home-hero-text { min-width: 0; }
-.home-hero-text > h1 { margin-top: 0; font-size: clamp(2.2rem, 5vw, 3.3rem); }
-.home-hero-text > p { font-size: 1.08rem; color: var(--muted); }
-.home-hero-text > p:first-of-type { color: var(--fg); }
-.home-hero-image { min-width: 0; }
-.home-hero-image figure { margin: 0; padding: 0; }
-.home-hero-image img {
   width: 100%;
-  height: auto;
-  display: block;
-  border-radius: var(--r-3);
-  object-fit: cover;
-  aspect-ratio: 4 / 3;
-  box-shadow: var(--sh-4);
+  height: 100vh;
+  min-height: 600px;
+  max-height: 820px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  background:
+    /* Poster image fallback if video fails to load (and on mobile +
+       prefers-reduced-motion, where the <video> is hidden) */
+    url('/assets/images/general/midwest-cnc-highway-shot.webp')
+    center / cover no-repeat
+    #000;
 }
-@media (max-width: 900px) {
+
+.home-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+  pointer-events: none;
+  /* Start invisible — the JS opacity driver below ramps it up from
+     the video's actual currentTime, so the fade is locked to the
+     video clock instead of drifting against a fixed-length CSS
+     keyframe. No clunky seam. */
+  opacity: 0;
+}
+
+/* Dark vertical gradient overlay — top 40% black to bottom 70% black.
+   Keeps white text legible over any frame, slightly heavier at the
+   bottom where the CTAs and trust line sit. */
+.home-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.40) 0%,
+    rgba(0, 0, 0, 0.70) 100%
+  );
+}
+
+.home-hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: var(--max-wide);
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 5rem) var(--s-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.home-hero-content > .eyebrow {
+  font-size: 0.7rem;
+  padding: 0.28rem 0.75rem;
+  margin: 0 0 var(--s-4) 0;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.home-hero-content > h1 {
+  font-size: clamp(2.1rem, 4.6vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  margin: 0 0 var(--s-5) 0;
+  max-width: 22ch;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.home-hero-content > .lede {
+  font-size: clamp(1.05rem, 1.25vw, 1.2rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 var(--s-6) 0;
+  max-width: 60ch;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+.home-hero-content > .cta-row {
+  margin: 0 0 var(--s-5) 0;
+  justify-content: center;
+}
+/* Strengthen the secondary phone CTA against the dark video — give it
+   a semi-transparent surface so it reads cleanly. */
+.home-hero-content .cta-phone {
+  background: rgba(255, 255, 255, 0.10);
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.home-hero-content .cta-phone:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff !important;
+}
+.home-hero-content .cta-phone::before { color: #fff; }
+
+.home-hero-content > .trust-line {
+  margin: 0;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.72);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Mobile — skip the video entirely. Cellular users shouldn't get hit
+   with a 1.5 MB autoplay download. The poster image (set as the
+   .home-hero background-image above) takes over. */
+@media (max-width: 768px) {
   .home-hero {
-    grid-template-columns: 1fr;
-    gap: var(--s-5);
-    padding: var(--s-5) 0;
-    margin: var(--s-4) 0 var(--s-6) 0;
+    height: auto;
+    min-height: clamp(420px, 75vh, 560px);
+    max-height: none;
   }
-  .home-hero-image img { max-height: 360px; aspect-ratio: 16 / 10; }
+  .home-hero-video { display: none; }
+  .home-hero-content {
+    padding: clamp(2rem, 7vw, 3rem) var(--s-4);
+  }
+  .home-hero-content > .cta-row { width: 100%; }
+}
+
+/* Respect prefers-reduced-motion — disable the video, let the poster
+   image background take over. Vestibular-disorder accessibility +
+   Core Web Vitals signal. */
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-video { display: none; }
 }
 
 /* =================================================================
@@ -1368,21 +2036,56 @@ body.form-submitted .quote-helpers { display: none; }
 </nav>
 <main id="main">
 <article>
-<p class="eyebrow">Kearney, Nebraska</p>
-<h1>CNC Service for Kearney Manufacturers</h1>
-<p>Our Waterloo, IA facility sits 511 miles east of Kearney — about 8 hours one-way — a long-haul route on the road, a long-haul route from Waterloo — most 511-mile work runs ship-in via freight, with field service for major jobs by arrangement. We work with Kearney shops doing supply-chain machining for telecommunications and retail, plus in-house tooling work for Good Samaritan Hospital (1,000+) and University of Nebraska at Kearney. Three lines of work for these shops: CNC machine repair, spindle rebuilds and grinding, and replacement way-cover manufacturing. We diagnose on-site where the work warrants it; the rebuild bench is in Waterloo.</p>
-<div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
-<figure class="hero-figure"><img src="/assets/images/general/nebraska.png" alt="Kearney, Nebraska CNC service coverage" loading="lazy"></figure>
+<section class="page-section page-section-hero">
+  <div class="section-inner">
+<section class="brand-hero">
+<img class="brand-hero-bg" src="/assets/images/general/nebraska.png" alt="Kearney, Nebraska CNC service coverage" loading="eager">
+  <div class="brand-hero-overlay" aria-hidden="true"></div>
+  <div class="brand-hero-content">
+    <p class="eyebrow">Kearney, Nebraska</p>
+    <h1>CNC Service for Kearney Manufacturers</h1>
+    <p>Our Waterloo, IA facility sits 511 miles east of Kearney — about 8 hours one-way — a long-haul route on the road, a long-haul route from Waterloo — most 511-mile work runs ship-in via freight, with field service for major jobs by arrangement. We work with Kearney shops doing supply-chain machining for telecommunications and retail, plus in-house tooling work for Good Samaritan Hospital (1,000+) and University of Nebraska at Kearney. Three lines of work for these shops: CNC machine repair, spindle rebuilds and grinding, and replacement way-cover manufacturing. We diagnose on-site where the work warrants it; the rebuild bench is in Waterloo.</p>
+    <div class="cta-row">
+      <a class="cta-button" href="#quote">Get a Quote</a>
+      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
+    </div>
+  </div>
+</section>
+
+<div class="coverage-map coverage-map--city"
+     data-coords='[40.70167, -99.0825]'
+     data-city="Kearney, Nebraska"
+     data-distance="511 miles"
+     aria-label="Map showing Kearney, Nebraska and the route from our Waterloo, IA service facility">
+  <div class="coverage-map-empty">Loading Kearney location map…</div>
+</div>
+<p class="coverage-map-caption">Kearney is 511 miles from our Waterloo, IA facility.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="manufacturing">Manufacturing in Kearney</h2>
 <p>Baldwin Filters is the top manufacturing employer (1,000+). West Pharmaceutical Services and Eaton Corporation maintain regional operations.</p>
 
 <p>Notable Kearney employers include Good Samaritan Hospital (1,000+), University of Nebraska at Kearney, Baldwin Filters (1,000+), The Buckle, and Eaton Corporation. We don't claim these names as customers — we service the CNC shops doing precision work for them, the supply-chain machining and in-house tooling that keeps Kearney's industrial base producing.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="industry-mix">CNC Service for Kearney's Industry Mix</h2>
 <p>Kearney shops working in this industry mix typically run Mazak and Haas platforms for general production machining.</p>
 <p>We service spindle rebuilds, machine repair, and replacement way covers across the OEM platforms common in Kearney's industry mix — see the brand pages for <a href="/spindle-grinding/mazak-spindle-repair/">Mazak spindle work</a> and <a href="/repairs/">CNC machine repair</a> for the specifics on lead times and failure modes.</p>
 <div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
 <h2 id="logistics">Logistics: How We Service Kearney</h2>
 <p>Kearney sits 511 miles west of our base in Waterloo — too far for routine field service. Spindles ship in via standard freight; way-cover builds ship out to anywhere in the continental US. For major jobs we&#x27;ll quote field travel; talk to us about scope first.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
 <h2 id="faq">Frequently Asked Questions</h2>
 <div class="faq-list">
 <details class="faq-item">
@@ -1409,7 +2112,8 @@ body.form-submitted .quote-helpers { display: none; }
 <p><strong>About Midwest CNC.</strong> Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers — based in Waterloo, IA, serving shops across seven states.</p>
 <p class="customer-quote">&quot;Honestly, we thought the machine was done for.&quot; It saves shops from replacement lead times and the capital expense of a new spindle.</p>
 </aside>
-
+  </div>
+</section>
 </article>
 </main>
 <footer class="site-footer">
@@ -1420,5 +2124,126 @@ body.form-submitted .quote-helpers { display: none; }
   <a class="mcta-phone" href="tel:+13196104341">☎ 319-610-4341</a>
   <a class="mcta-quote" href="/get-a-quote/">Get a Quote</a>
 </div>
+<script>
+/* Coverage-map loader. Only injects Leaflet (CSS + JS) when a
+   .coverage-map element exists on the page. Reads data-* attributes
+   off each map element and renders the appropriate variant. */
+(function () {
+  var maps = document.querySelectorAll('.coverage-map');
+  if (!maps.length) return;
+
+  var WATERLOO = [42.51389, -92.34611];
+
+  function inject(tag, attrs) {
+    var el = document.createElement(tag);
+    for (var k in attrs) el.setAttribute(k, attrs[k]);
+    return el;
+  }
+  function loadLeaflet(cb) {
+    if (window.L) { cb(); return; }
+    document.head.appendChild(inject('link', {
+      rel: 'stylesheet',
+      href: 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
+      integrity: 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=',
+      crossorigin: ''
+    }));
+    var s = inject('script', {
+      src: 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
+      integrity: 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=',
+      crossorigin: ''
+    });
+    s.onload = cb;
+    document.body.appendChild(s);
+  }
+
+  function tileLayer() {
+    return L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+  }
+  function originIcon() {
+    return L.divIcon({
+      className: 'coverage-map-origin',
+      html: '<div style="background:#b8341a;color:#fff;border:2px solid #fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;box-shadow:0 2px 6px rgba(0,0,0,0.35);">&#9733;</div>',
+      iconSize: [24, 24],
+      iconAnchor: [12, 12]
+    });
+  }
+  function cityIcon() {
+    return L.divIcon({
+      className: 'coverage-map-city',
+      html: '<div style="background:#fff;border:2px solid #b8341a;border-radius:50%;width:14px;height:14px;box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>',
+      iconSize: [14, 14],
+      iconAnchor: [7, 7]
+    });
+  }
+
+  function renderCity(el) {
+    var coords = JSON.parse(el.getAttribute('data-coords') || 'null');
+    if (!coords) return;
+    var cityName = el.getAttribute('data-city') || '';
+    var distance = el.getAttribute('data-distance') || '';
+    var map = L.map(el, { zoomControl: true, scrollWheelZoom: false }).setView(coords, 7);
+    tileLayer().addTo(map);
+    L.marker(WATERLOO, { icon: originIcon() }).addTo(map)
+      .bindPopup('<strong>Waterloo, IA</strong><br>Midwest CNC Services');
+    L.marker(coords, { icon: cityIcon() }).addTo(map)
+      .bindPopup('<strong>' + cityName + '</strong>' + (distance ? '<br>' + distance + ' from Waterloo' : ''));
+    L.polyline([WATERLOO, coords], { color: '#b8341a', weight: 2, dashArray: '6,6', opacity: 0.6 }).addTo(map);
+    map.fitBounds([WATERLOO, coords], { padding: [50, 50] });
+    el.classList.add('is-loaded');
+  }
+  function renderState(el) {
+    var bounds = JSON.parse(el.getAttribute('data-bounds') || 'null');
+    var cities = JSON.parse(el.getAttribute('data-cities') || '[]');
+    var map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
+    tileLayer().addTo(map);
+    L.marker(WATERLOO, { icon: originIcon() }).addTo(map)
+      .bindPopup('<strong>Waterloo, IA</strong><br>Midwest CNC Services');
+    var allPts = [WATERLOO];
+    cities.forEach(function (c) {
+      if (!c.coords) return;
+      L.marker(c.coords, { icon: cityIcon() }).addTo(map)
+        .bindPopup('<strong>' + c.name + '</strong>' +
+                   (c.distance_miles ? '<br>' + c.distance_miles + ' miles from Waterloo' : '') +
+                   (c.url ? '<br><a href="' + c.url + '">View ' + c.name + ' page &rarr;</a>' : ''));
+      allPts.push(c.coords);
+    });
+    if (bounds && bounds.length === 2) {
+      map.fitBounds(bounds, { padding: [30, 30] });
+    } else if (allPts.length > 1) {
+      map.fitBounds(allPts, { padding: [40, 40] });
+    }
+    el.classList.add('is-loaded');
+  }
+  function renderHub(el) {
+    var cities = JSON.parse(el.getAttribute('data-cities') || '[]');
+    var map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
+    tileLayer().addTo(map);
+    L.marker(WATERLOO, { icon: originIcon() }).addTo(map)
+      .bindPopup('<strong>Waterloo, IA</strong><br>Midwest CNC Services<br>Service across 7 states');
+    var allPts = [WATERLOO];
+    cities.forEach(function (c) {
+      if (!c.coords) return;
+      L.marker(c.coords, { icon: cityIcon() }).addTo(map)
+        .bindPopup('<strong>' + c.name + ', ' + (c.state || '') + '</strong>' +
+                   (c.distance_miles ? '<br>' + c.distance_miles + ' miles from Waterloo' : '') +
+                   (c.url ? '<br><a href="' + c.url + '">View ' + c.name + ' page &rarr;</a>' : ''));
+      allPts.push(c.coords);
+    });
+    if (allPts.length > 1) map.fitBounds(allPts, { padding: [30, 30] });
+    el.classList.add('is-loaded');
+  }
+
+  loadLeaflet(function () {
+    maps.forEach(function (el) {
+      if (el.classList.contains('coverage-map--city'))      renderCity(el);
+      else if (el.classList.contains('coverage-map--hub'))  renderHub(el);
+      else                                                  renderState(el);
+    });
+  });
+})();
+</script>
 </body>
 </html>
