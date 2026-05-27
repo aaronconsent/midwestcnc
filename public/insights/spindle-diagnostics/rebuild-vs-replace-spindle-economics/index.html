@@ -1,0 +1,2002 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spindle Rebuild vs. Replace: When Each Makes Sense | Midwest CNC Services</title>
+<meta name="description" content="The economics of a CNC spindle rebuild versus replacement, framed by the three break-even questions Ken walks customers through before quoting work. Real cost r">
+<link rel="canonical" href="https://midwestcncservices.com/insights/spindle-diagnostics/rebuild-vs-replace-spindle-economics/">
+<meta property="og:title" content="Spindle Rebuild vs. Replace: When Each Makes Sense | Midwest CNC Services">
+<meta property="og:description" content="The economics of a CNC spindle rebuild versus replacement, framed by the three break-even questions Ken walks customers through before quoting work. Real cost r">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+<style>
+/* =================================================================
+   Midwest CNC Services — modern design system
+   Tokens: color (preserved), spacing, type, radius, shadow, motion.
+   Accessibility: WCAG AA contrast, focus-visible rings, reduced motion.
+   ================================================================= */
+
+:root {
+  /* Color (unchanged) */
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --muted: #5a5a5a;
+  --accent: #b8341a;
+  --accent-dark: #8c2510;
+  --line: #e5e5e5;
+  --soft: #f6f4f1;
+
+  /* Surfaces */
+  --surface: #ffffff;
+  --surface-2: #faf8f5;
+  --surface-3: #f1ede7;
+  --ring: rgba(184, 52, 26, 0.35);
+  --ring-strong: rgba(184, 52, 26, 0.55);
+  --success-bg: #e8f5e8;
+  --success-fg: #1e5e22;
+  --warning-bg: #fff4e3;
+  --warning-fg: #8a5400;
+
+  /* Spacing scale (rem) */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+
+  /* Radius scale */
+  --r-1: 4px;
+  --r-2: 8px;
+  --r-3: 12px;
+  --r-4: 16px;
+  --r-pill: 999px;
+
+  /* Shadow scale */
+  --sh-1: 0 1px 2px rgba(15, 18, 22, 0.05);
+  --sh-2: 0 1px 3px rgba(15, 18, 22, 0.06), 0 2px 8px rgba(15, 18, 22, 0.04);
+  --sh-3: 0 4px 12px rgba(15, 18, 22, 0.08), 0 2px 4px rgba(15, 18, 22, 0.04);
+  --sh-4: 0 12px 32px rgba(15, 18, 22, 0.10), 0 4px 12px rgba(15, 18, 22, 0.06);
+  --sh-focus: 0 0 0 3px var(--ring);
+
+  /* Motion */
+  --t-fast: 120ms cubic-bezier(0.2, 0.6, 0.3, 1);
+  --t-base: 200ms cubic-bezier(0.2, 0.6, 0.3, 1);
+  --t-slow: 320ms cubic-bezier(0.2, 0.6, 0.3, 1);
+
+  /* Layout */
+  --max: 72ch;
+  --max-wide: 1140px;
+  --sticky-cta-height: 64px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+html, body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Skip link for keyboard users */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 9999;
+  background: var(--accent);
+  color: #fff !important;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 var(--r-2) 0;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+.skip-link:focus { left: 0; }
+
+/* Global focus ring — only on keyboard, not mouse click */
+*:focus { outline: none; }
+*:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-focus);
+  border-radius: var(--r-1);
+}
+
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; transition: color var(--t-fast); }
+a:hover { color: var(--accent-dark); text-decoration-thickness: 2px; }
+a:focus-visible { box-shadow: var(--sh-focus); border-radius: var(--r-1); outline: none; }
+
+::selection { background: var(--accent); color: #fff; }
+
+/* =================================================================
+   Header + primary navigation
+   ================================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--line);
+  padding: var(--s-2) var(--s-5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-4);
+}
+.site-header .brand {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--fg);
+  transition: transform var(--t-fast);
+}
+.site-header .brand:hover { transform: translateY(-1px); }
+.site-header .brand img {
+  height: 72px;
+  width: auto;
+  display: block;
+}
+.site-header nav { display: flex; align-items: center; gap: var(--s-2); }
+.site-header nav > ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--s-1);
+}
+.site-header nav > ul > li { position: relative; }
+.site-header nav > ul > li > a,
+.site-header nav > ul > li > .menu-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.55rem 0.85rem;
+  text-decoration: none;
+  color: var(--fg);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--r-2);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--t-fast), background var(--t-fast);
+}
+.site-header nav > ul > li > a:hover,
+.site-header nav > ul > li > .menu-label:hover,
+.site-header nav > ul > li:hover > a,
+.site-header nav > ul > li:hover > .menu-label,
+.site-header nav > ul > li:focus-within > a,
+.site-header nav > ul > li:focus-within > .menu-label {
+  color: var(--accent);
+  background: var(--surface-2);
+}
+.site-header nav > ul > li.has-dropdown > .menu-label::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-1px);
+  margin-left: 2px;
+  opacity: 0.6;
+  transition: transform var(--t-fast), opacity var(--t-fast);
+}
+.site-header nav > ul > li.has-dropdown:hover > .menu-label::after,
+.site-header nav > ul > li.has-dropdown:focus-within > .menu-label::after {
+  transform: rotate(-135deg) translateY(2px);
+  opacity: 1;
+}
+.site-header nav .dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 240px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-4);
+  padding: var(--s-2) 0;
+  margin: 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity var(--t-fast), transform var(--t-fast), visibility var(--t-fast);
+  z-index: 100;
+}
+.site-header nav > ul > li:hover > .dropdown,
+.site-header nav > ul > li:focus-within > .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.site-header nav .dropdown li { margin: 0; }
+.site-header nav .dropdown a {
+  display: block;
+  padding: 0.5rem 1.1rem;
+  text-decoration: none;
+  color: var(--fg);
+  font-size: 0.92rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background var(--t-fast), color var(--t-fast), padding-left var(--t-fast);
+}
+.site-header nav .dropdown a:hover,
+.site-header nav .dropdown a:focus { background: var(--surface-2); color: var(--accent); padding-left: 1.35rem; }
+.site-header nav .dropdown .dropdown-section {
+  padding: 0.55rem 1.1rem 0.3rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 700;
+}
+.site-header nav .dropdown .dropdown-divider {
+  height: 1px;
+  background: var(--line);
+  margin: var(--s-2) 0;
+  list-style: none;
+}
+.site-header nav .dropdown a.dropdown-all {
+  color: var(--accent);
+  font-weight: 600;
+}
+.site-header nav a.cta-nav {
+  background: var(--accent);
+  color: #fff !important;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--r-pill);
+  margin-left: var(--s-2);
+  box-shadow: var(--sh-2);
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+.site-header nav a.cta-nav:hover { background: var(--accent-dark); color: #fff !important; transform: translateY(-1px); box-shadow: var(--sh-3); }
+.site-header nav a.cta-nav:active { transform: translateY(0); box-shadow: var(--sh-1); }
+
+/* =================================================================
+   Breadcrumbs — subtle pill row
+   ================================================================= */
+nav.breadcrumbs {
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding: var(--s-3) var(--s-5);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+nav.breadcrumbs ol { list-style: none; margin: 0 auto; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: center; max-width: var(--max-wide); }
+nav.breadcrumbs li { display: inline-flex; align-items: center; }
+nav.breadcrumbs li:not(:last-child)::after {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-right: 1.5px solid var(--muted);
+  border-top: 1.5px solid var(--muted);
+  transform: rotate(45deg);
+  margin-left: var(--s-2);
+  opacity: 0.6;
+}
+nav.breadcrumbs a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--r-pill);
+  transition: background var(--t-fast), color var(--t-fast);
+}
+nav.breadcrumbs a:hover { color: var(--accent); background: var(--surface); }
+nav.breadcrumbs li:last-child { color: var(--fg); font-weight: 600; padding: 0.15rem 0.5rem; }
+
+/* =================================================================
+   Article + alternating section bands
+   ================================================================= */
+main { padding: 0; }
+
+article {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Each <section class="page-section"> is a full-bleed band.
+   The .section-inner inside centers content at the readable width. */
+.page-section {
+  padding: var(--s-7) var(--s-5);
+  position: relative;
+}
+.page-section + .page-section { border-top: 1px solid transparent; }
+
+.page-section-0 { background: var(--bg); }
+.page-section-1 { background: var(--surface-2); }
+.page-section-hero { background: var(--bg); padding-top: var(--s-5); padding-bottom: 0; }
+.page-section-intro { padding-top: var(--s-6); }
+
+.section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.section-inner.wide { max-width: var(--max-wide); }
+
+/* When section content starts with an h2, kill its top margin since the
+   section already provides the breathing room. */
+.page-section > .section-inner > h2:first-child,
+.page-section > .section-inner > .eyebrow:first-child + h2 {
+  margin-top: 0;
+}
+.page-section > .section-inner > .eyebrow:first-child { margin-top: 0; }
+
+/* Headings should be scrollable-into-view past the sticky header */
+h2 { scroll-margin-top: 100px; }
+
+@media (max-width: 800px) {
+  .page-section { padding: var(--s-6) var(--s-4); }
+  .page-section-hero { padding-top: var(--s-4); }
+}
+@media (max-width: 600px) {
+  .page-section { padding: var(--s-5) var(--s-4); }
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 var(--s-3) 0;
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  background: rgba(184, 52, 26, 0.08);
+  border-radius: var(--r-pill);
+}
+
+h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  margin: 0 0 var(--s-5) 0;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.4rem, 2.5vw, 1.7rem);
+  line-height: 1.25;
+  margin: var(--s-7) 0 var(--s-4) 0;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  position: relative;
+  padding-top: 0;
+  border-top: 0;
+}
+h2::before {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 3px;
+  margin-bottom: var(--s-3);
+}
+h2:first-of-type { margin-top: var(--s-5); }
+
+h3 {
+  font-size: 1.15rem;
+  line-height: 1.3;
+  margin: var(--s-5) 0 var(--s-3) 0;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: var(--s-4) 0 var(--s-2) 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+p { margin: var(--s-3) 0; }
+p strong { color: var(--fg); font-weight: 700; }
+
+ul, ol { padding-left: 1.5rem; margin: var(--s-3) 0; }
+li { margin: var(--s-2) 0; }
+li::marker { color: var(--accent); }
+
+article ul li {
+  position: relative;
+  padding-left: var(--s-1);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: var(--s-7) 0;
+}
+
+blockquote {
+  margin: var(--s-5) 0;
+  padding: var(--s-4) var(--s-5);
+  background: var(--surface-2);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--r-3) var(--r-3) 0;
+  color: var(--fg);
+  font-style: normal;
+  position: relative;
+  box-shadow: var(--sh-1);
+}
+blockquote::before {
+  content: "“";
+  position: absolute;
+  top: -0.5rem;
+  left: var(--s-4);
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.25;
+  font-family: Georgia, serif;
+}
+blockquote p { margin: 0; padding-left: 1.5rem; font-size: 1.02rem; line-height: 1.55; }
+blockquote p + p { margin-top: var(--s-3); }
+blockquote em { font-style: normal; color: var(--muted); }
+
+/* =================================================================
+   Buttons + CTA row
+   ================================================================= */
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin: var(--s-5) 0;
+  align-items: center;
+}
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: #fff !important;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--r-pill);
+  text-decoration: none !important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 0;
+  cursor: pointer;
+  font-size: 0.98rem;
+  box-shadow: var(--sh-2);
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+  position: relative;
+}
+.cta-button::after {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+  transform: rotate(45deg);
+  margin-left: 0.25rem;
+  transition: transform var(--t-fast);
+}
+.cta-button:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--sh-3); }
+.cta-button:hover::after { transform: rotate(45deg) translate(2px, -2px); }
+.cta-button:active { transform: translateY(0); box-shadow: var(--sh-1); }
+
+.cta-button.secondary {
+  background: var(--surface);
+  color: var(--fg) !important;
+  border: 1.5px solid var(--line);
+  box-shadow: none;
+}
+.cta-button.secondary:hover {
+  background: var(--surface-2);
+  border-color: var(--accent);
+  color: var(--accent) !important;
+}
+.cta-button.secondary::after { border-color: currentColor; }
+
+.cta-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.2rem;
+  color: var(--fg) !important;
+  text-decoration: none !important;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  transition: border-color var(--t-fast), color var(--t-fast), transform var(--t-fast);
+}
+.cta-phone::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58.1.36.03.74-.24 1.01l-2.21 2.2z'/></svg>") center/contain no-repeat;
+          mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58.1.36.03.74-.24 1.01l-2.21 2.2z'/></svg>") center/contain no-repeat;
+  color: var(--accent);
+}
+.cta-phone:hover { border-color: var(--accent); color: var(--accent) !important; transform: translateY(-1px); }
+
+/* =================================================================
+   Form placeholder + hero figure
+   ================================================================= */
+.quote-form-placeholder {
+  margin: var(--s-5) 0;
+  padding: var(--s-5);
+  border: 2px dashed var(--line);
+  border-radius: var(--r-3);
+  background: var(--surface-2);
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.hero-figure {
+  margin: var(--s-5) 0 0 0;
+  padding: 0;
+}
+.hero-figure img {
+  width: 100%;
+  height: auto;
+  max-height: 440px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--r-3);
+  display: block;
+  box-shadow: var(--sh-3);
+}
+
+/* =================================================================
+   Brand page hero — image background, centered text, dark overlay.
+   Same visual language as the homepage video hero. Used by brand-
+   repair / brand-spindle / brand-way-covers pages. Emitted by the
+   generators as <section class="brand-hero"> and wrapped in a
+   page-section-hero band by wrap_into_sections.
+   ================================================================= */
+/* Hero band overrides — the band itself is full-bleed and the inner
+   container drops its readable-column max-width so the hero image
+   actually fills the viewport instead of being boxed into 72ch. */
+.page-section-hero {
+  padding: 0;
+  background: var(--bg);
+}
+.page-section-hero > .section-inner {
+  max-width: none;
+  width: 100%;
+  padding: 0;
+}
+
+.brand-hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(380px, 55vh, 540px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  margin: 0;
+  background: #000;
+}
+.brand-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+  pointer-events: none;
+}
+.brand-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+}
+.brand-hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: var(--max-wide);
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 4.5rem) var(--s-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.brand-hero-content > .eyebrow {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.7rem;
+  margin: 0 0 var(--s-4) 0;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.brand-hero-content > h1 {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  margin: 0 0 var(--s-4) 0;
+  max-width: 24ch;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+.brand-hero-content > p {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 var(--s-5) 0;
+  max-width: 58ch;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+.brand-hero-content > .cta-row {
+  margin: 0;
+  justify-content: center;
+}
+/* Frosted-glass phone CTA against the dark hero (same treatment the
+   homepage hero uses) */
+.brand-hero-content .cta-phone {
+  background: rgba(255, 255, 255, 0.10);
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.brand-hero-content .cta-phone:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff !important;
+}
+.brand-hero-content .cta-phone::before { color: #fff; }
+
+@media (max-width: 768px) {
+  .brand-hero { min-height: clamp(340px, 60vh, 480px); }
+  .brand-hero-content { padding: clamp(2rem, 7vw, 3rem) var(--s-4); }
+  .brand-hero-content > .cta-row { width: 100%; flex-direction: column; }
+  .brand-hero-content > .cta-row > * { width: 100%; justify-content: center; }
+}
+
+/* =================================================================
+   Two-column page hero — used by every page that has a hero image.
+   Applied automatically by wrap_into_sections when the intro section
+   contains a <figure class="hero-figure">.
+   ================================================================= */
+.page-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--s-7);
+  align-items: center;
+  margin: 0;
+  padding: var(--s-4) 0 var(--s-5) 0;
+}
+.page-hero-text { min-width: 0; }
+.page-hero-text > :first-child { margin-top: 0; }
+.page-hero-text > h1 { margin-top: 0; }
+.page-hero-text > p { font-size: 1.05rem; }
+.page-hero-text > p:first-of-type { color: var(--fg); }
+.page-hero-image { min-width: 0; }
+.page-hero-image figure {
+  margin: 0;
+  padding: 0;
+}
+.page-hero-image figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--r-3);
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  max-height: none;
+  box-shadow: var(--sh-4);
+}
+@media (max-width: 900px) {
+  .page-hero {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+    padding: var(--s-3) 0 var(--s-4) 0;
+  }
+  .page-hero-image figure img {
+    max-height: 320px;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* =================================================================
+   Tables — modern card-wrapped responsive
+   ================================================================= */
+.table-scroll {
+  margin: var(--s-5) 0;
+  border-radius: var(--r-3);
+  background: var(--surface);
+  box-shadow: var(--sh-2);
+  border: 1px solid var(--line);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* Scroll shadow indicators */
+  background:
+    linear-gradient(to right, var(--surface) 30%, rgba(255,255,255,0)),
+    linear-gradient(to right, rgba(0,0,0,0.08), rgba(255,255,255,0) 30%) 0 100%,
+    radial-gradient(farthest-side at 0 50%, rgba(0,0,0,0.08), rgba(0,0,0,0)),
+    radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,0.08), rgba(0,0,0,0)) 100% 0;
+  background-repeat: no-repeat;
+  background-color: var(--surface);
+  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+  background-position: 0 0, 100% 0, 0 0, 100% 0;
+  background-attachment: local, local, scroll, scroll;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.table-scroll table { min-width: 480px; }
+thead { background: var(--surface-2); }
+th {
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+td {
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+tbody tr { transition: background var(--t-fast); }
+tbody tr:hover { background: var(--surface-2); }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:nth-child(even) { background: rgba(241, 237, 231, 0.35); }
+tbody tr:nth-child(even):hover { background: var(--surface-2); }
+
+/* For standalone tables without .table-scroll wrapper, still look good */
+article > table {
+  border-radius: var(--r-3);
+  background: var(--surface);
+  box-shadow: var(--sh-2);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  margin: var(--s-5) 0;
+}
+
+/* =================================================================
+   FAQ accordion (<details>/<summary>)
+   ================================================================= */
+.faq-list { display: flex; flex-direction: column; gap: var(--s-3); margin: var(--s-5) 0; }
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+  transition: box-shadow var(--t-base), border-color var(--t-base);
+  overflow: hidden;
+}
+.faq-item[open] {
+  border-color: var(--accent);
+  box-shadow: var(--sh-3);
+}
+.faq-item > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: var(--s-4) var(--s-5);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--fg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-4);
+  transition: background var(--t-fast);
+}
+.faq-item > summary::-webkit-details-marker { display: none; }
+.faq-item > summary:hover { background: var(--surface-2); }
+.faq-item > summary::after {
+  content: "";
+  flex-shrink: 0;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(45deg);
+  margin-top: -4px;
+  transition: transform var(--t-base);
+}
+.faq-item[open] > summary::after {
+  transform: rotate(-135deg);
+  margin-top: 4px;
+}
+.faq-item .faq-answer {
+  padding: 0 var(--s-5) var(--s-5) var(--s-5);
+  color: var(--fg);
+  font-size: 0.97rem;
+  line-height: 1.65;
+  border-top: 1px solid var(--line);
+  padding-top: var(--s-4);
+  animation: faq-open var(--t-base) ease;
+}
+.faq-item .faq-answer p { margin: var(--s-3) 0 0 0; }
+.faq-item .faq-answer p:first-child { margin-top: 0; }
+@keyframes faq-open {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =================================================================
+   Process / How-To steps
+   ================================================================= */
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  margin: var(--s-5) 0;
+  counter-reset: process;
+  list-style: none;
+  padding-left: 0;
+}
+.process-steps > li {
+  position: relative;
+  padding: var(--s-4) var(--s-5) var(--s-4) calc(var(--s-7) + var(--s-3));
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+  transition: transform var(--t-fast), box-shadow var(--t-fast);
+  margin: 0;
+  counter-increment: process;
+}
+.process-steps > li:hover { transform: translateY(-2px); box-shadow: var(--sh-3); border-color: var(--accent); }
+.process-steps > li::before {
+  content: counter(process);
+  position: absolute;
+  top: var(--s-4);
+  left: var(--s-4);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(184, 52, 26, 0.35);
+}
+.process-steps > li::marker { content: none; }
+.process-steps > li strong:first-child {
+  display: block;
+  margin-bottom: var(--s-1);
+  font-size: 1.05rem;
+  color: var(--fg);
+  line-height: 1.3;
+}
+
+/* =================================================================
+   Related-services grid — card-style links used at the bottom of
+   brand-repair / brand-spindle / brand-way-covers pages.
+   ================================================================= */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--s-3);
+  margin: var(--s-4) 0 0 0;
+  list-style: none;
+  padding: 0;
+}
+.related-grid li { margin: 0; }
+.related-grid a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  font-weight: 600;
+  transition: transform var(--t-fast), box-shadow var(--t-fast),
+              border-color var(--t-fast), color var(--t-fast);
+}
+.related-grid a::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+  transform: rotate(45deg);
+  opacity: 0.45;
+  transition: transform var(--t-fast), opacity var(--t-fast);
+  flex-shrink: 0;
+}
+.related-grid a:hover {
+  border-color: var(--accent);
+  color: var(--accent) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--sh-3);
+}
+.related-grid a:hover::after { opacity: 1; transform: rotate(45deg) translate(2px, -2px); }
+.related-coverage {
+  margin: var(--s-4) 0 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* =================================================================
+   Coverage map — Leaflet-based service area visualization.
+   Hub variant: all 7 states with served cities pinned + Waterloo origin.
+   State variant: one state outline with served cities pinned + Waterloo.
+   City variant: city location + driving route to Waterloo.
+   Leaflet CSS+JS is loaded conditionally only on pages that emit a
+   .coverage-map element (see the loader script in markdown_to_html
+   below).
+   ================================================================= */
+.coverage-map {
+  max-width: var(--max-wide);
+  margin: var(--s-5) auto;
+  height: 460px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  overflow: hidden;
+  position: relative;
+}
+.coverage-map--city { height: 360px; }
+.coverage-map--hub  { height: 520px; }
+.coverage-map-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: var(--s-4);
+  color: var(--muted);
+  font-size: 0.92rem;
+  pointer-events: none;
+  z-index: 1;
+}
+.coverage-map-empty::before {
+  content: "🗺";
+  font-size: 2rem;
+  margin-bottom: var(--s-2);
+  opacity: 0.5;
+}
+.coverage-map.is-loaded .coverage-map-empty { display: none; }
+.coverage-map .leaflet-container {
+  background: var(--surface-2);
+  font-family: inherit;
+}
+/* Style the popups to match the site */
+.coverage-map .leaflet-popup-content-wrapper {
+  border-radius: var(--r-2);
+  box-shadow: var(--sh-3);
+}
+.coverage-map .leaflet-popup-content {
+  margin: 0.75rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.coverage-map .leaflet-popup-content a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.coverage-map .leaflet-popup-content a:hover { text-decoration: underline; }
+.coverage-map-caption {
+  max-width: var(--max-wide);
+  margin: calc(var(--s-3) * -1) auto var(--s-5);
+  padding: 0 var(--s-3);
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+  font-style: italic;
+}
+@media (max-width: 600px) {
+  .coverage-map { height: 380px; }
+  .coverage-map--city { height: 280px; }
+  .coverage-map--hub  { height: 420px; }
+}
+
+/* =================================================================
+   Insights — pillar landing + article page styling.
+   Used by /insights/ pillar pages, /insights/{pillar}/{article}/
+   pages, and the /insights/ index. The .insight-* prefix keeps the
+   stylesheet self-contained.
+   ================================================================= */
+
+/* Pillar tile grid (insights index page) */
+.insight-pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--s-4);
+  margin: var(--s-5) 0 var(--s-6) 0;
+  list-style: none;
+  padding: 0;
+}
+.insight-pillar-card { margin: 0; }
+.insight-pillar-card a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  background: var(--surface);
+  padding: var(--s-5);
+  border-radius: var(--r-3);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-1);
+  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+}
+.insight-pillar-card a:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sh-3);
+  border-color: var(--accent);
+}
+.insight-pillar-eyebrow {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  font-weight: 700;
+}
+.insight-pillar-card h3 { margin: var(--s-2) 0; font-size: 1.18rem; }
+.insight-pillar-card p { color: var(--muted); margin: var(--s-1) 0 var(--s-3) 0; font-size: 0.95rem; flex-grow: 1; }
+.insight-pillar-counts {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: var(--s-2) 0 var(--s-3) 0 !important;
+  flex-grow: 0 !important;
+}
+
+/* Cluster card grid (pillar pages + recent-articles strip on index) */
+.insight-cluster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--s-4);
+  margin: var(--s-4) 0 var(--s-6) 0;
+  list-style: none;
+  padding: 0;
+}
+.insight-card { margin: 0; }
+.insight-card > a,
+.insight-card > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  background: var(--surface);
+  padding: var(--s-4);
+  border-radius: var(--r-3);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-1);
+  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+}
+.insight-card--published > a:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sh-3);
+  border-color: var(--accent);
+}
+.insight-card--planned > div {
+  background: color-mix(in srgb, var(--surface) 92%, var(--accent) 8%);
+  border-style: dashed;
+  opacity: 0.85;
+}
+.insight-card-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(184, 52, 26, 0.08);
+  padding: 0.18rem 0.5rem;
+  border-radius: var(--r-pill);
+  margin-bottom: var(--s-2);
+}
+.insight-card-tag--planned {
+  color: var(--muted);
+  background: color-mix(in srgb, var(--muted) 12%, transparent);
+}
+.insight-card h3 { margin: var(--s-1) 0; font-size: 1.08rem; line-height: 1.3; }
+.insight-card p { color: var(--muted); margin: var(--s-2) 0 var(--s-3) 0; font-size: 0.92rem; flex-grow: 1; }
+.insight-card-query em { font-style: italic; color: var(--fg); }
+
+/* Article page — meta strip + eyebrow above the H1 */
+.insight-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 var(--s-1) 0;
+}
+.insight-h1 {
+  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  line-height: 1.15;
+  margin: 0 0 var(--s-2) 0;
+  letter-spacing: -0.015em;
+}
+.insight-meta {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0 0 var(--s-5) 0;
+}
+
+/* Article body — Key Takeaways block is just an H2 + UL in the markdown,
+   so we style by H2 text content via a sibling selector. Use a class on
+   the H2 instead (added by the generator below). Simpler approach: style
+   the first <ul> after an h2 whose text starts with "Key Takeaways" via
+   a class the markdown converter doesn't emit — so we add CSS for a
+   .insight-takeaways class that the markdown generator can use. Even
+   without that class, the structural rules below keep articles tidy. */
+.layout-default main article h2:first-of-type + ul,
+.insight-takeaways {
+  background: color-mix(in srgb, var(--surface) 90%, var(--accent) 5%);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--line));
+  border-left: 4px solid var(--accent);
+  border-radius: var(--r-2);
+  padding: var(--s-4) var(--s-4) var(--s-4) calc(var(--s-4) + 1rem);
+  margin: var(--s-4) 0 var(--s-5) 0;
+  list-style: disc;
+}
+.layout-default main article h2:first-of-type + ul li,
+.insight-takeaways li {
+  margin: 0.3rem 0;
+  color: var(--fg);
+  font-size: 1.02rem;
+  line-height: 1.5;
+}
+
+/* Tail CTA on every article — sits in the natural flow, not a sticky bar. */
+.insight-cta {
+  margin: var(--s-6) 0 var(--s-4) 0;
+  padding: var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+}
+.insight-cta p:first-child {
+  margin: 0 0 var(--s-3) 0;
+  font-size: 1.05rem;
+}
+.insight-cta p:last-child {
+  margin: 0;
+  display: flex;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+.insight-cta .cta-button,
+.insight-cta .cta-phone {
+  /* uses the existing button styles */
+}
+
+/* Definitional opener — first paragraph under each H2 gets a slightly
+   heavier weight to reinforce the "quote me" cue. Subtle; not screaming. */
+.layout-default main article h2 + p {
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+/* Sources & references tail */
+.insight-sources,
+section.insight-sources {
+  margin-top: var(--s-6);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+.insight-sources h2 { font-size: 1.05rem; color: var(--muted); }
+.insight-sources li { font-size: 0.92rem; color: var(--muted); }
+
+@media (max-width: 600px) {
+  .insight-pillar-card a { padding: var(--s-4); }
+  .insight-h1 { font-size: 1.55rem; }
+  .insight-cta { padding: var(--s-4); }
+}
+
+/* =================================================================
+   MachineLookup — site-wide model number lookup.
+   Powered by /data/machines.json. Renders a search input that
+   fuzzy-matches the user's typed model and routes to the matching
+   series-spoke page across all 6 brands.
+   ================================================================= */
+.machine-lookup {
+  max-width: var(--max-wide);
+  margin: var(--s-5) auto;
+  padding: var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  position: relative;
+}
+.machine-lookup-label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: var(--s-2);
+}
+.machine-lookup-input {
+  font: inherit;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1.02rem;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-2);
+  background: var(--surface);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+.machine-lookup-input:hover { border-color: var(--muted); }
+.machine-lookup-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: var(--sh-focus);
+}
+.machine-lookup-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 0.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-4);
+  z-index: 40;
+  overflow: hidden;
+  max-height: 360px;
+  overflow-y: auto;
+}
+.machine-lookup-results[hidden] { display: none; }
+.machine-lookup-result {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  border-bottom: 1px solid var(--line);
+  transition: background var(--t-fast), padding-left var(--t-fast);
+}
+.machine-lookup-result:last-child { border-bottom: 0; }
+.machine-lookup-result:hover,
+.machine-lookup-result:focus {
+  background: var(--surface-2);
+  color: var(--accent) !important;
+  padding-left: 1.2rem;
+  outline: none;
+}
+.machine-lookup-result-brand {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--r-1);
+  background: var(--surface-2);
+}
+.machine-lookup-result-model {
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+.machine-lookup-result-series {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.machine-lookup-result-arrow {
+  font-size: 1.1rem;
+  color: var(--accent);
+  opacity: 0.6;
+  transition: opacity var(--t-fast), transform var(--t-fast);
+}
+.machine-lookup-result:hover .machine-lookup-result-arrow,
+.machine-lookup-result:focus .machine-lookup-result-arrow {
+  opacity: 1;
+  transform: translateX(2px);
+}
+.machine-lookup-empty {
+  padding: 1rem 1.25rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.machine-lookup-empty a { color: var(--accent); font-weight: 600; }
+
+@media (max-width: 600px) {
+  .machine-lookup { padding: var(--s-4); }
+  .machine-lookup-result {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand arrow"
+      "model arrow"
+      "series series";
+    gap: 0.25rem 0.6rem;
+  }
+  .machine-lookup-result-brand { grid-area: brand; justify-self: start; }
+  .machine-lookup-result-model { grid-area: model; }
+  .machine-lookup-result-series { grid-area: series; }
+  .machine-lookup-result-arrow { grid-area: arrow; align-self: center; }
+}
+
+/* Browse-by-X lists on hub pages (Browse by Series / Control / Service).
+   Each <li> is a card-style link with bolded label + supporting copy. */
+.browse-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--s-4) 0 var(--s-5) 0;
+  display: grid;
+  gap: var(--s-3);
+}
+.browse-list > li { margin: 0; }
+.browse-list > li > a {
+  display: block;
+  padding: var(--s-4) var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  font-weight: 500;
+  line-height: 1.5;
+  transition: transform var(--t-fast), box-shadow var(--t-fast),
+              border-color var(--t-fast);
+  position: relative;
+  padding-right: calc(var(--s-5) + 18px);
+}
+.browse-list > li > a::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: var(--s-4);
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--muted);
+  border-top: 2px solid var(--muted);
+  transform: translateY(-50%) rotate(45deg);
+  opacity: 0.5;
+  transition: opacity var(--t-fast), transform var(--t-fast),
+              border-color var(--t-fast);
+}
+.browse-list > li > a:hover,
+.browse-list > li > a:focus {
+  transform: translateY(-2px);
+  box-shadow: var(--sh-3);
+  border-color: var(--accent);
+  outline: none;
+}
+.browse-list > li > a:hover::after,
+.browse-list > li > a:focus::after {
+  opacity: 1;
+  border-color: var(--accent);
+  transform: translateY(-50%) rotate(45deg) translate(2px, -2px);
+}
+.browse-list > li > a strong {
+  color: var(--fg);
+  font-weight: 700;
+  display: inline;
+  margin-right: 0.4rem;
+}
+.browse-list > li > a:hover strong { color: var(--accent); }
+
+/* "Models We Service" — pill chips instead of dense vertical list */
+.model-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  list-style: none;
+  padding: 0;
+  margin: var(--s-3) 0 var(--s-4) 0;
+}
+.model-chips li {
+  margin: 0;
+  padding: 0.4rem 0.95rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+/* =================================================================
+   Pull-card / info-box / trust footer aside
+   ================================================================= */
+.trust-footer, aside.trust-footer {
+  margin: var(--s-6) 0;
+  padding: var(--s-5);
+  background: linear-gradient(135deg, var(--surface-2), var(--surface-3));
+  border-radius: var(--r-3);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-1);
+}
+.trust-footer > p { margin: var(--s-3) 0; }
+.trust-footer > p:first-child { margin-top: 0; }
+.trust-footer > p:last-child { margin-bottom: 0; }
+.trust-footer .customer-quote {
+  font-style: italic;
+  color: var(--fg);
+  border-left: 3px solid var(--accent);
+  padding-left: var(--s-4);
+  margin-top: var(--s-4);
+}
+
+/* =================================================================
+   Sticky mobile CTA bar
+   ================================================================= */
+.mobile-cta-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: var(--s-2) var(--s-3);
+  padding-bottom: calc(var(--s-2) + env(safe-area-inset-bottom));
+  gap: var(--s-2);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+}
+.mobile-cta-bar a {
+  flex: 1 1 0;
+  text-align: center;
+  padding: 0.9rem 0.5rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  border-radius: var(--r-pill);
+  transition: background var(--t-fast), color var(--t-fast);
+}
+.mobile-cta-bar .mcta-phone {
+  color: var(--fg) !important;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+}
+.mobile-cta-bar .mcta-phone:active { background: var(--surface-2); }
+.mobile-cta-bar .mcta-quote {
+  color: #fff !important;
+  background: var(--accent);
+  box-shadow: var(--sh-2);
+}
+.mobile-cta-bar .mcta-quote:active { background: var(--accent-dark); }
+
+@media (max-width: 767px) {
+  .mobile-cta-bar { display: flex; }
+  body { padding-bottom: calc(var(--sticky-cta-height) + env(safe-area-inset-bottom)); }
+}
+
+/* =================================================================
+   Footer
+   ================================================================= */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: var(--s-7) var(--s-5) var(--s-6);
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-align: center;
+  margin-top: var(--s-8);
+  background: var(--surface-2);
+}
+.site-footer p { margin: var(--s-2) 0; }
+.site-footer p:first-child { color: var(--fg); font-weight: 600; font-size: 1rem; }
+
+/* =================================================================
+   Responsive overrides
+   ================================================================= */
+@media (max-width: 900px) {
+  main { padding: 0 var(--s-4); }
+  article { margin: var(--s-5) auto var(--s-7) auto; }
+  h2 { margin: var(--s-6) 0 var(--s-3) 0; }
+  .faq-item > summary { padding: var(--s-4); }
+  .faq-item .faq-answer { padding-left: var(--s-4); padding-right: var(--s-4); padding-bottom: var(--s-4); }
+  .process-steps > li { padding-left: calc(var(--s-7) + var(--s-2)); padding-right: var(--s-4); }
+}
+
+@media (max-width: 800px) {
+  .site-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--s-2);
+    padding: var(--s-3) var(--s-4);
+    position: static;
+  }
+  .site-header .brand { justify-content: center; }
+  .site-header .brand img { height: 56px; }
+  .site-header nav { width: 100%; }
+  .site-header nav > ul { flex-direction: column; gap: 0; width: 100%; }
+  .site-header nav > ul > li { width: 100%; }
+  .site-header nav > ul > li > a,
+  .site-header nav > ul > li > .menu-label {
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+    border-radius: var(--r-1);
+    border-bottom: 1px solid var(--line);
+    justify-content: space-between;
+  }
+  .site-header nav .dropdown {
+    position: static;
+    box-shadow: none;
+    border: none;
+    padding: var(--s-1) 0 var(--s-2) 0;
+    margin: 0;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+    min-width: 0;
+    background: var(--surface-2);
+    border-radius: 0;
+  }
+  .site-header nav .dropdown a { padding: 0.45rem 1.25rem; }
+  .site-header nav a.cta-nav {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    margin-left: 0;
+    margin-top: var(--s-2);
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  h1 { font-size: clamp(1.7rem, 7vw, 2.3rem); }
+  h2 { font-size: 1.3rem; }
+  article { margin: var(--s-4) auto var(--s-6) auto; }
+  .cta-row { flex-direction: column; align-items: stretch; }
+  .cta-row .cta-button,
+  .cta-row .cta-phone { width: 100%; justify-content: center; }
+  .hero-figure img { max-height: 280px; }
+  blockquote { padding: var(--s-3) var(--s-4); }
+  blockquote p { padding-left: 1.25rem; }
+  th, td { padding: var(--s-2) var(--s-3); font-size: 0.9rem; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://midwestcncservices.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://midwestcncservices.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Spindle Diagnostics & Repair Decisions",
+      "item": "https://midwestcncservices.com/insights/spindle-diagnostics/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Spindle Rebuild vs. Replace: When Each Makes Sense"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "Article",
+    "BlogPosting"
+  ],
+  "headline": "Spindle Rebuild vs. Replace: When Each Makes Sense",
+  "description": "The economics of a CNC spindle rebuild versus replacement, framed by the three break-even questions Ken walks customers through before quoting work. Real cost ranges and the cases where each path actually wins.",
+  "datePublished": "2026-05-27",
+  "dateModified": "2026-05-27",
+  "author": {
+    "@type": "Person",
+    "name": "Ken",
+    "jobTitle": "Shop owner",
+    "worksFor": {
+      "@id": "https://midwestcncservices.com/#org"
+    }
+  },
+  "publisher": {
+    "@id": "https://midwestcncservices.com/#org"
+  },
+  "mainEntityOfPage": "https://midwestcncservices.com/insights/spindle-diagnostics/rebuild-vs-replace-spindle-economics/",
+  "articleSection": "Spindle Diagnostics & Repair Decisions",
+  "keywords": "cnc spindle rebuild or replace",
+  "wordCount": 1560,
+  "inLanguage": "en-US"
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="brand" href="/" aria-label="Midwest CNC Services home">
+    <img src="/assets/images/logos/midwest-cnc-logo.png" alt="Midwest CNC Services">
+  </a>
+  <nav aria-label="Primary">
+    <ul>
+    <li class="has-dropdown">
+      <a href="/repairs/" class="menu-label">Repairs</a>
+      <ul class="dropdown" role="menu">
+        <li class="dropdown-section">By Service</li>
+        <li><a href="/repairs/" class="dropdown-all">All Repairs →</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li class="dropdown-section">Popular Brands</li>
+        <li><a href="/repairs/mazak-cnc-machine-repair/">Mazak</a></li>
+        <li><a href="/repairs/haas-cnc-machine-repair/">Haas</a></li>
+        <li><a href="/repairs/dmg-mori-cnc-machine-repair/">DMG Mori</a></li>
+        <li><a href="/repairs/doosan-cnc-machine-repair/">Doosan</a></li>
+        <li><a href="/repairs/okuma-cnc-machine-repair/">Okuma</a></li>
+        <li><a href="/repairs/fanuc-cnc-machine-repair/">Fanuc</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li><a href="/repairs/" class="dropdown-all">View All Brands →</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="/spindle-grinding/" class="menu-label">Spindle Grinding</a>
+      <ul class="dropdown" role="menu">
+        <li class="dropdown-section">By Service</li>
+        <li><a href="/spindle-grinding/" class="dropdown-all">All Spindle Work →</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li class="dropdown-section">Popular Brands</li>
+        <li><a href="/spindle-grinding/mazak-spindle-repair/">Mazak</a></li>
+        <li><a href="/spindle-grinding/haas-spindle-repair/">Haas</a></li>
+        <li><a href="/spindle-grinding/dmg-mori-spindle-repair/">DMG Mori</a></li>
+        <li><a href="/spindle-grinding/doosan-spindle-repair/">Doosan</a></li>
+        <li><a href="/spindle-grinding/okuma-spindle-repair/">Okuma</a></li>
+        <li><a href="/spindle-grinding/fanuc-spindle-repair/">Fanuc</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li><a href="/spindle-grinding/" class="dropdown-all">View All Brands →</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="/way-covers/" class="menu-label">Way Covers</a>
+      <ul class="dropdown" role="menu">
+        <li class="dropdown-section">By Service</li>
+        <li><a href="/way-covers/" class="dropdown-all">All Way Covers →</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li class="dropdown-section">Popular Brands</li>
+        <li><a href="/way-covers/mazak-cnc-way-covers/">Mazak</a></li>
+        <li><a href="/way-covers/haas-cnc-way-covers/">Haas</a></li>
+        <li><a href="/way-covers/dmg-mori-cnc-way-covers/">DMG Mori</a></li>
+        <li><a href="/way-covers/doosan-cnc-way-covers/">Doosan</a></li>
+        <li><a href="/way-covers/okuma-cnc-way-covers/">Okuma</a></li>
+        <li><a href="/way-covers/fanuc-cnc-way-covers/">Fanuc</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li><a href="/way-covers/" class="dropdown-all">View All Brands →</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="/service-area/" class="menu-label">Service Area</a>
+      <ul class="dropdown" role="menu">
+        <li class="dropdown-section">By State</li>
+        <li><a href="/service-area/iowa/">Iowa</a></li>
+        <li><a href="/service-area/illinois/">Illinois</a></li>
+        <li><a href="/service-area/wisconsin/">Wisconsin</a></li>
+        <li><a href="/service-area/minnesota/">Minnesota</a></li>
+        <li><a href="/service-area/nebraska/">Nebraska</a></li>
+        <li><a href="/service-area/missouri/">Missouri</a></li>
+        <li><a href="/service-area/texas/">Texas</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li><a href="/service-area/" class="dropdown-all">All Locations →</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="/insights/" class="menu-label">Insights</a>
+      <ul class="dropdown" role="menu">
+        <li class="dropdown-section">Technical Pillars</li>
+        <li><a href="/insights/spindle-diagnostics/">Spindle Diagnostics</a></li>
+        <li><a href="/insights/cnc-control-systems/">CNC Control Systems</a></li>
+        <li><a href="/insights/way-covers-engineering/">Way Covers Engineering</a></li>
+        <li><a href="/insights/field-service-logistics/">Field Service & Logistics</a></li>
+        <li><a href="/insights/buying-owning-used-cnc/">Buying & Owning Used CNC</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li><a href="/insights/" class="dropdown-all">All Insights →</a></li>
+      </ul>
+    </li>
+      <li><a href="/get-a-quote/" class="cta-nav">Get a Quote</a></li>
+    </ul>
+  </nav>
+</header>
+<nav class="breadcrumbs" aria-label="breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li><li><a href="/insights/">Insights</a></li><li><a href="/insights/spindle-diagnostics/">Spindle Diagnostics &amp; Repair Decisions</a></li><li>Spindle Rebuild vs. Replace: When Each Makes Sense</li>
+  </ol>
+</nav>
+<main id="main">
+<article>
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
+<p class="insight-eyebrow">Spindle Diagnostics &amp; Repair Decisions</p>
+<h1 class="insight-h1">Spindle Rebuild vs. Replace: When Each Makes Sense</h1>
+<p class="insight-meta">By Ken &middot; 2026-05-27 &middot; ~8 min read</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>A typical CNC spindle rebuild on a production-class machine runs $4,500 to $12,000 depending on damage scope, with parts and labor split roughly 40/60. Outright replacement of an integral-motor cartridge can run $18,000 to $45,000 before installation labor.
+</li>
+<li>The rebuild-vs-replace decision turns on three break-even questions: how much secondary damage has accumulated, what the machine is worth in resale today, and what the production cost of a longer lead time looks like for this specific shop.
+</li>
+<li>A spindle whose runout at the taper has stayed under 0.0002 inches before the failure event is almost always a rebuild candidate. Above 0.0005 inches, the shaft itself may be compromised and the math shifts.
+</li>
+<li>Lead time on rebuilds runs 3 to 6 weeks for most platforms; a replacement cartridge from the OEM can be 8 to 16 weeks if it's in stock and longer if not. Lead time alone often decides the question.
+</li>
+<li>Integral-motor spindles change the math significantly. Their rebuild path is narrower (you can't just press in new bearings), and replacement is sometimes the only honest answer.
+</li>
+</ul>
+<p>The first question every shop asks when a spindle fails is some version of "is it worth fixing?" The honest answer depends on three variables specific to your machine, your shop, and the failure mode. The framework below is the one <a href="/spindle-grinding/">Ken walks customers through</a> on the phone before we quote either path. It's not a magic decision tree — it's the math that determines which side of the break-even line you're actually on.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="a-rebuild-restores-the-spindle-a-replacement-swaps-in-a-different-spindle">A rebuild restores the spindle; a replacement swaps in a different spindle</h2>
+<p>A rebuild takes the existing spindle assembly apart, replaces the wear components (the bearing set, seals, lubrication paths, sometimes the drawbar), and verifies the result back to the manufacturer's runout and balance specs. The shaft, housing, and labyrinths stay. A replacement removes the entire spindle assembly and installs a new one — either OEM or a quality aftermarket equivalent.</p>
+<p>The cost difference, in our service log across the last three years, runs about 3x. A Haas VF-series rebuild has come in between $4,800 and $7,200 depending on what we found inside; a replacement spindle for the same machine, depending on the year and the <a href="/repairs/haas-cnc-machine-repair/vf-series/">VF-series generation</a>, runs $16,000 to $24,000 before install. On a <a href="/repairs/mazak-cnc-machine-repair/integrex/">Mazak Integrex multitasking platform</a>, the spread is wider — rebuilds in the $9,000 to $14,000 range, replacement cartridges $32,000 to $48,000.</p>
+<p>The rebuild number is more flexible because we can scope it. The replacement number is set by what the OEM charges.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="the-three-break-even-questions">The three break-even questions</h2>
+<p>These are the questions we ask before quoting. None of them have a single right answer; each is shop-specific.</p>
+<h3 id="question-one-how-much-secondary-damage-is-there">Question one: how much secondary damage is there</h3>
+<p>When a bearing fails, it doesn't fail in isolation. Heat, debris, and vibration propagate. The longer the spindle ran after the first symptom, the more damage there is to assess. Secondary damage to the shaft, to the bore in the housing, to the labyrinth seals, even to the drawbar — each adds to the rebuild scope and shifts the math.</p>
+<p>The clean rebuild case is: the operator heard the noise, called us within a week, the bearings are the only thing destroyed, and the shaft and bore measure within spec. This rebuild runs the low end of the range.</p>
+<p>The messy rebuild case is: the spindle ran for months making noise, the inner race is gone, the shaft has spall marks, and the bore has heat-shifted enough that bearing fit is questionable. This rebuild runs the high end — sometimes high enough that replacement starts to make sense.</p>
+<p>Across our <a href="/spindle-grinding/">bench rebuilds last year</a>, about one in five came in late enough that we had to either regrind the shaft, sleeve the housing, or replace components beyond the bearings. Each of those operations adds days to the lead time and dollars to the quote.</p>
+<h3 id="question-two-what-is-the-machine-worth-today">Question two: what is the machine worth today</h3>
+<p>A rebuild restores production capacity to a specific machine. If that machine is worth $40,000 in today's market and the rebuild costs $8,000, the rebuild captures 20% of the machine's value in service cost. If the same rebuild is on a $200,000 machine, it's 4% — a completely different financial decision.</p>
+<p>Replacement cost should be compared to the machine's resale value, not its purchase price. A 12-year-old <a href="/repairs/okuma-cnc-machine-repair/lb-lu-lathes/">Okuma LB-series lathe</a> might be worth $35,000 in today's used market with a healthy spindle. A new spindle for it might cost $22,000 plus installation. At that ratio, owners often choose to live with reduced spindle performance, or to sell the machine as-is and buy a healthier used unit.</p>
+<p>The math changes when the machine is irreplaceable in its current configuration — legacy controls with parameters that took a decade to dial in, custom fixturing built around the machine's specific geometry, or a place in the production layout that can't be easily reconfigured. In those cases, the rebuild wins even when the pure dollar math says otherwise.</p>
+<h3 id="question-three-what-does-the-lead-time-cost-you">Question three: what does the lead time cost you</h3>
+<p>Production downtime cost varies by shop. A job shop running a single CNC at 40% utilization is in a different position than a high-mix production shop running three shifts on the same spindle. We've seen quoted downtime costs from $200/day to $4,800/day across our customer base.</p>
+<p>Rebuild lead time at our shop runs 3 to 6 weeks for most platforms — 3 weeks if we can stage parts ahead, 6 weeks if the bearing set has to come in from overseas. Replacement spindle lead time varies wildly: in-stock at the OEM might be 2 weeks, special-order for a less common platform might be 16 weeks. We've seen <a href="/repairs/mazak-cnc-machine-repair/variaxis/">Mazak Variaxis cartridges</a> on 4-month lead time during peak demand cycles.</p>
+<p>If your downtime cost is $1,000/day and the difference between rebuild and replacement is 8 weeks of lead time, that's $56,000 of cost difference before we touch the comparison of part prices. Lead time alone often decides the question.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="when-replacement-is-the-right-answer">When replacement is the right answer</h2>
+<p>Replacement is the honest answer in several specific cases:</p>
+<p>1. <strong>Integral-motor spindle with motor damage.</strong> If the rotor windings are damaged or the motor stator has failed, the rebuild path is narrow. We can rewind the motor in some cases, but on many platforms the cost approaches a new cartridge anyway. 2. <strong>Shaft damage beyond regrind.</strong> If the shaft has cracks, heavy spall, or geometry shifts that exceed regrind tolerances, replacement is more honest than a rebuild that won't hold spec. 3. <strong>Bore damage in the housing.</strong> When the housing bore is shifted out of round or out of size from heat damage, bearing fit becomes unreliable. Sleeving is possible but adds cost and risk; replacement is sometimes the cleaner answer. 4. <strong>End-of-life machine with high downtime cost.</strong> If the machine has other failing systems (controls, ATC, ways) and the spindle is the latest in a series of repairs, a complete spindle replacement may not be the right investment. A machine swap might be.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="when-rebuild-is-the-right-answer">When rebuild is the right answer</h2>
+<p>Rebuild is the right answer for most cases — it's why we exist as a shop:</p>
+<p>1. <strong>Bearing damage caught early.</strong> If the spindle has been making noise for less than 30 days and the runout is still measurable, the bearings are the failure mode and the rebuild path is clean. 2. <strong>High-value machine, long remaining service life.</strong> A 5-year-old <a href="/repairs/dmg-mori-cnc-machine-repair/ntx/">DMG Mori NTX</a> with 15 more good years in it is a rebuild candidate even when the rebuild is expensive. 3. <strong>Legacy machine where replacement is unavailable.</strong> Legacy <a href="/repairs/fanuc-cnc-machine-repair/series-0-legacy/">Fanuc-controlled machines</a> and discontinued OEM platforms often have no replacement spindle path. Rebuild is the only option. 4. <strong>Shops where downtime cost makes lead time the priority.</strong> A 4-week rebuild beats a 12-week replacement for most production shops, even when the part costs would suggest otherwise.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="the-conversation-we-have-before-quoting">The conversation we have before quoting</h2>
+<p>Before we send a number, we ask about all three break-even questions. The diagnostic visit or bench inspection tells us the secondary damage story (question one). You tell us the machine's current value and remaining service life (question two). You tell us what downtime is actually costing the shop right now (question three). With those three inputs, the quote we send back is honest — sometimes for the rebuild, sometimes for the replacement, sometimes for the option you didn't ask about.</p>
+<p>Runout and balance verification at sign-off is part of every rebuild we do, and we <a href="/spindle-grinding/">document the spindle's condition</a> before and after so the result is checkable.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="sources-references">Sources &amp; references</h2>
+<ul>
+<li>Pricing ranges are from Midwest CNC Services rebuild and replacement quotes across the 2023-2025 service log (approximately 280 rebuilds and 42 cartridge replacements).
+</li>
+<li>Lead time figures reflect average vendor performance during that period; high-demand quarters skewed longer.
+</li>
+<li>Resale value benchmarks pulled from public used-CNC auction data and broker listings for the platforms cited.
+</li>
+<li>Downtime cost ranges are self-reported by our customer base; we don't audit them.
+</li>
+</ul>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="when-to-bring-this-work-to-us">When to bring this work to us</h2>
+<p>If a spindle has failed or started showing symptoms, the first step is the <a href="/insights/spindle-diagnostics/">vibration symptom decoder</a> — that often answers the rebuild-vs-replace question on its own. After that, send us the machine model, the symptoms, and what the failure looked like. We'll come back with both options and the math behind each.</p>
+<p><a href="/get-a-quote/">Get a quote</a> for a rebuild assessment or a replacement comparison.</p>
+<div class="insight-cta">
+  <p><strong>Need this work done?</strong> Tell us the machine and the symptom.</p>
+  <p><a class="cta-button" href="/get-a-quote/">Get a quote</a> <a class="cta-phone" href="tel:+13196104341">319-610-4341</a></p>
+</div>
+  </div>
+</section>
+</article>
+</main>
+<footer class="site-footer">
+  <p>Midwest CNC Services &middot; 319-610-4341 &middot; Waterloo, Iowa</p>
+  <p>Serving shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
+</footer>
+<div class="mobile-cta-bar" role="region" aria-label="Quick contact">
+  <a class="mcta-phone" href="tel:+13196104341">&#9742; 319-610-4341</a>
+  <a class="mcta-quote" href="/get-a-quote/">Get a Quote</a>
+</div>
+<script>
+/* Coverage-map loader. Only injects Leaflet (CSS + JS) when a
+   .coverage-map element exists on the page. Reads data-* attributes
+   off each map element and renders the appropriate variant. */
+(function () {
+  var maps = document.querySelectorAll('.coverage-map');
+  if (!maps.length) return;
+
+  var WATERLOO = [42.51389, -92.34611];
+
+  function inject(tag, attrs) {
+    var el = document.createElement(tag);
+    for (var k in attrs) el.setAttribute(k, attrs[k]);
+    return el;
+  }
+  function loadLeaflet(cb) {
+    if (window.L) { cb(); return; }
+    document.head.appendChild(inject('link', {
+      rel: 'stylesheet',
+      href: 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
+      integrity: 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=',
+      crossorigin: ''
+    }));
+    var s = inject('script', {
+      src: 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
+      integrity: 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=',
+      crossorigin: ''
+    });
+    s.onload = cb;
+    document.body.appendChild(s);
+  }
+
+  function tileLayer() {
+    return L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+  }
+  function originIcon() {
+    return L.divIcon({
+      className: 'coverage-map-origin',
+      html: '<div style="background:#b8341a;color:#fff;border:2px solid #fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;box-shadow:0 2px 6px rgba(0,0,0,0.35);">&#9733;</div>',
+      iconSize: [24, 24],
+      iconAnchor: [12, 12]
+    });
+  }
+  function cityIcon() {
+    return L.divIcon({
+      className: 'coverage-map-city',
+      html: '<div style="background:#fff;border:2px solid #b8341a;border-radius:50%;width:14px;height:14px;box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>',
+      iconSize: [14, 14],
+      iconAnchor: [7, 7]
+    });
+  }
+
+  function renderCity(el) {
+    var coords = JSON.parse(el.getAttribute('data-coords') || 'null');
+    if (!coords) return;
+    var cityName = el.getAttribute('data-city') || '';
+    var distance = el.getAttribute('data-distance') || '';
+    var map = L.map(el, { zoomControl: true, scrollWheelZoom: false }).setView(coords, 7);
+    tileLayer().addTo(map);
+    L.marker(WATERLOO, { icon: originIcon() }).addTo(map)
+      .bindPopup('<strong>Waterloo, IA</strong><br>Midwest CNC Services');
+    L.marker(coords, { icon: cityIcon() }).addTo(map)
+      .bindPopup('<strong>' + cityName + '</strong>' + (distance ? '<br>' + distance + ' from Waterloo' : ''));
+    L.polyline([WATERLOO, coords], { color: '#b8341a', weight: 2, dashArray: '6,6', opacity: 0.6 }).addTo(map);
+    map.fitBounds([WATERLOO, coords], { padding: [50, 50] });
+    el.classList.add('is-loaded');
+  }
+  function renderState(el) {
+    var bounds = JSON.parse(el.getAttribute('data-bounds') || 'null');
+    var cities = JSON.parse(el.getAttribute('data-cities') || '[]');
+    var map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
+    tileLayer().addTo(map);
+    L.marker(WATERLOO, { icon: originIcon() }).addTo(map)
+      .bindPopup('<strong>Waterloo, IA</strong><br>Midwest CNC Services');
+    var allPts = [WATERLOO];
+    cities.forEach(function (c) {
+      if (!c.coords) return;
+      L.marker(c.coords, { icon: cityIcon() }).addTo(map)
+        .bindPopup('<strong>' + c.name + '</strong>' +
+                   (c.distance_miles ? '<br>' + c.distance_miles + ' miles from Waterloo' : '') +
+                   (c.url ? '<br><a href="' + c.url + '">View ' + c.name + ' page &rarr;</a>' : ''));
+      allPts.push(c.coords);
+    });
+    if (bounds && bounds.length === 2) {
+      map.fitBounds(bounds, { padding: [30, 30] });
+    } else if (allPts.length > 1) {
+      map.fitBounds(allPts, { padding: [40, 40] });
+    }
+    el.classList.add('is-loaded');
+  }
+  function renderHub(el) {
+    var cities = JSON.parse(el.getAttribute('data-cities') || '[]');
+    var map = L.map(el, { zoomControl: true, scrollWheelZoom: false });
+    tileLayer().addTo(map);
+    L.marker(WATERLOO, { icon: originIcon() }).addTo(map)
+      .bindPopup('<strong>Waterloo, IA</strong><br>Midwest CNC Services<br>Service across 7 states');
+    var allPts = [WATERLOO];
+    cities.forEach(function (c) {
+      if (!c.coords) return;
+      L.marker(c.coords, { icon: cityIcon() }).addTo(map)
+        .bindPopup('<strong>' + c.name + ', ' + (c.state || '') + '</strong>' +
+                   (c.distance_miles ? '<br>' + c.distance_miles + ' miles from Waterloo' : '') +
+                   (c.url ? '<br><a href="' + c.url + '">View ' + c.name + ' page &rarr;</a>' : ''));
+      allPts.push(c.coords);
+    });
+    if (allPts.length > 1) map.fitBounds(allPts, { padding: [30, 30] });
+    el.classList.add('is-loaded');
+  }
+
+  loadLeaflet(function () {
+    maps.forEach(function (el) {
+      if (el.classList.contains('coverage-map--city'))      renderCity(el);
+      else if (el.classList.contains('coverage-map--hub'))  renderHub(el);
+      else                                                  renderState(el);
+    });
+  });
+})();
+</script>
+</body>
+</html>

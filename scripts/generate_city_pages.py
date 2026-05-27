@@ -259,11 +259,13 @@ def pick_variant(slug, salt, pool):
 
 
 def build_hero(city, state, distance, h1_text, eyebrow_text, hero_img_src, hero_img_alt, slug):
-    """Emits a .brand-hero block (image background, dark overlay, centered
-    text). hero_img_src and hero_img_alt are passed in so the background
-    image stays in sync with the existing image-resolution logic in
-    render_city_page."""
-    import generate_brand_pages as gbp
+    """Emits a .home-hero video-background hero — same midwest-cnc-bg-fade.mp4
+    treatment as the homepage and the rest of the service-area section.
+
+    hero_img_src / hero_img_alt are kept in the signature for backward
+    compatibility with render_city_page but are unused — the video hero
+    is the same on every city. City-specific copy lives in the eyebrow
+    + H1 + lede."""
     name = city["name"]
     direction = direction_from_waterloo(city["coords"])
     travel = travel_framing(state["slug"], distance)
@@ -297,8 +299,10 @@ def build_hero(city, state, distance, h1_text, eyebrow_text, hero_img_src, hero_
     sent3 = pick_variant(slug, 2, HERO_SERVICE_VARIANTS)
     lede_text = f"{sent1} {sent2} {sent3}"
 
-    return gbp.build_brand_hero_html(
-        eyebrow_text, h1_text, lede_text, hero_img_src, hero_img_alt,
+    return gss.build_video_hero_html(
+        eyebrow_text=eyebrow_text,
+        h1_html=html.escape(h1_text),
+        lede_html=html.escape(lede_text),
     )
 
 
@@ -829,9 +833,8 @@ def render_city_page(city_research_slug, city, state, brand_index):
     if city_research_slug == "north-platte-nebraska":
         body_main, faq_schema = build_north_platte_override(city, state, distance)
         # The override builds its own h1 + eyebrow + intro. Replace the
-        # legacy eyebrow / h1 / paragraph block with a .brand-hero +
-        # coverage map injection.
-        import generate_brand_pages as gbp
+        # legacy eyebrow / h1 / paragraph block with the .home-hero
+        # video hero + coverage map injection.
         h1_text = f"CNC Service for {name} and Western Nebraska Shops"
         eyebrow_text = f"{name}, Nebraska"
         # Extract the lede paragraph from the override and rebuild as brand-hero
@@ -846,8 +849,10 @@ def render_city_page(city_research_slug, city, state, brand_index):
             f"operates on the city's western edge — and we recognize this as regional "
             f"context rather than a direct customer base."
         )
-        brand_hero = gbp.build_brand_hero_html(
-            eyebrow_text, h1_text, override_lede, img_path, img_alt,
+        brand_hero = gss.build_video_hero_html(
+            eyebrow_text=eyebrow_text,
+            h1_html=html.escape(h1_text),
+            lede_html=html.escape(override_lede),
         )
         # Replace the override's hero text + cta block with the new hero.
         # The override starts with: <p class="eyebrow">...</p><h1>...</h1><p>lede</p>{cta}

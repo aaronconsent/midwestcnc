@@ -680,12 +680,15 @@ def render_state_page(state, research):
             hero_img = "/assets/images/general/home-image.png"
         hero_alt = f"{name} manufacturing landscape"
 
-    # Brand-hero (image background, dark overlay, centered text) — same
-    # treatment as the brand pages. Hero lede uses the same Ken-authorized
-    # paragraph that the old two-column hero used.
+    # Video hero — same midwest-cnc-bg-fade.mp4 background as the
+    # homepage and the rest of the service-area section. State-scoped
+    # eyebrow + H1 + lede; CTAs route to /get-a-quote/ since state
+    # pages have no inline #quote form.
     hero_lede = hero_paragraph(state)
-    hero_html = gbp.build_brand_hero_html(
-        eyebrow_text, h1, hero_lede, hero_img, hero_alt,
+    hero_html = gss.build_video_hero_html(
+        eyebrow_text=eyebrow_text,
+        h1_html=html.escape(h1),
+        lede_html=html.escape(hero_lede),
     )
 
     # MachineLookup widget + state coverage map immediately under hero

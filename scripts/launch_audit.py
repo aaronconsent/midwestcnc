@@ -151,7 +151,15 @@ def schema_audit(html_files):
         for s in schemas:
             if isinstance(s, dict):
                 t = s.get("@type")
-                if t:
+                if t is None:
+                    continue
+                # @type may be a string (most common) OR a list (e.g.,
+                # ["Article", "BlogPosting"] on insights articles).
+                if isinstance(t, list):
+                    for entry in t:
+                        if isinstance(entry, str):
+                            types.add(entry)
+                elif isinstance(t, str):
                     types.add(t)
 
         # Universal: BreadcrumbList on every non-homepage, non-404 page
