@@ -595,10 +595,13 @@ SITE_FOOTER = """<footer class="site-footer">
   <p>Serving shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
 </footer>"""
 
+from _coverage_map_loader import COVERAGE_MAP_LOADER as _COVERAGE_MAP_LOADER
+
 MOBILE_CTA = """<div class="mobile-cta-bar" role="region" aria-label="Quick contact">
   <a class="mcta-phone" href="tel:+13196104341">☎ 319-610-4341</a>
   <a class="mcta-quote" href="/get-a-quote/">Get a Quote</a>
-</div>"""
+</div>
+""" + _COVERAGE_MAP_LOADER
 
 
 def breadcrumbs_html(items):
@@ -1333,19 +1336,44 @@ def way_covers_hub_body(brands):
 
 
 def service_area_hub_body():
-    """Service-area hub — links out to the 7 state pages now that they
-    exist. The Phase 1 in-page anchor sections are gone; each state has
-    its own page."""
+    """Service-area hub — brand-hero + machine lookup + overview map +
+    state tile grid + FAQ. Links out to the 7 state pages."""
+    # Lazy imports to avoid circular import at module top
+    import generate_brand_pages as gbp
+    import _geo_data
+    import json as _json
+
     body = []
-    body.append('<p class="eyebrow">Service Areas</p>')
-    body.append('<h1>Midwest CNC Service Coverage</h1>')
-    body.append(
-        '<p>We work with production shops, job shops, and OEM customers '
-        'across seven states from our Waterloo, Iowa location. Field '
-        'service where it can save a teardown; bench work and shipped '
-        'builds when that\'s what the repair calls for.</p>'
+
+    # Brand-hero (image background, dark overlay, centered text) — same
+    # treatment as the brand pages.
+    hero_img = "/assets/images/general/home-image.png"
+    hero_alt = "Midwest CNC Services field service van and CNC machine on flatbed trailer"
+    hero_lede = (
+        "We work with production shops, job shops, and OEM customers across seven "
+        "states from our Waterloo, Iowa location. Field service where it can save a "
+        "teardown; bench work and shipped builds when that's what the repair calls for."
     )
-    body.append(hero_cta_html())
+    body.append(gbp.build_brand_hero_html(
+        "Service Areas",
+        "Midwest CNC Service Coverage",
+        hero_lede,
+        hero_img,
+        hero_alt,
+    ))
+    body.append(gbp.machine_lookup_html())
+
+    # Coverage overview map — every ENRICH city across all 7 states,
+    # Waterloo origin pinned in the center.
+    all_cities = _geo_data.all_served_cities()
+    body.append(
+        f'<div class="coverage-map coverage-map--hub"\n'
+        f'     data-cities=\'{_json.dumps(all_cities, ensure_ascii=False)}\'\n'
+        f'     aria-label="Map showing Midwest CNC Services coverage across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas, with our Waterloo, IA home base">\n'
+        f'  <div class="coverage-map-empty">Loading coverage map…</div>\n'
+        f'</div>\n'
+        f'<p class="coverage-map-caption">{len(all_cities)} cities across 7 states — pinned alongside our Waterloo, IA home base.</p>'
+    )
 
     # State tile grid linking to the real state pages
     body.append('<h2 id="states-we-serve">States We Serve</h2>')

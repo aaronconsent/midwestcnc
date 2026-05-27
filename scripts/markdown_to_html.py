@@ -23,6 +23,10 @@ import os
 import re
 import sys
 
+# Coverage-map loader script — kept as a module-level constant so its
+# JS braces don't conflict with the f-string templates below.
+from _coverage_map_loader import COVERAGE_MAP_LOADER
+
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Three content directories — bulk runs scan all of them.
@@ -1321,6 +1325,84 @@ article > table {
 }
 
 /* =================================================================
+   Coverage map — Leaflet-based service area visualization.
+   Hub variant: all 7 states with served cities pinned + Waterloo origin.
+   State variant: one state outline with served cities pinned + Waterloo.
+   City variant: city location + driving route to Waterloo.
+   Leaflet CSS+JS is loaded conditionally only on pages that emit a
+   .coverage-map element (see the loader script in markdown_to_html
+   below).
+   ================================================================= */
+.coverage-map {
+  max-width: var(--max-wide);
+  margin: var(--s-5) auto;
+  height: 460px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  overflow: hidden;
+  position: relative;
+}
+.coverage-map--city { height: 360px; }
+.coverage-map--hub  { height: 520px; }
+.coverage-map-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: var(--s-4);
+  color: var(--muted);
+  font-size: 0.92rem;
+  pointer-events: none;
+  z-index: 1;
+}
+.coverage-map-empty::before {
+  content: "🗺";
+  font-size: 2rem;
+  margin-bottom: var(--s-2);
+  opacity: 0.5;
+}
+.coverage-map.is-loaded .coverage-map-empty { display: none; }
+.coverage-map .leaflet-container {
+  background: var(--surface-2);
+  font-family: inherit;
+}
+/* Style the popups to match the site */
+.coverage-map .leaflet-popup-content-wrapper {
+  border-radius: var(--r-2);
+  box-shadow: var(--sh-3);
+}
+.coverage-map .leaflet-popup-content {
+  margin: 0.75rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.coverage-map .leaflet-popup-content a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.coverage-map .leaflet-popup-content a:hover { text-decoration: underline; }
+.coverage-map-caption {
+  max-width: var(--max-wide);
+  margin: calc(var(--s-3) * -1) auto var(--s-5);
+  padding: 0 var(--s-3);
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+  font-style: italic;
+}
+@media (max-width: 600px) {
+  .coverage-map { height: 380px; }
+  .coverage-map--city { height: 280px; }
+  .coverage-map--hub  { height: 420px; }
+}
+
+/* =================================================================
    MachineLookup — site-wide model number lookup.
    Powered by /data/machines.json. Renders a search input that
    fuzzy-matches the user's typed model and routes to the matching
@@ -1956,6 +2038,7 @@ def render_html(fm, body_html):
   <a class="mcta-phone" href="tel:+13196104341">☎ 319-610-4341</a>
   <a class="mcta-quote" href="#quote">Get a Quote</a>
 </div>
+{COVERAGE_MAP_LOADER}
 </body>
 </html>
 """

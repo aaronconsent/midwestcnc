@@ -649,25 +649,30 @@ def state_schemas(state):
 # ---------- Page builder ----------
 
 def render_state_page(state, research):
+    # Lazy-import the geo data + builders we need (Python module cache
+    # makes this cheap on repeated calls).
+    import _geo_data
+    import generate_brand_pages as gbp
+
     name = state["display_name"]
     slug = state["slug"]
     canonical_path = f"/service-area/{slug}/"
 
-    # Eyebrow omitted on Iowa (home-state distinctive framing per the spec)
+    # Eyebrow — Iowa skips the suffix because the home-state framing is
+    # already distinctive.
     if state["is_home_state"]:
-        eyebrow_html = ""
+        eyebrow_text = f"{name} Service Coverage (Home State)"
     else:
-        eyebrow_html = f'<p class="eyebrow">{html.escape(name)} Service Coverage</p>\n'
+        eyebrow_text = f"{name} Service Coverage"
 
     h1 = H1_FOR[slug]
 
-    # Hero
+    # Hero image — file lookup with safe fallback
     hero_img_disk = os.path.join(REPO, "assets", "images", "states", f"{slug}.png")
     if os.path.exists(hero_img_disk):
         hero_img = f"/assets/images/states/{slug}.png"
         hero_alt = f"{name} CNC service coverage map"
     else:
-        # fallback to general state tile
         gen_img = os.path.join(REPO, "assets", "images", "general", f"{slug}.png")
         if os.path.exists(gen_img):
             hero_img = f"/assets/images/general/{slug}.png"
@@ -675,16 +680,37 @@ def render_state_page(state, research):
             hero_img = "/assets/images/general/home-image.png"
         hero_alt = f"{name} manufacturing landscape"
 
+    # Brand-hero (image background, dark overlay, centered text) — same
+    # treatment as the brand pages. Hero lede uses the same Ken-authorized
+    # paragraph that the old two-column hero used.
+    hero_lede = hero_paragraph(state)
+    hero_html = gbp.build_brand_hero_html(
+        eyebrow_text, h1, hero_lede, hero_img, hero_alt,
+    )
+
+    # MachineLookup widget + state coverage map immediately under hero
+    lookup_html = gbp.machine_lookup_html()
+
+    # Coverage map for this state — cities pinned, Waterloo origin
+    state_geo = _geo_data.STATE_GEO.get(slug, {})
+    cities = _geo_data.cities_for_state(slug)
+    map_html = (
+        f'<div class="coverage-map"\n'
+        f'     data-bounds=\'{json.dumps(state_geo.get("bounds"))}\'\n'
+        f'     data-cities=\'{json.dumps(cities, ensure_ascii=False)}\'\n'
+        f'     aria-label="Map showing {html.escape(name)} with cities Midwest CNC Services covers, and our Waterloo, IA home base">\n'
+        f'  <div class="coverage-map-empty">Loading service area map for {html.escape(name)}…</div>\n'
+        f'</div>\n'
+        f'<p class="coverage-map-caption">Cities we service in {html.escape(name)} — pinned alongside our Waterloo, IA home base.</p>\n'
+    )
+
     # Phase 3 additions
     faq_html, faq_schema = state_faq_section(state)
 
     body_parts = [
-        eyebrow_html,
-        f"<h1>{html.escape(h1)}</h1>",
-        f"<p>{hero_paragraph(state)}</p>",
-        gss.hero_cta_html(),
-        f'<figure class="hero-figure"><img src="{hero_img}" '
-        f'alt="{html.escape(hero_alt)}" loading="lazy"></figure>',
+        hero_html,
+        lookup_html,
+        map_html,
         manufacturing_section(state),
         regional_breakdown_section(state),
         cities_section(state, research),

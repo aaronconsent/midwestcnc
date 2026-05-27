@@ -258,7 +258,12 @@ def pick_variant(slug, salt, pool):
     return pool[idx]
 
 
-def build_hero(city, state, distance, h1_text, eyebrow_text, hero_img_html, slug):
+def build_hero(city, state, distance, h1_text, eyebrow_text, hero_img_src, hero_img_alt, slug):
+    """Emits a .brand-hero block (image background, dark overlay, centered
+    text). hero_img_src and hero_img_alt are passed in so the background
+    image stays in sync with the existing image-resolution logic in
+    render_city_page."""
+    import generate_brand_pages as gbp
     name = city["name"]
     direction = direction_from_waterloo(city["coords"])
     travel = travel_framing(state["slug"], distance)
@@ -289,15 +294,12 @@ def build_hero(city, state, distance, h1_text, eyebrow_text, hero_img_html, slug
         name=name, industries_clause=industries_clause,
         employers_clause=employers_clause,
     )
-
     sent3 = pick_variant(slug, 2, HERO_SERVICE_VARIANTS)
+    lede_text = f"{sent1} {sent2} {sent3}"
 
-    return f"""<p class="eyebrow">{html.escape(eyebrow_text)}</p>
-<h1>{html.escape(h1_text)}</h1>
-<p>{sent1} {sent2} {sent3}</p>
-{gss.hero_cta_html()}
-{hero_img_html}
-"""
+    return gbp.build_brand_hero_html(
+        eyebrow_text, h1_text, lede_text, hero_img_src, hero_img_alt,
+    )
 
 
 def build_manufacturing_section(city, state):
@@ -808,34 +810,63 @@ def render_city_page(city_research_slug, city, state, brand_index):
     # Hero image
     img_path = find_hero_image(city_slug_no_state, state_slug)
     img_alt = f"{name}, {state_name} CNC service coverage"
-    hero_img_html = (
-        f'<figure class="hero-figure"><img src="{img_path}" '
-        f'alt="{html.escape(img_alt)}" loading="lazy"></figure>'
+
+    # Coverage map (city variant) — city pin + Waterloo origin + dashed
+    # route line. Shown right under the hero so the geographic context
+    # frames the rest of the page.
+    map_html = (
+        f'<div class="coverage-map coverage-map--city"\n'
+        f'     data-coords=\'{json.dumps(city["coords"])}\'\n'
+        f'     data-city="{html.escape(name + ", " + state_name)}"\n'
+        f'     data-distance="{distance["miles"]} miles"\n'
+        f'     aria-label="Map showing {html.escape(name)}, {html.escape(state_name)} and the route from our Waterloo, IA service facility">\n'
+        f'  <div class="coverage-map-empty">Loading {html.escape(name)} location map…</div>\n'
+        f'</div>\n'
+        f'<p class="coverage-map-caption">{html.escape(name)} is {distance["miles"]} miles from our Waterloo, IA facility.</p>\n'
     )
 
     # Special case: North Platte has Aaron-authorized custom framing
     if city_research_slug == "north-platte-nebraska":
         body_main, faq_schema = build_north_platte_override(city, state, distance)
-        # No hero figure rendering inline; the override builds its own structure
-        # Inject hero image after the H1's cta-row
-        body_main = body_main.replace(
-            gss.hero_cta_html(),
-            gss.hero_cta_html() + "\n" + hero_img_html,
-            1,  # only the first occurrence
-        )
+        # The override builds its own h1 + eyebrow + intro. Replace the
+        # legacy eyebrow / h1 / paragraph block with a .brand-hero +
+        # coverage map injection.
+        import generate_brand_pages as gbp
         h1_text = f"CNC Service for {name} and Western Nebraska Shops"
         eyebrow_text = f"{name}, Nebraska"
+        # Extract the lede paragraph from the override and rebuild as brand-hero
+        override_lede = (
+            f"{name} is {distance['miles']} miles west of our Waterloo, IA shop — "
+            f"about 11 hours one-way and the longest-haul ENRICH city in our network. "
+            f"Our {name} work focuses on freight-in spindle rebuilds for ag-implement "
+            f"shops in the surrounding western Nebraska region, plus rail-adjacent shop "
+            f"work where the brand-specific expertise is what matters. {name} sits at "
+            f"the center of one of the country's most concentrated freight-rail "
+            f"corridors — Bailey Yard, the largest rail yard in the world by area, "
+            f"operates on the city's western edge — and we recognize this as regional "
+            f"context rather than a direct customer base."
+        )
+        brand_hero = gbp.build_brand_hero_html(
+            eyebrow_text, h1_text, override_lede, img_path, img_alt,
+        )
+        # Replace the override's hero text + cta block with the new hero.
+        # The override starts with: <p class="eyebrow">...</p><h1>...</h1><p>lede</p>{cta}
+        # then continues with the mfg / industry / logistics / faq sections.
+        # Strip from the override start through the first </p> after the cta marker:
+        import re as _re
+        _cta_idx = body_main.find('<h2 id="manufacturing"')
+        body_main = brand_hero + map_html + body_main[_cta_idx:] if _cta_idx >= 0 else (brand_hero + map_html + body_main)
     else:
         eyebrow_text = f"{name}, {state_name}"
         h1_text = pick_h1(city_research_slug, name, state_name)
 
         hero = build_hero(city, state, distance, h1_text, eyebrow_text,
-                          hero_img_html, city_research_slug)
+                          img_path, img_alt, city_research_slug)
         mfg = build_manufacturing_section(city, state)
         industry_mix = build_industry_mix_section(city, state)
         logistics = build_logistics_section(city, state, distance, city_research_slug)
         faq_html, faq_schema = build_faq_section(city, state, distance, city_research_slug)
-        body_main = hero + mfg + industry_mix + logistics + faq_html
+        body_main = hero + map_html + mfg + industry_mix + logistics + faq_html
 
     # Final CTA + compressed trust footer
     body = (
