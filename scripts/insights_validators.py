@@ -378,22 +378,87 @@ def collect_corpus() -> Dict[str, str]:
     return out
 
 
+def _linked_url_slugs(body: str) -> set:
+    """Return the set of URL slugs the draft links to, plus their
+    hyphen-separated sub-tokens. Used by the cosine gate to exclude
+    intentionally-reinforced cluster pages from the cannibalization
+    comparison.
+
+    URL-to-corpus-file mapping is non-trivial in this codebase
+    (URL /spindle-grinding/mazak-spindle-repair/ maps to corpus file
+    spindle-brands/mazak.md, e.g.). To handle this we extract both
+    the full slug AND its meaningful sub-tokens, so a link to
+    /spindle-grinding/mazak-spindle-repair/ excludes any corpus file
+    containing either 'mazak-spindle-repair' OR 'mazak'.
+
+    Generic path components (e.g. 'repairs', 'control', 'repair')
+    are filtered to avoid over-exclusion.
+    """
+    GENERIC_PATH = {
+        "get-a-quote", "repairs", "spindle-grinding", "way-covers",
+        "service-area", "insights", "about", "privacy-policy",
+        "terms-of-service",
+    }
+    GENERIC_TOKEN = {
+        # Words that appear in many slugs but don't identify a topic
+        # — using them as match keys would over-exclude.
+        "repair", "service", "page", "control", "spindle", "covers",
+        "machine", "cnc", "the", "for",
+    }
+    slugs: set = set()
+    for m in re.finditer(r"\]\((/[^)]+/)\)", body):
+        url = m.group(1).strip("/")
+        if not url:
+            continue
+        parts = url.split("/")
+        for part in parts:
+            if not part or part in GENERIC_PATH:
+                continue
+            slugs.add(part)
+            # Hyphen-separated sub-tokens of 4+ chars that aren't
+            # generic. e.g., "mazak-spindle-repair" → {"mazak"}
+            for sub in part.split("-"):
+                if len(sub) >= 4 and sub not in GENERIC_TOKEN:
+                    slugs.add(sub)
+    return slugs
+
+
 def gate_cosine_similarity(body: str) -> Tuple[bool, str]:
     corpus = collect_corpus()
     if len(corpus) < 5:
         # Not enough corpus to measure; pass with a note.
         return True, f"corpus_size={len(corpus)} (skip — too small)"
+
+    # Exclude pages this draft links to. Linking is the intentional
+    # cluster signal; without this exclusion, a well-clustered article
+    # will fail the gate against the very pages it is reinforcing.
+    linked_slugs = _linked_url_slugs(body)
+    excluded: set = set()
+    if linked_slugs:
+        for path in corpus.keys():
+            path_lower = path.lower()
+            for slug in linked_slugs:
+                if slug in path_lower:
+                    excluded.add(path)
+                    break
+
     docs_tokens = [tokenize(strip_markdown(c)) for c in corpus.values()]
     idf_table = idf(docs_tokens + [tokenize(strip_markdown(body))])
     body_vec = tfidf(tokenize(strip_markdown(body)), idf_table)
     worst: Tuple[float, str] = (0.0, "")
     for path, content in corpus.items():
+        if path in excluded:
+            continue
         v = tfidf(tokenize(strip_markdown(content)), idf_table)
         s = cosine(body_vec, v)
         if s > worst[0]:
             worst = (s, path)
     ok = worst[0] <= THRESHOLDS["max_cosine_to_existing"]
-    return ok, f"max_cosine={worst[0]:.3f} vs {worst[1]} (ceiling={THRESHOLDS['max_cosine_to_existing']})"
+    return ok, (
+        f"max_cosine={worst[0]:.3f} vs {worst[1]} "
+        f"(ceiling={THRESHOLDS['max_cosine_to_existing']}; "
+        f"{len(excluded)} linked-page(s) excluded as cluster-reinforced)"
+    )
 
 
 # ---------- Main run ----------

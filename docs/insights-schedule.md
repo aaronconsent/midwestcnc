@@ -4,9 +4,9 @@
 
 ## Status
 
-- **Published:** 2
+- **Published:** 3
 - **Scheduled (not yet drafted):** 74
-- **Unscheduled backlog:** 0
+- **Unscheduled backlog:** -1
 - **Total planned across all pillars:** 76
 
 First scheduled date: `2026-06-02`. Last: `2027-02-11`.
@@ -15,7 +15,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 
 ### Week of Jun 1, 2026
 
-- **Tue Jun 2** &mdash; *CNC Control Systems* &mdash; [Mazatrol Matrix vs. Smooth: When to Upgrade](../src/content/insights/cnc-control-systems/mazatrol-matrix-vs-smooth.md)
+- **Tue Jun 2** &mdash; *CNC Control Systems* &mdash; [Mazatrol Matrix vs. Smooth: When to Upgrade](../src/content/insights/cnc-control-systems/mazatrol-matrix-vs-smooth.md) ✓
 - **Thu Jun 4** &mdash; *Way Covers Engineering* &mdash; [Telescoping Steel vs. Bellows vs. Roll-Up: When Each Wins](../src/content/insights/way-covers-engineering/telescoping-vs-bellows-vs-rollup.md)
 
 ### Week of Jun 8, 2026
@@ -223,9 +223,9 @@ _2 published &middot; 14 scheduled &middot; 0 unscheduled (of 16 total)._
 
 ### CNC Control Systems
 
-_0 published &middot; 15 scheduled &middot; 0 unscheduled (of 15 total)._
+_1 published &middot; 14 scheduled &middot; 0 unscheduled (of 15 total)._
 
-- ◯ `2026-06-02` &mdash; Mazatrol Matrix vs. Smooth: When to Upgrade
+- ✓ **2026-06-02** &mdash; ~~Mazatrol Matrix vs. Smooth: When to Upgrade~~ (published)
 - ◯ `2026-06-18` &mdash; Fanuc Alarm 401: Causes and Recovery
 - ◯ `2026-07-02` &mdash; Heidenhain TNC Retrofit: When It's Worth It
 - ◯ `2026-07-21` &mdash; Siemens 840D vs. 840Dsl: What's Different
