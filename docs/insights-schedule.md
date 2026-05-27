@@ -4,9 +4,9 @@
 
 ## Status
 
-- **Published:** 3
+- **Published:** 4
 - **Scheduled (not yet drafted):** 74
-- **Unscheduled backlog:** -1
+- **Unscheduled backlog:** -2
 - **Total planned across all pillars:** 76
 
 First scheduled date: `2026-06-02`. Last: `2027-02-11`.
@@ -16,7 +16,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 ### Week of Jun 1, 2026
 
 - **Tue Jun 2** &mdash; *CNC Control Systems* &mdash; [Mazatrol Matrix vs. Smooth: When to Upgrade](../src/content/insights/cnc-control-systems/mazatrol-matrix-vs-smooth.md) ✓
-- **Thu Jun 4** &mdash; *Way Covers Engineering* &mdash; [Telescoping Steel vs. Bellows vs. Roll-Up: When Each Wins](../src/content/insights/way-covers-engineering/telescoping-vs-bellows-vs-rollup.md)
+- **Thu Jun 4** &mdash; *Way Covers Engineering* &mdash; [Telescoping Steel vs. Bellows vs. Roll-Up: When Each Wins](../src/content/insights/way-covers-engineering/telescoping-vs-bellows-vs-rollup.md) ✓
 
 ### Week of Jun 8, 2026
 
@@ -243,9 +243,9 @@ _1 published &middot; 14 scheduled &middot; 0 unscheduled (of 15 total)._
 
 ### Way Covers Engineering
 
-_0 published &middot; 15 scheduled &middot; 0 unscheduled (of 15 total)._
+_1 published &middot; 14 scheduled &middot; 0 unscheduled (of 15 total)._
 
-- ◯ `2026-06-04` &mdash; Telescoping Steel vs. Bellows vs. Roll-Up: When Each Wins
+- ✓ **2026-06-04** &mdash; ~~Telescoping Steel vs. Bellows vs. Roll-Up: When Each Wins~~ (published)
 - ◯ `2026-06-23` &mdash; Measuring for Way Cover Replacement: The Field Method
 - ◯ `2026-07-07` &mdash; OEM-Spec vs. Custom Way Covers: Cost and Lead Time
 - ◯ `2026-07-23` &mdash; Pallet-Changer Interface Sealing: A Particular Challenge
