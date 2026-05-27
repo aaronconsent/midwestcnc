@@ -1046,6 +1046,204 @@ article > table {
 }
 
 /* =================================================================
+   Insights — pillar landing + article page styling.
+   Used by /insights/ pillar pages, /insights/{pillar}/{article}/
+   pages, and the /insights/ index. The .insight-* prefix keeps the
+   stylesheet self-contained.
+   ================================================================= */
+
+/* Pillar tile grid (insights index page) */
+.insight-pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--s-4);
+  margin: var(--s-5) 0 var(--s-6) 0;
+  list-style: none;
+  padding: 0;
+}
+.insight-pillar-card { margin: 0; }
+.insight-pillar-card a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  background: var(--surface);
+  padding: var(--s-5);
+  border-radius: var(--r-3);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-1);
+  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+}
+.insight-pillar-card a:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sh-3);
+  border-color: var(--accent);
+}
+.insight-pillar-eyebrow {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  font-weight: 700;
+}
+.insight-pillar-card h3 { margin: var(--s-2) 0; font-size: 1.18rem; }
+.insight-pillar-card p { color: var(--muted); margin: var(--s-1) 0 var(--s-3) 0; font-size: 0.95rem; flex-grow: 1; }
+.insight-pillar-counts {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: var(--s-2) 0 var(--s-3) 0 !important;
+  flex-grow: 0 !important;
+}
+
+/* Cluster card grid (pillar pages + recent-articles strip on index) */
+.insight-cluster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--s-4);
+  margin: var(--s-4) 0 var(--s-6) 0;
+  list-style: none;
+  padding: 0;
+}
+.insight-card { margin: 0; }
+.insight-card > a,
+.insight-card > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none !important;
+  color: var(--fg) !important;
+  background: var(--surface);
+  padding: var(--s-4);
+  border-radius: var(--r-3);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-1);
+  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+}
+.insight-card--published > a:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sh-3);
+  border-color: var(--accent);
+}
+.insight-card--planned > div {
+  background: color-mix(in srgb, var(--surface) 92%, var(--accent) 8%);
+  border-style: dashed;
+  opacity: 0.85;
+}
+.insight-card-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(184, 52, 26, 0.08);
+  padding: 0.18rem 0.5rem;
+  border-radius: var(--r-pill);
+  margin-bottom: var(--s-2);
+}
+.insight-card-tag--planned {
+  color: var(--muted);
+  background: color-mix(in srgb, var(--muted) 12%, transparent);
+}
+.insight-card h3 { margin: var(--s-1) 0; font-size: 1.08rem; line-height: 1.3; }
+.insight-card p { color: var(--muted); margin: var(--s-2) 0 var(--s-3) 0; font-size: 0.92rem; flex-grow: 1; }
+.insight-card-query em { font-style: italic; color: var(--fg); }
+
+/* Article page — meta strip + eyebrow above the H1 */
+.insight-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 var(--s-1) 0;
+}
+.insight-h1 {
+  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  line-height: 1.15;
+  margin: 0 0 var(--s-2) 0;
+  letter-spacing: -0.015em;
+}
+.insight-meta {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0 0 var(--s-5) 0;
+}
+
+/* Article body — Key Takeaways block is just an H2 + UL in the markdown,
+   so we style by H2 text content via a sibling selector. Use a class on
+   the H2 instead (added by the generator below). Simpler approach: style
+   the first <ul> after an h2 whose text starts with "Key Takeaways" via
+   a class the markdown converter doesn't emit — so we add CSS for a
+   .insight-takeaways class that the markdown generator can use. Even
+   without that class, the structural rules below keep articles tidy. */
+.layout-default main article h2:first-of-type + ul,
+.insight-takeaways {
+  background: color-mix(in srgb, var(--surface) 90%, var(--accent) 5%);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--line));
+  border-left: 4px solid var(--accent);
+  border-radius: var(--r-2);
+  padding: var(--s-4) var(--s-4) var(--s-4) calc(var(--s-4) + 1rem);
+  margin: var(--s-4) 0 var(--s-5) 0;
+  list-style: disc;
+}
+.layout-default main article h2:first-of-type + ul li,
+.insight-takeaways li {
+  margin: 0.3rem 0;
+  color: var(--fg);
+  font-size: 1.02rem;
+  line-height: 1.5;
+}
+
+/* Tail CTA on every article — sits in the natural flow, not a sticky bar. */
+.insight-cta {
+  margin: var(--s-6) 0 var(--s-4) 0;
+  padding: var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+}
+.insight-cta p:first-child {
+  margin: 0 0 var(--s-3) 0;
+  font-size: 1.05rem;
+}
+.insight-cta p:last-child {
+  margin: 0;
+  display: flex;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+.insight-cta .cta-button,
+.insight-cta .cta-phone {
+  /* uses the existing button styles */
+}
+
+/* Definitional opener — first paragraph under each H2 gets a slightly
+   heavier weight to reinforce the "quote me" cue. Subtle; not screaming. */
+.layout-default main article h2 + p {
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+/* Sources & references tail */
+.insight-sources,
+section.insight-sources {
+  margin-top: var(--s-6);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+.insight-sources h2 { font-size: 1.05rem; color: var(--muted); }
+.insight-sources li { font-size: 0.92rem; color: var(--muted); }
+
+@media (max-width: 600px) {
+  .insight-pillar-card a { padding: var(--s-4); }
+  .insight-h1 { font-size: 1.55rem; }
+  .insight-cta { padding: var(--s-4); }
+}
+
+/* =================================================================
    MachineLookup — site-wide model number lookup.
    Powered by /data/machines.json. Renders a search input that
    fuzzy-matches the user's typed model and routes to the matching
@@ -1535,6 +1733,19 @@ article > table {
         <li><a href="/service-area/texas/">Texas</a></li>
         <li class="dropdown-divider" aria-hidden="true"></li>
         <li><a href="/service-area/" class="dropdown-all">All Locations →</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="/insights/" class="menu-label">Insights</a>
+      <ul class="dropdown" role="menu">
+        <li class="dropdown-section">Technical Pillars</li>
+        <li><a href="/insights/spindle-diagnostics/">Spindle Diagnostics</a></li>
+        <li><a href="/insights/cnc-control-systems/">CNC Control Systems</a></li>
+        <li><a href="/insights/way-covers-engineering/">Way Covers Engineering</a></li>
+        <li><a href="/insights/field-service-logistics/">Field Service & Logistics</a></li>
+        <li><a href="/insights/buying-owning-used-cnc/">Buying & Owning Used CNC</a></li>
+        <li class="dropdown-divider" aria-hidden="true"></li>
+        <li><a href="/insights/" class="dropdown-all">All Insights →</a></li>
       </ul>
     </li>
       <li><a href="/get-a-quote/" class="cta-nav">Get a Quote</a></li>
