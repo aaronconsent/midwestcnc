@@ -249,7 +249,41 @@ DO NOT merge. DO NOT push to main. Only push the feature branch.
 
 ---
 
-## Step 8: final report
+## Step 8: notify + final report
+
+### 8a. Push notification (when running inside Claude Code)
+
+If the `PushNotification` tool is available (it is when this runbook is
+fired by a Claude Code `CronCreate` task), call it ONCE at the end of
+the run. Pick the message based on outcome:
+
+- **Success** (article pushed):
+  ```
+  PushNotification(
+    status: "proactive",
+    message: "Insights auto-draft ready: <article title>. PR: https://github.com/aaronconsent/midwestcnc/pull/new/auto-draft/<slug>"
+  )
+  ```
+  (Keep under 200 chars — truncate the title if needed.)
+
+- **Validation failed after 3 attempts**:
+  ```
+  PushNotification(
+    status: "proactive",
+    message: "Insights auto-draft failed: <slug> hit <gate name> 3x. Review: src/content/insights/_drafts/<slug>.review.md"
+  )
+  ```
+
+- **Nothing to draft this week**: DO NOT send a push notification.
+  Quiet success is fine.
+
+- **Other unrecoverable error**: send a push describing the failure
+  in one line.
+
+If `PushNotification` is NOT available (e.g., this runbook is being
+followed in a CI environment), skip step 8a silently and proceed.
+
+### 8b. Final chat report
 
 In your final message, include exactly these sections:
 
