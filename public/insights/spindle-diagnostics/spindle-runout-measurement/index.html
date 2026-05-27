@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Technical Insights | Midwest CNC Services</title>
-<meta name="description" content="Working notes from the bench and the field — CNC diagnostics, control systems, way covers, field service logistics, and used-machine ownership.">
-<link rel="canonical" href="https://midwestcncservices.com/insights/">
-<meta property="og:title" content="Technical Insights | Midwest CNC Services">
-<meta property="og:description" content="Working notes from the bench and the field — CNC diagnostics, control systems, way covers, field service logistics, and used-machine ownership.">
+<title>Spindle Runout: Causes, Measurement, and When to Act | Midwest CNC Services</title>
+<meta name="description" content="How to measure CNC spindle runout, what the numbers mean, and the threshold where the runout becomes the reason a part is no longer in spec. The four-point meas">
+<link rel="canonical" href="https://midwestcncservices.com/insights/spindle-diagnostics/spindle-runout-measurement/">
+<meta property="og:title" content="Spindle Runout: Causes, Measurement, and When to Act | Midwest CNC Services">
+<meta property="og:description" content="How to measure CNC spindle runout, what the numbers mean, and the threshold where the runout becomes the reason a part is no longer in spec. The four-point meas">
 <meta property="og:type" content="article">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1801,7 +1801,19 @@ section.insight-sources {
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Insights"
+      "name": "Insights",
+      "item": "https://midwestcncservices.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Spindle Diagnostics & Repair Decisions",
+      "item": "https://midwestcncservices.com/insights/spindle-diagnostics/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Spindle Runout: Causes, Measurement, and When to Act"
     }
   ]
 }
@@ -1809,14 +1821,34 @@ section.insight-sources {
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Blog",
-  "name": "Midwest CNC Insights",
-  "description": "Technical insights on CNC repair, spindle work, way covers, controls, and used-machine ownership.",
-  "url": "https://midwestcncservices.com/insights/"
+  "@type": [
+    "Article",
+    "BlogPosting"
+  ],
+  "headline": "Spindle Runout: Causes, Measurement, and When to Act",
+  "description": "How to measure CNC spindle runout, what the numbers mean, and the threshold where the runout becomes the reason a part is no longer in spec. The four-point measurement procedure we use on the bench.",
+  "datePublished": "2026-05-27",
+  "dateModified": "2026-05-27",
+  "author": {
+    "@type": "Person",
+    "name": "Ken",
+    "jobTitle": "Shop owner",
+    "worksFor": {
+      "@id": "https://midwestcncservices.com/#org"
+    }
+  },
+  "publisher": {
+    "@id": "https://midwestcncservices.com/#org"
+  },
+  "mainEntityOfPage": "https://midwestcncservices.com/insights/spindle-diagnostics/spindle-runout-measurement/",
+  "articleSection": "Spindle Diagnostics & Repair Decisions",
+  "keywords": "measure spindle runout",
+  "wordCount": 1305,
+  "inLanguage": "en-US"
 }
 </script>
 </head>
-<body class="layout-wide insights-page insights-index">
+<body class="insights-page insights-article">
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Midwest CNC Services home">
@@ -1909,128 +1941,112 @@ section.insight-sources {
 </header>
 <nav class="breadcrumbs" aria-label="breadcrumb">
   <ol>
-    <li><a href="/">Home</a></li><li>Insights</li>
+    <li><a href="/">Home</a></li><li><a href="/insights/">Insights</a></li><li><a href="/insights/spindle-diagnostics/">Spindle Diagnostics &amp; Repair Decisions</a></li><li>Spindle Runout: Causes, Measurement, and When to Act</li>
   </ol>
 </nav>
 <main id="main">
 <article>
-<section class="insight-hero" aria-labelledby="insight-hero-h1">
-  <div class="insight-hero-inner">
-    <p class="insight-hero-eyebrow">Technical Insights</p>
-    <h1 id="insight-hero-h1">CNC Repair Insights from the Bench and the Field</h1>
-    <p class="insight-hero-lede">Working notes from Ken and the Midwest CNC team. The diagnostic logic, decision frameworks, and platform-specific knowledge we use day-to-day — written for shop owners and operators, not search engines.</p>
-    <div class="insight-hero-cta">
-      <a class="cta-button" href="/get-a-quote/">Get a Quote</a>
-      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
-    </div>
+
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
+<p class="insight-eyebrow">Spindle Diagnostics &amp; Repair Decisions</p>
+<h1 class="insight-h1">Spindle Runout: Causes, Measurement, and When to Act</h1>
+<p class="insight-meta">By Ken &middot; 2026-05-27 &middot; ~7 min read</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>Runout is the most measurable spindle health number you have. A 0.0002-inch reading at the taper face on a production VMC is normal. 0.0005 inch is the threshold where most shops should plan a rebuild.
+</li>
+<li>Runout splits into two sources: tooling-induced runout (the holder, pull-stud, or tool) and spindle-induced runout (the spindle bearings or shaft). Both look the same on a part. They cost different amounts to fix.
+</li>
+<li>The four-point measurement procedure isolates the source. Same indicator. Four positions. Twenty minutes of shop time. The result tells you whether the problem is the tool or the spindle.
+</li>
+<li>A typical Mazak or Haas spindle in healthy service ships from us with runout under 0.00015 inch at the taper face and under 0.0003 inch at 100 mm gauge length on a test bar.
+</li>
+<li>Runout climbing over time is the earliest reliable signal that a bearing is failing. Catching it under 0.0004 inch usually keeps the rebuild in the lower cost range. Past 0.0008 inch, secondary damage is usually already present.
+</li>
+</ul>
+<p>Runout is the single number we ask shops to track when they suspect a spindle problem. It is more reliable than noise. It is more reliable than vibration symptoms. And it does not require any instrumentation more expensive than a dial indicator and a test bar. The challenge is not measuring runout. It is knowing what the number means and where the variation is coming from.</p>
   </div>
 </section>
 <section class="page-section page-section-0">
-  <div class="section-inner wide">
-<h2 id="topics">Where we focus</h2>
-<p>Five areas where the bench work, the diagnostic reasoning, and the platform-specific knowledge actually lives. Articles ship when a piece of work earns the writing — there is no posting calendar. 17 published so far, 59 more drafting.</p>
-<ul class="insight-pillar-grid">
-<li class="insight-pillar-card">
-  <a href="/insights/spindle-diagnostics/">
-    <span class="insight-pillar-eyebrow">Technical Insights — Spindle</span>
-    <h3>Spindle Diagnostics &amp; Repair Decisions</h3>
-    <p>When a spindle starts misbehaving, the diagnostic gap between &#x27;noisy bearing&#x27; and &#x27;salvageable taper&#x27; is where money is made or lost. This pillar covers the diagnostic reasoning we use on the bench and in the field — bea…</p>
-    <p class="insight-pillar-counts">16 articles</p>
-    <span class="learn-more">Read articles &rarr;</span>
-  </a>
+  <div class="section-inner">
+<h2 id="what-runout-actually-is">What runout actually is</h2>
+<p>Runout is the total indicator reading taken at a specific point on the rotating system. With the spindle turning slowly by hand or under low RPM, the indicator picks up the high and low points of the surface being measured. The difference between the two is the runout. The standard convention is TIR — Total Indicator Reading.</p>
+<p>Two surfaces matter for spindle health. The taper itself, where the tool holder seats. And a point further out on a test bar or known-true reference, usually at 100 millimeters or 4 inches of gauge length from the spindle face. The two readings together tell you whether the runout is at the spindle face (a taper or seat problem) or further out (a shaft, bearing, or axis-alignment problem).</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="tooling-induced-runout-vs-spindle-induced-runout">Tooling-induced runout vs spindle-induced runout</h2>
+<p>Runout has two sources. The tooling chain — pull-stud, holder, tool — can contribute. The spindle itself — bearings, shaft, taper — can contribute. Both look the same on the part. The diagnostic challenge is knowing which one is which.</p>
+<p>Tooling-induced runout is usually the cheaper problem. A worn pull-stud. A bent or damaged holder. A tool with chip-up between the shank and the holder bore. Swap the holder for a known-good one. Re-measure. If the runout drops, the tooling chain was the cause. The fix is a new holder or pull-stud, often under $300.</p>
+<p>Spindle-induced runout is the more expensive problem. The shaft has shifted in the bearings. The bearings themselves have spalled. The taper face has worn. Or the front bearing preload has loosened. None of those go away by swapping tooling. They need a <a href="/spindle-grinding/">spindle rebuild</a> or a service call.</p>
+<p>The <a href="/insights/spindle-diagnostics/spindle-bearing-failure-modes/">bearing failure modes piece</a> covers what causes the bearings to fail in the first place. This piece is about how to know it has happened.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="the-four-point-measurement-procedure">The four-point measurement procedure</h2>
+<p>This is the procedure we use on the bench and the one we ask shops to use in the field. It isolates the source in about 20 minutes.</p>
+<p><strong>Position 1: tool, full assembly, at gauge length.</strong> Insert a known-good test bar or a precision tool. Indicate at 100 mm or 4 inches out. Run the spindle by hand or at low RPM. Record the TIR.</p>
+<p><strong>Position 2: tool, full assembly, at the taper face.</strong> Move the indicator to the spindle face, with the tool still installed. Record the TIR.</p>
+<p><strong>Position 3: empty spindle, taper face.</strong> Remove the tool. Indicate against the taper face directly. Record the TIR.</p>
+<p><strong>Position 4: empty spindle, deeper in the taper.</strong> Indicate at the deepest accessible point inside the taper. Record the TIR.</p>
+<p>The four numbers tell different stories. Position 1 minus Position 2 isolates the tool's contribution. Position 2 minus Position 3 isolates the holder seat. Position 3 versus Position 4 tells you whether the taper itself is uniform or has worn unevenly. A single high reading at Position 4 suggests damage deep in the taper. Two high readings at Positions 3 and 4 suggest the shaft or front bearing.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="what-the-numbers-should-be">What the numbers should be</h2>
+<p>Acceptable runout depends on the machine class. Production VMCs and lathes tolerate more than precision platforms. Multitasking machines and grinding spindles tolerate less. The numbers below are the ranges we see across <a href="/spindle-grinding/mazak-spindle-repair/">Mazak</a>, <a href="/spindle-grinding/haas-spindle-repair/">Haas</a>, and Okuma platforms in healthy service.</p>
+<p><strong>Production VMC, post-rebuild:</strong> under 0.00015 inch at the taper face. Under 0.0003 inch at 100 mm gauge length.</p>
+<p><strong>Production VMC, end-of-life-acceptable:</strong> up to 0.0004 inch at the taper face. Up to 0.0006 inch at 100 mm gauge.</p>
+<p><strong>Precision platform, post-rebuild:</strong> under 0.00008 inch at the taper face. Under 0.00015 inch at gauge length.</p>
+<p><strong>Multitasking platform (Integrex, NTX):</strong> typically tighter than VMC, usually held under 0.00012 inch at the taper.</p>
+<p>Runout climbing past the end-of-life-acceptable threshold is the signal to schedule a rebuild. Climbing past 0.0008 inch usually means the bearings are no longer the only problem, and the rebuild scope expands.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="when-to-act-on-the-number">When to act on the number</h2>
+<p>A single runout measurement is a data point. A trend is the signal. We ask shops with a Matrix or Smooth Mazak in production to spot-check runout monthly with the same test bar in the same conditions. Plotting six months of readings against the calendar tells you whether the spindle is degrading on a slow curve, holding steady, or jumping.</p>
+<p>Slow degradation gives you time. Schedule the rebuild against your production calendar. Run the machine through a planned slowdown. Pull the spindle when it makes sense for the shop, not when the part rejection rate forces it.</p>
+<p>A jump in the curve — runout doubles in a month, then doubles again — means something is failing fast. That is the moment to take the spindle out of service. Continuing to run through a fast-degrading curve almost always pushes the rebuild into the higher cost category described in <a href="/insights/spindle-diagnostics/rebuild-vs-replace-spindle-economics/">the rebuild-vs-replace economics</a> piece.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="a-practical-caveat-about-test-bars">A practical caveat about test bars</h2>
+<p>The test bar matters. A worn or off-spec test bar produces a reading that does not reflect the spindle. We have had shops send us a spindle for a rebuild based on a runout reading, only to find on the bench that the spindle was within spec and the test bar was the problem. The fix in that case is a new test bar, not a rebuild.</p>
+<p>The simplest check: indicate the test bar in a known-true reference like a precision lathe collet or a verified <a href="/repairs/">tooling holder</a>. If the test bar shows runout on its own, it is not telling you anything reliable about the spindle.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="sources-references">Sources &amp; references</h2>
+<ul>
+<li>TIR measurement convention follows standard machine-tool inspection practice as documented in ISO 230 and ASME B5 standards (which we reference at the bench level without claiming certification against either).
 </li>
-<li class="insight-pillar-card">
-  <a href="/insights/cnc-control-systems/">
-    <span class="insight-pillar-eyebrow">Technical Insights — Controls</span>
-    <h3>CNC Control Systems</h3>
-    <p>The control is often the limiting factor, not the iron. This pillar covers the diagnostic reasoning, retrofit decisions, and parts-availability reality for the five major control platforms we service. Alarm codes, genera…</p>
-    <p class="insight-pillar-counts">1 published &middot; 14 drafting</p>
-    <span class="learn-more">Read articles &rarr;</span>
-  </a>
+<li>Acceptable-range numbers reflect what we see in healthy spindles across the Mazak, Haas, Okuma, and DMG Mori platforms in our service log.
 </li>
-<li class="insight-pillar-card">
-  <a href="/insights/way-covers-engineering/">
-    <span class="insight-pillar-eyebrow">Technical Insights — Way Covers</span>
-    <h3>Way Covers Engineering</h3>
-    <p>Way covers are often the cheapest thing on the machine that, when it fails, makes the most expensive thing on the machine fail. This pillar covers the engineering decisions behind cover style selection, OEM-vs-custom rou…</p>
-    <p class="insight-pillar-counts">15 articles drafting</p>
-    <span class="learn-more">Read articles &rarr;</span>
-  </a>
-</li>
-<li class="insight-pillar-card">
-  <a href="/insights/field-service-logistics/">
-    <span class="insight-pillar-eyebrow">Technical Insights — Field Service</span>
-    <h3>Field Service &amp; Logistics (Midwest)</h3>
-    <p>Real-world coverage of a seven-state field-service footprint from Waterloo, Iowa. Drive-time radius reality, when a machine ships to us vs. when we go to the shop, what&#x27;s in the service truck, and how shops in different …</p>
-    <p class="insight-pillar-counts">15 articles drafting</p>
-    <span class="learn-more">Read articles &rarr;</span>
-  </a>
-</li>
-<li class="insight-pillar-card">
-  <a href="/insights/buying-owning-used-cnc/">
-    <span class="insight-pillar-eyebrow">Technical Insights — Used CNC</span>
-    <h3>Buying &amp; Owning Used CNC</h3>
-    <p>Shops buy used iron all the time. The diligence step is where money is made or lost. This pillar covers inspection checklists by failure-prone subsystem, era-by-era buying guides for the major OEMs we service, total-cost…</p>
-    <p class="insight-pillar-counts">15 articles drafting</p>
-    <span class="learn-more">Read articles &rarr;</span>
-  </a>
+<li>The 0.0008-inch threshold for secondary damage is approximate. The actual number varies by platform and by which bearing has failed.
 </li>
 </ul>
   </div>
 </section>
 <section class="page-section page-section-1">
-  <div class="section-inner wide">
-<h2 id="latest">Latest articles</h2>
-<ul class="insight-cluster-grid">
-<li class="insight-card insight-card--published">
-  <a href="/insights/spindle-diagnostics/atc-rattle-vs-spindle-failure/">
-    <span class="insight-card-tag">Spindle Diagnostics &amp; Repair Decisions</span>
-    <h3>ATC Rattle vs. True Spindle Failure: How to Tell</h3>
-    <p>Tool change rattle and continuous spindle noise sound similar but mean different things. The drawbar-disengage test sorts them in under a minute. The four rattle patterns we hear most often.</p>
-    <span class="learn-more">Read &rarr;</span>
-  </a>
-</li>
-<li class="insight-card insight-card--published">
-  <a href="/insights/spindle-diagnostics/belt-vs-integral-motor-spindles/">
-    <span class="insight-card-tag">Spindle Diagnostics &amp; Repair Decisions</span>
-    <h3>Belt-Driven vs. Integral-Motor Spindles: Failure Differences</h3>
-    <p>Belt-driven spindles and integral-motor spindles fail in different ways and demand different rebuild paths. Failure-mode frequencies, repair scope, and what each drive type tells you before you call us.</p>
-    <span class="learn-more">Read &rarr;</span>
-  </a>
-</li>
-<li class="insight-card insight-card--published">
-  <a href="/insights/spindle-diagnostics/cold-start-spindle-noise/">
-    <span class="insight-card-tag">Spindle Diagnostics &amp; Repair Decisions</span>
-    <h3>Cold-Start Spindle Noise: Normal vs. Failure</h3>
-    <p>How to tell the difference between normal cold-start spindle noise and a real failure. The 30-second rule, the lube-system primer behavior, and the symptoms that should put the machine on hold.</p>
-    <span class="learn-more">Read &rarr;</span>
-  </a>
-</li>
-<li class="insight-card insight-card--published">
-  <a href="/insights/spindle-diagnostics/coolant-intrusion-damage/">
-    <span class="insight-card-tag">Spindle Diagnostics &amp; Repair Decisions</span>
-    <h3>Coolant Intrusion in CNC Spindles: Prevention and Recovery</h3>
-    <p>Coolant in a spindle is one of the few failure modes that destroys a bearing in hours rather than years. The four entry paths, what each costs to fix, and when the spindle is past recovery.</p>
-    <span class="learn-more">Read &rarr;</span>
-  </a>
-</li>
-<li class="insight-card insight-card--published">
-  <a href="/insights/spindle-diagnostics/diagnose-cnc-spindle-vibration/">
-    <span class="insight-card-tag">Spindle Diagnostics &amp; Repair Decisions</span>
-    <h3>How to Diagnose CNC Spindle Vibration: A Symptoms Decoder</h3>
-    <p>A diagnostic decoder for CNC spindle vibration: the four symptom patterns we see most often on the bench, how to tell them apart, and when each calls for a rebuild versus continued service.</p>
-    <span class="learn-more">Read &rarr;</span>
-  </a>
-</li>
-<li class="insight-card insight-card--published">
-  <a href="/insights/spindle-diagnostics/rebuild-vs-replace-spindle-economics/">
-    <span class="insight-card-tag">Spindle Diagnostics &amp; Repair Decisions</span>
-    <h3>Spindle Rebuild vs. Replace: When Each Makes Sense</h3>
-    <p>The economics of a CNC spindle rebuild versus replacement, framed by the three break-even questions Ken walks customers through before quoting work. Real cost ranges and the cases where each path actually wins.</p>
-    <span class="learn-more">Read &rarr;</span>
-  </a>
-</li>
-</ul>
+  <div class="section-inner">
+<h2 id="when-to-bring-this-work-to-us">When to bring this work to us</h2>
+<p>If your runout trend is climbing and you want a sanity check before scheduling a rebuild, the cheapest first step is to ship us your test bar or the suspect tooling for verification. We can sort tooling-induced from spindle-induced before you commit to a rebuild quote.</p>
+<p><a href="/get-a-quote/">Get a quote</a> with the runout numbers you have measured, the machine model, and how the readings have trended over time.</p>
+<div class="insight-cta">
+  <p><strong>Need this work done?</strong> Tell us the machine and the symptom.</p>
+  <p><a class="cta-button" href="/get-a-quote/">Get a quote</a> <a class="cta-phone" href="tel:+13196104341">319-610-4341</a></p>
+</div>
   </div>
 </section>
 </article>

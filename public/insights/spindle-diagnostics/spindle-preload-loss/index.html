@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Technical Insights | Midwest CNC Services</title>
-<meta name="description" content="Working notes from the bench and the field — CNC diagnostics, control systems, way covers, field service logistics, and used-machine ownership.">
-<link rel="canonical" href="https://midwestcncservices.com/insights/">
-<meta property="og:title" content="Technical Insights | Midwest CNC Services">
-<meta property="og:description" content="Working notes from the bench and the field — CNC diagnostics, control systems, way covers, field service logistics, and used-machine ownership.">
+<title>Spindle Preload Loss: Symptoms and Diagnostic Procedure | Midwest CNC Services</title>
+<meta name="description" content="Spindle preload loss looks like bearing damage on most diagnostics but the fix is different. The load-vs-runout decision tree, what preload loss feels like, and">
+<link rel="canonical" href="https://midwestcncservices.com/insights/spindle-diagnostics/spindle-preload-loss/">
+<meta property="og:title" content="Spindle Preload Loss: Symptoms and Diagnostic Procedure | Midwest CNC Services">
+<meta property="og:description" content="Spindle preload loss looks like bearing damage on most diagnostics but the fix is different. The load-vs-runout decision tree, what preload loss feels like, and">
 <meta property="og:type" content="article">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1801,7 +1801,19 @@ section.insight-sources {
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Insights"
+      "name": "Insights",
+      "item": "https://midwestcncservices.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Spindle Diagnostics & Repair Decisions",
+      "item": "https://midwestcncservices.com/insights/spindle-diagnostics/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Spindle Preload Loss: Symptoms and Diagnostic Procedure"
     }
   ]
 }
@@ -1809,14 +1821,34 @@ section.insight-sources {
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Blog",
-  "name": "Midwest CNC Insights",
-  "description": "Technical insights on CNC repair, spindle work, way covers, controls, and used-machine ownership.",
-  "url": "https://midwestcncservices.com/insights/"
+  "@type": [
+    "Article",
+    "BlogPosting"
+  ],
+  "headline": "Spindle Preload Loss: Symptoms and Diagnostic Procedure",
+  "description": "Spindle preload loss looks like bearing damage on most diagnostics but the fix is different. The load-vs-runout decision tree, what preload loss feels like, and why it is often the easier rebuild.",
+  "datePublished": "2026-05-27",
+  "dateModified": "2026-05-27",
+  "author": {
+    "@type": "Person",
+    "name": "Ken",
+    "jobTitle": "Shop owner",
+    "worksFor": {
+      "@id": "https://midwestcncservices.com/#org"
+    }
+  },
+  "publisher": {
+    "@id": "https://midwestcncservices.com/#org"
+  },
+  "mainEntityOfPage": "https://midwestcncservices.com/insights/spindle-diagnostics/spindle-preload-loss/",
+  "articleSection": "Spindle Diagnostics & Repair Decisions",
+  "keywords": "spindle preload loss",
+  "wordCount": 1259,
+  "inLanguage": "en-US"
 }
 </script>
 </head>
-<body class="layout-wide insights-page insights-index">
+<body class="insights-page insights-article">
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Midwest CNC Services home">
@@ -1909,128 +1941,112 @@ section.insight-sources {
 </header>
 <nav class="breadcrumbs" aria-label="breadcrumb">
   <ol>
-    <li><a href="/">Home</a></li><li>Insights</li>
+    <li><a href="/">Home</a></li><li><a href="/insights/">Insights</a></li><li><a href="/insights/spindle-diagnostics/">Spindle Diagnostics &amp; Repair Decisions</a></li><li>Spindle Preload Loss: Symptoms and Diagnostic Procedure</li>
   </ol>
 </nav>
 <main id="main">
 <article>
-<section class="insight-hero" aria-labelledby="insight-hero-h1">
-  <div class="insight-hero-inner">
-    <p class="insight-hero-eyebrow">Technical Insights</p>
-    <h1 id="insight-hero-h1">CNC Repair Insights from the Bench and the Field</h1>
-    <p class="insight-hero-lede">Working notes from Ken and the Midwest CNC team. The diagnostic logic, decision frameworks, and platform-specific knowledge we use day-to-day — written for shop owners and operators, not search engines.</p>
-    <div class="insight-hero-cta">
-      <a class="cta-button" href="/get-a-quote/">Get a Quote</a>
-      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
-    </div>
+
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
+<p class="insight-eyebrow">Spindle Diagnostics &amp; Repair Decisions</p>
+<h1 class="insight-h1">Spindle Preload Loss: Symptoms and Diagnostic Procedure</h1>
+<p class="insight-meta">By Ken &middot; 2026-05-27 &middot; ~6 min read</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>Preload loss is the gradual loss of axial force holding the spindle bearing set. It looks like bearing damage on most external diagnostics. The underlying fix is different.
+</li>
+<li>The classic preload-loss signal is loud cold, quiet warm. The spindle sounds rough on cold start. It then quiets down once thermal expansion has closed the gap.
+</li>
+<li>The load-vs-runout decision tree separates preload loss from bearing damage in under 1 hour. Preload loss shows runout that improves under axial load. Bearing damage does not.
+</li>
+<li>Most CNC spindles use 1 of 3 preload mechanisms: a precision spacer, a spring stack, or hydraulic preload. Each fails differently and each is restored differently.
+</li>
+<li>A clean preload restoration is usually the cheaper rebuild. The bearing races are often still healthy. The fix is restoring axial force, not replacing the bearings.
+</li>
+</ul>
+<p>Preload loss is one of the spindle failure modes that is easiest to misdiagnose. It produces symptoms identical to bearing damage on most external diagnostics. Vibration goes up. Runout climbs. Surface finish degrades. The shop sees those symptoms and assumes bearings. A bench teardown then sometimes reveals bearings that are still healthy. The preload was the problem, not the bearings. This piece walks the symptoms, the diagnostic procedure, and the 3 preload mechanisms we restore on Mazak, Haas, Okuma, and DMG Mori spindles.</p>
   </div>
 </section>
 <section class="page-section page-section-0">
-  <div class="section-inner wide">
-<h2 id="topics">Where we focus</h2>
-<p>Five areas where the bench work, the diagnostic reasoning, and the platform-specific knowledge actually lives. Articles ship when a piece of work earns the writing — there is no posting calendar. 17 published so far, 59 more drafting.</p>
-<ul class="insight-pillar-grid">
-<li class="insight-pillar-card">
-  <a href="/insights/spindle-diagnostics/">
-    <span class="insight-pillar-eyebrow">Technical Insights — Spindle</span>
-    <h3>Spindle Diagnostics &amp; Repair Decisions</h3>
-    <p>When a spindle starts misbehaving, the diagnostic gap between &#x27;noisy bearing&#x27; and &#x27;salvageable taper&#x27; is where money is made or lost. This pillar covers the diagnostic reasoning we use on the bench and in the field — bea…</p>
-    <p class="insight-pillar-counts">16 articles</p>
-    <span class="learn-more">Read articles &rarr;</span>
-  </a>
+  <div class="section-inner">
+<h2 id="what-preload-actually-is">What preload actually is</h2>
+<p>Angular contact bearings need a specific axial load to work right. The load presses the rolling elements against the race at a defined contact angle. That gives the bearing its load capacity and its stiffness. Without preload, the bearing can rotate. But it does not have its design stiffness. It does not have its design load capacity.</p>
+<p>Spindle bearings come from the factory preloaded. The preload is set during initial assembly. It is held by one of three mechanisms through the spindle's service life. Over time, preload can degrade. The reasons depend on the mechanism.</p>
+<p>When preload drops below the design value, the bearing acts erratically. Stiffness varies with temperature and load. Vibration goes up. Runout climbs. The symptoms look like a bearing failure. But the actual bearing races may still be in good condition.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="the-classic-loud-cold-quiet-warm-signal">The classic loud-cold-quiet-warm signal</h2>
+<p>The most distinctive preload-loss signal is a noise pattern that varies with temperature. The spindle sounds rough on cold start. As it warms up, the noise reduces. By the time the machine has reached operating temperature, the spindle sounds normal again.</p>
+<p>The mechanism is thermal expansion. When the spindle is cold, the gap between the bearing components is at its widest. The preload, if reduced, is at its weakest. The bearing rattles within that gap and produces audible noise. As the spindle warms, the components expand. The gap closes. The contact force increases. The noise drops.</p>
+<p>This pattern is distinct from bearing damage, where the noise either stays constant with temperature or gets worse as the spindle warms. The <a href="/insights/spindle-diagnostics/cold-start-spindle-noise/">cold-start noise piece</a> covers the timing of normal cold-start behavior versus what preload loss looks like over the warm-up curve.</p>
+<p>If your spindle has the loud-cold-quiet-warm pattern that returns each morning, preload is the most likely cause.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="the-load-vs-runout-decision-tree">The load-vs-runout decision tree</h2>
+<p>The diagnostic procedure that separates preload loss from bearing damage uses <a href="/insights/spindle-diagnostics/spindle-runout-measurement/">runout measurements</a> under two conditions.</p>
+<p><strong>Condition 1: runout under no axial load.</strong> Indicate the spindle nose with a known-good test bar. Run the spindle at low RPM. Record the runout.</p>
+<p><strong>Condition 2: runout under axial load.</strong> Apply a known axial force to the spindle. Most often we use a lightly loaded drawbar, but a calibrated axial force application works too. Re-indicate. Record the new runout.</p>
+<p>A healthy bearing produces similar runout in both conditions. A damaged bearing produces poor runout in both. Preload loss produces a specific pattern: high runout under no load, lower runout under axial load. The axial load is temporarily restoring what the preload mechanism should be providing continuously.</p>
+<p>When we see that pattern on the bench, the diagnostic conversation shifts to preload restoration rather than bearing replacement. The cost and lead-time picture changes accordingly.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="three-preload-mechanisms">Three preload mechanisms</h2>
+<p><strong>Precision spacer preload.</strong> A precisely-machined spacer sits between the bearings. The spacer length determines the preload. This mechanism is common on production VMC spindles. It is the most stable over time. When it fails, the failure is usually catastrophic. A crash event. A contamination event. A manufacturing defect. Otherwise it does not degrade gradually.</p>
+<p><strong>Spring stack preload.</strong> A stack of disc springs or coil springs applies the axial force. This is common on integral-motor cartridges and on some grinding spindles. Spring stacks fatigue with cycling. Similar to the <a href="/insights/spindle-diagnostics/spindle-drawbar-diagnostics/">Belleville stacks in drawbars</a>. The preload decreases gradually as the spring constants drop. We see this most often on machines past 12 years of production duty.</p>
+<p><strong>Hydraulic preload.</strong> A hydraulic mechanism continuously applies axial force. Sometimes with closed-loop control. This is the most active preload type. It is common on high-end multitasking platforms. Also on some precision grinding spindles. When the hydraulic system fails — leaks, pump failures, sensor drift — preload drops fast. The diagnostic is usually obvious. The hydraulic system has its own alarms.</p>
+<p>The mechanism your spindle uses determines what we look at on the bench and what the restoration costs.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="what-restoration-involves">What restoration involves</h2>
+<p>For a precision-spacer spindle, restoration means measuring the existing spacer. We determine what spacer length would restore the design preload. We install a new spacer. The bench work is straightforward once we have the spacer. The bearing set normally stays. Unless it has been damaged by the loss of preload.</p>
+<p>For a spring-stack spindle, restoration means replacing the spring stack with a fresh set. The new stack restores the design preload. As with the spacer case, the bearings stay if they are still healthy.</p>
+<p>For a hydraulic-preload spindle, restoration is usually a repair of the hydraulic system. Not a bench rebuild. The bearings normally do not need attention.</p>
+<p>In all three cases, the rebuild path is much cheaper than a full bearing set replacement. We cover the cost difference in <a href="/insights/spindle-diagnostics/rebuild-vs-replace-spindle-economics/">the rebuild-vs-replace economics piece</a>. When the diagnostic isolates preload loss instead of bearing damage, the savings can be 40 to 60 percent.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="why-this-matters-for-shops">Why this matters for shops</h2>
+<p>The reason this matters is the misdiagnosis cost. A shop that sees vibration, runout climb, and noise sometimes goes directly to a bearing rebuild quote. If the actual cause was preload loss, the bearing rebuild is overscope for the problem. The shop pays for bearings that did not need replacement.</p>
+<p>We diagnose before quoting whenever the symptoms are consistent with preload loss. The diagnostic adds an hour to the process. It can save thousands of dollars on the rebuild.</p>
+<p>For shops planning rebuilds against the <a href="/insights/spindle-diagnostics/spindle-rebuild-lead-time/">spindle-rebuild lead-time</a> calendar, knowing whether the work is preload restoration versus full bearing replacement also affects the lead time estimate. Preload work is usually on the fast lane of that timeline.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="sources-references">Sources &amp; references</h2>
+<ul>
+<li>Preload mechanism descriptions follow standard bearing-system design literature.
 </li>
-<li class="insight-pillar-card">
-  <a href="/insights/cnc-control-systems/">
-    <span class="insight-pillar-eyebrow">Technical Insights — Controls</span>
-    <h3>CNC Control Systems</h3>
-    <p>The control is often the limiting factor, not the iron. This pillar covers the diagnostic reasoning, retrofit decisions, and parts-availability reality for the five major control platforms we service. Alarm codes, genera…</p>
-    <p class="insight-pillar-counts">1 published &middot; 14 drafting</p>
-    <span class="learn-more">Read articles &rarr;</span>
-  </a>
+<li>The load-vs-runout decision tree is a working procedure we use at the bench. It is derived from standard spindle metrology practice.
 </li>
-<li class="insight-pillar-card">
-  <a href="/insights/way-covers-engineering/">
-    <span class="insight-pillar-eyebrow">Technical Insights — Way Covers</span>
-    <h3>Way Covers Engineering</h3>
-    <p>Way covers are often the cheapest thing on the machine that, when it fails, makes the most expensive thing on the machine fail. This pillar covers the engineering decisions behind cover style selection, OEM-vs-custom rou…</p>
-    <p class="insight-pillar-counts">15 articles drafting</p>
-    <span class="learn-more">Read articles &rarr;</span>
-  </a>
-</li>
-<li class="insight-pillar-card">
-  <a href="/insights/field-service-logistics/">
-    <span class="insight-pillar-eyebrow">Technical Insights — Field Service</span>
-    <h3>Field Service &amp; Logistics (Midwest)</h3>
-    <p>Real-world coverage of a seven-state field-service footprint from Waterloo, Iowa. Drive-time radius reality, when a machine ships to us vs. when we go to the shop, what&#x27;s in the service truck, and how shops in different …</p>
-    <p class="insight-pillar-counts">15 articles drafting</p>
-    <span class="learn-more">Read articles &rarr;</span>
-  </a>
-</li>
-<li class="insight-pillar-card">
-  <a href="/insights/buying-owning-used-cnc/">
-    <span class="insight-pillar-eyebrow">Technical Insights — Used CNC</span>
-    <h3>Buying &amp; Owning Used CNC</h3>
-    <p>Shops buy used iron all the time. The diligence step is where money is made or lost. This pillar covers inspection checklists by failure-prone subsystem, era-by-era buying guides for the major OEMs we service, total-cost…</p>
-    <p class="insight-pillar-counts">15 articles drafting</p>
-    <span class="learn-more">Read articles &rarr;</span>
-  </a>
+<li>Failure-rate observations by mechanism type are from Midwest CNC Services rebuild log across the 2023 to 2025 period.
 </li>
 </ul>
   </div>
 </section>
 <section class="page-section page-section-1">
-  <div class="section-inner wide">
-<h2 id="latest">Latest articles</h2>
-<ul class="insight-cluster-grid">
-<li class="insight-card insight-card--published">
-  <a href="/insights/spindle-diagnostics/atc-rattle-vs-spindle-failure/">
-    <span class="insight-card-tag">Spindle Diagnostics &amp; Repair Decisions</span>
-    <h3>ATC Rattle vs. True Spindle Failure: How to Tell</h3>
-    <p>Tool change rattle and continuous spindle noise sound similar but mean different things. The drawbar-disengage test sorts them in under a minute. The four rattle patterns we hear most often.</p>
-    <span class="learn-more">Read &rarr;</span>
-  </a>
-</li>
-<li class="insight-card insight-card--published">
-  <a href="/insights/spindle-diagnostics/belt-vs-integral-motor-spindles/">
-    <span class="insight-card-tag">Spindle Diagnostics &amp; Repair Decisions</span>
-    <h3>Belt-Driven vs. Integral-Motor Spindles: Failure Differences</h3>
-    <p>Belt-driven spindles and integral-motor spindles fail in different ways and demand different rebuild paths. Failure-mode frequencies, repair scope, and what each drive type tells you before you call us.</p>
-    <span class="learn-more">Read &rarr;</span>
-  </a>
-</li>
-<li class="insight-card insight-card--published">
-  <a href="/insights/spindle-diagnostics/cold-start-spindle-noise/">
-    <span class="insight-card-tag">Spindle Diagnostics &amp; Repair Decisions</span>
-    <h3>Cold-Start Spindle Noise: Normal vs. Failure</h3>
-    <p>How to tell the difference between normal cold-start spindle noise and a real failure. The 30-second rule, the lube-system primer behavior, and the symptoms that should put the machine on hold.</p>
-    <span class="learn-more">Read &rarr;</span>
-  </a>
-</li>
-<li class="insight-card insight-card--published">
-  <a href="/insights/spindle-diagnostics/coolant-intrusion-damage/">
-    <span class="insight-card-tag">Spindle Diagnostics &amp; Repair Decisions</span>
-    <h3>Coolant Intrusion in CNC Spindles: Prevention and Recovery</h3>
-    <p>Coolant in a spindle is one of the few failure modes that destroys a bearing in hours rather than years. The four entry paths, what each costs to fix, and when the spindle is past recovery.</p>
-    <span class="learn-more">Read &rarr;</span>
-  </a>
-</li>
-<li class="insight-card insight-card--published">
-  <a href="/insights/spindle-diagnostics/diagnose-cnc-spindle-vibration/">
-    <span class="insight-card-tag">Spindle Diagnostics &amp; Repair Decisions</span>
-    <h3>How to Diagnose CNC Spindle Vibration: A Symptoms Decoder</h3>
-    <p>A diagnostic decoder for CNC spindle vibration: the four symptom patterns we see most often on the bench, how to tell them apart, and when each calls for a rebuild versus continued service.</p>
-    <span class="learn-more">Read &rarr;</span>
-  </a>
-</li>
-<li class="insight-card insight-card--published">
-  <a href="/insights/spindle-diagnostics/rebuild-vs-replace-spindle-economics/">
-    <span class="insight-card-tag">Spindle Diagnostics &amp; Repair Decisions</span>
-    <h3>Spindle Rebuild vs. Replace: When Each Makes Sense</h3>
-    <p>The economics of a CNC spindle rebuild versus replacement, framed by the three break-even questions Ken walks customers through before quoting work. Real cost ranges and the cases where each path actually wins.</p>
-    <span class="learn-more">Read &rarr;</span>
-  </a>
-</li>
-</ul>
+  <div class="section-inner">
+<h2 id="when-to-bring-this-work-to-us">When to bring this work to us</h2>
+<p>If your spindle has the loud-cold-quiet-warm pattern, or if your runout under load is materially different from your runout without load, preload is the likely cause. The fix is usually cheaper and faster than a full bearing rebuild.</p>
+<p><a href="/get-a-quote/">Get a quote</a> with the machine model, the symptoms you are seeing, and whether the noise pattern changes with warm-up.</p>
+<div class="insight-cta">
+  <p><strong>Need this work done?</strong> Tell us the machine and the symptom.</p>
+  <p><a class="cta-button" href="/get-a-quote/">Get a quote</a> <a class="cta-phone" href="tel:+13196104341">319-610-4341</a></p>
+</div>
   </div>
 </section>
 </article>

@@ -4,9 +4,9 @@
 
 ## Status
 
-- **Published:** 3
+- **Published:** 17
 - **Scheduled (not yet drafted):** 74
-- **Unscheduled backlog:** -1
+- **Unscheduled backlog:** -15
 - **Total planned across all pillars:** 76
 
 First scheduled date: `2026-06-02`. Last: `2027-02-11`.
@@ -25,7 +25,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 
 ### Week of Jun 15, 2026
 
-- **Tue Jun 16** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Bearing Failure Modes: Cage, Race, Ball, Retainer](../src/content/insights/spindle-diagnostics/spindle-bearing-failure-modes.md)
+- **Tue Jun 16** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Bearing Failure Modes: Cage, Race, Ball, Retainer](../src/content/insights/spindle-diagnostics/spindle-bearing-failure-modes.md) ✓
 - **Thu Jun 18** &mdash; *CNC Control Systems* &mdash; [Fanuc Alarm 401: Causes and Recovery](../src/content/insights/cnc-control-systems/fanuc-alarm-401.md)
 
 ### Week of Jun 22, 2026
@@ -46,7 +46,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 ### Week of Jul 13, 2026
 
 - **Tue Jul 14** &mdash; *Buying & Owning Used CNC* &mdash; [Used Haas Buying: Classic Control vs. NGC](../src/content/insights/buying-owning-used-cnc/used-haas-classic-vs-ngc.md)
-- **Thu Jul 16** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Runout: Causes, Measurement, and When to Act](../src/content/insights/spindle-diagnostics/spindle-runout-measurement.md)
+- **Thu Jul 16** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Runout: Causes, Measurement, and When to Act](../src/content/insights/spindle-diagnostics/spindle-runout-measurement.md) ✓
 
 ### Week of Jul 20, 2026
 
@@ -60,7 +60,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 
 ### Week of Aug 3, 2026
 
-- **Tue Aug 4** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Cold-Start Spindle Noise: Normal vs. Failure](../src/content/insights/spindle-diagnostics/cold-start-spindle-noise.md)
+- **Tue Aug 4** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Cold-Start Spindle Noise: Normal vs. Failure](../src/content/insights/spindle-diagnostics/cold-start-spindle-noise.md) ✓
 - **Thu Aug 6** &mdash; *CNC Control Systems* &mdash; [Okuma OSP-P200 to P300: Practical Impact](../src/content/insights/cnc-control-systems/okuma-osp-p200-to-p300.md)
 
 ### Week of Aug 10, 2026
@@ -71,7 +71,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 ### Week of Aug 17, 2026
 
 - **Tue Aug 18** &mdash; *Buying & Owning Used CNC* &mdash; [Used Doosan/Daewoo: Parts Continuity Across the Rename](../src/content/insights/buying-owning-used-cnc/used-doosan-daewoo-parts.md)
-- **Thu Aug 20** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Taper Damage: When It Can Be Salvaged](../src/content/insights/spindle-diagnostics/spindle-taper-damage.md)
+- **Thu Aug 20** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Taper Damage: When It Can Be Salvaged](../src/content/insights/spindle-diagnostics/spindle-taper-damage.md) ✓
 
 ### Week of Aug 24, 2026
 
@@ -85,7 +85,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 
 ### Week of Sep 7, 2026
 
-- **Tue Sep 8** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [ATC Rattle vs. True Spindle Failure: How to Tell](../src/content/insights/spindle-diagnostics/atc-rattle-vs-spindle-failure.md)
+- **Tue Sep 8** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [ATC Rattle vs. True Spindle Failure: How to Tell](../src/content/insights/spindle-diagnostics/atc-rattle-vs-spindle-failure.md) ✓
 - **Thu Sep 10** &mdash; *CNC Control Systems* &mdash; [Mazatrol Legacy Screen Failure: Replacement Options](../src/content/insights/cnc-control-systems/mazatrol-legacy-screen-failure.md)
 
 ### Week of Sep 14, 2026
@@ -96,7 +96,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 ### Week of Sep 21, 2026
 
 - **Tue Sep 22** &mdash; *Buying & Owning Used CNC* &mdash; [Used Fanuc-Controlled Machines: Control vs. Iron Value](../src/content/insights/buying-owning-used-cnc/used-fanuc-machines-control-vs-iron.md)
-- **Thu Sep 24** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Surface Finish Degradation: Spindle or Fixture?](../src/content/insights/spindle-diagnostics/surface-finish-degradation.md)
+- **Thu Sep 24** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Surface Finish Degradation: Spindle or Fixture?](../src/content/insights/spindle-diagnostics/surface-finish-degradation.md) ✓
 
 ### Week of Sep 28, 2026
 
@@ -110,7 +110,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 
 ### Week of Oct 12, 2026
 
-- **Tue Oct 13** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Thermal Growth: Drift, Compensation, and Faults](../src/content/insights/spindle-diagnostics/spindle-thermal-growth.md)
+- **Tue Oct 13** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Thermal Growth: Drift, Compensation, and Faults](../src/content/insights/spindle-diagnostics/spindle-thermal-growth.md) ✓
 - **Thu Oct 15** &mdash; *CNC Control Systems* &mdash; [Servo Drive vs. CNC Controller Faults: How to Distinguish](../src/content/insights/cnc-control-systems/servo-drive-vs-controller-fault.md)
 
 ### Week of Oct 19, 2026
@@ -121,7 +121,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 ### Week of Oct 26, 2026
 
 - **Tue Oct 27** &mdash; *Buying & Owning Used CNC* &mdash; [Hitachi Seiki Legacy: The Parts Reality](../src/content/insights/buying-owning-used-cnc/hitachi-seiki-legacy-parts.md)
-- **Thu Oct 29** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Coolant Intrusion in Spindles: Prevention and Recovery](../src/content/insights/spindle-diagnostics/coolant-intrusion-damage.md)
+- **Thu Oct 29** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Coolant Intrusion in Spindles: Prevention and Recovery](../src/content/insights/spindle-diagnostics/coolant-intrusion-damage.md) ✓
 
 ### Week of Nov 2, 2026
 
@@ -135,7 +135,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 
 ### Week of Nov 16, 2026
 
-- **Tue Nov 17** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Drawbar Diagnostics: Hold-Down Force Decay](../src/content/insights/spindle-diagnostics/spindle-drawbar-diagnostics.md)
+- **Tue Nov 17** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Drawbar Diagnostics: Hold-Down Force Decay](../src/content/insights/spindle-diagnostics/spindle-drawbar-diagnostics.md) ✓
 - **Thu Nov 19** &mdash; *CNC Control Systems* &mdash; [Fanuc Series 0 to 0i: Upgrade Reality](../src/content/insights/cnc-control-systems/fanuc-series-0-to-0i-upgrade.md)
 
 ### Week of Nov 23, 2026
@@ -146,7 +146,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 ### Week of Nov 30, 2026
 
 - **Tue Dec 1** &mdash; *Buying & Owning Used CNC* &mdash; [Retrofit ROI on Legacy Iron: When It Pencils](../src/content/insights/buying-owning-used-cnc/retrofit-roi-legacy-iron.md)
-- **Thu Dec 3** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Belt-Driven vs. Integral-Motor Spindles: Failure Differences](../src/content/insights/spindle-diagnostics/belt-vs-integral-motor-spindles.md)
+- **Thu Dec 3** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Belt-Driven vs. Integral-Motor Spindles: Failure Differences](../src/content/insights/spindle-diagnostics/belt-vs-integral-motor-spindles.md) ✓
 
 ### Week of Dec 7, 2026
 
@@ -160,7 +160,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 
 ### Week of Dec 21, 2026
 
-- **Tue Dec 22** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Handheld Vibration Analysis for Shop Owners](../src/content/insights/spindle-diagnostics/vibration-analysis-handheld.md)
+- **Tue Dec 22** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Handheld Vibration Analysis for Shop Owners](../src/content/insights/spindle-diagnostics/vibration-analysis-handheld.md) ✓
 - **Thu Dec 24** &mdash; *CNC Control Systems* &mdash; [PLC Ladder Logic Faults in CNC Machines](../src/content/insights/cnc-control-systems/ladder-logic-faults.md)
 
 ### Week of Dec 28, 2026
@@ -171,7 +171,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 ### Week of Jan 4, 2027
 
 - **Tue Jan 5** &mdash; *Buying & Owning Used CNC* &mdash; [Used Machine Inspection: Way and Ballscrew Red Flags](../src/content/insights/buying-owning-used-cnc/inspection-way-ballscrew-red-flags.md)
-- **Thu Jan 7** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Balance: Why Your Replacement Tools Matter](../src/content/insights/spindle-diagnostics/spindle-balance-tooling-matters.md)
+- **Thu Jan 7** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Balance: Why Your Replacement Tools Matter](../src/content/insights/spindle-diagnostics/spindle-balance-tooling-matters.md) ✓
 
 ### Week of Jan 11, 2027
 
@@ -185,7 +185,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 
 ### Week of Jan 25, 2027
 
-- **Tue Jan 26** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Rebuild Lead Time: What Actually Drives It](../src/content/insights/spindle-diagnostics/spindle-rebuild-lead-time.md)
+- **Tue Jan 26** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Rebuild Lead Time: What Actually Drives It](../src/content/insights/spindle-diagnostics/spindle-rebuild-lead-time.md) ✓
 - **Thu Jan 28** &mdash; *CNC Control Systems* &mdash; [Why Your Control May Be the Limiting Factor](../src/content/insights/cnc-control-systems/control-as-limiting-factor.md)
 
 ### Week of Feb 1, 2027
@@ -196,30 +196,30 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 ### Week of Feb 8, 2027
 
 - **Tue Feb 9** &mdash; *Buying & Owning Used CNC* &mdash; [Auctions vs. Broker vs. Private Sale: Buying Used CNC](../src/content/insights/buying-owning-used-cnc/auctions-vs-broker-vs-private.md)
-- **Thu Feb 11** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Preload Loss: Symptoms and Diagnostic Procedure](../src/content/insights/spindle-diagnostics/spindle-preload-loss.md)
+- **Thu Feb 11** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Preload Loss: Symptoms and Diagnostic Procedure](../src/content/insights/spindle-diagnostics/spindle-preload-loss.md) ✓
 
 ## By Pillar
 
 ### Spindle Diagnostics & Repair Decisions
 
-_2 published &middot; 14 scheduled &middot; 0 unscheduled (of 16 total)._
+_16 published &middot; 0 scheduled &middot; 0 unscheduled (of 16 total)._
 
+- ✓ **2026-06-16** &mdash; ~~Spindle Bearing Failure Modes: Cage, Race, Ball, Retainer~~ (published)
+- ✓ **2026-07-16** &mdash; ~~Spindle Runout: Causes, Measurement, and When to Act~~ (published)
+- ✓ **2026-08-04** &mdash; ~~Cold-Start Spindle Noise: Normal vs. Failure~~ (published)
+- ✓ **2026-08-20** &mdash; ~~Spindle Taper Damage: When It Can Be Salvaged~~ (published)
+- ✓ **2026-09-08** &mdash; ~~ATC Rattle vs. True Spindle Failure: How to Tell~~ (published)
+- ✓ **2026-09-24** &mdash; ~~Surface Finish Degradation: Spindle or Fixture?~~ (published)
+- ✓ **2026-10-13** &mdash; ~~Spindle Thermal Growth: Drift, Compensation, and Faults~~ (published)
+- ✓ **2026-10-29** &mdash; ~~Coolant Intrusion in Spindles: Prevention and Recovery~~ (published)
+- ✓ **2026-11-17** &mdash; ~~Spindle Drawbar Diagnostics: Hold-Down Force Decay~~ (published)
+- ✓ **2026-12-03** &mdash; ~~Belt-Driven vs. Integral-Motor Spindles: Failure Differences~~ (published)
+- ✓ **2026-12-22** &mdash; ~~Handheld Vibration Analysis for Shop Owners~~ (published)
+- ✓ **2027-01-07** &mdash; ~~Spindle Balance: Why Your Replacement Tools Matter~~ (published)
+- ✓ **2027-01-26** &mdash; ~~Spindle Rebuild Lead Time: What Actually Drives It~~ (published)
+- ✓ **2027-02-11** &mdash; ~~Spindle Preload Loss: Symptoms and Diagnostic Procedure~~ (published)
 - ✓ **—** &mdash; ~~How to Diagnose CNC Spindle Vibration: A Symptoms Decoder~~ (published)
 - ✓ **—** &mdash; ~~Spindle Rebuild vs. Replace: When Each Makes Sense~~ (published)
-- ◯ `2026-06-16` &mdash; Spindle Bearing Failure Modes: Cage, Race, Ball, Retainer
-- ◯ `2026-07-16` &mdash; Spindle Runout: Causes, Measurement, and When to Act
-- ◯ `2026-08-04` &mdash; Cold-Start Spindle Noise: Normal vs. Failure
-- ◯ `2026-08-20` &mdash; Spindle Taper Damage: When It Can Be Salvaged
-- ◯ `2026-09-08` &mdash; ATC Rattle vs. True Spindle Failure: How to Tell
-- ◯ `2026-09-24` &mdash; Surface Finish Degradation: Spindle or Fixture?
-- ◯ `2026-10-13` &mdash; Spindle Thermal Growth: Drift, Compensation, and Faults
-- ◯ `2026-10-29` &mdash; Coolant Intrusion in Spindles: Prevention and Recovery
-- ◯ `2026-11-17` &mdash; Spindle Drawbar Diagnostics: Hold-Down Force Decay
-- ◯ `2026-12-03` &mdash; Belt-Driven vs. Integral-Motor Spindles: Failure Differences
-- ◯ `2026-12-22` &mdash; Handheld Vibration Analysis for Shop Owners
-- ◯ `2027-01-07` &mdash; Spindle Balance: Why Your Replacement Tools Matter
-- ◯ `2027-01-26` &mdash; Spindle Rebuild Lead Time: What Actually Drives It
-- ◯ `2027-02-11` &mdash; Spindle Preload Loss: Symptoms and Diagnostic Procedure
 
 ### CNC Control Systems
 

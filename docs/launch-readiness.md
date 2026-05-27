@@ -1,13 +1,13 @@
 # Launch Readiness Audit
 
-Audited **282 HTML files** under `public/` plus the `assets/` tree. Run this any time before deploy to catch regressions.
+Audited **296 HTML files** under `public/` plus the `assets/` tree. Run this any time before deploy to catch regressions.
 
 ## Summary
 
-- Total HTML files in `public/`: **282**
-- Sitemap URLs:                  **279**
+- Total HTML files in `public/`: **296**
+- Sitemap URLs:                  **293**
   (2 expected exclusions: 404 page + draft way-cover pages)
-- Internal links scanned:         **18725**
+- Internal links scanned:         **19617**
 - Broken internal links:          **0**
 - Ban-list findings:              **1** unauthorized, **2** Aaron-authorized exceptions
 - Schema issues:                  **165**
@@ -27,11 +27,11 @@ Audited **282 HTML files** under `public/` plus the `assets/` tree. Run this any
 
 ## a) Link audit
 
-- Total `<a href>` scanned: 18725
-- Resolved to file:        16293
+- Total `<a href>` scanned: 19617
+- Resolved to file:        17101
 - Resolved via redirect:   0
-- External (skipped):      283
-- Non-http skipped:        2149
+- External (skipped):      297
+- Non-http skipped:        2219
 - **Broken:**              **0**
 
 ## d) Claim-audit ban-list scan
@@ -45,7 +45,7 @@ Audited **282 HTML files** under `public/` plus the `assets/` tree. Run this any
 
 ## e) Schema validation
 
-- Pages with BreadcrumbList: 280 / 280 (excluding homepage and 404)
+- Pages with BreadcrumbList: 294 / 294 (excluding homepage and 404)
 
 **Schema issues:**
 - Brand page missing LocalBusiness schema (public/repairs/dmg-mori-cnc-machine-repair/celos/index.html)
@@ -243,6 +243,6 @@ Breakdown by subdirectory:
 
 ## b/c) Sitemap composition
 
-- Total `<loc>` entries: 279
-- HTML files in `public/`: 282
+- Total `<loc>` entries: 293
+- HTML files in `public/`: 296
 - Difference: 3 (404 page + drafts — expected)

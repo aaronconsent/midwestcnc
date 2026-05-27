@@ -46,12 +46,82 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://midwestcncservices.com/insights/spindle-diagnostics/atc-rattle-vs-spindle-failure/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://midwestcncservices.com/insights/spindle-diagnostics/belt-vs-integral-motor-spindles/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://midwestcncservices.com/insights/spindle-diagnostics/cold-start-spindle-noise/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://midwestcncservices.com/insights/spindle-diagnostics/coolant-intrusion-damage/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://midwestcncservices.com/insights/spindle-diagnostics/diagnose-cnc-spindle-vibration/</loc>
     <lastmod>2026-05-27</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://midwestcncservices.com/insights/spindle-diagnostics/rebuild-vs-replace-spindle-economics/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://midwestcncservices.com/insights/spindle-diagnostics/spindle-balance-tooling-matters/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://midwestcncservices.com/insights/spindle-diagnostics/spindle-bearing-failure-modes/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://midwestcncservices.com/insights/spindle-diagnostics/spindle-drawbar-diagnostics/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://midwestcncservices.com/insights/spindle-diagnostics/spindle-preload-loss/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://midwestcncservices.com/insights/spindle-diagnostics/spindle-rebuild-lead-time/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://midwestcncservices.com/insights/spindle-diagnostics/spindle-runout-measurement/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://midwestcncservices.com/insights/spindle-diagnostics/spindle-taper-damage/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://midwestcncservices.com/insights/spindle-diagnostics/spindle-thermal-growth/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://midwestcncservices.com/insights/spindle-diagnostics/surface-finish-degradation/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://midwestcncservices.com/insights/spindle-diagnostics/vibration-analysis-handheld/</loc>
     <lastmod>2026-05-27</lastmod>
     <priority>0.6</priority>
   </url>
