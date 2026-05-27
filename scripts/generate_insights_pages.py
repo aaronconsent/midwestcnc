@@ -36,6 +36,48 @@ DATA = REPO / "src" / "data" / "insights-pillars.json"
 CONTENT = REPO / "src" / "content" / "insights"
 
 DOMAIN = "https://midwestcncservices.com"
+PHONE_TEL = "+13196104341"
+PHONE_DISPLAY = "319-610-4341"
+
+
+# ---------- Editorial hero (no video, no image) ----------
+
+def build_insight_hero_html(eyebrow_text, h1_html, lede_html,
+                            cta_href="/get-a-quote/", cta_label="Get a Quote",
+                            secondary_cta_href=None, secondary_cta_label=None):
+    """Editorial-style hero used on /insights/ index + every pillar
+    landing. No video, no background image — just well-typed text on
+    a subtle tinted band. WCAG-compliant by construction:
+
+    - Text colors hit ≥ 6:1 contrast against the surface-3 background.
+    - The eyebrow chip has both color and a bordered shape so it is
+      not communicated by color alone.
+    - The H1 is the real <h1> for the page (semantic heading order).
+    - Focus rings are inherited from the global :focus-visible rules
+      plus the .insight-* specific overrides.
+
+    Args mirror build_video_hero_html / build_brand_hero_html so the
+    helper is a drop-in replacement for the insights generator's two
+    landing-page renderers."""
+    secondary = ""
+    if secondary_cta_href and secondary_cta_label:
+        secondary = (
+            f'      <a class="cta-phone" href="{html.escape(secondary_cta_href)}">'
+            f'{html.escape(secondary_cta_label)}</a>\n'
+        )
+    return (
+        f'<section class="insight-hero" aria-labelledby="insight-hero-h1">\n'
+        f'  <div class="insight-hero-inner">\n'
+        f'    <p class="insight-hero-eyebrow">{html.escape(eyebrow_text)}</p>\n'
+        f'    <h1 id="insight-hero-h1">{h1_html}</h1>\n'
+        f'    <p class="insight-hero-lede">{lede_html}</p>\n'
+        f'    <div class="insight-hero-cta">\n'
+        f'      <a class="cta-button" href="{html.escape(cta_href)}">{html.escape(cta_label)}</a>\n'
+        f'{secondary}'
+        f'    </div>\n'
+        f'  </div>\n'
+        f'</section>\n'
+    )
 
 # ---------- Frontmatter helpers ----------
 
@@ -132,7 +174,11 @@ def render_pillar_page(pillar: dict, published: List[dict]) -> str:
     canonical_path = f"/insights/{slug}/"
     canonical = f"{DOMAIN}{canonical_path}"
 
-    # Build the cluster grid — published first, then planned
+    # Build the cluster grid — published first, then planned.
+    # Reader-facing copy: no "Published" tag (all cards on a pillar
+    # page are within the pillar, so the tag is redundant), no
+    # target-query line on planned cards (that's SEO terminology and
+    # shouldn't leak into the UI).
     published_slugs = {a["slug"] for a in published}
     cluster_cards = []
 
@@ -140,7 +186,6 @@ def render_pillar_page(pillar: dict, published: List[dict]) -> str:
         cluster_cards.append(
             f'<li class="insight-card insight-card--published">\n'
             f'  <a href="/insights/{slug}/{art["slug"]}/">\n'
-            f'    <span class="insight-card-tag">Published</span>\n'
             f'    <h3>{html.escape(art["title"])}</h3>\n'
             f'    <p>{html.escape(art.get("description", ""))}</p>\n'
             f'    <span class="learn-more">Read &rarr;</span>\n'
@@ -153,38 +198,59 @@ def render_pillar_page(pillar: dict, published: List[dict]) -> str:
         cluster_cards.append(
             f'<li class="insight-card insight-card--planned">\n'
             f'  <div>\n'
-            f'    <span class="insight-card-tag insight-card-tag--planned">Coming Soon</span>\n'
+            f'    <span class="insight-card-tag insight-card-tag--planned">Coming soon</span>\n'
             f'    <h3>{html.escape(art["title"])}</h3>\n'
-            f'    <p class="insight-card-query">For: <em>{html.escape(art["target_query"])}</em></p>\n'
             f'  </div>\n'
             f'</li>'
         )
 
+    # Reader-facing count line. Branched so the wording reads naturally
+    # whether the series is fresh, mid-build, or fully published.
+    n_pub = len(published)
+    n_plan = len(planned)
+    if n_pub == 0 and n_plan > 0:
+        count_line = (
+            f"This series is just getting started — {n_plan} articles drafting. "
+            f"We publish when the work on the bench warrants writing it down."
+        )
+    elif n_plan == 0 and n_pub > 0:
+        count_line = (
+            f"{n_pub} articles in this series, all published. "
+            f"More may follow as new failure modes and decisions come up on the bench."
+        )
+    else:
+        count_line = (
+            f"{n_pub} published so far. {n_plan} more drafting — we publish when "
+            f"the work on the bench warrants writing it down."
+        )
+
     cluster_grid = (
-        f'<h2 id="cluster">Articles in this Pillar</h2>\n'
-        f'<p>This pillar consolidates {len(pillar["clusters"])} cluster articles. '
-        f'{len(published)} published, {len(planned)} planned.</p>\n'
+        f'<h2 id="articles">Articles in this series</h2>\n'
+        f'<p>{count_line}</p>\n'
         f'<ul class="insight-cluster-grid">\n'
         + "\n".join(cluster_cards)
         + "\n</ul>\n"
     )
 
-    # Reinforced service page
+    # Pointer to the service page that does this work for real customers.
     reinforces_url = pillar.get("consolidates_signal_for", "")
     reinforce_section = ""
     if reinforces_url:
         reinforce_section = (
-            f'<h2 id="services">Related Services</h2>\n'
-            f'<p>This pillar reinforces the service work we do day-to-day. '
-            f'For the service page itself, see '
+            f'<h2 id="service">When you need the work done</h2>\n'
+            f'<p>These articles are working notes — diagnostic logic, decision frameworks, '
+            f'the cost-and-lead-time math. For the service itself (quotes, scheduling, '
+            f'what we actually do on the bench and in the field), the page is at '
             f'<a href="{reinforces_url}">{reinforces_url}</a>.</p>\n'
         )
 
-    # Hero via the shared video-hero helper
-    hero_html = gss.build_video_hero_html(
+    # Editorial hero — quiet, text-focused, no video, no image.
+    hero_html = build_insight_hero_html(
         eyebrow_text=eyebrow,
         h1_html=html.escape(h1),
         lede_html=html.escape(summary),
+        secondary_cta_href=f"tel:{PHONE_TEL}",
+        secondary_cta_label=PHONE_DISPLAY,
     )
 
     body_html = hero_html + cluster_grid + reinforce_section
@@ -215,6 +281,7 @@ def render_pillar_page(pillar: dict, published: List[dict]) -> str:
         crumbs=crumbs,
         body_html=body_html,
         layout="wide",
+        body_class="insights-page insights-pillar",
     )
 
 
@@ -286,6 +353,7 @@ def render_article_page(pillar: dict, article: dict, md_body: str) -> str:
         crumbs=crumbs,
         body_html=body_html,
         layout="default",
+        body_class="insights-page insights-article",
     )
 
 
@@ -298,7 +366,7 @@ def render_insights_index(pillars_data: dict, published_by_pillar: Dict[str, Lis
     total_published = sum(len(v) for v in published_by_pillar.values())
     total_planned = sum(len(p["clusters"]) for p in pillars_data["pillars"]) - total_published
 
-    hero_html = gss.build_video_hero_html(
+    hero_html = build_insight_hero_html(
         eyebrow_text="Technical Insights",
         h1_html="CNC Repair Insights from the Bench and the Field",
         lede_html=(
@@ -306,30 +374,41 @@ def render_insights_index(pillars_data: dict, published_by_pillar: Dict[str, Lis
             "decision frameworks, and platform-specific knowledge we use day-to-day — "
             "written for shop owners and operators, not search engines."
         ),
+        secondary_cta_href=f"tel:{PHONE_TEL}",
+        secondary_cta_label=PHONE_DISPLAY,
     )
 
     pillar_cards = []
     for p in pillars_data["pillars"]:
         n_pub = len(published_by_pillar.get(p["slug"], []))
         n_planned = len(p["clusters"]) - n_pub
+        # Reader-facing count: "2 published, 14 drafting" reads more
+        # honest than "planned" (we don't have a posting calendar; we
+        # publish when the work warrants it).
+        if n_pub == 0:
+            count_text = f"{n_planned} articles drafting"
+        elif n_planned == 0:
+            count_text = f"{n_pub} articles"
+        else:
+            count_text = f"{n_pub} published &middot; {n_planned} drafting"
         pillar_cards.append(
             f'<li class="insight-pillar-card">\n'
             f'  <a href="/insights/{p["slug"]}/">\n'
             f'    <span class="insight-pillar-eyebrow">{html.escape(p["eyebrow"])}</span>\n'
             f'    <h3>{html.escape(p["title"])}</h3>\n'
             f'    <p>{html.escape(p["summary"][:220])}{"…" if len(p["summary"]) > 220 else ""}</p>\n'
-            f'    <p class="insight-pillar-counts">{n_pub} published &middot; {n_planned} planned</p>\n'
-            f'    <span class="learn-more">Explore pillar &rarr;</span>\n'
+            f'    <p class="insight-pillar-counts">{count_text}</p>\n'
+            f'    <span class="learn-more">Read articles &rarr;</span>\n'
             f'  </a>\n'
             f'</li>'
         )
 
     pillars_section = (
-        f'<h2 id="pillars">Five Pillars</h2>\n'
-        f'<p>The technical territory we own. Each pillar is a defensible cluster of '
-        f'15-25 articles addressing the diagnostic, decision-making, and platform-specific '
-        f'knowledge our customers actually need. Total: {total_published} published, '
-        f'{total_planned} planned.</p>\n'
+        f'<h2 id="topics">Where we focus</h2>\n'
+        f'<p>Five areas where the bench work, the diagnostic reasoning, and the '
+        f'platform-specific knowledge actually lives. Articles ship when a piece of '
+        f'work earns the writing — there is no posting calendar. '
+        f'{total_published} published so far, {total_planned} more drafting.</p>\n'
         f'<ul class="insight-pillar-grid">\n'
         + "\n".join(pillar_cards)
         + "\n</ul>\n"
@@ -356,7 +435,7 @@ def render_insights_index(pillars_data: dict, published_by_pillar: Dict[str, Lis
     recent_section = ""
     if recent_cards:
         recent_section = (
-            f'<h2 id="recent">Recent Articles</h2>\n'
+            f'<h2 id="latest">Latest articles</h2>\n'
             f'<ul class="insight-cluster-grid">\n'
             + "\n".join(recent_cards)
             + "\n</ul>\n"
@@ -384,12 +463,14 @@ def render_insights_index(pillars_data: dict, published_by_pillar: Dict[str, Lis
         crumbs=crumbs,
         body_html=body_html,
         layout="wide",
+        body_class="insights-page insights-index",
     )
 
 
 # ---------- Page chrome ----------
 
-def _wrap_page(*, title, meta_desc, canonical, schema_blocks, crumbs, body_html, layout):
+def _wrap_page(*, title, meta_desc, canonical, schema_blocks, crumbs,
+               body_html, layout, body_class=""):
     schema_json = "\n".join(
         f'<script type="application/ld+json">\n{json.dumps(s, indent=2, ensure_ascii=False)}\n</script>'
         for s in schema_blocks
@@ -408,9 +489,22 @@ def _wrap_page(*, title, meta_desc, canonical, schema_blocks, crumbs, body_html,
         + '\n  </ol>\n</nav>'
     )
 
-    banded = m2h.wrap_into_sections(body_html, layout=layout)
+    # Pull the .insight-hero block out so it renders full-bleed (no
+    # section-inner wrapping, no alternating-band coloring) and only
+    # the rest of the body gets wrapped into alternating sections.
+    hero_html = ""
+    rest_html = body_html
+    m = re.match(r"\s*(<section class=\"insight-hero\"[\s\S]*?</section>)\s*", body_html)
+    if m:
+        hero_html = m.group(1)
+        rest_html = body_html[m.end():]
 
-    body_class = f' class="layout-{layout}"' if layout != "default" else ""
+    banded_rest = m2h.wrap_into_sections(rest_html, layout=layout) if rest_html.strip() else ""
+
+    classes = [f"layout-{layout}"] if layout != "default" else []
+    if body_class:
+        classes.extend(body_class.split())
+    class_attr = f' class="{" ".join(classes)}"' if classes else ""
 
     return f"""<!doctype html>
 <html lang="en">
@@ -430,13 +524,14 @@ def _wrap_page(*, title, meta_desc, canonical, schema_blocks, crumbs, body_html,
 {m2h.CSS}</style>
 {schema_json}
 </head>
-<body{body_class}>
+<body{class_attr}>
 <a class="skip-link" href="#main">Skip to content</a>
 {m2h.build_site_header()}
 {crumbs_html}
 <main id="main">
 <article>
-{banded}
+{hero_html}
+{banded_rest}
 </article>
 </main>
 <footer class="site-footer">
