@@ -1,0 +1,114 @@
+name: Insights Weekly Auto-Draft
+
+# Runs every Monday morning. Drafts one Insights article using the
+# Anthropic API, runs it through the 11 quality gates, opens a
+# feature branch on push, and reports the PR URL.
+#
+# The 60-second human-gate review still happens — this workflow opens
+# the PR, the user (Aaron) reviews and merges, Cloudflare Pages
+# auto-deploys.
+#
+# Required repository secret:
+#   ANTHROPIC_API_KEY — your Anthropic API key (sk-ant-...)
+#
+# Optional repository variable:
+#   ANTHROPIC_MODEL — override the default model. Defaults to
+#                     claude-opus-4-5 if unset.
+
+on:
+  schedule:
+    # 13:47 UTC every Monday:
+    #   8:47 AM CDT (summer)  — within early morning Central US
+    #   7:47 AM CST (winter)  — still pre-business-hours Central US
+    # Off-minute (:47) avoids the :00 / :30 fleet pile-up.
+    - cron: '47 13 * * 1'
+  # Allow manual triggering from the Actions tab for testing or
+  # ad-hoc drafting.
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Force a specific cluster slug (optional). Leave blank to pick from the schedule.'
+        required: false
+        type: string
+      dry_run:
+        description: 'Dry run — produce the article and validate, but skip the git push'
+        required: false
+        type: boolean
+        default: false
+
+# We need contents:write to push the auto-draft/* branch. We do NOT
+# request pull-requests:write — opening the PR is left to the human
+# (Aaron) so the human-gate review point is preserved.
+permissions:
+  contents: write
+
+# Prevent overlapping runs if a manual trigger fires while the
+# scheduled run is still working.
+concurrency:
+  group: insights-auto-draft
+  cancel-in-progress: false
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          # We need a token that can push. The default GITHUB_TOKEN
+          # has contents:write per the permissions block above.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-anthropic-v1
+
+      - name: Install anthropic SDK
+        run: pip install --upgrade anthropic
+
+      - name: Configure git identity
+        run: |
+          git config user.name  "Insights Auto-Draft Bot"
+          git config user.email "insights-bot@midwestcncservices.com"
+
+      - name: Run auto-draft orchestrator
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL:   ${{ vars.ANTHROPIC_MODEL || 'claude-opus-4-5' }}
+          AUTO_DRAFT_SLUG:   ${{ inputs.slug }}
+          AUTO_DRAFT_DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+          GITHUB_ACTIONS: 'true'
+        run: python3 scripts/insights_auto_draft.py
+
+      - name: Summarize run in Actions UI
+        if: always()
+        run: |
+          echo "## Insights Auto-Draft" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          if [ -d "src/content/insights/_drafts" ]; then
+            REVIEW=$(ls src/content/insights/_drafts/*.review.md 2>/dev/null | head -1 || true)
+            if [ -n "$REVIEW" ]; then
+              echo "**Status: validation failed.** Review file:" >> "$GITHUB_STEP_SUMMARY"
+              echo "" >> "$GITHUB_STEP_SUMMARY"
+              echo "\`$REVIEW\`" >> "$GITHUB_STEP_SUMMARY"
+              echo "" >> "$GITHUB_STEP_SUMMARY"
+              echo "Check the job log above for the specific gate failures." >> "$GITHUB_STEP_SUMMARY"
+            fi
+          fi
+          BRANCH=$(git branch --show-current)
+          if [ "$BRANCH" != "main" ] && [ -n "$BRANCH" ]; then
+            echo "**Branch pushed:** \`$BRANCH\`" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "[Open PR →](https://github.com/${{ github.repository }}/pull/new/$BRANCH)" >> "$GITHUB_STEP_SUMMARY"
+          fi
