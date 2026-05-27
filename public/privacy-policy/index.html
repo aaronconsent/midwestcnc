@@ -2176,6 +2176,29 @@ section.insight-sources {
 .quote-form button:active { transform: translateY(0); box-shadow: var(--sh-1); }
 .quote-form .honeypot { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
 
+/* Turnstile widget — minimal styling, lets Cloudflare's iframe render
+   itself. The wrapper just centers the widget within the form column. */
+.quote-form .cf-turnstile {
+  display: flex;
+  justify-content: center;
+  margin: var(--s-2) 0;
+}
+
+/* Error banner shown when the Pages Function redirected back with
+   ?error=... in the query string. Hidden by default; the inline
+   <script> at the bottom of the form un-hides it when present. */
+.form-error-banner {
+  padding: var(--s-4);
+  border-radius: var(--r-3);
+  background: rgba(184, 52, 26, 0.06);
+  border: 1px solid rgba(184, 52, 26, 0.25);
+  border-left: 4px solid var(--accent-dark);
+  margin: var(--s-5) 0;
+  color: var(--fg);
+}
+.form-error-banner p { margin: 0; }
+.form-error-banner[hidden] { display: none; }
+
 .success-message {
   display: none;
   padding: var(--s-5);

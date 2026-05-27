@@ -2176,6 +2176,29 @@ section.insight-sources {
 .quote-form button:active { transform: translateY(0); box-shadow: var(--sh-1); }
 .quote-form .honeypot { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
 
+/* Turnstile widget — minimal styling, lets Cloudflare's iframe render
+   itself. The wrapper just centers the widget within the form column. */
+.quote-form .cf-turnstile {
+  display: flex;
+  justify-content: center;
+  margin: var(--s-2) 0;
+}
+
+/* Error banner shown when the Pages Function redirected back with
+   ?error=... in the query string. Hidden by default; the inline
+   <script> at the bottom of the form un-hides it when present. */
+.form-error-banner {
+  padding: var(--s-4);
+  border-radius: var(--r-3);
+  background: rgba(184, 52, 26, 0.06);
+  border: 1px solid rgba(184, 52, 26, 0.25);
+  border-left: 4px solid var(--accent-dark);
+  margin: var(--s-5) 0;
+  color: var(--fg);
+}
+.form-error-banner p { margin: 0; }
+.form-error-banner[hidden] { display: none; }
+
 .success-message {
   display: none;
   padding: var(--s-5);
@@ -2333,9 +2356,8 @@ body.form-submitted .quote-helpers { display: none; }
 <h1>Get a Quote</h1>
 <p>Tell us about your machine and we'll get back to you with pricing and lead time. Most quotes go out within one business day.</p>
 
-<div class="success-message" id="success">
-  <h3>Thanks — we got it.</h3>
-  <p>We'll be in touch within one business day. If it's urgent, call <a href="tel:+13196104341">319-610-4341</a>.</p>
+<div class="form-error-banner" id="error" hidden>
+  <p>We could not submit your request. <span id="error-message"></span></p>
 </div>
 
 <div class="quote-helpers">
@@ -2353,12 +2375,7 @@ body.form-submitted .quote-helpers { display: none; }
   </ul>
 </div>
 
-<form class="quote-form" action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="14ef8440-a42b-4dd3-b416-30d9d6b3e906">
-  <input type="hidden" name="subject" value="Quote request: {{machine_brand}} {{service}}">
-  <input type="hidden" name="from_name" value="Midwest CNC Services Website">
-  <input type="hidden" name="redirect" value="https://midwestcncservices.com/get-a-quote/?success=1">
-
+<form class="quote-form" id="quote" action="/api/quote" method="POST">
   <div class="field">
     <label class="required" for="name">Your name</label>
     <input id="name" name="name" type="text" required autocomplete="name">
@@ -2427,10 +2444,15 @@ body.form-submitted .quote-helpers { display: none; }
     <textarea id="message" name="message" required placeholder="Symptoms, error codes, what changed, how urgent…"></textarea>
   </div>
 
-  <!-- Honeypot — leave blank, bots fill it in -->
+  <!-- Honeypot — leave blank, bots fill it in. Caught server-side. -->
   <div class="honeypot" aria-hidden="true">
     <label for="botcheck">Leave this field empty</label>
-    <input id="botcheck" type="checkbox" name="botcheck" value="">
+    <input id="botcheck" type="checkbox" name="botcheck" value="" tabindex="-1" autocomplete="off">
+  </div>
+
+  <!-- Cloudflare Turnstile — invisible to most users, blocks bots. -->
+  <div class="field">
+    <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA"></div>
   </div>
 
   <button type="submit">Send Quote Request</button>
@@ -2442,12 +2464,30 @@ body.form-submitted .quote-helpers { display: none; }
   <p>Midwest CNC Services · Waterloo, IA</p>
 </div>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
-  if (location.search.indexOf('success=1') !== -1) {
-    document.body.classList.add('form-submitted');
-    var s = document.getElementById('success');
-    if (s) s.scrollIntoView({behavior: 'smooth'});
-  }
+  // If the server bounced us back with ?error=..., surface the
+  // message and scroll into view.
+  (function () {
+    var match = location.search.match(/[?&]error=([^&]+)/);
+    if (!match) return;
+    var code = decodeURIComponent(match[1]);
+    var msg;
+    if (code === 'captcha-missing')      msg = 'Please complete the captcha check below the message field and try again.';
+    else if (code === 'captcha-failed')  msg = 'Captcha verification failed. Please refresh and try again.';
+    else if (code === 'email-failed')    msg = 'We could not send your message right now. Please try again in a minute, or call us at 319-610-4341.';
+    else if (code === 'bad-request')     msg = 'There was a problem with the submission. Please refresh and try again.';
+    else if (code.indexOf('missing-') === 0) msg = 'Please fill in all required fields.';
+    else                                  msg = 'Something went wrong. Please try again or call us at 319-610-4341.';
+
+    var banner = document.getElementById('error');
+    var span = document.getElementById('error-message');
+    if (banner && span) {
+      span.textContent = msg;
+      banner.hidden = false;
+      banner.scrollIntoView({behavior: 'smooth'});
+    }
+  })();
 </script>
   </div>
 </section>

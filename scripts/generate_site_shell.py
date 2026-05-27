@@ -36,7 +36,18 @@ PHONE_DISPLAY = "319-610-4341"
 PHONE_TEL = "+13196104341"
 ADDRESS_CITY = "Waterloo"
 ADDRESS_STATE = "IA"
-WEB3FORMS_KEY = "14ef8440-a42b-4dd3-b416-30d9d6b3e906"
+WEB3FORMS_KEY = "14ef8440-a42b-4dd3-b416-30d9d6b3e906"  # legacy — no longer used; form now posts to /api/quote
+
+# Cloudflare Turnstile site key (public — safe to embed in HTML).
+# Replace with your real site key after creating the widget at
+# https://dash.cloudflare.com/?to=/:account/turnstile.
+# The matching TURNSTILE_SECRET is set as a server-side env var in
+# the Cloudflare Pages dashboard, NOT here.
+#
+# For local-build testing without a real key, leave the test key
+# below. Cloudflare's documented test key always passes verification
+# in development and always fails in production.
+TURNSTILE_SITE_KEY = "1x00000000000000000000AA"
 
 # Service-area state list (the 7 states Ken confirmed)
 STATE_TILES = [
@@ -529,6 +540,29 @@ SITE_SHELL_CSS = """
 .quote-form button:active { transform: translateY(0); box-shadow: var(--sh-1); }
 .quote-form .honeypot { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
 
+/* Turnstile widget — minimal styling, lets Cloudflare's iframe render
+   itself. The wrapper just centers the widget within the form column. */
+.quote-form .cf-turnstile {
+  display: flex;
+  justify-content: center;
+  margin: var(--s-2) 0;
+}
+
+/* Error banner shown when the Pages Function redirected back with
+   ?error=... in the query string. Hidden by default; the inline
+   <script> at the bottom of the form un-hides it when present. */
+.form-error-banner {
+  padding: var(--s-4);
+  border-radius: var(--r-3);
+  background: rgba(184, 52, 26, 0.06);
+  border: 1px solid rgba(184, 52, 26, 0.25);
+  border-left: 4px solid var(--accent-dark);
+  margin: var(--s-5) 0;
+  color: var(--fg);
+}
+.form-error-banner p { margin: 0; }
+.form-error-banner[hidden] { display: none; }
+
 .success-message {
   display: none;
   padding: var(--s-5);
@@ -674,14 +708,19 @@ def breadcrumbs_html(items):
     return f'<nav class="breadcrumbs" aria-label="breadcrumb">\n  <ol>\n    {"".join(lis)}\n  </ol>\n</nav>'
 
 
-def wrap_page(*, title, description, canonical, schema_blocks, crumbs_html_str, body_html, layout="default"):
+def wrap_page(*, title, description, canonical, schema_blocks, crumbs_html_str,
+              body_html, layout="default", noindex=False):
     """layout='default' (--max readable column), 'wide' (--max-wide for
     homepage + hubs with tiles, brand grids, and other landscape content).
     Body is split into alternating-color full-bleed sections at <h2>
-    boundaries."""
+    boundaries.
+
+    noindex=True injects <meta name="robots" content="noindex,follow">
+    in the head. Use on confirmation / thank-you pages."""
     body_class = f' class="layout-{layout}"' if layout != "default" else ""
     banded = m2h.wrap_into_sections(body_html, layout=layout)
-    return f"""{head_html(title, description, canonical, schema_blocks)}
+    extra = '<meta name="robots" content="noindex,follow">' if noindex else ""
+    return f"""{head_html(title, description, canonical, schema_blocks, extra_head=extra)}
 <body{body_class}>
 <a class="skip-link" href="#main">Skip to content</a>
 {SITE_HEADER}
@@ -1006,7 +1045,14 @@ def about_body():
 
 
 def quote_body(brands):
-    """The Get-a-Quote form page. Web3Forms handles submission."""
+    """The Get-a-Quote form page. Submissions are handled by the
+    Cloudflare Pages Function at /functions/api/quote.js, which:
+      - verifies the Turnstile token server-side
+      - validates required fields
+      - sends a notification email via Resend
+      - redirects to /get-a-quote/thank-you/ on success
+
+    See docs/forms-setup.md for the secret-config steps."""
     # Brand dropdown options, alphabetical
     options = sorted(b["brand_display_name"] for b in brands)
     option_tags = ['<option value="">Select a brand…</option>']
@@ -1018,9 +1064,8 @@ def quote_body(brands):
     body = f'''<h1>Get a Quote</h1>
 <p>Tell us about your machine and we'll get back to you with pricing and lead time. Most quotes go out within one business day.</p>
 
-<div class="success-message" id="success">
-  <h3>Thanks — we got it.</h3>
-  <p>We'll be in touch within one business day. If it's urgent, call <a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>.</p>
+<div class="form-error-banner" id="error" hidden>
+  <p>We could not submit your request. <span id="error-message"></span></p>
 </div>
 
 <div class="quote-helpers">
@@ -1034,12 +1079,7 @@ def quote_body(brands):
   </ul>
 </div>
 
-<form class="quote-form" action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="{WEB3FORMS_KEY}">
-  <input type="hidden" name="subject" value="Quote request: {{{{machine_brand}}}} {{{{service}}}}">
-  <input type="hidden" name="from_name" value="Midwest CNC Services Website">
-  <input type="hidden" name="redirect" value="{DOMAIN}/get-a-quote/?success=1">
-
+<form class="quote-form" id="quote" action="/api/quote" method="POST">
   <div class="field">
     <label class="required" for="name">Your name</label>
     <input id="name" name="name" type="text" required autocomplete="name">
@@ -1087,10 +1127,15 @@ def quote_body(brands):
     <textarea id="message" name="message" required placeholder="Symptoms, error codes, what changed, how urgent…"></textarea>
   </div>
 
-  <!-- Honeypot — leave blank, bots fill it in -->
+  <!-- Honeypot — leave blank, bots fill it in. Caught server-side. -->
   <div class="honeypot" aria-hidden="true">
     <label for="botcheck">Leave this field empty</label>
-    <input id="botcheck" type="checkbox" name="botcheck" value="">
+    <input id="botcheck" type="checkbox" name="botcheck" value="" tabindex="-1" autocomplete="off">
+  </div>
+
+  <!-- Cloudflare Turnstile — invisible to most users, blocks bots. -->
+  <div class="field">
+    <div class="cf-turnstile" data-sitekey="{TURNSTILE_SITE_KEY}"></div>
   </div>
 
   <button type="submit">Send Quote Request</button>
@@ -1102,12 +1147,30 @@ def quote_body(brands):
   <p>Midwest CNC Services · Waterloo, IA</p>
 </div>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
-  if (location.search.indexOf('success=1') !== -1) {{
-    document.body.classList.add('form-submitted');
-    var s = document.getElementById('success');
-    if (s) s.scrollIntoView({{behavior: 'smooth'}});
-  }}
+  // If the server bounced us back with ?error=..., surface the
+  // message and scroll into view.
+  (function () {{
+    var match = location.search.match(/[?&]error=([^&]+)/);
+    if (!match) return;
+    var code = decodeURIComponent(match[1]);
+    var msg;
+    if (code === 'captcha-missing')      msg = 'Please complete the captcha check below the message field and try again.';
+    else if (code === 'captcha-failed')  msg = 'Captcha verification failed. Please refresh and try again.';
+    else if (code === 'email-failed')    msg = 'We could not send your message right now. Please try again in a minute, or call us at {PHONE_DISPLAY}.';
+    else if (code === 'bad-request')     msg = 'There was a problem with the submission. Please refresh and try again.';
+    else if (code.indexOf('missing-') === 0) msg = 'Please fill in all required fields.';
+    else                                  msg = 'Something went wrong. Please try again or call us at {PHONE_DISPLAY}.';
+
+    var banner = document.getElementById('error');
+    var span = document.getElementById('error-message');
+    if (banner && span) {{
+      span.textContent = msg;
+      banner.hidden = false;
+      banner.scrollIntoView({{behavior: 'smooth'}});
+    }}
+  }})();
 </script>
 '''
     return body
@@ -1585,9 +1648,19 @@ def not_found_body():
 
 # ---------- Page-write helpers ----------
 
-def write_page(rel_url_dir, *, title, description, canonical_path, schemas, crumbs, body_html, layout="default"):
+def write_page(rel_url_dir, *, title, description, canonical_path, schemas,
+               crumbs, body_html, layout="default", noindex=False,
+               exclude_from_sitemap=False):
     """rel_url_dir: path like '/about/' or '/' for the URL. Writes to
-    public/<rel_url_dir>/index.html (or public/index.html for the homepage)."""
+    public/<rel_url_dir>/index.html (or public/index.html for the homepage).
+
+    noindex=True adds <meta name="robots" content="noindex,follow"> to
+    the head so search engines ignore the page (use for thank-you /
+    confirmation pages).
+
+    exclude_from_sitemap=True records the canonical URL in a module-
+    level set that the sitemap generator skips. Use together with
+    noindex for internal-only pages."""
     out_path = os.path.join(PUBLIC, rel_url_dir.strip("/"), "index.html") \
         if rel_url_dir.strip("/") else os.path.join(PUBLIC, "index.html")
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
@@ -1603,10 +1676,18 @@ def write_page(rel_url_dir, *, title, description, canonical_path, schemas, crum
         crumbs_html_str=crumbs_html_str,
         body_html=body_html,
         layout=layout,
+        noindex=noindex,
     )
     with open(out_path, "w") as f:
         f.write(page_html)
+    if exclude_from_sitemap:
+        SITEMAP_EXCLUDE.add(f"{DOMAIN}{canonical_path}")
     return out_path
+
+
+# Module-level set of canonicals that gen_sitemap() must skip. Populated
+# by write_page() when exclude_from_sitemap=True is passed.
+SITEMAP_EXCLUDE: set = set()
 
 
 def absolute(path):
@@ -1670,6 +1751,58 @@ def gen_quote(brands):
         schemas=schemas,
         crumbs=[("Home", "/"), ("Get a Quote", None)],
         body_html=quote_body(brands),
+    )
+
+
+def quote_thanks_body():
+    """The thank-you page shown after a successful quote submission.
+    The Pages Function at /functions/api/quote.js redirects here."""
+    return f'''<h1>Thanks — we got it.</h1>
+
+<p class="lede">Your quote request is in our inbox. We'll be in touch within one business day with pricing and lead time.</p>
+
+<div class="quote-helpers">
+  <h2 id="next-steps">What happens next</h2>
+  <p>One of us — usually Ken or Aaron — will read your message, look at the machine specifics, and reply. Most replies come back inside the next business day. If we need more information (a photo of the spindle, the exact alarm code, the year of the machine), we will ask.</p>
+
+  <h2 id="if-urgent">If it's urgent</h2>
+  <p>If the machine is down and production is waiting, call us at <a href="tel:{PHONE_TEL}"><strong>{PHONE_DISPLAY}</strong></a>. We will pick up faster than email reaches us, and we can usually scope the work on the call.</p>
+
+  <h2 id="while-you-wait">While you wait</h2>
+  <p>Articles that match common reasons shops reach out:</p>
+  <ul>
+    <li><a href="/insights/spindle-diagnostics/diagnose-cnc-spindle-vibration/">How to Diagnose CNC Spindle Vibration: A Symptoms Decoder</a></li>
+    <li><a href="/insights/spindle-diagnostics/rebuild-vs-replace-spindle-economics/">Spindle Rebuild vs. Replace: When Each Makes Sense</a></li>
+    <li><a href="/insights/cnc-control-systems/mazatrol-matrix-vs-smooth/">Mazatrol Matrix vs. Smooth: When to Upgrade</a></li>
+  </ul>
+</div>
+
+<div class="alt-contact">
+  <p>Midwest CNC Services &middot; Waterloo, Iowa</p>
+  <p>Serving shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas.</p>
+</div>
+'''
+
+
+def gen_quote_thanks():
+    schemas = [breadcrumb_schema([
+        ("Home", absolute("/")),
+        ("Get a Quote", absolute("/get-a-quote/")),
+        ("Thank you", absolute("/get-a-quote/thank-you/")),
+    ])]
+    return write_page(
+        "/get-a-quote/thank-you/",
+        title="Quote received — Midwest CNC Services",
+        description="Your quote request is in. We will be in touch within one business day.",
+        canonical_path="/get-a-quote/thank-you/",
+        schemas=schemas,
+        crumbs=[("Home", "/"), ("Get a Quote", "/get-a-quote/"), ("Thank you", None)],
+        body_html=quote_thanks_body(),
+        # Internal post-submission page only. Tell crawlers to skip it
+        # AND keep it out of the sitemap so it isn't surfaced as a
+        # landing page anywhere.
+        noindex=True,
+        exclude_from_sitemap=True,
     )
 
 
@@ -1885,6 +2018,14 @@ def gen_sitemap(brands):
                 continue
             url = m.group(1)
             if url in drafts:
+                continue
+            # Skip pages flagged exclude_from_sitemap (e.g. thank-you).
+            if url in SITEMAP_EXCLUDE:
+                continue
+            # Also skip pages with noindex robots meta — belt and
+            # suspenders defense for any internal page that forgot the
+            # exclude flag.
+            if re.search(r'<meta\s+name="robots"\s+content="[^"]*noindex', src):
                 continue
             # Priority by URL pattern
             if url.rstrip("/") == DOMAIN:
@@ -2198,6 +2339,7 @@ def main():
     paths.append(("homepage",      gen_homepage(brands)))
     paths.append(("about",         gen_about()))
     paths.append(("get-a-quote",   gen_quote(brands)))
+    paths.append(("quote-thanks",  gen_quote_thanks()))
     paths.append(("repairs hub",   gen_repairs_hub(brands)))
     paths.append(("spindle hub",   gen_spindle_hub(brands)))
     paths.append(("way-covers",    gen_way_covers_hub(brands)))
