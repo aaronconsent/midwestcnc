@@ -1,6 +1,6 @@
 ---
 title: "Haas Spindle Repair | Midwest CNC Services"
-meta_description: "Expert Haas spindle repair across the Midwest. 2–3 weeks on most rebuilds. Experienced field technicians."
+meta_description: "Expert Haas spindle repair across the Midwest. Browse by series, by control generation, or by service. Find your model with our machine lookup."
 h1: "Haas Spindle Repair & Rebuilds"
 slug: "haas"
 page_type: "cnc_spindle"
@@ -35,9 +35,9 @@ schema_data:
 <img class="brand-hero-bg" src="/assets/images/services/repairs-haas-cnc-machine-repair-image.png" alt="Haas machine service work at Midwest CNC Services" loading="eager">
   <div class="brand-hero-overlay" aria-hidden="true"></div>
   <div class="brand-hero-content">
-    <p class="eyebrow">Haas Spindle Repair &amp; Grinding</p>
+    <p class="eyebrow">Haas Spindle Service</p>
     <h1>Haas Spindle Repair &amp; Rebuilds</h1>
-    <p>What we see most on Haas spindles: belt-driven VF spindles commonly show drawbar wear, pulley issues, and bearing fatigue. Direct-drive units mainly fail from bearing wear and heat. We rebuild, regrind, and rebalance across the Haas platform &mdash; VF-2, VF-4, VF-6, UMC-750, and ST lathes &mdash; with most jobs running 2–3 weeks and field troubleshooting where it can save a teardown.</p>
+    <p>Haas spindle service across the Midwest — VF and ST production spindles, UMC 5-axis spindles with kinematic verification, EC horizontal spindles, and the compact Mini Mill / DT / DM / VM family. Find your model below, or browse by series, control generation, or service type.</p>
     <div class="cta-row">
       <a class="cta-button" href="#quote">Get a Quote</a>
       <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
@@ -116,8 +116,20 @@ schema_data:
         '</div>';
     } else {
       results.innerHTML = matches.map(function (m) {
+        // Context-aware URL routing: machines.json stores the repair-section
+        // spoke URL; when the user is on a /spindle-grinding/ or /way-covers/
+        // page we rewrite the URL to the corresponding service-line spoke so
+        // the user lands on the right content without a context switch.
+        var href = m.spoke_url;
+        if (/^\/spindle-grinding\//.test(window.location.pathname)) {
+          href = href.replace(/^\/repairs\/([\w-]+)-cnc-machine-repair\//,
+                              '/spindle-grinding/$1-spindle-repair/');
+        } else if (/^\/way-covers\//.test(window.location.pathname)) {
+          href = href.replace(/^\/repairs\/([\w-]+)-cnc-machine-repair\//,
+                              '/way-covers/$1-cnc-way-covers/');
+        }
         return (
-          '<a class="machine-lookup-result" href="' + escapeHTML(m.spoke_url) + '" role="option">' +
+          '<a class="machine-lookup-result" href="' + escapeHTML(href) + '" role="option">' +
             '<span class="machine-lookup-result-brand">'  + escapeHTML(m.brand)  + '</span>' +
             '<span class="machine-lookup-result-model">'  + escapeHTML(m.model)  + '</span>' +
             '<span class="machine-lookup-result-series">' + escapeHTML(m.series) + '</span>' +
@@ -156,43 +168,25 @@ schema_data:
   }, { once: true });
 })();
 </script>
-
-<h2 id="browse-by-series">Browse by machine series</h2>
-<p>We service Haas spindle work across the full lineup. Pick your series for platform-specific repair and service detail.</p>
-<ul class="browse-list"><li><a href="/repairs/haas-cnc-machine-repair/vf-series/"><strong>VF Series</strong> — Vertical mills. VF-1 through VF-12, plus YT extended-Y and SS super-speed variants.</a></li><li><a href="/repairs/haas-cnc-machine-repair/st-series/"><strong>ST Series</strong> — Production lathes. ST-10 through ST-55, SSY Y-axis variants, DS-30 dual-spindle.</a></li><li><a href="/repairs/haas-cnc-machine-repair/umc-series/"><strong>UMC Series</strong> — Universal 5-axis with trunnion table. UMC-350 through UMC-1600, plus SS builds.</a></li><li><a href="/repairs/haas-cnc-machine-repair/ec-series/"><strong>EC Series</strong> — Horizontal machining. EC-300 through EC-3000, pallet-pool and 4-axis variants.</a></li><li><a href="/repairs/haas-cnc-machine-repair/mini-mill-toolroom/"><strong>Mini Mill / Toolroom / DT / DM / VM</strong> — Compact and toolroom — Mini Mill, TM toolroom, DT drill-tap, DM, VM mold machines.</a></li><li><a href="/repairs/haas-cnc-machine-repair/toolroom-lathes/"><strong>Toolroom Lathes (TL / CL)</strong> — TL-1 through TL-4 and CL-1 — toolroom-style turning.</a></li></ul>
-
-## Haas Models We Support
-
-Our Haas work covers the full lineup. Whether the job is a precision bearing pack replacement, a full rebuild, or a regrind to restore tolerance, we handle:
-
-- VF-2
-- VF-4
-- VF-6
-- UMC-750
-- ST lathes
-
-[Get a Quote](#quote)
-
-## How We Approach Haas Spindle Work
-
-Very common in Midwest job shops. Older Haas machines are often repairable at reasonable cost compared to replacement.
-
-## A Recent Haas Job
-
-A recent example of the kind of work that comes through here: recovered a crashed VF spindle where the taper damage looked catastrophic. Saved the shaft and returned the machine to production instead of replacement.
-
-## Lead Time & Process
-
-2–3 weeks on most Haas spindle rebuilds due to strong domestic parts availability. Our three-step workflow keeps it transparent:
-
-**Step 1 — Contact Us.** Call 319-610-4341 or use the quote form below. [Get a Quote](#quote)
-
-**Step 2 — Grab Model #.** We'll fire back price, lead time, and shipping ETA after reviewing your details. [Get a Quote](#quote)
-
-**Step 3 — Approve & Rebuild.** We rebuild the spindle, verify balance and runout, and return it ready to run.
-
-*Quote form rendered here at build time.*
-
+<h2 id="browse-by-series">Browse by Series</h2>
+<p>Pick the Haas platform you run for spindle failure patterns specific to that series.</p>
+<ul class="browse-list"><li><a href="/spindle-grinding/haas-spindle-repair/vf-series/"><strong>VF Series</strong> &mdash; Vertical mill spindles. VF-1 through VF-12, YT extended-Y and SS super-speed variants.</a></li><li><a href="/spindle-grinding/haas-spindle-repair/st-series/"><strong>ST Series</strong> &mdash; Lathe spindles. ST-10 through ST-55, SSY Y-axis, DS-30 dual-spindle.</a></li><li><a href="/spindle-grinding/haas-spindle-repair/umc-series/"><strong>UMC Series</strong> &mdash; 5-axis universal spindles. UMC-350 through UMC-1600 with SS variants. RTCP verification post-rebuild.</a></li><li><a href="/spindle-grinding/haas-spindle-repair/ec-series/"><strong>EC Series</strong> &mdash; Horizontal spindles. EC-300 through EC-3000, pallet-pool and 4-axis variants.</a></li><li><a href="/spindle-grinding/haas-spindle-repair/mini-mill-toolroom/"><strong>Mini Mill / Toolroom / DT / DM / VM</strong> &mdash; Compact and toolroom spindles. DT high-cycle, DM/VM mold work, Mini Mill general-purpose.</a></li><li><a href="/spindle-grinding/haas-spindle-repair/toolroom-lathes/"><strong>Toolroom Lathes (TL / CL)</strong> &mdash; TL-1 through TL-4 and CL-1 — bridging toolroom and production turning.</a></li></ul>
+<h2 id="browse-by-control">Browse by Control Generation</h2>
+<p>Haas spindles pair with two control generations. Pick yours for parameter-management considerations during spindle service.</p>
+<ul class="browse-list"><li><a href="/spindle-grinding/haas-spindle-repair/haas-classic-control/"><strong>Haas Classic Control</strong> &mdash; Pre-NGC, through 2014. Parameter capture before service; MOCON board can present as spindle issue.</a></li><li><a href="/spindle-grinding/haas-spindle-repair/haas-ngc/"><strong>Haas Next Generation Control (NGC)</strong> &mdash; 2014 to present. Network parameter backup; MyHaas spindle monitoring integration.</a></li></ul>
+<h2 id="browse-by-service">Browse by Service</h2>
+<ul class="browse-list"><li><a href="/repairs/haas-cnc-machine-repair/"><strong>Haas machine repair</strong> &mdash; ATC, drive, control, way alignment — non-spindle Haas service work.</a></li><li><a href="/way-covers/haas-cnc-way-covers/"><strong>Haas way covers</strong> &mdash; Replacement bellows, telescoping steel, and roll-up covers, built to spec.</a></li><li><a href="#faq"><strong>ATC, drive, and alignment work</strong> &mdash; Covered in the FAQ below.</a></li></ul>
+<h2 id="what-brings-spindles-in">What brings Haas spindles in for service</h2>
+<p>Most Haas spindle calls fall into a few patterns: bearing-pack wear on SS super-speed variants from sustained high-RPM production, front bearing wear on ST chuckers from bar-feed cycles, high-cycle wear on DT drill-tap spindles, and pallet-cycle bearing wear on EC horizontals. UMC 5-axis adds RTCP and trunnion kinematic considerations. Control-side, NGC parameter management is straightforward; Classic Control adds MOCON board diagnostic considerations.</p>
+<h2 id="how-we-approach">How we approach Haas spindle service</h2>
+<p>Haas spindle service starts with confirming the platform (VF / ST / UMC / EC / compact) and the control generation. For UMC 5-axis work, RTCP verification post-rebuild is mandatory. On the bench: teardown, bearing inspection, taper evaluation, parts sourcing, rebuild, balance, runout verification with photo at sign-off.</p>
+<h2 id="lead-time-process">Lead Time &amp; Process</h2>
+<p>Lead time on spindle work depends on the platform, the failure mode, and parts availability. Diagnostic is fast; full rebuilds run 3 to 5 weeks on most jobs. Our three-step workflow keeps it transparent:</p>
+<ol class="process-steps">
+  <li><strong>Contact us.</strong> Call <a href="tel:+13196104341">319-610-4341</a> or use the quote form. Tell us the machine, the spindle symptoms, and how urgent it is.</li>
+  <li><strong>Review &amp; quote.</strong> We confirm the model and control generation, scope the spindle work, and send back a price and realistic lead time within one business day on most inquiries.</li>
+  <li><strong>Rebuild, verify, ship.</strong> We rebuild on the bench, verify balance and runout at sign-off, run kinematic verification on multitasking and 5-axis platforms, and return the spindle ready to install.</li>
+</ol>
 
 ## Why Shops Trust Us
 
@@ -203,20 +197,28 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 <h2 id="faq">Frequently Asked Questions</h2>
 <div class="faq-list">
 <details class="faq-item">
-  <summary>What&#x27;s the typical lead time on a Haas spindle rebuild?</summary>
-  <div class="faq-answer"><p>2–3 weeks on most Haas spindle rebuilds due to strong domestic parts availability. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.</p></div>
+  <summary>What spindle work do you do on Haas machines?</summary>
+  <div class="faq-answer"><p>Bearing-pack replacement, taper grinding to restore tolerance, dynamic balancing, drawbar service, and encoder service. For UMC 5-axis machines we also run kinematic verification post-rebuild because tool-tip accuracy depends on spindle geometry. Runout and balance verification at sign-off is part of every rebuild.</p></div>
 </details>
 <details class="faq-item">
-  <summary>What&#x27;s the most common Haas spindle failure you see?</summary>
-  <div class="faq-answer"><p>Belt-driven VF spindles commonly show drawbar wear, pulley issues, and bearing fatigue. Direct-drive units mainly fail from bearing wear and heat.</p></div>
+  <summary>How long does a Haas spindle rebuild take?</summary>
+  <div class="faq-answer"><p>3 to 5 weeks on most rebuilds. SS super-speed variants typically run a bit longer because higher-RPM bearings need more careful balancing. DT high-cycle drill-tap spindles can be faster because the bearing arrangement is simpler.</p></div>
 </details>
 <details class="faq-item">
-  <summary>What should I know about Haas spindle rebuilds specifically?</summary>
-  <div class="faq-answer"><p>Very common in Midwest job shops. Older Haas machines are often repairable at reasonable cost compared to replacement.</p></div>
+  <summary>Do you service Haas SS spindles differently?</summary>
+  <div class="faq-answer"><p>Yes — SS super-speed variants have higher-RPM bearing packs that need tighter balance class verification post-rebuild. The teardown and rebuild process is similar; the verification standard is higher.</p></div>
 </details>
 <details class="faq-item">
-  <summary>Do you grind Haas spindles back to factory tolerance?</summary>
-  <div class="faq-answer"><p>Yes — precision spindle balancing and grinding to runout is part of every rebuild we do, with photo verification at sign-off.</p></div>
+  <summary>Can you grind Haas spindle tapers back to factory tolerance?</summary>
+  <div class="faq-answer"><p>Yes. Precision spindle grinding to restore runout is part of every rebuild where the taper shows wear. Common on machines that have seen toolholder issues or crashes.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Do you service Haas Classic Control machines from the early 2000s?</summary>
+  <div class="faq-answer"><p>Yes. Classic Control spindle service is routine — bearing-pack rebuilds, taper grinding, balancing. The control side adds parameter management considerations: capture the parameter set before any battery or board work, restore at sign-off. Drive amplifier parts are still available through Haas channels for most Classic-vintage spindles.</p></div>
+</details>
+<details class="faq-item">
+  <summary>What about UMC 5-axis spindles?</summary>
+  <div class="faq-answer"><p>UMC spindle rebuilds include full RTCP and kinematic verification post-bench-work because 5-axis tool-tip accuracy depends on spindle geometry staying tight to the trunnion centerline. We don&#x27;t hand back a UMC spindle without that verification.</p></div>
 </details>
 </div>
 
@@ -227,34 +229,50 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What's the typical lead time on a Haas spindle rebuild?",
+      "name": "What spindle work do you do on Haas machines?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "2–3 weeks on most Haas spindle rebuilds due to strong domestic parts availability. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window."
+        "text": "Bearing-pack replacement, taper grinding to restore tolerance, dynamic balancing, drawbar service, and encoder service. For UMC 5-axis machines we also run kinematic verification post-rebuild because tool-tip accuracy depends on spindle geometry. Runout and balance verification at sign-off is part of every rebuild."
       }
     },
     {
       "@type": "Question",
-      "name": "What's the most common Haas spindle failure you see?",
+      "name": "How long does a Haas spindle rebuild take?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Belt-driven VF spindles commonly show drawbar wear, pulley issues, and bearing fatigue. Direct-drive units mainly fail from bearing wear and heat."
+        "text": "3 to 5 weeks on most rebuilds. SS super-speed variants typically run a bit longer because higher-RPM bearings need more careful balancing. DT high-cycle drill-tap spindles can be faster because the bearing arrangement is simpler."
       }
     },
     {
       "@type": "Question",
-      "name": "What should I know about Haas spindle rebuilds specifically?",
+      "name": "Do you service Haas SS spindles differently?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Very common in Midwest job shops. Older Haas machines are often repairable at reasonable cost compared to replacement."
+        "text": "Yes — SS super-speed variants have higher-RPM bearing packs that need tighter balance class verification post-rebuild. The teardown and rebuild process is similar; the verification standard is higher."
       }
     },
     {
       "@type": "Question",
-      "name": "Do you grind Haas spindles back to factory tolerance?",
+      "name": "Can you grind Haas spindle tapers back to factory tolerance?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes — precision spindle balancing and grinding to runout is part of every rebuild we do, with photo verification at sign-off."
+        "text": "Yes. Precision spindle grinding to restore runout is part of every rebuild where the taper shows wear. Common on machines that have seen toolholder issues or crashes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you service Haas Classic Control machines from the early 2000s?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Classic Control spindle service is routine — bearing-pack rebuilds, taper grinding, balancing. The control side adds parameter management considerations: capture the parameter set before any battery or board work, restore at sign-off. Drive amplifier parts are still available through Haas channels for most Classic-vintage spindles."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about UMC 5-axis spindles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UMC spindle rebuilds include full RTCP and kinematic verification post-bench-work because 5-axis tool-tip accuracy depends on spindle geometry staying tight to the trunnion centerline. We don't hand back a UMC spindle without that verification."
       }
     }
   ]

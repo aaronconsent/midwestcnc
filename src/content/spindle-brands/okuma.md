@@ -1,6 +1,6 @@
 ---
 title: "Okuma Spindle Repair | Midwest CNC Services"
-meta_description: "Expert Okuma spindle repair across the Midwest. 4–6 weeks on most rebuilds. Experienced field technicians."
+meta_description: "Expert Okuma spindle repair across the Midwest. Browse by series, by control generation, or by service. Find your model with our machine lookup."
 h1: "Okuma Spindle Repair & Rebuilds"
 slug: "okuma"
 page_type: "cnc_spindle"
@@ -35,9 +35,9 @@ schema_data:
 <img class="brand-hero-bg" src="/assets/images/services/repairs-okuma-cnc-machine-repair-image.png" alt="Okuma machine service work at Midwest CNC Services" loading="eager">
   <div class="brand-hero-overlay" aria-hidden="true"></div>
   <div class="brand-hero-content">
-    <p class="eyebrow">Okuma Spindle Repair &amp; Grinding</p>
+    <p class="eyebrow">Okuma Spindle Service</p>
     <h1>Okuma Spindle Repair &amp; Rebuilds</h1>
-    <p>What we see most on Okuma spindles: integrated motor spindle bearing wear is common, especially on higher RPM applications. Cooling system maintenance is critical. We rebuild, regrind, and rebalance across the Okuma platform &mdash; Genos, Multus, MB-V series, and MA horizontals &mdash; with most jobs running 4–6 weeks and field troubleshooting where it can save a teardown.</p>
+    <p>Okuma spindle service across the Midwest — LB and LU horizontal lathe spindles, MB and MA vertical spindles, MULTUS multitasking B-axis spindles, MU 5-axis with RTCP verification, MCR bridge-mill spindles, and the heavy LAW lathe spindles. Find your model below, or browse by series, control generation, or service type.</p>
     <div class="cta-row">
       <a class="cta-button" href="#quote">Get a Quote</a>
       <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
@@ -116,8 +116,20 @@ schema_data:
         '</div>';
     } else {
       results.innerHTML = matches.map(function (m) {
+        // Context-aware URL routing: machines.json stores the repair-section
+        // spoke URL; when the user is on a /spindle-grinding/ or /way-covers/
+        // page we rewrite the URL to the corresponding service-line spoke so
+        // the user lands on the right content without a context switch.
+        var href = m.spoke_url;
+        if (/^\/spindle-grinding\//.test(window.location.pathname)) {
+          href = href.replace(/^\/repairs\/([\w-]+)-cnc-machine-repair\//,
+                              '/spindle-grinding/$1-spindle-repair/');
+        } else if (/^\/way-covers\//.test(window.location.pathname)) {
+          href = href.replace(/^\/repairs\/([\w-]+)-cnc-machine-repair\//,
+                              '/way-covers/$1-cnc-way-covers/');
+        }
         return (
-          '<a class="machine-lookup-result" href="' + escapeHTML(m.spoke_url) + '" role="option">' +
+          '<a class="machine-lookup-result" href="' + escapeHTML(href) + '" role="option">' +
             '<span class="machine-lookup-result-brand">'  + escapeHTML(m.brand)  + '</span>' +
             '<span class="machine-lookup-result-model">'  + escapeHTML(m.model)  + '</span>' +
             '<span class="machine-lookup-result-series">' + escapeHTML(m.series) + '</span>' +
@@ -156,42 +168,25 @@ schema_data:
   }, { once: true });
 })();
 </script>
-
-<h2 id="browse-by-series">Browse by machine series</h2>
-<p>We service Okuma spindle work across the full lineup. Pick your series for platform-specific repair and service detail.</p>
-<ul class="browse-list"><li><a href="/repairs/okuma-cnc-machine-repair/lb-lu-lathes/"><strong>LB / LU Lathes</strong> — Horizontal lathes. LB 200 through 5000 EX, LU 300 through 8000, live-tool variants.</a></li><li><a href="/repairs/okuma-cnc-machine-repair/genos/"><strong>Genos</strong> — &#x27;Affordable Excellence&#x27; line — Genos L250 through L4000 lathes, M460/M560/M660 verticals.</a></li><li><a href="/repairs/okuma-cnc-machine-repair/mb-ma-verticals/"><strong>MB / MA Verticals</strong> — Vertical machining workhorses. MB-46V through MB-66V, MA-400 through MA-8000.</a></li><li><a href="/repairs/okuma-cnc-machine-repair/multus/"><strong>MULTUS</strong> — B-axis multitasking. MULTUS B200 through B750, U3000 through U5000.</a></li><li><a href="/repairs/okuma-cnc-machine-repair/twin-spindle-twin-turret/"><strong>Twin-Spindle / Twin-Turret</strong> — 2SP-2500H and 2SP-V40, LT 200-MY through LT 2000 EX, historic LT-15/25.</a></li><li><a href="/repairs/okuma-cnc-machine-repair/vtm/"><strong>VTM Vertical Turning</strong> — Large vertical turning. VTM-65, VTM-100, VTM-120, VTM-180.</a></li><li><a href="/repairs/okuma-cnc-machine-repair/v-bridge-mills/"><strong>MU 5-Axis / MCR Bridge</strong> — 5-axis trunnion (MU-400V through MU-8000V) and bridge mills (MCR-A5C, MCR-BIII).</a></li><li><a href="/repairs/okuma-cnc-machine-repair/heavy-lathes/"><strong>LAW / LFS Heavy Lathes</strong> — Heavy-duty turning. LAW 1000 through 3000 and LFS-590 flat-bed turning.</a></li></ul>
-
-## Okuma Models We Support
-
-Our Okuma work covers the full lineup. Whether the job is a precision bearing pack replacement, a full rebuild, or a regrind to restore tolerance, we handle:
-
-- Genos
-- Multus
-- MB-V series
-- MA horizontals
-
-[Get a Quote](#quote)
-
-## How We Approach Okuma Spindle Work
-
-OSP controls require machine-specific diagnostics. Thermal growth management is more critical on Okuma than many builders.
-
-## A Recent Okuma Job
-
-A recent example of the kind of work that comes through here: customer chased chatter for months before spindle teardown revealed early-stage front bearing degradation.
-
-## Lead Time & Process
-
-4–6 weeks depending on Japan-sourced components. Our three-step workflow keeps it transparent:
-
-**Step 1 — Contact Us.** Call 319-610-4341 or use the quote form below. [Get a Quote](#quote)
-
-**Step 2 — Grab Model #.** We'll fire back price, lead time, and shipping ETA after reviewing your details. [Get a Quote](#quote)
-
-**Step 3 — Approve & Rebuild.** We rebuild the spindle, verify balance and runout, and return it ready to run.
-
-*Quote form rendered here at build time.*
-
+<h2 id="browse-by-series">Browse by Series</h2>
+<p>Pick the Okuma platform you run for spindle failure patterns specific to that series.</p>
+<ul class="browse-list"><li><a href="/spindle-grinding/okuma-spindle-repair/lb-lu-lathes/"><strong>LB / LU Lathes</strong> &mdash; Horizontal lathe spindles. LB 200 through 5000 EX, LU 300 through 8000, live-tool variants.</a></li><li><a href="/spindle-grinding/okuma-spindle-repair/genos/"><strong>Genos</strong> &mdash; &#x27;Affordable Excellence&#x27; spindles. Genos L250 through L4000 lathes, M460/M560/M660 verticals.</a></li><li><a href="/spindle-grinding/okuma-spindle-repair/mb-ma-verticals/"><strong>MB / MA Verticals</strong> &mdash; Vertical-machining workhorse spindles. MB-46V through MB-66V, MA-400 through MA-8000.</a></li><li><a href="/spindle-grinding/okuma-spindle-repair/multus/"><strong>MULTUS</strong> &mdash; B-axis multitasking spindles. MULTUS B200 through B750, U3000 through U5000.</a></li><li><a href="/spindle-grinding/okuma-spindle-repair/twin-spindle-twin-turret/"><strong>Twin-Spindle / Twin-Turret</strong> &mdash; 2SP-2500H, 2SP-V40, LT 200-MY through LT 2000 EX, historic LT-15/25.</a></li><li><a href="/spindle-grinding/okuma-spindle-repair/vtm/"><strong>VTM Vertical Turning</strong> &mdash; Large vertical-turning spindles. VTM-65, VTM-100, VTM-120, VTM-180.</a></li><li><a href="/spindle-grinding/okuma-spindle-repair/v-bridge-mills/"><strong>MU 5-Axis / MCR Bridge</strong> &mdash; 5-axis trunnion (MU-400V through MU-8000V) and bridge mills (MCR-A5C, MCR-BIII).</a></li><li><a href="/spindle-grinding/okuma-spindle-repair/heavy-lathes/"><strong>LAW / LFS Heavy Lathes</strong> &mdash; Heavy-duty turning spindles. LAW 1000 through 3000 and LFS-590 flat-bed turning.</a></li></ul>
+<h2 id="browse-by-control">Browse by Control Generation</h2>
+<p>Okuma spindles pair with four OSP control generations. Pick yours for spindle parameter-management considerations.</p>
+<ul class="browse-list"><li><a href="/spindle-grinding/okuma-spindle-repair/osp-p200/"><strong>OSP-P200</strong> &mdash; Late-life Okuma. Spindle drive parts still serviceable; HDD/MMC companion work common.</a></li><li><a href="/spindle-grinding/okuma-spindle-repair/osp-p300/"><strong>OSP-P300</strong> &mdash; Mid-life Okuma. SSD upgrade companion service; touchscreen workflow for spindle setup.</a></li><li><a href="/spindle-grinding/okuma-spindle-repair/osp-p500/"><strong>OSP-P500</strong> &mdash; Current Okuma. Network parameter backup, MTConnect spindle monitoring integration.</a></li><li><a href="/spindle-grinding/okuma-spindle-repair/osp-legacy/"><strong>OSP Legacy</strong> &mdash; Pre-2003. Heavy parts-availability conversation; retrofit territory on some builds.</a></li></ul>
+<h2 id="browse-by-service">Browse by Service</h2>
+<ul class="browse-list"><li><a href="/repairs/okuma-cnc-machine-repair/"><strong>Okuma machine repair</strong> &mdash; ATC, drive, control, way alignment — non-spindle Okuma service work.</a></li><li><a href="/way-covers/okuma-cnc-way-covers/"><strong>Okuma way covers</strong> &mdash; Replacement bellows, telescoping steel, and roll-up covers, built to spec.</a></li><li><a href="#faq"><strong>ATC, drive, and alignment work</strong> &mdash; Covered in the FAQ below.</a></li></ul>
+<h2 id="what-brings-spindles-in">What brings Okuma spindles in for service</h2>
+<p>Most Okuma spindle calls fall into a few patterns: bearing-pack wear on LB and LU lathes from sustained production, ATC and spindle wear on MB and MA verticals, B-axis milling spindle wear on MULTUS multitasking, RTCP-related work on MU 5-axis post-crash, large-bore spindle work on LAW heavy lathes. Control-side, spindle parameter management is straightforward on P200 and P300; P500 adds network-based backup; OSP Legacy is the harder conversation because of parts.</p>
+<h2 id="how-we-approach">How we approach Okuma spindle service</h2>
+<p>Okuma spindle service starts with the platform and the OSP generation. For MULTUS and MU multitasking/5-axis, post-rebuild kinematic verification is mandatory. On the bench: Okuma's documented bearing-pack designs help diagnostic speed; teardown, inspect, source parts, rebuild, balance, verify runout with photo at sign-off.</p>
+<h2 id="lead-time-process">Lead Time &amp; Process</h2>
+<p>Lead time on spindle work depends on the platform, the failure mode, and parts availability. Diagnostic is fast; full rebuilds run 3 to 5 weeks on most jobs. Our three-step workflow keeps it transparent:</p>
+<ol class="process-steps">
+  <li><strong>Contact us.</strong> Call <a href="tel:+13196104341">319-610-4341</a> or use the quote form. Tell us the machine, the spindle symptoms, and how urgent it is.</li>
+  <li><strong>Review &amp; quote.</strong> We confirm the model and control generation, scope the spindle work, and send back a price and realistic lead time within one business day on most inquiries.</li>
+  <li><strong>Rebuild, verify, ship.</strong> We rebuild on the bench, verify balance and runout at sign-off, run kinematic verification on multitasking and 5-axis platforms, and return the spindle ready to install.</li>
+</ol>
 
 ## Why Shops Trust Us
 
@@ -202,20 +197,28 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 <h2 id="faq">Frequently Asked Questions</h2>
 <div class="faq-list">
 <details class="faq-item">
-  <summary>What&#x27;s the typical lead time on a Okuma spindle rebuild?</summary>
-  <div class="faq-answer"><p>4–6 weeks depending on Japan-sourced components. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.</p></div>
+  <summary>What spindle work do you do on Okuma machines?</summary>
+  <div class="faq-answer"><p>Bearing-pack replacement, taper grinding, dynamic balancing, drawbar service, encoder service. For MULTUS multitasking we run B-axis kinematic verification; for MU 5-axis we run RTCP verification; for MCR bridge mills we run bridge geometry verification. Runout and balance verification at sign-off is part of every rebuild.</p></div>
 </details>
 <details class="faq-item">
-  <summary>What&#x27;s the most common Okuma spindle failure you see?</summary>
-  <div class="faq-answer"><p>Integrated motor spindle bearing wear is common, especially on higher RPM applications. Cooling system maintenance is critical.</p></div>
+  <summary>How long does an Okuma spindle rebuild take?</summary>
+  <div class="faq-answer"><p>3 to 5 weeks on most jobs. MULTUS B-axis milling spindle rebuilds and MU 5-axis trunnion rebuilds run a bit longer because of the post-rebuild kinematic verification.</p></div>
 </details>
 <details class="faq-item">
-  <summary>What should I know about Okuma spindle rebuilds specifically?</summary>
-  <div class="faq-answer"><p>OSP controls require machine-specific diagnostics. Thermal growth management is more critical on Okuma than many builders.</p></div>
+  <summary>Okuma builds spindles in-house — does that matter for service?</summary>
+  <div class="faq-answer"><p>It matters in that Okuma&#x27;s thermal compensation and bearing-pack designs are documented and well understood, which makes the diagnostic side faster. The actual bench work is similar to any quality spindle — teardown, inspect, source parts, rebuild, balance, verify.</p></div>
 </details>
 <details class="faq-item">
-  <summary>Do you grind Okuma spindles back to factory tolerance?</summary>
-  <div class="faq-answer"><p>Yes — precision spindle balancing and grinding to runout is part of every rebuild we do, with photo verification at sign-off.</p></div>
+  <summary>Do you service older Okuma machines with OSP Legacy or OSP-P200 controls?</summary>
+  <div class="faq-answer"><p>Yes to both. OSP Legacy spindle service becomes a parts-availability conversation — some bearings and drive amplifiers are aftermarket-only. P200 is late-life but still well serviced; spindle drive parts are still mostly available through Okuma channels.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Can you grind Okuma spindle tapers back to factory tolerance?</summary>
+  <div class="faq-answer"><p>Yes. Precision spindle grinding to restore runout is part of every rebuild where the taper shows wear.</p></div>
+</details>
+<details class="faq-item">
+  <summary>What about MULTUS B-axis milling spindles?</summary>
+  <div class="faq-answer"><p>B-axis milling spindle rebuilds are routine work on MULTUS. Multitasking tolerances require careful B-axis kinematic verification — that&#x27;s part of the service, not a separate quote.</p></div>
 </details>
 </div>
 
@@ -226,34 +229,50 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What's the typical lead time on a Okuma spindle rebuild?",
+      "name": "What spindle work do you do on Okuma machines?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "4–6 weeks depending on Japan-sourced components. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window."
+        "text": "Bearing-pack replacement, taper grinding, dynamic balancing, drawbar service, encoder service. For MULTUS multitasking we run B-axis kinematic verification; for MU 5-axis we run RTCP verification; for MCR bridge mills we run bridge geometry verification. Runout and balance verification at sign-off is part of every rebuild."
       }
     },
     {
       "@type": "Question",
-      "name": "What's the most common Okuma spindle failure you see?",
+      "name": "How long does an Okuma spindle rebuild take?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Integrated motor spindle bearing wear is common, especially on higher RPM applications. Cooling system maintenance is critical."
+        "text": "3 to 5 weeks on most jobs. MULTUS B-axis milling spindle rebuilds and MU 5-axis trunnion rebuilds run a bit longer because of the post-rebuild kinematic verification."
       }
     },
     {
       "@type": "Question",
-      "name": "What should I know about Okuma spindle rebuilds specifically?",
+      "name": "Okuma builds spindles in-house — does that matter for service?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "OSP controls require machine-specific diagnostics. Thermal growth management is more critical on Okuma than many builders."
+        "text": "It matters in that Okuma's thermal compensation and bearing-pack designs are documented and well understood, which makes the diagnostic side faster. The actual bench work is similar to any quality spindle — teardown, inspect, source parts, rebuild, balance, verify."
       }
     },
     {
       "@type": "Question",
-      "name": "Do you grind Okuma spindles back to factory tolerance?",
+      "name": "Do you service older Okuma machines with OSP Legacy or OSP-P200 controls?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes — precision spindle balancing and grinding to runout is part of every rebuild we do, with photo verification at sign-off."
+        "text": "Yes to both. OSP Legacy spindle service becomes a parts-availability conversation — some bearings and drive amplifiers are aftermarket-only. P200 is late-life but still well serviced; spindle drive parts are still mostly available through Okuma channels."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you grind Okuma spindle tapers back to factory tolerance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Precision spindle grinding to restore runout is part of every rebuild where the taper shows wear."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about MULTUS B-axis milling spindles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "B-axis milling spindle rebuilds are routine work on MULTUS. Multitasking tolerances require careful B-axis kinematic verification — that's part of the service, not a separate quote."
       }
     }
   ]

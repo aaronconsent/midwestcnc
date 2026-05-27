@@ -377,8 +377,20 @@ def machine_lookup_html():
         '</div>';
     } else {
       results.innerHTML = matches.map(function (m) {
+        // Context-aware URL routing: machines.json stores the repair-section
+        // spoke URL; when the user is on a /spindle-grinding/ or /way-covers/
+        // page we rewrite the URL to the corresponding service-line spoke so
+        // the user lands on the right content without a context switch.
+        var href = m.spoke_url;
+        if (/^\\/spindle-grinding\\//.test(window.location.pathname)) {
+          href = href.replace(/^\\/repairs\\/([\\w-]+)-cnc-machine-repair\\//,
+                              '/spindle-grinding/$1-spindle-repair/');
+        } else if (/^\\/way-covers\\//.test(window.location.pathname)) {
+          href = href.replace(/^\\/repairs\\/([\\w-]+)-cnc-machine-repair\\//,
+                              '/way-covers/$1-cnc-way-covers/');
+        }
         return (
-          '<a class=\"machine-lookup-result\" href=\"' + escapeHTML(m.spoke_url) + '\" role=\"option\">' +
+          '<a class=\"machine-lookup-result\" href=\"' + escapeHTML(href) + '\" role=\"option\">' +
             '<span class=\"machine-lookup-result-brand\">'  + escapeHTML(m.brand)  + '</span>' +
             '<span class=\"machine-lookup-result-model\">'  + escapeHTML(m.model)  + '</span>' +
             '<span class=\"machine-lookup-result-series\">' + escapeHTML(m.series) + '</span>' +
@@ -1035,6 +1047,12 @@ def browse_series_section_for_service(brand_slug, brand_display_name, service_ki
 
 
 def render_cnc_spindle(brand, g, brands_by_slug, brand_index):
+    # HUB-AND-SPOKE DISPATCH: any brand with an entry in SPINDLE_HUB_DATA
+    # gets the new spindle hub-and-spoke template (Mazak, Haas, DMG Mori,
+    # Doosan, Okuma, Fanuc). The remaining 12 brands use the standard
+    # template below.
+    if brand["slug"] in SPINDLE_HUB_DATA:
+        return render_brand_spindle_hub(brand, g, brands_by_slug, brand_index)
     name = brand["brand_display_name"]
     slug = brand["slug"]
     ki = brand["ken_input"]
@@ -2882,12 +2900,32 @@ BRAND_HUB_DATA = {
 }
 
 
+# Spindle hub-and-spoke content for the 6 priority brands. Mirrors
+# BRAND_HUB_DATA structure but with spindle-specific content per spoke.
+from _brand_spindle_data import SPINDLE_HUB_DATA
+
+
 def _models_for_spoke(spoke_url):
-    """Pull every model entry from machines.json whose spoke_url matches."""
+    """Pull every model entry from machines.json whose spoke_url matches.
+    Falls back to matching the corresponding repair spoke URL since
+    machines.json only stores repair-section spoke URLs; the spindle /
+    way-covers spokes share the same series structure."""
     p = os.path.join(REPO, "src", "data", "machines.json")
     with open(p) as f:
         data = json.load(f)
-    return [m for m in data.get("machines", []) if m.get("spoke_url") == spoke_url]
+    # Map spindle/way-covers spoke URLs back to the canonical repair
+    # spoke URL stored in machines.json so the model list resolves.
+    repair_url = re.sub(
+        r"^/spindle-grinding/([\w-]+)-spindle-repair/",
+        r"/repairs/\1-cnc-machine-repair/",
+        spoke_url,
+    )
+    repair_url = re.sub(
+        r"^/way-covers/([\w-]+)-cnc-way-covers/",
+        r"/repairs/\1-cnc-machine-repair/",
+        repair_url,
+    )
+    return [m for m in data.get("machines", []) if m.get("spoke_url") == repair_url]
 
 
 def render_series_spoke(spoke_data, brand_display_name, brand_hub_url, brand_slug, brand_so):
@@ -3088,6 +3126,185 @@ def _emit_brand_spokes(brand, brand_index):
             f.write(md)
         n += 1
     return n
+
+
+def _emit_brand_spindle_spokes(brand, brand_index):
+    """Write all SPINDLE spoke markdown files for the given brand
+    (series + control) into src/content/spindle-brands/. Returns the
+    count written. Spindle-specific content lives in SPINDLE_HUB_DATA
+    in scripts/_brand_spindle_data.py."""
+    hub_data = SPINDLE_HUB_DATA.get(brand["slug"])
+    if not hub_data:
+        return 0
+    out_dir = os.path.join(REPO, "src", "content", "spindle-brands")
+    name = brand["brand_display_name"]
+    hub_url = f"/spindle-grinding/{brand['slug']}-spindle-repair/"
+    so = brand.get("services_offered", {})
+    n = 0
+    for key, spoke in hub_data.get("series_spokes", {}).items():
+        md = render_series_spoke(spoke, name, hub_url, brand["slug"], so)
+        path = os.path.join(out_dir, f"{spoke['slug']}.md")
+        with open(path, "w") as f:
+            f.write(md)
+        n += 1
+    for key, spoke in hub_data.get("control_spokes", {}).items():
+        md = render_control_spoke(spoke, name, hub_url)
+        path = os.path.join(out_dir, f"{spoke['slug']}.md")
+        with open(path, "w") as f:
+            f.write(md)
+        n += 1
+    return n
+
+
+def render_brand_spindle_hub(brand, g, brands_by_slug, brand_index):
+    """Spindle equivalent of render_brand_hub. Looks up spindle content
+    in SPINDLE_HUB_DATA. Same template as the repair hub but with the
+    spindle hub URL, spindle eyebrow / H1, and spindle-specific content."""
+    name = brand["brand_display_name"]
+    slug = brand["slug"]
+    hub_data = SPINDLE_HUB_DATA.get(slug, {})
+
+    h1_text, eyebrow_text = make_h1_and_eyebrow(brand)
+    if not h1_text:
+        h1_text = f"{name} Spindle Repair & Grinding"
+    eyebrow_text = f"{name} Spindle Service"
+    canonical_path = brand["current_url"]
+
+    meta_desc = (
+        f"Expert {name} spindle repair across the Midwest. Browse by "
+        f"series, by control generation, or by service. Find your model "
+        f"with our machine lookup."
+    )
+
+    fm = front_matter(
+        brand,
+        title=f"{name} Spindle Repair | Midwest CNC Services",
+        h1=h1_text,
+        meta_description=meta_desc,
+        service_type=f"{name} CNC Spindle Repair and Grinding",
+        canonical_path=canonical_path,
+        crumb_middle=("Spindle Grinding", "/spindle-grinding/"),
+        crumb_leaf=f"{name} Spindle Repair",
+    )
+
+    img_path, img_alt = hero_image_for(brand, "spindle")
+    hero_lede = hub_data.get("hero_lede",
+        f"{name} spindle service across the Midwest. Find your model "
+        f"with the lookup below, or browse by series, control generation, "
+        f"or service type."
+    )
+    hero = build_brand_hero_html(
+        eyebrow_text, h1_text, html.escape(hero_lede), img_path, img_alt,
+    )
+    hero += machine_lookup_html()
+
+    # Browse-by-series list (Fanuc uses flipped header)
+    series_lis = "".join(
+        f'<li><a href="{u}"><strong>{html.escape(label)}</strong> &mdash; {html.escape(desc)}</a></li>'
+        for label, u, desc in hub_data.get("browse_series", [])
+    )
+    control_lis = "".join(
+        f'<li><a href="{u}"><strong>{html.escape(label)}</strong> &mdash; {html.escape(desc)}</a></li>'
+        for label, u, desc in hub_data.get("browse_control", [])
+    )
+    service_lis = "".join(
+        f'<li><a href="{u}"><strong>{html.escape(label)}</strong> &mdash; {html.escape(desc)}</a></li>'
+        for label, u, desc in hub_data.get("browse_service", [])
+    )
+
+    # FAQ accordions
+    faq_items = []
+    for q, a in hub_data.get("faq", []):
+        faq_items.append(
+            f'<details class="faq-item">\n'
+            f'  <summary>{html.escape(q)}</summary>\n'
+            f'  <div class="faq-answer"><p>{html.escape(a)}</p></div>\n'
+            f'</details>'
+        )
+    faq_schema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": q,
+             "acceptedAnswer": {"@type": "Answer", "text": a}}
+            for q, a in hub_data.get("faq", [])
+        ],
+    }
+    faq_schema_script = (
+        '\n<script type="application/ld+json">\n'
+        + json.dumps(faq_schema, indent=2, ensure_ascii=False)
+        + '\n</script>\n'
+    )
+
+    trust = trust_block(g, brand["page_type"], brand_index, "a new spindle")
+    cross_links = brand_cross_links_section(brand, brands_by_slug)
+    related = related_block_cnc(brand, brands_by_slug)
+
+    series_header = hub_data.get("browse_series_header", "Browse by Series")
+    series_intro  = hub_data.get("browse_series_intro",
+        f"Pick the {name} platform you run for spindle failure patterns specific to that series.")
+    browse_series_section = ""
+    if hub_data.get("browse_series"):
+        browse_series_section = (
+            f'<h2 id="browse-by-series">{html.escape(series_header)}</h2>\n'
+            f'<p>{html.escape(series_intro)}</p>\n'
+            f'<ul class="browse-list">{series_lis}</ul>\n'
+        )
+    control_intro = hub_data.get("browse_control_intro",
+        f"{name} spindles pair with multiple control generations. Pick yours for parameter notes.")
+    browse_control_section = ""
+    if hub_data.get("browse_control"):
+        browse_control_section = (
+            f'<h2 id="browse-by-control">Browse by Control Generation</h2>\n'
+            f'<p>{html.escape(control_intro)}</p>\n'
+            f'<ul class="browse-list">{control_lis}</ul>\n'
+        )
+    browse_service_section = ""
+    if hub_data.get("browse_service"):
+        browse_service_section = (
+            f'<h2 id="browse-by-service">Browse by Service</h2>\n'
+            f'<ul class="browse-list">{service_lis}</ul>\n'
+        )
+
+    what_brings_para = hub_data.get("what_brings",
+        f"Most {name} spindle calls fall into platform-specific failure patterns. We diagnose each spindle before quoting.")
+    what_brings = (
+        f'<h2 id="what-brings-spindles-in">What brings {name} spindles in for service</h2>\n'
+        f'<p>{what_brings_para}</p>\n'
+    )
+
+    how_para = hub_data.get("how_we_approach",
+        f"Our approach starts with confirming the platform and the control generation. On the bench we tear down, inspect, source parts, rebuild, balance, and verify runout before sign-off.")
+    how_we_approach = (
+        f'<h2 id="how-we-approach">How we approach {name} spindle service</h2>\n'
+        f'<p>{how_para}</p>\n'
+    )
+
+    lead_time = (
+        f'<h2 id="lead-time-process">Lead Time &amp; Process</h2>\n'
+        f"<p>Lead time on spindle work depends on the platform, the failure mode, and parts availability. Diagnostic is fast; full rebuilds run 3 to 5 weeks on most jobs. Our three-step workflow keeps it transparent:</p>\n"
+        f'<ol class="process-steps">\n'
+        f'  <li><strong>Contact us.</strong> Call <a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a> or use the quote form. Tell us the machine, the spindle symptoms, and how urgent it is.</li>\n'
+        f'  <li><strong>Review &amp; quote.</strong> We confirm the model and control generation, scope the spindle work, and send back a price and realistic lead time within one business day on most inquiries.</li>\n'
+        f'  <li><strong>Rebuild, verify, ship.</strong> We rebuild on the bench, verify balance and runout at sign-off, run kinematic verification on multitasking and 5-axis platforms, and return the spindle ready to install.</li>\n'
+        f'</ol>\n'
+    )
+
+    faq_section = (
+        f'<h2 id="faq">Frequently Asked Questions</h2>\n'
+        f'<div class="faq-list">\n'
+        + "\n".join(faq_items) + "\n"
+        + '</div>\n'
+        + faq_schema_script
+    )
+
+    return (
+        fm + hero
+        + browse_series_section + browse_control_section + browse_service_section
+        + what_brings + how_we_approach
+        + lead_time + "\n" + trust + "\n" + faq_section + "\n"
+        + cross_links + "\n" + related + "\n"
+    )
 
 
 def render_brand_hub(brand, g, brand_index):
@@ -3587,6 +3804,13 @@ def main():
         with open(path, "w") as f:
             f.write(md)
         written.append(("main",         b["slug"], path, _word_count(md), False))
+
+        # --- Spindle hub-and-spoke spokes: emit for any brand with
+        # SPINDLE_HUB_DATA entry (Mazak, Haas, DMG Mori, Doosan, Okuma, Fanuc).
+        if b["slug"] in SPINDLE_HUB_DATA:
+            n_spindle_spokes = _emit_brand_spindle_spokes(b, bi)
+            written.append((f"{b['slug']}_spindle_spokes", b["slug"], OUTDIR_SPINDLE,
+                            n_spindle_spokes * 500, False))
 
         # --- Machine-repair page (cnc_spindle brands only) ---
         if so.get("machine_repair"):

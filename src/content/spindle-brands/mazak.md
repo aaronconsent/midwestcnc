@@ -1,6 +1,6 @@
 ---
 title: "Mazak Spindle Repair | Midwest CNC Services"
-meta_description: "Expert Mazak spindle repair across the Midwest. 3–5 weeks on most rebuilds. Experienced field technicians."
+meta_description: "Expert Mazak spindle repair across the Midwest. Browse by series, by control generation, or by service. Find your model with our machine lookup."
 h1: "Mazak Spindle Repair & Rebuilds"
 slug: "mazak"
 page_type: "cnc_spindle"
@@ -35,9 +35,9 @@ schema_data:
 <img class="brand-hero-bg" src="/assets/images/services/spindles-repair-mazak-spindle-repair-image.png" alt="Mazak spindle on the rebuild bench at Midwest CNC Services" loading="eager">
   <div class="brand-hero-overlay" aria-hidden="true"></div>
   <div class="brand-hero-content">
-    <p class="eyebrow">Mazak Spindle Repair &amp; Grinding</p>
+    <p class="eyebrow">Mazak Spindle Service</p>
     <h1>Mazak Spindle Repair &amp; Rebuilds</h1>
-    <p>Mazak spindles tend to come in with front bearing wear and coolant intrusion, especially on high-coolant-production work. We also see encoder contamination and spindle chiller issues. We rebuild, regrind, and rebalance across the Mazak platform &mdash; Integrex i-Series, Quick Turn, Variaxis, HCN horizontals, and Nexus series &mdash; with most jobs running 3–5 weeks and field troubleshooting where it can save a teardown.</p>
+    <p>Mazak spindle work is our highest-value service line. We rebuild, regrind, and rebalance across every Mazak platform — Quick Turn lathes, Integrex multitasking, Variaxis 5-axis, VTC and VCN verticals, HCN horizontals, and the turning legacy lineup. Find your model below, or browse by series, control generation, or service type.</p>
     <div class="cta-row">
       <a class="cta-button" href="#quote">Get a Quote</a>
       <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
@@ -116,8 +116,20 @@ schema_data:
         '</div>';
     } else {
       results.innerHTML = matches.map(function (m) {
+        // Context-aware URL routing: machines.json stores the repair-section
+        // spoke URL; when the user is on a /spindle-grinding/ or /way-covers/
+        // page we rewrite the URL to the corresponding service-line spoke so
+        // the user lands on the right content without a context switch.
+        var href = m.spoke_url;
+        if (/^\/spindle-grinding\//.test(window.location.pathname)) {
+          href = href.replace(/^\/repairs\/([\w-]+)-cnc-machine-repair\//,
+                              '/spindle-grinding/$1-spindle-repair/');
+        } else if (/^\/way-covers\//.test(window.location.pathname)) {
+          href = href.replace(/^\/repairs\/([\w-]+)-cnc-machine-repair\//,
+                              '/way-covers/$1-cnc-way-covers/');
+        }
         return (
-          '<a class="machine-lookup-result" href="' + escapeHTML(m.spoke_url) + '" role="option">' +
+          '<a class="machine-lookup-result" href="' + escapeHTML(href) + '" role="option">' +
             '<span class="machine-lookup-result-brand">'  + escapeHTML(m.brand)  + '</span>' +
             '<span class="machine-lookup-result-model">'  + escapeHTML(m.model)  + '</span>' +
             '<span class="machine-lookup-result-series">' + escapeHTML(m.series) + '</span>' +
@@ -156,43 +168,25 @@ schema_data:
   }, { once: true });
 })();
 </script>
-
-<h2 id="browse-by-series">Browse by machine series</h2>
-<p>We service Mazak spindle work across the full lineup. Pick your series for platform-specific repair and service detail.</p>
-<ul class="browse-list"><li><a href="/repairs/mazak-cnc-machine-repair/quick-turn/"><strong>Quick Turn / QTN</strong> — Horizontal turning. QT-8 through QTN-450, MS/MSY twin-spindle variants, current Compact/Smart/Primos/Ez/Ultra.</a></li><li><a href="/repairs/mazak-cnc-machine-repair/integrex/"><strong>Integrex</strong> — Mill-turn multitasking. 100/200/300/400 i-series, e-500H through e-1850V, j and i-V and i-H.</a></li><li><a href="/repairs/mazak-cnc-machine-repair/variaxis/"><strong>Variaxis</strong> — 5-axis trunnion verticals. i-300 through i-800, J-500/J-600, C-600, and legacy 500/630/730.</a></li><li><a href="/repairs/mazak-cnc-machine-repair/vertical-machining-centers/"><strong>Vertical Machining Centers (VTC + VCN)</strong> — Production verticals, mid-size to long-bed. VTC-16 through VTC-800, VCN-410 through VCN-700, FJV and AJV.</a></li><li><a href="/repairs/mazak-cnc-machine-repair/hcn-horizontal/"><strong>HCN Horizontals</strong> — Pallet-changer horizontals for production. HCN-4000 through HCN-10800, plus legacy PFH and H-series.</a></li><li><a href="/repairs/mazak-cnc-machine-repair/turning-legacy/"><strong>Turning Legacy</strong> — Slant Turn, Multiplex, Megaturn, HQR. Older platforms still in service — M-Plus and Fusion 640 controls.</a></li></ul>
-
-## Mazak Models We Support
-
-Our Mazak work covers the full lineup. Whether the job is a precision bearing pack replacement, a full rebuild, or a regrind to restore tolerance, we handle:
-
-- Integrex i-Series
-- Quick Turn
-- Variaxis
-- HCN horizontals
-- Nexus series
-
-[Get a Quote](#quote)
-
-## How We Approach Mazak Spindle Work
-
-MAZATROL diagnostics are brand-specific. Integrex machines require careful spindle alignment after rebuild due to multitasking tolerances.
-
-## A Recent Mazak Job
-
-A recent example of the kind of work that comes through here: rebuilt an Integrex spindle after coolant contamination wiped out the front bearing pack. Customer had crash concerns, but geometry checked out after rebuild.
-
-## Lead Time & Process
-
-3–5 weeks is realistic depending on cartridge damage and OEM bearing availability. Our three-step workflow keeps it transparent:
-
-**Step 1 — Contact Us.** Call 319-610-4341 or use the quote form below. [Get a Quote](#quote)
-
-**Step 2 — Grab Model #.** We'll fire back price, lead time, and shipping ETA after reviewing your details. [Get a Quote](#quote)
-
-**Step 3 — Approve & Rebuild.** We rebuild the spindle, verify balance and runout, and return it ready to run.
-
-*Quote form rendered here at build time.*
-
+<h2 id="browse-by-series">Browse by Series</h2>
+<p>Pick the Mazak platform you run for spindle failure patterns specific to that series.</p>
+<ul class="browse-list"><li><a href="/spindle-grinding/mazak-spindle-repair/quick-turn/"><strong>Quick Turn / QTN</strong> &mdash; Lathe spindles. Cartridge-style turning spindles across QT-8 through QTN-450, MS/MSY twin-spindle variants, current Compact/Smart/Primos/Ez/Ultra.</a></li><li><a href="/spindle-grinding/mazak-spindle-repair/integrex/"><strong>Integrex</strong> &mdash; Mill-turn multitasking spindles. Turning + B-axis milling spindle on every Integrex platform — i-series originals, e-series, j, i-V, i-H.</a></li><li><a href="/spindle-grinding/mazak-spindle-repair/variaxis/"><strong>Variaxis</strong> &mdash; 5-axis trunnion vertical spindles. RTCP and kinematic verification post-rebuild — i-300 through i-800 and legacy 500/630/730.</a></li><li><a href="/spindle-grinding/mazak-spindle-repair/vertical-machining-centers/"><strong>Vertical Machining Centers (VTC + VCN)</strong> &mdash; Production vertical spindles. VTC long-bed and VCN high-RPM — VTC-16 through VTC-800, VCN-410 through VCN-700, FJV and AJV.</a></li><li><a href="/spindle-grinding/mazak-spindle-repair/hcn-horizontal/"><strong>HCN Horizontals</strong> &mdash; Horizontal-orientation spindles. Pallet-cycle wear patterns — HCN-4000 through HCN-10800 and legacy PFH and H-series.</a></li><li><a href="/spindle-grinding/mazak-spindle-repair/turning-legacy/"><strong>Turning Legacy</strong> &mdash; Older Mazak turning spindles. Bearing-pack rebuilds with current-supply parts — Slant Turn, Multiplex, Megaturn, HQR, Powermaster.</a></li></ul>
+<h2 id="browse-by-control">Browse by Control Generation</h2>
+<p>Mazak spindles pair with three Mazatrol control generations. Pick yours for parameter-management considerations during spindle service.</p>
+<ul class="browse-list"><li><a href="/spindle-grinding/mazak-spindle-repair/mazatrol-legacy/"><strong>Mazatrol Legacy</strong> &mdash; M-2, M-32, M-Plus, Fusion 640. Parameter capture before service; drive amplifier parts late-life.</a></li><li><a href="/spindle-grinding/mazak-spindle-repair/mazatrol-matrix/"><strong>Mazatrol Matrix</strong> &mdash; Matrix and Matrix 2. αi-class spindle drives; SSD upgrade companion service on Matrix-1.</a></li><li><a href="/spindle-grinding/mazak-spindle-repair/smooth-control/"><strong>Mazatrol Smooth</strong> &mdash; SmoothX, SmoothG, SmoothAi. Network parameter backup; MTConnect spindle monitoring integration.</a></li></ul>
+<h2 id="browse-by-service">Browse by Service</h2>
+<ul class="browse-list"><li><a href="/repairs/mazak-cnc-machine-repair/"><strong>Mazak machine repair</strong> &mdash; ATC, drive, control, way alignment — non-spindle Mazak service work.</a></li><li><a href="/way-covers/mazak-cnc-way-covers/"><strong>Mazak way covers</strong> &mdash; Replacement bellows, telescoping steel, and roll-up covers, built to spec.</a></li><li><a href="#faq"><strong>ATC, drive, and alignment work</strong> &mdash; Covered in the FAQ below.</a></li></ul>
+<h2 id="what-brings-spindles-in">What brings Mazak spindles in for service</h2>
+<p>Most Mazak spindle calls fall into a few patterns: front bearing wear on Quick Turn high-coolant production, B-axis milling spindle wear on Integrex multitasking, high-RPM spindle bearing failure on VCN aluminum aerospace work, and pallet-cycle bearing wear on HCN horizontals. Control-side, spindle parameter management differs by Mazatrol generation — Legacy needs the parameter set captured before any work; Matrix-era is well documented and well supported; Smooth has network-based backup. We diagnose each spindle before quoting.</p>
+<h2 id="how-we-approach">How we approach Mazak spindle service</h2>
+<p>Mazak spindle service starts with the platform — Integrex and Variaxis kinematic considerations differ from a Quick Turn rebuild — and then the control generation, because parameter recovery paths differ across Mazatrol Legacy, Matrix, and Smooth. On the bench: tear down, inspect bearings, evaluate the taper for grinding, source parts, rebuild, balance, verify runout. For multitasking and 5-axis platforms we run the platform-specific kinematic verification before sign-off.</p>
+<h2 id="lead-time-process">Lead Time &amp; Process</h2>
+<p>Lead time on spindle work depends on the platform, the failure mode, and parts availability. Diagnostic is fast; full rebuilds run 3 to 5 weeks on most jobs. Our three-step workflow keeps it transparent:</p>
+<ol class="process-steps">
+  <li><strong>Contact us.</strong> Call <a href="tel:+13196104341">319-610-4341</a> or use the quote form. Tell us the machine, the spindle symptoms, and how urgent it is.</li>
+  <li><strong>Review &amp; quote.</strong> We confirm the model and control generation, scope the spindle work, and send back a price and realistic lead time within one business day on most inquiries.</li>
+  <li><strong>Rebuild, verify, ship.</strong> We rebuild on the bench, verify balance and runout at sign-off, run kinematic verification on multitasking and 5-axis platforms, and return the spindle ready to install.</li>
+</ol>
 
 ## Why Shops Trust Us
 
@@ -203,20 +197,28 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
 <h2 id="faq">Frequently Asked Questions</h2>
 <div class="faq-list">
 <details class="faq-item">
-  <summary>What&#x27;s the typical lead time on a Mazak spindle rebuild?</summary>
-  <div class="faq-answer"><p>3–5 weeks is realistic depending on cartridge damage and OEM bearing availability. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window.</p></div>
+  <summary>What spindle work do you do on Mazak machines?</summary>
+  <div class="faq-answer"><p>Bearing-pack replacement, taper grinding to restore tolerance, dynamic balancing, encoder service, drawbar service. We rebuild on the bench and verify balance and runout before shipping back. For Integrex and Variaxis, we also run the platform-specific kinematic verification — that&#x27;s not a separate quote, it&#x27;s part of the spindle service.</p></div>
 </details>
 <details class="faq-item">
-  <summary>What&#x27;s the most common Mazak spindle failure you see?</summary>
-  <div class="faq-answer"><p>Front bearing wear and coolant intrusion are common, especially on high-coolant-production work. We also see encoder contamination and spindle chiller issues.</p></div>
+  <summary>How long does a Mazak spindle rebuild take?</summary>
+  <div class="faq-answer"><p>3 to 5 weeks on most jobs depending on cartridge damage, bearing availability, and whether grinding is needed. We scope each job individually — diagnostic is fast, but the parts side varies by Mazak generation. Matrix-era machines tend to run shorter; legacy Mazatrol machines can run longer if parts need to be sourced.</p></div>
 </details>
 <details class="faq-item">
-  <summary>What should I know about Mazak spindle rebuilds specifically?</summary>
-  <div class="faq-answer"><p>MAZATROL diagnostics are brand-specific. Integrex machines require careful spindle alignment after rebuild due to multitasking tolerances.</p></div>
+  <summary>Do you grind Mazak spindle tapers back to factory tolerance?</summary>
+  <div class="faq-answer"><p>Yes — precision spindle grinding to restore runout is standard practice on every rebuild where the taper shows wear. Photo verification at sign-off is part of the process.</p></div>
 </details>
 <details class="faq-item">
-  <summary>Do you grind Mazak spindles back to factory tolerance?</summary>
-  <div class="faq-answer"><p>Yes — precision spindle balancing and grinding to runout is part of every rebuild we do, with photo verification at sign-off.</p></div>
+  <summary>What about Integrex B-axis milling spindles?</summary>
+  <div class="faq-answer"><p>B-axis milling spindle rebuilds are routine work. Integrex platforms require careful B-axis kinematic verification after spindle work because multitasking tolerances are tighter than on straight verticals. We run the verification before shipping.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Can you upgrade a Matrix-1 to SSD while a Mazak is in for spindle work?</summary>
+  <div class="faq-answer"><p>Yes — the SSD upgrade on Matrix-1 is a high-ROI companion service when the machine is already with us for spindle work. It eliminates the single most common Matrix-generation control failure point and shortens future service intervals.</p></div>
+</details>
+<details class="faq-item">
+  <summary>Do you service older Mazak machines with M-Plus or Fusion 640 controls?</summary>
+  <div class="faq-answer"><p>Yes. Legacy Mazatrol spindle service is routine — bearing-pack rebuilds with current-supply parts where the original bearings are no longer sourceable. The control-side conversation runs in parallel because legacy parameter management matters during any spindle work.</p></div>
 </details>
 </div>
 
@@ -227,34 +229,50 @@ Experienced field technicians with hands-on time across the major CNC OEM platfo
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What's the typical lead time on a Mazak spindle rebuild?",
+      "name": "What spindle work do you do on Mazak machines?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "3–5 weeks is realistic depending on cartridge damage and OEM bearing availability. Each job is scoped during the quote — bearing-pack damage, parts availability, and crash-related work all shift the window."
+        "text": "Bearing-pack replacement, taper grinding to restore tolerance, dynamic balancing, encoder service, drawbar service. We rebuild on the bench and verify balance and runout before shipping back. For Integrex and Variaxis, we also run the platform-specific kinematic verification — that's not a separate quote, it's part of the spindle service."
       }
     },
     {
       "@type": "Question",
-      "name": "What's the most common Mazak spindle failure you see?",
+      "name": "How long does a Mazak spindle rebuild take?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Front bearing wear and coolant intrusion are common, especially on high-coolant-production work. We also see encoder contamination and spindle chiller issues."
+        "text": "3 to 5 weeks on most jobs depending on cartridge damage, bearing availability, and whether grinding is needed. We scope each job individually — diagnostic is fast, but the parts side varies by Mazak generation. Matrix-era machines tend to run shorter; legacy Mazatrol machines can run longer if parts need to be sourced."
       }
     },
     {
       "@type": "Question",
-      "name": "What should I know about Mazak spindle rebuilds specifically?",
+      "name": "Do you grind Mazak spindle tapers back to factory tolerance?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "MAZATROL diagnostics are brand-specific. Integrex machines require careful spindle alignment after rebuild due to multitasking tolerances."
+        "text": "Yes — precision spindle grinding to restore runout is standard practice on every rebuild where the taper shows wear. Photo verification at sign-off is part of the process."
       }
     },
     {
       "@type": "Question",
-      "name": "Do you grind Mazak spindles back to factory tolerance?",
+      "name": "What about Integrex B-axis milling spindles?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes — precision spindle balancing and grinding to runout is part of every rebuild we do, with photo verification at sign-off."
+        "text": "B-axis milling spindle rebuilds are routine work. Integrex platforms require careful B-axis kinematic verification after spindle work because multitasking tolerances are tighter than on straight verticals. We run the verification before shipping."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you upgrade a Matrix-1 to SSD while a Mazak is in for spindle work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — the SSD upgrade on Matrix-1 is a high-ROI companion service when the machine is already with us for spindle work. It eliminates the single most common Matrix-generation control failure point and shortens future service intervals."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you service older Mazak machines with M-Plus or Fusion 640 controls?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Legacy Mazatrol spindle service is routine — bearing-pack rebuilds with current-supply parts where the original bearings are no longer sourceable. The control-side conversation runs in parallel because legacy parameter management matters during any spindle work."
       }
     }
   ]

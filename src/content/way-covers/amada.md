@@ -118,8 +118,20 @@ schema_data:
         '</div>';
     } else {
       results.innerHTML = matches.map(function (m) {
+        // Context-aware URL routing: machines.json stores the repair-section
+        // spoke URL; when the user is on a /spindle-grinding/ or /way-covers/
+        // page we rewrite the URL to the corresponding service-line spoke so
+        // the user lands on the right content without a context switch.
+        var href = m.spoke_url;
+        if (/^\/spindle-grinding\//.test(window.location.pathname)) {
+          href = href.replace(/^\/repairs\/([\w-]+)-cnc-machine-repair\//,
+                              '/spindle-grinding/$1-spindle-repair/');
+        } else if (/^\/way-covers\//.test(window.location.pathname)) {
+          href = href.replace(/^\/repairs\/([\w-]+)-cnc-machine-repair\//,
+                              '/way-covers/$1-cnc-way-covers/');
+        }
         return (
-          '<a class="machine-lookup-result" href="' + escapeHTML(m.spoke_url) + '" role="option">' +
+          '<a class="machine-lookup-result" href="' + escapeHTML(href) + '" role="option">' +
             '<span class="machine-lookup-result-brand">'  + escapeHTML(m.brand)  + '</span>' +
             '<span class="machine-lookup-result-model">'  + escapeHTML(m.model)  + '</span>' +
             '<span class="machine-lookup-result-series">' + escapeHTML(m.series) + '</span>' +
