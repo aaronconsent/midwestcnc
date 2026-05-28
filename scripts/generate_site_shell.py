@@ -1097,12 +1097,14 @@ def head_html(title, description, canonical, schema_blocks, extra_head=""):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{m2h.ANALYTICS_HEAD}
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(description)}">
 <link rel="canonical" href="{html.escape(canonical)}">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(description)}">
 <meta property="og:type" content="website">
+{m2h.social_meta(title, description, canonical)}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2329,8 +2331,8 @@ def gen_homepage(brands):
         title="Midwest CNC Services — CNC Repair, Spindle Work & Way Covers",
         description=(
             "CNC machine repair, spindle rebuilds, and replacement way covers "
-            "from Midwest CNC Services in Waterloo, IA. Serving shops across "
-            "IA, IL, WI, MN, NE, MO, and TX. Call 319-610-4341."
+            "from Waterloo, IA. Serving shops across 7 Midwest states. "
+            "Call 319-610-4341."
         ),
         canonical_path="/",
         schemas=schemas,
@@ -2698,6 +2700,38 @@ def gen_robots():
     return out
 
 
+def gen_headers():
+    """Write public/_headers for Cloudflare Pages.
+
+    Security headers apply to every route. We deliberately do NOT set a
+    Content-Security-Policy yet — a strict CSP would need testing against
+    every third-party script (gtag, googletagmanager, consentresolve,
+    cloudflare turnstile, unpkg leaflet, google fonts) and a wrong CSP
+    silently breaks the site. CSP is a documented follow-up.
+
+    Long cache on /assets/* (images, video, fonts) since filenames are
+    stable; HTML stays revalidated so content edits show immediately."""
+    out = os.path.join(PUBLIC, "_headers")
+    content = """/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+/assets/*
+  Cache-Control: public, max-age=604800
+
+/*.webp
+  Cache-Control: public, max-age=604800
+
+/favicon.svg
+  Cache-Control: public, max-age=604800
+"""
+    with open(out, "w") as f:
+        f.write(content)
+    return out
+
+
 def gen_llms_txt():
     """Phase 4D: llms.txt at site root for AEO/GEO crawlers (ChatGPT,
     Perplexity, Google AI Overviews). Format per https://llmstxt.org/"""
@@ -3041,6 +3075,8 @@ def main():
     print(f"  ✓ sitemap.xml    ({n_urls} URLs, {n_drafts} drafts excluded)")
     rb_path = gen_robots()
     print(f"  ✓ robots.txt")
+    hd_path = gen_headers()
+    print(f"  ✓ _headers")
     fv_path = gen_favicon()
     print(f"  ✓ favicon.svg")
     llms_path = gen_llms_txt()

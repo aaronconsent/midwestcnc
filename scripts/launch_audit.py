@@ -87,8 +87,13 @@ BAN_PATTERNS = [
 # Aaron-authorized exceptions
 AUTHORIZED_EXCEPTIONS = {
     # Iowa state page uses Aaron's authorized "Same-day field response is
-    # realistic" wording from the state-brief.
-    "same-day": {"public/service-area/iowa/index.html"},
+    # realistic" wording from the state-brief. The same Iowa-scoped FAQ
+    # answer also appears on the service-area hub (it's the hub's Iowa
+    # coverage answer) — same authorized claim, different page.
+    "same-day": {
+        "public/service-area/iowa/index.html",
+        "public/service-area/index.html",
+    },
     # The Terms of Service contains the word "warranty" in legal-disclaimer
     # context ("warranties are governed by the service agreement signed
     # for each job, not by anything stated on this Site") — explicitly
