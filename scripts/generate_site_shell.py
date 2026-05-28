@@ -617,58 +617,52 @@ SITE_SHELL_CSS = """
   max-width: 60ch;
 }
 
-/* CTA row in the hero — phone is the primary visual element; the
-   "or" + form-jump is secondary. */
-.quote-hero-cta {
+/* Dominant call banner — the primary action on this page. Full-width
+   (capped), large tap target. Built for a stressed owner on a phone in
+   the shop: the call button is the loudest thing above the form. */
+.quote-call-banner {
   display: flex;
   align-items: center;
-  gap: var(--s-4);
-  flex-wrap: wrap;
   justify-content: center;
-}
-.quote-hero-phone {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-3);
+  gap: var(--s-4);
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto var(--s-3);
   background: var(--accent);
   color: #fff !important;
   text-decoration: none !important;
-  padding: 0.95rem 1.4rem;
+  padding: 1.15rem 1.5rem;
   border-radius: var(--r-3);
-  box-shadow: var(--sh-2);
+  box-shadow: var(--sh-3);
   transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
 }
-.quote-hero-phone:hover {
+.quote-call-banner:hover {
   background: var(--accent-dark);
-  transform: translateY(-1px);
-  box-shadow: var(--sh-3);
+  transform: translateY(-2px);
+  box-shadow: var(--sh-4);
 }
-.quote-hero-phone:focus-visible {
+.quote-call-banner:focus-visible {
   outline: 3px solid var(--accent-dark);
   outline-offset: 3px;
 }
-.quote-hero-phone-icon {
-  font-size: 1.5rem;
+.quote-call-banner-icon {
+  font-size: 2rem;
   line-height: 1;
+  flex-shrink: 0;
 }
-.quote-hero-phone-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
-.quote-hero-phone-label {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.88;
-}
-.quote-hero-phone-number {
+.quote-call-banner-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
+.quote-call-banner-main {
   font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: -0.01em;
 }
-.quote-hero-or {
-  color: var(--muted);
-  font-size: 0.9rem;
-  font-weight: 600;
+.quote-call-banner-sub {
+  font-size: 0.85rem;
+  opacity: 0.92;
+  margin-top: 0.12rem;
 }
 .quote-hero-jumplink {
+  display: inline-block;
   color: var(--accent-dark);
   text-decoration: underline;
   text-decoration-color: rgba(140, 37, 16, 0.45);
@@ -682,6 +676,21 @@ SITE_SHELL_CSS = """
   outline: 3px solid var(--accent-dark);
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+/* Mobile: the call banner goes truly full-width and even bigger —
+   this is the in-the-shop scenario the page is designed around. */
+@media (max-width: 600px) {
+  .quote-call-banner {
+    max-width: none;
+    padding: 1.25rem 1rem;
+  }
+  .quote-call-banner-main { font-size: 1.3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quote-call-banner { transition: none !important; }
+  .quote-call-banner:hover { transform: none !important; }
 }
 
 /* Two-column layout — form on the left, supporting cards on the right. */
@@ -1046,19 +1055,14 @@ SITE_SHELL_CSS = """
 @media (max-width: 600px) {
   .quote-hero { padding: var(--s-5) var(--s-4) var(--s-4); }
   .quote-hero-inner { text-align: left; align-items: flex-start; }
-  .quote-hero-cta { width: 100%; flex-direction: column; align-items: stretch; gap: var(--s-3); }
-  .quote-hero-or { display: none; }
-  .quote-hero-phone { justify-content: center; }
-  .quote-hero-jumplink { text-align: center; }
+  .quote-hero-jumplink { text-align: center; width: 100%; }
   .quote-form-modern { padding: var(--s-4); }
 }
 
 /* Reduced-motion: drop the lift effect on buttons/links. */
 @media (prefers-reduced-motion: reduce) {
-  .quote-hero-phone,
   .quote-submit,
   .quote-card-phone { transition: none !important; }
-  .quote-hero-phone:hover,
   .quote-submit:hover { transform: none !important; }
 }
 
@@ -1125,10 +1129,7 @@ def head_html(title, description, canonical, schema_blocks, extra_head=""):
 
 SITE_HEADER = m2h.build_site_header()
 
-SITE_FOOTER = """<footer class="site-footer">
-  <p>Midwest CNC Services · 319-610-4341 · Waterloo, Iowa</p>
-  <p>Serving shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
-</footer>"""
+SITE_FOOTER = m2h.build_site_footer()
 
 from _coverage_map_loader import COVERAGE_MAP_LOADER as _COVERAGE_MAP_LOADER
 from _hero_video_script import HERO_VIDEO_SCRIPT as _HERO_VIDEO_SCRIPT
@@ -1296,6 +1297,14 @@ def organization_localbusiness_schema():
         },
         "hasMap": "https://www.google.com/maps/place/Waterloo,+IA",
         "areaServed": STATE_NAMES,
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "07:00",
+                "closes": "15:30",
+            },
+        ],
     })
     return blocks
 
@@ -1566,20 +1575,17 @@ def quote_body(brands):
 
     body = f'''<section class="quote-hero">
   <div class="quote-hero-inner">
-    <p class="quote-hero-eyebrow">Quote Request</p>
-    <h1>Tell us about the machine.<br>We'll get back to you fast.</h1>
-    <p class="quote-hero-lede">Most quote requests go out within one business day. If your machine is down right now, the phone is faster than email.</p>
-    <div class="quote-hero-cta">
-      <a class="quote-hero-phone" href="tel:{PHONE_TEL}">
-        <span class="quote-hero-phone-icon" aria-hidden="true">&#9742;</span>
-        <span class="quote-hero-phone-text">
-          <span class="quote-hero-phone-label">Call now</span>
-          <span class="quote-hero-phone-number">{PHONE_DISPLAY}</span>
-        </span>
-      </a>
-      <span class="quote-hero-or" aria-hidden="true">or</span>
-      <a class="quote-hero-jumplink" href="#quote">Fill the form below &darr;</a>
-    </div>
+    <p class="quote-hero-eyebrow">Machine down? Start here.</p>
+    <h1>Talk to a tech &mdash; don't wait on email.</h1>
+    <p class="quote-hero-lede">If your machine is down, the fastest path is the phone. We answer Monday through Friday, 7&nbsp;AM&ndash;3:30&nbsp;PM Central. Not urgent? The form below gets a reply within one business day.</p>
+    <a class="quote-call-banner" href="tel:{PHONE_TEL}">
+      <span class="quote-call-banner-icon" aria-hidden="true">&#9742;</span>
+      <span class="quote-call-banner-text">
+        <span class="quote-call-banner-main">Call now &mdash; talk to a tech</span>
+        <span class="quote-call-banner-sub">{PHONE_DISPLAY} &middot; Mon&ndash;Fri 7&nbsp;AM&ndash;3:30&nbsp;PM CT</span>
+      </span>
+    </a>
+    <a class="quote-hero-jumplink" href="#quote">Or fill out the form below &darr;</a>
   </div>
 </section>
 
