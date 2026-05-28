@@ -3095,6 +3095,21 @@ def main():
             _n = len(_json.load(_f).get("machines", []))
         print(f"  ✓ data/machines.json  ({_n} machines)")
 
+    # Image optimization — convert raster assets to WebP and rewrite
+    # HTML references. Run as the final content step (after every page
+    # generator) so all freshly-written HTML gets its image references
+    # optimized. Decoupled via subprocess so a missing Pillow or a
+    # conversion error never breaks the site build.
+    print()
+    try:
+        import subprocess as _sp
+        _sp.run(
+            ["python3", os.path.join(REPO, "scripts", "optimize_images.py"), "--quiet"],
+            check=False,
+        )
+    except Exception as _e:  # noqa: BLE001
+        print(f"  ! image optimization skipped: {_e}")
+
     # Link audit
     print("\n== Cross-link audit ==")
     audit = link_audit()
