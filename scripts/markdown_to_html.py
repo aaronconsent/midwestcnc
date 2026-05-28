@@ -344,10 +344,65 @@ def md_body_to_html(body):
     return "\n".join(out)
 
 
+# ---------- Shared <head> snippets (analytics, social cards) ----------
+
+# Google Analytics (GA4) + ConsentResolve CMP. Plain (non-f) string so
+# the JS braces don't collide with f-string parsing. Injected into the
+# <head> of every page by all three generators (this module,
+# generate_site_shell, generate_insights_pages).
+ANALYTICS_HEAD = """<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3G003SQE93"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3G003SQE93');
+</script>
+<script src="https://cdn.consentresolve.com/consentresolve.js"></script><script>ConsentResolve.init({siteId:'89378cf0-e275-41af-a5ab-5836c6647c93',usercentricsSettingsId:'NtX5STrPifLEMi'});ConsentResolve.page();</script>"""
+
+# Default Open Graph / Twitter card image used site-wide unless a page
+# supplies its own. Absolute URL required by OG. The highway shot is
+# already WebP-optimized and reads as a strong brand image.
+DEFAULT_OG_IMAGE = "https://midwestcncservices.com/assets/images/general/midwest-cnc-highway-shot.webp"
+
+
+def social_meta(title, description, canonical, image=None):
+    """Return the og:image + twitter card meta tags shared by all
+    generators. The og:title / og:description / og:type tags stay in
+    each generator's head template; this adds the image + twitter set."""
+    img = image or DEFAULT_OG_IMAGE
+    return (
+        f'<meta property="og:image" content="{html.escape(img)}">\n'
+        f'<meta property="og:url" content="{html.escape(canonical)}">\n'
+        f'<meta property="og:site_name" content="Midwest CNC Services">\n'
+        f'<meta name="twitter:card" content="summary_large_image">\n'
+        f'<meta name="twitter:title" content="{html.escape(title)}">\n'
+        f'<meta name="twitter:description" content="{html.escape(description)}">\n'
+        f'<meta name="twitter:image" content="{html.escape(img)}">'
+    )
+
+
+# Minimal site-wide LocalBusiness identity. Injected into any page that
+# has a Service schema but no LocalBusiness of its own (the 165 brand
+# spoke pages), so the structured-data graph is complete site-wide.
+LOCAL_BUSINESS_SCHEMA = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "#org",
+    "name": "Midwest CNC Services",
+    "telephone": "+13196104341",
+}
+
+
 # ---------- Schema JSON-LD ----------
 
 def schema_jsonld(fm):
-    """Emit the schema_data front-matter block as one or more JSON-LD scripts."""
+    """Emit the schema_data front-matter block as one or more JSON-LD scripts.
+
+    If the page declares a Service but no LocalBusiness, inject the
+    minimal site-wide LocalBusiness (#org) so brand spoke pages carry
+    the same business identity the hub pages do."""
     schema = fm.get("schema_data", {}) or {}
     scripts = []
     for key in ("service", "local_business", "breadcrumb"):
@@ -355,6 +410,12 @@ def schema_jsonld(fm):
             continue
         block = _expand_schema_block(schema[key], key, fm)
         json_str = json.dumps(block, indent=2, ensure_ascii=False)
+        scripts.append(
+            f'<script type="application/ld+json">\n{json_str}\n</script>'
+        )
+    # Backfill LocalBusiness on service pages that don't define one.
+    if "service" in schema and "local_business" not in schema:
+        json_str = json.dumps(LOCAL_BUSINESS_SCHEMA, indent=2, ensure_ascii=False)
         scripts.append(
             f'<script type="application/ld+json">\n{json_str}\n</script>'
         )
@@ -2220,6 +2281,8 @@ def wrap_into_sections(body_html, layout="default"):
         if i == 0 and (
             s.startswith('<section class="home-hero')
             or s.startswith('<section class="brand-hero')
+            or s.startswith('<section class="insight-hero')
+            or s.startswith('<section class="quote-hero')
         ):
             out.append(
                 f'<section class="page-section page-section-hero">\n'
@@ -2424,12 +2487,15 @@ def render_html(fm, body_html):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{ANALYTICS_HEAD}
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(meta_desc)}">
 <link rel="canonical" href="{html.escape(canonical)}">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(meta_desc)}">
 <meta property="og:type" content="website">
+{social_meta(title, meta_desc, canonical)}
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">

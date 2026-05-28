@@ -511,12 +511,15 @@ def _wrap_page(*, title, meta_desc, canonical, schema_blocks, crumbs,
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{m2h.ANALYTICS_HEAD}
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(meta_desc)}">
 <link rel="canonical" href="{html.escape(canonical)}">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(meta_desc)}">
 <meta property="og:type" content="article">
+{m2h.social_meta(title, meta_desc, canonical)}
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">

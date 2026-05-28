@@ -36,7 +36,18 @@ PHONE_DISPLAY = "319-610-4341"
 PHONE_TEL = "+13196104341"
 ADDRESS_CITY = "Waterloo"
 ADDRESS_STATE = "IA"
-WEB3FORMS_KEY = "14ef8440-a42b-4dd3-b416-30d9d6b3e906"
+WEB3FORMS_KEY = "14ef8440-a42b-4dd3-b416-30d9d6b3e906"  # legacy — no longer used; form now posts to /api/quote
+
+# Cloudflare Turnstile site key (public — safe to embed in HTML).
+# Replace with your real site key after creating the widget at
+# https://dash.cloudflare.com/?to=/:account/turnstile.
+# The matching TURNSTILE_SECRET is set as a server-side env var in
+# the Cloudflare Pages dashboard, NOT here.
+#
+# For local-build testing without a real key, leave the test key
+# below. Cloudflare's documented test key always passes verification
+# in development and always fails in production.
+TURNSTILE_SITE_KEY = "0x4AAAAAADXY93Hw7DfP3PQJ"
 
 # Service-area state list (the 7 states Ken confirmed)
 STATE_TILES = [
@@ -529,6 +540,528 @@ SITE_SHELL_CSS = """
 .quote-form button:active { transform: translateY(0); box-shadow: var(--sh-1); }
 .quote-form .honeypot { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
 
+/* Turnstile widget — minimal styling, lets Cloudflare's iframe render
+   itself. The wrapper just centers the widget within the form column. */
+.quote-form .cf-turnstile {
+  display: flex;
+  justify-content: center;
+  margin: var(--s-2) 0;
+}
+
+/* Error banner shown when the Pages Function redirected back with
+   ?error=... in the query string. Hidden by default; the inline
+   <script> at the bottom of the form un-hides it when present. */
+.form-error-banner {
+  padding: var(--s-4);
+  border-radius: var(--r-3);
+  background: rgba(184, 52, 26, 0.06);
+  border: 1px solid rgba(184, 52, 26, 0.25);
+  border-left: 4px solid var(--accent-dark);
+  margin: var(--s-5) 0;
+  color: var(--fg);
+}
+.form-error-banner p { margin: 0; }
+.form-error-banner[hidden] { display: none; }
+
+/* =================================================================
+   Get-a-Quote page — modern conversion-focused redesign.
+   See quote_body() in this file for the matching HTML.
+   ================================================================= */
+
+/* Quote hero — distinct from brand-hero / video-hero. Calmer
+   editorial band with a heavy phone CTA. */
+.quote-hero {
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(184, 52, 26, 0.06), transparent 60%),
+    var(--surface-3);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(2.5rem, 6vw, 4rem) var(--s-5) clamp(2rem, 5vw, 3rem);
+  margin: 0 0 var(--s-5) 0;
+}
+.quote-hero-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.quote-hero-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  background: rgba(184, 52, 26, 0.10);
+  border: 1px solid rgba(184, 52, 26, 0.20);
+  border-radius: var(--r-pill);
+  padding: 0.32rem 0.78rem;
+  margin: 0 0 var(--s-4) 0;
+}
+.quote-hero h1 {
+  font-size: clamp(1.85rem, 4vw, 2.8rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  margin: 0 0 var(--s-3) 0;
+  max-width: 22ch;
+  color: var(--fg);
+}
+.quote-hero h1::before { display: none; }
+.quote-hero-lede {
+  font-size: clamp(1.02rem, 1.2vw, 1.15rem);
+  line-height: 1.55;
+  color: var(--fg);
+  margin: 0 0 var(--s-5) 0;
+  max-width: 60ch;
+}
+
+/* CTA row in the hero — phone is the primary visual element; the
+   "or" + form-jump is secondary. */
+.quote-hero-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.quote-hero-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  background: var(--accent);
+  color: #fff !important;
+  text-decoration: none !important;
+  padding: 0.95rem 1.4rem;
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+.quote-hero-phone:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--sh-3);
+}
+.quote-hero-phone:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
+.quote-hero-phone-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.quote-hero-phone-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
+.quote-hero-phone-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.88;
+}
+.quote-hero-phone-number {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.quote-hero-or {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.quote-hero-jumplink {
+  color: var(--accent-dark);
+  text-decoration: underline;
+  text-decoration-color: rgba(140, 37, 16, 0.45);
+  text-underline-offset: 3px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: text-decoration-color var(--t-fast);
+}
+.quote-hero-jumplink:hover { text-decoration-color: var(--accent-dark); }
+.quote-hero-jumplink:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Two-column layout — form on the left, supporting cards on the right. */
+.quote-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: var(--s-6);
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: 0 var(--s-5) var(--s-6);
+  align-items: start;
+}
+
+/* Form column — the form itself sits on a card background to ground it. */
+.quote-form-modern {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  padding: clamp(var(--s-4), 3vw, var(--s-6));
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+
+/* Field-section grouping — uses <fieldset> for semantics; no
+   visible fieldset border. The <legend> becomes a section title. */
+.form-section {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.form-section-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-dark);
+  padding: 0;
+  margin: 0 0 var(--s-1) 0;
+}
+
+/* Two-column field rows on desktop, stacked on mobile. */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-3);
+}
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* Reuse the existing .quote-form input/textarea/select styles but
+   tighten label rhythm slightly for the modern layout. */
+.quote-form-modern .field { display: flex; flex-direction: column; gap: 0.35rem; }
+.quote-form-modern .field-label { font-weight: 600; font-size: 0.92rem; color: var(--fg); }
+.quote-form-modern .field-hint {
+  margin: 0.3rem 0 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* Service selection — icon cards. The actual radio input is
+   visually hidden but stays in the tab order. The whole card is the
+   click target. Checked state is communicated by border, background,
+   icon tint, and a small checkmark badge in the top-right corner —
+   no exposed radio circle. */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-2);
+}
+@media (max-width: 720px) {
+  .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.service-card {
+  position: relative;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  cursor: pointer;
+}
+
+/* Visually hide the radio input but keep it accessible to keyboard
+   and assistive tech. Standard sr-only pattern. */
+.service-card input[type="radio"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.service-card-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  gap: 0.5rem;
+  padding: var(--s-4) var(--s-3);
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-3);
+  background: var(--surface);
+  transition: border-color var(--t-fast), background var(--t-fast),
+              box-shadow var(--t-fast), transform var(--t-fast);
+  min-height: 132px;
+  height: 100%;
+}
+
+.service-card:hover .service-card-inner {
+  border-color: var(--muted);
+  background: var(--surface-2);
+  transform: translateY(-2px);
+  box-shadow: var(--sh-2);
+}
+
+.service-card input[type="radio"]:checked + .service-card-inner {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--surface) 94%, var(--accent) 6%);
+  box-shadow: 0 0 0 1px var(--accent) inset, var(--sh-2);
+}
+
+.service-card input[type="radio"]:focus-visible + .service-card-inner {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
+
+.service-card-icon {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: color var(--t-fast), transform var(--t-fast);
+  margin-bottom: 0.15rem;
+}
+.service-card:hover .service-card-icon {
+  color: var(--accent-dark);
+}
+.service-card input[type="radio"]:checked + .service-card-inner .service-card-icon {
+  color: var(--accent-dark);
+  transform: scale(1.05);
+}
+
+.service-card-title {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--fg);
+  line-height: 1.2;
+}
+
+.service-card-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.35;
+  font-weight: 400;
+}
+.service-card input[type="radio"]:checked + .service-card-inner .service-card-desc {
+  color: var(--fg);
+}
+
+/* Checkmark badge appears in the top-right corner of the selected
+   card. CSS-only — uses an inline SVG data-URI as the background. */
+.service-card-inner::after {
+  content: "";
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+  background-size: 12px 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity var(--t-fast), transform var(--t-fast);
+}
+.service-card input[type="radio"]:checked + .service-card-inner::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Respect reduced-motion. */
+@media (prefers-reduced-motion: reduce) {
+  .service-card-inner,
+  .service-card-icon,
+  .service-card-inner::after { transition: none !important; }
+  .service-card:hover .service-card-inner { transform: none !important; }
+  .service-card input[type="radio"]:checked + .service-card-inner .service-card-icon {
+    transform: none !important;
+  }
+}
+
+/* Submit tail — Turnstile + button + note grouped tightly. */
+.quote-form-tail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  align-items: stretch;
+  border-top: 1px solid var(--line);
+  padding-top: var(--s-4);
+  margin-top: var(--s-2);
+}
+.quote-turnstile {
+  display: flex;
+  justify-content: center;
+}
+.quote-submit {
+  width: 100%;
+  font: inherit;
+  background: var(--accent);
+  color: #fff;
+  padding: 1.05rem 1.6rem;
+  border: 0;
+  border-radius: var(--r-2);
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  align-self: stretch;
+  box-shadow: var(--sh-2);
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+.quote-submit:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--sh-3); }
+.quote-submit:active { transform: translateY(0); box-shadow: var(--sh-1); }
+.quote-submit:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
+.quote-submit-note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Sidebar — stack of supporting cards. */
+.quote-layout-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.quote-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  padding: var(--s-5);
+  box-shadow: var(--sh-1);
+}
+.quote-card h3 {
+  margin: 0 0 var(--s-3) 0;
+  font-size: 1.02rem;
+  color: var(--fg);
+}
+.quote-card h3::before { display: none; }
+.quote-card p { margin: 0 0 var(--s-2) 0; color: var(--fg); font-size: 0.95rem; line-height: 1.55; }
+.quote-card p:last-child { margin-bottom: 0; }
+.quote-card-list {
+  margin: 0;
+  padding: 0 0 0 1.1rem;
+  font-size: 0.95rem;
+  color: var(--fg);
+  line-height: 1.55;
+}
+.quote-card-list li { margin: 0.4rem 0; }
+
+/* Timeline inside "What happens next" card. */
+.quote-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.quote-timeline li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--line);
+}
+.quote-timeline li:last-child { border-bottom: 0; padding-bottom: 0; }
+.quote-timeline li:first-child { padding-top: 0; }
+.quote-timeline-step {
+  width: 30px;
+  height: 30px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.quote-timeline strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--fg);
+  margin-bottom: 0.15rem;
+}
+.quote-timeline p { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+
+/* "Or just call" card — visually emphasized so it pulls the
+   high-intent visitor's eye. */
+.quote-card-call {
+  background: var(--surface-3);
+  border-color: rgba(184, 52, 26, 0.22);
+  border-left: 4px solid var(--accent);
+}
+.quote-card-phone {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent-dark);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  margin: var(--s-2) 0 var(--s-3) 0;
+  padding: 0.55rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--t-fast), color var(--t-fast);
+}
+.quote-card-phone:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.quote-card-phone:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.quote-card-meta {
+  font-size: 0.85rem !important;
+  color: var(--muted) !important;
+  margin: 0 !important;
+}
+
+/* Below 960px — collapse to single column. Sidebar moves below form.
+   The phone CTA stays in the hero so it is always reachable. */
+@media (max-width: 960px) {
+  .quote-layout {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+  }
+}
+
+@media (max-width: 600px) {
+  .quote-hero { padding: var(--s-5) var(--s-4) var(--s-4); }
+  .quote-hero-inner { text-align: left; align-items: flex-start; }
+  .quote-hero-cta { width: 100%; flex-direction: column; align-items: stretch; gap: var(--s-3); }
+  .quote-hero-or { display: none; }
+  .quote-hero-phone { justify-content: center; }
+  .quote-hero-jumplink { text-align: center; }
+  .quote-form-modern { padding: var(--s-4); }
+}
+
+/* Reduced-motion: drop the lift effect on buttons/links. */
+@media (prefers-reduced-motion: reduce) {
+  .quote-hero-phone,
+  .quote-submit,
+  .quote-card-phone { transition: none !important; }
+  .quote-hero-phone:hover,
+  .quote-submit:hover { transform: none !important; }
+}
+
 .success-message {
   display: none;
   padding: var(--s-5);
@@ -564,12 +1097,14 @@ def head_html(title, description, canonical, schema_blocks, extra_head=""):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{m2h.ANALYTICS_HEAD}
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(description)}">
 <link rel="canonical" href="{html.escape(canonical)}">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(description)}">
 <meta property="og:type" content="website">
+{m2h.social_meta(title, description, canonical)}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -674,14 +1209,19 @@ def breadcrumbs_html(items):
     return f'<nav class="breadcrumbs" aria-label="breadcrumb">\n  <ol>\n    {"".join(lis)}\n  </ol>\n</nav>'
 
 
-def wrap_page(*, title, description, canonical, schema_blocks, crumbs_html_str, body_html, layout="default"):
+def wrap_page(*, title, description, canonical, schema_blocks, crumbs_html_str,
+              body_html, layout="default", noindex=False):
     """layout='default' (--max readable column), 'wide' (--max-wide for
     homepage + hubs with tiles, brand grids, and other landscape content).
     Body is split into alternating-color full-bleed sections at <h2>
-    boundaries."""
+    boundaries.
+
+    noindex=True injects <meta name="robots" content="noindex,follow">
+    in the head. Use on confirmation / thank-you pages."""
     body_class = f' class="layout-{layout}"' if layout != "default" else ""
     banded = m2h.wrap_into_sections(body_html, layout=layout)
-    return f"""{head_html(title, description, canonical, schema_blocks)}
+    extra = '<meta name="robots" content="noindex,follow">' if noindex else ""
+    return f"""{head_html(title, description, canonical, schema_blocks, extra_head=extra)}
 <body{body_class}>
 <a class="skip-link" href="#main">Skip to content</a>
 {SITE_HEADER}
@@ -1006,7 +1546,16 @@ def about_body():
 
 
 def quote_body(brands):
-    """The Get-a-Quote form page. Web3Forms handles submission."""
+    """The Get-a-Quote form page. Submissions are handled by the
+    Cloudflare Pages Function at /functions/api/quote.js, which:
+      - verifies the Turnstile token server-side
+      - validates required fields
+      - sends a notification email via Resend
+      - redirects to /get-a-quote/thank-you/ on success
+
+    Layout: prominent hero with split phone CTA, two-column form +
+    sidebar on desktop, single column on mobile/tablet. See
+    docs/forms-setup.md for the secret-config steps."""
     # Brand dropdown options, alphabetical
     options = sorted(b["brand_display_name"] for b in brands)
     option_tags = ['<option value="">Select a brand…</option>']
@@ -1015,99 +1564,240 @@ def quote_body(brands):
     option_tags.append('<option value="Other">Other</option>')
     options_html = "\n              ".join(option_tags)
 
-    body = f'''<h1>Get a Quote</h1>
-<p>Tell us about your machine and we'll get back to you with pricing and lead time. Most quotes go out within one business day.</p>
-
-<div class="success-message" id="success">
-  <h3>Thanks — we got it.</h3>
-  <p>We'll be in touch within one business day. If it's urgent, call <a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>.</p>
-</div>
-
-<div class="quote-helpers">
-  <h2 id="what-well-need">What we'll need from you</h2>
-  <p>The faster we can give you a real number, the faster you're back to cutting. Helpful to have ready:</p>
-  <ul>
-    <li>Machine make, model, and approximate age</li>
-    <li>Symptoms or error codes you're seeing</li>
-    <li>How long the machine has been down (if it's down)</li>
-    <li>Photos of the spindle, control screen, or affected area if relevant</li>
-  </ul>
-</div>
-
-<form class="quote-form" action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="{WEB3FORMS_KEY}">
-  <input type="hidden" name="subject" value="Quote request: {{{{machine_brand}}}} {{{{service}}}}">
-  <input type="hidden" name="from_name" value="Midwest CNC Services Website">
-  <input type="hidden" name="redirect" value="{DOMAIN}/get-a-quote/?success=1">
-
-  <div class="field">
-    <label class="required" for="name">Your name</label>
-    <input id="name" name="name" type="text" required autocomplete="name">
-  </div>
-
-  <div class="field">
-    <label class="required" for="company">Company</label>
-    <input id="company" name="company" type="text" required autocomplete="organization">
-  </div>
-
-  <div class="field">
-    <label class="required" for="phone">Phone</label>
-    <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="319-555-1234">
-  </div>
-
-  <div class="field">
-    <label class="required" for="email">Email</label>
-    <input id="email" name="email" type="email" required autocomplete="email">
-  </div>
-
-  <div class="field">
-    <label for="machine_brand">Machine brand</label>
-    <select id="machine_brand" name="machine_brand">
-              {options_html}
-    </select>
-  </div>
-
-  <div class="field">
-    <label for="machine_model">Machine model</label>
-    <input id="machine_model" name="machine_model" type="text" placeholder="e.g. Integrex i-200, VF-3, Genos M460">
-  </div>
-
-  <div class="field">
-    <span class="label required" style="font-weight:600;">Service needed</span>
-    <div class="radio-group">
-      <label><input type="radio" name="service" value="Spindle" required> Spindle work</label>
-      <label><input type="radio" name="service" value="Machine Repair"> Machine repair</label>
-      <label><input type="radio" name="service" value="Way Covers"> Way covers</label>
-      <label><input type="radio" name="service" value="Other"> Other</label>
+    body = f'''<section class="quote-hero">
+  <div class="quote-hero-inner">
+    <p class="quote-hero-eyebrow">Quote Request</p>
+    <h1>Tell us about the machine.<br>We'll get back to you fast.</h1>
+    <p class="quote-hero-lede">Most quote requests go out within one business day. If your machine is down right now, the phone is faster than email.</p>
+    <div class="quote-hero-cta">
+      <a class="quote-hero-phone" href="tel:{PHONE_TEL}">
+        <span class="quote-hero-phone-icon" aria-hidden="true">&#9742;</span>
+        <span class="quote-hero-phone-text">
+          <span class="quote-hero-phone-label">Call now</span>
+          <span class="quote-hero-phone-number">{PHONE_DISPLAY}</span>
+        </span>
+      </a>
+      <span class="quote-hero-or" aria-hidden="true">or</span>
+      <a class="quote-hero-jumplink" href="#quote">Fill the form below &darr;</a>
     </div>
   </div>
+</section>
 
-  <div class="field">
-    <label class="required" for="message">Describe the issue</label>
-    <textarea id="message" name="message" required placeholder="Symptoms, error codes, what changed, how urgent…"></textarea>
-  </div>
-
-  <!-- Honeypot — leave blank, bots fill it in -->
-  <div class="honeypot" aria-hidden="true">
-    <label for="botcheck">Leave this field empty</label>
-    <input id="botcheck" type="checkbox" name="botcheck" value="">
-  </div>
-
-  <button type="submit">Send Quote Request</button>
-</form>
-
-<div class="alt-contact">
-  <h3>Rather call?</h3>
-  <p><a href="tel:{PHONE_TEL}"><strong>{PHONE_DISPLAY}</strong></a> — we'll talk through the machine and the symptoms.</p>
-  <p>Midwest CNC Services · Waterloo, IA</p>
+<div class="form-error-banner" id="error" hidden>
+  <p>We could not submit your request. <span id="error-message"></span></p>
 </div>
 
+<section class="quote-layout">
+
+  <div class="quote-layout-form">
+    <form class="quote-form quote-form-modern" id="quote" action="/api/quote" method="POST">
+
+      <fieldset class="form-section">
+        <legend class="form-section-title">About you</legend>
+        <div class="form-row">
+          <div class="field">
+            <label class="required" for="name">Your name</label>
+            <input id="name" name="name" type="text" required autocomplete="name" placeholder="Jane Doe">
+          </div>
+          <div class="field">
+            <label class="required" for="company">Company</label>
+            <input id="company" name="company" type="text" required autocomplete="organization" placeholder="Acme Manufacturing">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label class="required" for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="319-555-1234">
+          </div>
+          <div class="field">
+            <label class="required" for="email">Email</label>
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="jane@acme.com">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend class="form-section-title">About your machine</legend>
+        <div class="form-row">
+          <div class="field">
+            <label for="machine_brand">Brand</label>
+            <select id="machine_brand" name="machine_brand">
+              {options_html}
+            </select>
+          </div>
+          <div class="field">
+            <label for="machine_model">Model</label>
+            <input id="machine_model" name="machine_model" type="text" placeholder="VF-3, Integrex i-200, Genos M460…">
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="field-label required">Service needed</span>
+          <div class="service-grid" role="radiogroup" aria-label="Service needed">
+
+            <label class="service-card">
+              <input type="radio" name="service" value="Spindle" required>
+              <div class="service-card-inner">
+                <span class="service-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="8" y="3" width="8" height="10" rx="1"/>
+                    <line x1="8" y1="7" x2="16" y2="7"/>
+                    <path d="M9 13 L7 17 L17 17 L15 13"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                  </svg>
+                </span>
+                <span class="service-card-title">Spindle work</span>
+                <span class="service-card-desc">Rebuild, regrind, balance</span>
+              </div>
+            </label>
+
+            <label class="service-card">
+              <input type="radio" name="service" value="Machine Repair">
+              <div class="service-card-inner">
+                <span class="service-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                  </svg>
+                </span>
+                <span class="service-card-title">Machine repair</span>
+                <span class="service-card-desc">Control, ATC, drive, alignment</span>
+              </div>
+            </label>
+
+            <label class="service-card">
+              <input type="radio" name="service" value="Way Covers">
+              <div class="service-card-inner">
+                <span class="service-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7 L7 9 L7 15 L3 17 Z"/>
+                    <path d="M7 9 L11 7 L11 17 L7 15"/>
+                    <path d="M11 7 L15 9 L15 15 L11 17"/>
+                    <path d="M15 9 L19 7 L19 17 L15 15"/>
+                    <path d="M19 7 L21 9 L21 15 L19 17"/>
+                  </svg>
+                </span>
+                <span class="service-card-title">Way covers</span>
+                <span class="service-card-desc">Telescoping, bellows, roll-up</span>
+              </div>
+            </label>
+
+            <label class="service-card">
+              <input type="radio" name="service" value="Other">
+              <div class="service-card-inner">
+                <span class="service-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                  </svg>
+                </span>
+                <span class="service-card-title">Something else</span>
+                <span class="service-card-desc">Tell us in the message</span>
+              </div>
+            </label>
+
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend class="form-section-title">What's happening</legend>
+        <div class="field">
+          <label class="required" for="message">Describe the issue</label>
+          <textarea id="message" name="message" required rows="6" placeholder="What you are seeing or hearing, error codes, how long it has been happening, how urgent…"></textarea>
+          <p class="field-hint">The more detail, the faster we can quote it.</p>
+        </div>
+      </fieldset>
+
+      <!-- Honeypot — bots fill this; humans never see it. Server-side check. -->
+      <div class="honeypot" aria-hidden="true">
+        <label for="botcheck">Leave this field empty</label>
+        <input id="botcheck" type="checkbox" name="botcheck" value="" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="quote-form-tail">
+        <div class="quote-turnstile">
+          <div class="cf-turnstile" data-sitekey="{TURNSTILE_SITE_KEY}"></div>
+        </div>
+        <button type="submit" class="quote-submit">Send Quote Request</button>
+        <p class="quote-submit-note">We typically reply within one business day. No automated sales follow-ups.</p>
+      </div>
+
+    </form>
+  </div>
+
+  <aside class="quote-layout-sidebar" aria-label="What to expect">
+
+    <div class="quote-card">
+      <h3>What we'll need from you</h3>
+      <ul class="quote-card-list">
+        <li>Machine make, model, and approximate age</li>
+        <li>Symptoms or error codes you are seeing</li>
+        <li>How long the machine has been down (if it is down)</li>
+        <li>Photos of the spindle, control screen, or affected area if relevant</li>
+      </ul>
+    </div>
+
+    <div class="quote-card">
+      <h3>What happens next</h3>
+      <ol class="quote-timeline">
+        <li>
+          <span class="quote-timeline-step" aria-hidden="true">1</span>
+          <div>
+            <strong>Within one business day</strong>
+            <p>We read your message and reply. If we need more info, we ask.</p>
+          </div>
+        </li>
+        <li>
+          <span class="quote-timeline-step" aria-hidden="true">2</span>
+          <div>
+            <strong>Quote in hand</strong>
+            <p>Price, lead time, and the scope of work in plain English.</p>
+          </div>
+        </li>
+        <li>
+          <span class="quote-timeline-step" aria-hidden="true">3</span>
+          <div>
+            <strong>Schedule the work</strong>
+            <p>Bench rebuild in Waterloo or field service across our seven-state coverage area.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="quote-card quote-card-call">
+      <h3>Rather just call?</h3>
+      <p>If your machine is down right now, this is the faster path.</p>
+      <a class="quote-card-phone" href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>
+      <p class="quote-card-meta">Midwest CNC Services &middot; Waterloo, Iowa<br>
+      Serving Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas.</p>
+    </div>
+
+  </aside>
+</section>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
-  if (location.search.indexOf('success=1') !== -1) {{
-    document.body.classList.add('form-submitted');
-    var s = document.getElementById('success');
-    if (s) s.scrollIntoView({{behavior: 'smooth'}});
-  }}
+  // If the server bounced us back with ?error=..., surface the
+  // message and scroll into view.
+  (function () {{
+    var match = location.search.match(/[?&]error=([^&]+)/);
+    if (!match) return;
+    var code = decodeURIComponent(match[1]);
+    var msg;
+    if (code === 'captcha-missing')      msg = 'Please complete the captcha check above the submit button and try again.';
+    else if (code === 'captcha-failed')  msg = 'Captcha verification failed. Please refresh and try again.';
+    else if (code === 'email-failed')    msg = 'We could not send your message right now. Please try again in a minute, or call us at {PHONE_DISPLAY}.';
+    else if (code === 'bad-request')     msg = 'There was a problem with the submission. Please refresh and try again.';
+    else if (code.indexOf('missing-') === 0) msg = 'Please fill in all required fields.';
+    else                                  msg = 'Something went wrong. Please try again or call us at {PHONE_DISPLAY}.';
+
+    var banner = document.getElementById('error');
+    var span = document.getElementById('error-message');
+    if (banner && span) {{
+      span.textContent = msg;
+      banner.hidden = false;
+      banner.scrollIntoView({{behavior: 'smooth'}});
+    }}
+  }})();
 </script>
 '''
     return body
@@ -1585,9 +2275,19 @@ def not_found_body():
 
 # ---------- Page-write helpers ----------
 
-def write_page(rel_url_dir, *, title, description, canonical_path, schemas, crumbs, body_html, layout="default"):
+def write_page(rel_url_dir, *, title, description, canonical_path, schemas,
+               crumbs, body_html, layout="default", noindex=False,
+               exclude_from_sitemap=False):
     """rel_url_dir: path like '/about/' or '/' for the URL. Writes to
-    public/<rel_url_dir>/index.html (or public/index.html for the homepage)."""
+    public/<rel_url_dir>/index.html (or public/index.html for the homepage).
+
+    noindex=True adds <meta name="robots" content="noindex,follow"> to
+    the head so search engines ignore the page (use for thank-you /
+    confirmation pages).
+
+    exclude_from_sitemap=True records the canonical URL in a module-
+    level set that the sitemap generator skips. Use together with
+    noindex for internal-only pages."""
     out_path = os.path.join(PUBLIC, rel_url_dir.strip("/"), "index.html") \
         if rel_url_dir.strip("/") else os.path.join(PUBLIC, "index.html")
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
@@ -1603,10 +2303,18 @@ def write_page(rel_url_dir, *, title, description, canonical_path, schemas, crum
         crumbs_html_str=crumbs_html_str,
         body_html=body_html,
         layout=layout,
+        noindex=noindex,
     )
     with open(out_path, "w") as f:
         f.write(page_html)
+    if exclude_from_sitemap:
+        SITEMAP_EXCLUDE.add(f"{DOMAIN}{canonical_path}")
     return out_path
+
+
+# Module-level set of canonicals that gen_sitemap() must skip. Populated
+# by write_page() when exclude_from_sitemap=True is passed.
+SITEMAP_EXCLUDE: set = set()
 
 
 def absolute(path):
@@ -1623,8 +2331,8 @@ def gen_homepage(brands):
         title="Midwest CNC Services — CNC Repair, Spindle Work & Way Covers",
         description=(
             "CNC machine repair, spindle rebuilds, and replacement way covers "
-            "from Midwest CNC Services in Waterloo, IA. Serving shops across "
-            "IA, IL, WI, MN, NE, MO, and TX. Call 319-610-4341."
+            "from Waterloo, IA. Serving shops across 7 Midwest states. "
+            "Call 319-610-4341."
         ),
         canonical_path="/",
         schemas=schemas,
@@ -1670,6 +2378,58 @@ def gen_quote(brands):
         schemas=schemas,
         crumbs=[("Home", "/"), ("Get a Quote", None)],
         body_html=quote_body(brands),
+    )
+
+
+def quote_thanks_body():
+    """The thank-you page shown after a successful quote submission.
+    The Pages Function at /functions/api/quote.js redirects here."""
+    return f'''<h1>Thanks — we got it.</h1>
+
+<p class="lede">Your quote request is in our inbox. We'll be in touch within one business day with pricing and lead time.</p>
+
+<div class="quote-helpers">
+  <h2 id="next-steps">What happens next</h2>
+  <p>One of us — usually Ken or Aaron — will read your message, look at the machine specifics, and reply. Most replies come back inside the next business day. If we need more information (a photo of the spindle, the exact alarm code, the year of the machine), we will ask.</p>
+
+  <h2 id="if-urgent">If it's urgent</h2>
+  <p>If the machine is down and production is waiting, call us at <a href="tel:{PHONE_TEL}"><strong>{PHONE_DISPLAY}</strong></a>. We will pick up faster than email reaches us, and we can usually scope the work on the call.</p>
+
+  <h2 id="while-you-wait">While you wait</h2>
+  <p>Articles that match common reasons shops reach out:</p>
+  <ul>
+    <li><a href="/insights/spindle-diagnostics/diagnose-cnc-spindle-vibration/">How to Diagnose CNC Spindle Vibration: A Symptoms Decoder</a></li>
+    <li><a href="/insights/spindle-diagnostics/rebuild-vs-replace-spindle-economics/">Spindle Rebuild vs. Replace: When Each Makes Sense</a></li>
+    <li><a href="/insights/cnc-control-systems/mazatrol-matrix-vs-smooth/">Mazatrol Matrix vs. Smooth: When to Upgrade</a></li>
+  </ul>
+</div>
+
+<div class="alt-contact">
+  <p>Midwest CNC Services &middot; Waterloo, Iowa</p>
+  <p>Serving shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas.</p>
+</div>
+'''
+
+
+def gen_quote_thanks():
+    schemas = [breadcrumb_schema([
+        ("Home", absolute("/")),
+        ("Get a Quote", absolute("/get-a-quote/")),
+        ("Thank you", absolute("/get-a-quote/thank-you/")),
+    ])]
+    return write_page(
+        "/get-a-quote/thank-you/",
+        title="Quote received — Midwest CNC Services",
+        description="Your quote request is in. We will be in touch within one business day.",
+        canonical_path="/get-a-quote/thank-you/",
+        schemas=schemas,
+        crumbs=[("Home", "/"), ("Get a Quote", "/get-a-quote/"), ("Thank you", None)],
+        body_html=quote_thanks_body(),
+        # Internal post-submission page only. Tell crawlers to skip it
+        # AND keep it out of the sitemap so it isn't surfaced as a
+        # landing page anywhere.
+        noindex=True,
+        exclude_from_sitemap=True,
     )
 
 
@@ -1886,6 +2646,14 @@ def gen_sitemap(brands):
             url = m.group(1)
             if url in drafts:
                 continue
+            # Skip pages flagged exclude_from_sitemap (e.g. thank-you).
+            if url in SITEMAP_EXCLUDE:
+                continue
+            # Also skip pages with noindex robots meta — belt and
+            # suspenders defense for any internal page that forgot the
+            # exclude flag.
+            if re.search(r'<meta\s+name="robots"\s+content="[^"]*noindex', src):
+                continue
             # Priority by URL pattern
             if url.rstrip("/") == DOMAIN:
                 priority = "1.0"
@@ -1929,6 +2697,38 @@ def gen_robots():
             "Allow: /\n"
             f"Sitemap: {DOMAIN}/sitemap.xml\n"
         )
+    return out
+
+
+def gen_headers():
+    """Write public/_headers for Cloudflare Pages.
+
+    Security headers apply to every route. We deliberately do NOT set a
+    Content-Security-Policy yet — a strict CSP would need testing against
+    every third-party script (gtag, googletagmanager, consentresolve,
+    cloudflare turnstile, unpkg leaflet, google fonts) and a wrong CSP
+    silently breaks the site. CSP is a documented follow-up.
+
+    Long cache on /assets/* (images, video, fonts) since filenames are
+    stable; HTML stays revalidated so content edits show immediately."""
+    out = os.path.join(PUBLIC, "_headers")
+    content = """/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+/assets/*
+  Cache-Control: public, max-age=604800
+
+/*.webp
+  Cache-Control: public, max-age=604800
+
+/favicon.svg
+  Cache-Control: public, max-age=604800
+"""
+    with open(out, "w") as f:
+        f.write(content)
     return out
 
 
@@ -2198,6 +2998,7 @@ def main():
     paths.append(("homepage",      gen_homepage(brands)))
     paths.append(("about",         gen_about()))
     paths.append(("get-a-quote",   gen_quote(brands)))
+    paths.append(("quote-thanks",  gen_quote_thanks()))
     paths.append(("repairs hub",   gen_repairs_hub(brands)))
     paths.append(("spindle hub",   gen_spindle_hub(brands)))
     paths.append(("way-covers",    gen_way_covers_hub(brands)))
@@ -2274,6 +3075,8 @@ def main():
     print(f"  ✓ sitemap.xml    ({n_urls} URLs, {n_drafts} drafts excluded)")
     rb_path = gen_robots()
     print(f"  ✓ robots.txt")
+    hd_path = gen_headers()
+    print(f"  ✓ _headers")
     fv_path = gen_favicon()
     print(f"  ✓ favicon.svg")
     llms_path = gen_llms_txt()
@@ -2291,6 +3094,21 @@ def main():
         with open(src_machines) as _f:
             _n = len(_json.load(_f).get("machines", []))
         print(f"  ✓ data/machines.json  ({_n} machines)")
+
+    # Image optimization — convert raster assets to WebP and rewrite
+    # HTML references. Run as the final content step (after every page
+    # generator) so all freshly-written HTML gets its image references
+    # optimized. Decoupled via subprocess so a missing Pillow or a
+    # conversion error never breaks the site build.
+    print()
+    try:
+        import subprocess as _sp
+        _sp.run(
+            ["python3", os.path.join(REPO, "scripts", "optimize_images.py"), "--quiet"],
+            check=False,
+        )
+    except Exception as _e:  # noqa: BLE001
+        print(f"  ! image optimization skipped: {_e}")
 
     # Link audit
     print("\n== Cross-link audit ==")

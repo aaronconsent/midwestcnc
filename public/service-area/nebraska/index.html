@@ -3,12 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3G003SQE93"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3G003SQE93');
+</script>
+<script src="https://cdn.consentresolve.com/consentresolve.js"></script><script>ConsentResolve.init({siteId:'89378cf0-e275-41af-a5ab-5836c6647c93',usercentricsSettingsId:'NtX5STrPifLEMi'});ConsentResolve.page();</script>
 <title>Nebraska CNC Service Coverage | Midwest CNC Services</title>
 <meta name="description" content="CNC machine repair, spindle work, and replacement way covers in Nebraska. Field service and shipped builds from Waterloo, IA. Call 319-610-4341.">
 <link rel="canonical" href="https://midwestcncservices.com/service-area/nebraska/">
 <meta property="og:title" content="Nebraska CNC Service Coverage | Midwest CNC Services">
 <meta property="og:description" content="CNC machine repair, spindle work, and replacement way covers in Nebraska. Field service and shipped builds from Waterloo, IA. Call 319-610-4341.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://midwestcncservices.com/assets/images/general/midwest-cnc-highway-shot.webp">
+<meta property="og:url" content="https://midwestcncservices.com/service-area/nebraska/">
+<meta property="og:site_name" content="Midwest CNC Services">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nebraska CNC Service Coverage | Midwest CNC Services">
+<meta name="twitter:description" content="CNC machine repair, spindle work, and replacement way covers in Nebraska. Field service and shipped builds from Waterloo, IA. Call 319-610-4341.">
+<meta name="twitter:image" content="https://midwestcncservices.com/assets/images/general/midwest-cnc-highway-shot.webp">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1048,10 +1065,92 @@ article > table {
 
 /* =================================================================
    Insights — pillar landing + article page styling.
+
    Used by /insights/ pillar pages, /insights/{pillar}/{article}/
    pages, and the /insights/ index. The .insight-* prefix keeps the
    stylesheet self-contained.
+
+   ACCESSIBILITY NOTES (WCAG 2.1 AA targets)
+   - Body copy on .insight-hero uses --fg (#1a1a1a) on --surface-3
+     (#f1ede7): ≈ 16:1. Well above 4.5:1 minimum for normal text.
+   - .insight-eyebrow uses --accent-dark (#8c2510) on --surface-3:
+     ≈ 6.3:1. Above 4.5:1 minimum even though the eyebrow text is
+     small (12px ≈ 9pt — treated as "normal" text by WCAG).
+   - .insight-card-tag uses --accent-dark on a 92%-surface tint:
+     ≈ 6.2:1. Comfortable margin.
+   - .insight-meta uses --muted (#5a5a5a) on --bg (#ffffff): ≈ 7.5:1.
+   - All interactive elements get :focus-visible rings via the
+     global .focus-ring tokens that apply to every <a> and <button>.
+   - prefers-reduced-motion zeroes the transform/opacity transitions
+     on .insight-card and .insight-pillar-card.
    ================================================================= */
+
+/* Editorial hero — used on /insights/ index + each pillar landing.
+   Replaces the video hero with a quiet, text-focused band so the
+   page reads as long-form editorial content rather than a marketing
+   landing. Centered text, generous padding, no images. */
+.insight-hero {
+  position: relative;
+  width: 100%;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(184, 52, 26, 0.05), transparent 60%),
+    var(--surface-3);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(3rem, 7vw, 5rem) var(--s-5) clamp(2.5rem, 6vw, 4rem);
+}
+.insight-hero-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.insight-hero-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  background: rgba(184, 52, 26, 0.10);
+  border: 1px solid rgba(184, 52, 26, 0.20);
+  border-radius: var(--r-pill);
+  padding: 0.32rem 0.78rem;
+  margin: 0 0 var(--s-4) 0;
+}
+.insight-hero h1 {
+  font-size: clamp(1.85rem, 4vw, 2.8rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  margin: 0 0 var(--s-4) 0;
+  max-width: 22ch;
+  color: var(--fg);
+}
+.insight-hero h1::before { display: none; } /* override the global h2-rule accent */
+.insight-hero-lede {
+  font-size: clamp(1.05rem, 1.25vw, 1.18rem);
+  line-height: 1.6;
+  color: var(--fg);
+  margin: 0 0 var(--s-5) 0;
+  max-width: 60ch;
+}
+.insight-hero-cta {
+  display: flex;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .insight-hero { padding: var(--s-5) var(--s-4) var(--s-5); }
+  .insight-hero-inner { text-align: left; align-items: flex-start; }
+  .insight-hero-lede { font-size: 1rem; }
+  .insight-hero-cta { width: 100%; flex-direction: column; }
+  .insight-hero-cta > * { width: 100%; justify-content: center; }
+}
 
 /* Pillar tile grid (insights index page) */
 .insight-pillar-grid {
@@ -1081,15 +1180,19 @@ article > table {
   box-shadow: var(--sh-3);
   border-color: var(--accent);
 }
+.insight-pillar-card a:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
 .insight-pillar-eyebrow {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--accent);
+  color: var(--accent-dark);  /* 6.7:1 on white — safer than --accent for small text */
   font-weight: 700;
 }
-.insight-pillar-card h3 { margin: var(--s-2) 0; font-size: 1.18rem; }
-.insight-pillar-card p { color: var(--muted); margin: var(--s-1) 0 var(--s-3) 0; font-size: 0.95rem; flex-grow: 1; }
+.insight-pillar-card h3 { margin: var(--s-2) 0; font-size: 1.18rem; color: var(--fg); }
+.insight-pillar-card p { color: var(--fg); margin: var(--s-1) 0 var(--s-3) 0; font-size: 0.95rem; flex-grow: 1; }
 .insight-pillar-counts {
   color: var(--muted);
   font-size: 0.85rem;
@@ -1126,75 +1229,113 @@ article > table {
   box-shadow: var(--sh-3);
   border-color: var(--accent);
 }
+.insight-card--published > a:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
 .insight-card--planned > div {
-  background: color-mix(in srgb, var(--surface) 92%, var(--accent) 8%);
+  background: color-mix(in srgb, var(--surface) 94%, var(--accent) 6%);
   border-style: dashed;
-  opacity: 0.85;
+  /* No opacity reduction — opacity hurts text contrast. The dashed
+     border + tinted background communicates "planned" without dimming. */
 }
 .insight-card-tag {
   display: inline-block;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 700;
-  color: var(--accent);
-  background: rgba(184, 52, 26, 0.08);
-  padding: 0.18rem 0.5rem;
+  color: var(--accent-dark);  /* 6.7:1 on tinted bg — comfortable for small caps */
+  background: rgba(184, 52, 26, 0.10);
+  border: 1px solid rgba(184, 52, 26, 0.18);
+  padding: 0.22rem 0.55rem;
   border-radius: var(--r-pill);
   margin-bottom: var(--s-2);
 }
 .insight-card-tag--planned {
-  color: var(--muted);
-  background: color-mix(in srgb, var(--muted) 12%, transparent);
+  color: #3d3d3d;  /* darker than --muted so the chip text passes AAA */
+  background: color-mix(in srgb, var(--muted) 14%, transparent);
+  border-color: color-mix(in srgb, var(--muted) 28%, transparent);
 }
-.insight-card h3 { margin: var(--s-1) 0; font-size: 1.08rem; line-height: 1.3; }
-.insight-card p { color: var(--muted); margin: var(--s-2) 0 var(--s-3) 0; font-size: 0.92rem; flex-grow: 1; }
+.insight-card h3 { margin: var(--s-1) 0; font-size: 1.08rem; line-height: 1.3; color: var(--fg); }
+.insight-card p { color: var(--fg); margin: var(--s-2) 0 var(--s-3) 0; font-size: 0.92rem; flex-grow: 1; }
+.insight-card-query { color: var(--muted) !important; }
 .insight-card-query em { font-style: italic; color: var(--fg); }
 
 /* Article page — meta strip + eyebrow above the H1 */
 .insight-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  color: var(--accent);
-  margin: 0 0 var(--s-1) 0;
+  color: var(--accent-dark);  /* WCAG: 6.7:1 on white, safer than --accent */
+  margin: 0 0 var(--s-2) 0;
 }
 .insight-h1 {
-  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  font-size: clamp(1.75rem, 3.6vw, 2.5rem);
   line-height: 1.15;
-  margin: 0 0 var(--s-2) 0;
+  margin: 0 0 var(--s-3) 0;
   letter-spacing: -0.015em;
+  color: var(--fg);
 }
+.insight-h1::before { display: none; } /* override the global h2-rule accent if any */
 .insight-meta {
-  color: var(--muted);
-  font-size: 0.92rem;
+  color: #4a4a4a;  /* 8.9:1 on white — slightly darker than --muted for AAA */
+  font-size: 0.95rem;
   margin: 0 0 var(--s-5) 0;
 }
 
-/* Article body — Key Takeaways block is just an H2 + UL in the markdown,
-   so we style by H2 text content via a sibling selector. Use a class on
-   the H2 instead (added by the generator below). Simpler approach: style
-   the first <ul> after an h2 whose text starts with "Key Takeaways" via
-   a class the markdown converter doesn't emit — so we add CSS for a
-   .insight-takeaways class that the markdown generator can use. Even
-   without that class, the structural rules below keep articles tidy. */
-.layout-default main article h2:first-of-type + ul,
+/* Key Takeaways block — scoped to insights article body only. The
+   block is the first <h2 id="key-takeaways"> followed immediately
+   by a <ul>. We use the H2's stable id (added by the markdown
+   converter from the heading slug) as the anchor, not a fragile
+   :first-of-type structural rule that would fire on non-insights
+   pages that happen to have a UL after their first H2. */
+.insights-article main article h2#key-takeaways {
+  /* Visually hide the Key Takeaways heading text but keep it for AT.
+     The styled callout box below is the visible affordance. The H2
+     is still in the document outline. */
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.insights-article main article h2#key-takeaways + ul,
 .insight-takeaways {
-  background: color-mix(in srgb, var(--surface) 90%, var(--accent) 5%);
-  border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--line));
-  border-left: 4px solid var(--accent);
+  background: color-mix(in srgb, var(--surface) 88%, var(--accent) 6%);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--line));
+  border-left: 4px solid var(--accent-dark);
   border-radius: var(--r-2);
   padding: var(--s-4) var(--s-4) var(--s-4) calc(var(--s-4) + 1rem);
-  margin: var(--s-4) 0 var(--s-5) 0;
+  margin: 0 0 var(--s-5) 0;
   list-style: disc;
+  position: relative;
 }
-.layout-default main article h2:first-of-type + ul li,
+.insights-article main article h2#key-takeaways + ul::before,
+.insight-takeaways::before {
+  /* Visible "Key Takeaways" label for sighted users — replaces the
+     visually-hidden H2. */
+  content: "Key Takeaways";
+  display: block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--accent-dark);
+  margin: 0 0 var(--s-3) calc(-1rem);
+  list-style: none;
+}
+.insights-article main article h2#key-takeaways + ul li,
 .insight-takeaways li {
-  margin: 0.3rem 0;
+  margin: 0.4rem 0;
   color: var(--fg);
   font-size: 1.02rem;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 /* Tail CTA on every article — sits in the natural flow, not a sticky bar. */
@@ -1221,11 +1362,44 @@ article > table {
   /* uses the existing button styles */
 }
 
-/* Definitional opener — first paragraph under each H2 gets a slightly
-   heavier weight to reinforce the "quote me" cue. Subtle; not screaming. */
-.layout-default main article h2 + p {
-  font-size: 1.05rem;
+/* Definitional opener — first paragraph under each H2 in an
+   insights article gets a slightly heavier weight + size to
+   reinforce the "quote me" cue. Subtle, not screaming. Scoped to
+   .insights-article so this doesn't affect other page types. */
+.insights-article main article h2 + p {
+  font-size: 1.08rem;
   line-height: 1.65;
+  color: var(--fg);
+}
+
+/* Article body link styling — make in-body links scannable without
+   being noisy. Underline on hover; clear focus ring. */
+.insights-article main article p a,
+.insights-article main article li a {
+  color: var(--accent-dark);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(140, 37, 16, 0.45);
+  transition: text-decoration-color var(--t-fast), color var(--t-fast);
+}
+.insights-article main article p a:hover,
+.insights-article main article li a:hover {
+  text-decoration-color: var(--accent-dark);
+  color: var(--accent-dark);
+}
+.insights-article main article p a:focus-visible,
+.insights-article main article li a:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Body paragraph rhythm in insights articles. */
+.insights-article main article p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--fg);
 }
 
 /* Sources & references tail */
@@ -1235,13 +1409,34 @@ section.insight-sources {
   padding-top: var(--s-5);
   border-top: 1px solid var(--line);
 }
-.insight-sources h2 { font-size: 1.05rem; color: var(--muted); }
-.insight-sources li { font-size: 0.92rem; color: var(--muted); }
+.insight-sources h2 { font-size: 1.05rem; color: var(--fg); }
+.insight-sources li { font-size: 0.92rem; color: #4a4a4a; }
+
+/* Insights CTA button focus state */
+.insight-cta a:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
 
 @media (max-width: 600px) {
   .insight-pillar-card a { padding: var(--s-4); }
   .insight-h1 { font-size: 1.55rem; }
   .insight-cta { padding: var(--s-4); }
+  .insights-article main article p { font-size: 1rem; line-height: 1.65; }
+}
+
+/* Reduced-motion: zero out the lift/transition on cards. */
+@media (prefers-reduced-motion: reduce) {
+  .insight-pillar-card a,
+  .insight-card > a,
+  .insights-article main article p a,
+  .insights-article main article li a {
+    transition: none !important;
+  }
+  .insight-pillar-card a:hover,
+  .insight-card--published > a:hover {
+    transform: none !important;
+  }
 }
 
 /* =================================================================
@@ -1998,6 +2193,528 @@ section.insight-sources {
 .quote-form button:active { transform: translateY(0); box-shadow: var(--sh-1); }
 .quote-form .honeypot { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
 
+/* Turnstile widget — minimal styling, lets Cloudflare's iframe render
+   itself. The wrapper just centers the widget within the form column. */
+.quote-form .cf-turnstile {
+  display: flex;
+  justify-content: center;
+  margin: var(--s-2) 0;
+}
+
+/* Error banner shown when the Pages Function redirected back with
+   ?error=... in the query string. Hidden by default; the inline
+   <script> at the bottom of the form un-hides it when present. */
+.form-error-banner {
+  padding: var(--s-4);
+  border-radius: var(--r-3);
+  background: rgba(184, 52, 26, 0.06);
+  border: 1px solid rgba(184, 52, 26, 0.25);
+  border-left: 4px solid var(--accent-dark);
+  margin: var(--s-5) 0;
+  color: var(--fg);
+}
+.form-error-banner p { margin: 0; }
+.form-error-banner[hidden] { display: none; }
+
+/* =================================================================
+   Get-a-Quote page — modern conversion-focused redesign.
+   See quote_body() in this file for the matching HTML.
+   ================================================================= */
+
+/* Quote hero — distinct from brand-hero / video-hero. Calmer
+   editorial band with a heavy phone CTA. */
+.quote-hero {
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(184, 52, 26, 0.06), transparent 60%),
+    var(--surface-3);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(2.5rem, 6vw, 4rem) var(--s-5) clamp(2rem, 5vw, 3rem);
+  margin: 0 0 var(--s-5) 0;
+}
+.quote-hero-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.quote-hero-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  background: rgba(184, 52, 26, 0.10);
+  border: 1px solid rgba(184, 52, 26, 0.20);
+  border-radius: var(--r-pill);
+  padding: 0.32rem 0.78rem;
+  margin: 0 0 var(--s-4) 0;
+}
+.quote-hero h1 {
+  font-size: clamp(1.85rem, 4vw, 2.8rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  margin: 0 0 var(--s-3) 0;
+  max-width: 22ch;
+  color: var(--fg);
+}
+.quote-hero h1::before { display: none; }
+.quote-hero-lede {
+  font-size: clamp(1.02rem, 1.2vw, 1.15rem);
+  line-height: 1.55;
+  color: var(--fg);
+  margin: 0 0 var(--s-5) 0;
+  max-width: 60ch;
+}
+
+/* CTA row in the hero — phone is the primary visual element; the
+   "or" + form-jump is secondary. */
+.quote-hero-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.quote-hero-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  background: var(--accent);
+  color: #fff !important;
+  text-decoration: none !important;
+  padding: 0.95rem 1.4rem;
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+.quote-hero-phone:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--sh-3);
+}
+.quote-hero-phone:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
+.quote-hero-phone-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.quote-hero-phone-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
+.quote-hero-phone-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.88;
+}
+.quote-hero-phone-number {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.quote-hero-or {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.quote-hero-jumplink {
+  color: var(--accent-dark);
+  text-decoration: underline;
+  text-decoration-color: rgba(140, 37, 16, 0.45);
+  text-underline-offset: 3px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: text-decoration-color var(--t-fast);
+}
+.quote-hero-jumplink:hover { text-decoration-color: var(--accent-dark); }
+.quote-hero-jumplink:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Two-column layout — form on the left, supporting cards on the right. */
+.quote-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: var(--s-6);
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: 0 var(--s-5) var(--s-6);
+  align-items: start;
+}
+
+/* Form column — the form itself sits on a card background to ground it. */
+.quote-form-modern {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-2);
+  padding: clamp(var(--s-4), 3vw, var(--s-6));
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+
+/* Field-section grouping — uses <fieldset> for semantics; no
+   visible fieldset border. The <legend> becomes a section title. */
+.form-section {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.form-section-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-dark);
+  padding: 0;
+  margin: 0 0 var(--s-1) 0;
+}
+
+/* Two-column field rows on desktop, stacked on mobile. */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-3);
+}
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* Reuse the existing .quote-form input/textarea/select styles but
+   tighten label rhythm slightly for the modern layout. */
+.quote-form-modern .field { display: flex; flex-direction: column; gap: 0.35rem; }
+.quote-form-modern .field-label { font-weight: 600; font-size: 0.92rem; color: var(--fg); }
+.quote-form-modern .field-hint {
+  margin: 0.3rem 0 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* Service selection — icon cards. The actual radio input is
+   visually hidden but stays in the tab order. The whole card is the
+   click target. Checked state is communicated by border, background,
+   icon tint, and a small checkmark badge in the top-right corner —
+   no exposed radio circle. */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-2);
+}
+@media (max-width: 720px) {
+  .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.service-card {
+  position: relative;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  cursor: pointer;
+}
+
+/* Visually hide the radio input but keep it accessible to keyboard
+   and assistive tech. Standard sr-only pattern. */
+.service-card input[type="radio"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.service-card-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  gap: 0.5rem;
+  padding: var(--s-4) var(--s-3);
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-3);
+  background: var(--surface);
+  transition: border-color var(--t-fast), background var(--t-fast),
+              box-shadow var(--t-fast), transform var(--t-fast);
+  min-height: 132px;
+  height: 100%;
+}
+
+.service-card:hover .service-card-inner {
+  border-color: var(--muted);
+  background: var(--surface-2);
+  transform: translateY(-2px);
+  box-shadow: var(--sh-2);
+}
+
+.service-card input[type="radio"]:checked + .service-card-inner {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--surface) 94%, var(--accent) 6%);
+  box-shadow: 0 0 0 1px var(--accent) inset, var(--sh-2);
+}
+
+.service-card input[type="radio"]:focus-visible + .service-card-inner {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
+
+.service-card-icon {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: color var(--t-fast), transform var(--t-fast);
+  margin-bottom: 0.15rem;
+}
+.service-card:hover .service-card-icon {
+  color: var(--accent-dark);
+}
+.service-card input[type="radio"]:checked + .service-card-inner .service-card-icon {
+  color: var(--accent-dark);
+  transform: scale(1.05);
+}
+
+.service-card-title {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--fg);
+  line-height: 1.2;
+}
+
+.service-card-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.35;
+  font-weight: 400;
+}
+.service-card input[type="radio"]:checked + .service-card-inner .service-card-desc {
+  color: var(--fg);
+}
+
+/* Checkmark badge appears in the top-right corner of the selected
+   card. CSS-only — uses an inline SVG data-URI as the background. */
+.service-card-inner::after {
+  content: "";
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+  background-size: 12px 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity var(--t-fast), transform var(--t-fast);
+}
+.service-card input[type="radio"]:checked + .service-card-inner::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Respect reduced-motion. */
+@media (prefers-reduced-motion: reduce) {
+  .service-card-inner,
+  .service-card-icon,
+  .service-card-inner::after { transition: none !important; }
+  .service-card:hover .service-card-inner { transform: none !important; }
+  .service-card input[type="radio"]:checked + .service-card-inner .service-card-icon {
+    transform: none !important;
+  }
+}
+
+/* Submit tail — Turnstile + button + note grouped tightly. */
+.quote-form-tail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  align-items: stretch;
+  border-top: 1px solid var(--line);
+  padding-top: var(--s-4);
+  margin-top: var(--s-2);
+}
+.quote-turnstile {
+  display: flex;
+  justify-content: center;
+}
+.quote-submit {
+  width: 100%;
+  font: inherit;
+  background: var(--accent);
+  color: #fff;
+  padding: 1.05rem 1.6rem;
+  border: 0;
+  border-radius: var(--r-2);
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  align-self: stretch;
+  box-shadow: var(--sh-2);
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+.quote-submit:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--sh-3); }
+.quote-submit:active { transform: translateY(0); box-shadow: var(--sh-1); }
+.quote-submit:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
+.quote-submit-note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Sidebar — stack of supporting cards. */
+.quote-layout-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.quote-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  padding: var(--s-5);
+  box-shadow: var(--sh-1);
+}
+.quote-card h3 {
+  margin: 0 0 var(--s-3) 0;
+  font-size: 1.02rem;
+  color: var(--fg);
+}
+.quote-card h3::before { display: none; }
+.quote-card p { margin: 0 0 var(--s-2) 0; color: var(--fg); font-size: 0.95rem; line-height: 1.55; }
+.quote-card p:last-child { margin-bottom: 0; }
+.quote-card-list {
+  margin: 0;
+  padding: 0 0 0 1.1rem;
+  font-size: 0.95rem;
+  color: var(--fg);
+  line-height: 1.55;
+}
+.quote-card-list li { margin: 0.4rem 0; }
+
+/* Timeline inside "What happens next" card. */
+.quote-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.quote-timeline li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--line);
+}
+.quote-timeline li:last-child { border-bottom: 0; padding-bottom: 0; }
+.quote-timeline li:first-child { padding-top: 0; }
+.quote-timeline-step {
+  width: 30px;
+  height: 30px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.quote-timeline strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--fg);
+  margin-bottom: 0.15rem;
+}
+.quote-timeline p { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+
+/* "Or just call" card — visually emphasized so it pulls the
+   high-intent visitor's eye. */
+.quote-card-call {
+  background: var(--surface-3);
+  border-color: rgba(184, 52, 26, 0.22);
+  border-left: 4px solid var(--accent);
+}
+.quote-card-phone {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent-dark);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  margin: var(--s-2) 0 var(--s-3) 0;
+  padding: 0.55rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--t-fast), color var(--t-fast);
+}
+.quote-card-phone:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.quote-card-phone:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.quote-card-meta {
+  font-size: 0.85rem !important;
+  color: var(--muted) !important;
+  margin: 0 !important;
+}
+
+/* Below 960px — collapse to single column. Sidebar moves below form.
+   The phone CTA stays in the hero so it is always reachable. */
+@media (max-width: 960px) {
+  .quote-layout {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+  }
+}
+
+@media (max-width: 600px) {
+  .quote-hero { padding: var(--s-5) var(--s-4) var(--s-4); }
+  .quote-hero-inner { text-align: left; align-items: flex-start; }
+  .quote-hero-cta { width: 100%; flex-direction: column; align-items: stretch; gap: var(--s-3); }
+  .quote-hero-or { display: none; }
+  .quote-hero-phone { justify-content: center; }
+  .quote-hero-jumplink { text-align: center; }
+  .quote-form-modern { padding: var(--s-4); }
+}
+
+/* Reduced-motion: drop the lift effect on buttons/links. */
+@media (prefers-reduced-motion: reduce) {
+  .quote-hero-phone,
+  .quote-submit,
+  .quote-card-phone { transition: none !important; }
+  .quote-hero-phone:hover,
+  .quote-submit:hover { transform: none !important; }
+}
+
 .success-message {
   display: none;
   padding: var(--s-5);
@@ -2116,7 +2833,7 @@ body.form-submitted .quote-helpers { display: none; }
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Midwest CNC Services home">
-    <img src="/assets/images/logos/midwest-cnc-logo.png" alt="Midwest CNC Services">
+    <img src="/assets/images/logos/midwest-cnc-logo.webp" alt="Midwest CNC Services">
   </a>
   <nav aria-label="Primary">
     <ul>
