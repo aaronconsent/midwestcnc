@@ -1726,12 +1726,58 @@ section.insight-sources {
   padding: var(--s-7) var(--s-5) var(--s-6);
   color: var(--muted);
   font-size: 0.92rem;
-  text-align: center;
   margin-top: var(--s-8);
   background: var(--surface-2);
 }
-.site-footer p { margin: var(--s-2) 0; }
-.site-footer p:first-child { color: var(--fg); font-weight: 600; font-size: 1rem; }
+.footer-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--s-6);
+  align-items: start;
+}
+.footer-col p { margin: var(--s-2) 0; }
+.footer-brand { color: var(--fg); font-weight: 700; font-size: 1.05rem; margin-top: 0 !important; }
+.footer-phone {
+  color: var(--accent-dark);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+.footer-phone:hover { text-decoration: underline; }
+.footer-states { color: var(--muted); max-width: 48ch; }
+
+/* Hours block */
+.footer-hours-title {
+  color: var(--fg);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  margin: 0 0 var(--s-2) 0 !important;
+}
+.footer-hours {
+  margin: 0 0 var(--s-3) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.footer-hours-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-4);
+  max-width: 18rem;
+  border-bottom: 1px dotted var(--line);
+  padding-bottom: 0.3rem;
+}
+.footer-hours-row dt { color: var(--fg); font-weight: 600; margin: 0; }
+.footer-hours-row dd { color: var(--muted); margin: 0; }
+.footer-hours-note { font-size: 0.82rem; color: var(--muted); font-style: italic; max-width: 26ch; }
+
+@media (max-width: 700px) {
+  .footer-inner { grid-template-columns: 1fr; gap: var(--s-5); }
+}
 
 /* =================================================================
    Responsive overrides
@@ -2270,58 +2316,52 @@ section.insight-sources {
   max-width: 60ch;
 }
 
-/* CTA row in the hero — phone is the primary visual element; the
-   "or" + form-jump is secondary. */
-.quote-hero-cta {
+/* Dominant call banner — the primary action on this page. Full-width
+   (capped), large tap target. Built for a stressed owner on a phone in
+   the shop: the call button is the loudest thing above the form. */
+.quote-call-banner {
   display: flex;
   align-items: center;
-  gap: var(--s-4);
-  flex-wrap: wrap;
   justify-content: center;
-}
-.quote-hero-phone {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-3);
+  gap: var(--s-4);
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto var(--s-3);
   background: var(--accent);
   color: #fff !important;
   text-decoration: none !important;
-  padding: 0.95rem 1.4rem;
+  padding: 1.15rem 1.5rem;
   border-radius: var(--r-3);
-  box-shadow: var(--sh-2);
+  box-shadow: var(--sh-3);
   transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
 }
-.quote-hero-phone:hover {
+.quote-call-banner:hover {
   background: var(--accent-dark);
-  transform: translateY(-1px);
-  box-shadow: var(--sh-3);
+  transform: translateY(-2px);
+  box-shadow: var(--sh-4);
 }
-.quote-hero-phone:focus-visible {
+.quote-call-banner:focus-visible {
   outline: 3px solid var(--accent-dark);
   outline-offset: 3px;
 }
-.quote-hero-phone-icon {
-  font-size: 1.5rem;
+.quote-call-banner-icon {
+  font-size: 2rem;
   line-height: 1;
+  flex-shrink: 0;
 }
-.quote-hero-phone-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
-.quote-hero-phone-label {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.88;
-}
-.quote-hero-phone-number {
+.quote-call-banner-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
+.quote-call-banner-main {
   font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: -0.01em;
 }
-.quote-hero-or {
-  color: var(--muted);
-  font-size: 0.9rem;
-  font-weight: 600;
+.quote-call-banner-sub {
+  font-size: 0.85rem;
+  opacity: 0.92;
+  margin-top: 0.12rem;
 }
 .quote-hero-jumplink {
+  display: inline-block;
   color: var(--accent-dark);
   text-decoration: underline;
   text-decoration-color: rgba(140, 37, 16, 0.45);
@@ -2335,6 +2375,21 @@ section.insight-sources {
   outline: 3px solid var(--accent-dark);
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+/* Mobile: the call banner goes truly full-width and even bigger —
+   this is the in-the-shop scenario the page is designed around. */
+@media (max-width: 600px) {
+  .quote-call-banner {
+    max-width: none;
+    padding: 1.25rem 1rem;
+  }
+  .quote-call-banner-main { font-size: 1.3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quote-call-banner { transition: none !important; }
+  .quote-call-banner:hover { transform: none !important; }
 }
 
 /* Two-column layout — form on the left, supporting cards on the right. */
@@ -2699,19 +2754,14 @@ section.insight-sources {
 @media (max-width: 600px) {
   .quote-hero { padding: var(--s-5) var(--s-4) var(--s-4); }
   .quote-hero-inner { text-align: left; align-items: flex-start; }
-  .quote-hero-cta { width: 100%; flex-direction: column; align-items: stretch; gap: var(--s-3); }
-  .quote-hero-or { display: none; }
-  .quote-hero-phone { justify-content: center; }
-  .quote-hero-jumplink { text-align: center; }
+  .quote-hero-jumplink { text-align: center; width: 100%; }
   .quote-form-modern { padding: var(--s-4); }
 }
 
 /* Reduced-motion: drop the lift effect on buttons/links. */
 @media (prefers-reduced-motion: reduce) {
-  .quote-hero-phone,
   .quote-submit,
   .quote-card-phone { transition: none !important; }
-  .quote-hero-phone:hover,
   .quote-submit:hover { transform: none !important; }
 }
 
@@ -3103,8 +3153,22 @@ body.form-submitted .quote-helpers { display: none; }
 </article>
 </main>
 <footer class="site-footer">
-  <p>Midwest CNC Services · 319-610-4341 · Waterloo, Iowa</p>
-  <p>Serving shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
+  <div class="footer-inner">
+    <div class="footer-col footer-col-contact">
+      <p class="footer-brand">Midwest CNC Services</p>
+      <p><a class="footer-phone" href="tel:+13196104341">319-610-4341</a></p>
+      <p>Waterloo, Iowa</p>
+      <p class="footer-states">Serving shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas.</p>
+    </div>
+    <div class="footer-col footer-col-hours">
+      <p class="footer-hours-title">Hours</p>
+      <dl class="footer-hours">
+      <div class="footer-hours-row"><dt>Mon–Fri</dt><dd>7 AM – 3:30 PM</dd></div>
+      <div class="footer-hours-row"><dt>Sat–Sun</dt><dd>Closed</dd></div>
+      </dl>
+      <p class="footer-hours-note">Machine down outside these hours? Leave a message — we check it first thing.</p>
+    </div>
+  </div>
 </footer>
 <div class="mobile-cta-bar" role="region" aria-label="Quick contact">
   <a class="mcta-phone" href="tel:+13196104341">☎ 319-610-4341</a>

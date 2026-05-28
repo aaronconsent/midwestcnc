@@ -537,10 +537,7 @@ def _wrap_page(*, title, meta_desc, canonical, schema_blocks, crumbs,
 {banded_rest}
 </article>
 </main>
-<footer class="site-footer">
-  <p>Midwest CNC Services &middot; 319-610-4341 &middot; Waterloo, Iowa</p>
-  <p>Serving shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
-</footer>
+{m2h.build_site_footer()}
 <div class="mobile-cta-bar" role="region" aria-label="Quick contact">
   <a class="mcta-phone" href="tel:+13196104341">&#9742; 319-610-4341</a>
   <a class="mcta-quote" href="/get-a-quote/">Get a Quote</a>

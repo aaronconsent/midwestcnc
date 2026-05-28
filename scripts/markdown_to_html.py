@@ -2137,12 +2137,58 @@ section.insight-sources {
   padding: var(--s-7) var(--s-5) var(--s-6);
   color: var(--muted);
   font-size: 0.92rem;
-  text-align: center;
   margin-top: var(--s-8);
   background: var(--surface-2);
 }
-.site-footer p { margin: var(--s-2) 0; }
-.site-footer p:first-child { color: var(--fg); font-weight: 600; font-size: 1rem; }
+.footer-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--s-6);
+  align-items: start;
+}
+.footer-col p { margin: var(--s-2) 0; }
+.footer-brand { color: var(--fg); font-weight: 700; font-size: 1.05rem; margin-top: 0 !important; }
+.footer-phone {
+  color: var(--accent-dark);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+.footer-phone:hover { text-decoration: underline; }
+.footer-states { color: var(--muted); max-width: 48ch; }
+
+/* Hours block */
+.footer-hours-title {
+  color: var(--fg);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  margin: 0 0 var(--s-2) 0 !important;
+}
+.footer-hours {
+  margin: 0 0 var(--s-3) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.footer-hours-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-4);
+  max-width: 18rem;
+  border-bottom: 1px dotted var(--line);
+  padding-bottom: 0.3rem;
+}
+.footer-hours-row dt { color: var(--fg); font-weight: 600; margin: 0; }
+.footer-hours-row dd { color: var(--muted); margin: 0; }
+.footer-hours-note { font-size: 0.82rem; color: var(--muted); font-style: italic; max-width: 26ch; }
+
+@media (max-width: 700px) {
+  .footer-inner { grid-template-columns: 1fr; gap: var(--s-5); }
+}
 
 /* =================================================================
    Responsive overrides
@@ -2437,6 +2483,44 @@ def _insights_dropdown():
     </li>"""
 
 
+# Business hours — single source of truth. Used by build_site_footer()
+# (visible) and by the LocalBusiness openingHoursSpecification schema.
+# Edit here to change hours everywhere.
+BUSINESS_HOURS = [
+    ("Mon–Fri", "7 AM – 3:30 PM"),
+    ("Sat–Sun", "Closed"),
+]
+
+
+def build_site_footer():
+    """Global <footer>. Single source of truth used by all three
+    generators (this module, generate_site_shell, generate_insights_pages).
+    Includes NAP, a tap-to-call phone link, business hours, and the
+    served-states line."""
+    hours_rows = "\n".join(
+        f'      <div class="footer-hours-row"><dt>{html.escape(d)}</dt>'
+        f'<dd>{html.escape(h)}</dd></div>'
+        for d, h in BUSINESS_HOURS
+    )
+    return f"""<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col footer-col-contact">
+      <p class="footer-brand">Midwest CNC Services</p>
+      <p><a class="footer-phone" href="tel:+13196104341">319-610-4341</a></p>
+      <p>Waterloo, Iowa</p>
+      <p class="footer-states">Serving shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas.</p>
+    </div>
+    <div class="footer-col footer-col-hours">
+      <p class="footer-hours-title">Hours</p>
+      <dl class="footer-hours">
+{hours_rows}
+      </dl>
+      <p class="footer-hours-note">Machine down outside these hours? Leave a message — we check it first thing.</p>
+    </div>
+  </div>
+</footer>"""
+
+
 def render_html(fm, body_html):
     """Wrap the converted body in the full page chrome."""
     title = fm.get("title", "Midwest CNC Services")
@@ -2512,10 +2596,7 @@ def render_html(fm, body_html):
 {wrap_into_sections(body_html, layout="default")}
 </article>
 </main>
-<footer class="site-footer">
-  <p>Midwest CNC Services · 319-610-4341 · Waterloo, Iowa</p>
-  <p>Serving shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
-</footer>
+{build_site_footer()}
 <div class="mobile-cta-bar" role="region" aria-label="Quick contact">
   <a class="mcta-phone" href="tel:+13196104341">☎ 319-610-4341</a>
   <a class="mcta-quote" href="#quote">Get a Quote</a>
