@@ -4,9 +4,9 @@
 
 ## Status
 
-- **Published:** 17
+- **Published:** 18
 - **Scheduled (not yet drafted):** 74
-- **Unscheduled backlog:** -15
+- **Unscheduled backlog:** -16
 - **Total planned across all pillars:** 76
 
 First scheduled date: `2026-06-02`. Last: `2027-02-11`.
@@ -20,7 +20,7 @@ First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 
 ### Week of Jun 8, 2026
 
-- **Tue Jun 9** &mdash; *Field Service & Logistics (Midwest)* &mdash; [The 4-Hour Drive Radius: What Iowa Shops Get](../src/content/insights/field-service-logistics/iowa-four-hour-radius.md)
+- **Tue Jun 9** &mdash; *Field Service & Logistics (Midwest)* &mdash; [The 4-Hour Drive Radius: What Iowa Shops Get](../src/content/insights/field-service-logistics/iowa-four-hour-radius.md) ✓
 - **Thu Jun 11** &mdash; *Buying & Owning Used CNC* &mdash; [Used VMC Inspection Checklist: What We Actually Check](../src/content/insights/buying-owning-used-cnc/used-vmc-inspection-checklist.md)
 
 ### Week of Jun 15, 2026
@@ -263,9 +263,9 @@ _0 published &middot; 15 scheduled &middot; 0 unscheduled (of 15 total)._
 
 ### Field Service & Logistics (Midwest)
 
-_0 published &middot; 15 scheduled &middot; 0 unscheduled (of 15 total)._
+_1 published &middot; 14 scheduled &middot; 0 unscheduled (of 15 total)._
 
-- ◯ `2026-06-09` &mdash; The 4-Hour Drive Radius: What Iowa Shops Get
+- ✓ **2026-06-09** &mdash; ~~The 4-Hour Drive Radius: What Iowa Shops Get~~ (published)
 - ◯ `2026-06-25` &mdash; Ship the Machine vs. On-Site Work: How We Decide
 - ◯ `2026-07-09` &mdash; Multi-State Spindle Logistics: Shipping from Texas
 - ◯ `2026-07-28` &mdash; Pre-Call Diagnostic: Questions That Save You Money
