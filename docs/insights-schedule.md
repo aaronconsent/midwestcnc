@@ -4,24 +4,24 @@
 
 ## Status
 
-- **Published:** 17
+- **Published:** 18
 - **Scheduled (not yet drafted):** 74
-- **Unscheduled backlog:** -15
+- **Unscheduled backlog:** -16
 - **Total planned across all pillars:** 76
 
 First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 
 ## Calendar
 
-### Week of Jun 1, 2026
+### Week of Jun 1, 2026 &mdash; *past*
 
 - **Tue Jun 2** &mdash; *CNC Control Systems* &mdash; [Mazatrol Matrix vs. Smooth: When to Upgrade](../src/content/insights/cnc-control-systems/mazatrol-matrix-vs-smooth.md) ✓
 - **Thu Jun 4** &mdash; *Way Covers Engineering* &mdash; [Telescoping Steel vs. Bellows vs. Roll-Up: When Each Wins](../src/content/insights/way-covers-engineering/telescoping-vs-bellows-vs-rollup.md)
 
-### Week of Jun 8, 2026
+### Week of Jun 8, 2026 &mdash; *past*
 
 - **Tue Jun 9** &mdash; *Field Service & Logistics (Midwest)* &mdash; [The 4-Hour Drive Radius: What Iowa Shops Get](../src/content/insights/field-service-logistics/iowa-four-hour-radius.md)
-- **Thu Jun 11** &mdash; *Buying & Owning Used CNC* &mdash; [Used VMC Inspection Checklist: What We Actually Check](../src/content/insights/buying-owning-used-cnc/used-vmc-inspection-checklist.md)
+- **Thu Jun 11** &mdash; *Buying & Owning Used CNC* &mdash; [Used VMC Inspection Checklist: What We Actually Check](../src/content/insights/buying-owning-used-cnc/used-vmc-inspection-checklist.md) ✓
 
 ### Week of Jun 15, 2026
 
@@ -283,9 +283,9 @@ _0 published &middot; 15 scheduled &middot; 0 unscheduled (of 15 total)._
 
 ### Buying & Owning Used CNC
 
-_0 published &middot; 15 scheduled &middot; 0 unscheduled (of 15 total)._
+_1 published &middot; 14 scheduled &middot; 0 unscheduled (of 15 total)._
 
-- ◯ `2026-06-11` &mdash; Used VMC Inspection Checklist: What We Actually Check
+- ✓ **2026-06-11** &mdash; ~~Used VMC Inspection Checklist: What We Actually Check~~ (published)
 - ◯ `2026-06-30` &mdash; Used Mazak Buying Guide: Era-by-Era
 - ◯ `2026-07-14` &mdash; Used Haas Buying: Classic Control vs. NGC
 - ◯ `2026-07-30` &mdash; Used DMG Mori: Identifying Post-Merger Machines

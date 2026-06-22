@@ -13,18 +13,18 @@
   gtag('config', 'G-3G003SQE93');
 </script>
 <script src="https://cdn.consentresolve.com/consentresolve.js"></script><script>ConsentResolve.init({siteId:'89378cf0-e275-41af-a5ab-5836c6647c93',usercentricsSettingsId:'NtX5STrPifLEMi'});ConsentResolve.page();</script>
-<title>Terms of Service | Midwest CNC Services</title>
-<meta name="description" content="Terms governing your use of midwestcncservices.com. Quote requests are inquiries; service agreements are signed separately for each job.">
-<link rel="canonical" href="https://midwestcncservices.com/terms-of-service/">
-<meta property="og:title" content="Terms of Service | Midwest CNC Services">
-<meta property="og:description" content="Terms governing your use of midwestcncservices.com. Quote requests are inquiries; service agreements are signed separately for each job.">
-<meta property="og:type" content="website">
+<title>Used VMC Inspection Checklist: What We Actually Check | Midwest CNC Services</title>
+<meta name="description" content="A used CNC machine inspection checklist covering the 22 points we verify before recommending a VMC purchase, plus five red flags that kill deals.">
+<link rel="canonical" href="https://midwestcncservices.com/insights/buying-owning-used-cnc/used-vmc-inspection-checklist/">
+<meta property="og:title" content="Used VMC Inspection Checklist: What We Actually Check | Midwest CNC Services">
+<meta property="og:description" content="A used CNC machine inspection checklist covering the 22 points we verify before recommending a VMC purchase, plus five red flags that kill deals.">
+<meta property="og:type" content="article">
 <meta property="og:image" content="https://midwestcncservices.com/assets/images/general/midwest-cnc-highway-shot.webp">
-<meta property="og:url" content="https://midwestcncservices.com/terms-of-service/">
+<meta property="og:url" content="https://midwestcncservices.com/insights/buying-owning-used-cnc/used-vmc-inspection-checklist/">
 <meta property="og:site_name" content="Midwest CNC Services">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Terms of Service | Midwest CNC Services">
-<meta name="twitter:description" content="Terms governing your use of midwestcncservices.com. Quote requests are inquiries; service agreements are signed separately for each job.">
+<meta name="twitter:title" content="Used VMC Inspection Checklist: What We Actually Check | Midwest CNC Services">
+<meta name="twitter:description" content="A used CNC machine inspection checklist covering the 22 points we verify before recommending a VMC purchase, plus five red flags that kill deals.">
 <meta name="twitter:image" content="https://midwestcncservices.com/assets/images/general/midwest-cnc-highway-shot.webp">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1804,972 +1804,69 @@ section.insight-sources {
   blockquote p { padding-left: 1.25rem; }
   th, td { padding: var(--s-2) var(--s-3); font-size: 0.9rem; }
 }
-
-/* =================================================================
-   Site-shell additions: homepage, hubs, quote form, tiles, brand grid
-   ================================================================= */
-
-/* Early success-state toggle — set on <html> in <head> before paint */
-.form-submitted-html .quote-form,
-.form-submitted-html .quote-helpers { display: none; }
-.form-submitted-html .success-message { display: block; }
-
-.section-eyebrow {
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-style: normal;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin: 0 0 var(--s-3) 0;
-  display: inline-block;
-  padding: 0.3rem 0.7rem;
-  background: rgba(184, 52, 26, 0.08);
-  border-radius: var(--r-pill);
-}
-
-/* =================================================================
-   Homepage hero — single-column, video background, image fallback.
-
-   Structure:
-     <section class="home-hero">
-       <video class="home-hero-video" .../>      <- bg media layer
-       <div class="home-hero-overlay"/>          <- dark gradient
-       <div class="home-hero-content">           <- text + CTAs
-     </section>
-
-   Layers (z-index):
-     0  video (decorative, aria-hidden)
-     1  overlay (legibility gradient)
-     2  content (text, white on dark)
-
-   prefers-reduced-motion respects the user's OS setting — video is
-   removed and the poster image is shown as a static background instead.
-   ================================================================= */
-
-/* Reset the band wrapper: hero is full-bleed, manages own backdrop. */
-.page-section-hero {
-  padding: 0;
-  background: var(--bg);
-}
-.page-section-hero > .section-inner { padding: 0; max-width: none; }
-
-.home-hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  min-height: 600px;
-  max-height: 820px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  isolation: isolate;
-  color: #fff;
-  background:
-    /* Poster image fallback if video fails to load (and on mobile +
-       prefers-reduced-motion, where the <video> is hidden) */
-    url('/assets/images/general/midwest-cnc-highway-shot.webp')
-    center / cover no-repeat
-    #000;
-}
-
-.home-hero-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  z-index: 1;
-  pointer-events: none;
-  /* Start invisible — the JS opacity driver below ramps it up from
-     the video's actual currentTime, so the fade is locked to the
-     video clock instead of drifting against a fixed-length CSS
-     keyframe. No clunky seam. */
-  opacity: 0;
-}
-
-/* Dark vertical gradient overlay — top 40% black to bottom 70% black.
-   Keeps white text legible over any frame, slightly heavier at the
-   bottom where the CTAs and trust line sit. */
-.home-hero-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.40) 0%,
-    rgba(0, 0, 0, 0.70) 100%
-  );
-}
-
-.home-hero-content {
-  position: relative;
-  z-index: 3;
-  max-width: var(--max-wide);
-  width: 100%;
-  margin: 0 auto;
-  padding: clamp(3rem, 7vw, 5rem) var(--s-5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.home-hero-content > .eyebrow {
-  font-size: 0.7rem;
-  padding: 0.28rem 0.75rem;
-  margin: 0 0 var(--s-4) 0;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.20);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.home-hero-content > h1 {
-  font-size: clamp(2.1rem, 4.6vw, 3.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  font-weight: 800;
-  margin: 0 0 var(--s-5) 0;
-  max-width: 22ch;
-  color: #fff;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-}
-
-.home-hero-content > .lede {
-  font-size: clamp(1.05rem, 1.25vw, 1.2rem);
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.92);
-  margin: 0 0 var(--s-6) 0;
-  max-width: 60ch;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-}
-
-.home-hero-content > .cta-row {
-  margin: 0 0 var(--s-5) 0;
-  justify-content: center;
-}
-/* Strengthen the secondary phone CTA against the dark video — give it
-   a semi-transparent surface so it reads cleanly. */
-.home-hero-content .cta-phone {
-  background: rgba(255, 255, 255, 0.10);
-  color: #fff !important;
-  border-color: rgba(255, 255, 255, 0.28);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-.home-hero-content .cta-phone:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.5);
-  color: #fff !important;
-}
-.home-hero-content .cta-phone::before { color: #fff; }
-
-.home-hero-content > .trust-line {
-  margin: 0;
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.72);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-}
-
-/* Mobile — skip the video entirely. Cellular users shouldn't get hit
-   with a 1.5 MB autoplay download. The poster image (set as the
-   .home-hero background-image above) takes over. */
-@media (max-width: 768px) {
-  .home-hero {
-    height: auto;
-    min-height: clamp(420px, 75vh, 560px);
-    max-height: none;
-  }
-  .home-hero-video { display: none; }
-  .home-hero-content {
-    padding: clamp(2rem, 7vw, 3rem) var(--s-4);
-  }
-  .home-hero-content > .cta-row { width: 100%; }
-}
-
-/* Respect prefers-reduced-motion — disable the video, let the poster
-   image background take over. Vestibular-disorder accessibility +
-   Core Web Vitals signal. */
-@media (prefers-reduced-motion: reduce) {
-  .home-hero-video { display: none; }
-}
-
-/* =================================================================
-   Tile grid (homepage services, state grid)
-   ================================================================= */
-.tile-grid, .state-grid {
-  display: grid;
-  gap: var(--s-4);
-  margin: var(--s-5) 0 var(--s-6) 0;
-}
-.tile-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.state-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-
-.tile {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none !important;
-  color: var(--fg) !important;
-  background: var(--surface);
-  padding: var(--s-4);
-  border-radius: var(--r-3);
-  border: 1px solid var(--line);
-  box-shadow: var(--sh-1);
-  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
-  position: relative;
-  overflow: hidden;
-}
-.tile::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: var(--r-3);
-  background: linear-gradient(135deg, transparent 60%, rgba(184, 52, 26, 0.04));
-  opacity: 0;
-  transition: opacity var(--t-base);
-  pointer-events: none;
-}
-.tile:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--sh-4);
-  border-color: var(--accent);
-}
-.tile:hover::after { opacity: 1; }
-.tile img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: var(--r-2);
-  margin-bottom: var(--s-3);
-  display: block;
-}
-.tile h3 { margin: var(--s-1) 0 var(--s-2) 0; font-size: 1.15rem; }
-.tile p { color: var(--muted); font-size: 0.95rem; margin: var(--s-2) 0 var(--s-3) 0; flex-grow: 1; }
-.tile .learn-more {
-  color: var(--accent);
-  font-size: 0.9rem;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  transition: gap var(--t-fast);
-}
-.tile:hover .learn-more { gap: 0.55rem; }
-
-/* =================================================================
-   Brand grid — hub pages
-   ================================================================= */
-.brand-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: var(--s-3);
-  margin: var(--s-4) 0 var(--s-6) 0;
-  list-style: none;
-  padding: 0;
-}
-.brand-grid li { margin: 0; }
-.brand-grid a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-2);
-  text-decoration: none !important;
-  color: var(--fg) !important;
-  font-weight: 600;
-  background: var(--surface);
-  box-shadow: var(--sh-1);
-  transition: transform var(--t-fast), border-color var(--t-fast), color var(--t-fast), box-shadow var(--t-fast);
-  position: relative;
-}
-.brand-grid a::after {
-  content: "";
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-right: 2px solid currentColor;
-  border-top: 2px solid currentColor;
-  transform: rotate(45deg);
-  opacity: 0.4;
-  transition: transform var(--t-fast), opacity var(--t-fast);
-}
-.brand-grid a:hover {
-  border-color: var(--accent);
-  color: var(--accent) !important;
-  transform: translateY(-2px);
-  box-shadow: var(--sh-3);
-}
-.brand-grid a:hover::after { opacity: 1; transform: rotate(45deg) translate(2px, -2px); }
-
-/* =================================================================
-   State sections (hub) + state grid tiles
-   ================================================================= */
-.state-section {
-  margin: var(--s-6) 0;
-  padding: var(--s-5);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-1);
-}
-.state-section h2 { margin-top: 0; }
-.state-section h2::before { display: none; }
-.state-cities { color: var(--muted); margin: var(--s-1) 0 var(--s-3) 0; }
-
-/* =================================================================
-   Quote form
-   ================================================================= */
-.quote-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-  max-width: 560px;
-  margin: var(--s-6) 0;
-  padding: var(--s-5);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-2);
-}
-.quote-form .field { display: flex; flex-direction: column; gap: 0.4rem; }
-.quote-form label { font-weight: 600; font-size: 0.92rem; color: var(--fg); }
-.quote-form .required::after { content: " *"; color: var(--accent); }
-.quote-form input,
-.quote-form textarea,
-.quote-form select {
-  font: inherit;
-  padding: 0.75rem 0.9rem;
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-2);
-  background: var(--surface);
-  width: 100%;
-  transition: border-color var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-form input:hover,
-.quote-form textarea:hover,
-.quote-form select:hover { border-color: var(--muted); }
-.quote-form input:focus,
-.quote-form textarea:focus,
-.quote-form select:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: var(--sh-focus);
-}
-.quote-form textarea { min-height: 9rem; resize: vertical; }
-.quote-form .radio-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--s-2); }
-.quote-form .radio-group label {
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  padding: 0.55rem 0.8rem;
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-2);
-  background: var(--surface);
-  transition: border-color var(--t-fast), background var(--t-fast);
-}
-.quote-form .radio-group label:hover { border-color: var(--muted); background: var(--surface-2); }
-.quote-form .radio-group input[type="radio"] { accent-color: var(--accent); }
-.quote-form button {
-  font: inherit;
-  background: var(--accent);
-  color: #fff;
-  padding: 0.95rem 1.6rem;
-  border: 0;
-  border-radius: var(--r-pill);
-  font-weight: 700;
-  cursor: pointer;
-  align-self: flex-start;
-  box-shadow: var(--sh-2);
-  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-form button:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--sh-3); }
-.quote-form button:active { transform: translateY(0); box-shadow: var(--sh-1); }
-.quote-form .honeypot { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
-
-/* Turnstile widget — minimal styling, lets Cloudflare's iframe render
-   itself. The wrapper just centers the widget within the form column. */
-.quote-form .cf-turnstile {
-  display: flex;
-  justify-content: center;
-  margin: var(--s-2) 0;
-}
-
-/* Error banner shown when the Pages Function redirected back with
-   ?error=... in the query string. Hidden by default; the inline
-   <script> at the bottom of the form un-hides it when present. */
-.form-error-banner {
-  padding: var(--s-4);
-  border-radius: var(--r-3);
-  background: rgba(184, 52, 26, 0.06);
-  border: 1px solid rgba(184, 52, 26, 0.25);
-  border-left: 4px solid var(--accent-dark);
-  margin: var(--s-5) 0;
-  color: var(--fg);
-}
-.form-error-banner p { margin: 0; }
-.form-error-banner[hidden] { display: none; }
-
-/* =================================================================
-   Get-a-Quote page — modern conversion-focused redesign.
-   See quote_body() in this file for the matching HTML.
-   ================================================================= */
-
-/* Quote hero — distinct from brand-hero / video-hero. Calmer
-   editorial band with a heavy phone CTA. */
-.quote-hero {
-  background:
-    radial-gradient(120% 80% at 50% 0%, rgba(184, 52, 26, 0.06), transparent 60%),
-    var(--surface-3);
-  border-bottom: 1px solid var(--line);
-  padding: clamp(2.5rem, 6vw, 4rem) var(--s-5) clamp(2rem, 5vw, 3rem);
-  margin: 0 0 var(--s-5) 0;
-}
-.quote-hero-inner {
-  max-width: var(--max-wide);
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.quote-hero-eyebrow {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent-dark);
-  background: rgba(184, 52, 26, 0.10);
-  border: 1px solid rgba(184, 52, 26, 0.20);
-  border-radius: var(--r-pill);
-  padding: 0.32rem 0.78rem;
-  margin: 0 0 var(--s-4) 0;
-}
-.quote-hero h1 {
-  font-size: clamp(1.85rem, 4vw, 2.8rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  font-weight: 800;
-  margin: 0 0 var(--s-3) 0;
-  max-width: 22ch;
-  color: var(--fg);
-}
-.quote-hero h1::before { display: none; }
-.quote-hero-lede {
-  font-size: clamp(1.02rem, 1.2vw, 1.15rem);
-  line-height: 1.55;
-  color: var(--fg);
-  margin: 0 0 var(--s-5) 0;
-  max-width: 60ch;
-}
-
-/* CTA row in the hero — phone is the primary visual element; the
-   "or" + form-jump is secondary. */
-.quote-hero-cta {
-  display: flex;
-  align-items: center;
-  gap: var(--s-4);
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.quote-hero-phone {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-3);
-  background: var(--accent);
-  color: #fff !important;
-  text-decoration: none !important;
-  padding: 0.95rem 1.4rem;
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-2);
-  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-hero-phone:hover {
-  background: var(--accent-dark);
-  transform: translateY(-1px);
-  box-shadow: var(--sh-3);
-}
-.quote-hero-phone:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-}
-.quote-hero-phone-icon {
-  font-size: 1.5rem;
-  line-height: 1;
-}
-.quote-hero-phone-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
-.quote-hero-phone-label {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.88;
-}
-.quote-hero-phone-number {
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-}
-.quote-hero-or {
-  color: var(--muted);
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-.quote-hero-jumplink {
-  color: var(--accent-dark);
-  text-decoration: underline;
-  text-decoration-color: rgba(140, 37, 16, 0.45);
-  text-underline-offset: 3px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: text-decoration-color var(--t-fast);
-}
-.quote-hero-jumplink:hover { text-decoration-color: var(--accent-dark); }
-.quote-hero-jumplink:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-/* Two-column layout — form on the left, supporting cards on the right. */
-.quote-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-  gap: var(--s-6);
-  max-width: var(--max-wide);
-  margin: 0 auto;
-  padding: 0 var(--s-5) var(--s-6);
-  align-items: start;
-}
-
-/* Form column — the form itself sits on a card background to ground it. */
-.quote-form-modern {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-2);
-  padding: clamp(var(--s-4), 3vw, var(--s-6));
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-5);
-}
-
-/* Field-section grouping — uses <fieldset> for semantics; no
-   visible fieldset border. The <legend> becomes a section title. */
-.form-section {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-3);
-}
-.form-section-title {
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent-dark);
-  padding: 0;
-  margin: 0 0 var(--s-1) 0;
-}
-
-/* Two-column field rows on desktop, stacked on mobile. */
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--s-3);
-}
-@media (max-width: 600px) {
-  .form-row { grid-template-columns: 1fr; }
-}
-
-/* Reuse the existing .quote-form input/textarea/select styles but
-   tighten label rhythm slightly for the modern layout. */
-.quote-form-modern .field { display: flex; flex-direction: column; gap: 0.35rem; }
-.quote-form-modern .field-label { font-weight: 600; font-size: 0.92rem; color: var(--fg); }
-.quote-form-modern .field-hint {
-  margin: 0.3rem 0 0 0;
-  font-size: 0.82rem;
-  color: var(--muted);
-}
-
-/* Service selection — icon cards. The actual radio input is
-   visually hidden but stays in the tab order. The whole card is the
-   click target. Checked state is communicated by border, background,
-   icon tint, and a small checkmark badge in the top-right corner —
-   no exposed radio circle. */
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--s-2);
-}
-@media (max-width: 720px) {
-  .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-.service-card {
-  position: relative;
-  display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  cursor: pointer;
-}
-
-/* Visually hide the radio input but keep it accessible to keyboard
-   and assistive tech. Standard sr-only pattern. */
-.service-card input[type="radio"] {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.service-card-inner {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-  gap: 0.5rem;
-  padding: var(--s-4) var(--s-3);
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-3);
-  background: var(--surface);
-  transition: border-color var(--t-fast), background var(--t-fast),
-              box-shadow var(--t-fast), transform var(--t-fast);
-  min-height: 132px;
-  height: 100%;
-}
-
-.service-card:hover .service-card-inner {
-  border-color: var(--muted);
-  background: var(--surface-2);
-  transform: translateY(-2px);
-  box-shadow: var(--sh-2);
-}
-
-.service-card input[type="radio"]:checked + .service-card-inner {
-  border-color: var(--accent);
-  background: color-mix(in srgb, var(--surface) 94%, var(--accent) 6%);
-  box-shadow: 0 0 0 1px var(--accent) inset, var(--sh-2);
-}
-
-.service-card input[type="radio"]:focus-visible + .service-card-inner {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-}
-
-.service-card-icon {
-  width: 36px;
-  height: 36px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  transition: color var(--t-fast), transform var(--t-fast);
-  margin-bottom: 0.15rem;
-}
-.service-card:hover .service-card-icon {
-  color: var(--accent-dark);
-}
-.service-card input[type="radio"]:checked + .service-card-inner .service-card-icon {
-  color: var(--accent-dark);
-  transform: scale(1.05);
-}
-
-.service-card-title {
-  font-weight: 700;
-  font-size: 0.98rem;
-  color: var(--fg);
-  line-height: 1.2;
-}
-
-.service-card-desc {
-  font-size: 0.82rem;
-  color: var(--muted);
-  line-height: 1.35;
-  font-weight: 400;
-}
-.service-card input[type="radio"]:checked + .service-card-inner .service-card-desc {
-  color: var(--fg);
-}
-
-/* Checkmark badge appears in the top-right corner of the selected
-   card. CSS-only — uses an inline SVG data-URI as the background. */
-.service-card-inner::after {
-  content: "";
-  position: absolute;
-  top: 0.55rem;
-  right: 0.55rem;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: var(--accent);
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
-  background-size: 12px 12px;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0;
-  transform: scale(0.6);
-  transition: opacity var(--t-fast), transform var(--t-fast);
-}
-.service-card input[type="radio"]:checked + .service-card-inner::after {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Respect reduced-motion. */
-@media (prefers-reduced-motion: reduce) {
-  .service-card-inner,
-  .service-card-icon,
-  .service-card-inner::after { transition: none !important; }
-  .service-card:hover .service-card-inner { transform: none !important; }
-  .service-card input[type="radio"]:checked + .service-card-inner .service-card-icon {
-    transform: none !important;
-  }
-}
-
-/* Submit tail — Turnstile + button + note grouped tightly. */
-.quote-form-tail {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-3);
-  align-items: stretch;
-  border-top: 1px solid var(--line);
-  padding-top: var(--s-4);
-  margin-top: var(--s-2);
-}
-.quote-turnstile {
-  display: flex;
-  justify-content: center;
-}
-.quote-submit {
-  width: 100%;
-  font: inherit;
-  background: var(--accent);
-  color: #fff;
-  padding: 1.05rem 1.6rem;
-  border: 0;
-  border-radius: var(--r-2);
-  font-weight: 700;
-  font-size: 1.05rem;
-  cursor: pointer;
-  align-self: stretch;
-  box-shadow: var(--sh-2);
-  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-submit:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--sh-3); }
-.quote-submit:active { transform: translateY(0); box-shadow: var(--sh-1); }
-.quote-submit:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-}
-.quote-submit-note {
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin: 0;
-}
-
-/* Sidebar — stack of supporting cards. */
-.quote-layout-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-}
-.quote-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  padding: var(--s-5);
-  box-shadow: var(--sh-1);
-}
-.quote-card h3 {
-  margin: 0 0 var(--s-3) 0;
-  font-size: 1.02rem;
-  color: var(--fg);
-}
-.quote-card h3::before { display: none; }
-.quote-card p { margin: 0 0 var(--s-2) 0; color: var(--fg); font-size: 0.95rem; line-height: 1.55; }
-.quote-card p:last-child { margin-bottom: 0; }
-.quote-card-list {
-  margin: 0;
-  padding: 0 0 0 1.1rem;
-  font-size: 0.95rem;
-  color: var(--fg);
-  line-height: 1.55;
-}
-.quote-card-list li { margin: 0.4rem 0; }
-
-/* Timeline inside "What happens next" card. */
-.quote-timeline {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-.quote-timeline li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--s-3);
-  padding: var(--s-3) 0;
-  border-bottom: 1px solid var(--line);
-}
-.quote-timeline li:last-child { border-bottom: 0; padding-bottom: 0; }
-.quote-timeline li:first-child { padding-top: 0; }
-.quote-timeline-step {
-  width: 30px;
-  height: 30px;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-}
-.quote-timeline strong {
-  display: block;
-  font-size: 0.95rem;
-  color: var(--fg);
-  margin-bottom: 0.15rem;
-}
-.quote-timeline p { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
-
-/* "Or just call" card — visually emphasized so it pulls the
-   high-intent visitor's eye. */
-.quote-card-call {
-  background: var(--surface-3);
-  border-color: rgba(184, 52, 26, 0.22);
-  border-left: 4px solid var(--accent);
-}
-.quote-card-phone {
-  display: block;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--accent-dark);
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  margin: var(--s-2) 0 var(--s-3) 0;
-  padding: 0.55rem 0;
-  border-bottom: 2px solid transparent;
-  transition: border-color var(--t-fast), color var(--t-fast);
-}
-.quote-card-phone:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-.quote-card-phone:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-.quote-card-meta {
-  font-size: 0.85rem !important;
-  color: var(--muted) !important;
-  margin: 0 !important;
-}
-
-/* Below 960px — collapse to single column. Sidebar moves below form.
-   The phone CTA stays in the hero so it is always reachable. */
-@media (max-width: 960px) {
-  .quote-layout {
-    grid-template-columns: 1fr;
-    gap: var(--s-5);
-  }
-}
-
-@media (max-width: 600px) {
-  .quote-hero { padding: var(--s-5) var(--s-4) var(--s-4); }
-  .quote-hero-inner { text-align: left; align-items: flex-start; }
-  .quote-hero-cta { width: 100%; flex-direction: column; align-items: stretch; gap: var(--s-3); }
-  .quote-hero-or { display: none; }
-  .quote-hero-phone { justify-content: center; }
-  .quote-hero-jumplink { text-align: center; }
-  .quote-form-modern { padding: var(--s-4); }
-}
-
-/* Reduced-motion: drop the lift effect on buttons/links. */
-@media (prefers-reduced-motion: reduce) {
-  .quote-hero-phone,
-  .quote-submit,
-  .quote-card-phone { transition: none !important; }
-  .quote-hero-phone:hover,
-  .quote-submit:hover { transform: none !important; }
-}
-
-.success-message {
-  display: none;
-  padding: var(--s-5);
-  border-radius: var(--r-3);
-  background: var(--success-bg);
-  border: 1px solid rgba(46, 125, 50, 0.25);
-  border-left: 4px solid #2e7d32;
-  color: var(--success-fg);
-  margin: var(--s-6) 0;
-  box-shadow: var(--sh-1);
-}
-.success-message h2 { margin-top: 0; color: var(--success-fg); }
-.success-message h2::before { background: #2e7d32; }
-body.form-submitted .success-message { display: block; }
-body.form-submitted .quote-form { display: none; }
-body.form-submitted .quote-helpers { display: none; }
-
-.alt-contact {
-  margin: var(--s-6) 0;
-  padding: var(--s-5);
-  background: var(--surface-2);
-  border-radius: var(--r-3);
-  border: 1px solid var(--line);
-}
-.alt-contact h3 { margin: 0 0 var(--s-2) 0; }
-.alt-contact p { margin: var(--s-1) 0; }
 </style>
-<script>
-  // Early success-state detection — runs in <head> before paint so the form
-  // never flashes visible if the URL has ?success=1. Harmless on other pages.
-  if (location.search.indexOf('success=1') !== -1) {
-    document.documentElement.classList.add('form-submitted-html');
-  }
-</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
     {
+      "@type": "ListItem",
       "position": 1,
       "name": "Home",
       "item": "https://midwestcncservices.com/"
     },
     {
+      "@type": "ListItem",
       "position": 2,
-      "name": "Terms of Service",
-      "item": "https://midwestcncservices.com/terms-of-service/"
+      "name": "Insights",
+      "item": "https://midwestcncservices.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Buying & Owning Used CNC",
+      "item": "https://midwestcncservices.com/insights/buying-owning-used-cnc/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Used VMC Inspection Checklist: What We Actually Check"
     }
   ]
 }
 </script>
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "Article",
+    "BlogPosting"
+  ],
+  "headline": "Used VMC Inspection Checklist: What We Actually Check",
+  "description": "A used CNC machine inspection checklist covering the 22 points we verify before recommending a VMC purchase, plus five red flags that kill deals.",
+  "datePublished": "2026-06-22",
+  "dateModified": "2026-06-22",
+  "author": {
+    "@type": "Person",
+    "name": "Ken",
+    "jobTitle": "Shop owner",
+    "worksFor": {
+      "@id": "https://midwestcncservices.com/#org"
+    }
+  },
+  "publisher": {
+    "@id": "https://midwestcncservices.com/#org"
+  },
+  "mainEntityOfPage": "https://midwestcncservices.com/insights/buying-owning-used-cnc/used-vmc-inspection-checklist/",
+  "articleSection": "Buying & Owning Used CNC",
+  "keywords": "used cnc machine inspection checklist",
+  "wordCount": 1738,
+  "inLanguage": "en-US"
+}
+</script>
 </head>
-<body>
+<body class="insights-page insights-article">
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Midwest CNC Services home">
@@ -2862,117 +1959,155 @@ body.form-submitted .quote-helpers { display: none; }
 </header>
 <nav class="breadcrumbs" aria-label="breadcrumb">
   <ol>
-    <li><a href="/">Home</a></li><li>Terms of Service</li>
+    <li><a href="/">Home</a></li><li><a href="/insights/">Insights</a></li><li><a href="/insights/buying-owning-used-cnc/">Buying &amp; Owning Used CNC</a></li><li>Used VMC Inspection Checklist: What We Actually Check</li>
   </ol>
 </nav>
 <main id="main">
 <article>
+
 <section class="page-section page-section-0 page-section-intro">
   <div class="section-inner">
-<h1>Terms of Service</h1>
-<p><em>Last updated: June 22, 2026</em></p>
-
-<p>These terms apply to your use of midwestcncservices.com (the "Site").
-The Site is an informational marketing site for Midwest CNC Services, a
-CNC machine repair, spindle work, and replacement way cover business
-based in Waterloo, Iowa.</p>
+<p class="insight-eyebrow">Buying &amp; Owning Used CNC</p>
+<h1 class="insight-h1">Used VMC Inspection Checklist: What We Actually Check</h1>
+<p class="insight-meta">By Ken &middot; 2026-06-22 &middot; ~9 min read</p>
   </div>
 </section>
 <section class="page-section page-section-1">
   <div class="section-inner">
-<h2 id="what-this-site-is">What this site is</h2>
-<p>The Site exists to describe the services Midwest CNC Services provides,
-list our service area, and let you submit a quote request. It is not a
-portal for placing orders, signing service contracts, or transferring
-payment. Any actual service relationship between Midwest CNC and your
-shop is governed by the service agreement we sign with you for a specific
-job — not by anything published here.</p>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>The 22-point checklist we use covers spindle, ways, ballscrews, control, ATC, and hydraulics—each scored pass, flag, or fail before we advise on any used VMC purchase.
+</li>
+<li>Five red flags that kill a deal outright include spindle taper wear exceeding 0.0003 inch, coolant intrusion damage, ballscrew backlash above 0.001 inch, obsolete control boards, and hidden crash history.
+</li>
+<li>About 30-40% of used VMCs we evaluate carry at least one hidden repair bill above $8,000—catching these before signing is the whole point of inspection.
+</li>
+<li>A 2008-2015 era Mazak VTC-200 or Haas VF-4 in good shape can deliver 80% of new-machine capability at 35-45% of new cost, but only if inspection confirms it.
+</li>
+<li>Skipping inspection on a $45,000 used VMC to save $1,500 in eval costs is a choice we've watched shops regret within 90 days.
+</li>
+</ul>
+<p>Buying used iron builds capacity without burning capital. The math works: a clean 2012 Doosan DNM 500 at $52,000 versus $140,000 new frees $88,000 for tooling or another machine. But the gap between a good used VMC and a money pit shows up at inspection. We've evaluated machines across Iowa, Illinois, Wisconsin, and Minnesota. The 22-point checklist below is what we walk through before giving a go or no-go.</p>
   </div>
 </section>
 <section class="page-section page-section-0">
   <div class="section-inner">
-<h2 id="quote-requests">Quote requests</h2>
-<p>A quote request submitted through this Site is an inquiry, not a
-binding contract. Submitting a request does not obligate either party.
-We respond to quote requests with pricing, lead times, and scope. A
-binding service agreement begins only when we and your authorized
-representative both sign the agreement covering the specific job.</p>
+<h2 id="seller-claims-versus-mechanical-evidence">Seller claims versus mechanical evidence</h2>
+<p>Every listing says "excellent condition" or "low hours." Those phrases mean nothing without proof. Hour meters reset. Logs go missing. Crash history hides from spec sheets.</p>
+<p>Mechanical evidence tells the truth. A spindle with 14,000 hours shows taper wear. A crashed machine carries signs in the column or saddle. Coolant intrusion in the way covers leaves corrosion that doesn't lie.</p>
+<p>We run this inspection to read that evidence before money moves. In our log, about one in three used VMCs has a problem the seller missed or skipped. Not always malice—just the gap between "ran fine last week" and "will run fine next year."</p>
+<p>The 22-point checklist closes that gap.</p>
   </div>
 </section>
 <section class="page-section page-section-1">
   <div class="section-inner">
-<h2 id="limitation-of-liability">Limitation of liability</h2>
-<p>Information published on this Site is provided as-is for general
-informational purposes. Lead times, service descriptions, and equipment
-compatibility statements reflect typical work but do not guarantee
-outcomes for any specific job. Actual service is delivered subject to a
-signed service agreement, which contains the warranties, performance
-commitments, and remedies that apply to that job.</p>
-<p>To the maximum extent permitted by law, Midwest CNC Services, its
-employees, contractors, and partners are not liable for indirect,
-incidental, consequential, or punitive damages arising from your use of
-the Site or your reliance on information published here. Direct damages,
-if any, are limited to the value of the service agreement signed for
-the specific job in question.</p>
+<h2 id="the-22-point-checklist-what-we-verify">The 22-point checklist: what we verify</h2>
+<p>We group the work into six areas. Each point gets a score: pass, flag, or fail.</p>
+<h3 id="spindle-inspection-points-1-5">Spindle inspection (points 1-5)</h3>
+<p>1. <strong>Taper condition</strong> — We blue-check the taper with a ground test arbor. If spindle taper wear exceeds 0.0003 inch, we flag it. Above 0.0005 inch fails. Impact damage is a deal-breaker.</p>
+<p>2. <strong>Runout at nose</strong> — We use a test bar at 1-inch and 6-inch stick-out. Under 0.0001 inch passes. 0.0001-0.0002 inch flags. Above 0.0002 inch means bearing wear.</p>
+<p>3. <strong>Bearing noise and heat</strong> — We run the spindle at 1,000, 4,000, 8,000, and max RPM. We listen for growl. We check temp with a pyrometer. A 25°C rise after 15 minutes at 8,000 RPM is normal. Above 35°C suggests worn bearings.</p>
+<p>4. <strong>Drawbar function</strong> — We cycle the drawbar 20 times. We check pull force if we can access the gauge port. Weak Belleville springs mean tools slip under heavy cuts.</p>
+<p>5. <strong>Spindle motor current</strong> — At max speed with no load, we log current against spec. A motor drawing 15% high has drag, often from preload issues.</p>
+<h3 id="way-system-and-geometry-points-6-10">Way system and geometry (points 6-10)</h3>
+<p>6. <strong>Way cover condition</strong> — We pull back covers and look for coolant intrusion in the way covers, chip packing, and torn seals. Damage underneath costs real money.</p>
+<p>7. <strong>Way surface wear</strong> — On box-way machines, we check for scoring and galling. On linear-guide machines, we look at rail faces for pitting. New rails on a Mazak Nexus 510C run $4,000-6,000 per axis.</p>
+<p>8. <strong>Gib adjustment</strong> — We check if gibs still have room. Maxed-out gibs with slop still present mean end-of-life on that surface.</p>
+<p>9. <strong>Geometric accuracy</strong> — We use a level and indicator. We check table flatness, Z-to-XY square, and spindle-to-Z parallel. Good machines hold 0.0005-0.001 inch. Above 0.002 inch means wear or crash damage.</p>
+<p>10. <strong>Axis reversal error</strong> — We run each axis through a reversal test. Lost motion at direction change shows backlash or servo tuning gaps.</p>
+<h3 id="ballscrews-and-axis-drives-points-11-14">Ballscrews and axis drives (points 11-14)</h3>
+<p>11. <strong>Ballscrew backlash</strong> — We measure at three spots per axis with a tenths indicator. Ballscrew backlash above 0.001 inch on X or Y flags. Above 0.0015 inch fails.</p>
+<p>12. <strong>Support bearing condition</strong> — We apply axial load while indicating. Worn thrust bearings let position drift under cut.</p>
+<p>13. <strong>Servo motor condition</strong> — We check alarm history for encoder faults. We listen for motor bearing noise. We test brake function on Z.</p>
+<p>14. <strong>Axis tuning quality</strong> — We run a circular test at 100 IPM on a 4-inch circle. Out-of-round patterns show mechanical or servo issues.</p>
+<h3 id="control-and-electrical-points-15-18">Control and electrical (points 15-18)</h3>
+<p>15. <strong>Control hardware age</strong> — We ID the control and check parts supply. A Fanuc 16i-MB has a different future than a Fanuc 0i-MF. Boards for the 16/18 series are hard to find now.</p>
+<p>16. <strong>Parameter backup</strong> — We confirm the seller has a full backup we can read. A control with no backup is a liability if the battery dies.</p>
+<p>17. <strong>Alarm history</strong> — We pull logs and look for patterns. Repeated overload or servo faults tell a story.</p>
+<p>18. <strong>Cabinet condition</strong> — We check for coolant entry, dust, bad wiring, and rodent damage. We've seen mouse nests in stored machines. This happens.</p>
+<h3 id="tool-changer-points-19-20">Tool changer (points 19-20)</h3>
+<p>19. <strong>ATC cycle test</strong> — We run 50 tool changes in a row. Random picks. We watch for hesitation or miscounts. Worn cams and stretched chains show up here.</p>
+<p>20. <strong>Tool pocket condition</strong> — We inspect for damage and wear. A machine that drops tools has damaged pockets. This causes tool-length drift and worse.</p>
+<h3 id="hydraulics-and-pneumatics-points-21-22">Hydraulics and pneumatics (points 21-22)</h3>
+<p>21. <strong>Hydraulic system</strong> — We check level, fluid color (milky means water), pump noise, and pressure under load. We test drawbar, clamps, and any hydraulic ATC parts.</p>
+<p>22. <strong>Pneumatic system</strong> — We look for leaks at cylinders, valves, and fittings. A leaky machine costs more to run and may have unreliable cylinder action.</p>
+<p>That's the 22-point checklist. Every item ties to a machine that cost someone money.</p>
   </div>
 </section>
 <section class="page-section page-section-0">
   <div class="section-inner">
-<h2 id="warranties">Warranties</h2>
-<p>Equipment and service warranties are governed by the service agreement
-signed for each job, not by anything stated on this Site. If you have a
-question about the warranty terms for a specific service we provided,
-call <a href="tel:+13196104341">319-610-4341</a>.</p>
+<h2 id="five-red-flags-that-kill-a-deal">Five red flags that kill a deal</h2>
+<p>Some findings end talks right away. These aren't points to haggle—they're reasons to walk.</p>
+<p><strong>1. Spindle taper damage or wear past 0.0003 inch</strong> — A rebuild runs $6,000-18,000. If the taper shows impact marks or bell-mouthing, you're buying a spindle job, not a machine.</p>
+<p><strong>2. Coolant intrusion damage to ways or screws</strong> — Once coolant sits on precision surfaces, corrosion starts. Pitting hides until you wipe the surface. This signals neglect across other systems too.</p>
+<p><strong>3. Ballscrew backlash above 0.001 inch</strong> — New screws cost $3,000-8,000 per axis with install. Two bad axes mean $10,000-15,000 before you cut a chip.</p>
+<p><strong>4. Obsolete control boards with no source</strong> — Fanuc 16/18 power supplies and axis cards are gone from stock. A failure means a full retrofit at $35,000-65,000. We see this catch shops two years in.</p>
+<p><strong>5. Hidden crash history in the geometry</strong> — A machine crashed hard and not realigned carries errors that hurt part quality. When we see 0.003-inch square error on a 10-year-old box that should hold 0.001 inch, we ask questions. Bad answers mean we walk.</p>
+<p>These five red flags that kill a deal come from jobs that cost more to fix than the machine was worth.</p>
   </div>
 </section>
 <section class="page-section page-section-1">
   <div class="section-inner">
-<h2 id="intellectual-property">Intellectual property</h2>
-<p>Content on this Site — text, images, schema markup, and code — is the
-property of Midwest CNC Services or used with permission. The brand names
-of CNC machine OEMs referenced on this Site (Mazak, Haas, Okuma, DMG Mori,
-Fanuc, and others) are the property of their respective owners. We use
-those names to describe the platforms we service; we are not affiliated
-with, endorsed by, or operating under license from those OEMs unless
-explicitly noted on a specific service page.</p>
+<h2 id="what-a-clean-inspection-tells-you">What a clean inspection tells you</h2>
+<p>A machine that passes all 22 points isn't perfect. It's just known. You know the spindle has life. You know the ways work. You know the control has support. You know what's due, not overdue.</p>
+<p>That lets you price right. A clean 2014 Haas VF-3 at $48,000 differs from the same box at $38,000 needing a spindle and screw. Both might be worth buying. Inspection tells you which price fits.</p>
+<p>For shops thinking through <a href="/insights/buying-owning-used-cnc/">Buying &amp; Owning Used CNC</a> choices, the eval cost—$1,200-2,500 based on travel and machine type—is cheap next to a $15,000 surprise six months later.</p>
   </div>
 </section>
 <section class="page-section page-section-0">
   <div class="section-inner">
-<h2 id="changes">Changes to these terms</h2>
-<p>We may update these terms from time to time. Changes take effect when
-posted to this page. The "Last updated" date above reflects the most
-recent change. If you submitted a quote request before a change, the
-version of these terms in effect at the time of your submission applies
-to that submission.</p>
+<h2 id="cost-of-skipping-inspection">Cost of skipping inspection</h2>
+<p>We see this pattern often. A shop finds a deal on a 2010 Okuma MB-46VAE for $58,000. Seller seems honest. Machine ran last month. Price is right. Travel for inspection would add $1,800.</p>
+<p>Six months later, the Z-axis screw fails. Replacement plus labor runs $7,200. Then the spindle starts making noise at 10,000 RPM. Bearing set and rebuild labor adds $9,500.</p>
+<p>The $58,000 machine is now a $75,000 machine. The shop would have walked at $75,000. They didn't know what they were buying.</p>
+<p>This happens most on private sales and auctions. Dealers sometimes have inspection reports, but verify the source. A report from the seller's preferred tech may skip things an independent check would catch.</p>
+<p>The <a href="/repairs/">repairs</a> we do often trace back to deferred problems that would have shown on a proper pre-buy eval.</p>
   </div>
 </section>
 <section class="page-section page-section-1">
   <div class="section-inner">
-<h2 id="jurisdiction">Jurisdiction</h2>
-<p>These terms are governed by the laws of the State of Iowa, without
-regard to conflict-of-law principles. Any dispute arising from your use
-of this Site or from a service relationship with Midwest CNC Services
-will be resolved in the state or federal courts located in Black Hawk
-County, Iowa.</p>
+<h2 id="what-an-inspection-costs">What an inspection costs</h2>
+<p>We charge based on travel plus time on-site. For a machine in Iowa or nearby Illinois, expect $1,200-1,800. For Wisconsin or Minnesota, figure $1,500-2,200. Farther trips cost more.</p>
+<p>Time on-site runs 4-6 hours for a standard 40-taper VMC. Larger machines, pallet systems, or multi-axis setups take longer.</p>
+<p>You get a written report with pass, flag, or fail on each of the 22 points. Flagged items include repair cost estimates. The report gives you data to negotiate or walk.</p>
+<p>Compare that to the blind bid. A $1,500 inspection on a $50,000 machine is 3% of purchase price. It's cheap insurance against a $12,000 problem hiding under the covers.</p>
   </div>
 </section>
 <section class="page-section page-section-0">
   <div class="section-inner">
-<h2 id="contact">Contact</h2>
-<p>Questions about these terms: call
-<a href="tel:+13196104341">319-610-4341</a> or write to Midwest CNC
-Services, Waterloo, Iowa.</p>
+<h2 id="sources-and-references">Sources and references</h2>
+<ul>
+<li>Inspection protocol draws on 25+ years of field service on Mazak, Haas, Doosan, DMG Mori, Okuma, and Fanuc platforms.
+</li>
+<li>Backlash and runout specs reference OEM data for 40-taper VMCs.
+</li>
+<li>Repair cost ranges come from our service records across Iowa, Illinois, Wisconsin, and Minnesota from 2022-2025.
+</li>
+<li>Control parts info reflects current Fanuc support status and secondary market supply.
+</li>
+</ul>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="when-to-bring-this-work-to-us">When to bring this work to us</h2>
+<p>If you're looking at a used VMC—from a dealer, auction, or direct sale—and want a real assessment, we do this work regularly. We've checked machines in Cedar Rapids, Des Moines, Rockford, Milwaukee, and Minneapolis for shops facing this call.</p>
+<p>A full eval takes 4-6 hours on-site. It covers all 22 points. You get a written report with scores and cost estimates for anything flagged. You decide with data, not seller promises.</p>
+<p>Reach out through our <a href="/get-a-quote/">quote form</a> with machine details—make, model, year, location. We'll scope the job. If you also need <a href="/repairs/">repairs</a> on machines you own now, we handle that too. And for broader guidance on used equipment decisions, the <a href="/insights/buying-owning-used-cnc/">Buying &amp; Owning Used CNC</a> section covers related ground.</p>
+<div class="insight-cta">
+  <p><strong>Need this work done?</strong> Tell us the machine and the symptom.</p>
+  <p><a class="cta-button" href="/get-a-quote/">Get a quote</a> <a class="cta-phone" href="tel:+13196104341">319-610-4341</a></p>
+</div>
   </div>
 </section>
 </article>
 </main>
 <footer class="site-footer">
-  <p>Midwest CNC Services · 319-610-4341 · Waterloo, Iowa</p>
+  <p>Midwest CNC Services &middot; 319-610-4341 &middot; Waterloo, Iowa</p>
   <p>Serving shops across Iowa, Illinois, Minnesota, Wisconsin, Nebraska, Missouri, and Texas.</p>
 </footer>
 <div class="mobile-cta-bar" role="region" aria-label="Quick contact">
-  <a class="mcta-phone" href="tel:+13196104341">☎ 319-610-4341</a>
+  <a class="mcta-phone" href="tel:+13196104341">&#9742; 319-610-4341</a>
   <a class="mcta-quote" href="/get-a-quote/">Get a Quote</a>
 </div>
 <script>
