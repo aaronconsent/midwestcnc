@@ -4,29 +4,29 @@
 
 ## Status
 
-- **Published:** 17
+- **Published:** 18
 - **Scheduled (not yet drafted):** 74
-- **Unscheduled backlog:** -15
+- **Unscheduled backlog:** -16
 - **Total planned across all pillars:** 76
 
 First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 
 ## Calendar
 
-### Week of Jun 1, 2026
+### Week of Jun 1, 2026 &mdash; *past*
 
 - **Tue Jun 2** &mdash; *CNC Control Systems* &mdash; [Mazatrol Matrix vs. Smooth: When to Upgrade](../src/content/insights/cnc-control-systems/mazatrol-matrix-vs-smooth.md) ✓
 - **Thu Jun 4** &mdash; *Way Covers Engineering* &mdash; [Telescoping Steel vs. Bellows vs. Roll-Up: When Each Wins](../src/content/insights/way-covers-engineering/telescoping-vs-bellows-vs-rollup.md)
 
-### Week of Jun 8, 2026
+### Week of Jun 8, 2026 &mdash; *past*
 
 - **Tue Jun 9** &mdash; *Field Service & Logistics (Midwest)* &mdash; [The 4-Hour Drive Radius: What Iowa Shops Get](../src/content/insights/field-service-logistics/iowa-four-hour-radius.md)
 - **Thu Jun 11** &mdash; *Buying & Owning Used CNC* &mdash; [Used VMC Inspection Checklist: What We Actually Check](../src/content/insights/buying-owning-used-cnc/used-vmc-inspection-checklist.md)
 
-### Week of Jun 15, 2026
+### Week of Jun 15, 2026 &mdash; *past*
 
 - **Tue Jun 16** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Bearing Failure Modes: Cage, Race, Ball, Retainer](../src/content/insights/spindle-diagnostics/spindle-bearing-failure-modes.md) ✓
-- **Thu Jun 18** &mdash; *CNC Control Systems* &mdash; [Fanuc Alarm 401: Causes and Recovery](../src/content/insights/cnc-control-systems/fanuc-alarm-401.md)
+- **Thu Jun 18** &mdash; *CNC Control Systems* &mdash; [Fanuc Alarm 401: Causes and Recovery](../src/content/insights/cnc-control-systems/fanuc-alarm-401.md) ✓
 
 ### Week of Jun 22, 2026
 
@@ -223,10 +223,10 @@ _16 published &middot; 0 scheduled &middot; 0 unscheduled (of 16 total)._
 
 ### CNC Control Systems
 
-_1 published &middot; 14 scheduled &middot; 0 unscheduled (of 15 total)._
+_2 published &middot; 13 scheduled &middot; 0 unscheduled (of 15 total)._
 
 - ✓ **2026-06-02** &mdash; ~~Mazatrol Matrix vs. Smooth: When to Upgrade~~ (published)
-- ◯ `2026-06-18` &mdash; Fanuc Alarm 401: Causes and Recovery
+- ✓ **2026-06-18** &mdash; ~~Fanuc Alarm 401: Causes and Recovery~~ (published)
 - ◯ `2026-07-02` &mdash; Heidenhain TNC Retrofit: When It's Worth It
 - ◯ `2026-07-21` &mdash; Siemens 840D vs. 840Dsl: What's Different
 - ◯ `2026-08-06` &mdash; Okuma OSP-P200 to P300: Practical Impact
