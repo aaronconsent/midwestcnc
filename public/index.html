@@ -2409,10 +2409,10 @@ section.insight-sources {
   border: 1px solid var(--line);
   border-radius: var(--r-3);
   box-shadow: var(--sh-2);
-  padding: clamp(var(--s-4), 3vw, var(--s-6));
+  padding: clamp(var(--s-5), 3.5vw, var(--s-7));
   display: flex;
   flex-direction: column;
-  gap: var(--s-5);
+  gap: var(--s-6);
 }
 
 /* Field-section grouping — uses <fieldset> for semantics; no
@@ -2423,35 +2423,52 @@ section.insight-sources {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--s-3);
+  gap: var(--s-4);
 }
 .form-section-title {
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--accent-dark);
   padding: 0;
-  margin: 0 0 var(--s-1) 0;
+  margin: 0 0 var(--s-2) 0;
 }
 
 /* Two-column field rows on desktop, stacked on mobile. */
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--s-3);
+  gap: var(--s-4);
 }
 @media (max-width: 600px) {
   .form-row { grid-template-columns: 1fr; }
 }
 
-/* Reuse the existing .quote-form input/textarea/select styles but
-   tighten label rhythm slightly for the modern layout. */
-.quote-form-modern .field { display: flex; flex-direction: column; gap: 0.35rem; }
-.quote-form-modern .field-label { font-weight: 600; font-size: 0.92rem; color: var(--fg); }
+/* Scale up the form for the wider column. Larger inputs, labels,
+   and textarea give the form appropriate weight in the layout. */
+.quote-form-modern .field { display: flex; flex-direction: column; gap: 0.45rem; }
+.quote-form-modern .field label,
+.quote-form-modern .field-label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--fg);
+}
+.quote-form-modern input,
+.quote-form-modern textarea,
+.quote-form-modern select {
+  font: inherit;
+  font-size: 1.02rem;
+  padding: 0.95rem 1.1rem;
+  border-radius: var(--r-2);
+}
+.quote-form-modern textarea {
+  min-height: 12rem;
+  line-height: 1.5;
+}
 .quote-form-modern .field-hint {
-  margin: 0.3rem 0 0 0;
-  font-size: 0.82rem;
+  margin: 0.4rem 0 0 0;
+  font-size: 0.9rem;
   color: var(--muted);
 }
 
@@ -2616,11 +2633,12 @@ section.insight-sources {
   font: inherit;
   background: var(--accent);
   color: #fff;
-  padding: 1.05rem 1.6rem;
+  padding: 1.25rem 1.8rem;
   border: 0;
   border-radius: var(--r-2);
-  font-weight: 700;
-  font-size: 1.05rem;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.005em;
   cursor: pointer;
   align-self: stretch;
   box-shadow: var(--sh-2);
