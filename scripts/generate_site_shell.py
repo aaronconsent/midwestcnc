@@ -693,14 +693,14 @@ SITE_SHELL_CSS = """
   .quote-call-banner:hover { transform: none !important; }
 }
 
-/* Two-column layout — form on the left, supporting cards on the right. */
-/* Single-column layout — form fills the max content width. The
-   "What we'll need" and "What happens next" messaging that used to
-   live in a sidebar is now integrated into the form card itself. */
+/* Single-column layout — the form fills the full width of its wide
+   section band. Parent .section-inner (layout='wide') already caps
+   at --max-wide and centers, so no cap or auto-margin needed here.
+   The "What we'll need" and "What happens next" messaging that used
+   to live in a sidebar is now integrated into the form card itself. */
 .quote-layout {
-  max-width: var(--max-wide);
-  margin: 0 auto;
-  padding: 0 var(--s-5) var(--s-6);
+  width: 100%;
+  padding: 0 0 var(--s-6);
 }
 
 /* Intro checklist at the top of the form — sets expectations for
@@ -783,16 +783,17 @@ SITE_SHELL_CSS = """
   .quote-next-steps-grid { grid-template-columns: 1fr; gap: var(--s-3); }
 }
 
-/* Form column — the form itself sits on a card background to ground it. */
+/* Form card — full width of the wide band, sits on a surface card
+   with generous padding so fields have real breathing room. */
 .quote-form-modern {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--r-3);
   box-shadow: var(--sh-2);
-  padding: clamp(var(--s-5), 3.5vw, var(--s-7));
+  padding: clamp(var(--s-5), 4vw, var(--s-8));
   display: flex;
   flex-direction: column;
-  gap: var(--s-6);
+  gap: var(--s-7);
 }
 
 /* Field-section grouping — uses <fieldset> for semantics; no
@@ -815,14 +816,12 @@ SITE_SHELL_CSS = """
   margin: 0 0 var(--s-2) 0;
 }
 
-/* Two-column field rows on desktop, stacked on mobile. */
+/* Single-column field rows — every field gets its own line at the
+   full form width. No internal columns anywhere in the quote form. */
 .form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: var(--s-4);
-}
-@media (max-width: 600px) {
-  .form-row { grid-template-columns: 1fr; }
 }
 
 /* Scale up the form for the wider column. Larger inputs, labels,
@@ -843,8 +842,8 @@ SITE_SHELL_CSS = """
   border-radius: var(--r-2);
 }
 .quote-form-modern textarea {
-  min-height: 12rem;
-  line-height: 1.5;
+  min-height: 15rem;
+  line-height: 1.55;
 }
 .quote-form-modern .field-hint {
   margin: 0.4rem 0 0 0;
@@ -2458,6 +2457,7 @@ def gen_quote(brands):
         schemas=schemas,
         crumbs=[("Home", "/"), ("Get a Quote", None)],
         body_html=quote_body(brands),
+        layout="wide",
     )
 
 
