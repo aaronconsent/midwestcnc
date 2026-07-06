@@ -1,30 +1,33 @@
 /**
- * Cloudflare Pages Function — quote form handler
+ * Cloudflare Worker — midwestcncservices.com
+ *
+ * The project is deployed as Workers + Static Assets (not classic Pages
+ * Functions), so the /functions/api convention does NOT get picked up.
+ * This Worker sits in front of the static asset serving and handles
+ * dynamic routes (currently: POST /api/quote) itself, delegating
+ * everything else to the ASSETS binding.
  *
  * Endpoint:  POST /api/quote
- * Triggers:  the form on /get-a-quote/ (classic HTML POST, no JS required)
- *
  * Behavior:
- *   1. Reads multipart/form-data from the submission.
- *   2. Silently drops bot submissions caught by the honeypot field.
+ *   1. Reads multipart/form-data.
+ *   2. Silently drops bot submissions caught by the honeypot.
  *   3. Verifies the Cloudflare Turnstile token server-side.
  *   4. Validates required fields.
  *   5. Sends a notification email to Aaron via the Resend API.
- *   6. Redirects (303 See Other) to /get-a-quote/thank-you/ on success.
- *      Redirects back to /get-a-quote/?error=<code> on failure.
+ *   6. 303 See Other → /get-a-quote/thank-you/ on success.
+ *      303 → /get-a-quote/?error=<code> on failure.
  *
- * Environment bindings (set in Cloudflare Pages dashboard →
- * Settings → Environment variables. See docs/forms-setup.md for the
- * full walkthrough):
+ * Environment bindings (set in Cloudflare dashboard →
+ * midwestcnc Worker → Settings → Variables and Bindings):
  *
  *   RESEND_API_KEY     — secret, from https://resend.com/api-keys
  *   TURNSTILE_SECRET   — secret, from the Turnstile widget settings
- *   NOTIFY_EMAIL       — comma-separated list of inbox addresses to notify
- *                        (e.g. "aaron@midwestcncservices.com,ken@midwestcncservices.com")
- *   FROM_EMAIL         — verified sender address in Resend
- *                        (e.g. "Quote Form <quotes@midwestcncservices.com>").
- *                        Domain must be verified at https://resend.com/domains
- *                        before this address will deliver.
+ *   NOTIFY_EMAIL       — comma-separated inbox address(es)
+ *   FROM_EMAIL         — verified Resend sender
+ *                        (e.g. "Quote Form <quotes@midwestcncservices.com>")
+ *
+ * Also bind the assets:
+ *   ASSETS             — Assets binding (declared in wrangler.jsonc)
  */
 
 const SUCCESS_PATH = "/get-a-quote/thank-you/";
@@ -32,11 +35,32 @@ const ERROR_PATH = "/get-a-quote/";
 
 const REQUIRED_FIELDS = ["name", "company", "phone", "email", "service", "message"];
 
-export async function onRequestPost(context) {
-  const { request, env } = context;
+export default {
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+
+    // Quote form endpoint
+    if (url.pathname === "/api/quote") {
+      if (request.method === "POST") {
+        return handleQuote(request, env);
+      }
+      // GET / anything else → polite 405
+      return new Response("This endpoint accepts POST only.", {
+        status: 405,
+        headers: { "content-type": "text/plain; charset=utf-8" },
+      });
+    }
+
+    // Everything else → static asset serving
+    return env.ASSETS.fetch(request);
+  },
+};
+
+// ---------- Quote handler ----------
+
+async function handleQuote(request, env) {
   const url = new URL(request.url);
 
-  // 1. Parse the form
   let form;
   try {
     form = await request.formData();
@@ -44,15 +68,15 @@ export async function onRequestPost(context) {
     return seeOther(url, `${ERROR_PATH}?error=bad-request`);
   }
 
-  // 2. Honeypot — bots fill this; humans never see it. Silently
-  //    pretend success so the bot does not retry.
+  // Honeypot — bots fill this; humans never see it.
   const honeypot = (form.get("botcheck") || "").toString().trim();
   if (honeypot !== "") {
+    // Silent "success" so the bot doesn't retry.
     return seeOther(url, SUCCESS_PATH);
   }
 
-  // 3. Turnstile verification (skip only if no secret is configured —
-  //    useful for local dev, but in production the secret must be set).
+  // Turnstile verification (skip if no secret configured — useful for
+  // local dev, but in production the secret MUST be set).
   if (env.TURNSTILE_SECRET) {
     const token = (form.get("cf-turnstile-response") || "").toString();
     if (!token) {
@@ -68,7 +92,7 @@ export async function onRequestPost(context) {
     }
   }
 
-  // 4. Validate required fields
+  // Required fields
   for (const f of REQUIRED_FIELDS) {
     const v = (form.get(f) || "").toString().trim();
     if (!v) {
@@ -76,7 +100,6 @@ export async function onRequestPost(context) {
     }
   }
 
-  // 5. Build the payload
   const payload = {
     name: trim(form, "name"),
     company: trim(form, "company"),
@@ -91,25 +114,13 @@ export async function onRequestPost(context) {
     ua: request.headers.get("user-agent") || "unknown",
   };
 
-  // 6. Send the notification email
   const sent = await sendNotificationEmail(env, payload);
   if (!sent.ok) {
-    // Log the Resend error to the runtime console so it shows up in
-    // Cloudflare Pages Functions logs. Useful when debugging delivery.
     console.error("Resend send failed:", sent.error);
     return seeOther(url, `${ERROR_PATH}?error=email-failed`);
   }
 
-  // 7. Done — send the user to the thank-you page
   return seeOther(url, SUCCESS_PATH);
-}
-
-// Accidental GET → polite 405
-export async function onRequestGet() {
-  return new Response("This endpoint accepts POST only.", {
-    status: 405,
-    headers: { "content-type": "text/plain; charset=utf-8" },
-  });
 }
 
 // ---------- Helpers ----------
@@ -119,8 +130,7 @@ function trim(form, key) {
 }
 
 function seeOther(originUrl, path) {
-  // Use 303 See Other so a POST → GET transition is unambiguous,
-  // which is the right semantics after a form submission.
+  // 303 See Other — unambiguous POST → GET after a form submission.
   return new Response(null, {
     status: 303,
     headers: { Location: new URL(path, originUrl).toString() },
@@ -162,8 +172,6 @@ async function sendNotificationEmail(env, p) {
 
   const subject = `Quote request: ${p.machine_brand} ${p.service}`.trim();
 
-  // Plain-text body. Easy to scan in any mail client; reply-to is
-  // wired to the submitter so a direct reply goes straight to them.
   const text = [
     `New quote request from the Midwest CNC Services website.`,
     ``,
@@ -184,7 +192,6 @@ async function sendNotificationEmail(env, p) {
     `Browser:   ${p.ua}`,
   ].join("\n");
 
-  // Minimal HTML mirror — same content, easier to scan on mobile.
   const html = [
     `<p><strong>New quote request from the Midwest CNC Services website.</strong></p>`,
     `<table style="border-collapse:collapse;font-family:system-ui,sans-serif;">`,
