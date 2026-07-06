@@ -2393,14 +2393,93 @@ section.insight-sources {
 }
 
 /* Two-column layout — form on the left, supporting cards on the right. */
+/* Single-column layout — form fills the max content width. The
+   "What we'll need" and "What happens next" messaging that used to
+   live in a sidebar is now integrated into the form card itself. */
 .quote-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
-  gap: var(--s-6);
   max-width: var(--max-wide);
   margin: 0 auto;
   padding: 0 var(--s-5) var(--s-6);
-  align-items: start;
+}
+
+/* Intro checklist at the top of the form — sets expectations for
+   what to have handy before filling out the fields. */
+.quote-form-intro {
+  padding: var(--s-4) var(--s-5);
+  background: color-mix(in srgb, var(--surface) 90%, var(--accent) 5%);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--line));
+  border-left: 4px solid var(--accent);
+  border-radius: var(--r-2);
+}
+.quote-form-intro-title {
+  margin: 0 0 var(--s-2) 0;
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: var(--fg);
+}
+.quote-form-intro-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--fg);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+.quote-form-intro-list li { margin: 0.28rem 0; }
+
+/* "What happens next" — 3-step timeline as a horizontal grid inside
+   the form card, below the submit button. Stacks on narrow. */
+.quote-next-steps {
+  margin-top: var(--s-4);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+.quote-next-steps-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-dark);
+  margin: 0 0 var(--s-4) 0;
+}
+.quote-next-steps-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-5);
+}
+.quote-next-steps-grid li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+}
+.quote-next-steps-num {
+  width: 34px;
+  height: 34px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.98rem;
+  flex-shrink: 0;
+}
+.quote-next-steps-grid strong {
+  display: block;
+  color: var(--fg);
+  font-size: 1rem;
+  margin-bottom: 0.15rem;
+}
+.quote-next-steps-grid span {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+@media (max-width: 780px) {
+  .quote-next-steps-grid { grid-template-columns: 1fr; gap: var(--s-3); }
 }
 
 /* Form column — the form itself sits on a card background to ground it. */
@@ -2758,15 +2837,6 @@ section.insight-sources {
   font-size: 0.85rem !important;
   color: var(--muted) !important;
   margin: 0 !important;
-}
-
-/* Below 960px — collapse to single column. Sidebar moves below form.
-   The phone CTA stays in the hero so it is always reachable. */
-@media (max-width: 960px) {
-  .quote-layout {
-    grid-template-columns: 1fr;
-    gap: var(--s-5);
-  }
 }
 
 @media (max-width: 600px) {

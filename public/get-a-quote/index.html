@@ -2393,14 +2393,93 @@ section.insight-sources {
 }
 
 /* Two-column layout — form on the left, supporting cards on the right. */
+/* Single-column layout — form fills the max content width. The
+   "What we'll need" and "What happens next" messaging that used to
+   live in a sidebar is now integrated into the form card itself. */
 .quote-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
-  gap: var(--s-6);
   max-width: var(--max-wide);
   margin: 0 auto;
   padding: 0 var(--s-5) var(--s-6);
-  align-items: start;
+}
+
+/* Intro checklist at the top of the form — sets expectations for
+   what to have handy before filling out the fields. */
+.quote-form-intro {
+  padding: var(--s-4) var(--s-5);
+  background: color-mix(in srgb, var(--surface) 90%, var(--accent) 5%);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--line));
+  border-left: 4px solid var(--accent);
+  border-radius: var(--r-2);
+}
+.quote-form-intro-title {
+  margin: 0 0 var(--s-2) 0;
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: var(--fg);
+}
+.quote-form-intro-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--fg);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+.quote-form-intro-list li { margin: 0.28rem 0; }
+
+/* "What happens next" — 3-step timeline as a horizontal grid inside
+   the form card, below the submit button. Stacks on narrow. */
+.quote-next-steps {
+  margin-top: var(--s-4);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+.quote-next-steps-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-dark);
+  margin: 0 0 var(--s-4) 0;
+}
+.quote-next-steps-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-5);
+}
+.quote-next-steps-grid li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+}
+.quote-next-steps-num {
+  width: 34px;
+  height: 34px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.98rem;
+  flex-shrink: 0;
+}
+.quote-next-steps-grid strong {
+  display: block;
+  color: var(--fg);
+  font-size: 1rem;
+  margin-bottom: 0.15rem;
+}
+.quote-next-steps-grid span {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+@media (max-width: 780px) {
+  .quote-next-steps-grid { grid-template-columns: 1fr; gap: var(--s-3); }
 }
 
 /* Form column — the form itself sits on a card background to ground it. */
@@ -2760,15 +2839,6 @@ section.insight-sources {
   margin: 0 !important;
 }
 
-/* Below 960px — collapse to single column. Sidebar moves below form.
-   The phone CTA stays in the hero so it is always reachable. */
-@media (max-width: 960px) {
-  .quote-layout {
-    grid-template-columns: 1fr;
-    gap: var(--s-5);
-  }
-}
-
 @media (max-width: 600px) {
   .quote-hero { padding: var(--s-5) var(--s-4) var(--s-4); }
   .quote-hero-inner { text-align: left; align-items: flex-start; }
@@ -2959,8 +3029,17 @@ body.form-submitted .quote-helpers { display: none; }
 
 <section class="quote-layout">
 
-  <div class="quote-layout-form">
-    <form class="quote-form quote-form-modern" id="quote" action="/api/quote" method="POST">
+  <form class="quote-form quote-form-modern" id="quote" action="/api/quote" method="POST">
+
+      <div class="quote-form-intro">
+        <p class="quote-form-intro-title">Have these handy &mdash; the more detail, the faster we quote it:</p>
+        <ul class="quote-form-intro-list">
+          <li>Machine make, model, and approximate age</li>
+          <li>Symptoms or error codes you are seeing</li>
+          <li>How long the machine has been down</li>
+          <li>Photos of the spindle, control screen, or affected area if you have them</li>
+        </ul>
+      </div>
 
       <fieldset class="form-section">
         <legend class="form-section-title">About you</legend>
@@ -3112,57 +3191,34 @@ body.form-submitted .quote-helpers { display: none; }
         <p class="quote-submit-note">We typically reply within one business day. No automated sales follow-ups.</p>
       </div>
 
-    </form>
-  </div>
+      <div class="quote-next-steps">
+        <p class="quote-next-steps-title">What happens next</p>
+        <ol class="quote-next-steps-grid">
+          <li>
+            <span class="quote-next-steps-num" aria-hidden="true">1</span>
+            <div>
+              <strong>Within one business day</strong>
+              <span>We read your message and reply. If we need more info, we ask.</span>
+            </div>
+          </li>
+          <li>
+            <span class="quote-next-steps-num" aria-hidden="true">2</span>
+            <div>
+              <strong>Quote in hand</strong>
+              <span>Price, lead time, and the scope of work in plain English.</span>
+            </div>
+          </li>
+          <li>
+            <span class="quote-next-steps-num" aria-hidden="true">3</span>
+            <div>
+              <strong>Schedule the work</strong>
+              <span>Bench rebuild in Waterloo or field service across our 7-state coverage area.</span>
+            </div>
+          </li>
+        </ol>
+      </div>
 
-  <aside class="quote-layout-sidebar" aria-label="What to expect">
-
-    <div class="quote-card">
-      <h3>What we'll need from you</h3>
-      <ul class="quote-card-list">
-        <li>Machine make, model, and approximate age</li>
-        <li>Symptoms or error codes you are seeing</li>
-        <li>How long the machine has been down (if it is down)</li>
-        <li>Photos of the spindle, control screen, or affected area if relevant</li>
-      </ul>
-    </div>
-
-    <div class="quote-card">
-      <h3>What happens next</h3>
-      <ol class="quote-timeline">
-        <li>
-          <span class="quote-timeline-step" aria-hidden="true">1</span>
-          <div>
-            <strong>Within one business day</strong>
-            <p>We read your message and reply. If we need more info, we ask.</p>
-          </div>
-        </li>
-        <li>
-          <span class="quote-timeline-step" aria-hidden="true">2</span>
-          <div>
-            <strong>Quote in hand</strong>
-            <p>Price, lead time, and the scope of work in plain English.</p>
-          </div>
-        </li>
-        <li>
-          <span class="quote-timeline-step" aria-hidden="true">3</span>
-          <div>
-            <strong>Schedule the work</strong>
-            <p>Bench rebuild in Waterloo or field service across our seven-state coverage area.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-
-    <div class="quote-card quote-card-call">
-      <h3>Rather just call?</h3>
-      <p>If your machine is down right now, this is the faster path.</p>
-      <a class="quote-card-phone" href="tel:+13196104341">319-610-4341</a>
-      <p class="quote-card-meta">Midwest CNC Services &middot; Waterloo, Iowa<br>
-      Serving Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas.</p>
-    </div>
-
-  </aside>
+  </form>
 </section>
 
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
