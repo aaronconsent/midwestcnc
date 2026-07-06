@@ -2392,14 +2392,19 @@ section.insight-sources {
   .quote-call-banner:hover { transform: none !important; }
 }
 
-/* Single-column layout — the form fills the full width of its wide
-   section band. Parent .section-inner (layout='wide') already caps
-   at --max-wide and centers, so no cap or auto-margin needed here.
-   The "What we'll need" and "What happens next" messaging that used
-   to live in a sidebar is now integrated into the form card itself. */
+/* Single-column layout — the whole quote body lives inside one
+   .page-section-hero band whose .section-inner is uncapped (max-width:
+   none, padding: 0), so .quote-layout is the element that re-establishes
+   the 1140px content width + horizontal gutter. The form card, intro
+   checklist, and "What happens next" timeline all stack inside it at
+   full width. */
 .quote-layout {
-  width: 100%;
-  padding: 0 0 var(--s-6);
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: var(--s-6) var(--s-5);
+}
+@media (max-width: 700px) {
+  .quote-layout { padding: var(--s-5) var(--s-4); }
 }
 
 /* Intro checklist at the top of the form — sets expectations for
@@ -2483,13 +2488,18 @@ section.insight-sources {
 }
 
 /* Form card — full width of the wide band, sits on a surface card
-   with generous padding so fields have real breathing room. */
-.quote-form-modern {
+   with generous padding so fields have real breathing room. Overrides
+   the legacy .quote-form rule (max-width: 560px) which is otherwise
+   still applied because the form carries both classes. */
+.quote-form.quote-form-modern {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--r-3);
   box-shadow: var(--sh-2);
   padding: clamp(var(--s-5), 4vw, var(--s-8));
+  margin: 0;
+  max-width: none;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: var(--s-7);
