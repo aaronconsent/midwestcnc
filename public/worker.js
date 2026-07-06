@@ -6,19 +6,30 @@
 // Deploy pattern mirrors bandrproduction: worker.js + wrangler.jsonc +
 // .assetsignore at the site root. Cloudflare Git integration builds on push.
 //
+// Email routing:
+//   To:       ken@midwestcncservices.com (production default, override
+//             with NOTIFY_EMAIL env var — comma-separated for multiple).
+//   From:     verified sender you own — CANNOT be the customer's email
+//             (SPF/DKIM/DMARC would reject it as spoofing). Default is
+//             quotes@midwestcncservices.com — override with FROM_EMAIL.
+//   Reply-To: the customer's email, so a plain Reply in Ken's client
+//             goes straight back to them. Not configurable — always
+//             the submitter's email.
+//
 // Required Cloudflare env vars (Workers > Settings > Variables and Secrets):
 //   RESEND_API_KEY    — secret, from https://resend.com/api-keys
-//   FROM_EMAIL        — verified Resend sender (e.g. "Midwest CNC
-//                       <quotes@midwestcncservices.com>"); the domain must
-//                       be verified in Resend before delivery works. For a
-//                       first test before the domain is verified, use
-//                       "Midwest CNC <onboarding@resend.dev>" — Resend's
-//                       shared sender only delivers to the Resend account
-//                       owner's own address, so set NOTIFY_EMAIL to that
-//                       same address while testing.
-//   NOTIFY_EMAIL      — comma-separated list of inboxes to notify.
 //
-// Optional:
+// Optional (defaults live in the code below):
+//   NOTIFY_EMAIL      — comma-separated list of inboxes to notify.
+//                       Default: ken@midwestcncservices.com
+//   FROM_EMAIL        — verified Resend sender.
+//                       Default: "Midwest CNC Quote Form <quotes@midwestcncservices.com>"
+//                       (requires midwestcncservices.com verified in Resend).
+//                       For a first test before the domain is verified,
+//                       override to "Midwest CNC <onboarding@resend.dev>" —
+//                       Resend's shared sender only delivers to the Resend
+//                       account owner's own address, so also set
+//                       NOTIFY_EMAIL to that same address while testing.
 //   TURNSTILE_SECRET  — server-side secret for the Turnstile widget on the
 //                       form (widget site key 0x4AAAAAADXY93Hw7DfP3PQJ is
 //                       already public in the HTML). If unset, Turnstile
@@ -134,11 +145,17 @@ async function verifyTurnstile(secret, token, ip) {
 
 async function sendNotificationEmail(env, p) {
   if (!env.RESEND_API_KEY) return { ok: false, error: "RESEND_API_KEY not configured" };
-  if (!env.FROM_EMAIL) return { ok: false, error: "FROM_EMAIL not configured" };
 
-  const recipients = (env.NOTIFY_EMAIL || "")
+  // From: verified Resend sender you own. Cannot be the customer's email
+  // (would fail SPF/DKIM/DMARC). Customer's email goes in reply_to below.
+  const fromEmail = env.FROM_EMAIL ||
+    "Midwest CNC Quote Form <quotes@midwestcncservices.com>";
+
+  // To: Ken by default. NOTIFY_EMAIL env var can override (comma-separated
+  // to CC additional recipients, e.g. "ken@...,aaron@...").
+  const recipients = (env.NOTIFY_EMAIL || "ken@midwestcncservices.com")
     .split(",").map((s) => s.trim()).filter(Boolean);
-  if (recipients.length === 0) return { ok: false, error: "NOTIFY_EMAIL not configured" };
+  if (recipients.length === 0) return { ok: false, error: "NOTIFY_EMAIL empty" };
 
   const subject = `Quote request: ${p.machine_brand} ${p.service}`.trim();
 
@@ -190,7 +207,7 @@ async function sendNotificationEmail(env, p) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: env.FROM_EMAIL,
+        from: fromEmail,
         to: recipients,
         reply_to: p.email,
         subject,
