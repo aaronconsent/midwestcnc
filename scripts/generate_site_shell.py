@@ -696,7 +696,7 @@ SITE_SHELL_CSS = """
 /* Two-column layout — form on the left, supporting cards on the right. */
 .quote-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
   gap: var(--s-6);
   max-width: var(--max-wide);
   margin: 0 auto;
