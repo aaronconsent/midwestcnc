@@ -12,7 +12,25 @@
 
   gtag('config', 'G-3G003SQE93');
 </script>
-<script src="https://cdn.consentresolve.com/consentresolve.js"></script><script>ConsentResolve.init({siteId:'89378cf0-e275-41af-a5ab-5836c6647c93',usercentricsSettingsId:'NtX5STrPifLEMi'});ConsentResolve.page();</script>
+<script>
+  // Only load the ConsentResolve CMP on the production domain. On
+  // preview URLs the CMP cannot persist consent, so the banner would
+  // reappear on every page load.
+  (function() {
+    if (location.hostname !== 'midwestcncservices.com' &&
+        location.hostname !== 'www.midwestcncservices.com') return;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.consentresolve.com/consentresolve.js';
+    s.onload = function() {
+      ConsentResolve.init({
+        siteId: '89378cf0-e275-41af-a5ab-5836c6647c93',
+        usercentricsSettingsId: 'NtX5STrPifLEMi'
+      });
+      ConsentResolve.page();
+    };
+    document.head.appendChild(s);
+  })();
+</script>
 <title>Surface Finish Degradation: Spindle or Fixture? | Midwest CNC Services</title>
 <meta name="description" content="When part surface finish drifts, the spindle is one of four likely causes. The four-test diagnostic procedure sorts spindle from fixture, tool, and program in u">
 <link rel="canonical" href="https://midwestcncservices.com/insights/spindle-diagnostics/surface-finish-degradation/">
@@ -1916,7 +1934,7 @@ section.insight-sources {
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Midwest CNC Services home">
-    <img src="/assets/images/logos/midwest-cnc-logo.webp" alt="Midwest CNC Services">
+    <img src="/assets/images/logos/midwest-cnc-logo.png" alt="Midwest CNC Services">
   </a>
   <nav aria-label="Primary">
     <ul>

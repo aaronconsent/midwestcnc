@@ -350,6 +350,14 @@ def md_body_to_html(body):
 # the JS braces don't collide with f-string parsing. Injected into the
 # <head> of every page by all three generators (this module,
 # generate_site_shell, generate_insights_pages).
+#
+# CMP gating: ConsentResolve/Usercentrics writes its consent state as a
+# cookie on the domain it is registered for (midwestcncservices.com).
+# Loading the CMP on midwestcnc.aironz.workers.dev (the current preview
+# URL) or on local files causes the banner to re-prompt on every reload
+# because the cookie lookup fails. So we only inject the CMP loader
+# when the browser is running on the production hostname. GA4 stays on
+# for all environments so preview traffic is still tracked.
 ANALYTICS_HEAD = """<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-3G003SQE93"></script>
 <script>
@@ -359,7 +367,25 @@ ANALYTICS_HEAD = """<!-- Google tag (gtag.js) -->
 
   gtag('config', 'G-3G003SQE93');
 </script>
-<script src="https://cdn.consentresolve.com/consentresolve.js"></script><script>ConsentResolve.init({siteId:'89378cf0-e275-41af-a5ab-5836c6647c93',usercentricsSettingsId:'NtX5STrPifLEMi'});ConsentResolve.page();</script>"""
+<script>
+  // Only load the ConsentResolve CMP on the production domain. On
+  // preview URLs the CMP cannot persist consent, so the banner would
+  // reappear on every page load.
+  (function() {
+    if (location.hostname !== 'midwestcncservices.com' &&
+        location.hostname !== 'www.midwestcncservices.com') return;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.consentresolve.com/consentresolve.js';
+    s.onload = function() {
+      ConsentResolve.init({
+        siteId: '89378cf0-e275-41af-a5ab-5836c6647c93',
+        usercentricsSettingsId: 'NtX5STrPifLEMi'
+      });
+      ConsentResolve.page();
+    };
+    document.head.appendChild(s);
+  })();
+</script>"""
 
 # Default Open Graph / Twitter card image used site-wide unless a page
 # supplies its own. Absolute URL required by OG. The highway shot is
