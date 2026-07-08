@@ -12,5 +12,12 @@
   },
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "midwestcnc-leads",
+      "database_id": "bf690c6e-eca6-4033-b1de-db5d375c5ffb"
+    }
   ]
 }
