@@ -41,6 +41,32 @@ const ERROR_PATH = "/get-a-quote/";
 const REQUIRED_FIELDS = ["name", "company", "phone", "email", "service", "message"];
 const PHONE = "319-610-4341";
 
+// D1 schema — created lazily on first write. Idempotent so it's safe
+// to CREATE TABLE IF NOT EXISTS on every request; SQLite short-circuits
+// if the table already exists.
+const QUOTES_SCHEMA = `
+CREATE TABLE IF NOT EXISTS quotes (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  created_at TEXT NOT NULL,
+  name TEXT NOT NULL,
+  company TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  email TEXT NOT NULL,
+  machine_brand TEXT,
+  machine_model TEXT,
+  service TEXT NOT NULL,
+  message TEXT NOT NULL,
+  ip TEXT,
+  user_agent TEXT,
+  status TEXT NOT NULL DEFAULT 'new',
+  notes TEXT DEFAULT '',
+  email_sent INTEGER NOT NULL DEFAULT 0,
+  email_error TEXT DEFAULT ''
+);
+CREATE INDEX IF NOT EXISTS idx_quotes_status ON quotes(status);
+CREATE INDEX IF NOT EXISTS idx_quotes_created_at ON quotes(created_at DESC);
+`;
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -105,13 +131,68 @@ async function handleQuote(request, env) {
     ua: request.headers.get("user-agent") || "unknown",
   };
 
+  // Persist the submission to D1 before attempting delivery so nothing
+  // is lost if email fails. Guarded — if the DB binding isn't wired yet,
+  // this is a no-op and we still send the email.
+  const saved = await saveToD1(env, payload);
+  if (!saved.ok && saved.error !== "no-db-binding") {
+    console.log("D1 save failed:", saved.error);
+  }
+
   const sent = await sendNotificationEmail(env, payload);
+
+  // Best-effort: annotate the D1 row with the email result so admins
+  // can see delivery status alongside the submission.
+  if (saved.ok) {
+    await updateEmailStatus(env, saved.id, sent.ok, sent.error || "")
+      .catch((e) => console.log("D1 status update failed:", e && e.message));
+  }
+
   if (!sent.ok) {
     console.log("Resend send failed:", sent.error);
     return seeOther(url, `${ERROR_PATH}?error=email-failed`);
   }
 
   return seeOther(url, SUCCESS_PATH);
+}
+
+async function saveToD1(env, p) {
+  if (!env.DB) return { ok: false, error: "no-db-binding" };
+  try {
+    await env.DB.exec(QUOTES_SCHEMA.replace(/\n/g, " "));
+    const result = await env.DB.prepare(
+      `INSERT INTO quotes
+        (created_at, name, company, phone, email, machine_brand,
+         machine_model, service, message, ip, user_agent)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    )
+      .bind(
+        p.timestamp,
+        p.name,
+        p.company,
+        p.phone,
+        p.email,
+        p.machine_brand,
+        p.machine_model,
+        p.service,
+        p.message,
+        p.ip,
+        p.ua,
+      )
+      .run();
+    return { ok: true, id: result.meta.last_row_id };
+  } catch (e) {
+    return { ok: false, error: String(e && e.message || e) };
+  }
+}
+
+async function updateEmailStatus(env, id, sent, error) {
+  if (!env.DB || !id) return;
+  await env.DB.prepare(
+    "UPDATE quotes SET email_sent = ?, email_error = ? WHERE id = ?",
+  )
+    .bind(sent ? 1 : 0, error || "", id)
+    .run();
 }
 
 function trim(form, key) {
