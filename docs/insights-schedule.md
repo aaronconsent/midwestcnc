@@ -4,46 +4,46 @@
 
 ## Status
 
-- **Published:** 17
+- **Published:** 18
 - **Scheduled (not yet drafted):** 74
-- **Unscheduled backlog:** -15
+- **Unscheduled backlog:** -16
 - **Total planned across all pillars:** 76
 
 First scheduled date: `2026-06-02`. Last: `2027-02-11`.
 
 ## Calendar
 
-### Week of Jun 1, 2026
+### Week of Jun 1, 2026 &mdash; *past*
 
 - **Tue Jun 2** &mdash; *CNC Control Systems* &mdash; [Mazatrol Matrix vs. Smooth: When to Upgrade](../src/content/insights/cnc-control-systems/mazatrol-matrix-vs-smooth.md) ✓
 - **Thu Jun 4** &mdash; *Way Covers Engineering* &mdash; [Telescoping Steel vs. Bellows vs. Roll-Up: When Each Wins](../src/content/insights/way-covers-engineering/telescoping-vs-bellows-vs-rollup.md)
 
-### Week of Jun 8, 2026
+### Week of Jun 8, 2026 &mdash; *past*
 
 - **Tue Jun 9** &mdash; *Field Service & Logistics (Midwest)* &mdash; [The 4-Hour Drive Radius: What Iowa Shops Get](../src/content/insights/field-service-logistics/iowa-four-hour-radius.md)
 - **Thu Jun 11** &mdash; *Buying & Owning Used CNC* &mdash; [Used VMC Inspection Checklist: What We Actually Check](../src/content/insights/buying-owning-used-cnc/used-vmc-inspection-checklist.md)
 
-### Week of Jun 15, 2026
+### Week of Jun 15, 2026 &mdash; *past*
 
 - **Tue Jun 16** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Bearing Failure Modes: Cage, Race, Ball, Retainer](../src/content/insights/spindle-diagnostics/spindle-bearing-failure-modes.md) ✓
 - **Thu Jun 18** &mdash; *CNC Control Systems* &mdash; [Fanuc Alarm 401: Causes and Recovery](../src/content/insights/cnc-control-systems/fanuc-alarm-401.md)
 
-### Week of Jun 22, 2026
+### Week of Jun 22, 2026 &mdash; *past*
 
-- **Tue Jun 23** &mdash; *Way Covers Engineering* &mdash; [Measuring for Way Cover Replacement: The Field Method](../src/content/insights/way-covers-engineering/measure-for-cover-replacement.md)
+- **Tue Jun 23** &mdash; *Way Covers Engineering* &mdash; [Measuring for Way Cover Replacement: The Field Method](../src/content/insights/way-covers-engineering/measure-for-cover-replacement.md) ✓
 - **Thu Jun 25** &mdash; *Field Service & Logistics (Midwest)* &mdash; [Ship the Machine vs. On-Site Work: How We Decide](../src/content/insights/field-service-logistics/ship-machine-vs-onsite.md)
 
-### Week of Jun 29, 2026
+### Week of Jun 29, 2026 &mdash; *past*
 
 - **Tue Jun 30** &mdash; *Buying & Owning Used CNC* &mdash; [Used Mazak Buying Guide: Era-by-Era](../src/content/insights/buying-owning-used-cnc/used-mazak-by-era.md)
 - **Thu Jul 2** &mdash; *CNC Control Systems* &mdash; [Heidenhain TNC Retrofit: When It's Worth It](../src/content/insights/cnc-control-systems/heidenhain-tnc-retrofit.md)
 
-### Week of Jul 6, 2026
+### Week of Jul 6, 2026 &mdash; *past*
 
 - **Tue Jul 7** &mdash; *Way Covers Engineering* &mdash; [OEM-Spec vs. Custom Way Covers: Cost and Lead Time](../src/content/insights/way-covers-engineering/oem-vs-custom-way-covers.md)
 - **Thu Jul 9** &mdash; *Field Service & Logistics (Midwest)* &mdash; [Multi-State Spindle Logistics: Shipping from Texas](../src/content/insights/field-service-logistics/multi-state-spindle-logistics.md)
 
-### Week of Jul 13, 2026
+### Week of Jul 13, 2026 &mdash; *past*
 
 - **Tue Jul 14** &mdash; *Buying & Owning Used CNC* &mdash; [Used Haas Buying: Classic Control vs. NGC](../src/content/insights/buying-owning-used-cnc/used-haas-classic-vs-ngc.md)
 - **Thu Jul 16** &mdash; *Spindle Diagnostics & Repair Decisions* &mdash; [Spindle Runout: Causes, Measurement, and When to Act](../src/content/insights/spindle-diagnostics/spindle-runout-measurement.md) ✓
@@ -243,10 +243,10 @@ _1 published &middot; 14 scheduled &middot; 0 unscheduled (of 15 total)._
 
 ### Way Covers Engineering
 
-_0 published &middot; 15 scheduled &middot; 0 unscheduled (of 15 total)._
+_1 published &middot; 14 scheduled &middot; 0 unscheduled (of 15 total)._
 
+- ✓ **2026-06-23** &mdash; ~~Measuring for Way Cover Replacement: The Field Method~~ (published)
 - ◯ `2026-06-04` &mdash; Telescoping Steel vs. Bellows vs. Roll-Up: When Each Wins
-- ◯ `2026-06-23` &mdash; Measuring for Way Cover Replacement: The Field Method
 - ◯ `2026-07-07` &mdash; OEM-Spec vs. Custom Way Covers: Cost and Lead Time
 - ◯ `2026-07-23` &mdash; Pallet-Changer Interface Sealing: A Particular Challenge
 - ◯ `2026-08-11` &mdash; Trunnion-Adjacent Covers on 5-Axis: Why Bellows Win
