@@ -31,18 +31,18 @@
     document.head.appendChild(s);
   })();
 </script>
-<title>Midwest CNC Services — CNC Repair, Spindle Work &amp; Way Covers</title>
-<meta name="description" content="CNC machine repair, spindle rebuilds, and replacement way covers from Waterloo, IA. Serving shops across 7 Midwest states. Call 319-610-4341.">
-<link rel="canonical" href="https://midwestcncservices.com/">
-<meta property="og:title" content="Midwest CNC Services — CNC Repair, Spindle Work &amp; Way Covers">
-<meta property="og:description" content="CNC machine repair, spindle rebuilds, and replacement way covers from Waterloo, IA. Serving shops across 7 Midwest states. Call 319-610-4341.">
-<meta property="og:type" content="website">
+<title>Ship the Machine vs. On-Site Work: How We Decide | Midwest CNC Services</title>
+<meta name="description" content="Learn how we decide whether to ship a CNC machine for repair or perform on-site service. A practical decision tree from Midwest CNC Services.">
+<link rel="canonical" href="https://midwestcncservices.com/insights/field-service-logistics/ship-machine-vs-onsite/">
+<meta property="og:title" content="Ship the Machine vs. On-Site Work: How We Decide | Midwest CNC Services">
+<meta property="og:description" content="Learn how we decide whether to ship a CNC machine for repair or perform on-site service. A practical decision tree from Midwest CNC Services.">
+<meta property="og:type" content="article">
 <meta property="og:image" content="https://midwestcncservices.com/assets/images/general/midwest-cnc-highway-shot.webp">
-<meta property="og:url" content="https://midwestcncservices.com/">
+<meta property="og:url" content="https://midwestcncservices.com/insights/field-service-logistics/ship-machine-vs-onsite/">
 <meta property="og:site_name" content="Midwest CNC Services">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Midwest CNC Services — CNC Repair, Spindle Work &amp; Way Covers">
-<meta name="twitter:description" content="CNC machine repair, spindle rebuilds, and replacement way covers from Waterloo, IA. Serving shops across 7 Midwest states. Call 319-610-4341.">
+<meta name="twitter:title" content="Ship the Machine vs. On-Site Work: How We Decide | Midwest CNC Services">
+<meta name="twitter:description" content="Learn how we decide whether to ship a CNC machine for repair or perform on-site service. A practical decision tree from Midwest CNC Services.">
 <meta name="twitter:image" content="https://midwestcncservices.com/assets/images/general/midwest-cnc-highway-shot.webp">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1868,1140 +1868,69 @@ section.insight-sources {
   blockquote p { padding-left: 1.25rem; }
   th, td { padding: var(--s-2) var(--s-3); font-size: 0.9rem; }
 }
-
-/* =================================================================
-   Site-shell additions: homepage, hubs, quote form, tiles, brand grid
-   ================================================================= */
-
-/* Early success-state toggle — set on <html> in <head> before paint */
-.form-submitted-html .quote-form,
-.form-submitted-html .quote-helpers { display: none; }
-.form-submitted-html .success-message { display: block; }
-
-.section-eyebrow {
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-style: normal;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin: 0 0 var(--s-3) 0;
-  display: inline-block;
-  padding: 0.3rem 0.7rem;
-  background: rgba(184, 52, 26, 0.08);
-  border-radius: var(--r-pill);
-}
-
-/* =================================================================
-   Homepage hero — single-column, video background, image fallback.
-
-   Structure:
-     <section class="home-hero">
-       <video class="home-hero-video" .../>      <- bg media layer
-       <div class="home-hero-overlay"/>          <- dark gradient
-       <div class="home-hero-content">           <- text + CTAs
-     </section>
-
-   Layers (z-index):
-     0  video (decorative, aria-hidden)
-     1  overlay (legibility gradient)
-     2  content (text, white on dark)
-
-   prefers-reduced-motion respects the user's OS setting — video is
-   removed and the poster image is shown as a static background instead.
-   ================================================================= */
-
-/* Reset the band wrapper: hero is full-bleed, manages own backdrop. */
-.page-section-hero {
-  padding: 0;
-  background: var(--bg);
-}
-.page-section-hero > .section-inner { padding: 0; max-width: none; }
-
-.home-hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  min-height: 600px;
-  max-height: 820px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  isolation: isolate;
-  color: #fff;
-  background:
-    /* Poster image fallback if video fails to load (and on mobile +
-       prefers-reduced-motion, where the <video> is hidden) */
-    url('/assets/images/general/midwest-cnc-highway-shot.webp')
-    center / cover no-repeat
-    #000;
-}
-
-.home-hero-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  z-index: 1;
-  pointer-events: none;
-  /* Start invisible — the JS opacity driver below ramps it up from
-     the video's actual currentTime, so the fade is locked to the
-     video clock instead of drifting against a fixed-length CSS
-     keyframe. No clunky seam. */
-  opacity: 0;
-}
-
-/* Dark vertical gradient overlay — top 40% black to bottom 70% black.
-   Keeps white text legible over any frame, slightly heavier at the
-   bottom where the CTAs and trust line sit. */
-.home-hero-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.40) 0%,
-    rgba(0, 0, 0, 0.70) 100%
-  );
-}
-
-.home-hero-content {
-  position: relative;
-  z-index: 3;
-  max-width: var(--max-wide);
-  width: 100%;
-  margin: 0 auto;
-  padding: clamp(3rem, 7vw, 5rem) var(--s-5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.home-hero-content > .eyebrow {
-  font-size: 0.7rem;
-  padding: 0.28rem 0.75rem;
-  margin: 0 0 var(--s-4) 0;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.20);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.home-hero-content > h1 {
-  font-size: clamp(2.1rem, 4.6vw, 3.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  font-weight: 800;
-  margin: 0 0 var(--s-5) 0;
-  max-width: 22ch;
-  color: #fff;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-}
-
-.home-hero-content > .lede {
-  font-size: clamp(1.05rem, 1.25vw, 1.2rem);
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.92);
-  margin: 0 0 var(--s-6) 0;
-  max-width: 60ch;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-}
-
-.home-hero-content > .cta-row {
-  margin: 0 0 var(--s-5) 0;
-  justify-content: center;
-}
-/* Strengthen the secondary phone CTA against the dark video — give it
-   a semi-transparent surface so it reads cleanly. */
-.home-hero-content .cta-phone {
-  background: rgba(255, 255, 255, 0.10);
-  color: #fff !important;
-  border-color: rgba(255, 255, 255, 0.28);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-.home-hero-content .cta-phone:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.5);
-  color: #fff !important;
-}
-.home-hero-content .cta-phone::before { color: #fff; }
-
-.home-hero-content > .trust-line {
-  margin: 0;
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.72);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-}
-
-/* Mobile — skip the video entirely. Cellular users shouldn't get hit
-   with a 1.5 MB autoplay download. The poster image (set as the
-   .home-hero background-image above) takes over. */
-@media (max-width: 768px) {
-  .home-hero {
-    height: auto;
-    min-height: clamp(420px, 75vh, 560px);
-    max-height: none;
-  }
-  .home-hero-video { display: none; }
-  .home-hero-content {
-    padding: clamp(2rem, 7vw, 3rem) var(--s-4);
-  }
-  .home-hero-content > .cta-row { width: 100%; }
-}
-
-/* Respect prefers-reduced-motion — disable the video, let the poster
-   image background take over. Vestibular-disorder accessibility +
-   Core Web Vitals signal. */
-@media (prefers-reduced-motion: reduce) {
-  .home-hero-video { display: none; }
-}
-
-/* =================================================================
-   Tile grid (homepage services, state grid)
-   ================================================================= */
-.tile-grid, .state-grid {
-  display: grid;
-  gap: var(--s-4);
-  margin: var(--s-5) 0 var(--s-6) 0;
-}
-.tile-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.state-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-
-.tile {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none !important;
-  color: var(--fg) !important;
-  background: var(--surface);
-  padding: var(--s-4);
-  border-radius: var(--r-3);
-  border: 1px solid var(--line);
-  box-shadow: var(--sh-1);
-  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
-  position: relative;
-  overflow: hidden;
-}
-.tile::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: var(--r-3);
-  background: linear-gradient(135deg, transparent 60%, rgba(184, 52, 26, 0.04));
-  opacity: 0;
-  transition: opacity var(--t-base);
-  pointer-events: none;
-}
-.tile:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--sh-4);
-  border-color: var(--accent);
-}
-.tile:hover::after { opacity: 1; }
-.tile img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: var(--r-2);
-  margin-bottom: var(--s-3);
-  display: block;
-}
-.tile h3 { margin: var(--s-1) 0 var(--s-2) 0; font-size: 1.15rem; }
-.tile p { color: var(--muted); font-size: 0.95rem; margin: var(--s-2) 0 var(--s-3) 0; flex-grow: 1; }
-.tile .learn-more {
-  color: var(--accent);
-  font-size: 0.9rem;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  transition: gap var(--t-fast);
-}
-.tile:hover .learn-more { gap: 0.55rem; }
-
-/* =================================================================
-   Brand grid — hub pages
-   ================================================================= */
-.brand-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: var(--s-3);
-  margin: var(--s-4) 0 var(--s-6) 0;
-  list-style: none;
-  padding: 0;
-}
-.brand-grid li { margin: 0; }
-.brand-grid a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-2);
-  text-decoration: none !important;
-  color: var(--fg) !important;
-  font-weight: 600;
-  background: var(--surface);
-  box-shadow: var(--sh-1);
-  transition: transform var(--t-fast), border-color var(--t-fast), color var(--t-fast), box-shadow var(--t-fast);
-  position: relative;
-}
-.brand-grid a::after {
-  content: "";
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-right: 2px solid currentColor;
-  border-top: 2px solid currentColor;
-  transform: rotate(45deg);
-  opacity: 0.4;
-  transition: transform var(--t-fast), opacity var(--t-fast);
-}
-.brand-grid a:hover {
-  border-color: var(--accent);
-  color: var(--accent) !important;
-  transform: translateY(-2px);
-  box-shadow: var(--sh-3);
-}
-.brand-grid a:hover::after { opacity: 1; transform: rotate(45deg) translate(2px, -2px); }
-
-/* =================================================================
-   State sections (hub) + state grid tiles
-   ================================================================= */
-.state-section {
-  margin: var(--s-6) 0;
-  padding: var(--s-5);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-1);
-}
-.state-section h2 { margin-top: 0; }
-.state-section h2::before { display: none; }
-.state-cities { color: var(--muted); margin: var(--s-1) 0 var(--s-3) 0; }
-
-/* =================================================================
-   Quote form
-   ================================================================= */
-.quote-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-  max-width: 560px;
-  margin: var(--s-6) 0;
-  padding: var(--s-5);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-2);
-}
-.quote-form .field { display: flex; flex-direction: column; gap: 0.4rem; }
-.quote-form label { font-weight: 600; font-size: 0.92rem; color: var(--fg); }
-.quote-form .required::after { content: " *"; color: var(--accent); }
-.quote-form input,
-.quote-form textarea,
-.quote-form select {
-  font: inherit;
-  padding: 0.75rem 0.9rem;
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-2);
-  background: var(--surface);
-  width: 100%;
-  transition: border-color var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-form input:hover,
-.quote-form textarea:hover,
-.quote-form select:hover { border-color: var(--muted); }
-.quote-form input:focus,
-.quote-form textarea:focus,
-.quote-form select:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: var(--sh-focus);
-}
-.quote-form textarea { min-height: 9rem; resize: vertical; }
-.quote-form .radio-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--s-2); }
-.quote-form .radio-group label {
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  padding: 0.55rem 0.8rem;
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-2);
-  background: var(--surface);
-  transition: border-color var(--t-fast), background var(--t-fast);
-}
-.quote-form .radio-group label:hover { border-color: var(--muted); background: var(--surface-2); }
-.quote-form .radio-group input[type="radio"] { accent-color: var(--accent); }
-.quote-form button {
-  font: inherit;
-  background: var(--accent);
-  color: #fff;
-  padding: 0.95rem 1.6rem;
-  border: 0;
-  border-radius: var(--r-pill);
-  font-weight: 700;
-  cursor: pointer;
-  align-self: flex-start;
-  box-shadow: var(--sh-2);
-  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-form button:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--sh-3); }
-.quote-form button:active { transform: translateY(0); box-shadow: var(--sh-1); }
-.quote-form .honeypot { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
-
-/* Turnstile widget — minimal styling, lets Cloudflare's iframe render
-   itself. The wrapper just centers the widget within the form column. */
-.quote-form .cf-turnstile {
-  display: flex;
-  justify-content: center;
-  margin: var(--s-2) 0;
-}
-
-/* Error banner shown when the Pages Function redirected back with
-   ?error=... in the query string. Hidden by default; the inline
-   <script> at the bottom of the form un-hides it when present. */
-.form-error-banner {
-  padding: var(--s-4);
-  border-radius: var(--r-3);
-  background: rgba(184, 52, 26, 0.06);
-  border: 1px solid rgba(184, 52, 26, 0.25);
-  border-left: 4px solid var(--accent-dark);
-  margin: var(--s-5) 0;
-  color: var(--fg);
-}
-.form-error-banner p { margin: 0; }
-.form-error-banner[hidden] { display: none; }
-
-/* =================================================================
-   Get-a-Quote page — modern conversion-focused redesign.
-   See quote_body() in this file for the matching HTML.
-   ================================================================= */
-
-/* Quote hero — distinct from brand-hero / video-hero. Calmer
-   editorial band with a heavy phone CTA. */
-.quote-hero {
-  background:
-    radial-gradient(120% 80% at 50% 0%, rgba(184, 52, 26, 0.06), transparent 60%),
-    var(--surface-3);
-  border-bottom: 1px solid var(--line);
-  padding: clamp(2.5rem, 6vw, 4rem) var(--s-5) clamp(2rem, 5vw, 3rem);
-  margin: 0 0 var(--s-5) 0;
-}
-.quote-hero-inner {
-  max-width: var(--max-wide);
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.quote-hero-eyebrow {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent-dark);
-  background: rgba(184, 52, 26, 0.10);
-  border: 1px solid rgba(184, 52, 26, 0.20);
-  border-radius: var(--r-pill);
-  padding: 0.32rem 0.78rem;
-  margin: 0 0 var(--s-4) 0;
-}
-.quote-hero h1 {
-  font-size: clamp(1.85rem, 4vw, 2.8rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  font-weight: 800;
-  margin: 0 0 var(--s-3) 0;
-  max-width: 22ch;
-  color: var(--fg);
-}
-.quote-hero h1::before { display: none; }
-.quote-hero-lede {
-  font-size: clamp(1.02rem, 1.2vw, 1.15rem);
-  line-height: 1.55;
-  color: var(--fg);
-  margin: 0 0 var(--s-5) 0;
-  max-width: 60ch;
-}
-
-/* Dominant call banner — the primary action on this page. Full-width
-   (capped), large tap target. Built for a stressed owner on a phone in
-   the shop: the call button is the loudest thing above the form. */
-.quote-call-banner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--s-4);
-  width: 100%;
-  max-width: 520px;
-  margin: 0 auto var(--s-3);
-  background: var(--accent);
-  color: #fff !important;
-  text-decoration: none !important;
-  padding: 1.15rem 1.5rem;
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-3);
-  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-call-banner:hover {
-  background: var(--accent-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--sh-4);
-}
-.quote-call-banner:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-}
-.quote-call-banner-icon {
-  font-size: 2rem;
-  line-height: 1;
-  flex-shrink: 0;
-}
-.quote-call-banner-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
-.quote-call-banner-main {
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-}
-.quote-call-banner-sub {
-  font-size: 0.85rem;
-  opacity: 0.92;
-  margin-top: 0.12rem;
-}
-.quote-hero-jumplink {
-  display: inline-block;
-  color: var(--accent-dark);
-  text-decoration: underline;
-  text-decoration-color: rgba(140, 37, 16, 0.45);
-  text-underline-offset: 3px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: text-decoration-color var(--t-fast);
-}
-.quote-hero-jumplink:hover { text-decoration-color: var(--accent-dark); }
-.quote-hero-jumplink:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-/* Mobile: the call banner goes truly full-width and even bigger —
-   this is the in-the-shop scenario the page is designed around. */
-@media (max-width: 600px) {
-  .quote-call-banner {
-    max-width: none;
-    padding: 1.25rem 1rem;
-  }
-  .quote-call-banner-main { font-size: 1.3rem; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .quote-call-banner { transition: none !important; }
-  .quote-call-banner:hover { transform: none !important; }
-}
-
-/* Single-column layout — the whole quote body lives inside one
-   .page-section-hero band whose .section-inner is uncapped (max-width:
-   none, padding: 0), so .quote-layout is the element that re-establishes
-   the 1140px content width + horizontal gutter. The form card, intro
-   checklist, and "What happens next" timeline all stack inside it at
-   full width. */
-.quote-layout {
-  max-width: var(--max-wide);
-  margin: 0 auto;
-  padding: var(--s-6) var(--s-5);
-}
-@media (max-width: 700px) {
-  .quote-layout { padding: var(--s-5) var(--s-4); }
-}
-
-/* Intro checklist at the top of the form — sets expectations for
-   what to have handy before filling out the fields. */
-.quote-form-intro {
-  padding: var(--s-4) var(--s-5);
-  background: color-mix(in srgb, var(--surface) 90%, var(--accent) 5%);
-  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--line));
-  border-left: 4px solid var(--accent);
-  border-radius: var(--r-2);
-}
-.quote-form-intro-title {
-  margin: 0 0 var(--s-2) 0;
-  font-weight: 600;
-  font-size: 1.02rem;
-  color: var(--fg);
-}
-.quote-form-intro-list {
-  margin: 0;
-  padding-left: 1.2rem;
-  color: var(--fg);
-  font-size: 0.98rem;
-  line-height: 1.55;
-}
-.quote-form-intro-list li { margin: 0.28rem 0; }
-
-/* "What happens next" — 3-step timeline as a horizontal grid inside
-   the form card, below the submit button. Stacks on narrow. */
-.quote-next-steps {
-  margin-top: var(--s-4);
-  padding-top: var(--s-5);
-  border-top: 1px solid var(--line);
-}
-.quote-next-steps-title {
-  font-weight: 700;
-  font-size: 0.88rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent-dark);
-  margin: 0 0 var(--s-4) 0;
-}
-.quote-next-steps-grid {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--s-5);
-}
-.quote-next-steps-grid li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--s-3);
-}
-.quote-next-steps-num {
-  width: 34px;
-  height: 34px;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 0.98rem;
-  flex-shrink: 0;
-}
-.quote-next-steps-grid strong {
-  display: block;
-  color: var(--fg);
-  font-size: 1rem;
-  margin-bottom: 0.15rem;
-}
-.quote-next-steps-grid span {
-  color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.5;
-}
-@media (max-width: 780px) {
-  .quote-next-steps-grid { grid-template-columns: 1fr; gap: var(--s-3); }
-}
-
-/* Form card — full width of the wide band, sits on a surface card
-   with generous padding so fields have real breathing room. Overrides
-   the legacy .quote-form rule (max-width: 560px) which is otherwise
-   still applied because the form carries both classes. */
-.quote-form.quote-form-modern {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-2);
-  padding: clamp(var(--s-5), 4vw, var(--s-8));
-  margin: 0;
-  max-width: none;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-7);
-}
-
-/* Field-section grouping — uses <fieldset> for semantics; no
-   visible fieldset border. The <legend> becomes a section title. */
-.form-section {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-}
-.form-section-title {
-  font-size: 0.88rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent-dark);
-  padding: 0;
-  margin: 0 0 var(--s-2) 0;
-}
-
-/* Single-column field rows — every field gets its own line at the
-   full form width. No internal columns anywhere in the quote form. */
-.form-row {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-}
-
-/* Scale up the form for the wider column. Larger inputs, labels,
-   and textarea give the form appropriate weight in the layout. */
-.quote-form-modern .field { display: flex; flex-direction: column; gap: 0.45rem; }
-.quote-form-modern .field label,
-.quote-form-modern .field-label {
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--fg);
-}
-.quote-form-modern input,
-.quote-form-modern textarea,
-.quote-form-modern select {
-  font: inherit;
-  font-size: 1.02rem;
-  padding: 0.95rem 1.1rem;
-  border-radius: var(--r-2);
-}
-.quote-form-modern textarea {
-  min-height: 15rem;
-  line-height: 1.55;
-}
-.quote-form-modern .field-hint {
-  margin: 0.4rem 0 0 0;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-/* Service selection — icon cards. The actual radio input is
-   visually hidden but stays in the tab order. The whole card is the
-   click target. Checked state is communicated by border, background,
-   icon tint, and a small checkmark badge in the top-right corner —
-   no exposed radio circle. */
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--s-2);
-}
-@media (max-width: 720px) {
-  .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-.service-card {
-  position: relative;
-  display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  cursor: pointer;
-}
-
-/* Visually hide the radio input but keep it accessible to keyboard
-   and assistive tech. Standard sr-only pattern. */
-.service-card input[type="radio"] {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.service-card-inner {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-  gap: 0.5rem;
-  padding: var(--s-4) var(--s-3);
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-3);
-  background: var(--surface);
-  transition: border-color var(--t-fast), background var(--t-fast),
-              box-shadow var(--t-fast), transform var(--t-fast);
-  min-height: 132px;
-  height: 100%;
-}
-
-.service-card:hover .service-card-inner {
-  border-color: var(--muted);
-  background: var(--surface-2);
-  transform: translateY(-2px);
-  box-shadow: var(--sh-2);
-}
-
-.service-card input[type="radio"]:checked + .service-card-inner {
-  border-color: var(--accent);
-  background: color-mix(in srgb, var(--surface) 94%, var(--accent) 6%);
-  box-shadow: 0 0 0 1px var(--accent) inset, var(--sh-2);
-}
-
-.service-card input[type="radio"]:focus-visible + .service-card-inner {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-}
-
-.service-card-icon {
-  width: 36px;
-  height: 36px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  transition: color var(--t-fast), transform var(--t-fast);
-  margin-bottom: 0.15rem;
-}
-.service-card:hover .service-card-icon {
-  color: var(--accent-dark);
-}
-.service-card input[type="radio"]:checked + .service-card-inner .service-card-icon {
-  color: var(--accent-dark);
-  transform: scale(1.05);
-}
-
-.service-card-title {
-  font-weight: 700;
-  font-size: 0.98rem;
-  color: var(--fg);
-  line-height: 1.2;
-}
-
-.service-card-desc {
-  font-size: 0.82rem;
-  color: var(--muted);
-  line-height: 1.35;
-  font-weight: 400;
-}
-.service-card input[type="radio"]:checked + .service-card-inner .service-card-desc {
-  color: var(--fg);
-}
-
-/* Checkmark badge appears in the top-right corner of the selected
-   card. CSS-only — uses an inline SVG data-URI as the background. */
-.service-card-inner::after {
-  content: "";
-  position: absolute;
-  top: 0.55rem;
-  right: 0.55rem;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: var(--accent);
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
-  background-size: 12px 12px;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0;
-  transform: scale(0.6);
-  transition: opacity var(--t-fast), transform var(--t-fast);
-}
-.service-card input[type="radio"]:checked + .service-card-inner::after {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Respect reduced-motion. */
-@media (prefers-reduced-motion: reduce) {
-  .service-card-inner,
-  .service-card-icon,
-  .service-card-inner::after { transition: none !important; }
-  .service-card:hover .service-card-inner { transform: none !important; }
-  .service-card input[type="radio"]:checked + .service-card-inner .service-card-icon {
-    transform: none !important;
-  }
-}
-
-/* Submit tail — Turnstile + button + note grouped tightly. */
-.quote-form-tail {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-3);
-  align-items: stretch;
-  border-top: 1px solid var(--line);
-  padding-top: var(--s-4);
-  margin-top: var(--s-2);
-}
-.quote-turnstile {
-  display: flex;
-  justify-content: center;
-}
-.quote-submit {
-  width: 100%;
-  font: inherit;
-  background: var(--accent);
-  color: #fff;
-  padding: 1.25rem 1.8rem;
-  border: 0;
-  border-radius: var(--r-2);
-  font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: -0.005em;
-  cursor: pointer;
-  align-self: stretch;
-  box-shadow: var(--sh-2);
-  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-submit:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--sh-3); }
-.quote-submit:active { transform: translateY(0); box-shadow: var(--sh-1); }
-.quote-submit:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-}
-.quote-submit-note {
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin: 0;
-}
-
-/* Sidebar — stack of supporting cards. */
-.quote-layout-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-}
-.quote-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  padding: var(--s-5);
-  box-shadow: var(--sh-1);
-}
-.quote-card h3 {
-  margin: 0 0 var(--s-3) 0;
-  font-size: 1.02rem;
-  color: var(--fg);
-}
-.quote-card h3::before { display: none; }
-.quote-card p { margin: 0 0 var(--s-2) 0; color: var(--fg); font-size: 0.95rem; line-height: 1.55; }
-.quote-card p:last-child { margin-bottom: 0; }
-.quote-card-list {
-  margin: 0;
-  padding: 0 0 0 1.1rem;
-  font-size: 0.95rem;
-  color: var(--fg);
-  line-height: 1.55;
-}
-.quote-card-list li { margin: 0.4rem 0; }
-
-/* Timeline inside "What happens next" card. */
-.quote-timeline {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-.quote-timeline li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--s-3);
-  padding: var(--s-3) 0;
-  border-bottom: 1px solid var(--line);
-}
-.quote-timeline li:last-child { border-bottom: 0; padding-bottom: 0; }
-.quote-timeline li:first-child { padding-top: 0; }
-.quote-timeline-step {
-  width: 30px;
-  height: 30px;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-}
-.quote-timeline strong {
-  display: block;
-  font-size: 0.95rem;
-  color: var(--fg);
-  margin-bottom: 0.15rem;
-}
-.quote-timeline p { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
-
-/* "Or just call" card — visually emphasized so it pulls the
-   high-intent visitor's eye. */
-.quote-card-call {
-  background: var(--surface-3);
-  border-color: rgba(184, 52, 26, 0.22);
-  border-left: 4px solid var(--accent);
-}
-.quote-card-phone {
-  display: block;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--accent-dark);
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  margin: var(--s-2) 0 var(--s-3) 0;
-  padding: 0.55rem 0;
-  border-bottom: 2px solid transparent;
-  transition: border-color var(--t-fast), color var(--t-fast);
-}
-.quote-card-phone:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-.quote-card-phone:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-.quote-card-meta {
-  font-size: 0.85rem !important;
-  color: var(--muted) !important;
-  margin: 0 !important;
-}
-
-@media (max-width: 600px) {
-  .quote-hero { padding: var(--s-5) var(--s-4) var(--s-4); }
-  .quote-hero-inner { text-align: left; align-items: flex-start; }
-  .quote-hero-jumplink { text-align: center; width: 100%; }
-  .quote-form-modern { padding: var(--s-4); }
-}
-
-/* Reduced-motion: drop the lift effect on buttons/links. */
-@media (prefers-reduced-motion: reduce) {
-  .quote-submit,
-  .quote-card-phone { transition: none !important; }
-  .quote-submit:hover { transform: none !important; }
-}
-
-.success-message {
-  display: none;
-  padding: var(--s-5);
-  border-radius: var(--r-3);
-  background: var(--success-bg);
-  border: 1px solid rgba(46, 125, 50, 0.25);
-  border-left: 4px solid #2e7d32;
-  color: var(--success-fg);
-  margin: var(--s-6) 0;
-  box-shadow: var(--sh-1);
-}
-.success-message h2 { margin-top: 0; color: var(--success-fg); }
-.success-message h2::before { background: #2e7d32; }
-body.form-submitted .success-message { display: block; }
-body.form-submitted .quote-form { display: none; }
-body.form-submitted .quote-helpers { display: none; }
-
-.alt-contact {
-  margin: var(--s-6) 0;
-  padding: var(--s-5);
-  background: var(--surface-2);
-  border-radius: var(--r-3);
-  border: 1px solid var(--line);
-}
-.alt-contact h3 { margin: 0 0 var(--s-2) 0; }
-.alt-contact p { margin: var(--s-1) 0; }
 </style>
-<script>
-  // Early success-state detection — runs in <head> before paint so the form
-  // never flashes visible if the URL has ?success=1. Harmless on other pages.
-  if (location.search.indexOf('success=1') !== -1) {
-    document.documentElement.classList.add('form-submitted-html');
-  }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://midwestcncservices.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://midwestcncservices.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Field Service & Logistics (Midwest)",
+      "item": "https://midwestcncservices.com/insights/field-service-logistics/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Ship the Machine vs. On-Site Work: How We Decide"
+    }
+  ]
+}
 </script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://midwestcncservices.com/#org",
-  "name": "Midwest CNC Services",
-  "url": "https://midwestcncservices.com/",
-  "telephone": "+13196104341",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Waterloo",
-    "addressRegion": "IA",
-    "addressCountry": "US"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 42.4928,
-    "longitude": -92.3426
-  },
-  "hasMap": "https://www.google.com/maps/place/Waterloo,+IA",
-  "areaServed": [
-    "Iowa",
-    "Illinois",
-    "Wisconsin",
-    "Minnesota",
-    "Nebraska",
-    "Missouri",
-    "Texas"
+  "@type": [
+    "Article",
+    "BlogPosting"
   ],
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday"
-      ],
-      "opens": "07:00",
-      "closes": "15:30"
+  "headline": "Ship the Machine vs. On-Site Work: How We Decide",
+  "description": "Learn how we decide whether to ship a CNC machine for repair or perform on-site service. A practical decision tree from Midwest CNC Services.",
+  "datePublished": "2026-08-03",
+  "dateModified": "2026-08-03",
+  "author": {
+    "@type": "Person",
+    "name": "Ken",
+    "jobTitle": "Shop owner",
+    "worksFor": {
+      "@id": "https://midwestcncservices.com/#org"
     }
-  ]
+  },
+  "publisher": {
+    "@id": "https://midwestcncservices.com/#org"
+  },
+  "mainEntityOfPage": "https://midwestcncservices.com/insights/field-service-logistics/ship-machine-vs-onsite/",
+  "articleSection": "Field Service & Logistics (Midwest)",
+  "keywords": "cnc machine ship for repair",
+  "wordCount": 1500,
+  "inLanguage": "en-US"
 }
 </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How fast can you respond to a quote request?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Most quote requests go out within one business day. If the machine is down and you need someone on the line right now, call 319-610-4341 — we'd rather talk through the symptoms than wait for an email back. Field troubleshooting on the phone often saves a full teardown."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you work on older or discontinued machines?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. We have dedicated brand pages and parts-sourcing approaches for Fadal, Hitachi Seiki, and Monarch — manufacturers whose CNC lines have been gone for years but whose machines are still cutting daily in Midwest shops. We lean on aftermarket suppliers, used-market sourcing, and custom-machined replacements where OEM components are gone."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Where do you work? Do you come on-site?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We serve shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas from our Waterloo, Iowa shop. Field service when that's the right call for the job; spindle rebuilds and way-cover builds happen at our bench and ship back to you."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can you recover a crashed spindle?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Often, yes. Crash recovery is one of the threads of work that comes through here — taper damage, bearing-pack failure, alignment loss from impact. Customers are usually relieved to avoid the replacement lead times and the six-figure capital expense of a new spindle. Bring it in for a teardown."
-      }
-    }
-  ]
-}
-</script>
-
 </head>
-<body class="layout-wide">
+<body class="insights-page insights-article">
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Midwest CNC Services home">
@@ -3092,120 +2021,175 @@ body.form-submitted .quote-helpers { display: none; }
     </ul>
   </nav>
 </header>
-
+<nav class="breadcrumbs" aria-label="breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li><li><a href="/insights/">Insights</a></li><li><a href="/insights/field-service-logistics/">Field Service &amp; Logistics (Midwest)</a></li><li>Ship the Machine vs. On-Site Work: How We Decide</li>
+  </ol>
+</nav>
 <main id="main">
 <article>
-<section class="page-section page-section-hero">
-  <div class="section-inner wide">
-<section class="home-hero">
-  <video class="home-hero-video"
-         autoplay muted loop playsinline
-         preload="auto"
-         poster="/assets/images/general/midwest-cnc-highway-shot.webp"
-         aria-hidden="true">
-    <source src="/assets/images/general/midwest-cnc-bg-fade.mp4" type="video/mp4">
-  </video>
-  <div class="home-hero-overlay" aria-hidden="true"></div>
-  <div class="home-hero-content">
-    <p class="eyebrow">Stop Losing Money</p>
-    <h1>When Your Machine Stops, We&nbsp;Start</h1>
-    <p class="lede">CNC repair, spindle work, and replacement way covers across the U.S. Midwest. When a machine goes down, our experienced field technicians come out to diagnose and get you back to cutting. From spindle rebuilds and machine repair to custom way covers we ship anywhere, the goal is the same: keep your shop producing.</p>
-    <div class="cta-row">
-      <a class="cta-button" href="/get-a-quote/">Get a Quote</a>
-      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
-    </div>
-    <p class="trust-line">Serving shops in Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas. Based in Waterloo, Iowa.</p>
-  </div>
-</section>
-<script>
-(function () {
-  var video = document.querySelector('.home-hero-video');
-  if (!video) return;
-  var FADE = 0.6;  // seconds at each end of the clip
-  function setOpacity() {
-    var t = video.currentTime;
-    var d = video.duration;
-    if (!d || !isFinite(d)) { video.style.opacity = '1'; return; }
-    var op;
-    if (t < FADE)              op = t / FADE;
-    else if (t > d - FADE)     op = (d - t) / FADE;
-    else                       op = 1;
-    if (op < 0) op = 0; else if (op > 1) op = 1;
-    video.style.opacity = String(op);
-  }
-  function tick() {
-    setOpacity();
-    requestAnimationFrame(tick);
-  }
-  // Kick off — autoplay attribute should start it, but defensively
-  // call play() in case the browser deferred it (Safari sometimes does).
-  var p = video.play();
-  if (p && typeof p.catch === 'function') p.catch(function () { /* autoplay blocked; ignore */ });
-  requestAnimationFrame(tick);
-})();
-</script>
-  </div>
-</section>
-<section class="page-section page-section-0">
-  <div class="section-inner wide">
-<h2 id="our-services">Our Services</h2>
-<p>Three lines of work, one shop. We do machine repair on production CNC equipment, manufacture replacement way covers to spec, and rebuild and grind spindles back to factory tolerance — across every major OEM platform we service.</p>
-<div class="tile-grid"><a class="tile" href="/repairs/"><img src="/assets/images/general/image-of-cnc-machine.png" alt="CNC machining center under service" loading="lazy"><h3>Machine Repair</h3><p>CNC machine repair across spindle, control, ATC, drive, and alignment work. We service Mazak, Haas, Okuma, DMG Mori, Fanuc, Doosan, Brother, Hurco, and 12 other major OEM platforms — plus Amada press brakes and Trumpf lasers. Field troubleshooting where a remote diagnostic can save a teardown.</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/way-covers/"><img src="/assets/images/general/image-of-way-covers.png" alt="Replacement CNC way covers" loading="lazy"><h3>Way Covers</h3><p>Replacement way covers in bellows, telescoping steel, and roll-up styles. Built to spec for every CNC platform we service — from Mazak Integrex multi-taskers and Haas VF machines to legacy Fadal 4020s and Hitachi Seiki HMCs. Most orders ship in 2–4 weeks. We measure from your original or build to drawing.</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/spindle-grinding/"><img src="/assets/images/general/image-of-spindle-grinding.png" alt="CNC spindle on the grinding bench" loading="lazy"><h3>Spindle Grinding</h3><p>Spindle rebuilds, regrinds, and rebalancing across 18 OEM platforms — Mazak, Haas, Okuma, DMG Mori, Mori Seiki, Doosan, and on through Fadal and Hitachi Seiki legacy work. Most jobs run 2–6 weeks depending on bearing-pack damage and parts availability. Each brand page has failure modes and lead times.</p><span class="learn-more">Learn More →</span></a></div>
+
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
+<p class="insight-eyebrow">Field Service &amp; Logistics (Midwest)</p>
+<h1 class="insight-h1">Ship the Machine vs. On-Site Work: How We Decide</h1>
+<p class="insight-meta">By Ken &middot; 2026-08-03 &middot; ~8 min read</p>
   </div>
 </section>
 <section class="page-section page-section-1">
-  <div class="section-inner wide">
-<h2 id="service-areas">Service Areas</h2>
-<p>We work with shops across seven Midwest and South-Central states. Production environments and job shops across the Midwest, plus specialty work where brand-specific expertise matters — from high-precision Makino aerospace and mold-die customers to legacy Fadal and Hitachi Seiki rebuilds. Field troubleshooting where a remote diagnostic can save a teardown.</p>
-<div class="state-grid"><a class="tile" href="/service-area/iowa/"><img src="/assets/images/general/view-all-iowa-cnc-service-locations.png" alt="Iowa CNC service coverage" loading="lazy"><h3>Iowa</h3><p>Des Moines, Davenport, Waterloo, Cedar Rapids</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/illinois/"><img src="/assets/images/general/illinois.png" alt="Illinois CNC service coverage" loading="lazy"><h3>Illinois</h3><p>Chicago, Rockford, Peoria, Springfield</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/wisconsin/"><img src="/assets/images/general/wisconsin.png" alt="Wisconsin CNC service coverage" loading="lazy"><h3>Wisconsin</h3><p>Milwaukee, Madison, Green Bay</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/minnesota/"><img src="/assets/images/general/minnesota.png" alt="Minnesota CNC service coverage" loading="lazy"><h3>Minnesota</h3><p>St. Paul, Minneapolis, Rochester</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/nebraska/"><img src="/assets/images/general/nebraska.png" alt="Nebraska CNC service coverage" loading="lazy"><h3>Nebraska</h3><p>Lincoln, Omaha, Grand Island</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/missouri/"><img src="/assets/images/general/missouri.png" alt="Missouri CNC service coverage" loading="lazy"><h3>Missouri</h3><p>St. Louis, Kansas City, Springfield</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/texas/"><img src="/assets/images/general/texas.png" alt="Texas CNC service coverage" loading="lazy"><h3>Texas</h3><p>Dallas, Houston, Austin</p><span class="learn-more">Learn More →</span></a></div>
+  <div class="section-inner">
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>We use a three-question decision tree to sort every job into ship-in or on-site service.
+</li>
+<li>Spindle rebuilds ship to Waterloo because bench work requires controlled conditions for runout below 0.0001 inches.
+</li>
+<li>The cost framework for shipping weighs freight, crating, rigging, and downtime—not just the repair bill.
+</li>
+<li>On-site work fits drive swaps, alignment checks, and electrical faults where the machine must stay in place.
+</li>
+<li>Shops beyond a 4-hour drive-time radius from Waterloo often save money by shipping instead of booking field trips.
+</li>
+</ul>
+<p>The question comes up on nearly every call. Should you ship the machine—or just the part—to us? Or should we come to you? There is no single answer. A spindle rebuild is not the same as a servo drive swap. A shop 45 minutes away faces different math than one 600 miles out. What we can offer is the framework we use on every call. This article walks through that framework. It covers real cost drivers. It gives you what you need to make the call.</p>
   </div>
 </section>
 <section class="page-section page-section-0">
-  <div class="section-inner wide">
-<h2 id="how-we-work">How We Work</h2>
-<p>Same three steps every brand page describes:</p>
-<ol class="process-steps">
-  <li><strong>Contact Us.</strong> Call 319-610-4341 or use the quote form. Tell us the machine, the symptoms, and how urgent it is.</li>
-  <li><strong>Grab Model #.</strong> We'll fire back price, lead time, and shipping ETA after reviewing your details.</li>
-  <li><strong>Approve &amp; Rebuild.</strong> We complete the work, verify it back to spec, and return the machine ready to run.</li>
-</ol>
+  <div class="section-inner">
+<h2 id="the-three-question-decision-tree">The Three-Question Decision Tree</h2>
+<p>Every service call runs through the same logic. The answers tell us whether the job is on-site, bench, or a mix of both.</p>
+<p><strong>Question 1: Does the repair need controlled metrology?</strong></p>
+<p>Spindle rebuilds require balancing and runout checks below 0.0001 inches. That work fails on a production floor. Forklifts run nearby. Temps swing. Nearby machines add vibration. If the answer is yes, the part ships to us. Our <a href="/repairs/">CNC Machine Repair Services</a> page lists the work we do. Spindle rebuilds fall squarely into the category where bench work requires controlled conditions.</p>
+<p><strong>Question 2: Is the fault in a part you can remove?</strong></p>
+<p>A dead spindle motor on a Mazak Integrex can be pulled and shipped. The machine stays put. A ballscrew on a Haas VF-2 can come out for inspection. But some faults need the full system. Alignment drift, way geometry errors, and control cabinet issues need live testing. We see this often on <a href="/repairs/fanuc-cnc-machine-repair/">Fanuc CNC Machine Repair</a> jobs. The control and drives must run under load.</p>
+<p><strong>Question 3: What is the total cost including downtime?</strong></p>
+<p>This is where the math gets personal. Shipping a spindle from Des Moines to Waterloo runs under $200 each way. Shipping a VMC from Houston runs $3,000 to $5,000 with crating. If the repair is $4,000 and downtime is locked in either way, freight is the variable. But consider this: on-site work might get you running in one 8-hour visit. Shipping might mean 10 days transit each way plus bench time. Downtime cost may dwarf the travel bill.</p>
+<p>These three questions form the core of our three-question decision tree. We can answer them in 10 minutes on a call.</p>
   </div>
 </section>
 <section class="page-section page-section-1">
-  <div class="section-inner wide">
-<h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
-<p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
-<blockquote><p>&quot;Honestly, we thought the machine was done for.&quot; Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.</p></blockquote>
+  <div class="section-inner">
+<h2 id="the-cost-framework-for-shipping-vs-on-site">The Cost Framework for Shipping vs. On-Site</h2>
+<p>The cost framework for shipping looks at every line item, not just the obvious ones.</p>
+<p><strong>Shipping costs for parts:</strong></p>
+<ul>
+<li>Spindles: $150 to $400 each way. Weight and routing matter.
+</li>
+<li>Motors and drives: $75 to $200 each way.
+</li>
+<li>Ballscrews: $100 to $300 each way. Custom crating is often needed.
+</li>
+</ul>
+<p><strong>Shipping costs for whole machines:</strong></p>
+<ul>
+<li>Small VMCs under 10,000 lbs: $1,500 to $3,000 from the upper Midwest.
+</li>
+<li>Large horizontals or lathes: $3,000 to $6,000.
+</li>
+<li>Machines from Texas: add $1,500 to $2,500.
+</li>
+</ul>
+<p>We have shipped machines from <a href="/service-area/houston-texas/">CNC Repair &amp; Service in Houston, Texas</a>. We handle jobs in Missouri, Nebraska, and Wisconsin. Freight math shifts past the 500-mile mark.</p>
+<p><strong>On-site costs:</strong></p>
+<ul>
+<li>Travel time billed portal-to-portal at our standard rate.
+</li>
+<li>Mileage or per diem for overnights.
+</li>
+<li>Bench time for any parts that still ship to Waterloo.
+</li>
+</ul>
+<p>Shops within a 4-hour drive-time radius from Waterloo often save with on-site work. That holds for jobs that skip controlled metrology. Shops in Minneapolis, Chicago, or Kansas City fall closer to a toss-up. Shops in Texas or beyond usually save by shipping. The exception is pure diagnostics.</p>
   </div>
 </section>
 <section class="page-section page-section-0">
-  <div class="section-inner wide">
-<h2 id="faq">Common Questions</h2>
-<div class="faq-list">
-<details class="faq-item" id="faq-1">
-  <summary>How fast can you respond to a quote request?</summary>
-  <div class="faq-answer"><p>Most quote requests go out within one business day. If the machine is down and you need someone on the line right now, call 319-610-4341 — we&#x27;d rather talk through the symptoms than wait for an email back. Field troubleshooting on the phone often saves a full teardown.</p></div>
-</details>
-<details class="faq-item" id="faq-2">
-  <summary>Do you work on older or discontinued machines?</summary>
-  <div class="faq-answer"><p>Yes. We have dedicated brand pages and parts-sourcing approaches for Fadal, Hitachi Seiki, and Monarch — manufacturers whose CNC lines have been gone for years but whose machines are still cutting daily in Midwest shops. We lean on aftermarket suppliers, used-market sourcing, and custom-machined replacements where OEM components are gone.</p></div>
-</details>
-<details class="faq-item" id="faq-3">
-  <summary>Where do you work? Do you come on-site?</summary>
-  <div class="faq-answer"><p>We serve shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas from our Waterloo, Iowa shop. Field service when that&#x27;s the right call for the job; spindle rebuilds and way-cover builds happen at our bench and ship back to you.</p></div>
-</details>
-<details class="faq-item" id="faq-4">
-  <summary>Can you recover a crashed spindle?</summary>
-  <div class="faq-answer"><p>Often, yes. Crash recovery is one of the threads of work that comes through here — taper damage, bearing-pack failure, alignment loss from impact. Customers are usually relieved to avoid the replacement lead times and the six-figure capital expense of a new spindle. Bring it in for a teardown.</p></div>
-</details>
+  <div class="section-inner">
+<h2 id="bench-work-handles-precision-assemblies">Bench Work Handles Precision Assemblies</h2>
+<p>Some repairs cannot happen on-site. Spindle rebuilds are the clearest case.</p>
+<p>A spindle arrives at our shop. We tear it down in a clean bay. We check every bearing seat and journal surface. We log runout at multiple points before any work starts. After rebuild, we balance the rotating assembly. We verify runout to 0.0001 inches or better. That takes granite plates, precision indicators, and stable temps. A production floor cannot match those conditions.</p>
+<p>Precision grinding follows the same rule. We do that work in-house. A worn taper or scored bearing journal can often be saved. But only on the right gear.</p>
+<p>We see this with <a href="/repairs/mori-seiki-cnc-machine-repair/">Mori Seiki CNC Machine Repair</a> spindles. We handle <a href="/repairs/makino-cnc-machine-repair/">Makino CNC Machine Repair</a> units. We rebuild <a href="/repairs/toyoda-cnc-machine-repair/">Toyoda CNC Machine Repair</a> heads. The brand matters less than the physics. High-speed rotating parts need bench work in a controlled setting.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="on-site-work-fits-system-level-repairs">On-Site Work Fits System-Level Repairs</h2>
+<p>On-site service is the right call when the machine must stay put. The job must not need metrology.</p>
+<p><strong>Drive swaps:</strong> A dead servo drive on a Fanuc-controlled machine can be diagnosed, sourced, and installed in one visit. The control stays live. The machine stays bolted down. We verify before we leave. This is core field work.</p>
+<p><strong>Alignment and geometry:</strong> If cuts are out of spec but the spindle tests fine, the fault may be alignment. That work has to happen on the installed machine. Ways and axes must be in their real-world state.</p>
+<p><strong>Electrical diagnostics:</strong> Intermittent faults, grounding issues, and control communication problems need live load testing. Shipping would not help. The fault would not show without the full install.</p>
+<p><strong>ATC and hydraulic repairs:</strong> Tool changer problems, hydraulic unit failures, and coolant system faults are almost always on-site. These systems tie into the machine install. Shipping rarely helps.</p>
+<p>Our <a href="/service-area/waterloo-iowa/">CNC Repair &amp; Service in Waterloo, Iowa</a> page covers the core zone. Within that zone, fast on-site calls are realistic. Outside it, we schedule field trips by route and timeline.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="the-hybrid-approach-cuts-downtime">The Hybrid Approach Cuts Downtime</h2>
+<p>Many jobs split between field and bench. A typical flow looks like this:</p>
+<p>1. Tech arrives on-site to confirm the fault. 2. Tech pulls the failed part—spindle, motor, ballscrew. 3. Part ships to Waterloo for bench repair. 4. Tech returns to reinstall and verify.</p>
+<p>This path cuts downtime. Bench work runs while your other machines run. It also keeps costs down. Field visits are short and focused.</p>
+<p>The hybrid path is common for shops in the 200- to 400-mile range. Closer shops may want all on-site work. Travel time is minor. Shops past 500 miles may ship the whole machine. That makes sense if the repair is big enough to justify freight.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="drive-time-radius-shapes-the-model">Drive-Time Radius Shapes the Model</h2>
+<p>Our shop sits in Waterloo, Iowa. That puts us within reach of a large industrial base. The region includes John Deere manufacturing across eastern Iowa. It includes the Quad Cities corridor. It includes heavy-equipment plants in Wisconsin and Illinois.</p>
+<p>Within 2 hours—Cedar Rapids, Des Moines, Dubuque, the Quad Cities—on-site work is quick. We can respond fast. Many repairs wrap in one visit.</p>
+<p>Within 4 hours—Minneapolis, Kansas City, Madison, Chicago—on-site work still makes sense. Bigger jobs may need an overnight. The shipping-vs-field math runs close to even.</p>
+<p>Past 4 hours—Houston, Dallas, Denver, far Missouri and Nebraska—shipping usually wins for parts. We still send techs for install, final checks, and diagnostics that need the full machine.</p>
+<p>The drive-time radius from Waterloo shapes how we deploy. We are not trying to be the closest shop to everyone. We aim to offer the right mix of bench skill and field reach for shops across seven states.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="preparing-for-a-ship-in-repair">Preparing for a Ship-In Repair</h2>
+<p>If shipping is the right call, a few steps speed things up.</p>
+<p><strong>For parts:</strong></p>
+<ul>
+<li>Drain all oil and coolant before crating.
+</li>
+<li>Coat bearing surfaces, tapers, and journals with rust block.
+</li>
+<li>Send the hardware that came off during removal. The drawbar matters for spindles.
+</li>
+<li>Email us photos before you ship. We like to know what to expect.
+</li>
+</ul>
+<p><strong>For whole machines:</strong></p>
+<ul>
+<li>Use a qualified millwright for rigging and crating.
+</li>
+<li>Lock the axes. Pull tooling from the spindle. Drain fluids.
+</li>
+<li>Note the install details: anchor points, power specs, coolant lines. That makes reinstall smooth.
+</li>
+</ul>
+<p>Our <a href="/terms-of-service/">Terms of Service</a> page covers shipping damage and liability. We suggest insurance on high-value loads. We can point you to carriers we have used.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="sources-references">Sources &amp; References</h2>
+<ul>
+<li>Internal service log data from Midwest CNC Services covering jobs in Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas.
+</li>
+<li>Freight estimates from recent quotes for CNC parts and whole machines.
+</li>
+<li>Spindle runout specs from OEM docs and our bench checks.
+</li>
+</ul>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="when-to-bring-this-work-to-us">When to Bring This Work to Us</h2>
+<p>If you are weighing whether to ship a spindle, motor, or machine versus booking an on-site trip, we can talk it through. A 10-minute call is usually enough. We ask the three questions. We walk through the cost framework. We give you real numbers for both paths. The answer hinges on what is broken, where you are, and how fast you need to run again.</p>
+<p>Use our <a href="/get-a-quote/">quote form</a> with details on the machine, the symptoms, and your location. We will get back to you with a plan.</p>
+<div class="insight-cta">
+  <p><strong>Need this work done?</strong> Tell us the machine and the symptom.</p>
+  <p><a class="cta-button" href="/get-a-quote/">Get a quote</a> <a class="cta-phone" href="tel:+13196104341">319-610-4341</a></p>
 </div>
-  </div>
-</section>
-<section class="page-section page-section-1">
-  <div class="section-inner wide">
-<h2 id="downtime">Don't Let Downtime Drain Your Profits</h2>
-<p>Every minute your CNC sits idle is money out the door. Call us with the machine and the issue — most quotes go out within one business day, and we'll get you back to cutting.</p>
-<div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
   </div>
 </section>
 </article>
@@ -3229,7 +2213,7 @@ body.form-submitted .quote-helpers { display: none; }
   </div>
 </footer>
 <div class="mobile-cta-bar" role="region" aria-label="Quick contact">
-  <a class="mcta-phone" href="tel:+13196104341">☎ 319-610-4341</a>
+  <a class="mcta-phone" href="tel:+13196104341">&#9742; 319-610-4341</a>
   <a class="mcta-quote" href="/get-a-quote/">Get a Quote</a>
 </div>
 <script>
