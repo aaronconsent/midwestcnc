@@ -31,18 +31,18 @@
     document.head.appendChild(s);
   })();
 </script>
-<title>Midwest CNC Services — CNC Repair, Spindle Work &amp; Way Covers</title>
-<meta name="description" content="CNC machine repair, spindle rebuilds, and replacement way covers from Waterloo, IA. Serving shops across 7 Midwest states. Call 319-610-4341.">
-<link rel="canonical" href="https://midwestcncservices.com/">
-<meta property="og:title" content="Midwest CNC Services — CNC Repair, Spindle Work &amp; Way Covers">
-<meta property="og:description" content="CNC machine repair, spindle rebuilds, and replacement way covers from Waterloo, IA. Serving shops across 7 Midwest states. Call 319-610-4341.">
-<meta property="og:type" content="website">
+<title>Used Mazak Buying Guide: Era-by-Era | Midwest CNC Services</title>
+<meta name="description" content="A used Mazak buying guide by control era, from T-32 to Smooth. Covers parts, spindle costs, and why Matrix is the sweet spot.">
+<link rel="canonical" href="https://midwestcncservices.com/insights/buying-owning-used-cnc/used-mazak-by-era/">
+<meta property="og:title" content="Used Mazak Buying Guide: Era-by-Era | Midwest CNC Services">
+<meta property="og:description" content="A used Mazak buying guide by control era, from T-32 to Smooth. Covers parts, spindle costs, and why Matrix is the sweet spot.">
+<meta property="og:type" content="article">
 <meta property="og:image" content="https://midwestcncservices.com/assets/images/general/midwest-cnc-highway-shot.webp">
-<meta property="og:url" content="https://midwestcncservices.com/">
+<meta property="og:url" content="https://midwestcncservices.com/insights/buying-owning-used-cnc/used-mazak-by-era/">
 <meta property="og:site_name" content="Midwest CNC Services">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Midwest CNC Services — CNC Repair, Spindle Work &amp; Way Covers">
-<meta name="twitter:description" content="CNC machine repair, spindle rebuilds, and replacement way covers from Waterloo, IA. Serving shops across 7 Midwest states. Call 319-610-4341.">
+<meta name="twitter:title" content="Used Mazak Buying Guide: Era-by-Era | Midwest CNC Services">
+<meta name="twitter:description" content="A used Mazak buying guide by control era, from T-32 to Smooth. Covers parts, spindle costs, and why Matrix is the sweet spot.">
 <meta name="twitter:image" content="https://midwestcncservices.com/assets/images/general/midwest-cnc-highway-shot.webp">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1868,1140 +1868,69 @@ section.insight-sources {
   blockquote p { padding-left: 1.25rem; }
   th, td { padding: var(--s-2) var(--s-3); font-size: 0.9rem; }
 }
-
-/* =================================================================
-   Site-shell additions: homepage, hubs, quote form, tiles, brand grid
-   ================================================================= */
-
-/* Early success-state toggle — set on <html> in <head> before paint */
-.form-submitted-html .quote-form,
-.form-submitted-html .quote-helpers { display: none; }
-.form-submitted-html .success-message { display: block; }
-
-.section-eyebrow {
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-style: normal;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin: 0 0 var(--s-3) 0;
-  display: inline-block;
-  padding: 0.3rem 0.7rem;
-  background: rgba(184, 52, 26, 0.08);
-  border-radius: var(--r-pill);
-}
-
-/* =================================================================
-   Homepage hero — single-column, video background, image fallback.
-
-   Structure:
-     <section class="home-hero">
-       <video class="home-hero-video" .../>      <- bg media layer
-       <div class="home-hero-overlay"/>          <- dark gradient
-       <div class="home-hero-content">           <- text + CTAs
-     </section>
-
-   Layers (z-index):
-     0  video (decorative, aria-hidden)
-     1  overlay (legibility gradient)
-     2  content (text, white on dark)
-
-   prefers-reduced-motion respects the user's OS setting — video is
-   removed and the poster image is shown as a static background instead.
-   ================================================================= */
-
-/* Reset the band wrapper: hero is full-bleed, manages own backdrop. */
-.page-section-hero {
-  padding: 0;
-  background: var(--bg);
-}
-.page-section-hero > .section-inner { padding: 0; max-width: none; }
-
-.home-hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  min-height: 600px;
-  max-height: 820px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  isolation: isolate;
-  color: #fff;
-  background:
-    /* Poster image fallback if video fails to load (and on mobile +
-       prefers-reduced-motion, where the <video> is hidden) */
-    url('/assets/images/general/midwest-cnc-highway-shot.webp')
-    center / cover no-repeat
-    #000;
-}
-
-.home-hero-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  z-index: 1;
-  pointer-events: none;
-  /* Start invisible — the JS opacity driver below ramps it up from
-     the video's actual currentTime, so the fade is locked to the
-     video clock instead of drifting against a fixed-length CSS
-     keyframe. No clunky seam. */
-  opacity: 0;
-}
-
-/* Dark vertical gradient overlay — top 40% black to bottom 70% black.
-   Keeps white text legible over any frame, slightly heavier at the
-   bottom where the CTAs and trust line sit. */
-.home-hero-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.40) 0%,
-    rgba(0, 0, 0, 0.70) 100%
-  );
-}
-
-.home-hero-content {
-  position: relative;
-  z-index: 3;
-  max-width: var(--max-wide);
-  width: 100%;
-  margin: 0 auto;
-  padding: clamp(3rem, 7vw, 5rem) var(--s-5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.home-hero-content > .eyebrow {
-  font-size: 0.7rem;
-  padding: 0.28rem 0.75rem;
-  margin: 0 0 var(--s-4) 0;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.20);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.home-hero-content > h1 {
-  font-size: clamp(2.1rem, 4.6vw, 3.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  font-weight: 800;
-  margin: 0 0 var(--s-5) 0;
-  max-width: 22ch;
-  color: #fff;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-}
-
-.home-hero-content > .lede {
-  font-size: clamp(1.05rem, 1.25vw, 1.2rem);
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.92);
-  margin: 0 0 var(--s-6) 0;
-  max-width: 60ch;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-}
-
-.home-hero-content > .cta-row {
-  margin: 0 0 var(--s-5) 0;
-  justify-content: center;
-}
-/* Strengthen the secondary phone CTA against the dark video — give it
-   a semi-transparent surface so it reads cleanly. */
-.home-hero-content .cta-phone {
-  background: rgba(255, 255, 255, 0.10);
-  color: #fff !important;
-  border-color: rgba(255, 255, 255, 0.28);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-.home-hero-content .cta-phone:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.5);
-  color: #fff !important;
-}
-.home-hero-content .cta-phone::before { color: #fff; }
-
-.home-hero-content > .trust-line {
-  margin: 0;
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.72);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-}
-
-/* Mobile — skip the video entirely. Cellular users shouldn't get hit
-   with a 1.5 MB autoplay download. The poster image (set as the
-   .home-hero background-image above) takes over. */
-@media (max-width: 768px) {
-  .home-hero {
-    height: auto;
-    min-height: clamp(420px, 75vh, 560px);
-    max-height: none;
-  }
-  .home-hero-video { display: none; }
-  .home-hero-content {
-    padding: clamp(2rem, 7vw, 3rem) var(--s-4);
-  }
-  .home-hero-content > .cta-row { width: 100%; }
-}
-
-/* Respect prefers-reduced-motion — disable the video, let the poster
-   image background take over. Vestibular-disorder accessibility +
-   Core Web Vitals signal. */
-@media (prefers-reduced-motion: reduce) {
-  .home-hero-video { display: none; }
-}
-
-/* =================================================================
-   Tile grid (homepage services, state grid)
-   ================================================================= */
-.tile-grid, .state-grid {
-  display: grid;
-  gap: var(--s-4);
-  margin: var(--s-5) 0 var(--s-6) 0;
-}
-.tile-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.state-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-
-.tile {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none !important;
-  color: var(--fg) !important;
-  background: var(--surface);
-  padding: var(--s-4);
-  border-radius: var(--r-3);
-  border: 1px solid var(--line);
-  box-shadow: var(--sh-1);
-  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
-  position: relative;
-  overflow: hidden;
-}
-.tile::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: var(--r-3);
-  background: linear-gradient(135deg, transparent 60%, rgba(184, 52, 26, 0.04));
-  opacity: 0;
-  transition: opacity var(--t-base);
-  pointer-events: none;
-}
-.tile:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--sh-4);
-  border-color: var(--accent);
-}
-.tile:hover::after { opacity: 1; }
-.tile img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: var(--r-2);
-  margin-bottom: var(--s-3);
-  display: block;
-}
-.tile h3 { margin: var(--s-1) 0 var(--s-2) 0; font-size: 1.15rem; }
-.tile p { color: var(--muted); font-size: 0.95rem; margin: var(--s-2) 0 var(--s-3) 0; flex-grow: 1; }
-.tile .learn-more {
-  color: var(--accent);
-  font-size: 0.9rem;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  transition: gap var(--t-fast);
-}
-.tile:hover .learn-more { gap: 0.55rem; }
-
-/* =================================================================
-   Brand grid — hub pages
-   ================================================================= */
-.brand-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: var(--s-3);
-  margin: var(--s-4) 0 var(--s-6) 0;
-  list-style: none;
-  padding: 0;
-}
-.brand-grid li { margin: 0; }
-.brand-grid a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-2);
-  text-decoration: none !important;
-  color: var(--fg) !important;
-  font-weight: 600;
-  background: var(--surface);
-  box-shadow: var(--sh-1);
-  transition: transform var(--t-fast), border-color var(--t-fast), color var(--t-fast), box-shadow var(--t-fast);
-  position: relative;
-}
-.brand-grid a::after {
-  content: "";
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-right: 2px solid currentColor;
-  border-top: 2px solid currentColor;
-  transform: rotate(45deg);
-  opacity: 0.4;
-  transition: transform var(--t-fast), opacity var(--t-fast);
-}
-.brand-grid a:hover {
-  border-color: var(--accent);
-  color: var(--accent) !important;
-  transform: translateY(-2px);
-  box-shadow: var(--sh-3);
-}
-.brand-grid a:hover::after { opacity: 1; transform: rotate(45deg) translate(2px, -2px); }
-
-/* =================================================================
-   State sections (hub) + state grid tiles
-   ================================================================= */
-.state-section {
-  margin: var(--s-6) 0;
-  padding: var(--s-5);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-1);
-}
-.state-section h2 { margin-top: 0; }
-.state-section h2::before { display: none; }
-.state-cities { color: var(--muted); margin: var(--s-1) 0 var(--s-3) 0; }
-
-/* =================================================================
-   Quote form
-   ================================================================= */
-.quote-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-  max-width: 560px;
-  margin: var(--s-6) 0;
-  padding: var(--s-5);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-2);
-}
-.quote-form .field { display: flex; flex-direction: column; gap: 0.4rem; }
-.quote-form label { font-weight: 600; font-size: 0.92rem; color: var(--fg); }
-.quote-form .required::after { content: " *"; color: var(--accent); }
-.quote-form input,
-.quote-form textarea,
-.quote-form select {
-  font: inherit;
-  padding: 0.75rem 0.9rem;
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-2);
-  background: var(--surface);
-  width: 100%;
-  transition: border-color var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-form input:hover,
-.quote-form textarea:hover,
-.quote-form select:hover { border-color: var(--muted); }
-.quote-form input:focus,
-.quote-form textarea:focus,
-.quote-form select:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: var(--sh-focus);
-}
-.quote-form textarea { min-height: 9rem; resize: vertical; }
-.quote-form .radio-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--s-2); }
-.quote-form .radio-group label {
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  padding: 0.55rem 0.8rem;
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-2);
-  background: var(--surface);
-  transition: border-color var(--t-fast), background var(--t-fast);
-}
-.quote-form .radio-group label:hover { border-color: var(--muted); background: var(--surface-2); }
-.quote-form .radio-group input[type="radio"] { accent-color: var(--accent); }
-.quote-form button {
-  font: inherit;
-  background: var(--accent);
-  color: #fff;
-  padding: 0.95rem 1.6rem;
-  border: 0;
-  border-radius: var(--r-pill);
-  font-weight: 700;
-  cursor: pointer;
-  align-self: flex-start;
-  box-shadow: var(--sh-2);
-  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-form button:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--sh-3); }
-.quote-form button:active { transform: translateY(0); box-shadow: var(--sh-1); }
-.quote-form .honeypot { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
-
-/* Turnstile widget — minimal styling, lets Cloudflare's iframe render
-   itself. The wrapper just centers the widget within the form column. */
-.quote-form .cf-turnstile {
-  display: flex;
-  justify-content: center;
-  margin: var(--s-2) 0;
-}
-
-/* Error banner shown when the Pages Function redirected back with
-   ?error=... in the query string. Hidden by default; the inline
-   <script> at the bottom of the form un-hides it when present. */
-.form-error-banner {
-  padding: var(--s-4);
-  border-radius: var(--r-3);
-  background: rgba(184, 52, 26, 0.06);
-  border: 1px solid rgba(184, 52, 26, 0.25);
-  border-left: 4px solid var(--accent-dark);
-  margin: var(--s-5) 0;
-  color: var(--fg);
-}
-.form-error-banner p { margin: 0; }
-.form-error-banner[hidden] { display: none; }
-
-/* =================================================================
-   Get-a-Quote page — modern conversion-focused redesign.
-   See quote_body() in this file for the matching HTML.
-   ================================================================= */
-
-/* Quote hero — distinct from brand-hero / video-hero. Calmer
-   editorial band with a heavy phone CTA. */
-.quote-hero {
-  background:
-    radial-gradient(120% 80% at 50% 0%, rgba(184, 52, 26, 0.06), transparent 60%),
-    var(--surface-3);
-  border-bottom: 1px solid var(--line);
-  padding: clamp(2.5rem, 6vw, 4rem) var(--s-5) clamp(2rem, 5vw, 3rem);
-  margin: 0 0 var(--s-5) 0;
-}
-.quote-hero-inner {
-  max-width: var(--max-wide);
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.quote-hero-eyebrow {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent-dark);
-  background: rgba(184, 52, 26, 0.10);
-  border: 1px solid rgba(184, 52, 26, 0.20);
-  border-radius: var(--r-pill);
-  padding: 0.32rem 0.78rem;
-  margin: 0 0 var(--s-4) 0;
-}
-.quote-hero h1 {
-  font-size: clamp(1.85rem, 4vw, 2.8rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  font-weight: 800;
-  margin: 0 0 var(--s-3) 0;
-  max-width: 22ch;
-  color: var(--fg);
-}
-.quote-hero h1::before { display: none; }
-.quote-hero-lede {
-  font-size: clamp(1.02rem, 1.2vw, 1.15rem);
-  line-height: 1.55;
-  color: var(--fg);
-  margin: 0 0 var(--s-5) 0;
-  max-width: 60ch;
-}
-
-/* Dominant call banner — the primary action on this page. Full-width
-   (capped), large tap target. Built for a stressed owner on a phone in
-   the shop: the call button is the loudest thing above the form. */
-.quote-call-banner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--s-4);
-  width: 100%;
-  max-width: 520px;
-  margin: 0 auto var(--s-3);
-  background: var(--accent);
-  color: #fff !important;
-  text-decoration: none !important;
-  padding: 1.15rem 1.5rem;
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-3);
-  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-call-banner:hover {
-  background: var(--accent-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--sh-4);
-}
-.quote-call-banner:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-}
-.quote-call-banner-icon {
-  font-size: 2rem;
-  line-height: 1;
-  flex-shrink: 0;
-}
-.quote-call-banner-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
-.quote-call-banner-main {
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-}
-.quote-call-banner-sub {
-  font-size: 0.85rem;
-  opacity: 0.92;
-  margin-top: 0.12rem;
-}
-.quote-hero-jumplink {
-  display: inline-block;
-  color: var(--accent-dark);
-  text-decoration: underline;
-  text-decoration-color: rgba(140, 37, 16, 0.45);
-  text-underline-offset: 3px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: text-decoration-color var(--t-fast);
-}
-.quote-hero-jumplink:hover { text-decoration-color: var(--accent-dark); }
-.quote-hero-jumplink:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-/* Mobile: the call banner goes truly full-width and even bigger —
-   this is the in-the-shop scenario the page is designed around. */
-@media (max-width: 600px) {
-  .quote-call-banner {
-    max-width: none;
-    padding: 1.25rem 1rem;
-  }
-  .quote-call-banner-main { font-size: 1.3rem; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .quote-call-banner { transition: none !important; }
-  .quote-call-banner:hover { transform: none !important; }
-}
-
-/* Single-column layout — the whole quote body lives inside one
-   .page-section-hero band whose .section-inner is uncapped (max-width:
-   none, padding: 0), so .quote-layout is the element that re-establishes
-   the 1140px content width + horizontal gutter. The form card, intro
-   checklist, and "What happens next" timeline all stack inside it at
-   full width. */
-.quote-layout {
-  max-width: var(--max-wide);
-  margin: 0 auto;
-  padding: var(--s-6) var(--s-5);
-}
-@media (max-width: 700px) {
-  .quote-layout { padding: var(--s-5) var(--s-4); }
-}
-
-/* Intro checklist at the top of the form — sets expectations for
-   what to have handy before filling out the fields. */
-.quote-form-intro {
-  padding: var(--s-4) var(--s-5);
-  background: color-mix(in srgb, var(--surface) 90%, var(--accent) 5%);
-  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--line));
-  border-left: 4px solid var(--accent);
-  border-radius: var(--r-2);
-}
-.quote-form-intro-title {
-  margin: 0 0 var(--s-2) 0;
-  font-weight: 600;
-  font-size: 1.02rem;
-  color: var(--fg);
-}
-.quote-form-intro-list {
-  margin: 0;
-  padding-left: 1.2rem;
-  color: var(--fg);
-  font-size: 0.98rem;
-  line-height: 1.55;
-}
-.quote-form-intro-list li { margin: 0.28rem 0; }
-
-/* "What happens next" — 3-step timeline as a horizontal grid inside
-   the form card, below the submit button. Stacks on narrow. */
-.quote-next-steps {
-  margin-top: var(--s-4);
-  padding-top: var(--s-5);
-  border-top: 1px solid var(--line);
-}
-.quote-next-steps-title {
-  font-weight: 700;
-  font-size: 0.88rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent-dark);
-  margin: 0 0 var(--s-4) 0;
-}
-.quote-next-steps-grid {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--s-5);
-}
-.quote-next-steps-grid li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--s-3);
-}
-.quote-next-steps-num {
-  width: 34px;
-  height: 34px;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 0.98rem;
-  flex-shrink: 0;
-}
-.quote-next-steps-grid strong {
-  display: block;
-  color: var(--fg);
-  font-size: 1rem;
-  margin-bottom: 0.15rem;
-}
-.quote-next-steps-grid span {
-  color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.5;
-}
-@media (max-width: 780px) {
-  .quote-next-steps-grid { grid-template-columns: 1fr; gap: var(--s-3); }
-}
-
-/* Form card — full width of the wide band, sits on a surface card
-   with generous padding so fields have real breathing room. Overrides
-   the legacy .quote-form rule (max-width: 560px) which is otherwise
-   still applied because the form carries both classes. */
-.quote-form.quote-form-modern {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-2);
-  padding: clamp(var(--s-5), 4vw, var(--s-8));
-  margin: 0;
-  max-width: none;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-7);
-}
-
-/* Field-section grouping — uses <fieldset> for semantics; no
-   visible fieldset border. The <legend> becomes a section title. */
-.form-section {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-}
-.form-section-title {
-  font-size: 0.88rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent-dark);
-  padding: 0;
-  margin: 0 0 var(--s-2) 0;
-}
-
-/* Single-column field rows — every field gets its own line at the
-   full form width. No internal columns anywhere in the quote form. */
-.form-row {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-}
-
-/* Scale up the form for the wider column. Larger inputs, labels,
-   and textarea give the form appropriate weight in the layout. */
-.quote-form-modern .field { display: flex; flex-direction: column; gap: 0.45rem; }
-.quote-form-modern .field label,
-.quote-form-modern .field-label {
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--fg);
-}
-.quote-form-modern input,
-.quote-form-modern textarea,
-.quote-form-modern select {
-  font: inherit;
-  font-size: 1.02rem;
-  padding: 0.95rem 1.1rem;
-  border-radius: var(--r-2);
-}
-.quote-form-modern textarea {
-  min-height: 15rem;
-  line-height: 1.55;
-}
-.quote-form-modern .field-hint {
-  margin: 0.4rem 0 0 0;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-/* Service selection — icon cards. The actual radio input is
-   visually hidden but stays in the tab order. The whole card is the
-   click target. Checked state is communicated by border, background,
-   icon tint, and a small checkmark badge in the top-right corner —
-   no exposed radio circle. */
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--s-2);
-}
-@media (max-width: 720px) {
-  .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-.service-card {
-  position: relative;
-  display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  cursor: pointer;
-}
-
-/* Visually hide the radio input but keep it accessible to keyboard
-   and assistive tech. Standard sr-only pattern. */
-.service-card input[type="radio"] {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.service-card-inner {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-  gap: 0.5rem;
-  padding: var(--s-4) var(--s-3);
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-3);
-  background: var(--surface);
-  transition: border-color var(--t-fast), background var(--t-fast),
-              box-shadow var(--t-fast), transform var(--t-fast);
-  min-height: 132px;
-  height: 100%;
-}
-
-.service-card:hover .service-card-inner {
-  border-color: var(--muted);
-  background: var(--surface-2);
-  transform: translateY(-2px);
-  box-shadow: var(--sh-2);
-}
-
-.service-card input[type="radio"]:checked + .service-card-inner {
-  border-color: var(--accent);
-  background: color-mix(in srgb, var(--surface) 94%, var(--accent) 6%);
-  box-shadow: 0 0 0 1px var(--accent) inset, var(--sh-2);
-}
-
-.service-card input[type="radio"]:focus-visible + .service-card-inner {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-}
-
-.service-card-icon {
-  width: 36px;
-  height: 36px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  transition: color var(--t-fast), transform var(--t-fast);
-  margin-bottom: 0.15rem;
-}
-.service-card:hover .service-card-icon {
-  color: var(--accent-dark);
-}
-.service-card input[type="radio"]:checked + .service-card-inner .service-card-icon {
-  color: var(--accent-dark);
-  transform: scale(1.05);
-}
-
-.service-card-title {
-  font-weight: 700;
-  font-size: 0.98rem;
-  color: var(--fg);
-  line-height: 1.2;
-}
-
-.service-card-desc {
-  font-size: 0.82rem;
-  color: var(--muted);
-  line-height: 1.35;
-  font-weight: 400;
-}
-.service-card input[type="radio"]:checked + .service-card-inner .service-card-desc {
-  color: var(--fg);
-}
-
-/* Checkmark badge appears in the top-right corner of the selected
-   card. CSS-only — uses an inline SVG data-URI as the background. */
-.service-card-inner::after {
-  content: "";
-  position: absolute;
-  top: 0.55rem;
-  right: 0.55rem;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: var(--accent);
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
-  background-size: 12px 12px;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0;
-  transform: scale(0.6);
-  transition: opacity var(--t-fast), transform var(--t-fast);
-}
-.service-card input[type="radio"]:checked + .service-card-inner::after {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Respect reduced-motion. */
-@media (prefers-reduced-motion: reduce) {
-  .service-card-inner,
-  .service-card-icon,
-  .service-card-inner::after { transition: none !important; }
-  .service-card:hover .service-card-inner { transform: none !important; }
-  .service-card input[type="radio"]:checked + .service-card-inner .service-card-icon {
-    transform: none !important;
-  }
-}
-
-/* Submit tail — Turnstile + button + note grouped tightly. */
-.quote-form-tail {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-3);
-  align-items: stretch;
-  border-top: 1px solid var(--line);
-  padding-top: var(--s-4);
-  margin-top: var(--s-2);
-}
-.quote-turnstile {
-  display: flex;
-  justify-content: center;
-}
-.quote-submit {
-  width: 100%;
-  font: inherit;
-  background: var(--accent);
-  color: #fff;
-  padding: 1.25rem 1.8rem;
-  border: 0;
-  border-radius: var(--r-2);
-  font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: -0.005em;
-  cursor: pointer;
-  align-self: stretch;
-  box-shadow: var(--sh-2);
-  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-submit:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--sh-3); }
-.quote-submit:active { transform: translateY(0); box-shadow: var(--sh-1); }
-.quote-submit:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-}
-.quote-submit-note {
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin: 0;
-}
-
-/* Sidebar — stack of supporting cards. */
-.quote-layout-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-}
-.quote-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  padding: var(--s-5);
-  box-shadow: var(--sh-1);
-}
-.quote-card h3 {
-  margin: 0 0 var(--s-3) 0;
-  font-size: 1.02rem;
-  color: var(--fg);
-}
-.quote-card h3::before { display: none; }
-.quote-card p { margin: 0 0 var(--s-2) 0; color: var(--fg); font-size: 0.95rem; line-height: 1.55; }
-.quote-card p:last-child { margin-bottom: 0; }
-.quote-card-list {
-  margin: 0;
-  padding: 0 0 0 1.1rem;
-  font-size: 0.95rem;
-  color: var(--fg);
-  line-height: 1.55;
-}
-.quote-card-list li { margin: 0.4rem 0; }
-
-/* Timeline inside "What happens next" card. */
-.quote-timeline {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-.quote-timeline li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--s-3);
-  padding: var(--s-3) 0;
-  border-bottom: 1px solid var(--line);
-}
-.quote-timeline li:last-child { border-bottom: 0; padding-bottom: 0; }
-.quote-timeline li:first-child { padding-top: 0; }
-.quote-timeline-step {
-  width: 30px;
-  height: 30px;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-}
-.quote-timeline strong {
-  display: block;
-  font-size: 0.95rem;
-  color: var(--fg);
-  margin-bottom: 0.15rem;
-}
-.quote-timeline p { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
-
-/* "Or just call" card — visually emphasized so it pulls the
-   high-intent visitor's eye. */
-.quote-card-call {
-  background: var(--surface-3);
-  border-color: rgba(184, 52, 26, 0.22);
-  border-left: 4px solid var(--accent);
-}
-.quote-card-phone {
-  display: block;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--accent-dark);
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  margin: var(--s-2) 0 var(--s-3) 0;
-  padding: 0.55rem 0;
-  border-bottom: 2px solid transparent;
-  transition: border-color var(--t-fast), color var(--t-fast);
-}
-.quote-card-phone:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-.quote-card-phone:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-.quote-card-meta {
-  font-size: 0.85rem !important;
-  color: var(--muted) !important;
-  margin: 0 !important;
-}
-
-@media (max-width: 600px) {
-  .quote-hero { padding: var(--s-5) var(--s-4) var(--s-4); }
-  .quote-hero-inner { text-align: left; align-items: flex-start; }
-  .quote-hero-jumplink { text-align: center; width: 100%; }
-  .quote-form-modern { padding: var(--s-4); }
-}
-
-/* Reduced-motion: drop the lift effect on buttons/links. */
-@media (prefers-reduced-motion: reduce) {
-  .quote-submit,
-  .quote-card-phone { transition: none !important; }
-  .quote-submit:hover { transform: none !important; }
-}
-
-.success-message {
-  display: none;
-  padding: var(--s-5);
-  border-radius: var(--r-3);
-  background: var(--success-bg);
-  border: 1px solid rgba(46, 125, 50, 0.25);
-  border-left: 4px solid #2e7d32;
-  color: var(--success-fg);
-  margin: var(--s-6) 0;
-  box-shadow: var(--sh-1);
-}
-.success-message h2 { margin-top: 0; color: var(--success-fg); }
-.success-message h2::before { background: #2e7d32; }
-body.form-submitted .success-message { display: block; }
-body.form-submitted .quote-form { display: none; }
-body.form-submitted .quote-helpers { display: none; }
-
-.alt-contact {
-  margin: var(--s-6) 0;
-  padding: var(--s-5);
-  background: var(--surface-2);
-  border-radius: var(--r-3);
-  border: 1px solid var(--line);
-}
-.alt-contact h3 { margin: 0 0 var(--s-2) 0; }
-.alt-contact p { margin: var(--s-1) 0; }
 </style>
-<script>
-  // Early success-state detection — runs in <head> before paint so the form
-  // never flashes visible if the URL has ?success=1. Harmless on other pages.
-  if (location.search.indexOf('success=1') !== -1) {
-    document.documentElement.classList.add('form-submitted-html');
-  }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://midwestcncservices.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://midwestcncservices.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Buying & Owning Used CNC",
+      "item": "https://midwestcncservices.com/insights/buying-owning-used-cnc/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Used Mazak Buying Guide: Era-by-Era"
+    }
+  ]
+}
 </script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://midwestcncservices.com/#org",
-  "name": "Midwest CNC Services",
-  "url": "https://midwestcncservices.com/",
-  "telephone": "+13196104341",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Waterloo",
-    "addressRegion": "IA",
-    "addressCountry": "US"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 42.4928,
-    "longitude": -92.3426
-  },
-  "hasMap": "https://www.google.com/maps/place/Waterloo,+IA",
-  "areaServed": [
-    "Iowa",
-    "Illinois",
-    "Wisconsin",
-    "Minnesota",
-    "Nebraska",
-    "Missouri",
-    "Texas"
+  "@type": [
+    "Article",
+    "BlogPosting"
   ],
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday"
-      ],
-      "opens": "07:00",
-      "closes": "15:30"
+  "headline": "Used Mazak Buying Guide: Era-by-Era",
+  "description": "A used Mazak buying guide by control era, from T-32 to Smooth. Covers parts, spindle costs, and why Matrix is the sweet spot.",
+  "datePublished": "2026-08-10",
+  "dateModified": "2026-08-10",
+  "author": {
+    "@type": "Person",
+    "name": "Ken",
+    "jobTitle": "Shop owner",
+    "worksFor": {
+      "@id": "https://midwestcncservices.com/#org"
     }
-  ]
+  },
+  "publisher": {
+    "@id": "https://midwestcncservices.com/#org"
+  },
+  "mainEntityOfPage": "https://midwestcncservices.com/insights/buying-owning-used-cnc/used-mazak-by-era/",
+  "articleSection": "Buying & Owning Used CNC",
+  "keywords": "used mazak buying guide",
+  "wordCount": 1679,
+  "inLanguage": "en-US"
 }
 </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How fast can you respond to a quote request?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Most quote requests go out within one business day. If the machine is down and you need someone on the line right now, call 319-610-4341 — we'd rather talk through the symptoms than wait for an email back. Field troubleshooting on the phone often saves a full teardown."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you work on older or discontinued machines?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. We have dedicated brand pages and parts-sourcing approaches for Fadal, Hitachi Seiki, and Monarch — manufacturers whose CNC lines have been gone for years but whose machines are still cutting daily in Midwest shops. We lean on aftermarket suppliers, used-market sourcing, and custom-machined replacements where OEM components are gone."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Where do you work? Do you come on-site?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We serve shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas from our Waterloo, Iowa shop. Field service when that's the right call for the job; spindle rebuilds and way-cover builds happen at our bench and ship back to you."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can you recover a crashed spindle?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Often, yes. Crash recovery is one of the threads of work that comes through here — taper damage, bearing-pack failure, alignment loss from impact. Customers are usually relieved to avoid the replacement lead times and the six-figure capital expense of a new spindle. Bring it in for a teardown."
-      }
-    }
-  ]
-}
-</script>
-
 </head>
-<body class="layout-wide">
+<body class="insights-page insights-article">
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Midwest CNC Services home">
@@ -3092,120 +2021,170 @@ body.form-submitted .quote-helpers { display: none; }
     </ul>
   </nav>
 </header>
-
+<nav class="breadcrumbs" aria-label="breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li><li><a href="/insights/">Insights</a></li><li><a href="/insights/buying-owning-used-cnc/">Buying &amp; Owning Used CNC</a></li><li>Used Mazak Buying Guide: Era-by-Era</li>
+  </ol>
+</nav>
 <main id="main">
 <article>
-<section class="page-section page-section-hero">
-  <div class="section-inner wide">
-<section class="home-hero">
-  <video class="home-hero-video"
-         autoplay muted loop playsinline
-         preload="auto"
-         poster="/assets/images/general/midwest-cnc-highway-shot.webp"
-         aria-hidden="true">
-    <source src="/assets/images/general/midwest-cnc-bg-fade.mp4" type="video/mp4">
-  </video>
-  <div class="home-hero-overlay" aria-hidden="true"></div>
-  <div class="home-hero-content">
-    <p class="eyebrow">Stop Losing Money</p>
-    <h1>When Your Machine Stops, We&nbsp;Start</h1>
-    <p class="lede">CNC repair, spindle work, and replacement way covers across the U.S. Midwest. When a machine goes down, our experienced field technicians come out to diagnose and get you back to cutting. From spindle rebuilds and machine repair to custom way covers we ship anywhere, the goal is the same: keep your shop producing.</p>
-    <div class="cta-row">
-      <a class="cta-button" href="/get-a-quote/">Get a Quote</a>
-      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
-    </div>
-    <p class="trust-line">Serving shops in Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas. Based in Waterloo, Iowa.</p>
-  </div>
-</section>
-<script>
-(function () {
-  var video = document.querySelector('.home-hero-video');
-  if (!video) return;
-  var FADE = 0.6;  // seconds at each end of the clip
-  function setOpacity() {
-    var t = video.currentTime;
-    var d = video.duration;
-    if (!d || !isFinite(d)) { video.style.opacity = '1'; return; }
-    var op;
-    if (t < FADE)              op = t / FADE;
-    else if (t > d - FADE)     op = (d - t) / FADE;
-    else                       op = 1;
-    if (op < 0) op = 0; else if (op > 1) op = 1;
-    video.style.opacity = String(op);
-  }
-  function tick() {
-    setOpacity();
-    requestAnimationFrame(tick);
-  }
-  // Kick off — autoplay attribute should start it, but defensively
-  // call play() in case the browser deferred it (Safari sometimes does).
-  var p = video.play();
-  if (p && typeof p.catch === 'function') p.catch(function () { /* autoplay blocked; ignore */ });
-  requestAnimationFrame(tick);
-})();
-</script>
-  </div>
-</section>
-<section class="page-section page-section-0">
-  <div class="section-inner wide">
-<h2 id="our-services">Our Services</h2>
-<p>Three lines of work, one shop. We do machine repair on production CNC equipment, manufacture replacement way covers to spec, and rebuild and grind spindles back to factory tolerance — across every major OEM platform we service.</p>
-<div class="tile-grid"><a class="tile" href="/repairs/"><img src="/assets/images/general/image-of-cnc-machine.png" alt="CNC machining center under service" loading="lazy"><h3>Machine Repair</h3><p>CNC machine repair across spindle, control, ATC, drive, and alignment work. We service Mazak, Haas, Okuma, DMG Mori, Fanuc, Doosan, Brother, Hurco, and 12 other major OEM platforms — plus Amada press brakes and Trumpf lasers. Field troubleshooting where a remote diagnostic can save a teardown.</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/way-covers/"><img src="/assets/images/general/image-of-way-covers.png" alt="Replacement CNC way covers" loading="lazy"><h3>Way Covers</h3><p>Replacement way covers in bellows, telescoping steel, and roll-up styles. Built to spec for every CNC platform we service — from Mazak Integrex multi-taskers and Haas VF machines to legacy Fadal 4020s and Hitachi Seiki HMCs. Most orders ship in 2–4 weeks. We measure from your original or build to drawing.</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/spindle-grinding/"><img src="/assets/images/general/image-of-spindle-grinding.png" alt="CNC spindle on the grinding bench" loading="lazy"><h3>Spindle Grinding</h3><p>Spindle rebuilds, regrinds, and rebalancing across 18 OEM platforms — Mazak, Haas, Okuma, DMG Mori, Mori Seiki, Doosan, and on through Fadal and Hitachi Seiki legacy work. Most jobs run 2–6 weeks depending on bearing-pack damage and parts availability. Each brand page has failure modes and lead times.</p><span class="learn-more">Learn More →</span></a></div>
+
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
+<p class="insight-eyebrow">Buying &amp; Owning Used CNC</p>
+<h1 class="insight-h1">Used Mazak Buying Guide: Era-by-Era</h1>
+<p class="insight-meta">By Ken &middot; 2026-08-10 &middot; ~8 min read</p>
   </div>
 </section>
 <section class="page-section page-section-1">
-  <div class="section-inner wide">
-<h2 id="service-areas">Service Areas</h2>
-<p>We work with shops across seven Midwest and South-Central states. Production environments and job shops across the Midwest, plus specialty work where brand-specific expertise matters — from high-precision Makino aerospace and mold-die customers to legacy Fadal and Hitachi Seiki rebuilds. Field troubleshooting where a remote diagnostic can save a teardown.</p>
-<div class="state-grid"><a class="tile" href="/service-area/iowa/"><img src="/assets/images/general/view-all-iowa-cnc-service-locations.png" alt="Iowa CNC service coverage" loading="lazy"><h3>Iowa</h3><p>Des Moines, Davenport, Waterloo, Cedar Rapids</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/illinois/"><img src="/assets/images/general/illinois.png" alt="Illinois CNC service coverage" loading="lazy"><h3>Illinois</h3><p>Chicago, Rockford, Peoria, Springfield</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/wisconsin/"><img src="/assets/images/general/wisconsin.png" alt="Wisconsin CNC service coverage" loading="lazy"><h3>Wisconsin</h3><p>Milwaukee, Madison, Green Bay</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/minnesota/"><img src="/assets/images/general/minnesota.png" alt="Minnesota CNC service coverage" loading="lazy"><h3>Minnesota</h3><p>St. Paul, Minneapolis, Rochester</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/nebraska/"><img src="/assets/images/general/nebraska.png" alt="Nebraska CNC service coverage" loading="lazy"><h3>Nebraska</h3><p>Lincoln, Omaha, Grand Island</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/missouri/"><img src="/assets/images/general/missouri.png" alt="Missouri CNC service coverage" loading="lazy"><h3>Missouri</h3><p>St. Louis, Kansas City, Springfield</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/texas/"><img src="/assets/images/general/texas.png" alt="Texas CNC service coverage" loading="lazy"><h3>Texas</h3><p>Dallas, Houston, Austin</p><span class="learn-more">Learn More →</span></a></div>
+  <div class="section-inner">
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>Mazak machines span five control eras from 1983 to present. The control era sets repair costs more than machine age alone.
+</li>
+<li>Matrix-era machines (2005-2014) offer the best balance today. They cost 40-60% less than Smooth-era equivalents and have strong parts support.
+</li>
+<li>Parts drop off after 15 years from production end. Pre-2000 machines face long lead times and premium pricing.
+</li>
+<li>A 2008 Quick Turn Nexus at $48,000 can beat a $165,000 Smooth machine in five-year total cost if your work fits the older control.
+</li>
+<li>Spindle rebuilds run $4,000-7,000 on T-32 machines but $9,000-18,000 on Smooth machines. Newer spindles fail less often but cost more to fix.
+</li>
+</ul>
+<p>Buying a used Mazak differs from buying a used Haas or Doosan. Mazak's Mazatrol control is proprietary. It creates a divide that other brands don't have. When you buy a used Mazak, you buy into a parts pipeline, a training path, and a repair cost structure. This used Mazak buying guide walks through each control era. You'll match your budget to the right generation.</p>
   </div>
 </section>
 <section class="page-section page-section-0">
-  <div class="section-inner wide">
-<h2 id="how-we-work">How We Work</h2>
-<p>Same three steps every brand page describes:</p>
-<ol class="process-steps">
-  <li><strong>Contact Us.</strong> Call 319-610-4341 or use the quote form. Tell us the machine, the symptoms, and how urgent it is.</li>
-  <li><strong>Grab Model #.</strong> We'll fire back price, lead time, and shipping ETA after reviewing your details.</li>
-  <li><strong>Approve &amp; Rebuild.</strong> We complete the work, verify it back to spec, and return the machine ready to run.</li>
-</ol>
+  <div class="section-inner">
+<h2 id="the-five-mazak-control-eras">The five Mazak control eras</h2>
+<p>Mazak has shipped five major control generations since the early 1980s. Each brought hardware changes to drives, spindles, and frames. But the control platform sets long-term repair costs.</p>
+<p><strong>T-32 / M-32 era (1983-1992):</strong> The original Mazatrol T-32 and M-32 boards ran on 8-bit and 16-bit chips. These machines are now obsolete for production. Parts are scarce. We see them in schools or low-volume shops. A $6,000 auction buy makes sense as a trainer. Expect $3,000-8,000 in electrical work on any T-32/M-32 that hasn't run in two years.</p>
+<p><strong>T-Plus / M-Plus era (1992-1999):</strong> T-Plus and M-Plus controls brought 32-bit boards and better servos. But OEM board sales ended around 2015. Spindle drives on T-Plus lathes often need third-party rebuild. A 1996 Quick Turn 15 might sell for $12,000-18,000. Budget $5,000-10,000 more for drive or spindle work in the first 18 months.</p>
+<p><strong>Fusion 640 era (1999-2005):</strong> Fusion 640 moved Mazak to PC-based controls. Some Fusion drives still show up in surplus channels. Main failure points are IDE hard drives, cooling fans, and CRT screens. A 2003 Integrex 200-III with Fusion 640 might run $35,000-55,000. Add $2,000-4,000 for PC refreshes if the drive hasn't been swapped.</p>
+<p><strong>Matrix era (2005-2014):</strong> Matrix-era machines are the sweet spot for used Mazak buyers in 2025-2027. That's Ken's view based on 30 years of bench work. Matrix and Matrix Nexus controls run on industrial PCs with standard ports. Drives are Mitsubishi-based and repairable. Spindles are well-documented. OEM parts remain in stock. A 2010 Quick Turn Nexus 250-II in good shape runs $55,000-75,000. A 2012 VCN-530C vertical might be $70,000-95,000. These machines have 10-15 years of service life left.</p>
+<p><strong>Smooth era (2014-present):</strong> SmoothX, SmoothG, and SmoothC are Mazak's current platforms. Used Smooth machines are rare. They price at 70-85% of new. Parts are current. Remote diagnostics work. If your budget hits $150,000+, Smooth is worth a look. But the used-buying value fades. You pay near-new prices for older iron.</p>
   </div>
 </section>
 <section class="page-section page-section-1">
-  <div class="section-inner wide">
-<h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
-<p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
-<blockquote><p>&quot;Honestly, we thought the machine was done for.&quot; Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.</p></blockquote>
+  <div class="section-inner">
+<h2 id="era-by-era-serviceability-table">Era-by-era serviceability table</h2>
+<p>The table below sums up repair costs by control generation. This era-by-era serviceability table reflects what we see in Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas.</p>
+<p>| Era | Control | OEM Parts | Aftermarket | Spindle Rebuild | Drive Lead Time | |-----|---------|-----------|-------------|-----------------|-----------------| | T-32/M-32 | T-32, M-32 | Gone | Limited | $4,000-7,000 | 4-8 weeks | | T-Plus/M-Plus | T-Plus, M-Plus | Gone | Moderate | $5,000-9,000 | 3-6 weeks | | Fusion 640 | Fusion 640M, 640T | Thin | Good | $6,000-11,000 | 2-4 weeks | | Matrix | Matrix, Matrix Nexus | In stock | Strong | $7,000-14,000 | 1-3 weeks | | Smooth | SmoothX, SmoothG, SmoothC | Current | Low need | $9,000-18,000 | 1-2 weeks |</p>
+<p>Spindle costs rise on newer machines. Bearing specs and balance limits are tighter. But newer spindles fail less often when you keep up with maintenance.</p>
   </div>
 </section>
 <section class="page-section page-section-0">
-  <div class="section-inner wide">
-<h2 id="faq">Common Questions</h2>
-<div class="faq-list">
-<details class="faq-item" id="faq-1">
-  <summary>How fast can you respond to a quote request?</summary>
-  <div class="faq-answer"><p>Most quote requests go out within one business day. If the machine is down and you need someone on the line right now, call 319-610-4341 — we&#x27;d rather talk through the symptoms than wait for an email back. Field troubleshooting on the phone often saves a full teardown.</p></div>
-</details>
-<details class="faq-item" id="faq-2">
-  <summary>Do you work on older or discontinued machines?</summary>
-  <div class="faq-answer"><p>Yes. We have dedicated brand pages and parts-sourcing approaches for Fadal, Hitachi Seiki, and Monarch — manufacturers whose CNC lines have been gone for years but whose machines are still cutting daily in Midwest shops. We lean on aftermarket suppliers, used-market sourcing, and custom-machined replacements where OEM components are gone.</p></div>
-</details>
-<details class="faq-item" id="faq-3">
-  <summary>Where do you work? Do you come on-site?</summary>
-  <div class="faq-answer"><p>We serve shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas from our Waterloo, Iowa shop. Field service when that&#x27;s the right call for the job; spindle rebuilds and way-cover builds happen at our bench and ship back to you.</p></div>
-</details>
-<details class="faq-item" id="faq-4">
-  <summary>Can you recover a crashed spindle?</summary>
-  <div class="faq-answer"><p>Often, yes. Crash recovery is one of the threads of work that comes through here — taper damage, bearing-pack failure, alignment loss from impact. Customers are usually relieved to avoid the replacement lead times and the six-figure capital expense of a new spindle. Bring it in for a teardown.</p></div>
-</details>
+  <div class="section-inner">
+<h2 id="physical-checks-by-era">Physical checks by era</h2>
+<p>Each Mazak era has its own weak points. Check these items during a pre-buy walk-through.</p>
+<p><strong>T-32/M-32 machines:</strong> Inspect the ways. These machines often ran decades before being parked. Worn ways cost $8,000-15,000 to scrape or regrind. Check the ATC cam system. Cams are not available new. You'll need custom fab or a donor machine.</p>
+<p><strong>T-Plus/M-Plus machines:</strong> Pull the spindle and look at the taper bore. A scored taper on a T-Plus Quick Turn means a $6,000-9,000 rebuild. Check tailstock alignment on lathes. These machines are old enough that moves throw off alignment.</p>
+<p><strong>Fusion 640 machines:</strong> Run the machine for two hours before you buy. Stress the PC subsystem. Listen for fan noise shifts. Check the hard drive age. Look at the screen for burn-in or flicker. Some machines fault after 90 minutes of heat soak.</p>
+<p><strong>Matrix machines:</strong> Matrix iron is solid. But check the chiller. Heat exchangers fail around year 12-15. Look at the ATC magazine for tool-pocket wear on high-cycle units. Worn pockets cause pull-stud failures. <a href="/way-covers/mazak-cnc-way-covers/mazatrol-matrix/">Way Covers for Mazatrol Matrix Era Machines</a> matter too. Damaged covers let chips into the linear guides.</p>
+<p><strong>Smooth machines:</strong> Verify the software version and option codes. Some features need paid unlocks. Confirm the config matches the listing. Check spindle hours in the log. Smooth controls track this data. A seller who can't show it is a red flag.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="total-cost-of-ownership-math">Total cost of ownership math</h2>
+<p>Purchase price is just the entry point. A real used Mazak buying guide accounts for five-year costs.</p>
+<p>Look at two paths for a shop that needs a 10-inch chuck lathe.</p>
+<p><strong>Option A: 2008 Quick Turn Nexus 200 (Matrix)</strong></p>
+<ul>
+<li>Purchase: $48,000
+</li>
+<li>Rigging: $4,500
+</li>
+<li>Setup service: $3,200
+</li>
+<li>Years 1-5 maintenance: $18,000
+</li>
+<li>Five-year total: $73,700
+</li>
+</ul>
+<p><strong>Option B: 2019 Quick Turn 250MSY (Smooth)</strong></p>
+<ul>
+<li>Purchase: $165,000
+</li>
+<li>Rigging: $5,500
+</li>
+<li>Setup service: $800
+</li>
+<li>Years 1-5 maintenance: $9,000
+</li>
+<li>Five-year total: $180,300
+</li>
+</ul>
+<p>The Smooth machine costs $106,600 more over five years. If you run three shifts and chase sub-second cycle times, the Smooth may earn that back. If you run one shift on medium-tolerance work, the Matrix delivers equal part quality at 40% of total cost. Control era sets repair costs. But your workload decides if those costs matter.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="where-ken-sees-value-in-2025-2026">Where Ken sees value in 2025-2026</h2>
+<p>Ken has worked on Mazak iron for 30+ years. Here's his read on the current used market.</p>
+<p>Matrix Nexus lathes are undervalued. The Quick Turn Nexus 200-II and 250-II from 2008-2012 were over-built for their price. Spindles hold up. Mitsubishi drives are repairable. Aftermarket suppliers stock parts because so many shipped. Expect $45,000-75,000 for a clean unit.</p>
+<p>On mills, the VCN-530C and VCN-430A with Matrix Nexus shine. They're 40-taper verticals with 12,000-RPM spindles and 30-tool ATCs. A 2011 VCN-530C might run $65,000-85,000. A new one lists around $180,000. The used machine gives 80% of the cut for 40% of the cash.</p>
+<p>Avoid Fusion-era Integrex units unless you have a niche job and deep pockets. Multi-axis Fusion machines are complex and dated. A 2003 Integrex 200-III looks cheap at $50,000. But a B-axis encoder fail or spindle indexing fault runs $12,000-18,000. Total spend often tops the cost of a newer machine.</p>
+<p><a href="/way-covers/mazak-cnc-way-covers/smooth-control/">Way Covers for Mazatrol Smooth Era Machines</a> matter on late-model buys. If you're eyeing a 2016-2018 Smooth mill that ran heavy chips, check cover health. Replacements run $3,500-6,500 per axis.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="parts-and-the-15-year-cliff">Parts and the 15-year cliff</h2>
+<p>Mazak USA keeps parts longer than most OEMs. But real-world stock parts drop off after 15 years from end of production.</p>
+<ul>
+<li>T-32/M-32: Ended 1992. OEM parts gone by 2007. Donor and aftermarket only.
+</li>
+<li>T-Plus/M-Plus: Ended 1999. OEM parts gone by 2015. Third-party rebuild is the path.
+</li>
+<li>Fusion 640: Ended 2005. OEM stock is thin now. PC parts are the bottleneck.
+</li>
+<li>Matrix: Ended 2014. Full OEM stock through roughly 2029.
+</li>
+<li>Smooth: Current. Full stock.
+</li>
+</ul>
+<p>When parts drop off, lead times stretch and prices jump. A drive board takes two weeks on a Matrix. On a T-Plus, it takes eight weeks—and you pay more for a reman unit.</p>
+<p>If your shop can't absorb long downtime, stay Matrix-era or newer. If you have backup capacity, older iron becomes viable.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="regional-notes-for-midwest-buyers">Regional notes for Midwest buyers</h2>
+<p>Mazak's North American hub sits in Florence, Kentucky. That shapes parts flow across our region. Iowa, Illinois, Wisconsin, and Minnesota shops see one-day ground on most OEM parts. Nebraska, Missouri, and Texas are two-day zones. Next-day air is always an option.</p>
+<p>For Matrix and Smooth machines, Mazak's teleservice works in all seven states we cover. A support tech can remote into the control and pull fault logs. That cuts initial diag time. This feature doesn't exist on Fusion or older controls.</p>
+<p>On older machines, regional aftermarket ties matter more. We keep contacts with board rebuilders and spindle shops who stock common Mazak items. That network backs machines OEM channels no longer support.</p>
+<p>Other brands in your shop may share cover specs. <a href="/way-covers/dmg-mori-cnc-way-covers/siemens-840d/">Way Covers for Siemens 840D Era Machines</a> and <a href="/way-covers/okuma-cnc-way-covers/osp-p300/">Way Covers for OSP-P300 Era Machines</a> follow similar era cycles. <a href="/way-covers/okuma-cnc-way-covers/osp-p500/">Way Covers for OSP-P500 Era Machines</a> on current Okumas parallel Smooth-era Mazak specs.</p>
+<p>Fanuc controls overlap with some Mazak export models and VMCs. <a href="/way-covers/fanuc-cnc-way-covers/series-16i-18i-21i/">Way Covers for Series 16i / 18i /</a> and <a href="/way-covers/fanuc-cnc-way-covers/series-0i/">Way Covers for Series 0i (A/B/C/D/F) Era Machines</a> info applies there. <a href="/way-covers/fanuc-cnc-way-covers/series-0-legacy/">Way Covers for Series 0 / 0M /</a> covers the oldest Fanuc-based Mazaks still running.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="sources-references">Sources &amp; references</h2>
+<ul>
+<li>Mazak USA parts timelines from OEM distributor talks, 2024.
+</li>
+<li>Spindle rebuild costs from Midwest CNC bench records, 2022-2025.
+</li>
+<li>Machine prices from auctions, dealer lots, and customer buys across our seven-state region.
+</li>
+<li>Control specs from Mazak service bulletins and tech docs.
+</li>
+<li>Total cost projections from service logs on machines in active customer fleets.
+</li>
+</ul>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="when-to-bring-this-work-to-us">When to bring this work to us</h2>
+<p>If you're sizing up a used Mazak, we can run a pre-buy inspection. We check spindle health, control status, and alignment. We've inspected machines for buyers from Cedar Rapids to Dallas. We'll flag era-specific issues before you commit.</p>
+<p>If you've already bought and need alignment, spindle service, control diag, or drive repair, we handle all five eras. We stock common Matrix parts and rebuild T-Plus and Fusion boards.</p>
+<p>Drop a note through our <a href="/get-a-quote/">quote form</a> with your model and serial. We'll scope the work.</p>
+<div class="insight-cta">
+  <p><strong>Need this work done?</strong> Tell us the machine and the symptom.</p>
+  <p><a class="cta-button" href="/get-a-quote/">Get a quote</a> <a class="cta-phone" href="tel:+13196104341">319-610-4341</a></p>
 </div>
-  </div>
-</section>
-<section class="page-section page-section-1">
-  <div class="section-inner wide">
-<h2 id="downtime">Don't Let Downtime Drain Your Profits</h2>
-<p>Every minute your CNC sits idle is money out the door. Call us with the machine and the issue — most quotes go out within one business day, and we'll get you back to cutting.</p>
-<div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
   </div>
 </section>
 </article>
@@ -3229,7 +2208,7 @@ body.form-submitted .quote-helpers { display: none; }
   </div>
 </footer>
 <div class="mobile-cta-bar" role="region" aria-label="Quick contact">
-  <a class="mcta-phone" href="tel:+13196104341">☎ 319-610-4341</a>
+  <a class="mcta-phone" href="tel:+13196104341">&#9742; 319-610-4341</a>
   <a class="mcta-quote" href="/get-a-quote/">Get a Quote</a>
 </div>
 <script>
