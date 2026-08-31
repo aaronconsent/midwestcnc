@@ -31,18 +31,18 @@
     document.head.appendChild(s);
   })();
 </script>
-<title>Midwest CNC Services — CNC Repair, Spindle Work &amp; Way Covers</title>
-<meta name="description" content="CNC machine repair, spindle rebuilds, and replacement way covers from Waterloo, IA. Serving shops across 7 Midwest states. Call 319-610-4341.">
-<link rel="canonical" href="https://midwestcncservices.com/">
-<meta property="og:title" content="Midwest CNC Services — CNC Repair, Spindle Work &amp; Way Covers">
-<meta property="og:description" content="CNC machine repair, spindle rebuilds, and replacement way covers from Waterloo, IA. Serving shops across 7 Midwest states. Call 319-610-4341.">
-<meta property="og:type" content="website">
+<title>OEM-Spec vs. Custom Way Covers: Cost and Lead Time | Midwest CNC Services</title>
+<meta name="description" content="Compare custom vs OEM way cover options: typical lead times, cost factors, and the three machine eras where custom fabrication is the right answer.">
+<link rel="canonical" href="https://midwestcncservices.com/insights/way-covers-engineering/oem-vs-custom-way-covers/">
+<meta property="og:title" content="OEM-Spec vs. Custom Way Covers: Cost and Lead Time | Midwest CNC Services">
+<meta property="og:description" content="Compare custom vs OEM way cover options: typical lead times, cost factors, and the three machine eras where custom fabrication is the right answer.">
+<meta property="og:type" content="article">
 <meta property="og:image" content="https://midwestcncservices.com/assets/images/general/midwest-cnc-highway-shot.webp">
-<meta property="og:url" content="https://midwestcncservices.com/">
+<meta property="og:url" content="https://midwestcncservices.com/insights/way-covers-engineering/oem-vs-custom-way-covers/">
 <meta property="og:site_name" content="Midwest CNC Services">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Midwest CNC Services — CNC Repair, Spindle Work &amp; Way Covers">
-<meta name="twitter:description" content="CNC machine repair, spindle rebuilds, and replacement way covers from Waterloo, IA. Serving shops across 7 Midwest states. Call 319-610-4341.">
+<meta name="twitter:title" content="OEM-Spec vs. Custom Way Covers: Cost and Lead Time | Midwest CNC Services">
+<meta name="twitter:description" content="Compare custom vs OEM way cover options: typical lead times, cost factors, and the three machine eras where custom fabrication is the right answer.">
 <meta name="twitter:image" content="https://midwestcncservices.com/assets/images/general/midwest-cnc-highway-shot.webp">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1868,1140 +1868,69 @@ section.insight-sources {
   blockquote p { padding-left: 1.25rem; }
   th, td { padding: var(--s-2) var(--s-3); font-size: 0.9rem; }
 }
-
-/* =================================================================
-   Site-shell additions: homepage, hubs, quote form, tiles, brand grid
-   ================================================================= */
-
-/* Early success-state toggle — set on <html> in <head> before paint */
-.form-submitted-html .quote-form,
-.form-submitted-html .quote-helpers { display: none; }
-.form-submitted-html .success-message { display: block; }
-
-.section-eyebrow {
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-style: normal;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin: 0 0 var(--s-3) 0;
-  display: inline-block;
-  padding: 0.3rem 0.7rem;
-  background: rgba(184, 52, 26, 0.08);
-  border-radius: var(--r-pill);
-}
-
-/* =================================================================
-   Homepage hero — single-column, video background, image fallback.
-
-   Structure:
-     <section class="home-hero">
-       <video class="home-hero-video" .../>      <- bg media layer
-       <div class="home-hero-overlay"/>          <- dark gradient
-       <div class="home-hero-content">           <- text + CTAs
-     </section>
-
-   Layers (z-index):
-     0  video (decorative, aria-hidden)
-     1  overlay (legibility gradient)
-     2  content (text, white on dark)
-
-   prefers-reduced-motion respects the user's OS setting — video is
-   removed and the poster image is shown as a static background instead.
-   ================================================================= */
-
-/* Reset the band wrapper: hero is full-bleed, manages own backdrop. */
-.page-section-hero {
-  padding: 0;
-  background: var(--bg);
-}
-.page-section-hero > .section-inner { padding: 0; max-width: none; }
-
-.home-hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  min-height: 600px;
-  max-height: 820px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  isolation: isolate;
-  color: #fff;
-  background:
-    /* Poster image fallback if video fails to load (and on mobile +
-       prefers-reduced-motion, where the <video> is hidden) */
-    url('/assets/images/general/midwest-cnc-highway-shot.webp')
-    center / cover no-repeat
-    #000;
-}
-
-.home-hero-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  z-index: 1;
-  pointer-events: none;
-  /* Start invisible — the JS opacity driver below ramps it up from
-     the video's actual currentTime, so the fade is locked to the
-     video clock instead of drifting against a fixed-length CSS
-     keyframe. No clunky seam. */
-  opacity: 0;
-}
-
-/* Dark vertical gradient overlay — top 40% black to bottom 70% black.
-   Keeps white text legible over any frame, slightly heavier at the
-   bottom where the CTAs and trust line sit. */
-.home-hero-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.40) 0%,
-    rgba(0, 0, 0, 0.70) 100%
-  );
-}
-
-.home-hero-content {
-  position: relative;
-  z-index: 3;
-  max-width: var(--max-wide);
-  width: 100%;
-  margin: 0 auto;
-  padding: clamp(3rem, 7vw, 5rem) var(--s-5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.home-hero-content > .eyebrow {
-  font-size: 0.7rem;
-  padding: 0.28rem 0.75rem;
-  margin: 0 0 var(--s-4) 0;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.20);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.home-hero-content > h1 {
-  font-size: clamp(2.1rem, 4.6vw, 3.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  font-weight: 800;
-  margin: 0 0 var(--s-5) 0;
-  max-width: 22ch;
-  color: #fff;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-}
-
-.home-hero-content > .lede {
-  font-size: clamp(1.05rem, 1.25vw, 1.2rem);
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.92);
-  margin: 0 0 var(--s-6) 0;
-  max-width: 60ch;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-}
-
-.home-hero-content > .cta-row {
-  margin: 0 0 var(--s-5) 0;
-  justify-content: center;
-}
-/* Strengthen the secondary phone CTA against the dark video — give it
-   a semi-transparent surface so it reads cleanly. */
-.home-hero-content .cta-phone {
-  background: rgba(255, 255, 255, 0.10);
-  color: #fff !important;
-  border-color: rgba(255, 255, 255, 0.28);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-.home-hero-content .cta-phone:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.5);
-  color: #fff !important;
-}
-.home-hero-content .cta-phone::before { color: #fff; }
-
-.home-hero-content > .trust-line {
-  margin: 0;
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.72);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-}
-
-/* Mobile — skip the video entirely. Cellular users shouldn't get hit
-   with a 1.5 MB autoplay download. The poster image (set as the
-   .home-hero background-image above) takes over. */
-@media (max-width: 768px) {
-  .home-hero {
-    height: auto;
-    min-height: clamp(420px, 75vh, 560px);
-    max-height: none;
-  }
-  .home-hero-video { display: none; }
-  .home-hero-content {
-    padding: clamp(2rem, 7vw, 3rem) var(--s-4);
-  }
-  .home-hero-content > .cta-row { width: 100%; }
-}
-
-/* Respect prefers-reduced-motion — disable the video, let the poster
-   image background take over. Vestibular-disorder accessibility +
-   Core Web Vitals signal. */
-@media (prefers-reduced-motion: reduce) {
-  .home-hero-video { display: none; }
-}
-
-/* =================================================================
-   Tile grid (homepage services, state grid)
-   ================================================================= */
-.tile-grid, .state-grid {
-  display: grid;
-  gap: var(--s-4);
-  margin: var(--s-5) 0 var(--s-6) 0;
-}
-.tile-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.state-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-
-.tile {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none !important;
-  color: var(--fg) !important;
-  background: var(--surface);
-  padding: var(--s-4);
-  border-radius: var(--r-3);
-  border: 1px solid var(--line);
-  box-shadow: var(--sh-1);
-  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
-  position: relative;
-  overflow: hidden;
-}
-.tile::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: var(--r-3);
-  background: linear-gradient(135deg, transparent 60%, rgba(184, 52, 26, 0.04));
-  opacity: 0;
-  transition: opacity var(--t-base);
-  pointer-events: none;
-}
-.tile:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--sh-4);
-  border-color: var(--accent);
-}
-.tile:hover::after { opacity: 1; }
-.tile img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: var(--r-2);
-  margin-bottom: var(--s-3);
-  display: block;
-}
-.tile h3 { margin: var(--s-1) 0 var(--s-2) 0; font-size: 1.15rem; }
-.tile p { color: var(--muted); font-size: 0.95rem; margin: var(--s-2) 0 var(--s-3) 0; flex-grow: 1; }
-.tile .learn-more {
-  color: var(--accent);
-  font-size: 0.9rem;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  transition: gap var(--t-fast);
-}
-.tile:hover .learn-more { gap: 0.55rem; }
-
-/* =================================================================
-   Brand grid — hub pages
-   ================================================================= */
-.brand-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: var(--s-3);
-  margin: var(--s-4) 0 var(--s-6) 0;
-  list-style: none;
-  padding: 0;
-}
-.brand-grid li { margin: 0; }
-.brand-grid a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-2);
-  text-decoration: none !important;
-  color: var(--fg) !important;
-  font-weight: 600;
-  background: var(--surface);
-  box-shadow: var(--sh-1);
-  transition: transform var(--t-fast), border-color var(--t-fast), color var(--t-fast), box-shadow var(--t-fast);
-  position: relative;
-}
-.brand-grid a::after {
-  content: "";
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-right: 2px solid currentColor;
-  border-top: 2px solid currentColor;
-  transform: rotate(45deg);
-  opacity: 0.4;
-  transition: transform var(--t-fast), opacity var(--t-fast);
-}
-.brand-grid a:hover {
-  border-color: var(--accent);
-  color: var(--accent) !important;
-  transform: translateY(-2px);
-  box-shadow: var(--sh-3);
-}
-.brand-grid a:hover::after { opacity: 1; transform: rotate(45deg) translate(2px, -2px); }
-
-/* =================================================================
-   State sections (hub) + state grid tiles
-   ================================================================= */
-.state-section {
-  margin: var(--s-6) 0;
-  padding: var(--s-5);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-1);
-}
-.state-section h2 { margin-top: 0; }
-.state-section h2::before { display: none; }
-.state-cities { color: var(--muted); margin: var(--s-1) 0 var(--s-3) 0; }
-
-/* =================================================================
-   Quote form
-   ================================================================= */
-.quote-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-  max-width: 560px;
-  margin: var(--s-6) 0;
-  padding: var(--s-5);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-2);
-}
-.quote-form .field { display: flex; flex-direction: column; gap: 0.4rem; }
-.quote-form label { font-weight: 600; font-size: 0.92rem; color: var(--fg); }
-.quote-form .required::after { content: " *"; color: var(--accent); }
-.quote-form input,
-.quote-form textarea,
-.quote-form select {
-  font: inherit;
-  padding: 0.75rem 0.9rem;
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-2);
-  background: var(--surface);
-  width: 100%;
-  transition: border-color var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-form input:hover,
-.quote-form textarea:hover,
-.quote-form select:hover { border-color: var(--muted); }
-.quote-form input:focus,
-.quote-form textarea:focus,
-.quote-form select:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: var(--sh-focus);
-}
-.quote-form textarea { min-height: 9rem; resize: vertical; }
-.quote-form .radio-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--s-2); }
-.quote-form .radio-group label {
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  padding: 0.55rem 0.8rem;
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-2);
-  background: var(--surface);
-  transition: border-color var(--t-fast), background var(--t-fast);
-}
-.quote-form .radio-group label:hover { border-color: var(--muted); background: var(--surface-2); }
-.quote-form .radio-group input[type="radio"] { accent-color: var(--accent); }
-.quote-form button {
-  font: inherit;
-  background: var(--accent);
-  color: #fff;
-  padding: 0.95rem 1.6rem;
-  border: 0;
-  border-radius: var(--r-pill);
-  font-weight: 700;
-  cursor: pointer;
-  align-self: flex-start;
-  box-shadow: var(--sh-2);
-  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-form button:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--sh-3); }
-.quote-form button:active { transform: translateY(0); box-shadow: var(--sh-1); }
-.quote-form .honeypot { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
-
-/* Turnstile widget — minimal styling, lets Cloudflare's iframe render
-   itself. The wrapper just centers the widget within the form column. */
-.quote-form .cf-turnstile {
-  display: flex;
-  justify-content: center;
-  margin: var(--s-2) 0;
-}
-
-/* Error banner shown when the Pages Function redirected back with
-   ?error=... in the query string. Hidden by default; the inline
-   <script> at the bottom of the form un-hides it when present. */
-.form-error-banner {
-  padding: var(--s-4);
-  border-radius: var(--r-3);
-  background: rgba(184, 52, 26, 0.06);
-  border: 1px solid rgba(184, 52, 26, 0.25);
-  border-left: 4px solid var(--accent-dark);
-  margin: var(--s-5) 0;
-  color: var(--fg);
-}
-.form-error-banner p { margin: 0; }
-.form-error-banner[hidden] { display: none; }
-
-/* =================================================================
-   Get-a-Quote page — modern conversion-focused redesign.
-   See quote_body() in this file for the matching HTML.
-   ================================================================= */
-
-/* Quote hero — distinct from brand-hero / video-hero. Calmer
-   editorial band with a heavy phone CTA. */
-.quote-hero {
-  background:
-    radial-gradient(120% 80% at 50% 0%, rgba(184, 52, 26, 0.06), transparent 60%),
-    var(--surface-3);
-  border-bottom: 1px solid var(--line);
-  padding: clamp(2.5rem, 6vw, 4rem) var(--s-5) clamp(2rem, 5vw, 3rem);
-  margin: 0 0 var(--s-5) 0;
-}
-.quote-hero-inner {
-  max-width: var(--max-wide);
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.quote-hero-eyebrow {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent-dark);
-  background: rgba(184, 52, 26, 0.10);
-  border: 1px solid rgba(184, 52, 26, 0.20);
-  border-radius: var(--r-pill);
-  padding: 0.32rem 0.78rem;
-  margin: 0 0 var(--s-4) 0;
-}
-.quote-hero h1 {
-  font-size: clamp(1.85rem, 4vw, 2.8rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  font-weight: 800;
-  margin: 0 0 var(--s-3) 0;
-  max-width: 22ch;
-  color: var(--fg);
-}
-.quote-hero h1::before { display: none; }
-.quote-hero-lede {
-  font-size: clamp(1.02rem, 1.2vw, 1.15rem);
-  line-height: 1.55;
-  color: var(--fg);
-  margin: 0 0 var(--s-5) 0;
-  max-width: 60ch;
-}
-
-/* Dominant call banner — the primary action on this page. Full-width
-   (capped), large tap target. Built for a stressed owner on a phone in
-   the shop: the call button is the loudest thing above the form. */
-.quote-call-banner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--s-4);
-  width: 100%;
-  max-width: 520px;
-  margin: 0 auto var(--s-3);
-  background: var(--accent);
-  color: #fff !important;
-  text-decoration: none !important;
-  padding: 1.15rem 1.5rem;
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-3);
-  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-call-banner:hover {
-  background: var(--accent-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--sh-4);
-}
-.quote-call-banner:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-}
-.quote-call-banner-icon {
-  font-size: 2rem;
-  line-height: 1;
-  flex-shrink: 0;
-}
-.quote-call-banner-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
-.quote-call-banner-main {
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-}
-.quote-call-banner-sub {
-  font-size: 0.85rem;
-  opacity: 0.92;
-  margin-top: 0.12rem;
-}
-.quote-hero-jumplink {
-  display: inline-block;
-  color: var(--accent-dark);
-  text-decoration: underline;
-  text-decoration-color: rgba(140, 37, 16, 0.45);
-  text-underline-offset: 3px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: text-decoration-color var(--t-fast);
-}
-.quote-hero-jumplink:hover { text-decoration-color: var(--accent-dark); }
-.quote-hero-jumplink:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-/* Mobile: the call banner goes truly full-width and even bigger —
-   this is the in-the-shop scenario the page is designed around. */
-@media (max-width: 600px) {
-  .quote-call-banner {
-    max-width: none;
-    padding: 1.25rem 1rem;
-  }
-  .quote-call-banner-main { font-size: 1.3rem; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .quote-call-banner { transition: none !important; }
-  .quote-call-banner:hover { transform: none !important; }
-}
-
-/* Single-column layout — the whole quote body lives inside one
-   .page-section-hero band whose .section-inner is uncapped (max-width:
-   none, padding: 0), so .quote-layout is the element that re-establishes
-   the 1140px content width + horizontal gutter. The form card, intro
-   checklist, and "What happens next" timeline all stack inside it at
-   full width. */
-.quote-layout {
-  max-width: var(--max-wide);
-  margin: 0 auto;
-  padding: var(--s-6) var(--s-5);
-}
-@media (max-width: 700px) {
-  .quote-layout { padding: var(--s-5) var(--s-4); }
-}
-
-/* Intro checklist at the top of the form — sets expectations for
-   what to have handy before filling out the fields. */
-.quote-form-intro {
-  padding: var(--s-4) var(--s-5);
-  background: color-mix(in srgb, var(--surface) 90%, var(--accent) 5%);
-  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--line));
-  border-left: 4px solid var(--accent);
-  border-radius: var(--r-2);
-}
-.quote-form-intro-title {
-  margin: 0 0 var(--s-2) 0;
-  font-weight: 600;
-  font-size: 1.02rem;
-  color: var(--fg);
-}
-.quote-form-intro-list {
-  margin: 0;
-  padding-left: 1.2rem;
-  color: var(--fg);
-  font-size: 0.98rem;
-  line-height: 1.55;
-}
-.quote-form-intro-list li { margin: 0.28rem 0; }
-
-/* "What happens next" — 3-step timeline as a horizontal grid inside
-   the form card, below the submit button. Stacks on narrow. */
-.quote-next-steps {
-  margin-top: var(--s-4);
-  padding-top: var(--s-5);
-  border-top: 1px solid var(--line);
-}
-.quote-next-steps-title {
-  font-weight: 700;
-  font-size: 0.88rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent-dark);
-  margin: 0 0 var(--s-4) 0;
-}
-.quote-next-steps-grid {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--s-5);
-}
-.quote-next-steps-grid li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--s-3);
-}
-.quote-next-steps-num {
-  width: 34px;
-  height: 34px;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 0.98rem;
-  flex-shrink: 0;
-}
-.quote-next-steps-grid strong {
-  display: block;
-  color: var(--fg);
-  font-size: 1rem;
-  margin-bottom: 0.15rem;
-}
-.quote-next-steps-grid span {
-  color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.5;
-}
-@media (max-width: 780px) {
-  .quote-next-steps-grid { grid-template-columns: 1fr; gap: var(--s-3); }
-}
-
-/* Form card — full width of the wide band, sits on a surface card
-   with generous padding so fields have real breathing room. Overrides
-   the legacy .quote-form rule (max-width: 560px) which is otherwise
-   still applied because the form carries both classes. */
-.quote-form.quote-form-modern {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  box-shadow: var(--sh-2);
-  padding: clamp(var(--s-5), 4vw, var(--s-8));
-  margin: 0;
-  max-width: none;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-7);
-}
-
-/* Field-section grouping — uses <fieldset> for semantics; no
-   visible fieldset border. The <legend> becomes a section title. */
-.form-section {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-}
-.form-section-title {
-  font-size: 0.88rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent-dark);
-  padding: 0;
-  margin: 0 0 var(--s-2) 0;
-}
-
-/* Single-column field rows — every field gets its own line at the
-   full form width. No internal columns anywhere in the quote form. */
-.form-row {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-}
-
-/* Scale up the form for the wider column. Larger inputs, labels,
-   and textarea give the form appropriate weight in the layout. */
-.quote-form-modern .field { display: flex; flex-direction: column; gap: 0.45rem; }
-.quote-form-modern .field label,
-.quote-form-modern .field-label {
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--fg);
-}
-.quote-form-modern input,
-.quote-form-modern textarea,
-.quote-form-modern select {
-  font: inherit;
-  font-size: 1.02rem;
-  padding: 0.95rem 1.1rem;
-  border-radius: var(--r-2);
-}
-.quote-form-modern textarea {
-  min-height: 15rem;
-  line-height: 1.55;
-}
-.quote-form-modern .field-hint {
-  margin: 0.4rem 0 0 0;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-/* Service selection — icon cards. The actual radio input is
-   visually hidden but stays in the tab order. The whole card is the
-   click target. Checked state is communicated by border, background,
-   icon tint, and a small checkmark badge in the top-right corner —
-   no exposed radio circle. */
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--s-2);
-}
-@media (max-width: 720px) {
-  .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-.service-card {
-  position: relative;
-  display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  cursor: pointer;
-}
-
-/* Visually hide the radio input but keep it accessible to keyboard
-   and assistive tech. Standard sr-only pattern. */
-.service-card input[type="radio"] {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.service-card-inner {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-  gap: 0.5rem;
-  padding: var(--s-4) var(--s-3);
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-3);
-  background: var(--surface);
-  transition: border-color var(--t-fast), background var(--t-fast),
-              box-shadow var(--t-fast), transform var(--t-fast);
-  min-height: 132px;
-  height: 100%;
-}
-
-.service-card:hover .service-card-inner {
-  border-color: var(--muted);
-  background: var(--surface-2);
-  transform: translateY(-2px);
-  box-shadow: var(--sh-2);
-}
-
-.service-card input[type="radio"]:checked + .service-card-inner {
-  border-color: var(--accent);
-  background: color-mix(in srgb, var(--surface) 94%, var(--accent) 6%);
-  box-shadow: 0 0 0 1px var(--accent) inset, var(--sh-2);
-}
-
-.service-card input[type="radio"]:focus-visible + .service-card-inner {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-}
-
-.service-card-icon {
-  width: 36px;
-  height: 36px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  transition: color var(--t-fast), transform var(--t-fast);
-  margin-bottom: 0.15rem;
-}
-.service-card:hover .service-card-icon {
-  color: var(--accent-dark);
-}
-.service-card input[type="radio"]:checked + .service-card-inner .service-card-icon {
-  color: var(--accent-dark);
-  transform: scale(1.05);
-}
-
-.service-card-title {
-  font-weight: 700;
-  font-size: 0.98rem;
-  color: var(--fg);
-  line-height: 1.2;
-}
-
-.service-card-desc {
-  font-size: 0.82rem;
-  color: var(--muted);
-  line-height: 1.35;
-  font-weight: 400;
-}
-.service-card input[type="radio"]:checked + .service-card-inner .service-card-desc {
-  color: var(--fg);
-}
-
-/* Checkmark badge appears in the top-right corner of the selected
-   card. CSS-only — uses an inline SVG data-URI as the background. */
-.service-card-inner::after {
-  content: "";
-  position: absolute;
-  top: 0.55rem;
-  right: 0.55rem;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: var(--accent);
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
-  background-size: 12px 12px;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0;
-  transform: scale(0.6);
-  transition: opacity var(--t-fast), transform var(--t-fast);
-}
-.service-card input[type="radio"]:checked + .service-card-inner::after {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Respect reduced-motion. */
-@media (prefers-reduced-motion: reduce) {
-  .service-card-inner,
-  .service-card-icon,
-  .service-card-inner::after { transition: none !important; }
-  .service-card:hover .service-card-inner { transform: none !important; }
-  .service-card input[type="radio"]:checked + .service-card-inner .service-card-icon {
-    transform: none !important;
-  }
-}
-
-/* Submit tail — Turnstile + button + note grouped tightly. */
-.quote-form-tail {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-3);
-  align-items: stretch;
-  border-top: 1px solid var(--line);
-  padding-top: var(--s-4);
-  margin-top: var(--s-2);
-}
-.quote-turnstile {
-  display: flex;
-  justify-content: center;
-}
-.quote-submit {
-  width: 100%;
-  font: inherit;
-  background: var(--accent);
-  color: #fff;
-  padding: 1.25rem 1.8rem;
-  border: 0;
-  border-radius: var(--r-2);
-  font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: -0.005em;
-  cursor: pointer;
-  align-self: stretch;
-  box-shadow: var(--sh-2);
-  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
-}
-.quote-submit:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--sh-3); }
-.quote-submit:active { transform: translateY(0); box-shadow: var(--sh-1); }
-.quote-submit:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-}
-.quote-submit-note {
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin: 0;
-}
-
-/* Sidebar — stack of supporting cards. */
-.quote-layout-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-}
-.quote-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-3);
-  padding: var(--s-5);
-  box-shadow: var(--sh-1);
-}
-.quote-card h3 {
-  margin: 0 0 var(--s-3) 0;
-  font-size: 1.02rem;
-  color: var(--fg);
-}
-.quote-card h3::before { display: none; }
-.quote-card p { margin: 0 0 var(--s-2) 0; color: var(--fg); font-size: 0.95rem; line-height: 1.55; }
-.quote-card p:last-child { margin-bottom: 0; }
-.quote-card-list {
-  margin: 0;
-  padding: 0 0 0 1.1rem;
-  font-size: 0.95rem;
-  color: var(--fg);
-  line-height: 1.55;
-}
-.quote-card-list li { margin: 0.4rem 0; }
-
-/* Timeline inside "What happens next" card. */
-.quote-timeline {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-.quote-timeline li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--s-3);
-  padding: var(--s-3) 0;
-  border-bottom: 1px solid var(--line);
-}
-.quote-timeline li:last-child { border-bottom: 0; padding-bottom: 0; }
-.quote-timeline li:first-child { padding-top: 0; }
-.quote-timeline-step {
-  width: 30px;
-  height: 30px;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-}
-.quote-timeline strong {
-  display: block;
-  font-size: 0.95rem;
-  color: var(--fg);
-  margin-bottom: 0.15rem;
-}
-.quote-timeline p { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
-
-/* "Or just call" card — visually emphasized so it pulls the
-   high-intent visitor's eye. */
-.quote-card-call {
-  background: var(--surface-3);
-  border-color: rgba(184, 52, 26, 0.22);
-  border-left: 4px solid var(--accent);
-}
-.quote-card-phone {
-  display: block;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--accent-dark);
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  margin: var(--s-2) 0 var(--s-3) 0;
-  padding: 0.55rem 0;
-  border-bottom: 2px solid transparent;
-  transition: border-color var(--t-fast), color var(--t-fast);
-}
-.quote-card-phone:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-.quote-card-phone:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-.quote-card-meta {
-  font-size: 0.85rem !important;
-  color: var(--muted) !important;
-  margin: 0 !important;
-}
-
-@media (max-width: 600px) {
-  .quote-hero { padding: var(--s-5) var(--s-4) var(--s-4); }
-  .quote-hero-inner { text-align: left; align-items: flex-start; }
-  .quote-hero-jumplink { text-align: center; width: 100%; }
-  .quote-form-modern { padding: var(--s-4); }
-}
-
-/* Reduced-motion: drop the lift effect on buttons/links. */
-@media (prefers-reduced-motion: reduce) {
-  .quote-submit,
-  .quote-card-phone { transition: none !important; }
-  .quote-submit:hover { transform: none !important; }
-}
-
-.success-message {
-  display: none;
-  padding: var(--s-5);
-  border-radius: var(--r-3);
-  background: var(--success-bg);
-  border: 1px solid rgba(46, 125, 50, 0.25);
-  border-left: 4px solid #2e7d32;
-  color: var(--success-fg);
-  margin: var(--s-6) 0;
-  box-shadow: var(--sh-1);
-}
-.success-message h2 { margin-top: 0; color: var(--success-fg); }
-.success-message h2::before { background: #2e7d32; }
-body.form-submitted .success-message { display: block; }
-body.form-submitted .quote-form { display: none; }
-body.form-submitted .quote-helpers { display: none; }
-
-.alt-contact {
-  margin: var(--s-6) 0;
-  padding: var(--s-5);
-  background: var(--surface-2);
-  border-radius: var(--r-3);
-  border: 1px solid var(--line);
-}
-.alt-contact h3 { margin: 0 0 var(--s-2) 0; }
-.alt-contact p { margin: var(--s-1) 0; }
 </style>
-<script>
-  // Early success-state detection — runs in <head> before paint so the form
-  // never flashes visible if the URL has ?success=1. Harmless on other pages.
-  if (location.search.indexOf('success=1') !== -1) {
-    document.documentElement.classList.add('form-submitted-html');
-  }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://midwestcncservices.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://midwestcncservices.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Way Covers Engineering",
+      "item": "https://midwestcncservices.com/insights/way-covers-engineering/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "OEM-Spec vs. Custom Way Covers: Cost and Lead Time"
+    }
+  ]
+}
 </script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://midwestcncservices.com/#org",
-  "name": "Midwest CNC Services",
-  "url": "https://midwestcncservices.com/",
-  "telephone": "+13196104341",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Waterloo",
-    "addressRegion": "IA",
-    "addressCountry": "US"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 42.4928,
-    "longitude": -92.3426
-  },
-  "hasMap": "https://www.google.com/maps/place/Waterloo,+IA",
-  "areaServed": [
-    "Iowa",
-    "Illinois",
-    "Wisconsin",
-    "Minnesota",
-    "Nebraska",
-    "Missouri",
-    "Texas"
+  "@type": [
+    "Article",
+    "BlogPosting"
   ],
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday"
-      ],
-      "opens": "07:00",
-      "closes": "15:30"
+  "headline": "OEM-Spec vs. Custom Way Covers: Cost and Lead Time",
+  "description": "Compare custom vs OEM way cover options: typical lead times, cost factors, and the three machine eras where custom fabrication is the right answer.",
+  "datePublished": "2026-08-31",
+  "dateModified": "2026-08-31",
+  "author": {
+    "@type": "Person",
+    "name": "Ken",
+    "jobTitle": "Shop owner",
+    "worksFor": {
+      "@id": "https://midwestcncservices.com/#org"
     }
-  ]
+  },
+  "publisher": {
+    "@id": "https://midwestcncservices.com/#org"
+  },
+  "mainEntityOfPage": "https://midwestcncservices.com/insights/way-covers-engineering/oem-vs-custom-way-covers/",
+  "articleSection": "Way Covers Engineering",
+  "keywords": "custom vs oem way cover",
+  "wordCount": 1442,
+  "inLanguage": "en-US"
 }
 </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How fast can you respond to a quote request?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Most quote requests go out within one business day. If the machine is down and you need someone on the line right now, call 319-610-4341 — we'd rather talk through the symptoms than wait for an email back. Field troubleshooting on the phone often saves a full teardown."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you work on older or discontinued machines?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. We have dedicated brand pages and parts-sourcing approaches for Fadal, Hitachi Seiki, and Monarch — manufacturers whose CNC lines have been gone for years but whose machines are still cutting daily in Midwest shops. We lean on aftermarket suppliers, used-market sourcing, and custom-machined replacements where OEM components are gone."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Where do you work? Do you come on-site?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We serve shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas from our Waterloo, Iowa shop. Field service when that's the right call for the job; spindle rebuilds and way-cover builds happen at our bench and ship back to you."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can you recover a crashed spindle?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Often, yes. Crash recovery is one of the threads of work that comes through here — taper damage, bearing-pack failure, alignment loss from impact. Customers are usually relieved to avoid the replacement lead times and the six-figure capital expense of a new spindle. Bring it in for a teardown."
-      }
-    }
-  ]
-}
-</script>
-
 </head>
-<body class="layout-wide">
+<body class="insights-page insights-article">
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Midwest CNC Services home">
@@ -3092,120 +2021,142 @@ body.form-submitted .quote-helpers { display: none; }
     </ul>
   </nav>
 </header>
-
+<nav class="breadcrumbs" aria-label="breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li><li><a href="/insights/">Insights</a></li><li><a href="/insights/way-covers-engineering/">Way Covers Engineering</a></li><li>OEM-Spec vs. Custom Way Covers: Cost and Lead Time</li>
+  </ol>
+</nav>
 <main id="main">
 <article>
-<section class="page-section page-section-hero">
-  <div class="section-inner wide">
-<section class="home-hero">
-  <video class="home-hero-video"
-         autoplay muted loop playsinline
-         preload="auto"
-         poster="/assets/images/general/midwest-cnc-highway-shot.webp"
-         aria-hidden="true">
-    <source src="/assets/images/general/midwest-cnc-bg-fade.mp4" type="video/mp4">
-  </video>
-  <div class="home-hero-overlay" aria-hidden="true"></div>
-  <div class="home-hero-content">
-    <p class="eyebrow">Stop Losing Money</p>
-    <h1>When Your Machine Stops, We&nbsp;Start</h1>
-    <p class="lede">CNC repair, spindle work, and replacement way covers across the U.S. Midwest. When a machine goes down, our experienced field technicians come out to diagnose and get you back to cutting. From spindle rebuilds and machine repair to custom way covers we ship anywhere, the goal is the same: keep your shop producing.</p>
-    <div class="cta-row">
-      <a class="cta-button" href="/get-a-quote/">Get a Quote</a>
-      <a class="cta-phone" href="tel:+13196104341">319-610-4341</a>
-    </div>
-    <p class="trust-line">Serving shops in Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas. Based in Waterloo, Iowa.</p>
-  </div>
-</section>
-<script>
-(function () {
-  var video = document.querySelector('.home-hero-video');
-  if (!video) return;
-  var FADE = 0.6;  // seconds at each end of the clip
-  function setOpacity() {
-    var t = video.currentTime;
-    var d = video.duration;
-    if (!d || !isFinite(d)) { video.style.opacity = '1'; return; }
-    var op;
-    if (t < FADE)              op = t / FADE;
-    else if (t > d - FADE)     op = (d - t) / FADE;
-    else                       op = 1;
-    if (op < 0) op = 0; else if (op > 1) op = 1;
-    video.style.opacity = String(op);
-  }
-  function tick() {
-    setOpacity();
-    requestAnimationFrame(tick);
-  }
-  // Kick off — autoplay attribute should start it, but defensively
-  // call play() in case the browser deferred it (Safari sometimes does).
-  var p = video.play();
-  if (p && typeof p.catch === 'function') p.catch(function () { /* autoplay blocked; ignore */ });
-  requestAnimationFrame(tick);
-})();
-</script>
-  </div>
-</section>
-<section class="page-section page-section-0">
-  <div class="section-inner wide">
-<h2 id="our-services">Our Services</h2>
-<p>Three lines of work, one shop. We do machine repair on production CNC equipment, manufacture replacement way covers to spec, and rebuild and grind spindles back to factory tolerance — across every major OEM platform we service.</p>
-<div class="tile-grid"><a class="tile" href="/repairs/"><img src="/assets/images/general/image-of-cnc-machine.png" alt="CNC machining center under service" loading="lazy"><h3>Machine Repair</h3><p>CNC machine repair across spindle, control, ATC, drive, and alignment work. We service Mazak, Haas, Okuma, DMG Mori, Fanuc, Doosan, Brother, Hurco, and 12 other major OEM platforms — plus Amada press brakes and Trumpf lasers. Field troubleshooting where a remote diagnostic can save a teardown.</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/way-covers/"><img src="/assets/images/general/image-of-way-covers.png" alt="Replacement CNC way covers" loading="lazy"><h3>Way Covers</h3><p>Replacement way covers in bellows, telescoping steel, and roll-up styles. Built to spec for every CNC platform we service — from Mazak Integrex multi-taskers and Haas VF machines to legacy Fadal 4020s and Hitachi Seiki HMCs. Most orders ship in 2–4 weeks. We measure from your original or build to drawing.</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/spindle-grinding/"><img src="/assets/images/general/image-of-spindle-grinding.png" alt="CNC spindle on the grinding bench" loading="lazy"><h3>Spindle Grinding</h3><p>Spindle rebuilds, regrinds, and rebalancing across 18 OEM platforms — Mazak, Haas, Okuma, DMG Mori, Mori Seiki, Doosan, and on through Fadal and Hitachi Seiki legacy work. Most jobs run 2–6 weeks depending on bearing-pack damage and parts availability. Each brand page has failure modes and lead times.</p><span class="learn-more">Learn More →</span></a></div>
+
+<section class="page-section page-section-0 page-section-intro">
+  <div class="section-inner">
+<p class="insight-eyebrow">Way Covers Engineering</p>
+<h1 class="insight-h1">OEM-Spec vs. Custom Way Covers: Cost and Lead Time</h1>
+<p class="insight-meta">By Ken &middot; 2026-08-31 &middot; ~7 min read</p>
   </div>
 </section>
 <section class="page-section page-section-1">
-  <div class="section-inner wide">
-<h2 id="service-areas">Service Areas</h2>
-<p>We work with shops across seven Midwest and South-Central states. Production environments and job shops across the Midwest, plus specialty work where brand-specific expertise matters — from high-precision Makino aerospace and mold-die customers to legacy Fadal and Hitachi Seiki rebuilds. Field troubleshooting where a remote diagnostic can save a teardown.</p>
-<div class="state-grid"><a class="tile" href="/service-area/iowa/"><img src="/assets/images/general/view-all-iowa-cnc-service-locations.png" alt="Iowa CNC service coverage" loading="lazy"><h3>Iowa</h3><p>Des Moines, Davenport, Waterloo, Cedar Rapids</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/illinois/"><img src="/assets/images/general/illinois.png" alt="Illinois CNC service coverage" loading="lazy"><h3>Illinois</h3><p>Chicago, Rockford, Peoria, Springfield</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/wisconsin/"><img src="/assets/images/general/wisconsin.png" alt="Wisconsin CNC service coverage" loading="lazy"><h3>Wisconsin</h3><p>Milwaukee, Madison, Green Bay</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/minnesota/"><img src="/assets/images/general/minnesota.png" alt="Minnesota CNC service coverage" loading="lazy"><h3>Minnesota</h3><p>St. Paul, Minneapolis, Rochester</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/nebraska/"><img src="/assets/images/general/nebraska.png" alt="Nebraska CNC service coverage" loading="lazy"><h3>Nebraska</h3><p>Lincoln, Omaha, Grand Island</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/missouri/"><img src="/assets/images/general/missouri.png" alt="Missouri CNC service coverage" loading="lazy"><h3>Missouri</h3><p>St. Louis, Kansas City, Springfield</p><span class="learn-more">Learn More →</span></a><a class="tile" href="/service-area/texas/"><img src="/assets/images/general/texas.png" alt="Texas CNC service coverage" loading="lazy"><h3>Texas</h3><p>Dallas, Houston, Austin</p><span class="learn-more">Learn More →</span></a></div>
+  <div class="section-inner">
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>OEM way covers ship in 4 to 8 weeks on current machines, while custom covers average 2 to 4 weeks from field measurement to delivery.
+</li>
+<li>Custom fabrication is the right answer in three eras: machines with discontinued OEM part numbers, orphaned platforms with no parts support, and machines with heavy customization history.
+</li>
+<li>A 1998 Mazak VTC-16B with modified Z-axis travel required custom covers at 35% lower cost than sourcing discontinued OEM panels.
+</li>
+<li>Field measurements take 4 to 6 hours and can be scheduled within 48 hours across Iowa, Illinois, Wisconsin, and Minnesota.
+</li>
+<li>The break-even point falls at machines 12 to 15 years old, where OEM pricing grows unpredictable.
+</li>
+</ul>
+<p>When a way cover fails, the shop faces a choice. OEM replacement or custom fabrication? The answer sets the timeline and the final cost. OEM covers fit without question, but lead times stretch long on older machines. Custom covers need good field data, but they often arrive faster and cost less. The right path depends on three things: machine age, modification history, and whether the OEM still stocks parts for that platform.</p>
   </div>
 </section>
 <section class="page-section page-section-0">
-  <div class="section-inner wide">
-<h2 id="how-we-work">How We Work</h2>
-<p>Same three steps every brand page describes:</p>
-<ol class="process-steps">
-  <li><strong>Contact Us.</strong> Call 319-610-4341 or use the quote form. Tell us the machine, the symptoms, and how urgent it is.</li>
-  <li><strong>Grab Model #.</strong> We'll fire back price, lead time, and shipping ETA after reviewing your details.</li>
-  <li><strong>Approve &amp; Rebuild.</strong> We complete the work, verify it back to spec, and return the machine ready to run.</li>
-</ol>
+  <div class="section-inner">
+<h2 id="the-lead-time-delta-between-oem-and-custom">The lead-time delta between OEM and custom</h2>
+<p>OEM lead times vary by brand and machine age. Current-production machines get covers in 4 to 8 weeks. <a href="/way-covers/haas-cnc-way-covers/">Haas CNC Way Covers</a> on VF-series machines often ship in 4 to 5 weeks. Haas builds in the U.S. and stocks common parts. <a href="/way-covers/mazak-cnc-way-covers/">Mazak CNC Way Covers</a> on Integrex platforms run 6 to 8 weeks, sometimes longer.</p>
+<p>The lead-time delta of 2 to 4 weeks favors custom on most legacy platforms. A 2006 DMG Mori DMC 64V might quote 10 to 14 weeks for OEM covers. A custom set from field measurements ships in 3 to 4 weeks. That delta grows on platforms where the OEM has ended parts support.</p>
+<p>Several factors shape custom lead times:</p>
+<ul>
+<li><strong>Material stock</strong>: 1018 cold-rolled steel ships from Midwest distributors in 3 to 5 days. Stainless adds 1 to 2 weeks.
+</li>
+<li><strong>Cover style</strong>: Bellows covers take less shop time than telescoping covers with wipers and overlap geometry.
+</li>
+<li><strong>Geometry</strong>: A flat X-axis cover measures faster than a Y-axis cover with compound curves.
+</li>
+</ul>
+<p>On new machines with strong OEM support, custom offers no time advantage. A 2022 <a href="/way-covers/haas-cnc-way-covers/haas-ngc/">Haas Next Generation Control (NGC)</a> machine gets OEM covers faster through the dealer. Custom makes sense when OEM quotes stretch past 6 weeks or when pricing runs 2 to 3 times the fabrication cost.</p>
   </div>
 </section>
 <section class="page-section page-section-1">
-  <div class="section-inner wide">
-<h2 id="why-shops-trust-us">Why Shops Trust Us</h2>
-<p>Experienced field technicians with hands-on time across the major CNC OEM platforms, in-house precision spindle balancing capability, laser alignment services, and established relationships with aftermarket bearing and spindle component suppliers.</p>
-<blockquote><p>&quot;Honestly, we thought the machine was done for.&quot; Most customers tell us they're relieved to avoid replacement lead times and six-figure capital expenses.</p></blockquote>
+  <div class="section-inner">
+<h2 id="three-eras-where-custom-is-the-right-answer">Three eras where custom is the right answer</h2>
+<p>Not every machine suits custom covers. But three situations point clearly toward fabrication.</p>
+<h3 id="era-one-discontinued-oem-part-numbers">Era one: discontinued OEM part numbers</h3>
+<p>OEMs support parts for a window after production ends. Fanuc holds parts 15 to 20 years. Machine builders often hold parts 10 to 12 years, sometimes less on low-volume platforms.</p>
+<p>When a cover part number shows discontinued, options narrow. The shop can hunt secondary channels, pay for a one-off OEM build, or go custom. Discontinued OEM part numbers almost always favor custom.</p>
+<p>We have seen one-off OEM quotes run 3 to 4 times the custom price. Lead times hit 16 to 20 weeks. Secondary channels sometimes turn up NOS (new old stock) covers. But condition varies, and fit is unknown until the part arrives.</p>
+<h3 id="era-two-orphaned-machine-platforms">Era two: orphaned machine platforms</h3>
+<p>Orphaned machine platforms have no OEM support at all. The builder was acquired, left the market, or ended all service. Examples include older Cincinnati Milacron verticals, DeVlieg jig mills, and certain Giddings &amp; Lewis machines.</p>
+<p>Custom fabrication is the only path for these platforms. No OEM exists to call. Secondary-market parts carry risk of mismatch from machine-to-machine variation. <a href="/way-covers/fanuc-cnc-way-covers/series-6-15-legacy/">Way Covers for Series 6 / 10 /</a> 15 legacy Fanuc controls sometimes fall here when the machine builder has closed, even though Fanuc still supports the control.</p>
+<p>Orphaned platforms need more careful measurement. No baseline OEM drawings exist. We add 1 to 2 hours and extra reference photos.</p>
+<h3 id="era-three-heavy-customization-history">Era three: heavy customization history</h3>
+<p>Machines with heavy customization history often no longer match original specs. OEM covers are wrong from the start.</p>
+<p>Common mods that break OEM cover geometry:</p>
+<ul>
+<li>Extended or shortened axis travel
+</li>
+<li>Relocated coolant nozzles or chip conveyors
+</li>
+<li>Added pallet systems or loaders
+</li>
+<li>Non-standard fixturing on cover mounting rails
+</li>
+</ul>
+<p>A 2003 Okuma LB3000 with a gantry loader added in 2011 could not use OEM X-axis covers. The loader brackets took 40mm of mounting rail. Custom covers cost 28% less than trying to modify OEM panels after delivery.</p>
   </div>
 </section>
 <section class="page-section page-section-0">
-  <div class="section-inner wide">
-<h2 id="faq">Common Questions</h2>
-<div class="faq-list">
-<details class="faq-item" id="faq-1">
-  <summary>How fast can you respond to a quote request?</summary>
-  <div class="faq-answer"><p>Most quote requests go out within one business day. If the machine is down and you need someone on the line right now, call 319-610-4341 — we&#x27;d rather talk through the symptoms than wait for an email back. Field troubleshooting on the phone often saves a full teardown.</p></div>
-</details>
-<details class="faq-item" id="faq-2">
-  <summary>Do you work on older or discontinued machines?</summary>
-  <div class="faq-answer"><p>Yes. We have dedicated brand pages and parts-sourcing approaches for Fadal, Hitachi Seiki, and Monarch — manufacturers whose CNC lines have been gone for years but whose machines are still cutting daily in Midwest shops. We lean on aftermarket suppliers, used-market sourcing, and custom-machined replacements where OEM components are gone.</p></div>
-</details>
-<details class="faq-item" id="faq-3">
-  <summary>Where do you work? Do you come on-site?</summary>
-  <div class="faq-answer"><p>We serve shops across Iowa, Illinois, Wisconsin, Minnesota, Nebraska, Missouri, and Texas from our Waterloo, Iowa shop. Field service when that&#x27;s the right call for the job; spindle rebuilds and way-cover builds happen at our bench and ship back to you.</p></div>
-</details>
-<details class="faq-item" id="faq-4">
-  <summary>Can you recover a crashed spindle?</summary>
-  <div class="faq-answer"><p>Often, yes. Crash recovery is one of the threads of work that comes through here — taper damage, bearing-pack failure, alignment loss from impact. Customers are usually relieved to avoid the replacement lead times and the six-figure capital expense of a new spindle. Bring it in for a teardown.</p></div>
-</details>
+  <div class="section-inner">
+<h2 id="cost-structure-oem-versus-custom">Cost structure: OEM versus custom</h2>
+<p>Total installed cost goes beyond the quote. It includes the cover, freight, field measurement (for custom), and any fit-up work.</p>
+<p>OEM pricing is stable on current machines. A Z-axis telescoping set for a new Mazak Variaxis i-700 runs $2,800 to $4,200. The same cover on a 2008 Variaxis 500-5X, if still offered, may quote $5,500 to $7,000 as a special order.</p>
+<p>Custom covers price by material, labor, and complexity. A mid-size VMC X-axis set runs $1,800 to $3,200 in 16-gauge cold-rolled steel with standard wipers. Stainless adds 25% to 35%. Complex geometry with chip deflectors or unusual wipers can approach OEM pricing.</p>
+<p>The break-even point falls at machines 12 to 15 years old. At that age, OEM pricing jumps and lead times stretch. Machines under 10 years with good support often favor OEM. Machines over 15 years almost always favor custom.</p>
+<p>Freight also matters. <a href="/way-covers/dmg-mori-cnc-way-covers/">DMG Mori CNC Way Covers</a> from Japan or Germany carry international shipping and customs delays. Custom covers from Iowa ship ground to our seven-state area in 2 to 4 days.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="field-measurement-the-key-to-custom-fit">Field measurement: the key to custom fit</h2>
+<p>Custom cover accuracy rests on field measurement. A 3mm error on a 1,200mm cover creates fit-up problems. We have seen shops attempt custom covers from old drawings or customer-supplied numbers. The failure rate runs 15% to 20%.</p>
+<p>Our measurement process:</p>
+<p>1. <strong>Machine prep</strong>: Power down, axes at mid-travel, old covers removed. 2. <strong>Reference capture</strong>: Mounting rail positions, travel lengths, clearance envelopes. We use calibrated instruments and laser distance tools. 3. <strong>Interference mapping</strong>: Coolant lines, chip conveyors, cable carriers, service panels. 4. <strong>Photos</strong>: High-resolution shots of every angle. These guide fabrication and remove ambiguity. 5. <strong>Wiper spec</strong>: We check wiper material condition and measure seal lip geometry.</p>
+<p>Single-axis covers take 4 to 6 hours. Multi-axis sets on complex machines can run 8 to 10 hours. We schedule field measurements within 48 hours for Iowa machines. Illinois, Wisconsin, and Minnesota typically fall within 4 to 5 days.</p>
+<p><a href="/way-covers/okuma-cnc-way-covers/">Okuma CNC Way Covers</a> need extra attention. Okuma's telescoping designs use overlap geometry that varies by series. <a href="/way-covers/mazak-cnc-way-covers/smooth-control/">Way Covers for Mazatrol Smooth Era Machines</a> also require careful checks for generation-specific geometry.</p>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="material-and-style-choices">Material and style choices</h2>
+<p>Custom fabrication opens options that OEM sourcing does not. The right pick depends on environment, service life, and whether the shop wants to match original specs or upgrade.</p>
+<h3 id="material">Material</h3>
+<p><strong>Cold-rolled steel (1018)</strong> is the default. It is durable, easy to fabricate, and accepts paint or powder coat. Most OEMs use a carbon steel variant.</p>
+<p><strong>Stainless (304 or 316)</strong> fits high-corrosion shops: medical machining with harsh coolants, food-industry work, or facilities with poor coolant maintenance. Stainless adds 25% to 35% to material cost.</p>
+<p><strong>Aluminum</strong> rarely makes sense. It lacks steel's stiffness in thin gauges and wears faster under chip load.</p>
+<h3 id="style">Style</h3>
+<p><strong>Telescoping covers</strong> suit most VMCs and HMCs. They shed chips well and allow panel-by-panel replacement. <a href="/way-covers/fanuc-cnc-way-covers/">Fanuc CNC Way Covers</a> on compact Robodrill-style machines often use telescoping designs with tight overlap.</p>
+<p><strong>Bellows covers</strong> work where space limits telescoping compression. They appear on older lathes and on machines with long travels. Bellows trap chips more than telescoping covers and need more frequent cleaning.</p>
+<p><strong>Roll-up covers</strong> fit niche cases where neither telescoping nor bellows geometry works. They are more common on grinders with very long travels.</p>
+  </div>
+</section>
+<section class="page-section page-section-1">
+  <div class="section-inner">
+<h2 id="sources-and-references">Sources and references</h2>
+<ul>
+<li>OEM parts catalogs from Mazak, Haas, DMG Mori, Okuma, and Fanuc for lead-time data
+</li>
+<li>Midwest CNC Services internal service logs, 2022–2026, for pricing and lead-time comparisons
+</li>
+<li>Field measurement records from custom projects in Iowa, Illinois, and Wisconsin
+</li>
+<li>Regional steel distributor pricing, 2025–2026
+</li>
+</ul>
+  </div>
+</section>
+<section class="page-section page-section-0">
+  <div class="section-inner">
+<h2 id="when-to-bring-this-work-to-us">When to bring this work to us</h2>
+<p>The choice between OEM and custom depends on age, mod history, and timeline. If the machine is past 12 years, has been modified, or if OEM lead times run too long, custom is worth a look.</p>
+<p>We can give a rough OEM-vs-custom comparison within 24 hours. Send us make, model, year, axis, and a note on any mods. For machines in our service area, we schedule field measurements within 48 hours and return fabrication quotes in 3 to 5 days. If OEM makes more sense for your situation, we will say so. <a href="/get-a-quote/">Request a quote</a> to start the evaluation.</p>
+<div class="insight-cta">
+  <p><strong>Need this work done?</strong> Tell us the machine and the symptom.</p>
+  <p><a class="cta-button" href="/get-a-quote/">Get a quote</a> <a class="cta-phone" href="tel:+13196104341">319-610-4341</a></p>
 </div>
-  </div>
-</section>
-<section class="page-section page-section-1">
-  <div class="section-inner wide">
-<h2 id="downtime">Don't Let Downtime Drain Your Profits</h2>
-<p>Every minute your CNC sits idle is money out the door. Call us with the machine and the issue — most quotes go out within one business day, and we'll get you back to cutting.</p>
-<div class="cta-row"><a class="cta-button" href="/get-a-quote/">Get a Quote</a><a class="cta-phone" href="tel:+13196104341">319-610-4341</a></div>
   </div>
 </section>
 </article>
@@ -3229,7 +2180,7 @@ body.form-submitted .quote-helpers { display: none; }
   </div>
 </footer>
 <div class="mobile-cta-bar" role="region" aria-label="Quick contact">
-  <a class="mcta-phone" href="tel:+13196104341">☎ 319-610-4341</a>
+  <a class="mcta-phone" href="tel:+13196104341">&#9742; 319-610-4341</a>
   <a class="mcta-quote" href="/get-a-quote/">Get a Quote</a>
 </div>
 <script>
